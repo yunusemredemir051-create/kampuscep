@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Uygulamalar – Veri Tabanına Giriş konu özeti | KampüsCep</title>
+<meta name="description" content="Fakülte veri tabanında tablo ilişkileri ve çözümlü SQL soruları, Gelecek Sepeti e-ticaret uygulamasında JOIN, GROUP BY ve HAVING, SATIŞ veri tabanının SQL Server&#x27;da kurulması.">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-7.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="Ünite 7: Uygulamalar · Veri Tabanına Giriş">
+<meta property="og:description" content="Fakülte veri tabanında tablo ilişkileri ve çözümlü SQL soruları, Gelecek Sepeti e-ticaret uygulamasında JOIN, GROUP BY ve HAVING, SATIŞ veri tabanının SQL Server&#x27;da kurulması.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-7.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 7: Uygulamalar", "description": "Fakülte veri tabanında tablo ilişkileri ve çözümlü SQL soruları, Gelecek Sepeti e-ticaret uygulamasında JOIN, GROUP BY ve HAVING, SATIŞ veri tabanının SQL Server'da kurulması.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCep"}, "mainEntityOfPage": "https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-7.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanına Giriş", "provider": {"@type": "Organization", "name": "KampüsCep"}}, "dateModified": "2026-10-19"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><span class="logo-ikon">K</span>KampüsCep</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/veri-tabanina-giris">Veri Tabanına Giriş</a> › Ünite 7</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 1. sınıf · Veri Tabanına Giriş · Ünite 7</small>
+      <h1>Uygulamalar</h1>
+      <p class="giris">Fakülte veri tabanında tablo ilişkileri ve çözümlü SQL soruları, Gelecek Sepeti e-ticaret uygulamasında JOIN, GROUP BY ve HAVING, SATIŞ veri tabanının SQL Server&#x27;da kurulması.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-7.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 11 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/1/veri-tabanina-giris#test-7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Bu ünite önceki ünitelerde öğrenilenleri üç uygulama üzerinde bir araya getirir: tasarımı incelemek, tabloları kurmak ve gerçek sorulara SQL ile cevap aramak.</p>
+<h2>Uygulama 1: Fakülte veri tabanı</h2>
+<p>Fakülte veri tabanında dört tablo vardır: Bolum, Ogrenci, Dersler ve Dersi_Alanlar.</p>
+<ul>
+<li><strong>Bolum – Ogrenci (1–N):</strong> Bir bölümde birçok öğrenci okur; her öğrenci tek bir bölüme bağlıdır. Bu yüzden Ogrenci tablosunda BolumId bulunur.</li>
+<li><strong>Bolum – Dersler (1–N):</strong> Bir bölüm birçok ders açar; her ders tek bir bölüme aittir.</li>
+<li><strong>Ogrenci – Dersler (N–M):</strong> Bir öğrenci birçok ders alır, bir dersi birçok öğrenci alır. Bu ilişkiyi Dersi_Alanlar köprü tablosu kurar.</li>
+</ul>
+<p>Çözülen sorulardan çıkan önemli noktalar:</p>
+<ul>
+<li>Başka bir tabloda kayıtları bulunan dersleri silmeye çalışmak yabancı anahtar hatası verir; önce Dersi_Alanlar'daki bağlı kayıtlar silinmelidir.</li>
+<li>Var olmayan bir bölüm numarasıyla ders eklemek istenirse yabancı anahtar kısıtı kaydı reddeder.</li>
+<li>ALTER TABLE Bolum DROP COLUMN BolumAdi; komutu satırları değil, yalnızca sütunu ve içindeki verileri siler.</li>
+<li>UPDATE … WHERE DersKodu LIKE 'ABM%' komutu ABM ile başlayan tüm dersleri etkiler.</li>
+</ul>
+<h2>Uygulama 2: Gelecek Sepeti</h2>
+<p>Gelecek Sepeti adlı bir e-ticaret sitesinin Musteriler, Urunler ve Siparisler tabloları vardır. Siparisler tablosu müşteri ile ürün arasındaki köprüdür; müşteri ve ürün adını birlikte görmek için <strong>iki INNER JOIN</strong> gerekir. Kodlar, program kurmadan db-fiddle.com üzerinde denenebilir.</p>
+<ul>
+<li><strong>Kategori başına satış adedi:</strong> Siparisler ile Urunler birleştirilir, GROUP BY Kategori ile SUM(Adet) alınır.</li>
+<li><strong>Toplam harcaması 10.000 TL'yi aşan müşteriler:</strong> SUM(Adet * BirimFiyat) her müşteri için hesaplanır, HAVING ile filtrelenir. Örnekte Ahmet 23.000 TL, Ayşe 15.450 TL harcamıştır.</li>
+<li><strong>Belirli bir kategoriden alışveriş yapanlar:</strong> WHERE Kategori = 'Eğitim' ile süzülür; DISTINCT aynı müşterinin adının tekrar etmesini önler.</li>
+<li><strong>Hiç sipariş vermemiş müşterileri de listelemek</strong> için Musteriler tablosu solda olacak biçimde LEFT JOIN kullanılır.</li>
+</ul>
+<h2>Uygulama 3: SATIŞ veri tabanının kurulması</h2>
+<p>Normalizasyon ünitesinde üç tabloya ayrılan SATIŞ tablosu SQL Server'da kurulur: Sehirler (sehir_kodu, sehir_adi), Musteriler (musteri_no, sehir_kodu) ve Gonderiler (musteri_no, gonderi_no, miktar). Gonderiler tablosunun birincil anahtarı (musteri_no, gonderi_no) bileşik anahtarıdır, çünkü aynı gönderi numarası farklı müşterilerde tekrar edebilir.</p>
+<p>Yabancı anahtar hatası almamak için veriler <strong>önce ana tabloya, sonra ona bağlı tabloya</strong> girilir: Sehirler → Musteriler → Gonderiler. Son olarak SSMS'te Database Diagrams klasöründen yeni bir <strong>veri tabanı diyagramı</strong> oluşturulur; FOREIGN KEY tanımları sayesinde tablolar arasındaki ilişki çizgileri kendiliğinden çizilir. Anahtar simgesi 1 tarafını, sonsuz simgesi N tarafını gösterir.</p>
+    </article>
+    <div class="reklam">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-6.html"><small>‹ Önceki ünite</small>SQL ile Veri İşleme ve Sorgulama</a><a class="cam sonraki" href="unite-8.html"><small>Sonraki ünite ›</small>Final Sınavı Soruları ve Çözümleri</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCep</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

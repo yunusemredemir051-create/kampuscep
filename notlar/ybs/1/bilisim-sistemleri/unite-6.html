@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Yazılım Geliştirme Yaşam Döngüsü – Bilişim Sistemleri ve Teknolojilerine Giriş konu özeti | KampüsCep</title>
+<meta name="description" content="Yazılım geliştirme yaşam döngüsünün altı evresi, şelale, V, spiral ve çevik modellerin karşılaştırması ve use case kavramı.">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/bilisim-sistemleri/unite-6.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="Ünite 6: Yazılım Geliştirme Yaşam Döngüsü · Bilişim Sistemleri ve Teknolojilerine Giriş">
+<meta property="og:description" content="Yazılım geliştirme yaşam döngüsünün altı evresi, şelale, V, spiral ve çevik modellerin karşılaştırması ve use case kavramı.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/bilisim-sistemleri/unite-6.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 6: Yazılım Geliştirme Yaşam Döngüsü", "description": "Yazılım geliştirme yaşam döngüsünün altı evresi, şelale, V, spiral ve çevik modellerin karşılaştırması ve use case kavramı.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCep"}, "mainEntityOfPage": "https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/bilisim-sistemleri/unite-6.html", "isPartOf": {"@type": "Course", "name": "Bilişim Sistemleri ve Teknolojilerine Giriş", "provider": {"@type": "Organization", "name": "KampüsCep"}}, "dateModified": "2026-10-19"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><span class="logo-ikon">K</span>KampüsCep</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/bilisim-sistemleri">Bilişim Sistemleri ve Teknolojilerine Giriş</a> › Ünite 6</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 1. sınıf · Bilişim Sistemleri ve Teknolojilerine Giriş · Ünite 6</small>
+      <h1>Yazılım Geliştirme Yaşam Döngüsü</h1>
+      <p class="giris">Yazılım geliştirme yaşam döngüsünün altı evresi, şelale, V, spiral ve çevik modellerin karşılaştırması ve use case kavramı.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-6.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 15 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/1/bilisim-sistemleri#test-6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Yazılım geliştirme yalnızca kod yazmaktan ibaret değildir. Kodlama sürecin yaklaşık %15-20'sidir; geri kalanı problemi doğru anlamak, kaliteyi denetlemek ve sürdürülebilirliği sağlamaktır. Bu süreci yöneten disipline <strong>Yazılım Geliştirme Yaşam Döngüsü (SDLC)</strong> denir.</p>
+<h2>SDLC nedir?</h2>
+<p>SDLC, bir yazılım projesini fikir aşamasından kullanımdan kaldırılmasına kadar yöneten yapısal bir yöntemdir. <strong>Buzdağı benzetmesinde</strong> kodlama ve arayüzler suyun üstünde görünen kısım, müşteri görüşmeleri, fizibilite, veri tabanı tasarımı, risk analizi ve test senaryoları ise suyun altındaki büyük kütledir.</p>
+<p>SDLC'nin amaçları disiplin (plansız çalışmayı önlemek), kontrol (bütçe ve zaman sınırlarına uymak), kalite ve öngörülebilirliktir. Amaç, tek kişinin yazdığı dokümansız bir "program"dan; test edilmiş, dokümante edilmiş ve müşteri gereksinimine göre üretilmiş bir <strong>yazılım ürününe</strong> geçmektir.</p>
+<h2>Altı evre</h2>
+<ol>
+<li><strong>Planlama:</strong> Fizibilite değerlendirilir; bütçe, kaynak ve zaman planı yapılır. Temel soru: Bu projeyi yapmaya değer mi?</li>
+<li><strong>Analiz:</strong> Müşterinin ne istediği ayrıntılı anlaşılır. Çıktısı Gereksinim Spesifikasyon Dokümanı'dır (SRS).</li>
+<li><strong>Tasarım:</strong> Teknik mimari, veri tabanı şemaları ve kullanıcı arayüzleri tasarlanır.</li>
+<li><strong>Gerçekleştirme:</strong> Tasarım koda dökülür, altyapı kurulur.</li>
+<li><strong>Test:</strong> Hatalar (bug) bulunur ve gereksinimlerin karşılanıp karşılanmadığı kontrol edilir.</li>
+<li><strong>Bakım:</strong> Teslimden sonraki güncellemeler ve düzeltmelerdir. En uzun süren ve en maliyetli evredir.</li>
+</ol>
+<h2>SDLC modelleri</h2>
+<ul>
+<li><strong>Şelale (Waterfall):</strong> Her aşama bir öncekinin bitmesiyle başlar, geri dönüş çok zordur. Yönetimi basit, dokümantasyonu güçlüdür; ancak değişime kapalıdır ve müşteri ürünü yalnızca en sonda görür. Gereksinimleri değişmeyecek projelere uygundur.</li>
+<li><strong>V-Modeli:</strong> Şelalenin test odaklı hâlidir; her geliştirme adımının karşısında bir test adımı bulunur. Hata tespiti erken başlar. Tıbbi cihaz ve havacılık gibi kritik sistemlerde kullanılır.</li>
+<li><strong>Spiral model:</strong> Proje, her birinde risk analizi yapılıp prototip üretilen döngülerle ilerler. Risk yönetimi mükemmeldir ama karmaşık ve maliyetlidir; küçük projelere uygun değildir.</li>
+<li><strong>Çevik (Agile):</strong> Proje 2-4 haftalık <strong>sprintlere</strong> bölünür, her sprint sonunda çalışan bir parça teslim edilir. Değişime hızlı uyum sağlar ve müşteri sürekli sürece katılır; dokümantasyonu zayıf kalabilir. En yaygın uygulaması <strong>Scrum</strong>'dır. Mobil ve web projelerine uygundur.</li>
+</ul>
+<p>En iyi model yoktur, projeye en uygun model vardır. Sıfır hata gereken bir nükleer santral yazılımında V-Modeli, hızla değişen bir e-ticaret sitesinde Çevik model, gereksinimleri baştan belli bir arşiv sisteminde Şelale yeterli olabilir.</p>
+<h2>Vaka: güvenlik kritik bir tıbbi cihaz</h2>
+<p>Vücuda yerleştirilen, sıfır hata toleranslı, teknolojisi henüz belirsiz ve ağır regülasyona tabi bir cihaz yazılımında en uygun yaklaşım <strong>V-Modeli ile Spiral modelin birleştirildiği hibrit modeldir</strong>. V-Modeli izlenebilirliği ve doğrulamayı, Spiral ise belirsizlik ve risk yönetimini sağlar. Şelale değişime kapalı olduğu için, Çevik ise hafif dokümantasyonu izlenebilirlik zorunluluğuyla çeliştiği ve "hızlı hata yap" mantığı hasta üzerinde denenemeyeceği için elenir.</p>
+<h2>Use case (kullanım durumu)</h2>
+<p>Use case, sistemin bir işi <strong>nasıl</strong> yaptığına değil, <strong>ne yaptığına</strong> odaklanan bir senaryodur. Bileşenleri şunlardır:</p>
+<ul>
+<li><strong>Aktör:</strong> Sistemi kullanan kişi ya da başka bir sistem.</li>
+<li><strong>Amaç:</strong> Aktörün ulaşmak istediği hedef.</li>
+<li><strong>Ön koşul:</strong> Senaryonun başlaması için gereken şart. Örnek: ürün stokta olmalı.</li>
+<li><strong>Ana senaryo:</strong> Her şeyin yolunda gittiği akış.</li>
+<li><strong>Alternatif senaryo:</strong> İstisna ve hata durumları. Örnek: stok yoksa uyarı verilir.</li>
+</ul>
+<p>Use case diyagramları PlantUML, draw.io ve Mermaid gibi araçlarla çizilebilir.</p>
+    </article>
+    <div class="reklam">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-5.html"><small>‹ Önceki ünite</small>Toplumsal Gelişim Aşamaları</a><a class="cam sonraki" href="unite-7.html"><small>Sonraki ünite ›</small>İşletim Sistemleri</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCep</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

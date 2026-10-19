@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#eef3ff">
-<title>KampüsCep</title>
+<title>KampüsCep – Elazığ öğrenci rehberi: ders notları, yemek menüsü, akademik takvim</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="KampüsCep – Elazığ öğrenci rehberi">
+<meta property="og:description" content="Ders notları ve testler, Üniversite Evi menüsü, yurtlar, akademik takvim ve sınav sayaçları tek yerde.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/">
+<meta property="og:locale" content="tr_TR">
 <meta name="description" content="Elazığ yurt menüleri, Üniversite Evi menüsü, ders notları, akademik takvim, sınav ve tatil sayaçları tek uygulamada.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -294,6 +302,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 
 /* ================= TELEFON ================= */
 @media (max-width: 820px) {
+  :root { --cerez-alt: 96px; }
   .uygulama { grid-template-columns: 1fr; padding: 16px 16px 110px; }
   .yan {
     position: fixed; top: auto; bottom: 12px; left: 12px; right: 12px; z-index: 50;
@@ -464,6 +473,11 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <span class="rozet yakinda">Yakında</span>
           </div>
         </div>
+        <a class="satir-kart cam" href="dersler.html" style="margin-top:12px">
+          <span class="ik r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2zm0 0A2 2 0 0 0 6 22h14"/><path d="M8 7h8M8 11h6"/></svg></span>
+          <div class="orta"><b>Tüm konu özetleri</b><small>Bütün derslerin ünite ünite özetleri tek sayfada</small></div>
+          <span class="ok">›</span>
+        </a>
       </div>
 
       <div id="sinif-gorunum" style="display:none">
@@ -550,6 +564,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
     </section>
 
     <footer class="alt-bilgi">
+      <a href="dersler.html">Ders notları</a>
       <a href="hakkimizda.html">Hakkımızda ve iletişim</a>
       <a href="gizlilik.html">Gizlilik ve çerezler</a>
       <span>© 2026 KampüsCep</span>
@@ -979,5 +994,6 @@ function geriSay() {
     gun > 0 ? "gün kaldı" : gun === 0 ? "Sınav bugün, başarılar" : "Bu tarih geçmiş";
 }
 </script>
+<script src="cerez.js" defer></script>
 </body>
 </html>

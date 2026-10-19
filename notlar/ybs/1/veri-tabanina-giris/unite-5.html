@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>SQL’e Giriş: Veri Tipleri ve Veri Tanımlama – Veri Tabanına Giriş konu özeti | KampüsCep</title>
+<meta name="description" content="SQL nedir, DDL, DML ve DCL komut grupları, SQL Server veri tipleri, CREATE TABLE, kısıtlamalar, ALTER TABLE, DELETE, TRUNCATE, DROP ve .sql, .mdf, .bak dosyaları.">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-5.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="Ünite 5: SQL’e Giriş: Veri Tipleri ve Veri Tanımlama · Veri Tabanına Giriş">
+<meta property="og:description" content="SQL nedir, DDL, DML ve DCL komut grupları, SQL Server veri tipleri, CREATE TABLE, kısıtlamalar, ALTER TABLE, DELETE, TRUNCATE, DROP ve .sql, .mdf, .bak dosyaları.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-5.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 5: SQL’e Giriş: Veri Tipleri ve Veri Tanımlama", "description": "SQL nedir, DDL, DML ve DCL komut grupları, SQL Server veri tipleri, CREATE TABLE, kısıtlamalar, ALTER TABLE, DELETE, TRUNCATE, DROP ve .sql, .mdf, .bak dosyaları.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCep"}, "mainEntityOfPage": "https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-5.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanına Giriş", "provider": {"@type": "Organization", "name": "KampüsCep"}}, "dateModified": "2026-10-19"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><span class="logo-ikon">K</span>KampüsCep</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/veri-tabanina-giris">Veri Tabanına Giriş</a> › Ünite 5</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 1. sınıf · Veri Tabanına Giriş · Ünite 5</small>
+      <h1>SQL’e Giriş: Veri Tipleri ve Veri Tanımlama</h1>
+      <p class="giris">SQL nedir, DDL, DML ve DCL komut grupları, SQL Server veri tipleri, CREATE TABLE, kısıtlamalar, ALTER TABLE, DELETE, TRUNCATE, DROP ve .sql, .mdf, .bak dosyaları.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-5.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 16 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/1/veri-tabanina-giris#test-5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p><strong>SQL (Structured Query Language, Yapısal Sorgulama Dili)</strong>, veri tabanlarında kayıt eklemek, değiştirmek, silmek ve sorgulamak için tasarlanmış dildir. Önce matematiksel söz dizimli SQUARE, ardından İngilizceye benzeyen SEQUEL geliştirilmiş; bu dil daha sonra SQL adını almıştır. Microsoft SQL Server, MySQL, PostgreSQL ve Oracle SQL kullanan sistemlerdendir.</p>
+<h2>Komut grupları</h2>
+<ul>
+<li><strong>DDL (Veri Tanımlama Dili):</strong> Veri tabanının yapısıyla ilgilenir. CREATE (oluştur), ALTER (yapıyı değiştir), DROP (tamamen sil), TRUNCATE (içini boşalt) ve RENAME.</li>
+<li><strong>DML (Veri İşleme Dili):</strong> Tablonun içindeki satırlarla çalışır. SELECT, INSERT, UPDATE ve DELETE.</li>
+<li><strong>DCL (Veri Kontrol Dili):</strong> Yetkileri yönetir. GRANT yetki verir, REVOKE geri alır, DENY açıkça yasaklar.</li>
+</ul>
+<p>VIEW oluşturmak, ALTER TABLE ve TRUNCATE birer DDL işlemidir. Kullanıcı oluşturma ve değiştirme komutları (CREATE USER, ALTER USER) veri işleme komutu değildir.</p>
+<p>Derste veri tabanı motoru olarak <strong>SQL Server Express</strong>, yönetim arayüzü olarak <strong>SQL Server Management Studio (SSMS)</strong> kurulur. SQL Server arka planda çalışan bir servistir; tabloları görmek ve sorgu yazmak için SSMS gerekir.</p>
+<h2>Veri tipleri</h2>
+<p>Doğru veri tipi gereksiz bellek kullanımını önler ve yanlış veri girilmesini engeller.</p>
+<ul>
+<li><strong>Tam sayılar:</strong> bigint (8 bayt), int (4 bayt, en yaygın), smallint (2 bayt), tinyint (1 bayt, SQL Server'da 0–255), bit (0 veya 1; evet/hayır gibi ikili durumlar).</li>
+<li><strong>Ondalıklı ve parasal:</strong> decimal/numeric (basamak sayısı tanımlanır), float ve real (yaklaşık değerli), money ve smallmoney.</li>
+<li><strong>Tarih ve zaman:</strong> date, time, datetime, datetime2, smalldatetime, datetimeoffset.</li>
+<li><strong>Metin:</strong> char(n) her zaman n karakterlik yer kaplar; varchar(n) girilen kadar yer kaplar. nchar ve nvarchar Unicode destekler. Türkçe karakterlerin bozulmaması için <strong>nvarchar</strong> tercih edilir.</li>
+</ul>
+<h2>Tablo oluşturma ve kısıtlamalar</h2>
+<p>Veri tabanı CREATE DATABASE, tablo CREATE TABLE ile oluşturulur. <strong>USE</strong> komutların hangi veri tabanında çalışacağını, <strong>GO</strong> komut gruplarının ayrılmasını belirtir. <strong>IDENTITY(1,1)</strong> bir sütunun değerini her yeni kayıtta 1'den başlayıp birer artırır.</p>
+<ul>
+<li><strong>PRIMARY KEY:</strong> Satırı benzersiz tanımlar; NULL ve tekrar içeremez. Tabloda bir tane olur ama birden çok sütundan oluşabilir.</li>
+<li><strong>FOREIGN KEY:</strong> Sütunu başka bir tablonun birincil anahtarına bağlar; orada bulunmayan değerin girilmesini engeller.</li>
+<li><strong>UNIQUE:</strong> Değerlerin tekrar etmesini engeller; bir tabloda birden çok olabilir.</li>
+<li><strong>NOT NULL:</strong> Sütunun boş bırakılmasını engeller.</li>
+<li><strong>CHECK:</strong> Değerin bir koşulu sağlamasını zorunlu kılar. Örnek: CHECK (Sinif BETWEEN 1 AND 4).</li>
+<li><strong>DEFAULT:</strong> Değer girilmezse kullanılacak varsayılan değeri belirler.</li>
+</ul>
+<p><strong>NULL</strong> "değer yok" demektir; 0 ya da boş metinle aynı şey değildir. Yabancı anahtar nedeniyle önce bağımsız tablo (Bolum), sonra ona bağlı tablolar (Ogrenci, Dersler) oluşturulur.</p>
+<h2>ALTER TABLE</h2>
+<p>Dolu bir tablonun yapısını, tabloyu silmeden değiştirir: ADD ile sütun eklenir (eski kayıtlarda yeni sütun NULL başlar), DROP COLUMN ile sütun silinir, ALTER COLUMN ile veri tipi değiştirilir, ADD CONSTRAINT ile sonradan anahtar eklenir. ALTER TABLE yapıyı, UPDATE ise satırlardaki veriyi değiştirir.</p>
+<h2>DELETE, TRUNCATE ve DROP</h2>
+<ul>
+<li><strong>DELETE (DML):</strong> WHERE ile seçilen satırları siler; her satırı günlüğe yazdığı için yavaştır ama geri alınabilir. IDENTITY sayacını sıfırlamaz.</li>
+<li><strong>TRUNCATE (DDL):</strong> Tablonun bütün içeriğini çok hızlı boşaltır; WHERE almaz, tablo boş bir şablon olarak kalır ve sayaç sıfırlanır.</li>
+<li><strong>DROP (DDL):</strong> Tabloyu yapısıyla birlikte tamamen siler.</li>
+</ul>
+<p>Veri tabanı her INSERT, UPDATE ve DELETE işlemini önce <strong>işlem günlüğüne (log)</strong> yazar; elektrik kesilirse yarım kalan işlem yeniden açılışta geri alınır (ROLLBACK).</p>
+<h2>Taşıma ve yedekleme</h2>
+<ul>
+<li><strong>.sql (script):</strong> Veri tabanını sıfırdan kuran komutları içeren düz metin dosyasıdır. Sürüm farklarından en az etkilenir ama büyük verilerde yavaştır; yedekleme dosyası değildir.</li>
+<li><strong>.mdf:</strong> SQL Server'ın ana veri dosyasıdır. Sunucu çalışırken kilitlidir; taşımak için Detach ve Attach yapılır.</li>
+<li><strong>.bak:</strong> Veri tabanının sıkıştırılmış yedeğidir. Sistem çalışırken alınabilir ve Restore ile geri yüklenir. Üst sürümde alınan yedek alt sürüme yüklenemez.</li>
+</ul>
+    </article>
+    <div class="reklam">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-4.html"><small>‹ Önceki ünite</small>Normalizasyon</a><a class="cam sonraki" href="unite-6.html"><small>Sonraki ünite ›</small>SQL ile Veri İşleme ve Sorgulama</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCep</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

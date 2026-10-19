@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Sayfa bulunamadı – KampüsCep</title>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #eef3ff; color: #141b34; font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif; text-align: center; padding: 24px; }
+  .kart { background: #fff; border-radius: 22px; padding: 32px 26px; max-width: 420px; box-shadow: 0 10px 30px -12px rgba(40,60,140,.18); }
+  h1 { margin: 0 0 8px; font-size: 24px; }
+  p { color: #6b7390; margin: 0 0 20px; line-height: 1.6; }
+  a { display: inline-block; margin: 4px; padding: 12px 16px; border-radius: 14px; background: #3b5bfd; color: #fff; font-weight: 700; text-decoration: none; }
+  a.ikincil { background: #e6ebff; color: #3b5bfd; }
+</style>
+</head>
+<body>
+  <div class="kart">
+    <h1>Bu sayfa bulunamadı</h1>
+    <p>Aradığın sayfa taşınmış ya da kaldırılmış olabilir. Ana sayfadan ya da ders notlarından devam edebilirsin.</p>
+    <a id="ana" href="/">Ana sayfa</a>
+    <a id="notlar" class="ikincil" href="/dersler.html">Ders notları</a>
+  </div>
+  <script>
+    var kok = location.pathname.indexOf("/kampuscep/") === 0 ? "/kampuscep/" : "/";
+    document.getElementById("ana").href = kok;
+    document.getElementById("notlar").href = kok + "dersler.html";
+  </script>
+</body>
+</html>
