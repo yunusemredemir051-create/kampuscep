@@ -40,21 +40,47 @@ const uniEviMenuleri = {
   "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "T. helva"]
 };
 
-/* YBS dersleri — not eklemek için:
-   1) PDF'i GitHub'da notlar/ybs/SINIF/ klasörüne yükle (ör. notlar/ybs/2/istatistik.pdf)
-   2) Aşağıda o dersin link kısmına aynı yolu yaz: link: "notlar/ybs/2/istatistik.pdf"
-   Yeni ders: { ad: "Ders adı", link: "" },  satırını ilgili sınıfa ekle
-   Bölümlere ayrılmış, testli ders: link: "ders.html?d=ybs/SINIF/klasor-adi" (klasörde ders.json olmalı) */
+/* YBS dersleri — 2026-2027 güz dönemi ders programına göre (seçmeli ve staj dersleri hariç)
+   link: ders sayfası ("ders.html?d=ybs/SINIF/klasor") ya da tek bir PDF ("notlar/ybs/2/dosya.pdf")
+   link boşsa ders "Yakında" olarak görünür.
+   Yeni ders: { kod: "", ad: "Ders adı", gun: "", saat: "", hoca: "", yer: "", link: "" }, */
 const ybsDersleri = {
   1: [
-    { ad: "Bilişim Sistemleri ve Teknolojilerine Giriş", link: "ders.html?d=ybs/1/bilisim-sistemleri", aciklama: "8 bölüm · 162 soru" }
+    { kod: "YBS1105", ad: "Bilişim Sistemleri ve Teknolojilerine Giriş", gun: "Salı", saat: "13:15–17:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2", link: "ders.html?d=ybs/1/bilisim-sistemleri" },
+    { kod: "", ad: "Veri Tabanına Giriş", gun: "", saat: "", hoca: "", yer: "", link: "ders.html?d=ybs/1/veri-tabanina-giris" },
+    { kod: "YBS1107", ad: "Algoritma", gun: "Pazartesi", saat: "08:15–12:00", hoca: "Doç. Dr. Mesut Toğaçar", yer: "ENF LAB 2", link: "" },
+    { kod: "YBS1111", ad: "Muhasebe I", gun: "Pazartesi", saat: "13:15–16:00", hoca: "Doç. Dr. Meltem Gül", yer: "Çevre Amfi 3", link: "" },
+    { kod: "YBS1103", ad: "İşletme Yönetimi", gun: "Perşembe", saat: "09:15–12:00", hoca: "Doç. Dr. Cem Ayden", yer: "Kimya Amfi 4", link: "" },
+    { kod: "İKT1101", ad: "Mikro İktisat", gun: "Perşembe", saat: "13:15–16:00", hoca: "Doç. Dr. Yunus Gülcü", yer: "Kimya Amfi 4", link: "" },
+    { kod: "YBS1109", ad: "İşletme Matematiği", gun: "Cuma", saat: "09:15–12:00", hoca: "Öğr. Gör. Tuba Şekerci", yer: "Kimya Amfi 4", link: "" }
   ],
   2: [
-    { ad: "İstatistik", link: "" },
-    { ad: "Finansal Yönetim", link: "" }
+    { kod: "YBS2103", ad: "İstatistik", gun: "Perşembe", saat: "09:15–12:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "Çevre Derslik 3", link: "ders.html?d=ybs/2/istatistik" },
+    { kod: "YBS2101", ad: "Finansal Yönetim", gun: "Salı", saat: "13:15–16:00", hoca: "Dr. Öğr. Üyesi Emre Bulut", yer: "Seminer Salonu", link: "ders.html?d=ybs/2/finansal-yonetim" },
+    { kod: "YBS2105", ad: "Web Tabanlı Uygulamalar", gun: "Pazartesi", saat: "13:15–17:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2", link: "" },
+    { kod: "YBS2109", ad: "Nesne Tabanlı Programlama II", gun: "Salı", saat: "08:15–12:00", hoca: "Doç. Dr. Mesut Toğaçar", yer: "ENF LAB 2", link: "" },
+    { kod: "YBS2113", ad: "Sosyal Medya Analizi", gun: "Perşembe", saat: "13:15–17:00", hoca: "Doç. Dr. Seda Özer Şanal", yer: "Çevre Derslik 3", link: "" },
+    { kod: "YBS2115", ad: "Grafik Tasarımı ve Animasyon", gun: "Cuma", saat: "08:15–12:00", hoca: "Dr. Öğr. Üyesi Abdullah Şener", yer: "ENF LAB 2", link: "" },
+    { kod: "YBS2107", ad: "Pazarlama İlkeleri", gun: "Cuma", saat: "13:15–16:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "Sosyal Hizmetler Amfi 4", link: "" }
   ],
-  3: [],
-  4: []
+  3: [
+    { kod: "YBS301", ad: "Sistem Analizi ve Tasarımı", gun: "Pazartesi", saat: "09:15–12:00", hoca: "Dr. Öğr. Üyesi Abdullah Şener", yer: "Çalışma Ekonomisi Derslik 1", link: "" },
+    { kod: "YBS311", ad: "Proje Yönetimi", gun: "Pazartesi", saat: "13:15–16:00", hoca: "Doç. Dr. Seda Özer Şanal", yer: "Çevre Derslik 3", link: "" },
+    { kod: "YBS309", ad: "Yöneylem Araştırması", gun: "Çarşamba", saat: "09:15–12:00", hoca: "Doç. Dr. Ahmed İhsan Şimşek", yer: "Kimya Amfi 4", link: "" },
+    { kod: "YBS307", ad: "Bilişim Hukuku", gun: "Çarşamba", saat: "13:15–16:00", hoca: "Öğr. Gör. Murat Bal", yer: "Kimya Amfi 4", link: "" },
+    { kod: "YBS305", ad: "Veri Tabanı Sistemleri", gun: "Perşembe", saat: "08:15–12:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2", link: "" },
+    { kod: "YBS303", ad: "Veri Madenciliği", gun: "Perşembe", saat: "13:15–17:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "ENF LAB 2", link: "" }
+  ],
+  4: [
+    { kod: "YBS409", ad: "Stratejik Yönetim", gun: "Pazartesi", saat: "09:15–12:00", hoca: "Doç. Dr. Cem Ayden", yer: "Çevre Derslik 3", link: "" },
+    { kod: "YBS419", ad: "Teknolojik Liderlik ve Motivasyon", gun: "Pazartesi", saat: "13:15–16:00", hoca: "Dr. Öğr. Üyesi Hatice Gökçe Demirel", yer: "Seminer Salonu", link: "" },
+    { kod: "YBS405", ad: "İşletmeler için Karar Destek Sistemleri", gun: "Salı", saat: "09:15–12:00", hoca: "Doç. Dr. Ahmed İhsan Şimşek", yer: "Çevre Derslik 3", link: "" },
+    { kod: "YBS403", ad: "Müşteri İlişkileri Yönetimi", gun: "Salı", saat: "13:15–16:00", hoca: "Prof. Dr. Atilla Yücel", yer: "Çevre Derslik 3", link: "" },
+    { kod: "YBS421", ad: "Yapay Zekâ", gun: "Çarşamba", saat: "09:15–12:00", hoca: "Dr. Öğr. Üyesi Abdullah Şener", yer: "ENF LAB 2", link: "" },
+    { kod: "YBS411", ad: "Girişimcilik", gun: "Perşembe", saat: "09:15–12:00", hoca: "Öğr. Gör. Naim Aslanmirza", yer: "Seminer Salonu", link: "" },
+    { kod: "YBS415", ad: "Bilgi Sistemleri Güvenliği ve Risk Yönetimi", gun: "Cuma", saat: "09:15–12:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "Sosyal Hizmetler Amfi 4", link: "" },
+    { kod: "YBS417", ad: "Bilişim Toplumu ve E-Devlet", gun: "Cuma", saat: "13:15–16:00", hoca: "Doç. Dr. Seda Özer Şanal", yer: "Seminer Salonu", link: "" }
+  ]
 };
 
 /* Akademik takvim 2026–2027 (Fırat Üniversitesi genel akademik takvimi)
