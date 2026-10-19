@@ -147,6 +147,8 @@ sub { font-size: .7em; }
   .soru { padding: 18px 16px; }
   .sekmeler .uzun { display: none; } .sekmeler .kisa { display: inline; }
 }
+/* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
+.reklam { display: none !important; }
 </style>
 </head>
 <body>
@@ -423,7 +425,7 @@ function soruCiz() {
     let n = 0;
     const metin = html(q.s).replace(/____/g, () => {
       const j = n++;
-      const cls = cozuldu ? (eslesir(yazilan[j] || "", q.cs[j]) ? "dogru" : "yanlis") : "";
+      const cls = cozuldu ? (boslukTekDogru(q, yazilan, j) ? "dogru" : "yanlis") : "";
       const gen = Math.min(Math.max(duz(q.cs[j] || "").length, 6) + 3, 34);
       return `<input class="bosluk-giris ${cls}" style="width:${gen}ch" data-j="${j}" aria-label="Boşluk ${j + 1}" autocomplete="off" autocapitalize="off" ${cozuldu ? "disabled" : ""} value="${(yazilan[j] || "").replace(/"/g, "&quot;")}">`;
     });
@@ -438,12 +440,22 @@ function soruCiz() {
       const kontrol = () => {
         const bos = girisler.find(g => !g.value.trim());
         if (bos) { bos.focus(); return; }
-        bitir(girisler.every((g, j) => eslesir(g.value, q.cs[j])), girisler.map(g => g.value.trim()));
+        bitir(boslukDogru(q, girisler.map(g => g.value)), girisler.map(g => g.value.trim()));
       };
       el.querySelector('[data-is="kontrol"]').onclick = kontrol;
       el.querySelector('[data-is="goster"]').onclick = () => bitir(false, girisler.map(g => g.value.trim()), true);
     }
   }
+}
+
+/* Sırasız cevaplarda (ör. SUM(Adet * BirimFiyat)) boşluklar yer değiştirebilir */
+function boslukDogru(q, degerler) {
+  if (!q.sirasiz) return degerler.every((v, j) => eslesir(v, q.cs[j]));
+  const kalan = q.cs.slice();
+  return degerler.every(v => { const i = kalan.findIndex(c => eslesir(v, c)); if (i < 0) return false; kalan.splice(i, 1); return true; });
+}
+function boslukTekDogru(q, degerler, j) {
+  return q.sirasiz ? q.cs.some(c => eslesir(degerler[j] || "", c)) : eslesir(degerler[j] || "", q.cs[j]);
 }
 
 /* Esnek karşılaştırma: büyük/küçük harf, Türkçe karakter, boşluk ve noktalama farkını
@@ -454,7 +466,8 @@ function sade(s) {
     .replace(/[^a-z0-9%.*]/g, "").replace(/\./g, "");
 }
 function eslesir(yazilan, cevap) {
-  const y = sade(yazilan);
+  let y = sade(yazilan);
+  if (/^\d+$/.test(y) && /^\d+$/.test(sade(cevap))) return y.replace(/^0+(?=\d)/, "") === sade(cevap).replace(/^0+(?=\d)/, "");
   if (!y) return false;
   const ic = (cevap.match(/\((.*?)\)/g) || []).map(x => x.slice(1, -1));
   const adaylar = [cevap, cevap.replace(/\(.*?\)/g, ""), ...ic, ...ic.flatMap(x => x.split("/"))];

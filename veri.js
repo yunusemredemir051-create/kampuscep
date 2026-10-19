@@ -20,13 +20,10 @@ const yurtlar = [
   { id: "sare-ana",        ad: "Sare Ana Yurdu",        tur: "kiz",   wp: "" }
 ];
 
-/* Yurt menüleri — bir yurdun kendi menüsünü girmek için "varsayilan" bloğunu
-   kopyala, adını o yurdun id'si yap (ör. "harput"). Girilmeyen yurtlar varsayılanı gösterir. */
+/* Yurt menüleri — her yurdun menüsünü yurdun id'siyle ekle. Girilmeyen yurtta
+   "menü henüz eklenmedi" yazar. Örnek:
+   "harput": { kahvalti: ["Haşlanmış yumurta", "Beyaz peynir"], aksam: ["Mercimek çorbası", "Tavuk sote"] }, */
 const yurtMenuleri = {
-  varsayilan: {
-    kahvalti: ["Haşlanmış yumurta", "Beyaz peynir", "Siyah zeytin", "Domates, salatalık", "Bal, tereyağı"],
-    aksam:    ["Mercimek çorbası", "Tavuk sote", "Pirinç pilavı", "Ayran"]
-  }
 };
 
 /* Üniversite Evi menüsü — kaynak: https://unievi.firat.edu.tr ("Haftalık Menü")
