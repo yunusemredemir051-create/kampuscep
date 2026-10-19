@@ -20,10 +20,10 @@ Elazığ'daki üniversite öğrencileri için günlük rehber: yurt ve Üniversi
    `{ ad: "İstatistik", link: "notlar/ybs/2/istatistik-hafta-3.pdf" },`
 5. **Commit changes**. Site 1 dakika içinde güncellenir.
 
-## Bölümlere ayrılmış, testli ders notları
+## Ünitelere ayrılmış, testli ders notları
 
-`notlar/ybs/1/bilisim-sistemleri/` klasörü örnek: bölüm PDF'leri (filigranlı), kitabın tamamı ve
-`ders.json` (bölüm adları, konular, Kendini Test Et soruları ve cevapları). Site bu klasörü
+`notlar/ybs/1/bilisim-sistemleri/` klasörü örnek: ünite PDF'leri (filigranlı, ödev ve test kısımları çıkarılmış) ve
+`ders.json` (ünite adları, Kendini Test Et soruları ve cevapları). Site bu klasörü
 `ders.html?d=ybs/1/bilisim-sistemleri` adresinde gösterir. Yeni bir kitap için aynı yapıda bir klasör
 hazırlanır ve `veri.js`'de dersin `link` kısmına bu adres yazılır.
 

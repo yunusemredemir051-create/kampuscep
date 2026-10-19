@@ -263,6 +263,9 @@ body {
 .rozet.acik { background: var(--yesil-acik); color: var(--yesil); }
 .rozet.yakinda { background: #eef0f6; color: var(--soluk); }
 .pasif { opacity: .55; pointer-events: none; }
+.soluk-kart { cursor: default; }
+.soluk-kart:hover { background: var(--cam); }
+.soluk-kart b { color: #4a5272; }
 
 /* ================= ARAÇLAR ================= */
 .araclar { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
@@ -442,7 +445,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
         <div class="liste">
           <button class="satir-kart cam" onclick="bolumAc()">
             <span class="ik m">YBS</span>
-            <div class="orta"><b>Yönetim Bilişim Sistemleri</b><small>1, 2, 3 ve 4. sınıf</small></div>
+            <div class="orta"><b>Yönetim Bilişim Sistemleri</b><small>1, 2, 3 ve 4. sınıf · ders programı ve notlar</small></div>
             <span class="rozet acik">Açık</span>
           </button>
           <div class="satir-kart cam pasif">
@@ -910,23 +913,27 @@ function sinifSec(s) {
   const dersler = ybsDersleri[s];
   const renkler = ["m", "t", "y", "p", "r"];
   document.getElementById("ders-liste").innerHTML = dersler.length
-    ? dersler.map((d, i) => `
-      <a class="satir-kart cam ${d.link ? "" : "pasif"}" ${d.link ? `href="${d.link}"${/\.pdf$/i.test(d.link) ? ' target="_blank" rel="noopener"' : ""}` : ""}>
+    ? dersler.map((d, i) => {
+      const program = [d.gun && d.saat ? `${d.gun} ${d.saat}` : "", d.hoca].filter(Boolean).join(" · ");
+      return `
+      <a class="satir-kart cam ${d.link ? "" : "soluk-kart"}" ${d.link ? `href="${d.link}"${/\.pdf$/i.test(d.link) ? ' target="_blank" rel="noopener"' : ""}` : ""}>
         <span class="ik ${renkler[i % renkler.length]}">${d.ad.charAt(0)}</span>
-        <div class="orta"><b>${d.ad}</b><small>${d.aciklama || s + ". sınıf"}</small></div>
+        <div class="orta"><b>${d.ad}</b><small>${program || (d.kod ? d.kod : s + ". sınıf")}</small></div>
         <span class="rozet ${d.link ? "acik" : "yakinda"}">${d.link ? "Notlar" : "Yakında"}</span>
-      </a>`).join("")
+      </a>`; }).join("")
     : `<div class="cam bos-kutu">${s}. sınıf dersleri yakında eklenecek.</div>`;
 }
 document.querySelectorAll("#sinif-sekme button").forEach(b => b.onclick = () => sinifSec(b.dataset.sinif));
 
 /* Adres çubuğundan doğrudan açma: index.html#takvim, index.html#ybs-1 gibi */
-(function () {
+function adresiAc() {
   const h = location.hash.slice(1);
   if (["yurtlar", "notlar", "takvim", "araclar"].includes(h)) sayfaAc(h);
   const m = h.match(/^ybs-([1-4])$/);
   if (m) { sayfaAc("notlar"); bolumAc(); sinifSec(m[1]); }
-})();
+}
+adresiAc();
+window.addEventListener("hashchange", adresiAc);
 
 /* =====================================================================
    ORTALAMA
