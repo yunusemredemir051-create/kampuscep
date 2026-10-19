@@ -508,7 +508,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
         Tüm tarihleri telefon takvimine ekle
       </button>
       <p class="aciklama">
-        Ara sınav ve mazeret sınavı tarihleri, akademik takvimdeki "8.–9. hafta" ve "13.–14. hafta" kuralına göre hesaplanmış tahmini aralıklardır; kesin günleri bölümün açıklar.
+        Güz dönemi vizeleri 16 Kasım’da başlıyor. "Tahmini" yazan tarihler (mazeret sınavları ve bahar vizeleri) akademik takvimdeki "8.–9. hafta" ve "13.–14. hafta" kuralına göre hesaplanmıştır; kesin günleri bölümün açıklar.
         Kaynak: Fırat Üniversitesi 2026–2027 Genel Akademik Takvimi (Tıp ve Diş Hekimliği hariç).
       </p>
     </section>
@@ -724,9 +724,9 @@ function tatillerCiz() {
     const gecti = olayBitis(o) < bugun;
     const k = kalanYazi(o);
     let alt;
-    if (a.kopru) alt = `<div class="kopru">${a.kopru.gunler} köprü olursa ${sayiYaz(a.kopru.toplam)} gün tatil</div>`;
-    else if (a.donemDisi) alt = `<div class="kopru notr">${haftaSonu(T(o.bas)) && !o.bit ? "Hafta sonuna denk geliyor" : "Ders dönemi dışında kalıyor"}</div>`;
-    else alt = `<div class="kopru notr">Hafta sonuyla birlikte ${sayiYaz(a.birlesik)} gün</div>`;
+    if (a.kopru) alt = `<div class="kopru">Araya kalan ${a.kopru.gunler} ${a.kopru.gunler.includes(" ve ") ? "günlerini" : "gününü"} de tatil yaparsan, hafta sonuyla birlikte toplam ${sayiYaz(a.kopru.toplam)} gün tatil olur.</div>`;
+    else if (a.donemDisi) alt = `<div class="kopru notr">${haftaSonu(T(o.bas)) && !o.bit ? "Hafta sonuna denk geliyor; derslere etkisi yok." : "Dersler yokken geliyor; derslere etkisi yok."}</div>`;
+    else alt = `<div class="kopru notr">Hafta sonuyla birleşince toplam ${sayiYaz(a.birlesik)} gün tatil olur.</div>`;
     return `
       <div class="tatil cam ${gecti ? "gecti" : ""}">
         <div class="tatil-ust">
@@ -734,8 +734,8 @@ function tatillerCiz() {
           <span class="etiket yesil">${gecti ? "Geçti" : (typeof k.sayi === "number" ? k.sayi + " gün" : k.sayi)}</span>
         </div>
         <div class="tatil-bilgi">
-          <div><small>Resmi tatil</small><b>${sayiYaz(a.resmi)} gün</b>${o.yarim ? '<small>ilk gün yarım</small>' : ""}</div>
-          <div><small>Kaçan ders günü</small><b>${sayiYaz(a.dersKaybi)}</b></div>
+          <div><small>Resmi tatil</small><b>${sayiYaz(a.resmi)} gün</b>${o.yarim ? '<small>arife günü öğleden sonra başlar</small>' : ""}</div>
+          <div><small>Ders yapılmayan gün</small><b>${sayiYaz(a.dersKaybi)}</b></div>
         </div>
         ${alt}
       </div>`;
