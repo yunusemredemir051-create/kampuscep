@@ -40,3 +40,19 @@ Dosyanın **History** kısmından son çalışan sürümü açıp geri yükleyeb
 
 - Tek bir dosya 25 MB'tan büyük olamaz (Cloudflare Pages sınırı). Büyük PDF'leri sıkıştırarak yükle.
 - Repo herkese açıksa yüklediğin her dosya da herkese açıktır. Telif hakkı hocaya ait slayt ve kitap sayfalarını izinsiz yükleme.
+
+## Konu özeti sayfaları (Google ve AdSense için)
+
+Her ünitenin okunabilir özet sayfası `notlar/.../unite-N.html` dosyalarıdır. Bunlar elle düzenlenmez; kaynak metinler
+`_kaynak/ozetler/` klasöründeki `.md` dosyalarındadır. Özet değiştiğinde ya da yeni ders eklendiğinde:
+
+    python3 _kaynak/sayfa_olustur.py
+
+Bu komut ünite sayfalarını, `dersler.html`, `sitemap.xml` ve `robots.txt` dosyalarını yeniden üretir.
+Alan adı alındığında betikteki `SITE_URL` değeri değiştirilip komut yeniden çalıştırılır.
+`_kaynak` klasörü alt çizgiyle başladığı için sitede yayımlanmaz.
+
+## Reklam alanları
+
+`.reklam` kutuları AdSense onaylanana kadar CSS ile gizlidir (`display: none`). Onaydan sonra bu satırlar silinip
+AdSense kodu kutuların içine yerleştirilir; kök dizine de Google'ın verdiği `ads.txt` dosyası eklenir.

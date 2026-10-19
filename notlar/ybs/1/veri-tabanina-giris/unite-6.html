@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>SQL ile Veri İşleme ve Sorgulama – Veri Tabanına Giriş konu özeti | KampüsCep</title>
+<meta name="description" content="INSERT, SELECT, WHERE, ORDER BY, LIKE, BETWEEN, IN, DISTINCT, UPDATE, DELETE, COUNT, SUM, AVG, JOIN türleri, GROUP BY, HAVING, alt sorgu ve VIEW.">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-6.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="Ünite 6: SQL ile Veri İşleme ve Sorgulama · Veri Tabanına Giriş">
+<meta property="og:description" content="INSERT, SELECT, WHERE, ORDER BY, LIKE, BETWEEN, IN, DISTINCT, UPDATE, DELETE, COUNT, SUM, AVG, JOIN türleri, GROUP BY, HAVING, alt sorgu ve VIEW.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-6.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 6: SQL ile Veri İşleme ve Sorgulama", "description": "INSERT, SELECT, WHERE, ORDER BY, LIKE, BETWEEN, IN, DISTINCT, UPDATE, DELETE, COUNT, SUM, AVG, JOIN türleri, GROUP BY, HAVING, alt sorgu ve VIEW.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCep"}, "mainEntityOfPage": "https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-6.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanına Giriş", "provider": {"@type": "Organization", "name": "KampüsCep"}}, "dateModified": "2026-10-19"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><span class="logo-ikon">K</span>KampüsCep</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/veri-tabanina-giris">Veri Tabanına Giriş</a> › Ünite 6</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 1. sınıf · Veri Tabanına Giriş · Ünite 6</small>
+      <h1>SQL ile Veri İşleme ve Sorgulama</h1>
+      <p class="giris">INSERT, SELECT, WHERE, ORDER BY, LIKE, BETWEEN, IN, DISTINCT, UPDATE, DELETE, COUNT, SUM, AVG, JOIN türleri, GROUP BY, HAVING, alt sorgu ve VIEW.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-6.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 16 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/1/veri-tabanina-giris#test-6"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Bu ünitedeki sorgular, Bolum, Ogrenci, Dersler ve Dersi_Alanlar tablolarından oluşan örnek <strong>Fakülte veri tabanı</strong> üzerinde anlatılır.</p>
+<h2>Kayıt ekleme: INSERT</h2>
+<p>INSERT INTO tablo (alanlar) VALUES (değerler) biçiminde yazılır. Metin ve tarih değerleri tek tırnak içinde, sayılar tırnaksız yazılır. Alan sayısı ile değer sayısı eşit ve aynı sırada olmalıdır. IDENTITY tanımlı sütuna değer yazılmaz. Yabancı anahtar nedeniyle önce ana tablo, sonra bağlı tablolar, en son köprü tablo doldurulur.</p>
+<h2>Listeleme ve filtreleme</h2>
+<ul>
+<li><strong>SELECT:</strong> SELECT * tüm sütunları, SELECT Ad, Soyad yalnızca istenen sütunları getirir.</li>
+<li><strong>ORDER BY:</strong> ASC artan (varsayılan), DESC azalan sıralar; birden fazla alana göre sıralanabilir.</li>
+<li><strong>WHERE:</strong> Koşula uyan kayıtları getirir. AND ile bağlanan koşulların hepsi, OR ile bağlananların en az biri sağlanmalıdır. Birlikte kullanıldıklarında parantez sonucu değiştirir.</li>
+<li><strong>LIKE:</strong> Kalıba göre arar. SQL Server'da <strong>%</strong> herhangi sayıda karakterin, <strong>_</strong> tek bir karakterin yerini tutar. LIKE 'D%' D ile başlayanları getirir. (Access'te % yerine * kullanılır.)</li>
+<li><strong>BETWEEN a AND b:</strong> Aralıktaki değerleri seçer; uç değerler dâhildir. <strong>IN (…):</strong> Listedeki değerlerden birine eşit olanları seçer.</li>
+<li><strong>DISTINCT:</strong> Tekrarlayan değerleri bir kez listeler.</li>
+</ul>
+<h2>UPDATE ve DELETE</h2>
+<p>UPDATE tablo SET sütun = değer WHERE koşul ile veri güncellenir, DELETE FROM tablo WHERE koşul ile satır silinir. <strong>WHERE yazılmazsa işlem bütün satırlara uygulanır.</strong> Çalıştırmadan önce aynı koşulla bir SELECT yapıp etkilenecek satırlara bakmak iyi bir alışkanlıktır. Başka bir tabloda kullanılan bir kaydı silmeye çalışmak yabancı anahtar hatası verir; önce bağlı kayıtlar silinmelidir.</p>
+<h2>Hazır fonksiyonlar</h2>
+<p>COUNT(<em>) kayıt sayısını, SUM toplamı, AVG ortalamayı, MAX en büyüğü, MIN en küçüğü verir; sonuç sütununa AS ile ad verilebilir. Sütun INT ise SQL Server </em><em>tam sayı bölmesi</em>* yapar: toplamı 27, sayısı 8 olan kredilerin AVG sonucu 3,375 değil 3 olur. Ondalıklı sonuç için AVG(Kredi * 1.0) yazılır.</p>
+<h2>JOIN ile tabloları birleştirme</h2>
+<p>Normalizasyonla ayrılan tablolar raporlanırken JOIN ile birleştirilir; bağlantı genellikle birincil ve yabancı anahtar üzerinden kurulur.</p>
+<ul>
+<li><strong>INNER JOIN:</strong> Yalnızca iki tabloda da eşleşen kayıtları getirir.</li>
+<li><strong>LEFT JOIN:</strong> Soldaki tablonun tüm kayıtlarını getirir; sağda eşleşeni olmayanlar NULL olur. Öğrencisi olmayan bölümleri de listelemek için Bolum tablosu solda olmalıdır.</li>
+<li><strong>RIGHT JOIN:</strong> Sağdaki tablonun tamamını getirir. <strong>FULL JOIN:</strong> İki tablonun da tamamını getirir.</li>
+</ul>
+<p>Üç tablo (öğrenci, ders ve aradaki köprü tablo) iki JOIN ile bağlanır. Sorgu yazarken tablolara kısa takma adlar verilebilir (Ogrenci O gibi).</p>
+<h2>GROUP BY ve HAVING</h2>
+<p>GROUP BY satırları bir sütuna göre gruplar ve her grup için COUNT, SUM gibi özet değer hesaplar; karışık madenî paraları türlerine göre destelemek gibidir. <strong>HAVING</strong> gruplara şart koyar. WHERE COUNT(*) &gt; 1 yazılamaz, çünkü WHERE çalıştığında henüz sayım yapılmamıştır.</p>
+<p>SQL sorgusunun çalışma sırası: <strong>FROM → WHERE → GROUP BY → HAVING → SELECT → ORDER BY</strong>. İlk çalışan bölüm FROM, son çalışan ORDER BY'dır.</p>
+<h2>Alt sorgu ve VIEW</h2>
+<p>Bir sorgunun sonucu başka bir sorgunun koşulunda kullanılabilir; içteki sorgu önce çalışır. Örneğin kredisi ortalamanın üzerinde olan dersler WHERE Kredi &gt; (SELECT AVG(Kredi) FROM Dersler) ile bulunur.</p>
+<p><strong>VIEW (görüntü)</strong>, fiziksel olarak veri saklamayan, kaydedilmiş bir sorgudan ibaret sanal tablodur; veriye bakan bir pencere gibidir. CREATE VIEW ile oluşturulur, ALTER VIEW ile değiştirilir, DROP VIEW ile silinir. Kullanıcıya yalnızca görmesi gereken veriyi gösterir, uzun JOIN sorgularını tek satırla çağırmayı sağlar ve ana tablo değişince gösterdiği veri de kendiliğinden güncellenir.</p>
+    </article>
+    <div class="reklam">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-5.html"><small>‹ Önceki ünite</small>SQL’e Giriş: Veri Tipleri ve Veri Tanımlama</a><a class="cam sonraki" href="unite-7.html"><small>Sonraki ünite ›</small>Uygulamalar</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCep</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

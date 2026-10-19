@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Bilişim Sistemleri ve Karar Verme – Bilişim Sistemleri ve Teknolojilerine Giriş konu özeti | KampüsCep</title>
+<meta name="description" content="Veri, enformasyon, bilgi ve bilgelik farkı; yapısal, yarı yapısal ve yapısal olmayan kararlar ve yönetim bilişim sistemleri piramidi.">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/bilisim-sistemleri/unite-1.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="Ünite 1: Bilişim Sistemleri ve Karar Verme · Bilişim Sistemleri ve Teknolojilerine Giriş">
+<meta property="og:description" content="Veri, enformasyon, bilgi ve bilgelik farkı; yapısal, yarı yapısal ve yapısal olmayan kararlar ve yönetim bilişim sistemleri piramidi.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/bilisim-sistemleri/unite-1.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 1: Bilişim Sistemleri ve Karar Verme", "description": "Veri, enformasyon, bilgi ve bilgelik farkı; yapısal, yarı yapısal ve yapısal olmayan kararlar ve yönetim bilişim sistemleri piramidi.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCep"}, "mainEntityOfPage": "https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/bilisim-sistemleri/unite-1.html", "isPartOf": {"@type": "Course", "name": "Bilişim Sistemleri ve Teknolojilerine Giriş", "provider": {"@type": "Organization", "name": "KampüsCep"}}, "dateModified": "2026-10-19"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><span class="logo-ikon">K</span>KampüsCep</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/bilisim-sistemleri">Bilişim Sistemleri ve Teknolojilerine Giriş</a> › Ünite 1</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 1. sınıf · Bilişim Sistemleri ve Teknolojilerine Giriş · Ünite 1</small>
+      <h1>Bilişim Sistemleri ve Karar Verme</h1>
+      <p class="giris">Veri, enformasyon, bilgi ve bilgelik farkı; yapısal, yarı yapısal ve yapısal olmayan kararlar ve yönetim bilişim sistemleri piramidi.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-1.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 7 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/1/bilisim-sistemleri#test-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Bilişim sistemleri veriyi işleyerek karar vericiye yardımcı olur. Bu ünite, ham veriden doğru karara nasıl gidildiğini, işletmelerde hangi tür kararların verildiğini ve her yönetim düzeyinde hangi bilişim sisteminin kullanıldığını anlatır.</p>
+<h2>Bilgi hiyerarşisi (DIKW piramidi)</h2>
+<p>Ham veriden karara giden yol dört basamaklı bir piramitle gösterilir. Tabanda en çok bulunan ama en az anlam taşıyan <strong>veri</strong>, tepede ise en az bulunan ama en değerli olan <strong>bilgelik</strong> yer alır. Her basamak, bir alttakinin işlenmesiyle oluşur.</p>
+<ul>
+<li><strong>Veri:</strong> Henüz işlenmemiş, tek başına anlam taşımayan sayı ve semboller. Örnek: 38,5.</li>
+<li><strong>Enformasyon:</strong> Bir bağlama oturtulmuş, "kim, ne, nerede, ne zaman" sorularını cevaplayan veri. Örnek: Ali'nin bu sabahki vücut sıcaklığı 38,5 °C.</li>
+<li><strong>Bilgi:</strong> Enformasyonun kural ve deneyimle yorumlanması; "nasıl, ne anlama geliyor" sorusunu cevaplar. Örnek: 38 °C'nin üzeri ateştir, Ali'nin ateşi var.</li>
+<li><strong>Bilgelik:</strong> Bilginin doğru zamanda kullanılıp karar verilmesi; "ne yapmalıyım, neden" sorusunu cevaplar. Örnek: Ateş iki gündür düşmüyorsa doktora gitmek gerekir.</li>
+</ul>
+<p>Bir sistem ne kadar çok veri toplarsa toplasın, bu veri işlenip yorumlanmadıkça karar vermeye yardımcı olmaz.</p>
+<h2>Karar türleri</h2>
+<ul>
+<li><strong>Yapısal kararlar:</strong> Tekrarlanan, rutin ve nasıl verileceği önceden belli olan kararlar. İşletmenin alt kademelerinde yaygındır.</li>
+<li><strong>Yarı yapısal kararlar:</strong> Hem yapısal hem yapısal olmayan özellikler taşır; bir kısmı hesaplanabilir, bir kısmı yöneticinin muhakemesine kalır.</li>
+<li><strong>Yapısal olmayan kararlar:</strong> Yeni, önemli ve rutin dışı kararlar. Kabul edilmiş bir prosedürleri yoktur; değerlendirme ve muhakeme gerektirir.</li>
+<li><strong>Operasyonel kararlar:</strong> Alt yönetimin günlük, haftalık işler için verdiği, belirlilik ortamında alınan ve sonucu kısa vadede görülen kararlar. Örnek: kasiyerlerin hangi kasada çalışacağı.</li>
+</ul>
+<h2>Yönetim bilişim sistemleri piramidi</h2>
+<p>Piramit; karar tiplerini, kararı veren yönetici düzeyini ve o düzeyde kullanılan sistemi birlikte gösterir. Tabanda üretim, finans, satış ve pazarlama, muhasebe ve insan kaynakları gibi fonksiyonel alanlar bulunur.</p>
+<ul>
+<li><strong>Veri İşleme Sistemleri (TPS) ve Ofis Otomasyonu:</strong> Operasyonel yöneticiler ve yapısal kararlar. Satış, fatura ve stok gibi günlük işlemleri kaydeder.</li>
+<li><strong>Yönetim Bilişim Sistemleri (MIS) ve Uzman Sistemler:</strong> Alt seviye yöneticiler ve bilgi çalışanları. İşlem verilerini düzenli raporlara dönüştürür.</li>
+<li><strong>Karar Destek Sistemleri (DSS):</strong> Orta seviye yöneticilerin taktiksel, yarı yapısal kararları. "Şöyle olursa ne olur?" analizleri yapar.</li>
+<li><strong>Üst Yönetim Bilgi Sistemleri (EIS):</strong> Üst yönetimin stratejik, yapısal olmayan kararları. İşletmenin genel durumunu özet göstergelerle sunar.</li>
+</ul>
+<h2>Örnek: Arçelik</h2>
+<p>Arçelik'te üretim hattı otomasyonu ve SAP ERP tabanlı stok takibi operasyonel düzeyde; üretim, satış ve maliyet raporları bilgi düzeyinde; mevsimsel satış trendi analizi ve tedarik zinciri optimizasyonu taktiksel düzeyde; yeni fabrika yatırımı ve pazar seçimi ise stratejik düzeyde yer alır.</p>
+    </article>
+    <div class="reklam">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam sonraki" href="unite-2.html"><small>Sonraki ünite ›</small>Bilgisayar Donanımı</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCep</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

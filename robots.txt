@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://yunusemredemir051-create.github.io/kampuscep/sitemap.xml

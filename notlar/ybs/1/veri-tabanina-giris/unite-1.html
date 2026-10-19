@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Veri Tabanına Giriş ve Temel Kavramlar – Veri Tabanına Giriş konu özeti | KampüsCep</title>
+<meta name="description" content="Veri tabanı nedir, listelerin sorunları, VTYS ve veri modelleri, tablo, kayıt, alan, birincil ve yabancı anahtar, metadata, indeks, saklı yordam ve tetikleyici.">
+<link rel="canonical" href="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-1.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCep">
+<meta property="og:title" content="Ünite 1: Veri Tabanına Giriş ve Temel Kavramlar · Veri Tabanına Giriş">
+<meta property="og:description" content="Veri tabanı nedir, listelerin sorunları, VTYS ve veri modelleri, tablo, kayıt, alan, birincil ve yabancı anahtar, metadata, indeks, saklı yordam ve tetikleyici.">
+<meta property="og:url" content="https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-1.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 1: Veri Tabanına Giriş ve Temel Kavramlar", "description": "Veri tabanı nedir, listelerin sorunları, VTYS ve veri modelleri, tablo, kayıt, alan, birincil ve yabancı anahtar, metadata, indeks, saklı yordam ve tetikleyici.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCep"}, "mainEntityOfPage": "https://yunusemredemir051-create.github.io/kampuscep/notlar/ybs/1/veri-tabanina-giris/unite-1.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanına Giriş", "provider": {"@type": "Organization", "name": "KampüsCep"}}, "dateModified": "2026-10-19"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><span class="logo-ikon">K</span>KampüsCep</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/veri-tabanina-giris">Veri Tabanına Giriş</a> › Ünite 1</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 1. sınıf · Veri Tabanına Giriş · Ünite 1</small>
+      <h1>Veri Tabanına Giriş ve Temel Kavramlar</h1>
+      <p class="giris">Veri tabanı nedir, listelerin sorunları, VTYS ve veri modelleri, tablo, kayıt, alan, birincil ve yabancı anahtar, metadata, indeks, saklı yordam ve tetikleyici.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-1.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 13 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/1/veri-tabanina-giris#test-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Bu ünite veri tabanının ne olduğunu, neden basit listeler yerine veri tabanı kullanıldığını ve bir veri tabanı sistemini oluşturan temel kavramları anlatır.</p>
+<h2>Veri tabanı nedir?</h2>
+<p><strong>Veri tabanı</strong>, birbiriyle ilişkili verilerin kullanım amacına uygun biçimde düzenlenerek saklandığı bilgi deposudur. Genellikle bilgisayarda elektronik olarak tutulan, yönetilebilir, güncellenebilir ve aralarında tanımlı ilişkiler bulunan yapılandırılmış bir veri koleksiyonudur. Üniversitedeki öğrenci işleri sistemi, hastanedeki hasta ve tedavi kayıtları, bir bankanın müşteri ve kredi bilgileri birer veri tabanı örneğidir.</p>
+<ul>
+<li><strong>Veri yönetimi:</strong> Verilerin uygun biçimde üretilmesine, depolanmasına ve alınmasına odaklanan disiplin.</li>
+<li><strong>Yapısal veri:</strong> Saklanması ve kullanılması kolay olsun diye biçimlendirilmiş veri. <strong>Yapılandırılmamış veri</strong> ise ham durumdaki veridir.</li>
+<li><strong>Metadata (üst veri):</strong> Tabloların, sütunların, veri türlerinin ve ilişkilerin özelliklerini açıklayan veri; yani verinin verisi.</li>
+<li><strong>VTYS (Veri Tabanı Yönetim Sistemi):</strong> Veri tabanlarını oluşturmak, saklamak ve yönetmek için tasarlanmış yazılım paketi.</li>
+</ul>
+<h2>Neden liste yerine veri tabanı?</h2>
+<p>Müşteri, firma ve satış bilgilerinin tek bir listede tutulması üç soruna yol açar:</p>
+<ul>
+<li><strong>Güncelleme sorunu:</strong> Bir firmanın adresi üç satırda geçiyorsa, adres değiştiğinde birinin unutulması bilgi tutarsızlığı yaratır.</li>
+<li><strong>Silme sorunu:</strong> Bir firmaya ait kayıtlar silinince müşteri bilgileri de kaybolur.</li>
+<li><strong>Paylaşım sorunu:</strong> Her departman listenin farklı bir kısmına ihtiyaç duyar; listenin tamamını herkesle paylaşmak gizlilik açısından sakıncalıdır.</li>
+</ul>
+<p>Çözüm, farklı konuları farklı tablolara ayırmak ve tabloları numaralarla birbirine bağlamaktır. Böylece firmanın adresi tek bir yerde durur ve değiştiğinde yalnızca bir satır güncellenir. Bu sürece <strong>normalizasyon</strong> denir.</p>
+<p>Veri tabanı yaklaşımı veri tekrarını önler, merkezî denetim ve tutarlılık sağlar, veriyi yetkisiz kişilerden korur, programları verilerden ayırır ve yedekleme gibi işletim sorunlarına çözüm sunar.</p>
+<h2>VTYS ve veri modelleri</h2>
+<p>Yaygın veri tabanı yönetim sistemleri arasında Oracle, Microsoft SQL Server, MySQL, PostgreSQL, SQLite ve IBM DB2 sayılabilir. Veri modeline göre dört tür vardır:</p>
+<ul>
+<li><strong>Hiyerarşik:</strong> İlk modeldir; veriler ağaç yapısında saklanır.</li>
+<li><strong>Ağ:</strong> 1960'ların sonunda ortaya çıkmıştır; veriler graf şeklinde saklanır.</li>
+<li><strong>İlişkisel:</strong> 1970'lerin başında geliştirilmiştir; veriler tablolarda tutulur ve tablolar birbirine bağlanır. Günümüz veri tabanlarının hemen hepsi bu modeldedir. Microsoft SQL Server da ilişkiseldir.</li>
+<li><strong>Nesneye yönelik:</strong> C++ gibi nesneye yönelik dillerle oluşturulup kullanılan veri tabanıdır.</li>
+</ul>
+<h2>Veri tabanı sisteminin bileşenleri</h2>
+<p>Bir veri tabanı sistemi <strong>kullanıcı</strong>, <strong>veri tabanı uygulaması</strong>, <strong>VTYS</strong> ve <strong>veri tabanı</strong> bileşenlerinden oluşur. Kullanıcı formu doldurur; uygulama bu bilgiyi SQL isteğine çevirip VTYS'ye iletir; VTYS de veri tabanı dosyalarında okuma ya da yazma yapar. Formları ve raporları oluşturmak ve "stok yetmezse ne yapılacağı" gibi uygulama mantığını yürütmek uygulamanın; tabloları oluşturmak, kısıtları uygulamak, yetkileri denetlemek ve yedek almak ise VTYS'nin görevidir.</p>
+<h2>Tablo, kayıt, alan ve anahtarlar</h2>
+<p>Veri tabanı tablolardan oluşur. Tablodaki her satıra <strong>kayıt</strong>, her sütuna <strong>alan</strong> denir ve her alan için önceden bir veri türü seçilir.</p>
+<ul>
+<li><strong>Birincil anahtar (PK):</strong> Bir kaydı diğerlerinden ayıran alandır. Sınıfta iki Ahmet varsa öğrenci numarası doğru kişiyi bulmayı sağlar. Birden fazla alan birlikte de birincil anahtar olabilir.</li>
+<li><strong>Yabancı anahtar (FK):</strong> Bir tabloya girilebilecek değerleri başka bir tablodaki değerlerle sınırlayan ve iki tabloyu ilişkilendiren alandır.</li>
+</ul>
+<h2>Veri tabanında başka neler bulunur?</h2>
+<ul>
+<li><strong>İndeks:</strong> Kayıtların nerede olduğunu gösterip sorguları hızlandırır; kitabın sonundaki dizin gibidir.</li>
+<li><strong>Saklı yordam (stored procedure):</strong> Veri tabanında tanımlanan, derlenmiş ve hızlı çalışan SQL kodlarıdır.</li>
+<li><strong>Tetikleyici (trigger):</strong> Bir tabloda INSERT, UPDATE veya DELETE olduğunda kendiliğinden çalışan SQL kodudur. Örneğin stok hareketinde stok miktarını otomatik günceller.</li>
+<li><strong>Veri tutarlılığı (referential integrity):</strong> Başka bir tabloda kullanılan bir kaydın silinmesini engelleyerek veri bütünlüğünü korur.</li>
+</ul>
+<p>Saklı yordamlar ve tetikleyiciler sunucu üzerinde çalışır; böylece sunucudan istemciye en az veri çekilir. Veri tabanları ölçeğe göre de ayrılır: tek kişinin kullandığı küçük sistemler, aynı kaydın iki kişi tarafından aynı anda seçilmemesi gereken küçük işletme sistemleri ve yüzlerce kullanıcının 7/24 eriştiği büyük kurum sistemleri.</p>
+    </article>
+    <div class="reklam">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam sonraki" href="unite-2.html"><small>Sonraki ünite ›</small>Veri Tabanı Tasarımı</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCep</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>
