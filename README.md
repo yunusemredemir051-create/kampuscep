@@ -1,0 +1,35 @@
+# KampüsCep
+
+Elazığ'daki üniversite öğrencileri için günlük rehber: yurt ve Üniversite Evi menüleri, ders notları, akademik takvim, sınav ve tatil sayaçları.
+
+## Dosyalar
+
+| Dosya | Ne işe yarar | Ne sıklıkla değişir |
+|---|---|---|
+| `veri.js` | Menüler, yurtlar, WhatsApp linkleri, dersler, not linkleri, akademik takvim | Sık (her gün / her hafta) |
+| `index.html` | Sitenin tasarımı ve çalışma mantığı | Nadiren (yeni özellik, tasarım) |
+| `notlar/` | Ders notu PDF'leri (`notlar/ybs/1` … `notlar/ybs/4`) | Not ekledikçe |
+| `gizlilik.html`, `hakkimizda.html` | AdSense ve KVKK için gerekli sayfalar | Çok nadir |
+
+## Not ekleme
+
+1. GitHub'da `notlar/ybs/2` gibi ilgili sınıf klasörüne gir.
+2. **Add file → Upload files** ile PDF'i yükle. Dosya adında Türkçe karakter ve boşluk kullanma: `istatistik-hafta-3.pdf`
+3. **Commit changes**'e bas.
+4. `veri.js` dosyasını aç, kalem simgesine bas, dersin `link` kısmına yolu yaz:
+   `{ ad: "İstatistik", link: "notlar/ybs/2/istatistik-hafta-3.pdf" },`
+5. **Commit changes**. Site 1 dakika içinde güncellenir.
+
+## Menü güncelleme
+
+`veri.js` → kalem simgesi → `yurtMenuleri` ya da `uniEviMenu` listesini değiştir → **Commit changes**.
+
+## Bir şey bozulursa
+
+Site boş görünür ya da bir kısmı çalışmazsa büyük ihtimalle `veri.js`'de bir tırnak ya da virgül eksik kalmıştır.
+Dosyanın **History** kısmından son çalışan sürümü açıp geri yükleyebilirsin.
+
+## Dikkat
+
+- Tek bir dosya 25 MB'tan büyük olamaz (Cloudflare Pages sınırı). Büyük PDF'leri sıkıştırarak yükle.
+- Repo herkese açıksa yüklediğin her dosya da herkese açıktır. Telif hakkı hocaya ait slayt ve kitap sayfalarını izinsiz yükleme.

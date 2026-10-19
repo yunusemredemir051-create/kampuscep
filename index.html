@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<title>KampüsCep</title>
+<meta name="description" content="Elazığ yurt menüleri, Üniversite Evi menüsü, ders notları, akademik takvim, sınav ve tatil sayaçları tek uygulamada.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ================= RENKLER ================= */
+:root {
+  --zemin: #eef3ff;
+  --cam: rgba(255, 255, 255, .72);
+  --cam-guclu: rgba(255, 255, 255, .92);
+  --cam-kenar: rgba(255, 255, 255, .9);
+  --golge: 0 10px 30px -12px rgba(40, 60, 140, .18);
+  --mavi: #3b5bfd;
+  --mavi-acik: #e6ebff;
+  --turuncu: #ff8a3d;
+  --turuncu-acik: #fff0e5;
+  --yesil: #16b67a;
+  --yesil-acik: #e2f8ee;
+  --pembe: #f2557f;
+  --pembe-acik: #ffe8ee;
+  --mor: #8b5cf6;
+  --mor-acik: #f0e9ff;
+  --wp: #25d366;
+  --yazi: #141b34;
+  --soluk: #6b7390;
+  --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0; min-height: 100vh;
+  font-family: var(--font); color: var(--yazi);
+  background: var(--zemin);
+  -webkit-font-smoothing: antialiased;
+}
+
+.isik {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(520px 380px at 90% 0%, rgba(255, 170, 110, .45), transparent 70%),
+    radial-gradient(600px 460px at -5% 25%, rgba(120, 150, 255, .40), transparent 70%),
+    radial-gradient(520px 420px at 80% 100%, rgba(90, 220, 170, .30), transparent 70%),
+    var(--zemin);
+}
+
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+
+.cam {
+  background: var(--cam);
+  border: 1px solid var(--cam-kenar);
+  border-radius: 22px;
+  box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+/* ================= ÇERÇEVE ================= */
+.uygulama {
+  max-width: 1080px; margin: 0 auto;
+  padding: 20px 20px 120px;
+  display: grid; grid-template-columns: 220px 1fr; gap: 28px;
+}
+
+.yan { position: sticky; top: 20px; align-self: start; padding: 20px 12px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; padding: 0 8px 20px; }
+.logo-ikon {
+  width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center;
+  background: linear-gradient(140deg, var(--mavi), var(--mor)); color: #fff; font-weight: 800;
+}
+.sekme {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 12px; margin-bottom: 4px; border: 0; border-radius: 14px;
+  background: transparent; color: var(--soluk);
+  font: 600 15px var(--font); text-align: left; cursor: pointer;
+}
+.sekme svg { width: 20px; height: 20px; flex: none; }
+.sekme:hover { color: var(--yazi); background: rgba(255,255,255,.6); }
+.sekme.aktif { color: var(--mavi); background: var(--mavi-acik); }
+
+/* ================= SAYFALAR ================= */
+.sayfa { display: none; }
+.sayfa.aktif { display: block; animation: gir .25s ease; }
+@keyframes gir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.ust-bilgi { margin: 6px 0 22px; }
+.ust-bilgi small { color: var(--soluk); font-weight: 600; font-size: 14px; }
+.ust-bilgi h1 { margin: 2px 0 0; font-size: 28px; font-weight: 800; letter-spacing: -.6px; }
+.geri { border: 0; background: none; color: var(--mavi); font: 700 14px var(--font); cursor: pointer; padding: 0; margin-bottom: 8px; }
+.baslik { font-size: 17px; font-weight: 700; margin: 30px 0 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.baslik button { border: 0; background: none; color: var(--mavi); font: 700 14px var(--font); cursor: pointer; }
+
+/* ================= MENÜ KARTLARI ================= */
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.menu-kart { padding: 20px; }
+.menu-ust { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.menu-ust h2 { margin: 0; font-size: 18px; }
+.menu-ust p { margin: 2px 0 0; color: var(--soluk); font-size: 13px; font-weight: 600; }
+.etiket { font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 999px; white-space: nowrap; }
+.etiket.mavi { background: var(--mavi-acik); color: var(--mavi); }
+.etiket.turuncu { background: var(--turuncu-acik); color: #d9651a; }
+.etiket.yesil { background: var(--yesil-acik); color: var(--yesil); }
+.etiket.pembe { background: var(--pembe-acik); color: var(--pembe); }
+.etiket.mor { background: var(--mor-acik); color: var(--mor); }
+
+.yurt-sec {
+  width: 100%; margin: 16px 0 10px; padding: 11px 12px;
+  font: 700 14px var(--font); color: var(--yazi);
+  border: 1px solid var(--cizgi); border-radius: 12px; background: #fff;
+}
+.secici {
+  display: grid; grid-template-columns: 1fr 1fr;
+  background: rgba(20, 27, 52, .05); border-radius: 13px; padding: 4px; margin-bottom: 6px;
+}
+.secici button {
+  border: 0; background: transparent; color: var(--soluk);
+  font: 700 13px var(--font); padding: 9px; border-radius: 10px; cursor: pointer;
+}
+.secici button.aktif { background: #fff; color: var(--yazi); box-shadow: 0 2px 8px rgba(20,27,52,.08); }
+
+.yemekler { list-style: none; margin: 0; padding: 0; }
+.yemekler li {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 2px; border-bottom: 1px solid var(--cizgi);
+  font-weight: 600; font-size: 15px;
+}
+.yemekler li:last-child { border-bottom: 0; }
+.yemekler li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--turuncu); flex: none; }
+.ornek { color: var(--soluk); font-size: 12px; margin: 10px 0 0; }
+.gunler { display: flex; gap: 6px; margin: 16px 0 6px; overflow-x: auto; scrollbar-width: none; }
+.gunler button {
+  flex: 1; min-width: 48px; border: 1px solid var(--cizgi); background: #fff; color: var(--soluk);
+  font: 700 12px var(--font); padding: 8px 4px; border-radius: 12px; cursor: pointer; line-height: 1.3;
+}
+.gunler button b { display: block; font-size: 15px; color: var(--yazi); }
+.gunler button.aktif { background: var(--turuncu); border-color: var(--turuncu); color: #fff; }
+.gunler button.aktif b { color: #fff; }
+.bos-menu { color: var(--soluk); font-weight: 600; font-size: 14px; padding: 14px 2px; }
+
+/* ================= TAKVİM ÖZET (ana sayfa + takvim) ================= */
+.durum { padding: 22px; margin-bottom: 16px; }
+.durum-ust { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+.durum h2 { margin: 0; font-size: 22px; letter-spacing: -.4px; }
+.durum p { margin: 3px 0 0; color: var(--soluk); font-size: 14px; font-weight: 600; }
+.cubuk { height: 10px; border-radius: 99px; background: rgba(20,27,52,.07); margin: 18px 0 8px; overflow: hidden; }
+.cubuk div { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--mavi), var(--mor)); }
+.cubuk-alt { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--soluk); }
+
+.sayaclar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.sayac { padding: 18px; }
+.sayac small { display: block; color: var(--soluk); font-size: 12px; font-weight: 700; }
+.sayac .sayi { font-size: 40px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-top: 8px; }
+.sayac .sayi span { font-size: 15px; font-weight: 700; letter-spacing: 0; color: var(--soluk); margin-left: 4px; }
+.sayac b { display: block; font-size: 14px; margin-top: 6px; }
+.sayac .tarih { color: var(--soluk); font-size: 12px; font-weight: 600; }
+.sayi.pembe { color: var(--pembe); } .sayi.yesil { color: var(--yesil); } .sayi.mavi { color: var(--mavi); }
+
+/* Tatil kartları */
+.tatil-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.tatil { padding: 18px; }
+.tatil.gecti { opacity: .5; }
+.tatil-ust { display: flex; justify-content: space-between; align-items: start; gap: 10px; }
+.tatil h3 { margin: 0; font-size: 16px; }
+.tatil .tarih { color: var(--soluk); font-size: 13px; font-weight: 600; margin-top: 2px; }
+.tatil-bilgi { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 14px; }
+.tatil-bilgi div { background: rgba(20,27,52,.04); border-radius: 12px; padding: 10px 12px; }
+.tatil-bilgi small { display: block; font-size: 11px; font-weight: 700; color: var(--soluk); }
+.tatil-bilgi b { font-size: 17px; }
+.kopru {
+  margin-top: 10px; padding: 10px 12px; border-radius: 12px;
+  background: var(--yesil-acik); color: #0e8a5c; font-size: 13px; font-weight: 700;
+}
+.kopru.notr { background: rgba(20,27,52,.04); color: var(--soluk); }
+
+/* Zaman çizelgesi */
+.filtre { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+.filtre button {
+  border: 1px solid var(--cizgi); background: #fff; color: var(--soluk);
+  font: 700 13px var(--font); padding: 8px 16px; border-radius: 999px; cursor: pointer;
+}
+.filtre button.aktif { background: var(--yazi); color: #fff; border-color: var(--yazi); }
+
+.zaman { padding: 8px 20px 12px; }
+.ay { font-size: 13px; font-weight: 800; color: var(--soluk); padding: 16px 0 6px; }
+.olay { display: grid; grid-template-columns: 14px 1fr auto; gap: 14px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--cizgi); }
+.olay:last-child { border-bottom: 0; }
+.olay .nokta { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; }
+.olay b { display: block; font-size: 15px; }
+.olay small { color: var(--soluk); font-size: 13px; font-weight: 600; }
+.olay .ne-zaman { font-size: 12px; font-weight: 700; color: var(--soluk); white-space: nowrap; margin-top: 3px; }
+.olay.gecti { opacity: .45; }
+.olay.simdi { background: var(--mavi-acik); margin: 0 -12px; padding: 12px; border-radius: 14px; border-bottom-color: transparent; }
+.olay.simdi .ne-zaman { color: var(--mavi); }
+.nokta.sinav { background: var(--pembe); } .nokta.tatil { background: var(--yesil); }
+.nokta.kayit { background: var(--mavi); } .nokta.donem { background: var(--mor); }
+.tahmini { font-size: 11px; font-weight: 700; color: #b26a00; background: #fff4dc; padding: 2px 7px; border-radius: 6px; margin-left: 6px; }
+.aciklama { color: var(--soluk); font-size: 12px; margin: 12px 4px 0; line-height: 1.5; }
+
+/* ================= HIZLI ERİŞİM ================= */
+.kutular { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.kutu { padding: 18px 16px; text-align: left; cursor: pointer; color: var(--yazi); font: inherit; }
+.kutu:hover { background: var(--cam-guclu); }
+.ik { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 12px; font-weight: 800; font-size: 14px; }
+.ik svg { width: 22px; height: 22px; }
+.kutu b { display: block; font-size: 15px; }
+.kutu small { color: var(--soluk); font-size: 12px; font-weight: 500; }
+.ik.m { background: var(--mavi-acik); color: var(--mavi); }
+.ik.t { background: var(--turuncu-acik); color: var(--turuncu); }
+.ik.y { background: var(--yesil-acik); color: var(--yesil); }
+.ik.p { background: var(--pembe-acik); color: var(--pembe); }
+.ik.r { background: var(--mor-acik); color: var(--mor); }
+
+/* ================= REKLAM ================= */
+.reklam {
+  margin-top: 24px; min-height: 100px; display: grid; place-items: center;
+  border: 1.5px dashed #c9d1ec; border-radius: 18px;
+  color: var(--soluk); font-size: 12px; background: rgba(255,255,255,.35);
+}
+
+/* ================= LİSTELER ================= */
+.liste { display: grid; gap: 12px; }
+.satir-kart {
+  display: flex; align-items: center; gap: 14px; padding: 16px;
+  text-decoration: none; color: var(--yazi); cursor: pointer;
+  font: inherit; text-align: left; width: 100%;
+}
+.satir-kart:hover { background: var(--cam-guclu); }
+.satir-kart .ik { margin: 0; flex: none; }
+.satir-kart .orta { flex: 1; min-width: 0; }
+.satir-kart b { display: block; font-size: 16px; }
+.satir-kart small { color: var(--soluk); font-size: 13px; font-weight: 500; }
+.ok { color: #b3b9cf; font-size: 22px; font-weight: 300; }
+
+.wp-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 16px; padding: 13px; border-radius: 14px;
+  background: var(--wp); color: #fff; text-decoration: none; font-weight: 700; font-size: 14px;
+}
+.wp-btn svg { width: 20px; height: 20px; }
+.wp-btn.bos { background: #e9ecf5; color: var(--soluk); pointer-events: none; }
+
+/* ================= DERS NOTLARI ================= */
+.sinif-sekme { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+.sinif-sekme button {
+  border: 1px solid var(--cizgi); background: #fff; color: var(--soluk);
+  font: 800 15px var(--font); padding: 14px 6px; border-radius: 16px; cursor: pointer;
+}
+.sinif-sekme button small { display: block; font-weight: 600; font-size: 11px; }
+.sinif-sekme button.aktif { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.sinif-sekme button.aktif small { color: rgba(255,255,255,.8); }
+.bos-kutu { padding: 28px; text-align: center; color: var(--soluk); font-weight: 600; }
+.rozet { font-size: 12px; font-weight: 700; padding: 5px 11px; border-radius: 999px; }
+.rozet.acik { background: var(--yesil-acik); color: var(--yesil); }
+.rozet.yakinda { background: #eef0f6; color: var(--soluk); }
+.pasif { opacity: .55; pointer-events: none; }
+
+/* ================= ARAÇLAR ================= */
+.araclar { display: grid; grid-template-columns: 1.3fr 1fr; gap: 16px; }
+.panel { padding: 22px; }
+.panel h2 { margin: 0; font-size: 19px; }
+.panel p { margin: 4px 0 18px; color: var(--soluk); font-size: 14px; }
+.ders-satir { display: grid; grid-template-columns: 1fr 62px 80px 34px; gap: 8px; margin-bottom: 8px; }
+input, select {
+  width: 100%; padding: 11px 12px; font: 600 14px var(--font); color: var(--yazi);
+  background: #fff; border: 1px solid var(--cizgi); border-radius: 12px;
+}
+input:focus, select:focus { outline: none; border-color: var(--mavi); }
+.sil { border: 0; border-radius: 10px; background: transparent; color: var(--soluk); font-size: 18px; cursor: pointer; }
+.sil:hover { background: var(--pembe-acik); color: var(--pembe); }
+.btnlar { display: flex; gap: 10px; margin-top: 12px; }
+.btn {
+  flex: 1; padding: 13px; border-radius: 14px; cursor: pointer;
+  font: 700 14px var(--font); border: 1px solid var(--cizgi); background: #fff; color: var(--yazi);
+}
+.btn.ana { background: var(--mavi); color: #fff; border: 0; }
+.btn.tam { width: 100%; margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn svg { width: 18px; height: 18px; }
+.buyuk-sayi { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-top: 22px; color: var(--mavi); }
+.buyuk-sayi.turuncu { color: var(--turuncu); }
+.alt-yazi { color: var(--soluk); font-size: 14px; margin-top: 6px; font-weight: 600; }
+
+/* ================= TELEFON ================= */
+@media (max-width: 820px) {
+  .uygulama { grid-template-columns: 1fr; padding: 16px 16px 110px; }
+  .yan {
+    position: fixed; top: auto; bottom: 12px; left: 12px; right: 12px; z-index: 50;
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    padding: 6px; border-radius: 22px; background: rgba(255,255,255,.85);
+  }
+  .yan .logo { display: none; }
+  .sekme { flex-direction: column; gap: 3px; padding: 9px 2px; font-size: 10.5px; text-align: center; margin: 0; }
+  .menu-grid, .araclar, .tatil-grid { grid-template-columns: 1fr; }
+  .kutular { grid-template-columns: repeat(2, 1fr); }
+  .sayaclar { grid-template-columns: 1fr 1fr; }
+  .sayaclar .sayac:last-child { grid-column: 1 / -1; }
+  .ust-bilgi h1 { font-size: 24px; }
+  .zaman { padding: 4px 16px 10px; }
+}
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 40px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .sayfa.aktif { animation: none; } }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+
+<div class="uygulama">
+
+  <!-- ================= MENÜ ÇUBUĞU ================= -->
+  <nav class="yan cam">
+    <div class="logo"><span class="logo-ikon">K</span>KampüsCep</div>
+    <button class="sekme aktif" data-sayfa="ana">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+      Ana sayfa
+    </button>
+    <button class="sekme" data-sayfa="yurtlar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M14 9h1M9 13h1M14 13h1M10 21v-4h4v4"/></svg>
+      Yurtlar
+    </button>
+    <button class="sekme" data-sayfa="notlar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2zm0 0A2 2 0 0 0 6 22h14"/></svg>
+      Notlar
+    </button>
+    <button class="sekme" data-sayfa="takvim">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      Takvim
+    </button>
+    <button class="sekme" data-sayfa="araclar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg>
+      Araçlar
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- ================= ANA SAYFA ================= -->
+    <section class="sayfa aktif" id="ana">
+      <div class="ust-bilgi">
+        <small id="tarih"></small>
+        <h1 id="selam"></h1>
+      </div>
+
+      <!-- Dönem durumu -->
+      <div class="durum cam" id="ana-durum"></div>
+
+      <div class="menu-grid">
+        <div class="menu-kart cam">
+          <div class="menu-ust">
+            <div><h2>Yurt menüsü</h2><p>Yurdunu seç, bir dahaki sefere hatırlanır</p></div>
+            <span class="etiket mavi">KYK</span>
+          </div>
+          <select class="yurt-sec" id="ana-yurt" aria-label="Yurt seç"></select>
+          <div class="secici" id="ana-secici">
+            <button data-ogun="kahvalti">Kahvaltı</button>
+            <button data-ogun="aksam">Akşam</button>
+          </div>
+          <ul class="yemekler" id="ana-yemekler"></ul>
+          <p class="ornek">Şu an örnek menü gösteriliyor.</p>
+        </div>
+
+        <div class="menu-kart cam">
+          <div class="menu-ust">
+            <div><h2>Üniversite Evi</h2><p id="unievi-bilgi">Öğle menüsü</p></div>
+            <span class="etiket turuncu">Fırat Ünv.</span>
+          </div>
+          <div class="gunler" id="unievi-gunler"></div>
+          <ul class="yemekler" id="unievi-yemekler"></ul>
+          <p class="ornek">Kaynak: <a href="https://unievi.firat.edu.tr/" target="_blank" rel="noopener" style="color:inherit">unievi.firat.edu.tr</a></p>
+        </div>
+      </div>
+
+      <div class="baslik">Hızlı erişim</div>
+      <div class="kutular">
+        <button class="kutu cam" data-git="yurtlar">
+          <div class="ik t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M10 21v-4h4v4"/></svg></div>
+          <b>Yurtlar</b><small>Menü ve WhatsApp</small>
+        </button>
+        <button class="kutu cam" data-git="notlar">
+          <div class="ik m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2zm0 0A2 2 0 0 0 6 22h14"/></svg></div>
+          <b>Ders notları</b><small>Bölüm ve sınıf seç</small>
+        </button>
+        <button class="kutu cam" data-git="takvim">
+          <div class="ik p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></div>
+          <b>Takvim</b><small>Sınavlar ve tatiller</small>
+        </button>
+        <button class="kutu cam" data-git="araclar">
+          <div class="ik r"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg></div>
+          <b>Ortalama</b><small>4'lük sistem</small>
+        </button>
+      </div>
+
+      <div class="reklam">Sponsorlu alan</div>
+    </section>
+
+    <!-- ================= YURTLAR ================= -->
+    <section class="sayfa" id="yurtlar">
+      <div id="yurt-liste-gorunum">
+        <div class="ust-bilgi"><small>Elazığ KYK yurtları</small><h1>Yurtlar</h1></div>
+        <div class="filtre" id="yurt-filtre">
+          <button data-tur="hepsi" class="aktif">Hepsi</button>
+          <button data-tur="kiz">Kız</button>
+          <button data-tur="erkek">Erkek</button>
+        </div>
+        <div class="liste" id="yurt-liste"></div>
+        <div class="reklam">Sponsorlu alan</div>
+      </div>
+
+      <div id="yurt-detay" style="display:none">
+        <button class="geri" onclick="yurtListeyeDon()">‹ Tüm yurtlar</button>
+        <div class="ust-bilgi"><small id="detay-tur"></small><h1 id="detay-ad"></h1></div>
+        <div class="menu-kart cam">
+          <div class="menu-ust"><div><h2>Bugünün menüsü</h2><p id="detay-tarih"></p></div></div>
+          <div class="secici" id="detay-secici" style="margin-top:14px">
+            <button data-ogun="kahvalti">Kahvaltı</button>
+            <button data-ogun="aksam">Akşam</button>
+          </div>
+          <ul class="yemekler" id="detay-yemekler"></ul>
+          <p class="ornek">Şu an örnek menü gösteriliyor.</p>
+          <a class="wp-btn" id="detay-wp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
+            <span id="detay-wp-yazi"></span>
+          </a>
+        </div>
+        <div class="reklam">Sponsorlu alan</div>
+      </div>
+    </section>
+
+    <!-- ================= DERS NOTLARI ================= -->
+    <section class="sayfa" id="notlar">
+      <div id="bolum-gorunum">
+        <div class="ust-bilgi"><small>Bölümünü seç</small><h1>Ders notları</h1></div>
+        <div class="liste">
+          <button class="satir-kart cam" onclick="bolumAc()">
+            <span class="ik m">YBS</span>
+            <div class="orta"><b>Yönetim Bilişim Sistemleri</b><small>1, 2, 3 ve 4. sınıf</small></div>
+            <span class="rozet acik">Açık</span>
+          </button>
+          <div class="satir-kart cam pasif">
+            <span class="ik t">İKT</span>
+            <div class="orta"><b>İktisat</b><small>Yakında</small></div>
+            <span class="rozet yakinda">Yakında</span>
+          </div>
+          <div class="satir-kart cam pasif">
+            <span class="ik y">İŞL</span>
+            <div class="orta"><b>İşletme</b><small>Yakında</small></div>
+            <span class="rozet yakinda">Yakında</span>
+          </div>
+          <div class="satir-kart cam pasif">
+            <span class="ik p">MÜH</span>
+            <div class="orta"><b>Mühendislik</b><small>Yakında</small></div>
+            <span class="rozet yakinda">Yakında</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="sinif-gorunum" style="display:none">
+        <button class="geri" onclick="bolumKapat()">‹ Tüm bölümler</button>
+        <div class="ust-bilgi"><small>Yönetim Bilişim Sistemleri</small><h1>Sınıfını seç</h1></div>
+        <div class="sinif-sekme" id="sinif-sekme">
+          <button data-sinif="1">1<small>Sınıf</small></button>
+          <button data-sinif="2">2<small>Sınıf</small></button>
+          <button data-sinif="3">3<small>Sınıf</small></button>
+          <button data-sinif="4">4<small>Sınıf</small></button>
+        </div>
+        <div class="liste" id="ders-liste"></div>
+        <div class="reklam">Sponsorlu alan</div>
+      </div>
+    </section>
+
+    <!-- ================= AKADEMİK TAKVİM ================= -->
+    <section class="sayfa" id="takvim">
+      <div class="ust-bilgi"><small>Fırat Üniversitesi 2026–2027</small><h1>Akademik takvim</h1></div>
+
+      <div class="durum cam" id="takvim-durum"></div>
+
+      <div class="sayaclar" id="sayaclar"></div>
+
+      <div class="baslik">Tatiller</div>
+      <div class="tatil-grid" id="tatiller"></div>
+
+      <div class="reklam">Sponsorlu alan</div>
+
+      <div class="baslik">Tüm takvim</div>
+      <div class="filtre" id="takvim-filtre">
+        <button data-tur="hepsi" class="aktif">Hepsi</button>
+        <button data-tur="sinav">Sınavlar</button>
+        <button data-tur="tatil">Tatiller</button>
+        <button data-tur="kayit">Kayıt ve başvuru</button>
+        <button data-tur="gelecek">Sadece gelecek</button>
+      </div>
+      <div class="zaman cam" id="zaman"></div>
+
+      <button class="btn ana tam" onclick="takvimIndir()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M12 13v5M9.5 15.5h5"/></svg>
+        Tüm tarihleri telefon takvimine ekle
+      </button>
+      <p class="aciklama">
+        Ara sınav ve mazeret sınavı tarihleri, akademik takvimdeki "8.–9. hafta" ve "13.–14. hafta" kuralına göre hesaplanmış tahmini aralıklardır; kesin günleri bölümün açıklar.
+        Kaynak: Fırat Üniversitesi 2026–2027 Genel Akademik Takvimi (Tıp ve Diş Hekimliği hariç).
+      </p>
+    </section>
+
+    <!-- ================= ARAÇLAR ================= -->
+    <section class="sayfa" id="araclar">
+      <div class="ust-bilgi"><small>Dönem boyunca lazım olacak</small><h1>Araçlar</h1></div>
+      <div class="araclar">
+        <div class="panel cam">
+          <h2>Ortalama hesapla</h2>
+          <p>Dersleri ve harf notlarını gir.</p>
+          <div id="dersler"></div>
+          <div class="btnlar">
+            <button class="btn" onclick="dersEkle()">Ders ekle</button>
+            <button class="btn ana" onclick="hesapla()">Hesapla</button>
+          </div>
+          <div class="buyuk-sayi" id="ort">–</div>
+          <div class="alt-yazi" id="ort-yazi">Henüz hesaplanmadı</div>
+        </div>
+        <div class="panel cam">
+          <h2>Kendi sınavına kaç gün var?</h2>
+          <p>Sınav tarihini seç.</p>
+          <input type="date" id="sinav" onchange="geriSay()">
+          <div class="buyuk-sayi turuncu" id="kalan">–</div>
+          <div class="alt-yazi" id="kalan-yazi">Tarih seçilmedi</div>
+        </div>
+      </div>
+
+      <div class="baslik">Bağlantılar</div>
+      <div class="liste">
+        <a class="satir-kart cam" href="https://www.firat.edu.tr/" target="_blank" rel="noopener">
+          <span class="ik m">FÜ</span><div class="orta"><b>Fırat Üniversitesi</b><small>firat.edu.tr</small></div><span class="ok">›</span>
+        </a>
+        <a class="satir-kart cam" href="https://ybs.firat.edu.tr/" target="_blank" rel="noopener">
+          <span class="ik r">YBS</span><div class="orta"><b>YBS Bölümü</b><small>ybs.firat.edu.tr</small></div><span class="ok">›</span>
+        </a>
+        <!-- OBS, UZEM, KYK linkleri doğrulanıp eklenecek -->
+      </div>
+    </section>
+
+    <footer class="alt-bilgi">
+      <a href="hakkimizda.html">Hakkımızda ve iletişim</a>
+      <a href="gizlilik.html">Gizlilik ve çerezler</a>
+      <span>© 2026 KampüsCep</span>
+    </footer>
+  </main>
+</div>
+
+<script src="veri.js"></script>
+<script>
+/* =====================================================================
+   TARİH YARDIMCILARI
+   ===================================================================== */
+const GUN = 86400000;
+function T(s) { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); }
+function ekle(d, n) { const x = new Date(d); x.setDate(x.getDate() + n); return x; }
+function fark(a, b) { return Math.round((b - a) / GUN); }
+function haftaSonu(d) { const g = d.getDay(); return g === 0 || g === 6; }
+function gunAdi(d) { return d.toLocaleDateString("tr-TR", { weekday: "long" }); }
+function kisa(d) { return d.toLocaleDateString("tr-TR", { day: "numeric", month: "long" }); }
+function aralik(o) {
+  const b = T(o.bas), e = T(o.bit || o.bas);
+  if (+b === +e) return kisa(b) + ", " + gunAdi(b);
+  if (b.getMonth() === e.getMonth()) return b.getDate() + " – " + kisa(e);
+  return kisa(b) + " – " + kisa(e);
+}
+function sayiYaz(n) { return n.toLocaleString("tr-TR"); }
+function donemIcinde(d) { return donemler.some(p => d >= T(p.bas) && d <= T(p.bit)); }
+
+const bugun = new Date(); bugun.setHours(0, 0, 0, 0);
+
+/* =====================================================================
+   SAYFA GEÇİŞLERİ
+   ===================================================================== */
+function sayfaAc(id) {
+  document.querySelectorAll(".sayfa").forEach(s => s.classList.toggle("aktif", s.id === id));
+  document.querySelectorAll(".sekme").forEach(b => b.classList.toggle("aktif", b.dataset.sayfa === id));
+  if (id === "yurtlar") yurtListeyeDon();
+  if (id === "notlar") bolumKapat();
+  window.scrollTo({ top: 0 });
+}
+document.querySelectorAll(".sekme").forEach(b => b.onclick = () => sayfaAc(b.dataset.sayfa));
+document.querySelectorAll("[data-git]").forEach(b => b.onclick = () => sayfaAc(b.dataset.git));
+
+function hafizaOku(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function hafizaYaz(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+/* =====================================================================
+   TARİH VE SELAM
+   ===================================================================== */
+const saat = new Date().getHours();
+const tarihYazi = bugun.toLocaleDateString("tr-TR", { weekday: "long", day: "numeric", month: "long" });
+document.getElementById("tarih").textContent = tarihYazi;
+document.getElementById("detay-tarih").textContent = tarihYazi;
+document.getElementById("selam").textContent =
+  saat < 6 ? "İyi geceler" : saat < 12 ? "Günaydın" : saat < 18 ? "İyi günler" : "İyi akşamlar";
+const varsayilanOgun = saat < 11 ? "kahvalti" : "aksam";
+
+/* =====================================================================
+   AKADEMİK TAKVİM
+   ===================================================================== */
+function olayBitis(o) { return T(o.bit || o.bas); }
+function siradaki(tur) {
+  return takvim.find(o => o.tur === tur && olayBitis(o) >= bugun);
+}
+function kalanYazi(o) {
+  const b = T(o.bas), e = olayBitis(o);
+  if (bugun >= b && bugun <= e) return { sayi: "Şu an", ek: "" };
+  const g = fark(bugun, b);
+  return g === 1 ? { sayi: "Yarın", ek: "" } : { sayi: g, ek: "gün" };
+}
+
+/* Bugün hangi dönemdeyiz, kaçıncı hafta? */
+function durumHesapla() {
+  for (const p of donemler) {
+    const b = T(p.bas), e = T(p.bit);
+    if (bugun >= b && bugun <= e) {
+      const hafta = Math.floor(fark(b, bugun) / 7) + 1;
+      const toplam = Math.ceil((fark(b, e) + 1) / 7);
+      const yuzde = Math.min(100, Math.round(fark(b, bugun) / fark(b, e) * 100));
+      return { baslik: `${p.ad} · ${hafta}. hafta`, alt: `Derslerin bitmesine ${fark(bugun, e)} gün var`, yuzde, sol: `1. hafta`, sag: `${toplam}. hafta`, etiket: "Ders dönemi" };
+    }
+  }
+  const sinavda = takvim.find(o => o.tur === "sinav" && bugun >= T(o.bas) && bugun <= olayBitis(o));
+  if (sinavda) return { baslik: sinavda.ad, alt: `${kisa(olayBitis(sinavda))} tarihine kadar sürüyor, başarılar`, etiket: "Sınav dönemi" };
+  const sonraki = donemler.find(p => T(p.bas) > bugun);
+  if (sonraki) return { baslik: "Tatildesin", alt: `${sonraki.ad} ${kisa(T(sonraki.bas))} tarihinde başlıyor (${fark(bugun, T(sonraki.bas))} gün)`, etiket: "Tatil" };
+  return { baslik: "Yaz tatili", alt: "2026–2027 akademik yılı tamamlandı", etiket: "Tatil" };
+}
+
+function durumCiz(elId, kisaltilmis) {
+  const d = durumHesapla();
+  const tatil = siradaki("tatil"), sinav = siradaki("sinav");
+  let html = `
+    <div class="durum-ust">
+      <div><h2>${d.baslik}</h2><p>${d.alt}</p></div>
+      <span class="etiket mor">${d.etiket}</span>
+    </div>`;
+  if (d.yuzde !== undefined) html += `
+    <div class="cubuk"><div style="width:${d.yuzde}%"></div></div>
+    <div class="cubuk-alt"><span>${d.sol}</span><span>%${d.yuzde}</span><span>${d.sag}</span></div>`;
+  if (kisaltilmis) {
+    const s = sinav ? kalanYazi(sinav) : null, t = tatil ? kalanYazi(tatil) : null;
+    html += `<div class="sayaclar" style="margin-top:16px">
+      ${sinav ? `<div class="sayac cam" style="box-shadow:none"><small>Sıradaki sınav</small><div class="sayi pembe">${s.sayi}<span>${s.ek}</span></div><b>${sinav.ad}</b><span class="tarih">${aralik(sinav)}</span></div>` : ""}
+      ${tatil ? `<div class="sayac cam" style="box-shadow:none"><small>Sıradaki tatil</small><div class="sayi yesil">${t.sayi}<span>${t.ek}</span></div><b>${tatil.ad}</b><span class="tarih">${aralik(tatil)}</span></div>` : ""}
+      <button class="sayac cam" style="box-shadow:none;cursor:pointer;font:inherit;color:inherit;text-align:left;border:1px solid var(--cam-kenar)" onclick="sayfaAc('takvim')"><small>Akademik takvim</small><div class="sayi mavi" style="font-size:30px">Aç<span>›</span></div><b>Tüm tarihler</b><span class="tarih">Sınav, tatil, kayıt</span></button>
+    </div>`;
+  }
+  document.getElementById(elId).innerHTML = html;
+}
+
+/* Sayaç kartları (takvim sayfası) */
+function sayaclarCiz() {
+  const sinav = siradaki("sinav"), tatil = siradaki("tatil");
+  const final = takvim.find(o => o.ad === "Final sınavları" && olayBitis(o) >= bugun);
+  const kart = (baslik, o, renk) => {
+    if (!o) return "";
+    const k = kalanYazi(o);
+    return `<div class="sayac cam"><small>${baslik}</small><div class="sayi ${renk}">${k.sayi}<span>${k.ek}</span></div><b>${o.ad}${o.tahmini ? '<span class="tahmini">tahmini</span>' : ""}</b><span class="tarih">${aralik(o)}</span></div>`;
+  };
+  document.getElementById("sayaclar").innerHTML =
+    kart("Sıradaki sınav", sinav, "pembe") + kart("Sıradaki tatil", tatil, "yesil") + kart("Finallere", final, "mavi");
+}
+
+/* Tatil analizi: kaç gün, kaç ders günü, köprü */
+function tatilAnaliz(o) {
+  const s = T(o.bas), e = olayBitis(o);
+  const resmi = fark(s, e) + 1 - (o.yarim ? 0.5 : 0);
+  // Arife hafta içine denk geliyorsa yarım gün düşülür
+  const kesinti = (o.yarim && !haftaSonu(s)) ? 0.5 : 0;
+
+  let dersKaybi = 0;
+  for (let d = new Date(s); d <= e; d = ekle(d, 1))
+    if (!haftaSonu(d) && donemIcinde(d)) dersKaybi += (o.yarim && +d === +s) ? 0.5 : 1;
+
+  // Hafta sonlarıyla birleşince
+  let bas = new Date(s), bit = new Date(e);
+  while (haftaSonu(ekle(bas, -1))) bas = ekle(bas, -1);
+  while (haftaSonu(ekle(bit, 1))) bit = ekle(bit, 1);
+  const birlesik = fark(bas, bit) + 1 - kesinti;
+
+  // Köprü: hafta sonuna en fazla 2 iş günü kalıyorsa
+  let kopru = null;
+  if (dersKaybi > 0) {
+    const say = (yon) => {
+      let n = 0, d = ekle(yon > 0 ? bit : bas, yon);
+      while (!haftaSonu(d) && n < 3) { n++; d = ekle(d, yon); }
+      return n;
+    };
+    const sonra = say(1), once = say(-1);
+    const n = Math.min(sonra, once);
+    if (n > 0 && n <= 2) {
+      const yon = sonra <= once ? 1 : -1;
+      let kb = new Date(bas), ke = new Date(bit), gunler = [];
+      for (let i = 1; i <= n; i++) {
+        const d = ekle(yon > 0 ? bit : bas, yon * i);
+        gunler.push(gunAdi(d));
+      }
+      if (yon > 0) { ke = ekle(bit, n); while (haftaSonu(ekle(ke, 1))) ke = ekle(ke, 1); }
+      else { kb = ekle(bas, -n); while (haftaSonu(ekle(kb, -1))) kb = ekle(kb, -1); }
+      const toplam = fark(kb, ke) + 1 - kesinti;
+      if (yon < 0) gunler.reverse();
+      kopru = { gunler: gunler.join(" ve "), toplam };
+    }
+  }
+  return { resmi, dersKaybi, birlesik, kopru, donemDisi: dersKaybi === 0 };
+}
+
+function tatillerCiz() {
+  document.getElementById("tatiller").innerHTML = takvim.filter(o => o.tur === "tatil").map(o => {
+    const a = tatilAnaliz(o);
+    const gecti = olayBitis(o) < bugun;
+    const k = kalanYazi(o);
+    let alt;
+    if (a.kopru) alt = `<div class="kopru">${a.kopru.gunler} köprü olursa ${sayiYaz(a.kopru.toplam)} gün tatil</div>`;
+    else if (a.donemDisi) alt = `<div class="kopru notr">${haftaSonu(T(o.bas)) && !o.bit ? "Hafta sonuna denk geliyor" : "Ders dönemi dışında kalıyor"}</div>`;
+    else alt = `<div class="kopru notr">Hafta sonuyla birlikte ${sayiYaz(a.birlesik)} gün</div>`;
+    return `
+      <div class="tatil cam ${gecti ? "gecti" : ""}">
+        <div class="tatil-ust">
+          <div><h3>${o.ad}</h3><div class="tarih">${aralik(o)}</div></div>
+          <span class="etiket yesil">${gecti ? "Geçti" : (typeof k.sayi === "number" ? k.sayi + " gün" : k.sayi)}</span>
+        </div>
+        <div class="tatil-bilgi">
+          <div><small>Resmi tatil</small><b>${sayiYaz(a.resmi)} gün</b>${o.yarim ? '<small>ilk gün yarım</small>' : ""}</div>
+          <div><small>Kaçan ders günü</small><b>${sayiYaz(a.dersKaybi)}</b></div>
+        </div>
+        ${alt}
+      </div>`;
+  }).join("");
+}
+
+/* Zaman çizelgesi */
+const turAdi = { sinav: "Sınav", tatil: "Tatil", kayit: "Kayıt", donem: "Dönem" };
+let takvimFiltre = "hepsi";
+function zamanCiz() {
+  const liste = takvim.filter(o =>
+    takvimFiltre === "hepsi" ? true :
+    takvimFiltre === "gelecek" ? olayBitis(o) >= bugun :
+    o.tur === takvimFiltre);
+  let html = "", sonAy = "";
+  for (const o of liste) {
+    const b = T(o.bas), e = olayBitis(o);
+    const ay = b.toLocaleDateString("tr-TR", { month: "long", year: "numeric" });
+    if (ay !== sonAy) { html += `<div class="ay">${ay}</div>`; sonAy = ay; }
+    const durum = e < bugun ? "gecti" : (bugun >= b ? "simdi" : "");
+    const ne = durum === "gecti" ? "Geçti" : durum === "simdi" ? "Şu an" :
+      (fark(bugun, b) === 1 ? "Yarın" : fark(bugun, b) + " gün sonra");
+    html += `
+      <div class="olay ${durum}">
+        <span class="nokta ${o.tur}"></span>
+        <div><b>${o.ad}${o.tahmini ? '<span class="tahmini">tahmini</span>' : ""}</b><small>${aralik(o)} · ${turAdi[o.tur]}</small></div>
+        <span class="ne-zaman">${ne}</span>
+      </div>`;
+  }
+  document.getElementById("zaman").innerHTML = html || `<div class="bos-kutu">Bu filtrede tarih yok.</div>`;
+}
+document.querySelectorAll("#takvim-filtre button").forEach(b => b.onclick = () => {
+  takvimFiltre = b.dataset.tur;
+  document.querySelectorAll("#takvim-filtre button").forEach(x => x.classList.toggle("aktif", x === b));
+  zamanCiz();
+});
+
+/* Telefon takvimine ekle (.ics dosyası) */
+function takvimIndir() {
+  const f = d => d.getFullYear() + String(d.getMonth() + 1).padStart(2, "0") + String(d.getDate()).padStart(2, "0");
+  let ics = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//KampusCep//Akademik Takvim//TR\r\nCALSCALE:GREGORIAN\r\nX-WR-CALNAME:Fırat Üni Akademik Takvim\r\n";
+  takvim.forEach((o, i) => {
+    ics += "BEGIN:VEVENT\r\n" +
+      `UID:kampuscep-${i}-${o.bas}@kampuscep\r\n` +
+      `DTSTAMP:${f(new Date())}T000000Z\r\n` +
+      `DTSTART;VALUE=DATE:${f(T(o.bas))}\r\n` +
+      `DTEND;VALUE=DATE:${f(ekle(olayBitis(o), 1))}\r\n` +
+      `SUMMARY:${o.ad}${o.tahmini ? " (tahmini)" : ""}\r\n` +
+      "END:VEVENT\r\n";
+  });
+  ics += "END:VCALENDAR\r\n";
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar;charset=utf-8" }));
+  a.download = "firat-akademik-takvim-2026-2027.ics";
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+durumCiz("ana-durum", true);
+durumCiz("takvim-durum", false);
+sayaclarCiz();
+tatillerCiz();
+zamanCiz();
+
+/* =====================================================================
+   YURT MENÜLERİ
+   ===================================================================== */
+function listeYaz(elId, liste) {
+  document.getElementById(elId).innerHTML = liste.map(y => `<li>${y}</li>`).join("");
+}
+function yurtMenusu(id) { return yurtMenuleri[id] || yurtMenuleri.varsayilan; }
+
+let anaYurt = hafizaOku("secilenYurt") || yurtlar[0].id;
+let anaOgun = varsayilanOgun;
+const anaSec = document.getElementById("ana-yurt");
+anaSec.innerHTML =
+  `<optgroup label="Kız yurtları">${yurtlar.filter(y => y.tur === "kiz").map(y => `<option value="${y.id}">${y.ad}</option>`).join("")}</optgroup>` +
+  `<optgroup label="Erkek yurtları">${yurtlar.filter(y => y.tur === "erkek").map(y => `<option value="${y.id}">${y.ad}</option>`).join("")}</optgroup>`;
+anaSec.value = anaYurt;
+anaSec.onchange = () => { anaYurt = anaSec.value; hafizaYaz("secilenYurt", anaYurt); anaMenuGuncelle(); };
+
+function anaMenuGuncelle() {
+  document.querySelectorAll("#ana-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === anaOgun));
+  listeYaz("ana-yemekler", yurtMenusu(anaYurt)[anaOgun]);
+}
+document.querySelectorAll("#ana-secici button").forEach(b => b.onclick = () => { anaOgun = b.dataset.ogun; anaMenuGuncelle(); });
+anaMenuGuncelle();
+/* Üniversite Evi: tarihe göre menü */
+function tarihAnahtar(d) {
+  return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+const uniGunler = Object.keys(uniEviMenuleri).sort().filter(k => T(k) >= ekle(bugun, -1) || k === tarihAnahtar(bugun));
+function uniEviGoster(anahtar) {
+  document.querySelectorAll("#unievi-gunler button").forEach(b => b.classList.toggle("aktif", b.dataset.gun === anahtar));
+  const d = T(anahtar), g = fark(bugun, d);
+  document.getElementById("unievi-bilgi").textContent =
+    (g === 0 ? "Bugün" : g === 1 ? "Yarın" : gunAdi(d)) + " · " + kisa(d) + " öğle menüsü";
+  const liste = uniEviMenuleri[anahtar];
+  if (liste) listeYaz("unievi-yemekler", liste);
+  else document.getElementById("unievi-yemekler").innerHTML = '<li class="bos-menu" style="list-style:none">Bu gün için menü yayımlanmadı.</li>';
+}
+(function () {
+  const bugunK = tarihAnahtar(bugun);
+  const gosterilecek = uniGunler.filter(k => k >= bugunK);
+  document.getElementById("unievi-gunler").innerHTML = gosterilecek.map(k => {
+    const d = T(k);
+    return `<button data-gun="${k}">${d.toLocaleDateString("tr-TR", { weekday: "short" })}<b>${d.getDate()}</b></button>`;
+  }).join("");
+  document.querySelectorAll("#unievi-gunler button").forEach(b => b.onclick = () => uniEviGoster(b.dataset.gun));
+  if (gosterilecek.length) uniEviGoster(gosterilecek[0]);
+  else {
+    document.getElementById("unievi-bilgi").textContent = "Öğle menüsü";
+    document.getElementById("unievi-yemekler").innerHTML = '<li class="bos-menu" style="list-style:none">Bu haftanın menüsü henüz eklenmedi.</li>';
+  }
+})();
+
+/* =====================================================================
+   YURTLAR SAYFASI
+   ===================================================================== */
+let filtreTur = "hepsi";
+function yurtListesiCiz() {
+  const liste = yurtlar.filter(y => filtreTur === "hepsi" || y.tur === filtreTur);
+  document.getElementById("yurt-liste").innerHTML = liste.map(y => `
+    <button class="satir-kart cam" onclick="yurtAc('${y.id}')">
+      <span class="ik ${y.tur === "kiz" ? "p" : "m"}">${y.ad.charAt(0)}</span>
+      <div class="orta"><b>${y.ad}</b><small>${y.tur === "kiz" ? "Kız" : "Erkek"} yurdu · ${y.wp ? "WhatsApp grubu var" : "Menü"}</small></div>
+      <span class="ok">›</span>
+    </button>`).join("");
+}
+document.querySelectorAll("#yurt-filtre button").forEach(b => b.onclick = () => {
+  filtreTur = b.dataset.tur;
+  document.querySelectorAll("#yurt-filtre button").forEach(x => x.classList.toggle("aktif", x === b));
+  yurtListesiCiz();
+});
+yurtListesiCiz();
+
+let detayYurt = null, detayOgun = varsayilanOgun;
+function yurtAc(id) {
+  detayYurt = yurtlar.find(y => y.id === id);
+  document.getElementById("yurt-liste-gorunum").style.display = "none";
+  document.getElementById("yurt-detay").style.display = "block";
+  document.getElementById("detay-ad").textContent = detayYurt.ad;
+  document.getElementById("detay-tur").textContent = (detayYurt.tur === "kiz" ? "Kız" : "Erkek") + " yurdu · KYK";
+  const wp = document.getElementById("detay-wp");
+  if (detayYurt.wp) { wp.href = detayYurt.wp; wp.classList.remove("bos"); document.getElementById("detay-wp-yazi").textContent = "Yurdun WhatsApp grubuna katıl"; }
+  else { wp.removeAttribute("href"); wp.classList.add("bos"); document.getElementById("detay-wp-yazi").textContent = "WhatsApp grubu yakında"; }
+  detayMenuGuncelle();
+  window.scrollTo({ top: 0 });
+}
+function detayMenuGuncelle() {
+  document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
+  listeYaz("detay-yemekler", yurtMenusu(detayYurt.id)[detayOgun]);
+}
+document.querySelectorAll("#detay-secici button").forEach(b => b.onclick = () => { detayOgun = b.dataset.ogun; detayMenuGuncelle(); });
+function yurtListeyeDon() {
+  document.getElementById("yurt-liste-gorunum").style.display = "block";
+  document.getElementById("yurt-detay").style.display = "none";
+}
+
+/* =====================================================================
+   DERS NOTLARI
+   ===================================================================== */
+function bolumAc() {
+  document.getElementById("bolum-gorunum").style.display = "none";
+  document.getElementById("sinif-gorunum").style.display = "block";
+  sinifSec(hafizaOku("secilenSinif") || "1");
+  window.scrollTo({ top: 0 });
+}
+function bolumKapat() {
+  document.getElementById("bolum-gorunum").style.display = "block";
+  document.getElementById("sinif-gorunum").style.display = "none";
+}
+function sinifSec(s) {
+  hafizaYaz("secilenSinif", s);
+  document.querySelectorAll("#sinif-sekme button").forEach(b => b.classList.toggle("aktif", b.dataset.sinif === s));
+  const dersler = ybsDersleri[s];
+  const renkler = ["m", "t", "y", "p", "r"];
+  document.getElementById("ders-liste").innerHTML = dersler.length
+    ? dersler.map((d, i) => `
+      <a class="satir-kart cam ${d.link ? "" : "pasif"}" ${d.link ? `href="${d.link}" target="_blank" rel="noopener"` : ""}>
+        <span class="ik ${renkler[i % renkler.length]}">${d.ad.charAt(0)}</span>
+        <div class="orta"><b>${d.ad}</b><small>${s}. sınıf</small></div>
+        <span class="rozet ${d.link ? "acik" : "yakinda"}">${d.link ? "Notlar" : "Yakında"}</span>
+      </a>`).join("")
+    : `<div class="cam bos-kutu">${s}. sınıf dersleri yakında eklenecek.</div>`;
+}
+document.querySelectorAll("#sinif-sekme button").forEach(b => b.onclick = () => sinifSec(b.dataset.sinif));
+
+/* =====================================================================
+   ORTALAMA
+   ===================================================================== */
+const harfler = { AA: 4, BA: 3.5, BB: 3, CB: 2.5, CC: 2, DC: 1.5, DD: 1, FD: 0.5, FF: 0 };
+function dersEkle() {
+  const s = document.createElement("div");
+  s.className = "ders-satir";
+  const secenek = Object.entries(harfler).map(([h, p]) => `<option value="${p}">${h}</option>`).join("");
+  s.innerHTML = `
+    <input placeholder="Ders adı" aria-label="Ders adı">
+    <input type="number" min="1" value="3" class="kredi" aria-label="Kredi">
+    <select class="harf" aria-label="Harf notu">${secenek}</select>
+    <button class="sil" aria-label="Dersi sil" onclick="this.parentElement.remove()">×</button>`;
+  document.getElementById("dersler").appendChild(s);
+}
+function hesapla() {
+  let kredi = 0, puan = 0;
+  document.querySelectorAll("#dersler .ders-satir").forEach(s => {
+    const k = parseFloat(s.querySelector(".kredi").value) || 0;
+    kredi += k; puan += k * parseFloat(s.querySelector(".harf").value);
+  });
+  if (!kredi) { document.getElementById("ort-yazi").textContent = "Önce en az bir ders ekle"; return; }
+  const ort = puan / kredi;
+  document.getElementById("ort").textContent = ort.toFixed(2);
+  document.getElementById("ort-yazi").textContent =
+    ort >= 3.5 ? "Yüksek onur seviyesi" : ort >= 3 ? "Onur seviyesi" : ort >= 2 ? "Geçer ortalama" : "2.00'ın altında";
+}
+dersEkle(); dersEkle(); dersEkle();
+
+function geriSay() {
+  const d = document.getElementById("sinav").value;
+  if (!d) return;
+  const gun = fark(bugun, T(d));
+  document.getElementById("kalan").textContent = gun >= 0 ? gun : "–";
+  document.getElementById("kalan-yazi").textContent =
+    gun > 0 ? "gün kaldı" : gun === 0 ? "Sınav bugün, başarılar" : "Bu tarih geçmiş";
+}
+</script>
+</body>
+</html>
