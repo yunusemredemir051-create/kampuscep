@@ -911,14 +911,22 @@ function sinifSec(s) {
   const renkler = ["m", "t", "y", "p", "r"];
   document.getElementById("ders-liste").innerHTML = dersler.length
     ? dersler.map((d, i) => `
-      <a class="satir-kart cam ${d.link ? "" : "pasif"}" ${d.link ? `href="${d.link}" target="_blank" rel="noopener"` : ""}>
+      <a class="satir-kart cam ${d.link ? "" : "pasif"}" ${d.link ? `href="${d.link}"${/\.pdf$/i.test(d.link) ? ' target="_blank" rel="noopener"' : ""}` : ""}>
         <span class="ik ${renkler[i % renkler.length]}">${d.ad.charAt(0)}</span>
-        <div class="orta"><b>${d.ad}</b><small>${s}. sınıf</small></div>
+        <div class="orta"><b>${d.ad}</b><small>${d.aciklama || s + ". sınıf"}</small></div>
         <span class="rozet ${d.link ? "acik" : "yakinda"}">${d.link ? "Notlar" : "Yakında"}</span>
       </a>`).join("")
     : `<div class="cam bos-kutu">${s}. sınıf dersleri yakında eklenecek.</div>`;
 }
 document.querySelectorAll("#sinif-sekme button").forEach(b => b.onclick = () => sinifSec(b.dataset.sinif));
+
+/* Adres çubuğundan doğrudan açma: index.html#takvim, index.html#ybs-1 gibi */
+(function () {
+  const h = location.hash.slice(1);
+  if (["yurtlar", "notlar", "takvim", "araclar"].includes(h)) sayfaAc(h);
+  const m = h.match(/^ybs-([1-4])$/);
+  if (m) { sayfaAc("notlar"); bolumAc(); sinifSec(m[1]); }
+})();
 
 /* =====================================================================
    ORTALAMA
