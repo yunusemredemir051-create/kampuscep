@@ -43,13 +43,15 @@ const uniEviMenuleri = {
 /* YBS dersleri — not eklemek için:
    1) PDF'i GitHub'da notlar/ybs/SINIF/ klasörüne yükle (ör. notlar/ybs/2/istatistik.pdf)
    2) Aşağıda o dersin link kısmına aynı yolu yaz: link: "notlar/ybs/2/istatistik.pdf"
-   Yeni ders: { ad: "Ders adı", link: "" },  satırını ilgili sınıfa ekle */
+   Yeni ders: { ad: "Ders adı", link: "" },  satırını ilgili sınıfa ekle
+   Bölümlere ayrılmış, testli ders: link: "ders.html?d=ybs/SINIF/klasor-adi" (klasörde ders.json olmalı) */
 const ybsDersleri = {
-  1: [],
+  1: [
+    { ad: "Bilişim Sistemleri ve Teknolojilerine Giriş", link: "ders.html?d=ybs/1/bilisim-sistemleri", aciklama: "8 bölüm · 162 soru" }
+  ],
   2: [
     { ad: "İstatistik", link: "" },
-    { ad: "Finansal Yönetim", link: "" },
-    { ad: "Bilişim Sistemleri ve Teknolojileri", link: "" }
+    { ad: "Finansal Yönetim", link: "" }
   ],
   3: [],
   4: []
