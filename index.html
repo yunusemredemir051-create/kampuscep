@@ -312,6 +312,8 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 .alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 40px 0 0; font-size: 13px; color: var(--soluk); }
 .alt-bilgi a { color: var(--soluk); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { .sayfa.aktif { animation: none; } }
+/* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
+.reklam { display: none !important; }
 </style>
 </head>
 <body>
@@ -368,13 +370,12 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <button data-ogun="aksam">Akşam</button>
           </div>
           <ul class="yemekler" id="ana-yemekler"></ul>
-          <p class="ornek">Şu an örnek menü gösteriliyor.</p>
-        </div>
+                  </div>
 
         <div class="menu-kart cam">
           <div class="menu-ust">
             <div><h2>Üniversite Evi</h2><p id="unievi-bilgi">Öğle menüsü</p></div>
-            <span class="etiket turuncu">Fırat Ünv.</span>
+            <span class="etiket turuncu">Fırat Üni.</span>
           </div>
           <div class="gunler" id="unievi-gunler"></div>
           <ul class="yemekler" id="unievi-yemekler"></ul>
@@ -428,8 +429,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <button data-ogun="aksam">Akşam</button>
           </div>
           <ul class="yemekler" id="detay-yemekler"></ul>
-          <p class="ornek">Şu an örnek menü gösteriliyor.</p>
-          <a class="wp-btn" id="detay-wp" target="_blank" rel="noopener">
+                    <a class="wp-btn" id="detay-wp" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 1c.3.1.5.2.5.3.1.2.1.7-.1 1.4z"/></svg>
             <span id="detay-wp-yazi"></span>
           </a>
@@ -519,7 +519,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
       <div class="araclar">
         <div class="panel cam">
           <h2>Ortalama hesapla</h2>
-          <p>Dersleri ve harf notlarını gir.</p>
+          <p>Her dersin AKTS kredisini ve harf notunu gir.</p>
           <div id="dersler"></div>
           <div class="btnlar">
             <button class="btn" onclick="dersEkle()">Ders ekle</button>
@@ -805,7 +805,12 @@ zamanCiz();
 function listeYaz(elId, liste) {
   document.getElementById(elId).innerHTML = liste.map(y => `<li>${y}</li>`).join("");
 }
-function yurtMenusu(id) { return yurtMenuleri[id] || yurtMenuleri.varsayilan; }
+function yurtMenusu(id) { return yurtMenuleri[id] || null; }
+function yurtMenuYaz(elId, id, ogun) {
+  const m = yurtMenusu(id);
+  if (m && m[ogun] && m[ogun].length) listeYaz(elId, m[ogun]);
+  else document.getElementById(elId).innerHTML = '<li class="bos-menu" style="list-style:none">Bu yurdun menüsü henüz eklenmedi.</li>';
+}
 
 let anaYurt = hafizaOku("secilenYurt") || yurtlar[0].id;
 let anaOgun = varsayilanOgun;
@@ -818,7 +823,7 @@ anaSec.onchange = () => { anaYurt = anaSec.value; hafizaYaz("secilenYurt", anaYu
 
 function anaMenuGuncelle() {
   document.querySelectorAll("#ana-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === anaOgun));
-  listeYaz("ana-yemekler", yurtMenusu(anaYurt)[anaOgun]);
+  yurtMenuYaz("ana-yemekler", anaYurt, anaOgun);
 }
 document.querySelectorAll("#ana-secici button").forEach(b => b.onclick = () => { anaOgun = b.dataset.ogun; anaMenuGuncelle(); });
 anaMenuGuncelle();
@@ -860,7 +865,7 @@ function yurtListesiCiz() {
   document.getElementById("yurt-liste").innerHTML = liste.map(y => `
     <button class="satir-kart cam" onclick="yurtAc('${y.id}')">
       <span class="ik ${y.tur === "kiz" ? "p" : "m"}">${y.ad.charAt(0)}</span>
-      <div class="orta"><b>${y.ad}</b><small>${y.tur === "kiz" ? "Kız" : "Erkek"} yurdu · ${y.wp ? "WhatsApp grubu var" : "Menü"}</small></div>
+      <div class="orta"><b>${y.ad}</b><small>${y.tur === "kiz" ? "Kız" : "Erkek"} yurdu · ${y.wp ? "WhatsApp grubu var" : yurtMenuleri[y.id] ? "Menü var" : "Menü yakında"}</small></div>
       <span class="ok">›</span>
     </button>`).join("");
 }
@@ -886,7 +891,7 @@ function yurtAc(id) {
 }
 function detayMenuGuncelle() {
   document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
-  listeYaz("detay-yemekler", yurtMenusu(detayYurt.id)[detayOgun]);
+  yurtMenuYaz("detay-yemekler", detayYurt.id, detayOgun);
 }
 document.querySelectorAll("#detay-secici button").forEach(b => b.onclick = () => { detayOgun = b.dataset.ogun; detayMenuGuncelle(); });
 function yurtListeyeDon() {
@@ -938,14 +943,15 @@ window.addEventListener("hashchange", adresiAc);
 /* =====================================================================
    ORTALAMA
    ===================================================================== */
-const harfler = { AA: 4, BA: 3.5, BB: 3, CB: 2.5, CC: 2, DC: 1.5, DD: 1, FD: 0.5, FF: 0 };
+/* Fırat Üniversitesi Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği, Madde 31 */
+const harfler = { AA: 4, BA: 3.5, BB: 3, CB: 2.5, CC: 2, DC: 1.5, DD: 1, FF: 0 };
 function dersEkle() {
   const s = document.createElement("div");
   s.className = "ders-satir";
   const secenek = Object.entries(harfler).map(([h, p]) => `<option value="${p}">${h}</option>`).join("");
   s.innerHTML = `
     <input placeholder="Ders adı" aria-label="Ders adı">
-    <input type="number" min="1" value="3" class="kredi" aria-label="Kredi">
+    <input type="number" min="1" value="5" class="kredi" aria-label="AKTS kredisi" title="AKTS kredisi">
     <select class="harf" aria-label="Harf notu">${secenek}</select>
     <button class="sil" aria-label="Dersi sil" onclick="this.parentElement.remove()">×</button>`;
   document.getElementById("dersler").appendChild(s);
@@ -958,9 +964,9 @@ function hesapla() {
   });
   if (!kredi) { document.getElementById("ort-yazi").textContent = "Önce en az bir ders ekle"; return; }
   const ort = puan / kredi;
-  document.getElementById("ort").textContent = ort.toFixed(2);
+  document.getElementById("ort").textContent = ort.toFixed(2).replace(".", ",");
   document.getElementById("ort-yazi").textContent =
-    ort >= 3.5 ? "Yüksek onur seviyesi" : ort >= 3 ? "Onur seviyesi" : ort >= 2 ? "Geçer ortalama" : "2.00'ın altında";
+    ort >= 2 ? "2,00 ve üstü: DC ve DD notların da başarılı sayılır" : "2,00'ın altında: DC ve DD notların koşullu kalır";
 }
 dersEkle(); dersEkle(); dersEkle();
 
