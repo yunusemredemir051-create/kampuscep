@@ -13,7 +13,7 @@ import datetime, html, json, os, re
 import markdown
 
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE_URL = "https://yunusemredemir051-create.github.io/kampuscep"
+SITE_URL = "https://kampuscepte.com.tr"
 SITE_ADI = "KampüsCep"
 DERSLER = ["ybs/1/bilisim-sistemleri", "ybs/1/veri-tabanina-giris", "ybs/2/istatistik", "ybs/2/finansal-yonetim"]
 BOLUM_KISA = {"Yönetim Bilişim Sistemleri": "YBS"}

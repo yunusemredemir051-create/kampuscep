@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yunusemredemir051-create.github.io/kampuscep/sitemap.xml
+Sitemap: https://kampuscepte.com.tr/sitemap.xml
