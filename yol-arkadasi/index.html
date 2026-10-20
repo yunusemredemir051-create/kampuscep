@@ -94,6 +94,8 @@ textarea { resize: vertical; min-height: 60px; }
 .kisiler a { color: #fff; background: var(--wp); text-decoration: none; font-size: 13px; padding: 7px 12px; border-radius: 10px; }
 .alt-link { display: flex; justify-content: space-between; margin-top: 8px; }
 .alt-link button { border: 0; background: none; color: var(--soluk); font: 600 12px var(--font); cursor: pointer; padding: 4px 0; text-decoration: underline; }
+.kapak { display: block; width: 100%; max-width: 400px; height: auto; margin: 4px auto -4px; }
+.bos img { display: block; width: 130px; height: auto; margin: 0 auto 10px; }
 .bos { text-align: center; padding: 28px 20px; color: var(--soluk); font-weight: 600; font-size: 14px; }
 .bos b { display: block; color: var(--yazi); font-size: 16px; margin-bottom: 4px; }
 .hata { background: var(--pembe-acik); color: var(--pembe); border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 700; margin-top: 10px; display: none; }
@@ -125,9 +127,10 @@ footer a { color: inherit; }
 <div class="isik"></div>
 <main>
   <div class="ust">
-    <a class="logo" href="../"><span class="logo-ikon">K</span>KampüsCepte</a>
+    <a class="logo" href="../"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
   </div>
 
+  <img class="kapak" src="../gorseller/yol-arkadasi.webp" alt="" width="900" height="469">
   <h1>Yol arkadaşı</h1>
   <p class="alt">Aynı saatte otogara ya da havaalanına gidecek yurt arkadaşını bul, tek taksiye binin, ücreti bölüşün.</p>
 
@@ -391,7 +394,7 @@ function listeCiz() {
   if (filtre === "otogar" || filtre === "havaalani") l = l.filter(i => i.yer === filtre);
   if (filtre === "benim") l = l.filter(i => i.sahipUid === ben.uid || (i.katilanlar || []).includes(ben.uid));
   if (!l.length) {
-    $("liste").innerHTML = `<div class="kart cam bos"><b>${filtre === "benim" ? "Henüz bir yolculuğun yok" : "Şimdilik ilan yok"}</b>Gideceğin saati ekle, aynı saatte gidenler seni bulsun.</div>`;
+    $("liste").innerHTML = `<div class="kart cam bos"><img src="../gorseller/bos-durum.webp" alt=""><b>${filtre === "benim" ? "Henüz bir yolculuğun yok" : "Şimdilik ilan yok"}</b>Gideceğin saati ekle, aynı saatte gidenler seni bulsun.</div>`;
     return;
   }
   let html = "", sonGun = "";

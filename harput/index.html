@@ -68,6 +68,8 @@ h1 { font-size: 26px; letter-spacing: -.5px; margin: 0 0 4px; }
 .kaynak a { color: inherit; }
 footer { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 20px; }
 footer a { color: inherit; }
+.baslik-g { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.baslik-g img { width: 110px; height: auto; flex: none; }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="../manifest.webmanifest">
@@ -83,12 +85,12 @@ footer a { color: inherit; }
 <div class="isik"></div>
 <main>
   <div class="ust">
-    <a class="logo" href="../"><span class="logo-ikon">K</span>KampüsCepte</a>
+    <a class="logo" href="../"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
     <a class="site-btn" href="../">Siteyi gez ›</a>
   </div>
 
-  <h1>Harput Yurdu</h1>
-  <p class="alt" id="tarih"></p>
+  <div class="baslik-g"><div><h1>Harput Yurdu</h1>
+  <p class="alt" id="tarih"></p></div><img src="../gorseller/yurt-menu.webp" alt="" width="110"></div>
 
   <div class="gun-sec">
     <button data-g="0">Bugün</button>

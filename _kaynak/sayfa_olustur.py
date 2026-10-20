@@ -107,7 +107,7 @@ def ust_kisim(kok):
     return f"""<div class="isik"></div>
 <div class="kap">
   <header class="ust cam">
-    <a class="logo" href="{kok}index.html"><span class="logo-ikon">K</span>{SITE_ADI}</a>
+    <a class="logo" href="{kok}index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">{SITE_ADI}</a>
     <a href="{kok}dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
   </header>"""
 
