@@ -28,12 +28,12 @@ service cloud.firestore {
     match /yolculuklar/{id} {
       function sahip() { return girisli() && request.auth.uid == resource.data.sahipUid; }
 
-      // Kız yurdunun ilanını yalnızca kız yurdu seçenler, erkek yurdununkini yalnızca erkek yurdu seçenler görür
-      allow read: if girisli() && resource.data.yurtTur == benimTurum();
+            // İlanlar herkese açık ve isimsizdir (isim ve telefon yalnızca iletisim alt koleksiyonunda, grup içinde görünür)
+      allow read: if true;
 
       allow create: if girisli()
         && request.resource.data.sahipUid == request.auth.uid
-        && request.resource.data.keys().hasOnly(['sahipUid', 'sahipAd', 'yurt', 'yurtTur', 'yon', 'yer', 'zaman', 'aranan', 'ucret', 'not', 'katilanlar', 'olusturma'])
+        && request.resource.data.keys().hasOnly(['sahipUid', 'yurt', 'yurtTur', 'yon', 'yer', 'zaman', 'aranan', 'ucret', 'not', 'katilanlar', 'olusturma'])
         && yurtTuruUyar(request.resource.data)
         && request.resource.data.yurtTur == benimTurum()
         && request.resource.data.yon in ['gidis', 'donus']
@@ -43,7 +43,7 @@ service cloud.firestore {
         && request.resource.data.zaman < request.time + duration.value(31, 'd')
         && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
         && request.resource.data.ucret is int && request.resource.data.ucret >= 0 && request.resource.data.ucret <= 5000
-        && metin(request.resource.data.sahipAd, 40) && metin(request.resource.data.not, 120)
+        && metin(request.resource.data.not, 120)
         && request.resource.data.katilanlar == [];
 
       allow update: if sahip()
