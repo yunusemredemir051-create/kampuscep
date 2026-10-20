@@ -9,12 +9,14 @@ def blok(on):
             f'<link rel="apple-touch-icon" href="{on}ikonlar/apple-touch-icon.png">\n'
             f'<meta name="mobile-web-app-capable" content="yes">\n'
             f'<meta name="apple-mobile-web-app-title" content="KampüsCepte">\n'
+            f'<meta name="google-adsense-account" content="ca-pub-5083598455747122">\n'
+            f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>\n'
             f'<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("{on}sw.js",{{scope:"{on or "./"}"}}).catch(()=>{{}}));</script>\n'
             f'{SON}')
 
 sayi = 0
 for yol in glob.glob("**/*.html", recursive=True):
-    if yol.startswith(("_kaynak", "uygulama", "node_modules")):
+    if yol.startswith(("_kaynak", "_uygulama", "uygulama", "node_modules", ".github")):
         continue
     derinlik = yol.count("/")
     on = "../" * derinlik
