@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "412379754608",
+    "project_id": "kampuscepte-2b0a1",
+    "storage_bucket": "kampuscepte-2b0a1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:412379754608:android:853bda2d6579b16bb404b5",
+        "android_client_info": {
+          "package_name": "tr.com.kampuscepte.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "412379754608-55cm758nis01dho35ibh5n07jvfcsoke.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tr.com.kampuscepte.app",
+            "certificate_hash": "b62712e113328c5cf034e98ab870e3ac37a81454"
+          }
+        },
+        {
+          "client_id": "412379754608-811hj42q24174cfnf8p4lkrjuhf8s951.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tr.com.kampuscepte.app",
+            "certificate_hash": "f632aea8ccdab2441d7b2a647a63c920ba3b294e"
+          }
+        },
+        {
+          "client_id": "412379754608-u0ainlamu4et6al1idjsev8lki0hct5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxHMKVgF-LsTguN-q5miEpAZnxYzlCauo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "412379754608-u0ainlamu4et6al1idjsev8lki0hct5r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

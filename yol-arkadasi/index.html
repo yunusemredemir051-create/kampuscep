@@ -213,6 +213,7 @@ footer a { color: inherit; }
     </section>
   </div>
 
+  <p class="gizli" id="sil-satir" style="text-align:center;margin:18px 0 0"><button id="hesap-sil" style="border:0;background:none;color:var(--pembe);font:700 13px var(--font);cursor:pointer;text-decoration:underline">Hesabımı ve bilgilerimi sil</button></p>
   <footer>Yolculuk saatinden 2 saat sonra ilanlar listeden kalkar. · <a href="../gizlilik.html">Gizlilik</a></footer>
 </main>
 <nav class="alt-menu cam">
@@ -229,7 +230,7 @@ footer a { color: inherit; }
 <script src="../firebase-ayar.js"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection, query, where, onSnapshot,
          getDocs, Timestamp, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -264,25 +265,66 @@ let ben = null, profil = null, ilanlar = [], filtre = "hepsi", dinleyici = null;
 const iletisimOnbellek = {};
 
 /* ---------------- Giriş ---------------- */
+/* Uygulamanın içinde (Android) Google girişi telefonun kendi hesap seçicisiyle yapılır;
+   tarayıcıda ise Google'ın açılır penceresi kullanılır. */
+const yerel = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
+const yerelGiris = () => window.Capacitor.Plugins.FirebaseAuthentication;
+async function googleIleGir() {
+  if (yerel) {
+    const r = await yerelGiris().signInWithGoogle({ skipNativeAuth: true });
+    const idToken = r && r.credential && r.credential.idToken;
+    if (!idToken) throw { code: "auth/no-token" };
+    return signInWithCredential(auth, GoogleAuthProvider.credential(idToken));
+  }
+  return signInWithPopup(auth, new GoogleAuthProvider());
+}
 $("google-giris").onclick = async () => {
   hataYaz("giris-hata", "");
   const ua = navigator.userAgent || "";
   try {
-    await signInWithPopup(auth, new GoogleAuthProvider());
+    await googleIleGir();
   } catch (e) {
-    if (/Instagram|FBAN|FBAV/i.test(ua) || e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment")
+    const kod = (e && (e.code || e.message)) || "bilinmeyen";
+    if (/Instagram|FBAN|FBAV/i.test(ua) || kod === "auth/popup-blocked" || kod === "auth/operation-not-supported-in-this-environment")
       hataYaz("giris-hata", "Bu uygulamanın içindeki tarayıcı Google girişine izin vermiyor. Sağ üstteki menüden “Tarayıcıda aç” deyip tekrar dene.");
-    else if (e.code !== "auth/popup-closed-by-user" && e.code !== "auth/cancelled-popup-request")
-      hataYaz("giris-hata", "Giriş yapılamadı, tekrar dener misin? (" + e.code + ")");
+    else if (!/popup-closed-by-user|cancelled-popup-request|cancel/i.test(kod))
+      hataYaz("giris-hata", "Giriş yapılamadı, tekrar dener misin? (" + kod + ")");
   }
 };
-$("cikis").onclick = () => signOut(auth);
+$("cikis").onclick = async () => { try { if (yerel) await yerelGiris().signOut(); } catch (e) {} signOut(auth); };
+
+/* Hesabı silme: ilanların, numaran ve yurt seçimin silinir, Google bağlantın kaldırılır */
+$("hesap-sil").onclick = async () => {
+  if (!confirm("Hesabını silmek istiyor musun? Verdiğin ilanlar, katıldığın yolculuklardaki numaran ve yurt seçimin kalıcı olarak silinir.")) return;
+  const uid = ben.uid;
+  try {
+    for (const i of ilanlar) {
+      if (i.sahipUid === uid) {
+        const s = await getDocs(collection(db, "yolculuklar", i.id, "iletisim"));
+        await Promise.all(s.docs.map(d => deleteDoc(d.ref)));
+        await deleteDoc(doc(db, "yolculuklar", i.id));
+      } else if ((i.katilanlar || []).includes(uid)) {
+        await deleteDoc(doc(db, "yolculuklar", i.id, "iletisim", uid));
+        await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: i.katilanlar.filter(u => u !== uid) });
+      }
+    }
+    await deleteDoc(doc(db, "kullanicilar", uid));
+    try { await deleteUser(ben); }
+    catch (e) {
+      if (e.code === "auth/requires-recent-login") { await googleIleGir(); await deleteUser(auth.currentUser); }
+      else throw e;
+    }
+    try { localStorage.removeItem("kc-tel"); } catch (e) {}
+    try { if (yerel) await yerelGiris().signOut(); } catch (e) {}
+    toast("Hesabın ve tüm bilgilerin silindi.");
+  } catch (e) { console.error(e); toast("Hesap silinemedi, tekrar dener misin?"); }
+};
 
 onAuthStateChanged(auth, async u => {
   ben = u;
   if (dinleyici) { dinleyici(); dinleyici = null; }
   if (typeof iletisimTemizle === "function") iletisimTemizle(null);
-  if (!u) { goster("giris"); return; }
+  if (!u) { $("sil-satir").classList.add("gizli"); goster("giris"); return; }
   goster("yukleniyor");
   try {
     const s = await getDoc(doc(db, "kullanicilar", u.uid));
@@ -321,6 +363,7 @@ function uygulamaAc() {
   $("ben-ad").textContent = adim();
   $("ben-yurt").textContent = YURT[profil.yurt] ? YURT[profil.yurt].ad : "";
   goster("uygulama");
+  $("sil-satir").classList.remove("gizli");
   const q = query(collection(db, "yolculuklar"), where("yurtTur", "==", profil.tur));
   dinleyici = onSnapshot(q, s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
     e => { $("liste").innerHTML = `<div class="kart cam bos"><b>İlanlar yüklenemedi</b>Sayfayı yenileyip tekrar dene.</div>`; console.error(e); });
