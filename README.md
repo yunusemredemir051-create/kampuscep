@@ -56,3 +56,10 @@ Alan adı alındığında betikteki `SITE_URL` değeri değiştirilip komut yeni
 
 `.reklam` kutuları AdSense onaylanana kadar CSS ile gizlidir (`display: none`). Onaydan sonra bu satırlar silinip
 AdSense kodu kutuların içine yerleştirilir; kök dizine de Google'ın verdiği `ads.txt` dosyası eklenir.
+
+## Yurt menü linkleri (WhatsApp grupları için)
+
+Her yurdun kendi kısa sayfası var: `kampuscepte.com.tr/ahmet-kabakli/`, `/firat/`, `/omer-bilginoglu/`, `/fethi-sekin/`,
+`/harput/`, `/izzetpasa/`, `/sare-ana/`. Sayfa bugünün (ve yarının) kahvaltı, akşam ve Üniversite Evi menüsünü
+`veri.js`'den okur, yani menü güncellenince bu sayfalar da kendiliğinden güncellenir. WhatsApp'tan gelen biri geri tuşuna
+basınca ana sayfaya gider. Yeni yurt eklenince `python3 _kaynak/yurt_sayfalari.py` çalıştırılır.
