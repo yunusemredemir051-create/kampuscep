@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#eef3ff">
+<title>Yol arkadaşı – KampüsCepte</title>
+<meta name="description" content="Yurttan otogara ya da havaalanına aynı saatte gidenleri bul, taksiyi paylaş, ücreti böl.">
+<link rel="canonical" href="https://kampuscepte.com.tr/yol-arkadasi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KampüsCepte">
+<meta property="og:title" content="Yol arkadaşı · Taksiyi paylaş">
+<meta property="og:description" content="Aynı saatte otogara ya da havaalanına giden yurt arkadaşlarını bul, taksi ücretini bölüş.">
+<meta property="og:url" content="https://kampuscepte.com.tr/yol-arkadasi/">
+<meta property="og:locale" content="tr_TR">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yesil: #16b67a; --yesil-acik: #e2f8ee; --pembe: #f2557f; --pembe-acik: #ffe8ee; --mor: #8b5cf6; --wp: #25d366;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; min-height: 100vh; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.45), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.40), transparent 70%),
+              radial-gradient(520px 420px at 80% 100%, rgba(90,220,170,.30), transparent 70%), var(--zemin); }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+main { max-width: 600px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; color: var(--yazi); text-decoration: none; }
+.logo-ikon { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center;
+  background: linear-gradient(140deg, var(--mavi), var(--mor)); color: #fff; font-weight: 800; }
+.kucuk-btn { border: 0; background: #fff; color: var(--mavi); font: 700 13px var(--font); padding: 9px 14px; border-radius: 12px;
+  text-decoration: none; box-shadow: 0 2px 8px rgba(20,27,52,.08); white-space: nowrap; cursor: pointer; }
+h1 { font-size: 28px; letter-spacing: -.6px; margin: 0 0 4px; }
+.alt { color: var(--soluk); font-weight: 600; font-size: 14px; margin: 0 0 18px; line-height: 1.5; }
+.kart { padding: 18px 20px; margin-bottom: 14px; }
+.kart h2 { font-size: 17px; margin: 0 0 6px; }
+.kart p { margin: 0 0 12px; color: var(--soluk); font-size: 14px; line-height: 1.55; }
+.btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; border: 0; border-radius: 14px;
+  padding: 14px; font: 700 15px var(--font); cursor: pointer; text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; }
+.btn.beyaz { background: #fff; color: var(--yazi); border: 1px solid var(--cizgi); }
+.btn.yesil { background: var(--wp); color: #fff; }
+.btn.soluk { background: rgba(20,27,52,.06); color: var(--soluk); }
+.btn:disabled { opacity: .55; cursor: default; }
+.btn svg { width: 20px; height: 20px; }
+.adimlar { margin: 0; padding: 0; list-style: none; counter-reset: a; }
+.adimlar li { counter-increment: a; display: flex; gap: 12px; padding: 8px 0; font-size: 14px; font-weight: 600; }
+.adimlar li::before { content: counter(a); flex: none; width: 24px; height: 24px; border-radius: 8px; background: var(--mavi-acik); color: var(--mavi);
+  display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+.profil { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--soluk); font-weight: 600; margin-bottom: 14px; }
+.profil b { color: var(--yazi); }
+.profil button { border: 0; background: none; color: var(--mavi); font: 700 13px var(--font); cursor: pointer; padding: 4px; }
+label { display: block; font-size: 12px; font-weight: 800; color: var(--soluk); margin: 12px 0 6px; text-transform: uppercase; letter-spacing: .4px; }
+select, input, textarea { width: 100%; border: 1px solid var(--cizgi); background: #fff; border-radius: 12px; padding: 12px; font: 600 15px var(--font); color: var(--yazi); }
+textarea { resize: vertical; min-height: 60px; }
+.iki { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.secim { display: grid; grid-template-columns: 1fr 1fr; background: rgba(20,27,52,.05); border-radius: 13px; padding: 4px; }
+.secim.uc { grid-template-columns: 1fr 1fr 1fr; }
+.secim button { border: 0; background: transparent; color: var(--soluk); font: 700 14px var(--font); padding: 10px 6px; border-radius: 10px; cursor: pointer; }
+.secim button.aktif { background: #fff; color: var(--yazi); box-shadow: 0 2px 8px rgba(20,27,52,.08); }
+.filtre { display: flex; gap: 8px; margin: 4px 0 14px; overflow-x: auto; scrollbar-width: none; }
+.filtre button { flex: none; border: 1px solid var(--cizgi); background: #fff; color: var(--soluk); font: 700 13px var(--font); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.filtre button.aktif { background: var(--yazi); border-color: var(--yazi); color: #fff; }
+.gun-baslik { font-size: 13px; font-weight: 800; color: var(--soluk); text-transform: uppercase; letter-spacing: .5px; margin: 18px 4px 8px; }
+.ilan { padding: 16px 18px; margin-bottom: 10px; }
+.ilan.benim { border: 2px solid var(--mavi); }
+.ilan-ust { display: flex; align-items: center; gap: 14px; }
+.saat { font-size: 24px; font-weight: 800; letter-spacing: -.5px; min-width: 70px; }
+.rota { flex: 1; min-width: 0; }
+.rota b { display: block; font-size: 15px; }
+.rota small { color: var(--soluk); font-weight: 600; font-size: 13px; }
+.yer-rozet { font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 9px; white-space: nowrap; }
+.yer-rozet.otogar { background: var(--turuncu-acik); color: var(--turuncu); }
+.yer-rozet.havaalani { background: var(--mavi-acik); color: var(--mavi); }
+.ilan-bilgi { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
+.ilan-bilgi span { background: rgba(20,27,52,.05); border-radius: 8px; padding: 5px 9px; font-size: 12px; font-weight: 700; color: var(--soluk); }
+.ilan-bilgi span.yesil { background: var(--yesil-acik); color: var(--yesil); }
+.ilan-bilgi span.dolu { background: var(--pembe-acik); color: var(--pembe); }
+.ilan-not { font-size: 14px; color: var(--yazi); margin: 0 0 12px; line-height: 1.5; }
+.ilan-btnler { display: grid; gap: 8px; }
+.kisiler { margin: 0 0 10px; padding: 0; list-style: none; }
+.kisiler li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 9px 0; border-top: 1px solid var(--cizgi); font-weight: 700; font-size: 14px; }
+.kisiler a { color: #fff; background: var(--wp); text-decoration: none; font-size: 13px; padding: 7px 12px; border-radius: 10px; }
+.alt-link { display: flex; justify-content: space-between; margin-top: 8px; }
+.alt-link button { border: 0; background: none; color: var(--soluk); font: 600 12px var(--font); cursor: pointer; padding: 4px 0; text-decoration: underline; }
+.bos { text-align: center; padding: 28px 20px; color: var(--soluk); font-weight: 600; font-size: 14px; }
+.bos b { display: block; color: var(--yazi); font-size: 16px; margin-bottom: 4px; }
+.hata { background: var(--pembe-acik); color: var(--pembe); border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 700; margin-top: 10px; display: none; }
+.uyari { background: var(--turuncu-acik); color: #b35a17; border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 600; line-height: 1.5; }
+.gizli { display: none !important; }
+footer { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; line-height: 1.6; }
+footer a { color: inherit; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); background: var(--yazi); color: #fff; padding: 12px 18px; border-radius: 14px;
+  font-weight: 700; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.25); opacity: 0; transition: .25s; pointer-events: none; max-width: 90vw; text-align: center; }
+.toast.goster { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="isik"></div>
+<main>
+  <div class="ust">
+    <a class="logo" href="../"><span class="logo-ikon">K</span>KampüsCepte</a>
+    <a class="kucuk-btn" href="../">Siteyi gez ›</a>
+  </div>
+
+  <h1>Yol arkadaşı</h1>
+  <p class="alt">Aynı saatte otogara ya da havaalanına gidecek yurt arkadaşını bul, tek taksiye binin, ücreti bölüşün.</p>
+
+  <!-- Yükleniyor -->
+  <section class="kart cam" id="yukleniyor"><p style="margin:0">Yükleniyor…</p></section>
+
+  <!-- Giriş -->
+  <section class="kart cam gizli" id="giris">
+    <h2>Nasıl çalışır?</h2>
+    <ul class="adimlar">
+      <li>Yurdunu, gideceğin yeri ve saati yaz.</li>
+      <li>Aynı saatte aynı yere gidenler ilanını görür, “Ben de geliyorum” der.</li>
+      <li>Telefonlar yalnızca eşleşen kişiler arasında açılır; WhatsApp'tan buluşma yerini konuşursunuz.</li>
+    </ul>
+    <p style="margin-top:10px">Kız yurtlarının ilanlarını yalnızca kız yurtları, erkek yurtlarının ilanlarını yalnızca erkek yurtları görür.</p>
+    <button class="btn ana" id="google-giris">
+      <svg viewBox="0 0 24 24"><path fill="#fff" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3z"/><path fill="#dfe6ff" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#c3cfff" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14z"/><path fill="#fff" d="M12 5.9c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.4 3-4.1 5.6-4.1z"/></svg>
+      Google ile giriş yap
+    </button>
+    <div class="hata" id="giris-hata"></div>
+  </section>
+
+  <!-- Yurt seçimi (ilk girişte) -->
+  <section class="kart cam gizli" id="yurt-secim">
+    <h2>Hangi yurtta kalıyorsun?</h2>
+    <p>İlanlar yurduna göre gösterilir. Daha sonra değiştirebilirsin.</p>
+    <select id="yurt-select"></select>
+    <div style="height:12px"></div>
+    <button class="btn ana" id="yurt-kaydet">Devam et</button>
+    <div class="hata" id="yurt-hata"></div>
+  </section>
+
+  <!-- Ana görünüm -->
+  <div id="uygulama" class="gizli">
+    <div class="profil">
+      <span>Merhaba <b id="ben-ad"></b> · <span id="ben-yurt"></span></span>
+      <span><button id="yurt-degistir">Yurdu değiştir</button><button id="cikis">Çıkış</button></span>
+    </div>
+
+    <button class="btn ana" id="ekle-ac">+ Yolculuk ekle</button>
+
+    <section class="kart cam gizli" id="form" style="margin-top:14px">
+      <h2>Yeni yolculuk</h2>
+      <label>Yön</label>
+      <div class="secim" id="f-yon">
+        <button data-v="gidis" class="aktif">Yurttan çıkış</button>
+        <button data-v="donus">Yurda dönüş</button>
+      </div>
+      <label>Nereye / nereden</label>
+      <div class="secim" id="f-yer">
+        <button data-v="otogar" class="aktif">Otogar</button>
+        <button data-v="havaalani">Havaalanı</button>
+      </div>
+      <div class="iki">
+        <div><label for="f-tarih">Tarih</label><input type="date" id="f-tarih"></div>
+        <div><label for="f-saat">Saat</label><input type="time" id="f-saat" step="300"></div>
+      </div>
+      <label>Kaç kişi daha arıyorsun?</label>
+      <div class="secim uc" id="f-aranan">
+        <button data-v="1">1</button><button data-v="2" class="aktif">2</button><button data-v="3">3</button>
+      </div>
+      <div class="iki">
+        <div><label for="f-ucret">Tahmini taksi (TL)</label><input type="number" id="f-ucret" inputmode="numeric" min="0" max="5000" placeholder="İsteğe bağlı"></div>
+        <div><label for="f-tel">WhatsApp numaran</label><input type="tel" id="f-tel" inputmode="tel" placeholder="05xx xxx xx xx" autocomplete="tel"></div>
+      </div>
+      <label for="f-not">Not <span style="text-transform:none;font-weight:600">(isteğe bağlı)</span></label>
+      <textarea id="f-not" maxlength="120" placeholder="Örn. 13:30 otobüsüne yetişmem lazım, büyük valizim var"></textarea>
+      <p style="margin:10px 0 12px;font-size:12px">Numaran listede görünmez; yalnızca seninle eşleşen kişilere açılır.</p>
+      <button class="btn ana" id="f-kaydet">İlanı yayınla</button>
+      <div style="height:8px"></div>
+      <button class="btn soluk" id="f-vazgec">Vazgeç</button>
+      <div class="hata" id="f-hata"></div>
+    </section>
+
+    <div class="filtre" id="filtre" style="margin-top:16px">
+      <button data-f="hepsi" class="aktif">Hepsi</button>
+      <button data-f="otogar">Otogar</button>
+      <button data-f="havaalani">Havaalanı</button>
+      <button data-f="benim">Benimkiler</button>
+    </div>
+    <div id="liste"></div>
+
+    <section class="kart cam" style="margin-top:18px">
+      <div class="uyari">Tanımadığın biriyle yolculuk yapmadan önce WhatsApp'tan konuş, buluşmayı yurt kapısında yap. Rahatsız edici bir ilan görürsen “Şikâyet et”e bas.</div>
+    </section>
+  </div>
+
+  <footer>Yolculuk saatinden 2 saat sonra ilanlar listeden kalkar. · <a href="../gizlilik.html">Gizlilik</a></footer>
+</main>
+<div class="toast" id="toast"></div>
+
+<script src="../veri.js"></script>
+<script src="../firebase-ayar.js"></script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection, query, where, onSnapshot,
+         getDocs, Timestamp, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const goster = (...ids) => ["yukleniyor", "giris", "yurt-secim", "uygulama"].forEach(i => $(i).classList.toggle("gizli", !ids.includes(i)));
+const hataYaz = (id, m) => { $(id).textContent = m; $(id).style.display = m ? "block" : "none"; };
+function toast(m) { const t = $("toast"); t.textContent = m; t.classList.add("goster"); clearTimeout(toast.z); toast.z = setTimeout(() => t.classList.remove("goster"), 2600); }
+const hafiza = { oku(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, yaz(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+
+const YURT = Object.fromEntries(yurtlar.map(y => [y.id, y]));
+const kisaAd = id => (YURT[id] ? YURT[id].ad.replace(/ Yurdu$/, "").replace(/^Elazığ /, "") : id);
+const YER = { otogar: "Otogar", havaalani: "Havaalanı" };
+
+/* WhatsApp'tan gelen biri geri tuşuna basınca ana sayfaya gitsin */
+(function () {
+  let disaridan = true;
+  try { disaridan = !document.referrer || new URL(document.referrer).origin !== location.origin; } catch (e) {}
+  if (!disaridan) return;
+  const bu = location.href, ana = new URL("../", location.href).href;
+  history.replaceState({ kc: "ana" }, "", ana); history.pushState({ kc: "sayfa" }, "", bu);
+  addEventListener("popstate", e => { if (e.state && e.state.kc === "ana") location.replace(ana); });
+})();
+
+if (!window.FIREBASE_AYAR) { $("yukleniyor").innerHTML = "<p style='margin:0'>Bu bölüm çok yakında açılıyor.</p>"; throw new Error("Firebase ayarı yok"); }
+const app = initializeApp(window.FIREBASE_AYAR);
+const auth = getAuth(app);
+auth.languageCode = "tr";
+const db = getFirestore(app);
+
+let ben = null, profil = null, ilanlar = [], filtre = "hepsi", dinleyici = null;
+const iletisimOnbellek = {};
+
+/* ---------------- Giriş ---------------- */
+$("google-giris").onclick = async () => {
+  hataYaz("giris-hata", "");
+  const ua = navigator.userAgent || "";
+  try {
+    await signInWithPopup(auth, new GoogleAuthProvider());
+  } catch (e) {
+    if (/Instagram|FBAN|FBAV/i.test(ua) || e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment")
+      hataYaz("giris-hata", "Bu uygulamanın içindeki tarayıcı Google girişine izin vermiyor. Sağ üstteki menüden “Tarayıcıda aç” deyip tekrar dene.");
+    else if (e.code !== "auth/popup-closed-by-user" && e.code !== "auth/cancelled-popup-request")
+      hataYaz("giris-hata", "Giriş yapılamadı, tekrar dener misin? (" + e.code + ")");
+  }
+};
+$("cikis").onclick = () => signOut(auth);
+
+onAuthStateChanged(auth, async u => {
+  ben = u;
+  if (dinleyici) { dinleyici(); dinleyici = null; }
+  if (!u) { goster("giris"); return; }
+  goster("yukleniyor");
+  try {
+    const s = await getDoc(doc(db, "kullanicilar", u.uid));
+    profil = s.exists() ? s.data() : null;
+  } catch (e) { profil = null; }
+  if (!profil) yurtSecimAc(); else uygulamaAc();
+});
+
+/* ---------------- Yurt seçimi ---------------- */
+function yurtSecimAc() {
+  const sec = $("yurt-select");
+  sec.innerHTML = '<option value="">Yurt seç…</option>' +
+    `<optgroup label="Kız yurtları">${yurtlar.filter(y => y.tur === "kiz").map(y => `<option value="${y.id}">${esc(y.ad)}</option>`).join("")}</optgroup>` +
+    `<optgroup label="Erkek yurtları">${yurtlar.filter(y => y.tur === "erkek").map(y => `<option value="${y.id}">${esc(y.ad)}</option>`).join("")}</optgroup>`;
+  sec.value = (profil && profil.yurt) || hafiza.oku("secilenYurt") || "";
+  hataYaz("yurt-hata", "");
+  goster("yurt-secim");
+}
+$("yurt-kaydet").onclick = async () => {
+  const id = $("yurt-select").value;
+  if (!id) { hataYaz("yurt-hata", "Lütfen yurdunu seç."); return; }
+  $("yurt-kaydet").disabled = true;
+  try {
+    profil = { yurt: id, tur: YURT[id].tur };
+    await setDoc(doc(db, "kullanicilar", ben.uid), profil);
+    hafiza.yaz("secilenYurt", id);
+    uygulamaAc();
+  } catch (e) { hataYaz("yurt-hata", "Kaydedilemedi, tekrar dene."); }
+  $("yurt-kaydet").disabled = false;
+};
+$("yurt-degistir").onclick = yurtSecimAc;
+
+/* ---------------- Ana görünüm ---------------- */
+function adim() { return (ben.displayName || "Öğrenci").split(" ")[0]; }
+function uygulamaAc() {
+  $("ben-ad").textContent = adim();
+  $("ben-yurt").textContent = YURT[profil.yurt] ? YURT[profil.yurt].ad : "";
+  goster("uygulama");
+  const q = query(collection(db, "yolculuklar"), where("yurtTur", "==", profil.tur));
+  dinleyici = onSnapshot(q, s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
+    e => { $("liste").innerHTML = `<div class="kart cam bos"><b>İlanlar yüklenemedi</b>Sayfayı yenileyip tekrar dene.</div>`; console.error(e); });
+}
+
+document.querySelectorAll("#filtre button").forEach(b => b.onclick = () => {
+  filtre = b.dataset.f; document.querySelectorAll("#filtre button").forEach(x => x.classList.toggle("aktif", x === b)); listeCiz();
+});
+
+function gunEtiketi(d) {
+  const bugun = new Date(); bugun.setHours(0, 0, 0, 0);
+  const g = new Date(d); g.setHours(0, 0, 0, 0);
+  const f = Math.round((g - bugun) / 864e5);
+  if (f === 0) return "Bugün";
+  if (f === 1) return "Yarın";
+  return d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" });
+}
+
+function listeCiz() {
+  const simdi = Date.now();
+  let l = ilanlar.filter(i => i.zaman && i.zaman.toMillis() > simdi - 2 * 3600e3)
+                 .sort((a, b) => a.zaman.toMillis() - b.zaman.toMillis());
+  if (filtre === "otogar" || filtre === "havaalani") l = l.filter(i => i.yer === filtre);
+  if (filtre === "benim") l = l.filter(i => i.sahipUid === ben.uid || (i.katilanlar || []).includes(ben.uid));
+  if (!l.length) {
+    $("liste").innerHTML = `<div class="kart cam bos"><b>${filtre === "benim" ? "Henüz bir yolculuğun yok" : "Şimdilik ilan yok"}</b>Gideceğin saati ekle, aynı saatte gidenler seni bulsun.</div>`;
+    return;
+  }
+  let html = "", sonGun = "";
+  for (const i of l) {
+    const d = i.zaman.toDate(), gun = gunEtiketi(d);
+    if (gun !== sonGun) { html += `<div class="gun-baslik">${esc(gun)}</div>`; sonGun = gun; }
+    html += ilanHtml(i, d);
+  }
+  $("liste").innerHTML = html;
+  l.forEach(i => { if (i.sahipUid === ben.uid || (i.katilanlar || []).includes(ben.uid)) iletisimYukle(i); });
+}
+
+function ilanHtml(i, d) {
+  const benim = i.sahipUid === ben.uid, katildim = (i.katilanlar || []).includes(ben.uid);
+  const katilan = (i.katilanlar || []).length, kalan = Math.max(0, i.aranan - katilan);
+  const saat = d.toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit" });
+  const yurt = kisaAd(i.yurt), yer = YER[i.yer] || i.yer;
+  const rota = i.yon === "gidis" ? `${esc(yurt)} → ${esc(yer)}` : `${esc(yer)} → ${esc(yurt)}`;
+  const kisiBasi = i.ucret ? Math.round(i.ucret / (katilan + 1)) : 0;
+  let bilgi = `<span class="${kalan ? "yesil" : "dolu"}">${kalan ? kalan + " kişilik yer var" : "Dolu"}</span>`;
+  if (katilan) bilgi += `<span>${katilan + 1} kişi gidiyor</span>`;
+  if (i.ucret) bilgi += `<span>Taksi ~${i.ucret} TL · kişi başı ~${kisiBasi} TL</span>`;
+  let btn = "";
+  if (benim) {
+    btn = `<ul class="kisiler" id="k-${i.id}"><li style="border:0;color:var(--soluk);font-weight:600">${katilan ? "Katılanlar yükleniyor…" : "Henüz katılan yok. Biri katılınca numarası burada görünür."}</li></ul>
+           <button class="btn soluk" data-sil="${i.id}">İlanı kaldır</button>`;
+  } else if (katildim) {
+    btn = `<ul class="kisiler" id="k-${i.id}"></ul>
+           <button class="btn soluk" data-vazgec="${i.id}">Vazgeç</button>`;
+  } else {
+    btn = `<button class="btn ana" data-katil="${i.id}" ${kalan ? "" : "disabled"}>${kalan ? "Ben de geliyorum" : "Yer kalmadı"}</button>`;
+  }
+  return `<article class="ilan cam${benim ? " benim" : ""}">
+    <div class="ilan-ust">
+      <div class="saat">${saat}</div>
+      <div class="rota"><b>${rota}</b><small>${benim ? "Senin ilanın" : esc(i.sahipAd)} · ${esc(kisaAd(i.yurt))}</small></div>
+      <span class="yer-rozet ${esc(i.yer)}">${esc(yer)}</span>
+    </div>
+    <div class="ilan-bilgi">${bilgi}</div>
+    ${i.not ? `<p class="ilan-not">“${esc(i.not)}”</p>` : ""}
+    <div class="ilan-btnler">${btn}</div>
+    ${benim ? "" : `<div class="alt-link"><span></span><button data-sikayet="${i.id}">Şikâyet et</button></div>`}
+  </article>`;
+}
+
+async function iletisimYukle(i) {
+  const el = $("k-" + i.id);
+  if (!el) return;
+  try {
+    const s = await getDocs(collection(db, "yolculuklar", i.id, "iletisim"));
+    const kisiler = s.docs.filter(d => d.id !== ben.uid).map(d => d.data());
+    const benim = i.sahipUid === ben.uid;
+    if (!kisiler.length) {
+      el.innerHTML = `<li style="border:0;color:var(--soluk);font-weight:600">${benim ? "Henüz katılan yok. Biri katılınca numarası burada görünür." : "İlan sahibinin numarası yükleniyor…"}</li>`;
+      return;
+    }
+    const mesaj = encodeURIComponent(`Merhaba, KampüsCepte yol arkadaşı ilanından yazıyorum: ${i.zaman.toDate().toLocaleString("tr-TR", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" })} ${YER[i.yer]} yolculuğu.`);
+    el.innerHTML = kisiler.map(k => `<li><span>${esc(k.ad)}</span><a href="https://wa.me/${esc(k.tel)}?text=${mesaj}" target="_blank" rel="noopener">WhatsApp'tan yaz</a></li>`).join("");
+  } catch (e) { el.innerHTML = ""; }
+}
+
+/* ---------------- Telefon ---------------- */
+function telDuzelt(t) {
+  let s = String(t || "").replace(/\D/g, "");
+  if (s.startsWith("90")) s = s.slice(2);
+  if (s.startsWith("0")) s = s.slice(1);
+  return /^5\d{9}$/.test(s) ? "90" + s : null;
+}
+function telSor() {
+  const kayitli = hafiza.oku("kc-tel");
+  if (kayitli) return kayitli;
+  const t = prompt("WhatsApp numaranı yaz (ilan sahibi seninle iletişime geçebilsin):", "05");
+  const n = telDuzelt(t);
+  if (!n) { if (t !== null) toast("Numara 05xx xxx xx xx biçiminde olmalı."); return null; }
+  hafiza.yaz("kc-tel", n);
+  return n;
+}
+
+/* ---------------- Ekleme formu ---------------- */
+function secimBagla(id) {
+  document.querySelectorAll(`#${id} button`).forEach(b => b.onclick = () =>
+    document.querySelectorAll(`#${id} button`).forEach(x => x.classList.toggle("aktif", x === b)));
+}
+["f-yon", "f-yer", "f-aranan"].forEach(secimBagla);
+const secili = id => document.querySelector(`#${id} button.aktif`).dataset.v;
+
+$("ekle-ac").onclick = () => {
+  const d = new Date(Date.now() + 3600e3);
+  $("f-tarih").value = d.toLocaleDateString("sv-SE");
+  $("f-saat").value = String(d.getHours()).padStart(2, "0") + ":00";
+  const tel = hafiza.oku("kc-tel");
+  if (tel) $("f-tel").value = "0" + tel.slice(2);
+  hataYaz("f-hata", "");
+  $("form").classList.remove("gizli"); $("ekle-ac").classList.add("gizli");
+};
+$("f-vazgec").onclick = () => { $("form").classList.add("gizli"); $("ekle-ac").classList.remove("gizli"); };
+
+$("f-kaydet").onclick = async () => {
+  hataYaz("f-hata", "");
+  const tarih = $("f-tarih").value, saat = $("f-saat").value;
+  if (!tarih || !saat) return hataYaz("f-hata", "Tarih ve saati seç.");
+  const zaman = new Date(`${tarih}T${saat}`);
+  if (isNaN(zaman) || zaman < Date.now() - 30 * 60e3) return hataYaz("f-hata", "Geçmiş bir saat seçtin.");
+  if (zaman > Date.now() + 30 * 864e5) return hataYaz("f-hata", "En fazla 30 gün sonrası için ilan verebilirsin.");
+  const tel = telDuzelt($("f-tel").value);
+  if (!tel) return hataYaz("f-hata", "WhatsApp numaranı 05xx xxx xx xx biçiminde yaz.");
+  const ucret = Math.max(0, Math.min(5000, parseInt($("f-ucret").value, 10) || 0));
+  $("f-kaydet").disabled = true;
+  try {
+    const ref = await addDoc(collection(db, "yolculuklar"), {
+      sahipUid: ben.uid, sahipAd: adim().slice(0, 40), yurt: profil.yurt, yurtTur: profil.tur,
+      yon: secili("f-yon"), yer: secili("f-yer"), zaman: Timestamp.fromDate(zaman),
+      aranan: parseInt(secili("f-aranan"), 10), ucret, not: $("f-not").value.trim().slice(0, 120),
+      katilanlar: [], olusturma: serverTimestamp()
+    });
+    await setDoc(doc(db, "yolculuklar", ref.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel });
+    hafiza.yaz("kc-tel", tel);
+    $("f-not").value = ""; $("f-ucret").value = "";
+    $("form").classList.add("gizli"); $("ekle-ac").classList.remove("gizli");
+    toast("İlanın yayında. Biri katılınca burada göreceksin.");
+  } catch (e) { console.error(e); hataYaz("f-hata", "İlan kaydedilemedi, tekrar dener misin?"); }
+  $("f-kaydet").disabled = false;
+};
+
+/* ---------------- İlan düğmeleri ---------------- */
+$("liste").addEventListener("click", async e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const bul = id => ilanlar.find(i => i.id === id);
+  if (b.dataset.katil) {
+    const i = bul(b.dataset.katil); if (!i) return;
+    const tel = telSor(); if (!tel) return;
+    b.disabled = true;
+    try {
+      await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: [...(i.katilanlar || []), ben.uid] });
+      await setDoc(doc(db, "yolculuklar", i.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel });
+      toast("Katıldın! Aşağıdan ilan sahibine WhatsApp'tan yaz.");
+    } catch (err) { console.error(err); toast("Katılamadın; yer dolmuş olabilir."); b.disabled = false; }
+  }
+  if (b.dataset.vazgec) {
+    const i = bul(b.dataset.vazgec); if (!i) return;
+    if (!confirm("Bu yolculuktan vazgeçmek istiyor musun?")) return;
+    try {
+      await deleteDoc(doc(db, "yolculuklar", i.id, "iletisim", ben.uid));
+      await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: (i.katilanlar || []).filter(u => u !== ben.uid) });
+      toast("Yolculuktan çıktın.");
+    } catch (err) { console.error(err); toast("Bir sorun oldu, tekrar dene."); }
+  }
+  if (b.dataset.sil) {
+    if (!confirm("İlanını kaldırmak istiyor musun? Katılanlar da listeden çıkar.")) return;
+    try {
+      const s = await getDocs(collection(db, "yolculuklar", b.dataset.sil, "iletisim"));
+      await Promise.all(s.docs.map(d => deleteDoc(d.ref)));
+      await deleteDoc(doc(db, "yolculuklar", b.dataset.sil));
+      toast("İlan kaldırıldı.");
+    } catch (err) { console.error(err); toast("Kaldırılamadı, tekrar dene."); }
+  }
+  if (b.dataset.sikayet) {
+    const neden = prompt("Bu ilanı neden şikâyet ediyorsun? (kısaca)");
+    if (!neden) return;
+    try {
+      await addDoc(collection(db, "sikayetler"), { ilan: b.dataset.sikayet, neden: neden.slice(0, 300), uid: ben.uid, zaman: serverTimestamp() });
+      toast("Şikâyetin bize ulaştı, teşekkürler.");
+    } catch (err) { toast("Gönderilemedi, tekrar dene."); }
+  }
+});
+
+setInterval(() => { if (ben && profil) listeCiz(); }, 60e3);
+</script>
+</body>
+</html>
