@@ -6,7 +6,7 @@ Elazığ'daki üniversite öğrencileri için günlük rehber: yurt ve Üniversi
 
 | Dosya | Ne işe yarar | Ne sıklıkla değişir |
 |---|---|---|
-| `veri.js` | Menüler, yurtlar, WhatsApp linkleri, dersler, not linkleri, akademik takvim | Sık (her gün / her hafta) |
+| `veri.js` | Menüler, yurtlar, dersler, not linkleri, akademik takvim | Sık (her gün / her hafta) |
 | `index.html` | Sitenin tasarımı ve çalışma mantığı | Nadiren (yeni özellik, tasarım) |
 | `notlar/` | Ders notu PDF'leri (`notlar/ybs/1` … `notlar/ybs/4`) | Not ekledikçe |
 | `gizlilik.html`, `hakkimizda.html` | AdSense ve KVKK için gerekli sayfalar | Çok nadir |

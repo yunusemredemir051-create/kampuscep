@@ -274,6 +274,7 @@ $("cikis").onclick = () => signOut(auth);
 onAuthStateChanged(auth, async u => {
   ben = u;
   if (dinleyici) { dinleyici(); dinleyici = null; }
+  if (typeof iletisimTemizle === "function") iletisimTemizle(null);
   if (!u) { goster("giris"); return; }
   goster("yukleniyor");
   try {
@@ -348,7 +349,9 @@ function listeCiz() {
     html += ilanHtml(i, d);
   }
   $("liste").innerHTML = html;
-  l.forEach(i => { if (i.sahipUid === ben.uid || (i.katilanlar || []).includes(ben.uid)) iletisimYukle(i); });
+  const grubum = ilanlar.filter(i => i.sahipUid === ben.uid || (i.katilanlar || []).includes(ben.uid));
+  iletisimTemizle(new Set(grubum.map(i => i.id)));
+  grubum.forEach(i => { iletisimAbone(i); kisilerCiz(i.id); });
 }
 
 function ilanHtml(i, d) {
@@ -384,20 +387,30 @@ function ilanHtml(i, d) {
   </article>`;
 }
 
-async function iletisimYukle(i) {
-  const el = $("k-" + i.id);
-  if (!el) return;
-  try {
-    const s = await getDocs(collection(db, "yolculuklar", i.id, "iletisim"));
-    const kisiler = s.docs.filter(d => d.id !== ben.uid).map(d => d.data());
-    const benim = i.sahipUid === ben.uid;
-    if (!kisiler.length) {
-      el.innerHTML = `<li style="border:0;color:var(--soluk);font-weight:600">${benim ? "Henüz katılan yok. Biri katılınca numarası burada görünür." : "İlan sahibinin numarası yükleniyor…"}</li>`;
-      return;
-    }
-    const mesaj = encodeURIComponent(`Merhaba, KampüsCepte yol arkadaşı ilanından yazıyorum: ${i.zaman.toDate().toLocaleString("tr-TR", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" })} ${YER[i.yer]} yolculuğu.`);
-    el.innerHTML = kisiler.map(k => `<li><span>${esc(k.ad)}</span><a href="https://wa.me/${esc(k.tel)}?text=${mesaj}" target="_blank" rel="noopener">WhatsApp'tan yaz</a></li>`).join("");
-  } catch (e) { el.innerHTML = ""; }
+/* Eşleşilen kişilerin numaraları canlı dinlenir: biri katılınca ya da çıkınca liste kendiliğinden güncellenir */
+const iletisimDinle = {};
+function iletisimAbone(i) {
+  if (iletisimDinle[i.id]) return;
+  iletisimDinle[i.id] = onSnapshot(collection(db, "yolculuklar", i.id, "iletisim"), s => {
+    iletisimOnbellek[i.id] = s.docs.filter(d => d.id !== ben.uid).map(d => d.data());
+    kisilerCiz(i.id);
+  }, () => { delete iletisimDinle[i.id]; });
+}
+function iletisimTemizle(gecerli) {
+  for (const id of Object.keys(iletisimDinle))
+    if (!gecerli || !gecerli.has(id)) { iletisimDinle[id](); delete iletisimDinle[id]; delete iletisimOnbellek[id]; }
+}
+function kisilerCiz(id) {
+  const el = $("k-" + id), i = ilanlar.find(x => x.id === id);
+  if (!el || !i) return;
+  const benim = i.sahipUid === ben.uid, kisiler = iletisimOnbellek[id];
+  if (!kisiler || !kisiler.length) {
+    el.innerHTML = `<li style="border:0;color:var(--soluk);font-weight:600">${benim ? "Henüz katılan yok. Biri katılınca numarası burada görünür." : "İlan sahibinin numarası yükleniyor…"}</li>`;
+    return;
+  }
+  const zaman = i.zaman.toDate().toLocaleString("tr-TR", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" });
+  const mesaj = encodeURIComponent(`Merhaba, KampüsCepte yol arkadaşı ilanından yazıyorum: ${zaman} ${YER[i.yer]} yolculuğu.`);
+  el.innerHTML = kisiler.map(k => `<li><span>${esc(k.ad)}</span><a href="https://wa.me/${esc(k.tel)}?text=${mesaj}">WhatsApp'tan yaz</a></li>`).join("");
 }
 
 /* ---------------- Telefon ---------------- */

@@ -9,15 +9,15 @@
    - Not dosyası linki: "notlar/ybs/2/istatistik.pdf" gibi, dosyayı o klasöre yükle
    ===================================================================== */
 
-/* Yurtlar: "wp" kısmına o yurdun WhatsApp grup linkini yapıştır. */
+/* Yurtlar (id, menü sayfası adresinde de kullanılır: kampuscepte.com.tr/<id>/) */
 const yurtlar = [
-  { id: "ahmet-kabakli",   ad: "Ahmet Kabaklı Yurdu",   tur: "erkek", wp: "" },
-  { id: "firat",           ad: "Elazığ Fırat Yurdu",    tur: "erkek", wp: "" },
-  { id: "omer-bilginoglu", ad: "Ömer Bilginoğlu Yurdu", tur: "erkek", wp: "" },
-  { id: "fethi-sekin",     ad: "Fethi Sekin Yurdu",     tur: "kiz",   wp: "" },
-  { id: "harput",          ad: "Harput Yurdu",          tur: "kiz",   wp: "" },
-  { id: "izzetpasa",       ad: "İzzetpaşa Yurdu",       tur: "kiz",   wp: "" },
-  { id: "sare-ana",        ad: "Sare Ana Yurdu",        tur: "kiz",   wp: "" }
+  { id: "ahmet-kabakli",   ad: "Ahmet Kabaklı Yurdu",   tur: "erkek" },
+  { id: "firat",           ad: "Elazığ Fırat Yurdu",    tur: "erkek" },
+  { id: "omer-bilginoglu", ad: "Ömer Bilginoğlu Yurdu", tur: "erkek" },
+  { id: "fethi-sekin",     ad: "Fethi Sekin Yurdu",     tur: "kiz" },
+  { id: "harput",          ad: "Harput Yurdu",          tur: "kiz" },
+  { id: "izzetpasa",       ad: "İzzetpaşa Yurdu",       tur: "kiz" },
+  { id: "sare-ana",        ad: "Sare Ana Yurdu",        tur: "kiz" }
 ];
 
 /* Yurt menüleri — her yurdun menüsünü yurdun id'siyle ekle. Girilmeyen yurtta
