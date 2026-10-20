@@ -111,6 +111,13 @@ footer a { color: inherit; }
   font-weight: 700; font-size: 14px; box-shadow: 0 10px 30px rgba(0,0,0,.25); opacity: 0; transition: .25s; pointer-events: none; max-width: 90vw; text-align: center; }
 .toast.goster { opacity: 1; }
 </style>
+<!-- PWA -->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(()=>{}));</script>
+<!-- /PWA -->
 </head>
 <body>
 <div class="isik"></div>

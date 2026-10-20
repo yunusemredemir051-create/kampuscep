@@ -72,6 +72,13 @@ sub, sup { font-size: .72em; }
 .alt-bilgi a { color: var(--soluk); font-weight: 600; }
 @media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
 </style>
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
+<!-- /PWA -->
 </head>
 <body>
 <div class="isik"></div>

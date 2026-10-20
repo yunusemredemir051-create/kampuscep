@@ -264,3 +264,6 @@ if __name__ == "__main__":
 
 # Yurt menü sayfaları (sitemap'e de eklenir)
 import runpy; runpy.run_path("_kaynak/yurt_sayfalari.py")
+
+# Uygulama (PWA) etiketleri
+runpy.run_path("_kaynak/pwa_ekle.py")
