@@ -867,19 +867,15 @@ function uniEviGoster(anahtar) {
   if (liste) listeYaz("unievi-yemekler", liste);
   else document.getElementById("unievi-yemekler").innerHTML = '<li class="bos-menu" style="list-style:none">Bu gün için menü yayımlanmadı.</li>';
 }
+/* Üniversite Evi: yalnızca bugünün menüsü gösterilir */
 (function () {
-  const bugunK = tarihAnahtar(bugun);
-  const gosterilecek = uniGunler.filter(k => k >= bugunK);
-  document.getElementById("unievi-gunler").innerHTML = gosterilecek.map(k => {
-    const d = T(k);
-    return `<button data-gun="${k}">${d.toLocaleDateString("tr-TR", { weekday: "short" })}<b>${d.getDate()}</b></button>`;
-  }).join("");
-  document.querySelectorAll("#unievi-gunler button").forEach(b => b.onclick = () => uniEviGoster(b.dataset.gun));
-  if (gosterilecek.length) uniEviGoster(gosterilecek[0]);
-  else {
-    document.getElementById("unievi-bilgi").textContent = "Öğle menüsü";
-    document.getElementById("unievi-yemekler").innerHTML = '<li class="bos-menu" style="list-style:none">Bu haftanın menüsü henüz eklenmedi.</li>';
-  }
+  const d = bugun, hs = d.getDay() === 0 || d.getDay() === 6;
+  document.getElementById("unievi-gunler").style.display = "none";
+  document.getElementById("unievi-bilgi").textContent = "Bugün · " + kisa(d) + " öğle menüsü";
+  const liste = uniEviMenuleri[tarihAnahtar(d)];
+  if (liste) listeYaz("unievi-yemekler", liste);
+  else document.getElementById("unievi-yemekler").innerHTML =
+    `<li class="bos-menu" style="list-style:none">${hs ? "Üniversite Evi hafta sonu yemek vermiyor." : "Bugünün menüsü henüz eklenmedi."}</li>`;
 })();
 
 /* =====================================================================
