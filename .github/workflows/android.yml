@@ -17,22 +17,23 @@ jobs:
   derle:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: "21"
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: "22"
 
       - name: Bağımlılıklar
         working-directory: _uygulama
         run: |
-          npm ci
-          npx cap sync android
+          set -o pipefail
+          mkdir -p /tmp/cikti
+          (npm ci && npx cap sync android) 2>&1 | tee /tmp/cikti/bagimlilik.log
 
       - name: Derle
         working-directory: _uygulama/android
@@ -40,15 +41,18 @@ jobs:
           SURUM_KODU: ${{ github.run_number }}
           SURUM_ADI: "1.0.${{ github.run_number }}"
         run: |
+          set -o pipefail
           chmod +x gradlew
-          ./gradlew --no-daemon assembleDebug bundleRelease
+          ./gradlew --no-daemon --stacktrace assembleDebug bundleRelease 2>&1 | tee /tmp/cikti/derleme.log
 
-      - name: Çıktıları "derleme" dalına koy
+      - name: Çıktıları ve kaydı "derleme" dalına koy
+        if: always()
         run: |
           mkdir -p /tmp/cikti
-          cp _uygulama/android/app/build/outputs/apk/debug/app-debug.apk /tmp/cikti/kampuscepte-test.apk
-          cp _uygulama/android/app/build/outputs/bundle/release/app-release.aab /tmp/cikti/kampuscepte-imzasiz.aab
+          cp _uygulama/android/app/build/outputs/apk/debug/app-debug.apk /tmp/cikti/kampuscepte-test.apk || true
+          cp _uygulama/android/app/build/outputs/bundle/release/app-release.aab /tmp/cikti/kampuscepte-imzasiz.aab || true
           echo "surum_kodu=${{ github.run_number }}" > /tmp/cikti/surum.txt
+          echo "sonuc=${{ job.status }}" >> /tmp/cikti/surum.txt
           echo "commit=${{ github.sha }}" >> /tmp/cikti/surum.txt
           cd /tmp/cikti
           git init -q -b derleme
