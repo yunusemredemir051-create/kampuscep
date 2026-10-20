@@ -69,6 +69,13 @@ h1 { font-size: 26px; letter-spacing: -.5px; margin: 0 0 4px; }
 footer { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 20px; }
 footer a { color: inherit; }
 </style>
+<!-- PWA -->
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(()=>{}));</script>
+<!-- /PWA -->
 </head>
 <body>
 <div class="isik"></div>

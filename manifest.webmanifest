@@ -1,0 +1,24 @@
+{
+  "name": "KampüsCepte – Elazığ öğrenci rehberi",
+  "short_name": "KampüsCepte",
+  "description": "Yurt ve Üniversite Evi menüleri, ders notları ve testler, akademik takvim, sınav sayaçları ve yol arkadaşı.",
+  "lang": "tr",
+  "start_url": "./?kaynak=uygulama",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eef3ff",
+  "theme_color": "#eef3ff",
+  "categories": ["education", "food", "lifestyle"],
+  "icons": [
+    { "src": "ikonlar/ikon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "ikonlar/ikon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "ikonlar/ikon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "ikonlar/ikon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Yemek menüsü", "url": "./#yurtlar", "icons": [{ "src": "ikonlar/ikon-192.png", "sizes": "192x192" }] },
+    { "name": "Ders notları", "url": "./#notlar", "icons": [{ "src": "ikonlar/ikon-192.png", "sizes": "192x192" }] },
+    { "name": "Yol arkadaşı", "url": "./yol-arkadasi/", "icons": [{ "src": "ikonlar/ikon-192.png", "sizes": "192x192" }] }
+  ]
+}
