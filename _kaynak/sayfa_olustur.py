@@ -261,3 +261,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+# Yurt menü sayfaları (sitemap'e de eklenir)
+import runpy; runpy.run_path("_kaynak/yurt_sayfalari.py")
