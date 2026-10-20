@@ -1,0 +1,32 @@
+{
+  "appId": "tr.com.kampuscepte.app",
+  "appName": "KampüsCepte",
+  "webDir": "www",
+  "server": {
+    "url": "https://yunusemredemir051-create.github.io/kampuscep/?kaynak=uygulama",
+    "allowNavigation": ["kampuscepte.com.tr", "www.kampuscepte.com.tr", "yunusemredemir051-create.github.io"],
+    "errorPath": "hata.html",
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#eef3ff"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "launchAutoHide": true,
+      "backgroundColor": "#eef3ff",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "LIGHT",
+      "backgroundColor": "#eef3ff"
+    },
+    "FirebaseAuthentication": {
+      "skipNativeAuth": true,
+      "providers": ["google.com"]
+    }
+  }
+}

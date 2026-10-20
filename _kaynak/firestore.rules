@@ -22,6 +22,7 @@ service cloud.firestore {
       allow write: if girisli() && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['yurt', 'tur'])
         && yurtTuruUyar({ 'yurt': request.resource.data.yurt, 'yurtTur': request.resource.data.tur });
+      allow delete: if girisli() && request.auth.uid == uid;
     }
 
     match /yolculuklar/{id} {
