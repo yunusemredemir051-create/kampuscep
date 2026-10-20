@@ -1,7 +1,7 @@
 """Ders kitaplarını sitedeki ünite yapısına dönüştürür.
 - Her üniteyi ayrı PDF yapar
 - 'Ödevler' başlığından (yoksa 'Kendini Test Et'ten) ünite sonuna kadar her şeyi PDF'ten SİLER
-- Her sayfaya KampüsCep filigranı basar
+- Her sayfaya KampüsCepte filigranı basar
 - notlar/<klasör>/ders.json dosyasını yazar (üniteler + testler)
 """
 import io, json, os, re, shutil, subprocess
@@ -12,7 +12,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 SITE = "/home/claude/kampuscep"
-FILIGRAN = "KampüsCep"
+FILIGRAN = "KampüsCepte"
 GECICI = "/tmp/claude-0/-home-claude/9f2446b6-fc9f-54c7-a9c4-f0a83dfc0ef5/scratchpad"
 pdfmetrics.registerFont(TTFont("Poppins", "/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf"))
 

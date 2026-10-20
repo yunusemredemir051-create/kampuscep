@@ -1,4 +1,4 @@
-# KampüsCep
+# KampüsCepte
 
 Elazığ'daki üniversite öğrencileri için günlük rehber: yurt ve Üniversite Evi menüleri, ders notları, akademik takvim, sınav ve tatil sayaçları.
 

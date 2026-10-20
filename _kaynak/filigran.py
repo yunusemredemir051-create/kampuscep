@@ -1,4 +1,4 @@
-"""Kitabı bölümlere ayırır ve her sayfaya KampüsCep filigranı basar.
+"""Kitabı bölümlere ayırır ve her sayfaya KampüsCepte filigranı basar.
 Kullanım: python3 filigran.py  (filigran metnini FILIGRAN ile değiştirebilirsin)"""
 import io, os
 from pypdf import PdfReader, PdfWriter
@@ -7,7 +7,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from bolumler import BOLUMLER
 
-FILIGRAN = "KampüsCep"
+FILIGRAN = "KampüsCepte"
 CIKTI = "../kampuscep/notlar/ybs/1/bilisim-sistemleri"
 pdfmetrics.registerFont(TTFont("Poppins", "/usr/share/fonts/truetype/google-fonts/Poppins-Bold.ttf"))
 

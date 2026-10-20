@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#eef3ff">
-<title>KampüsCep – Elazığ öğrenci rehberi: ders notları, yemek menüsü, akademik takvim</title>
+<title>KampüsCepte – Elazığ öğrenci rehberi: ders notları, yemek menüsü, akademik takvim</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="canonical" href="https://kampuscepte.com.tr/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="KampüsCep">
-<meta property="og:title" content="KampüsCep – Elazığ öğrenci rehberi">
+<meta property="og:site_name" content="KampüsCepte">
+<meta property="og:title" content="KampüsCepte – Elazığ öğrenci rehberi">
 <meta property="og:description" content="Ders notları ve testler, Üniversite Evi menüsü, yurtlar, akademik takvim ve sınav sayaçları tek yerde.">
 <meta property="og:url" content="https://kampuscepte.com.tr/">
 <meta property="og:locale" content="tr_TR">
@@ -332,7 +332,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 
   <!-- ================= MENÜ ÇUBUĞU ================= -->
   <nav class="yan cam">
-    <div class="logo"><span class="logo-ikon">K</span>KampüsCep</div>
+    <div class="logo"><span class="logo-ikon">K</span>KampüsCepte</div>
     <button class="sekme aktif" data-sayfa="ana">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
       Ana sayfa
@@ -567,7 +567,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
       <a href="dersler.html">Ders notları</a>
       <a href="hakkimizda.html">Hakkımızda ve iletişim</a>
       <a href="gizlilik.html">Gizlilik ve çerezler</a>
-      <span>© 2026 KampüsCep</span>
+      <span>© 2026 KampüsCepte</span>
     </footer>
   </main>
 </div>
@@ -820,11 +820,22 @@ zamanCiz();
 function listeYaz(elId, liste) {
   document.getElementById(elId).innerHTML = liste.map(y => `<li>${y}</li>`).join("");
 }
-function yurtMenusu(id) { return yurtMenuleri[id] || null; }
+/* Yurt menüsü: veri.js'de tarihli ("2026-10-20": {...}) ya da sabit ({kahvalti, aksam}) olabilir */
+function yurtMenusu(id) {
+  const m = yurtMenuleri[id];
+  if (!m) return null;
+  if (m.kahvalti || m.aksam) return m;
+  return m[tarihAnahtar(bugun)] || null;
+}
 function yurtMenuYaz(elId, id, ogun) {
-  const m = yurtMenusu(id);
-  if (m && m[ogun] && m[ogun].length) listeYaz(elId, m[ogun]);
-  else document.getElementById(elId).innerHTML = '<li class="bos-menu" style="list-style:none">Bu yurdun menüsü henüz eklenmedi.</li>';
+  const m = yurtMenusu(id), el = document.getElementById(elId);
+  if (m && m[ogun] && m[ogun].length) {
+    listeYaz(elId, m[ogun]);
+    const not = ogun === "kahvalti" ? yurtMenuleri[id].kahvaltiNotu : null;
+    if (not) el.innerHTML += `<li class="bos-menu" style="list-style:none;font-size:13px">${not}</li>`;
+  } else {
+    el.innerHTML = `<li class="bos-menu" style="list-style:none">${yurtMenuleri[id] ? "Bugünün menüsü henüz eklenmedi." : "Bu yurdun menüsü henüz eklenmedi."}</li>`;
+  }
 }
 
 let anaYurt = hafizaOku("secilenYurt") || yurtlar[0].id;
