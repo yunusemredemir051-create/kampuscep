@@ -215,6 +215,11 @@ body {
 .aciklama { color: var(--soluk); font-size: 12px; margin: 12px 4px 0; line-height: 1.5; }
 
 /* ================= HIZLI ERİŞİM ================= */
+.yol-kart { display: flex; align-items: center; gap: 14px; padding: 16px 18px; margin-bottom: 18px; text-decoration: none; color: var(--yazi); }
+.yol-kart .ik { margin: 0; flex: none; }
+.yol-kart b { display: block; font-size: 16px; }
+.yol-kart small { color: var(--soluk); font-size: 13px; font-weight: 500; }
+.yol-kart .ok { margin-left: auto; color: var(--mavi); font-weight: 800; font-size: 20px; }
 .kutular { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .kutu { padding: 18px 16px; text-align: left; cursor: pointer; color: var(--yazi); font: inherit; }
 .kutu:hover { background: var(--cam-guclu); }
@@ -391,6 +396,12 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <p class="ornek">Kaynak: <a href="https://unievi.firat.edu.tr/" target="_blank" rel="noopener" style="color:inherit">unievi.firat.edu.tr</a></p>
         </div>
       </div>
+
+      <a class="yol-kart cam" href="yol-arkadasi/">
+        <div class="ik y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 17h14M6 17l1.5-6h9L18 17M8 11l1-4h6l1 4"/><circle cx="8" cy="19" r="1.5"/><circle cx="16" cy="19" r="1.5"/></svg></div>
+        <div><b>Yol arkadaşı</b><small>Otogara ya da havaalanına aynı saatte gidenlerle taksiyi paylaş</small></div>
+        <span class="ok">›</span>
+      </a>
 
       <div class="baslik">Hızlı erişim</div>
       <div class="kutular">

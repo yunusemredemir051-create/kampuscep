@@ -18,6 +18,8 @@ for y in yurtlar:
 sm = open("sitemap.xml", encoding="utf-8").read()
 ekle = "".join(f'  <url><loc>{SITE_URL}/{y["id"]}/</loc><changefreq>daily</changefreq></url>\n'
                for y in yurtlar if f'{SITE_URL}/{y["id"]}/' not in sm)
+if f"{SITE_URL}/yol-arkadasi/" not in sm + ekle:
+    ekle += f"  <url><loc>{SITE_URL}/yol-arkadasi/</loc><changefreq>daily</changefreq></url>\n"
 if ekle:
     sm = sm.replace("</urlset>", ekle + "</urlset>")
     open("sitemap.xml", "w", encoding="utf-8").write(sm)
