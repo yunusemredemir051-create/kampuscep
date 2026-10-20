@@ -8,8 +8,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         // Sürüm numaraları GitHub Actions'ta otomatik verilir (her derlemede bir artar)
-        versionCode (System.getenv("SURUM_KODU") ?: "1").toInteger()
-        versionName System.getenv("SURUM_ADI") ?: "1.0"
+        versionCode = Integer.parseInt(System.getenv("SURUM_KODU") ?: "1")
+        versionName = System.getenv("SURUM_ADI") ?: "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
