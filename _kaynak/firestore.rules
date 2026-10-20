@@ -1,0 +1,91 @@
+rules_version = '2';
+// KampüsCepte — Yol arkadaşı güvenlik kuralları.
+// Firebase konsolu → Firestore Database → Kurallar sekmesine olduğu gibi yapıştırılıp Yayınla'ya basılır.
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function girisli() { return request.auth != null; }
+    function benimTurum() {
+      return get(/databases/$(db)/documents/kullanicilar/$(request.auth.uid)).data.tur;
+    }
+    function kizYurtlari()   { return ['fethi-sekin', 'harput', 'izzetpasa', 'sare-ana']; }
+    function erkekYurtlari() { return ['ahmet-kabakli', 'firat', 'omer-bilginoglu']; }
+    function yurtTuruUyar(d) {
+      return (d.yurtTur == 'kiz' && d.yurt in kizYurtlari())
+          || (d.yurtTur == 'erkek' && d.yurt in erkekYurtlari());
+    }
+    function metin(s, en) { return s is string && s.size() <= en; }
+
+    // Kullanıcının seçtiği yurt (kız / erkek ayrımı buradan gelir)
+    match /kullanicilar/{uid} {
+      allow read: if girisli() && request.auth.uid == uid;
+      allow write: if girisli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['yurt', 'tur'])
+        && yurtTuruUyar({ 'yurt': request.resource.data.yurt, 'yurtTur': request.resource.data.tur });
+    }
+
+    match /yolculuklar/{id} {
+      function sahip() { return girisli() && request.auth.uid == resource.data.sahipUid; }
+
+      // Kız yurdunun ilanını yalnızca kız yurdu seçenler, erkek yurdununkini yalnızca erkek yurdu seçenler görür
+      allow read: if girisli() && resource.data.yurtTur == benimTurum();
+
+      allow create: if girisli()
+        && request.resource.data.sahipUid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['sahipUid', 'sahipAd', 'yurt', 'yurtTur', 'yon', 'yer', 'zaman', 'aranan', 'ucret', 'not', 'katilanlar', 'olusturma'])
+        && yurtTuruUyar(request.resource.data)
+        && request.resource.data.yurtTur == benimTurum()
+        && request.resource.data.yon in ['gidis', 'donus']
+        && request.resource.data.yer in ['otogar', 'havaalani']
+        && request.resource.data.zaman is timestamp
+        && request.resource.data.zaman > request.time - duration.value(1, 'h')
+        && request.resource.data.zaman < request.time + duration.value(31, 'd')
+        && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
+        && request.resource.data.ucret is int && request.resource.data.ucret >= 0 && request.resource.data.ucret <= 5000
+        && metin(request.resource.data.sahipAd, 40) && metin(request.resource.data.not, 120)
+        && request.resource.data.katilanlar == [];
+
+      allow update: if sahip()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['aranan', 'not', 'zaman', 'ucret'])
+          && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
+          && metin(request.resource.data.not, 120)
+        // katılma: listeye yalnızca kendini ekleyebilirsin, yer varsa
+        || girisli() && resource.data.yurtTur == benimTurum()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
+          && !(request.auth.uid in resource.data.katilanlar)
+          && request.auth.uid != resource.data.sahipUid
+          && request.resource.data.katilanlar == resource.data.katilanlar.concat([request.auth.uid])
+          && request.resource.data.katilanlar.size() <= resource.data.aranan
+        // vazgeçme: listeden yalnızca kendini çıkarabilirsin
+        || girisli()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
+          && request.auth.uid in resource.data.katilanlar
+          && request.resource.data.katilanlar.toSet() == resource.data.katilanlar.toSet().difference([request.auth.uid].toSet())
+          && request.resource.data.katilanlar.size() == resource.data.katilanlar.size() - 1;
+
+      allow delete: if sahip();
+
+      // Telefon numaraları: yalnızca ilan sahibi ve katılanlar birbirininkini görür
+      match /iletisim/{uid} {
+        function ilan() { return get(/databases/$(db)/documents/yolculuklar/$(id)).data; }
+        function grupta() {
+          return girisli() && (request.auth.uid == ilan().sahipUid || request.auth.uid in ilan().katilanlar);
+        }
+        allow read: if grupta();
+        allow write: if grupta() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['ad', 'tel'])
+          && metin(request.resource.data.ad, 40)
+          && request.resource.data.tel is string && request.resource.data.tel.matches('^90[0-9]{10}$');
+        allow delete: if girisli() && (request.auth.uid == uid || request.auth.uid == ilan().sahipUid);
+      }
+    }
+
+    // Şikâyetler yalnızca yazılabilir; konsoldan okunur
+    match /sikayetler/{id} {
+      allow create: if girisli()
+        && request.resource.data.keys().hasOnly(['ilan', 'neden', 'uid', 'zaman'])
+        && request.resource.data.uid == request.auth.uid
+        && metin(request.resource.data.neden, 300);
+    }
+  }
+}
