@@ -3,7 +3,7 @@
   "appName": "KampüsCepte",
   "webDir": "www",
   "server": {
-    "url": "https://yunusemredemir051-create.github.io/kampuscep/?kaynak=uygulama",
+    "url": "https://kampuscepte.com.tr/?kaynak=uygulama",
     "allowNavigation": ["kampuscepte.com.tr", "www.kampuscepte.com.tr", "yunusemredemir051-create.github.io"],
     "errorPath": "hata.html",
     "androidScheme": "https"
