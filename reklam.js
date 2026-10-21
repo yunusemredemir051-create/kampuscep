@@ -38,7 +38,7 @@
   .ck-rv .ck-fiyat{animation:ck-nabiz 1.8s ease-in-out infinite}
   @keyframes ck-zipla{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-4px) rotate(-4deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-2px) rotate(3deg)}}
   @keyframes ck-parilti{0%{left:-60%}55%,100%{left:130%}}
-  @keyframes ck-nabiz{0%,100%{box-shadow:0 0 0 0 rgba(59,91,253,.45)}50%{box-shadow:0 0 0 6px rgba(59,91,253,0)}}
+  @keyframes ck-nabiz{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,.5)}50%{box-shadow:0 0 0 6px rgba(37,211,102,0)}}
   @media (prefers-reduced-motion:reduce){.ck-rv::before,.ck-rv .ck-resim img,.ck-rv .ck-fiyat{animation:none}}
   .ck-ara{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#e53935;color:#fff;box-shadow:0 8px 16px -8px #e53935}
   .ck-ara svg{width:20px;height:20px}
@@ -48,16 +48,16 @@
 
   const ara = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>`;
   if (!CADDE_KATIK_AKTIF) {
-    const konu = encodeURIComponent("KampüsCepte reklam");
+    const mesaj = encodeURIComponent("Merhaba, KampüsCepte'de sponsorluk / reklam vermek istiyorum.");
     document.querySelectorAll(".reklam").forEach(kutu => {
       kutu.classList.add("ck-var");
-      kutu.innerHTML = `<a class="ck ck-rv" href="mailto:iletisim@kampuscepte.com.tr?subject=${konu}">
+      kutu.innerHTML = `<a class="ck ck-rv" href="https://wa.me/905437813895?text=${mesaj}">
         <div class="ck-resim rv"><img src="${R}reklam-ver.webp" alt="" onerror="this.remove()"></div>
         <div class="ck-orta">
           <div class="ck-ust"><b style="color:#3b5bfd">Sponsorlu alan</b></div>
           <div class="ck-baslik">Bu alana reklam verebilirsiniz</div>
           <div class="ck-icerik">İşletmenizi Elazığ'daki öğrencilere tanıtın</div>
-          <div class="ck-alt"><span class="ck-fiyat" style="background:#3b5bfd">Bilgi al</span><span class="ck-yer">iletisim@kampuscepte.com.tr</span></div>
+          <div class="ck-alt"><span class="ck-fiyat" style="background:#25d366">WhatsApp'tan yaz</span><span class="ck-yer">0543 781 38 95</span></div>
         </div>
       </a>`;
     });

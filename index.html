@@ -348,6 +348,23 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
   .afis { min-height: 240px; background: linear-gradient(180deg, #3765fe, #5b61fc); }
   .afis img { left: auto; width: auto; object-fit: contain; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%); mask-image: linear-gradient(90deg, transparent, #000 18%); }
 }
+
+/* ================= HAREKET ================= */
+@keyframes kc-yuz { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-2deg); } }
+@keyframes kc-gir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes kc-nokta { 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,138,61,.45); } 50% { transform: scale(1.15); box-shadow: 0 0 0 5px rgba(255,138,61,0); } }
+.yemekler li { animation: kc-gir .45s ease both; }
+.yemekler li:nth-child(2) { animation-delay: .06s; } .yemekler li:nth-child(3) { animation-delay: .12s; }
+.yemekler li:nth-child(4) { animation-delay: .18s; } .yemekler li:nth-child(5) { animation-delay: .24s; }
+.yemekler li:nth-child(6) { animation-delay: .30s; } .yemekler li:nth-child(7) { animation-delay: .36s; }
+.yemekler li:nth-child(8) { animation-delay: .42s; } .yemekler li:nth-child(n+9) { animation-delay: .48s; }
+.yemekler li::before { animation: kc-nokta 2.4s ease-in-out infinite; }
+.yemekler li:nth-child(2n)::before { animation-delay: .6s; } .yemekler li:nth-child(3n)::before { animation-delay: 1.2s; }
+.gorselli img { animation: kc-yuz 3.2s ease-in-out infinite; }
+.kutu .resim { animation: kc-yuz 3s ease-in-out infinite; }
+.kutu:nth-child(2) .resim { animation-delay: .4s; } .kutu:nth-child(3) .resim { animation-delay: .8s; } .kutu:nth-child(4) .resim { animation-delay: 1.2s; }
+.kutu:hover .resim { animation-duration: .9s; }
+@media (prefers-reduced-motion: reduce) { .yemekler li, .yemekler li::before, .gorselli img, .kutu .resim, .afis img, .baslik-g img, .kapak { animation: none !important; } }
 @media (prefers-reduced-motion: reduce) { .sayfa.aktif { animation: none; } }
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
 .reklam { display: none !important; }
@@ -1041,6 +1058,6 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/reklam.js?v=5"></script>
+<script src="/reklam.js?v=6"></script>
 </body>
 </html>

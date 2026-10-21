@@ -70,6 +70,20 @@ footer { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 2
 footer a { color: inherit; }
 .baslik-g { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .baslik-g img { width: 110px; height: auto; flex: none; }
+
+/* ================= HAREKET ================= */
+@keyframes kc-yuz { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-2deg); } }
+@keyframes kc-gir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes kc-nokta { 0%,100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,138,61,.45); } 50% { transform: scale(1.15); box-shadow: 0 0 0 5px rgba(255,138,61,0); } }
+.yemekler li { animation: kc-gir .45s ease both; }
+.yemekler li:nth-child(2) { animation-delay: .06s; } .yemekler li:nth-child(3) { animation-delay: .12s; }
+.yemekler li:nth-child(4) { animation-delay: .18s; } .yemekler li:nth-child(5) { animation-delay: .24s; }
+.yemekler li:nth-child(6) { animation-delay: .30s; } .yemekler li:nth-child(7) { animation-delay: .36s; }
+.yemekler li:nth-child(8) { animation-delay: .42s; } .yemekler li:nth-child(n+9) { animation-delay: .48s; }
+.yemekler li::before { animation: kc-nokta 2.4s ease-in-out infinite; }
+.yemekler li:nth-child(2n)::before { animation-delay: .6s; } .yemekler li:nth-child(3n)::before { animation-delay: 1.2s; }
+.baslik-g img { animation: kc-yuz 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .yemekler li, .yemekler li::before, .gorselli img, .kutu .resim, .afis img, .baslik-g img, .kapak { animation: none !important; } }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="../manifest.webmanifest">
@@ -177,6 +191,6 @@ function goster(ekGun) {
 document.querySelectorAll(".gun-sec button").forEach(b => b.onclick = () => goster(+b.dataset.g));
 goster(0);
 </script>
-<script src="/reklam.js?v=5"></script>
+<script src="/reklam.js?v=6"></script>
 </body>
 </html>
