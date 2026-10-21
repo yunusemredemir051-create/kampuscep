@@ -1,0 +1,28 @@
+# Elazığ namaz vakitlerini (Diyanet) her gün vakitler.json'a yazar — Ramazan'da iftar/sahur sayacı bunu kullanır.
+name: Namaz vakitleri
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "41 1 * * *"   # her gün 04:41 (TR)
+
+permissions:
+  contents: write
+
+concurrency: vakit
+
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Vakitleri indir
+        run: python3 _kaynak/vakit_guncelle.py
+      - name: Değiştiyse kaydet
+        run: |
+          git add vakitler.json
+          if git diff --cached --quiet; then echo "Değişiklik yok."; exit 0; fi
+          git config user.name "kampuscepte-bot"
+          git config user.email "github-actions@users.noreply.github.com"
+          git commit -m "Namaz vakitleri güncellendi (otomatik)"
+          git pull --rebase -q && git push
