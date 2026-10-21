@@ -30,8 +30,8 @@
 
   /* gunler: "AA-GG" her yıl tekrar eder, "YYYY-AA-GG" tek seferlik, [bas, bit] aralık. once: kaç gün önceden başlasın. oncelik: çakışmada büyük olan kazanır */
   const TEMALAR = [
-    { id: "cumhuriyet", ad: "29 Ekim Cumhuriyet Bayramı", tur: "milli", gunler: ["10-29"], arife: "10-28", once: 3, oncelik: 5,
-      onceBaslik: "Cumhuriyet Bayramı geliyor!", baslik: "Cumhuriyet Bayramımız kutlu olsun!", alt: y => `Cumhuriyetimizin ${y - 1923}. yılı kutlu olsun.` },
+    { id: "cumhuriyet", ad: "29 Ekim Cumhuriyet Bayramı", tur: "milli", gunler: ["10-29"], oncelik: 5,
+      baslik: "Cumhuriyet Bayramımız kutlu olsun!", alt: y => `Cumhuriyetimizin ${y - 1923}. yılı kutlu olsun.` },
     { id: "10-kasim", ad: "10 Kasım Atatürk'ü Anma", tur: "anma", gunler: ["11-10"], oncelik: 9,
       baslik: "Saygı ve özlemle anıyoruz", alt: y => `Ulu Önder Mustafa Kemal Atatürk'ü aramızdan ayrılışının ${y - 1938}. yılında rahmet, minnet ve özlemle anıyoruz.` },
     { id: "ogretmenler", ad: "24 Kasım Öğretmenler Günü", tur: "okul", sus: "kalp", gunler: ["11-24"], oncelik: 4,
@@ -119,7 +119,7 @@
   const adaylar = bul(tarih);
   if (onizleme) {
     const n = document.createElement("div");
-    n.style.cssText = "position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap";
+    n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap";
     n.innerHTML = `Önizleme: ${yaz(tarih)}${adaylar[0] ? " · " + adaylar[0].t.ad : " · özel gün yok"} <a href="?tarih=kapat" style="color:#9fb3ff;margin-left:6px">kapat</a>`;
     document.body.appendChild(n);
   }
@@ -161,6 +161,9 @@
   .ozel-yagmur{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:9998}
   .ozel-yagmur i{position:absolute;top:-20px;display:block;animation:oz-dus linear forwards}
   .ozel-yagmur.kalp i{top:auto;bottom:-30px;font-style:normal;animation-name:oz-yuksel}
+  .ozel-sayfa-kar{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:40}
+  .ozel-sayfa-kar i{position:absolute;top:-12px;display:block;border-radius:50%;background:#fff;box-shadow:0 0 4px rgba(120,140,220,.6);animation:oz-kar-sayfa linear infinite}
+  @keyframes oz-kar-sayfa{to{transform:translate(30px,105vh)}}
   @keyframes oz-kar{to{transform:translate(20px,300px)}}
   @keyframes oz-parla{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.2)}}
   @keyframes oz-dus{to{transform:translate(var(--x),110vh) rotate(720deg);opacity:.9}}
@@ -170,7 +173,7 @@
     .ozel .afis .ust-bilgi{max-width:60%}
     .ozel .afis .ust-bilgi h1{font-size:21px}
   }
-  @media (prefers-reduced-motion:reduce){.ozel-sus,.ozel-yagmur{display:none}}`;
+  @media (prefers-reduced-motion:reduce){.ozel-sus,.ozel-yagmur,.ozel-sayfa-kar{display:none}}`;
   document.head.appendChild(css);
 
   const afis = document.querySelector(".afis");
@@ -202,12 +205,22 @@
     }
     afis.insertBefore(k, afis.querySelector(".ust-bilgi"));
   }
+  if (T.sus === "kar") {
+    const k = document.createElement("div"); k.className = "ozel-sayfa-kar";
+    for (let i = 0; i < 22; i++) {
+      const e = document.createElement("i"), b = rnd(3, 7);
+      e.style.left = rnd(0, 100) + "vw"; e.style.width = e.style.height = b + "px"; e.style.opacity = rnd(.35, .8);
+      e.style.animationDuration = rnd(9, 18) + "s"; e.style.animationDelay = -rnd(0, 18) + "s";
+      k.appendChild(e);
+    }
+    document.body.appendChild(k);
+  }
   if (T.sus === "konfeti" || T.sus === "kalp") {
-    const anahtar = "kc-sus-" + t.id + "-" + tarih;
-    try { if (sessionStorage.getItem(anahtar) && !onizleme) return; sessionStorage.setItem(anahtar, "1"); } catch (e) {}
+    const anahtar = "kc-sus-" + t.id + "-" + tarih, depo = onizleme ? sessionStorage : localStorage;
+    try { if (depo.getItem(anahtar)) return; depo.setItem(anahtar, "1"); } catch (e) { return; }
     const y = document.createElement("div"); y.className = "ozel-yagmur" + (T.sus === "kalp" ? " kalp" : "");
     const renkler = T.renkler || ["#f06292", "#e91e63", "#ff8a80"];
-    for (let i = 0; i < (T.sus === "kalp" ? 18 : 46); i++) {
+    for (let i = 0; i < (T.sus === "kalp" ? 14 : 26); i++) {
       const e = document.createElement("i");
       e.style.left = rnd(0, 100) + "vw"; e.style.setProperty("--x", rnd(-60, 60) + "px");
       e.style.animationDuration = rnd(3.5, 6.5) + "s"; e.style.animationDelay = rnd(0, 1.8) + "s";
