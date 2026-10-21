@@ -30,7 +30,16 @@
   .ck-alt{display:flex;align-items:center;gap:8px;margin-top:4px;min-width:0}
   .ck-yer{font-size:11px;font-weight:700;color:#8a90a8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ck-fiyat{flex:none;display:inline-block;font-size:12.5px;font-weight:800;color:#fff;background:#e53935;border-radius:8px;padding:2px 8px}
-  .ck-resim.rv{background:linear-gradient(140deg,#3b5bfd,#8b5cf6)}
+  .ck-resim.rv{background:none;overflow:visible}
+  .ck-rv{position:relative;overflow:hidden}
+  .ck-rv::before{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;transform:skewX(-20deg);
+    background:linear-gradient(90deg,transparent,rgba(139,92,246,.18),transparent);animation:ck-parilti 3.6s ease-in-out infinite}
+  .ck-rv .ck-resim img{animation:ck-zipla 2.4s ease-in-out infinite;transform-origin:50% 90%}
+  .ck-rv .ck-fiyat{animation:ck-nabiz 1.8s ease-in-out infinite}
+  @keyframes ck-zipla{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-4px) rotate(-4deg)}50%{transform:translateY(0) rotate(0)}75%{transform:translateY(-2px) rotate(3deg)}}
+  @keyframes ck-parilti{0%{left:-60%}55%,100%{left:130%}}
+  @keyframes ck-nabiz{0%,100%{box-shadow:0 0 0 0 rgba(59,91,253,.45)}50%{box-shadow:0 0 0 6px rgba(59,91,253,0)}}
+  @media (prefers-reduced-motion:reduce){.ck-rv::before,.ck-rv .ck-resim img,.ck-rv .ck-fiyat{animation:none}}
   .ck-ara{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#e53935;color:#fff;box-shadow:0 8px 16px -8px #e53935}
   .ck-ara svg{width:20px;height:20px}
   .ck-onizleme{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:999;background:#141b34;color:#fff;font:700 12px/1 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.85}
@@ -42,7 +51,7 @@
     const konu = encodeURIComponent("KampüsCepte reklam");
     document.querySelectorAll(".reklam").forEach(kutu => {
       kutu.classList.add("ck-var");
-      kutu.innerHTML = `<a class="ck" href="mailto:iletisim@kampuscepte.com.tr?subject=${konu}">
+      kutu.innerHTML = `<a class="ck ck-rv" href="mailto:iletisim@kampuscepte.com.tr?subject=${konu}">
         <div class="ck-resim rv"><img src="${R}reklam-ver.webp" alt="" onerror="this.remove()"></div>
         <div class="ck-orta">
           <div class="ck-ust"><b style="color:#3b5bfd">Sponsorlu alan</b></div>
