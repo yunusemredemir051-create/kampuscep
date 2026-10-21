@@ -14,11 +14,18 @@
       "makarna": "unievi-makarna",
       "domates çorbası": "unievi-domates-corbasi"
     },
-    "unievi_2026-10-21": { "tatlı": "unievi-baklava" }
+    "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
+    /* KYK yurtları (Elazığ'daki KYK yurtlarında menü ortak) */
+    "yurt": {
+      "mercimek çorbası": "yurt-mercimek-corbasi",
+      "sebze çorbası": "yurt-sebze-corbasi",
+      "karışık salata": "yurt-karisik-salata",
+      "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk"
+    }
   };
   const YANINDA = {
     "unievi": [["Ekmek", "ekmek"], ["Su", "su-unievi"]],
-    "yurt": [["Ekmek", "ekmek"]]
+    "yurt": [["Ekmek", "ekmek"], ["Su", "su-yurt"]]
   };
 
   const Y = "/gorseller/yemek/";
@@ -28,6 +35,8 @@
   .yemekler li.fotolu{gap:12px}
   .yf{flex:none;width:52px;height:52px;border-radius:14px;overflow:hidden;background:#fff;cursor:zoom-in;padding:0;border:0;
       box-shadow:0 0 0 2px #fff,0 4px 12px -4px rgba(40,60,140,.35)}
+  .yf-grup{display:flex;flex:none;gap:4px}
+  .yf-grup .yf+.yf{margin-left:-14px}
   .yf img{width:100%;height:100%;object-fit:cover;display:block}
   .yf-ek{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 2px;font-size:12.5px;font-weight:700;color:var(--soluk,#6b7390)}
   .yf-ek button{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--cizgi,#e6e9f2);background:#fff;border-radius:99px;
@@ -59,16 +68,23 @@
     const eskiEk = ul.parentNode.querySelector(".yf-ek"); if (eskiEk) eskiEk.remove();
     if (!kimlik) return;
     const [yer, tarih] = kimlik.split("_");
-    const tablo = Object.assign({}, FOTOLAR[yer] || {}, FOTOLAR[yer + "_" + tarih] || {});
+    const genel = yer === "unievi" ? "unievi" : "yurt";
+    const tablo = Object.assign({}, FOTOLAR[genel] || {}, FOTOLAR[yer] || {}, FOTOLAR[yer + "_" + tarih] || {}, FOTOLAR[genel + "_" + tarih] || {});
     ul.querySelectorAll("li").forEach(li => {
-      if (li.querySelector(".yf") || li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;
+      if (li.querySelector(".yf-grup") || li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;
       const yazi = li.textContent.trim();
-      const ad = tablo[kucuk(yazi)] || yazi.split("/").map(kucuk).map(p => tablo[p]).find(Boolean);
-      if (!ad) return;
-      const b = document.createElement("button"); b.className = "yf"; b.type = "button"; b.setAttribute("aria-label", yazi + " fotoğrafı");
-      b.innerHTML = `<img src="${Y}k/${ad}.webp" alt="" loading="lazy">`;
-      b.onclick = () => buyut(ad, yazi);
-      li.prepend(b); li.classList.add("fotolu");
+      /* "A / B" gibi seçenekli satırlarda fotoğrafı olan her seçenek yan yana gösterilir */
+      const secenekler = tablo[kucuk(yazi)] ? [[yazi, tablo[kucuk(yazi)]]]
+        : yazi.split("/").map(p => p.trim()).filter(p => tablo[kucuk(p)]).map(p => [p, tablo[kucuk(p)]]);
+      if (!secenekler.length) return;
+      const kutu = document.createElement("span"); kutu.className = "yf-grup";
+      secenekler.slice(0, 3).forEach(([ad, g]) => {
+        const b = document.createElement("button"); b.className = "yf"; b.type = "button"; b.setAttribute("aria-label", ad + " fotoğrafı");
+        b.innerHTML = `<img src="${Y}k/${g}.webp" alt="" loading="lazy">`;
+        b.onclick = () => buyut(g, ad);
+        kutu.appendChild(b);
+      });
+      li.prepend(kutu); li.classList.add("fotolu");
     });
     const ek = YANINDA[yer === "unievi" ? "unievi" : "yurt"];
     if (ek && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
