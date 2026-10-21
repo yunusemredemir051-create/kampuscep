@@ -64,6 +64,12 @@ def ayristir(satirlar):
 
 h = indir()
 open("/tmp/unievi.html", "w").write(h)
+# Yalnızca "Üniversite Yemekhanesi" bölümünü al (sayfanın geri kalanındaki bağlantılar karışmasın)
+bas = h.find("Yemekhanesi Ba"); son = h.find("<!--Üniversite Yemekhanesi Son-->")
+if son != -1:
+    h = h[(bas if bas != -1 and bas < son else 0):son]
+else:
+    log("UYARI: yemekhane bölüm işaretleri bulunamadı, tüm sayfa taranıyor.")
 menu = ayristir(duz_metin(h))
 log("Okunan menü:", json.dumps(menu, ensure_ascii=False, indent=1))
 if not menu:
