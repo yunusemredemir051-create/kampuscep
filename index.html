@@ -445,6 +445,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <button data-ogun="aksam">Akşam</button>
           </div>
           <ul class="yemekler" id="ana-yemekler"></ul>
+          <div class="degerlendir" id="dg-ana" data-menu=""></div>
                   </div>
 
         <div class="menu-kart cam">
@@ -454,6 +455,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           </div>
           <div class="gunler" id="unievi-gunler"></div>
           <ul class="yemekler" id="unievi-yemekler"></ul>
+          <div class="degerlendir" id="dg-unievi" data-menu=""></div>
         </div>
       </div>
 
@@ -504,6 +506,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <button data-ogun="aksam">Akşam</button>
           </div>
           <ul class="yemekler" id="detay-yemekler"></ul>
+          <div class="degerlendir" id="dg-detay" data-menu=""></div>
         </div>
         <div class="vitrin">Sponsorlu alan</div>
       </div>
@@ -894,6 +897,8 @@ function yurtMenusu(id) {
 }
 function yurtMenuYaz(elId, id, ogun) {
   const m = yurtMenusu(id), el = document.getElementById(elId);
+  const dg = document.getElementById(elId === "ana-yemekler" ? "dg-ana" : "dg-detay");
+  if (dg) dg.dataset.menu = m && m[ogun] && m[ogun].length ? `${id}_${tarihAnahtar(bugun)}_${ogun}` : "";
   if (m && m[ogun] && m[ogun].length) {
     listeYaz(elId, m[ogun]);
     const not = ogun === "kahvalti" ? yurtMenuleri[id].kahvaltiNotu : null;
@@ -938,6 +943,7 @@ function uniEviGoster(anahtar) {
   document.getElementById("unievi-gunler").style.display = "none";
   document.getElementById("unievi-bilgi").textContent = "Bugün · " + kisa(d) + " öğle menüsü";
   const liste = uniEviMenuleri[tarihAnahtar(d)];
+  document.getElementById("dg-unievi").dataset.menu = liste ? "unievi_" + tarihAnahtar(d) : "";
   if (liste) listeYaz("unievi-yemekler", liste);
   else document.getElementById("unievi-yemekler").innerHTML =
     `<li class="bos-menu" style="list-style:none">${hs ? "Üniversite Evi hafta sonu yemek vermiyor." : "Bugünün menüsü henüz eklenmedi."}</li>`;
@@ -1064,6 +1070,8 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
+<script src="/firebase-ayar.js"></script>
+<script type="module" src="/yorum.js?v=1"></script>
 <script src="/vitrin.js?v=7"></script>
 </body>
 </html>
