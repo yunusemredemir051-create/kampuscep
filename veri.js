@@ -63,7 +63,7 @@ const uniEviMenuleri = {
   "2026-10-20": ["Orman kebap", "Bulgur pilavı", "Yayla çorbası", "Meyve"],
   "2026-10-21": ["Rosto köfte", "Makarna", "Domates çorbası", "Tatlı"],
   "2026-10-22": ["Fırında tavuk", "Bulgur pilavı", "Mercimek çorbası", "Yoğurt"],
-  "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "T. helva"]
+  "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "Tahin helva", "Ebys", "Abs", "Obs"]
 };
 
 /* YBS dersleri — 2026-2027 güz dönemi ders programına göre (seçmeli ve staj dersleri hariç)
