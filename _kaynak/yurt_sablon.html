@@ -107,11 +107,13 @@ footer a { color: inherit; }
   <section class="kart cam">
     <div class="kart-ust"><h2>Kahvaltı</h2><span class="etiket mavi">KYK</span></div>
     <ul class="yemekler" id="kahvalti"></ul>
+    <div class="degerlendir" id="dg-kahvalti" data-menu=""></div>
   </section>
 
   <section class="kart cam">
     <div class="kart-ust"><h2>Akşam yemeği</h2><span class="etiket mavi">KYK</span></div>
     <ul class="yemekler" id="aksam"></ul>
+    <div class="degerlendir" id="dg-aksam" data-menu=""></div>
   </section>
 
   <div class="vitrin" style="display:none;margin:14px 0"></div>
@@ -119,6 +121,7 @@ footer a { color: inherit; }
   <section class="kart cam">
     <div class="kart-ust"><h2>Üniversite Evi · öğle</h2><span class="etiket turuncu">Fırat Üni.</span></div>
     <ul class="yemekler" id="unievi"></ul>
+    <div class="degerlendir" id="dg-unievi" data-menu=""></div>
   </section>
 
 
@@ -173,6 +176,10 @@ function goster(ekGun) {
   const gun = ym ? (ym.kahvalti || ym.aksam ? ym : ym[k]) : null;
   const bos = ym ? "Bu günün menüsü henüz eklenmedi." : "Bu yurdun menüsü henüz eklenmedi.";
   yaz("kahvalti", gun && gun.kahvalti, bos, ym && ym.kahvaltiNotu);
+  const dg = (i, var_, id) => { const e = document.getElementById("dg-" + i); if (e) e.dataset.menu = var_ ? id : ""; };
+  dg("kahvalti", gun && gun.kahvalti && gun.kahvalti.length, `${YURT}_${k}_kahvalti`);
+  dg("aksam", gun && gun.aksam && gun.aksam.length, `${YURT}_${k}_aksam`);
+  dg("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k], `unievi_${k}`);
   yaz("aksam", gun && gun.aksam, bos);
   const hs = d.getDay() === 0 || d.getDay() === 6;
   yaz("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k],
@@ -183,6 +190,8 @@ function goster(ekGun) {
 document.querySelectorAll(".gun-sec button").forEach(b => b.onclick = () => goster(+b.dataset.g));
 goster(0);
 </script>
+<script src="/firebase-ayar.js"></script>
+<script type="module" src="/yorum.js?v=1"></script>
 <script src="/vitrin.js?v=7"></script>
 </body>
 </html>

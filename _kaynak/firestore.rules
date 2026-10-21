@@ -81,6 +81,28 @@ service cloud.firestore {
       }
     }
 
+    // Yemek menüsü değerlendirmeleri: beğeni/beğenmeme ve yorumlar (herkes okur, girişli kullanıcı yazar)
+    match /menuler/{menu} {
+      function menuGecerli() { return menu.matches('^[a-z0-9-]+_[0-9]{4}-[0-9]{2}-[0-9]{2}(_(kahvalti|aksam))?$'); }
+      match /oylar/{uid} {
+        allow read: if true;
+        allow create, update: if girisli() && request.auth.uid == uid && menuGecerli()
+          && request.resource.data.keys().hasOnly(['d']) && request.resource.data.d in [1, -1];
+        allow delete: if girisli() && request.auth.uid == uid;
+      }
+      match /yorumlar/{id} {
+        allow read: if true;
+        allow create: if girisli() && menuGecerli()
+          && request.resource.data.keys().hasOnly(['uid', 'ad', 'metin', 'ust', 'zaman'])
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.ad == request.auth.token.name
+          && metin(request.resource.data.metin, 500) && request.resource.data.metin.size() > 0
+          && metin(request.resource.data.ust, 40)
+          && request.resource.data.zaman == request.time;
+        allow delete: if girisli() && resource.data.uid == request.auth.uid;
+      }
+    }
+
     // Şikâyetler yalnızca yazılabilir; konsoldan okunur
     match /sikayetler/{id} {
       allow create: if girisli()
