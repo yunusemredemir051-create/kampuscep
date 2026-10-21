@@ -62,7 +62,9 @@ h1 { font-size: 26px; letter-spacing: -.5px; margin: 0 0 4px; }
 .kisayol { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .kisayol a { display: block; background: #fff; border-radius: 16px; padding: 14px; text-decoration: none; color: var(--yazi);
   font-weight: 700; font-size: 14px; border: 1px solid var(--cizgi); }
-.kisayol a span { display: block; font-size: 22px; margin-bottom: 6px; }
+.kisayol a img { display: block; width: 56px; height: 56px; margin: -4px 0 6px -4px; animation: kc-yuz 3s ease-in-out infinite; }
+.kisayol a:nth-child(2) img { animation-delay: .4s; } .kisayol a:nth-child(3) img { animation-delay: .8s; } .kisayol a:nth-child(4) img { animation-delay: 1.2s; }
+@media (prefers-reduced-motion: reduce) { .kisayol a img { animation: none; } }
 .kisayol a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; margin-top: 2px; }
 .kaynak { color: var(--soluk); font-size: 12px; margin: 10px 0 0; }
 .kaynak a { color: inherit; }
@@ -132,10 +134,10 @@ footer a { color: inherit; }
   <section class="kart cam kesfet">
     <h2>KampüsCepte'de başka neler var?</h2>
     <div class="kisayol">
-      <a href="../#notlar"><span>📚</span>Ders notları<small>Ünite özetleri ve testler</small></a>
-      <a href="../#takvim"><span>📅</span>Akademik takvim<small>Sınav ve tatil sayaçları</small></a>
-      <a href="../#araclar"><span>🧮</span>Ortalama hesapla<small>Fırat harf notlarıyla</small></a>
-      <a href="../#yurtlar"><span>🏠</span>Tüm yurtlar<small>Tüm yurtların menüleri</small></a>
+      <a href="../#notlar"><img src="../gorseller/ikon-ders-notlari.webp" alt="" width="56" height="56" loading="lazy">Ders notları<small>Ünite özetleri ve testler</small></a>
+      <a href="../#takvim"><img src="../gorseller/ikon-takvim.webp" alt="" width="56" height="56" loading="lazy">Akademik takvim<small>Sınav ve tatil sayaçları</small></a>
+      <a href="../#araclar"><img src="../gorseller/ikon-ortalama.webp" alt="" width="56" height="56" loading="lazy">Ortalama hesapla<small>Fırat harf notlarıyla</small></a>
+      <a href="../#yurtlar"><img src="../gorseller/ikon-yurtlar.webp" alt="" width="56" height="56" loading="lazy">Tüm yurtlar<small>Tüm yurtların menüleri</small></a>
     </div>
   </section>
 
