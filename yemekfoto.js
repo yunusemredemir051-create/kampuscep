@@ -20,7 +20,9 @@
       "mercimek çorbası": "yurt-mercimek-corbasi",
       "sebze çorbası": "yurt-sebze-corbasi",
       "karışık salata": "yurt-karisik-salata",
-      "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk"
+      "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk",
+      "etli dolma": "yurt-etli-dolma",
+      "soslu makarna": "yurt-soslu-makarna"
     }
   };
   const YANINDA = {
