@@ -666,8 +666,8 @@ function sayfaAc(id) {
   window.scrollTo({ top: 0 });
   /* Ziyaret istatistiği: sekme değişimini ayrı sayfa görüntüleme olarak say */
   if (sayfaAc.ilk && window.gtag) gtag("event", "page_view", { page_title: "KampüsCepte – " + id, page_location: location.origin + "/#" + id });
-  sayfaAc.ilk = true;
 }
+addEventListener("load", () => { sayfaAc.ilk = true; });
 document.querySelectorAll("button.sekme").forEach(b => b.onclick = () => sayfaAc(b.dataset.sayfa));
 document.querySelectorAll("[data-git]").forEach(b => b.onclick = () => sayfaAc(b.dataset.git));
 
