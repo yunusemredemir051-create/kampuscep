@@ -15,6 +15,7 @@ def blok(on):
             f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());'
             f'(function(){{var u=false;try{{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}}catch(e){{}}'
             f'gtag("config","G-EN48D4XWNB",{{nereden:u?"uygulama":"web"}})}})();</script>\n'
+            f'<script defer src="/ozelgun.js?v=1"></script>\n'
             f'<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("{on}sw.js",{{scope:"{on or "./"}"}}).catch(()=>{{}}));</script>\n'
             f'{SON}')
 
