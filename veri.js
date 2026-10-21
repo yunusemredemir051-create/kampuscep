@@ -56,8 +56,8 @@ const yurtMenuleri = {
 };
 
 /* Üniversite Evi menüsü — kaynak: https://unievi.firat.edu.tr ("Haftalık Menü")
-   Her hafta yeni günleri aynı biçimde ekle: "YYYY-AA-GG": ["Yemek 1", "Yemek 2", ...],
-   Geçmiş haftaları silebilirsin. Site her gün o günün menüsünü kendisi seçer. */
+   OTOMATİK: .github/workflows/unievi.yml her sabah siteyi okuyup bu bloğu kendisi günceller
+   (_kaynak/unievi_guncelle.py). Elle düzeltme yapılabilir; bir sonraki çalıştırmada siteyle eşitlenir. */
 const uniEviMenuleri = {
   "2026-10-19": ["Etli taze fasulye", "Pirinç pilavı", "Mercimek çorbası", "Yoğurt"],
   "2026-10-20": ["Orman kebap", "Bulgur pilavı", "Yayla çorbası", "Meyve"],
