@@ -224,14 +224,15 @@
     .rz-kutu{margin-top:10px;color:#fff}
     .rz-kutu .rz-et{font-size:13px;font-weight:700;color:#f6d77e;letter-spacing:.2px}
     .rz-kutu .rz-sayac{font:800 40px/1.05 var(--font,inherit);letter-spacing:1px;color:#ffe08a;text-shadow:0 2px 18px rgba(246,196,83,.45);font-variant-numeric:tabular-nums}
-    .rz-hap{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .rz-ust{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
+    .rz-hap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
     .rz-hap span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:700;color:#fff}
     .rz-hap span b{color:#ffe08a;margin-left:4px}
-    .rz-alt{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
+    .rz-alt{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
     .rz-cubuk{flex:1;max-width:220px;height:5px;border-radius:9px;background:rgba(255,255,255,.2);overflow:hidden}
     .rz-cubuk i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#f6c453,#ffe08a)}
-    .rz-imsakiye{margin-top:10px;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font,inherit);padding:6px 12px;border-radius:99px;cursor:pointer}
-    .rz-not{font-size:11px;color:rgba(255,255,255,.7);margin-left:6px}
+    .rz-imsakiye{flex:none;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font,inherit);padding:6px 12px;border-radius:99px;cursor:pointer}
+    .rz-not{font-size:11px;color:rgba(255,255,255,.6);margin-top:6px}.rz-not:empty{display:none}
     .rz-dlg{border:0;border-radius:22px;padding:0;max-width:440px;width:calc(100% - 32px);box-shadow:0 30px 60px -20px rgba(20,24,90,.5)}
     .rz-dlg::backdrop{background:rgba(14,18,60,.55)}
     .rz-dlg header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(120deg,#1a1f5c,#3a2a8c);color:#fff}
@@ -247,7 +248,19 @@
     .rz-sus .s::before{content:"";position:absolute;left:50%;top:0;width:1px;height:var(--ip);background:linear-gradient(#c8941c,#e9c766)}
     .rz-sus svg{position:absolute;left:50%;top:var(--ip);transform:translateX(-50%);filter:drop-shadow(0 4px 6px rgba(120,80,0,.25))}
     @keyframes rz-salla{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
-    @media (max-width:820px){.rz-kutu .rz-sayac{font-size:32px}.rz .afis .ust-bilgi h1{font-size:19px}.rz-sus{height:84px}.rz-sus svg{transform:translateX(-50%) scale(.8)}}
+    @media (max-width:820px){
+      .rz .afis{display:block;padding:0;min-height:0;background:linear-gradient(180deg,#1b1d63,#2a2280)!important}
+      .rz .afis::after{display:none}
+      .rz .afis img{position:relative;display:block;width:100%;height:170px;object-fit:cover;object-position:78% 40%;
+        -webkit-mask-image:linear-gradient(180deg,#000 60%,transparent);mask-image:linear-gradient(180deg,#000 60%,transparent)}
+      .rz .afis .ust-bilgi{max-width:none;padding:0 18px 18px;margin-top:-34px}
+      .rz .afis .ust-bilgi h1{font-size:22px}
+      .rz-ust{justify-content:space-between;flex-wrap:nowrap}
+      .rz-kutu .rz-sayac{font-size:34px}
+      .rz-hap{flex-direction:column;gap:6px;align-items:stretch}
+      .rz-hap span{text-align:right}
+      .rz-sus{height:120px}.rz-sus svg{transform:translateX(-50%) scale(.8)}
+    }
     @media (prefers-reduced-motion:reduce){.rz-sus .s{animation:none}}`;
     document.head.appendChild(st);
 
@@ -269,10 +282,10 @@
     if (afisKutu) {
       const p = afisKutu.querySelector("p"); if (p) p.style.display = "none";
       kutu = document.createElement("div"); kutu.className = "rz-kutu";
-      kutu.innerHTML = `<div class="rz-et"></div><div class="rz-sayac">--:--:--</div>
-        <div class="rz-hap"><span>İmsak<b class="rz-i">--:--</b></span><span>İftar<b class="rz-a">--:--</b></span></div>
-        <div class="rz-alt"><span class="rz-gun"></span><div class="rz-cubuk"><i></i></div></div>
-        <button class="rz-imsakiye" type="button">İmsakiye ›</button><span class="rz-not"></span>`;
+      kutu.innerHTML = `<div class="rz-ust"><div><div class="rz-et"></div><div class="rz-sayac">--:--:--</div></div>
+          <div class="rz-hap"><span>İmsak<b class="rz-i">--:--</b></span><span>İftar<b class="rz-a">--:--</b></span></div></div>
+        <div class="rz-alt"><span class="rz-gun"></span><div class="rz-cubuk"><i></i></div><button class="rz-imsakiye" type="button">İmsakiye ›</button></div>
+        <div class="rz-not"></div>`;
       afisKutu.appendChild(kutu);
       kutu.querySelector(".rz-imsakiye").onclick = imsakiyeAc;
     } else {
