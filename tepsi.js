@@ -58,7 +58,7 @@
   .yemekler li.fotolu{gap:12px}
   .yf{flex:none;width:46px;height:46px;border-radius:50%;overflow:hidden;background:#fff;cursor:zoom-in;
       box-shadow:0 0 0 2px #fff,0 4px 10px -4px rgba(40,60,140,.35)}
-  .yf img{width:100%;height:100%;object-fit:cover;transform:scale(1.55) translateY(-4%);display:block}
+  .yf img{width:100%;height:100%;object-fit:cover;display:block}
   .yf-buyuk{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:rgba(14,18,40,.55);padding:24px;cursor:zoom-out}
   .yf-buyuk figure{margin:0;background:#fff;border-radius:24px;padding:14px 14px 12px;text-align:center;max-width:320px;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
   .yf-buyuk img{width:100%;height:auto;display:block}
@@ -71,7 +71,7 @@
       const g = eslestir(li.textContent);
       if (!g) return;
       const kap = document.createElement("span"); kap.className = "yf";
-      kap.innerHTML = `<img src="${Y + g}.webp" alt="" loading="lazy">`;
+      kap.innerHTML = `<img src="${Y}k/${g}.webp" alt="" loading="lazy">`;
       kap.onclick = () => buyut(Y + g + ".webp", li.textContent.trim());
       li.prepend(kap); li.classList.add("fotolu");
     });
