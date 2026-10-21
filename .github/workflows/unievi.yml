@@ -1,0 +1,40 @@
+# Üniversite Evi haftalık menüsünü unievi.firat.edu.tr'den okuyup veri.js'e yazar.
+name: Üniversite Evi menüsü
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"   # her gün 07:17 (TR)
+    - cron: "47 8 * * 1"   # pazartesi 11:47 (TR) — menü geç yayımlanırsa
+
+permissions:
+  contents: write
+
+concurrency: unievi
+
+jobs:
+  guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Menüyü oku ve veri.js'i güncelle
+        id: oku
+        run: python3 _kaynak/unievi_guncelle.py
+      - name: Değiştiyse kaydet
+        run: |
+          if git diff --quiet veri.js; then echo "Menü değişmemiş."; exit 0; fi
+          git config user.name "kampuscepte-bot"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add veri.js
+          git commit -m "Üniversite Evi menüsü güncellendi (otomatik)"
+          git push
+      - name: Kaydı "unievi-kayit" dalına koy
+        if: always()
+        run: |
+          mkdir -p /tmp/kayit && cp -f /tmp/unievi.html /tmp/unievi.log /tmp/kayit/ 2>/dev/null || true
+          cd /tmp/kayit
+          git init -q -b unievi-kayit
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add -A && git commit -qm "kayıt ${{ github.run_number }}" || exit 0
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" unievi-kayit
