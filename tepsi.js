@@ -1,12 +1,11 @@
-/* KampüsCepte — günün menüsünü görsel olarak gösterir:
-   yurt menüleri plastik tepside kaseler, Üniversite Evi çelik tabldotta.
-   ÖNİZLEME: yalnızca ?onizleme=tepsi ile açılınca görünür (?onizleme=kapat ile kapanır). */
+/* KampüsCepte — menüdeki her yemeğin yanında küçük yuvarlak fotoğrafı.
+   ÖNİZLEME: yalnızca ?onizleme=yemek ile açılınca görünür (?onizleme=kapat ile kapanır). */
 (function () {
   "use strict";
   let acik = false;
   try {
     const q = new URLSearchParams(location.search).get("onizleme");
-    if (q === "tepsi") sessionStorage.setItem("kc-tepsi", "1");
+    if (q === "yemek") sessionStorage.setItem("kc-tepsi", "1");
     if (q === "kapat") sessionStorage.removeItem("kc-tepsi");
     acik = sessionStorage.getItem("kc-tepsi") === "1";
   } catch (e) {}
@@ -55,57 +54,34 @@
 
   const css = document.createElement("style");
   css.textContent = `
-  .tp{position:relative;width:100%;margin:4px 0 12px;aspect-ratio:1100/706;background:url(${Y}tepsi.webp) center/contain no-repeat}
-  .tp.tb{aspect-ratio:1100/735;background-image:url(${Y}tabldot.webp)}
-  .tp img{position:absolute;display:block;filter:drop-shadow(0 4px 6px rgba(0,0,0,.18));animation:tp-gir .5s ease both}
-  .tp .goz{position:absolute;overflow:hidden;animation:tp-gir .5s ease both}
-  .tp .goz img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%;transform:scale(1.4);filter:none;animation:none}
-  @keyframes tp-gir{from{opacity:0;transform:translateY(6px) scale(.96)}to{opacity:1}}
-  @media (prefers-reduced-motion:reduce){.tp img,.tp .goz{animation:none}}`;
+  .yemekler li.fotolu::before{display:none}
+  .yemekler li.fotolu{gap:12px}
+  .yf{flex:none;width:46px;height:46px;border-radius:50%;overflow:hidden;background:#fff;cursor:zoom-in;
+      box-shadow:0 0 0 2px #fff,0 4px 10px -4px rgba(40,60,140,.35)}
+  .yf img{width:100%;height:100%;object-fit:cover;transform:scale(1.55) translateY(-4%);display:block}
+  .yf-buyuk{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:rgba(14,18,40,.55);padding:24px;cursor:zoom-out}
+  .yf-buyuk figure{margin:0;background:#fff;border-radius:24px;padding:14px 14px 12px;text-align:center;max-width:320px;width:100%;box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
+  .yf-buyuk img{width:100%;height:auto;display:block}
+  .yf-buyuk figcaption{font:800 15px var(--font,system-ui);color:#141b34;margin-top:6px}`;
   document.head.appendChild(css);
 
-  function tepsiCiz(kutu, gorseller) {
-    const n = gorseller.length;
-    const [sut, sat] = n <= 3 ? [n, 1] : n === 4 ? [2, 2] : n <= 6 ? [3, 2] : n <= 8 ? [4, 2] : [4, 3];
-    const X0 = 6, X1 = 94, Y0 = 8, Y1 = 92;            // tepsinin iç alanı (%)
-    const gw = (X1 - X0) / sut, gh = (Y1 - Y0) / sat;
-    const oran = 1100 / 706;                             // genişlik / yükseklik
-    const boy = Math.min(gw * 1.12, gh * 1.12 / oran);  // kase genişliği (% genişlik)
-    kutu.innerHTML = gorseller.slice(0, sut * sat).map((g, i) => {
-      const r = Math.floor(i / sut), c = i % sut;
-      const satirdaki = Math.min(sut, n - r * sut), kayma = (sut - satirdaki) * gw / 2;
-      const cx = X0 + kayma + gw * (c + .5), cy = Y0 + gh * (r + .5);
-      return `<img src="${Y + g}.webp" alt="" style="width:${boy}%;left:${cx - boy / 2}%;top:${cy - boy * oran / 2}%;animation-delay:${i * .06}s">`;
-    }).join("");
-  }
-
-  /* tabldot gözleri: [sol, üst, genişlik, yükseklik, yarıçap] (%) */
-  const GOZ = { corba: [7.5, 7, 25, 37, "50%"], ust: [37.5, 8, 33, 34, "9%"], sag: [74, 8, 18.5, 83, "9%"], alt: [6, 49, 66, 41, "7%"] };
-  function tabldotCiz(kutu, gorseller) {
-    const yer = {};
-    const koy = (g, sira) => { for (const s of sira) if (!yer[s]) { yer[s] = g; return; } };
-    for (const g of gorseller) {
-      if (CORBA.test(g)) koy(g, ["corba", "ust", "sag"]);
-      else if (PILAV.test(g)) koy(g, ["ust", "alt", "sag"]);
-      else if (KUCUK.test(g)) koy(g, ["sag", "ust"]);
-      else koy(g, ["alt", "ust", "sag"]);
-    }
-    kutu.innerHTML = Object.entries(yer).map(([s, g], i) => {
-      const [l, t, w, h, r] = GOZ[s];
-      return `<div class="goz" style="left:${l}%;top:${t}%;width:${w}%;height:${h}%;border-radius:${r};animation-delay:${i * .08}s"><img src="${Y + g}.webp" alt=""></div>`;
-    }).join("");
-  }
-
   function guncelle(ul) {
-    let kutu = ul.previousElementSibling;
-    if (!kutu || !kutu.classList.contains("tp")) { kutu = document.createElement("div"); kutu.className = "tp"; kutu.setAttribute("aria-hidden", "true"); ul.parentNode.insertBefore(kutu, ul); }
-    const yazilar = [...ul.querySelectorAll("li")].filter(li => !li.classList.contains("bos-menu") && !li.classList.contains("not") && !li.classList.contains("bos")).map(li => li.textContent);
-    const gorseller = [...new Set(yazilar.map(eslestir).filter(Boolean))];
-    const tabldot = /unievi/.test(ul.id);
-    kutu.classList.toggle("tb", tabldot);
-    kutu.style.display = gorseller.length ? "" : "none";
-    if (!gorseller.length) return;
-    tabldot ? tabldotCiz(kutu, gorseller) : tepsiCiz(kutu, gorseller);
+    ul.querySelectorAll("li").forEach(li => {
+      if (li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos") || li.querySelector(".yf")) return;
+      const g = eslestir(li.textContent);
+      if (!g) return;
+      const kap = document.createElement("span"); kap.className = "yf";
+      kap.innerHTML = `<img src="${Y + g}.webp" alt="" loading="lazy">`;
+      kap.onclick = () => buyut(Y + g + ".webp", li.textContent.trim());
+      li.prepend(kap); li.classList.add("fotolu");
+    });
+  }
+  function buyut(src, ad) {
+    const d = document.createElement("div"); d.className = "yf-buyuk";
+    d.innerHTML = `<figure><img src="${src}" alt=""><figcaption></figcaption></figure>`;
+    d.querySelector("figcaption").textContent = ad;
+    d.onclick = () => d.remove();
+    document.body.appendChild(d);
   }
   function baslat() {
     document.querySelectorAll("ul.yemekler").forEach(ul => {
@@ -114,7 +90,7 @@
     });
     const n = document.createElement("div");
     n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap";
-    n.innerHTML = 'Tepsi önizlemesi <a href="?onizleme=kapat" style="color:#9fb3ff;margin-left:6px">kapat</a>';
+    n.innerHTML = 'Yemek fotoğrafı önizlemesi <a href="?onizleme=kapat" style="color:#9fb3ff;margin-left:6px">kapat</a>';
     document.body.appendChild(n);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", baslat); else baslat();
