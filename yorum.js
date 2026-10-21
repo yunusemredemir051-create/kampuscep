@@ -3,7 +3,7 @@
    (data-menu boşsa bölüm gizlenir). Bu dosya o kutuları bulup doldurur; data-menu değişince yeniler.
    MENU_ID: "<yurt>_<YYYY-AA-GG>_<kahvalti|aksam>" ya da "unievi_<YYYY-AA-GG>". */
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut }
+import { getAuth, signInAnonymously, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, addDoc, onSnapshot, query, where,
          getCountFromServer, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -17,32 +17,14 @@ let ben = null;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
 
-/* ---------- giriş (uygulamada telefonun hesap seçicisi, tarayıcıda açılır pencere) ---------- */
-const yerel = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform());
-async function girisYap() {
-  try {
-    if (yerel) {
-      const r = await window.Capacitor.Plugins.FirebaseAuthentication.signInWithGoogle({ skipNativeAuth: true });
-      const t = r && r.credential && r.credential.idToken;
-      if (!t) return false;
-      await signInWithCredential(auth, GoogleAuthProvider.credential(t));
-    } else {
-      await signInWithPopup(auth, new GoogleAuthProvider());
-    }
-    return true;
-  } catch (e) {
-    const kod = (e && (e.code || e.message)) || "";
-    if (/Instagram|FBAN|FBAV/i.test(navigator.userAgent) || /popup-blocked|operation-not-supported/.test(kod))
-      toast("Bu tarayıcı Google girişine izin vermiyor. Menüden “Tarayıcıda aç” deyip tekrar dene.");
-    else if (!/popup-closed|cancelled|cancel/i.test(kod)) toast("Giriş yapılamadı, tekrar dener misin?");
-    return false;
-  }
+/* ---------- kimlik: hesap gerekmez; arka planda anonim oturum açılır (kendi yorumunu silebilmek, cihaz başına bir oy için) ---------- */
+async function kimlik() {
+  if (auth.currentUser) return true;
+  try { await signInAnonymously(auth); return true; }
+  catch (e) { console.error(e); toast("Bağlantı kurulamadı, tekrar dener misin?"); return false; }
 }
-async function girisli(neden) {
-  if (ben) return true;
-  toast(neden);
-  return girisYap();
-}
+const adOku = () => { try { return localStorage.getItem("kc-ad") || ""; } catch (e) { return ""; } };
+const adYaz = a => { try { localStorage.setItem("kc-ad", a); } catch (e) {} };
 function toast(m) {
   let t = document.getElementById("dg-toast");
   if (!t) { t = document.createElement("div"); t.id = "dg-toast"; document.body.appendChild(t); }
@@ -64,6 +46,7 @@ css.textContent = `
 .dg-btn.yorum{margin-left:auto}
 .dg-btn.yorum.acik{background:var(--mavi-acik,#e6ebff);color:var(--mavi,#3b5bfd);border-color:transparent}
 .dg-panel{margin-top:12px}
+.dg-ad{display:block;width:100%;margin-bottom:8px;border:1px solid var(--cizgi,#e3e7f3);border-radius:12px;padding:9px 12px;font:600 14px var(--font,inherit);color:var(--yazi,#141b34);background:#fff;box-sizing:border-box}
 .dg-giris{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--soluk,#6b7390);font-weight:600;margin-bottom:8px}
 .dg-giris button{border:0;background:none;color:var(--mavi,#3b5bfd);font:700 12.5px var(--font,inherit);cursor:pointer;padding:2px}
 .dg-form{display:flex;gap:8px;align-items:flex-end}
@@ -153,8 +136,8 @@ function barCiz(el) {
 
 async function oyVer(el, deger) {
   const d = kutular.get(el); if (!d) return;
-  if (!(await girisli("Oy vermek için Google ile giriş yap."))) return;
-  const ref = doc(db, "menuler", d.id, "oylar", ben.uid);
+  if (!(await kimlik())) return;
+  const ref = doc(db, "menuler", d.id, "oylar", auth.currentUser.uid);
   const onceki = d.benimOy, yeni = onceki === deger ? 0 : deger;
   // anında göster, sonra kaydet
   if (onceki === 1) d.sayi.iyi--; if (onceki === -1) d.sayi.kotu--;
@@ -184,12 +167,8 @@ function formHtml(yanit) {
 }
 function panelCiz(el) {
   const p = el.querySelector(".dg-panel");
-  p.innerHTML = (ben
-      ? `<div class="dg-giris"><span><b style="color:var(--yazi,#141b34)">${esc(ben.displayName || "")}</b> olarak yazıyorsun</span><button class="dg-cikis">Çıkış</button></div>${formHtml(false)}`
-      : `<button class="dg-gir-btn">Yorum yazmak için Google ile giriş yap</button>`)
+  p.innerHTML = `<input class="dg-ad" maxlength="40" placeholder="Adın soyadın" autocomplete="name" value="${esc(adOku())}">${formHtml(false)}`
     + `<ul class="dg-liste"><li class="dg-bos">Yükleniyor…</li></ul>`;
-  const g = p.querySelector(".dg-gir-btn"); if (g) g.onclick = girisYap;
-  const c = p.querySelector(".dg-cikis"); if (c) c.onclick = async () => { try { if (yerel) await window.Capacitor.Plugins.FirebaseAuthentication.signOut(); } catch (e) {} signOut(auth); };
   const f = p.querySelector(":scope > .dg-form"); if (f) formBagla(el, f, "");
   listeCiz(el);
 }
@@ -199,11 +178,13 @@ function formBagla(el, f, ust) {
   b.onclick = async () => {
     const metin = ta.value.trim();
     if (!metin) return;
-    if (!(await girisli("Yorum yazmak için Google ile giriş yap."))) return;
-    if (!ben.displayName) { toast("Google hesabında adın görünmüyor; yorum yapılamadı."); return; }
+    const adKutu = el.querySelector(".dg-ad"), ad = (adKutu ? adKutu.value : adOku()).trim().replace(/\s+/g, " ");
+    if (ad.length < 2) { toast("Önce adını yaz."); if (adKutu) adKutu.focus(); return; }
+    adYaz(ad);
+    if (!(await kimlik())) return;
     const d = kutular.get(el); b.disabled = true;
     try {
-      await addDoc(collection(db, "menuler", d.id, "yorumlar"), { uid: ben.uid, ad: ben.displayName, metin: metin.slice(0, 500), ust, zaman: serverTimestamp() });
+      await addDoc(collection(db, "menuler", d.id, "yorumlar"), { uid: auth.currentUser.uid, ad, metin: metin.slice(0, 500), ust, zaman: serverTimestamp() });
       ta.value = ""; ta.style.height = "";
       if (ust) { d.yanit = null; listeCiz(el); }
     } catch (e) { console.error(e); toast("Yorum gönderilemedi, tekrar dener misin?"); }
@@ -227,7 +208,6 @@ function listeCiz(el) {
       ${d.yanit === y.id ? formHtml(true) : ""}</li>`;
   }).join("");
   ul.querySelectorAll("[data-yanit]").forEach(b => b.onclick = async () => {
-    if (!(await girisli("Yanıt yazmak için Google ile giriş yap."))) return;
     d.yanit = d.yanit === b.dataset.yanit ? null : b.dataset.yanit; listeCiz(el);
     const ta = ul.querySelector(".dg-yanit-form textarea"); if (ta) ta.focus();
   });
@@ -235,15 +215,15 @@ function listeCiz(el) {
   ul.querySelectorAll("[data-sil]").forEach(b => b.onclick = async () => {
     if (!confirm("Yorumun silinsin mi?")) return;
     try {
-      for (const x of d.yorumlar.filter(x => x.ust === b.dataset.sil && x.uid === ben.uid)) await deleteDoc(doc(db, "menuler", d.id, "yorumlar", x.id));
+      for (const x of d.yorumlar.filter(x => x.ust === b.dataset.sil && x.uid === auth.currentUser.uid)) await deleteDoc(doc(db, "menuler", d.id, "yorumlar", x.id));
       await deleteDoc(doc(db, "menuler", d.id, "yorumlar", b.dataset.sil));
     } catch (e) { console.error(e); toast("Silinemedi, tekrar dener misin?"); }
   });
   ul.querySelectorAll("[data-bildir]").forEach(b => b.onclick = async () => {
-    if (!(await girisli("Bildirmek için Google ile giriş yap."))) return;
+    if (!(await kimlik())) return;
     const neden = prompt("Bu yorumu neden bildiriyorsun? (kısaca)");
     if (!neden) return;
-    try { await addDoc(collection(db, "sikayetler"), { ilan: "yorum:" + d.id + "/" + b.dataset.bildir, neden: neden.slice(0, 300), uid: ben.uid, zaman: serverTimestamp() }); toast("Teşekkürler, inceleyeceğiz."); }
+    try { await addDoc(collection(db, "sikayetler"), { ilan: "yorum:" + d.id + "/" + b.dataset.bildir, neden: neden.slice(0, 300), uid: auth.currentUser.uid, zaman: serverTimestamp() }); toast("Teşekkürler, inceleyeceğiz."); }
     catch (e) { console.error(e); toast("Gönderilemedi, tekrar dener misin?"); }
   });
 }
@@ -258,6 +238,6 @@ new MutationObserver(ml => {
 }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-menu"] });
 onAuthStateChanged(auth, u => {
   ben = u;
-  kutular.forEach((d, el) => { sayilariGetir(el); if (d.acik) panelCiz(el); });
+  kutular.forEach((d, el) => { sayilariGetir(el); if (d.acik) listeCiz(el); });
 });
 tara();
