@@ -47,6 +47,7 @@ h1 { font-size: 26px; letter-spacing: -.5px; margin: 0 0 4px; }
 .gun-sec button { border: 0; background: transparent; color: var(--soluk); font: 700 14px var(--font); padding: 10px; border-radius: 10px; cursor: pointer; }
 .gun-sec button.aktif { background: #fff; color: var(--yazi); box-shadow: 0 2px 8px rgba(20,27,52,.08); }
 .kart { padding: 18px 20px; margin-bottom: 14px; }
+.kart-ust h2 .saat { display: block; font-size: 12.5px; font-weight: 700; color: var(--soluk); margin-top: 2px; letter-spacing: 0; }
 .kart-ust { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
 .kart h2 { font-size: 17px; margin: 0; }
 .etiket { font-size: 11px; font-weight: 800; padding: 5px 9px; border-radius: 8px; }
@@ -117,14 +118,14 @@ footer a { color: inherit; }
     <button data-g="1">Yarın</button>
   </div>
 
-  <section class="kart cam">
-    <div class="kart-ust"><h2>Kahvaltı</h2><span class="etiket mavi">KYK</span></div>
+  <section class="kart cam" id="kart-kahvalti">
+    <div class="kart-ust"><h2>Kahvaltı <small class="saat" id="saat-kahvalti"></small></h2><span class="etiket mavi">KYK</span></div>
     <ul class="yemekler" id="kahvalti"></ul>
     <div class="degerlendir" id="dg-kahvalti" data-menu=""></div>
   </section>
 
-  <section class="kart cam">
-    <div class="kart-ust"><h2>Akşam yemeği</h2><span class="etiket mavi">KYK</span></div>
+  <section class="kart cam" id="kart-aksam">
+    <div class="kart-ust"><h2>Akşam yemeği <small class="saat">16.00–22.00</small></h2><span class="etiket mavi">KYK</span></div>
     <ul class="yemekler" id="aksam"></ul>
     <div class="degerlendir" id="dg-aksam" data-menu=""></div>
   </section>
@@ -132,7 +133,7 @@ footer a { color: inherit; }
   <div class="vitrin" style="display:none;margin:14px 0"></div>
 
   <section class="kart cam">
-    <div class="kart-ust"><h2>Üniversite Evi · öğle</h2><span class="etiket turuncu">Fırat Üni.</span></div>
+    <div class="kart-ust"><h2>Üniversite Evi <small class="saat">11.00–13.30 · 15.00–16.30</small></h2><span class="etiket turuncu">Fırat Üni.</span></div>
     <ul class="yemekler" id="unievi"></ul>
     <div class="degerlendir" id="dg-unievi" data-menu=""></div>
   </section>
@@ -189,6 +190,12 @@ function goster(ekGun) {
   const gun = ym ? (ym.kahvalti || ym.aksam ? ym : ym[k]) : null;
   const bos = ym ? "Bu günün menüsü henüz eklenmedi." : "Bu yurdun menüsü henüz eklenmedi.";
   yaz("kahvalti", gun && gun.kahvalti, bos, ym && ym.kahvaltiNotu);
+  /* kahvaltı saati: hafta içi 12.00'ye, hafta sonu 12.30'a kadar; bugün için bu saat geçtiyse akşam yemeği öne gelir */
+  const hsonu = d.getDay() === 0 || d.getDay() === 6;
+  document.getElementById("saat-kahvalti").textContent = "06.30–" + (hsonu ? "12.30" : "12.00");
+  const simdi = new Date(), dk = simdi.getHours() * 60 + simdi.getMinutes();
+  const kk = document.getElementById("kart-kahvalti"), ka = document.getElementById("kart-aksam");
+  if (ekGun === 0 && dk >= (hsonu ? 750 : 720)) kk.before(ka); else ka.before(kk);
   const dg = (i, var_, id) => { const e = document.getElementById("dg-" + i); if (e) e.dataset.menu = var_ ? id : ""; };
   dg("kahvalti", gun && gun.kahvalti && gun.kahvalti.length, `${YURT}_${k}_kahvalti`);
   dg("aksam", gun && gun.aksam && gun.aksam.length, `${YURT}_${k}_aksam`);
@@ -203,7 +210,7 @@ function goster(ekGun) {
 document.querySelectorAll(".gun-sec button").forEach(b => b.onclick = () => goster(+b.dataset.g));
 goster(0);
 </script>
-<script src="/yemekfoto.js?v=1"></script>
+<script src="/yemekfoto.js?v=2"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=2"></script>
 <script src="/vitrin.js?v=7"></script>
