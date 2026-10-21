@@ -107,6 +107,8 @@ footer a { color: inherit; }
     <ul class="yemekler" id="aksam"></ul>
   </section>
 
+  <div class="reklam" style="display:none;margin:14px 0"></div>
+
   <section class="kart cam">
     <div class="kart-ust"><h2>Üniversite Evi · öğle</h2><span class="etiket turuncu">Fırat Üni.</span></div>
     <ul class="yemekler" id="unievi"></ul>
@@ -175,5 +177,6 @@ function goster(ekGun) {
 document.querySelectorAll(".gun-sec button").forEach(b => b.onclick = () => goster(+b.dataset.g));
 goster(0);
 </script>
+<script src="/reklam.js"></script>
 </body>
 </html>
