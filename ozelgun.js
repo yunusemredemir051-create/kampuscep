@@ -190,6 +190,146 @@
     document.body.prepend(s);
   }
 
+  /* ---------- Ramazan: iftar / imsak sayacı, imsakiye, fener süsü ---------- */
+  ramazan();
+  function ramazan() {
+    const BAS = "2027-02-08", SON = "2027-03-08";   // ilk oruç ve son oruç (Diyanet 2027 takvimi)
+    if (tarih < ekle(BAS, -1) || tarih > SON) return;
+    /* Diyanet verisi vakitler.json'dan gelir (her gün otomatik güncellenir, ~30 gün ileriyi kapsar).
+       O güne ait veri henüz yoksa aşağıdaki yaklaşık değerler kullanılır ve "yaklaşık" yazılır. */
+    const YAKLASIK = {"2027-02-07":["05:53","17:58"],"2027-02-08":["05:52","17:59"],"2027-02-09":["05:52","18:01"],"2027-02-10":["05:51","18:02"],
+      "2027-02-11":["05:50","18:03"],"2027-02-12":["05:49","18:04"],"2027-02-13":["05:48","18:05"],"2027-02-14":["05:47","18:06"],"2027-02-15":["05:45","18:07"],
+      "2027-02-16":["05:44","18:08"],"2027-02-17":["05:43","18:10"],"2027-02-18":["05:42","18:11"],"2027-02-19":["05:41","18:12"],"2027-02-20":["05:40","18:13"],
+      "2027-02-21":["05:38","18:14"],"2027-02-22":["05:37","18:15"],"2027-02-23":["05:36","18:16"],"2027-02-24":["05:35","18:17"],"2027-02-25":["05:33","18:18"],
+      "2027-02-26":["05:32","18:19"],"2027-02-27":["05:31","18:20"],"2027-02-28":["05:29","18:21"],"2027-03-01":["05:28","18:23"],"2027-03-02":["05:26","18:24"],
+      "2027-03-03":["05:25","18:25"],"2027-03-04":["05:24","18:26"],"2027-03-05":["05:22","18:27"],"2027-03-06":["05:21","18:28"],"2027-03-07":["05:19","18:29"],
+      "2027-03-08":["05:18","18:30"]};
+    let V = null;
+    const vakit = g => (V && V[g]) ? { imsak: V[g][0], aksam: V[g][4], kesin: true } : (YAKLASIK[g] ? { imsak: YAKLASIK[g][0], aksam: YAKLASIK[g][1], kesin: false } : null);
+    const sn = t => +t.slice(0, 2) * 3600 + +t.slice(3, 5) * 60;
+    const saniyeTR = () => {
+      try { const p = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/Istanbul", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(new Date()).split(":"); return (+p[0] % 24) * 3600 + +p[1] * 60 + +p[2]; }
+      catch (e) { const d = new Date(Date.now() + 3 * 3600e3); return d.getUTCHours() * 3600 + d.getUTCMinutes() * 60 + d.getUTCSeconds(); }
+    };
+    const iki = n => String(n).padStart(2, "0");
+    const sure = x => `${iki(Math.floor(x / 3600))}:${iki(Math.floor(x % 3600 / 60))}:${iki(x % 60)}`;
+    const toplam = fark(BAS, SON) + 1;
+
+    kok.classList.add("rz");
+    kok.style.setProperty("--zemin", "#f5f0e4");
+    const st = document.createElement("style");
+    st.textContent = `
+    html.rz body{background-color:#f5f0e4}
+    .rz .afis .ust-bilgi h1{font-size:24px}
+    .rz-kutu{margin-top:10px;color:#fff}
+    .rz-kutu .rz-et{font-size:13px;font-weight:700;color:#f6d77e;letter-spacing:.2px}
+    .rz-kutu .rz-sayac{font:800 40px/1.05 var(--font,inherit);letter-spacing:1px;color:#ffe08a;text-shadow:0 2px 18px rgba(246,196,83,.45);font-variant-numeric:tabular-nums}
+    .rz-hap{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .rz-hap span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:700;color:#fff}
+    .rz-hap span b{color:#ffe08a;margin-left:4px}
+    .rz-alt{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
+    .rz-cubuk{flex:1;max-width:220px;height:5px;border-radius:9px;background:rgba(255,255,255,.2);overflow:hidden}
+    .rz-cubuk i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#f6c453,#ffe08a)}
+    .rz-imsakiye{margin-top:10px;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font,inherit);padding:6px 12px;border-radius:99px;cursor:pointer}
+    .rz-not{font-size:11px;color:rgba(255,255,255,.7);margin-left:6px}
+    .rz-dlg{border:0;border-radius:22px;padding:0;max-width:440px;width:calc(100% - 32px);box-shadow:0 30px 60px -20px rgba(20,24,90,.5)}
+    .rz-dlg::backdrop{background:rgba(14,18,60,.55)}
+    .rz-dlg header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(120deg,#1a1f5c,#3a2a8c);color:#fff}
+    .rz-dlg header b{font-size:17px}.rz-dlg header small{display:block;color:#f6d77e;font-weight:600;font-size:12px}
+    .rz-dlg header button{border:0;background:rgba(255,255,255,.15);color:#fff;width:32px;height:32px;border-radius:50%;font-size:18px;cursor:pointer}
+    .rz-dlg .rz-tablo{max-height:60vh;overflow:auto}
+    .rz-dlg table{width:100%;border-collapse:collapse;font-size:14px}
+    .rz-dlg th,.rz-dlg td{padding:9px 14px;text-align:left;border-bottom:1px solid #eee7d6}
+    .rz-dlg th{position:sticky;top:0;background:#faf6ec;font-size:12px;color:#8a7a52}
+    .rz-dlg tr.bugun td{background:#fff3cf;font-weight:800}
+    .rz-sus{position:absolute;top:0;left:0;right:0;height:110px;pointer-events:none;z-index:1;overflow:hidden}
+    .rz-sus .s{position:absolute;top:0;transform-origin:50% 0;animation:rz-salla 4s ease-in-out infinite}
+    .rz-sus .s::before{content:"";position:absolute;left:50%;top:0;width:1px;height:var(--ip);background:linear-gradient(#c8941c,#e9c766)}
+    .rz-sus svg{position:absolute;left:50%;top:var(--ip);transform:translateX(-50%);filter:drop-shadow(0 4px 6px rgba(120,80,0,.25))}
+    @keyframes rz-salla{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+    @media (max-width:820px){.rz-kutu .rz-sayac{font-size:32px}.rz .afis .ust-bilgi h1{font-size:19px}.rz-sus{height:84px}.rz-sus svg{transform:translateX(-50%) scale(.8)}}
+    @media (prefers-reduced-motion:reduce){.rz-sus .s{animation:none}}`;
+    document.head.appendChild(st);
+
+    /* asılı fener, hilal ve yıldızlar */
+    const ALTIN = 'fill="#e6b84a" stroke="#b07d12" stroke-width="1.2"';
+    const SEKIL = {
+      fener: `<svg width="30" height="50" viewBox="0 0 30 50"><path d="M15 0v3" stroke="#b07d12"/><path d="M9 4h12l-2 4H11z" ${ALTIN}/><rect x="6" y="8" width="18" height="26" rx="5" ${ALTIN}/><path d="M11 12h3v18h-3zM16 12h3v18h-3z" fill="#fff4c9" opacity=".9"/><path d="M8 34h14l-3 5h-8z" ${ALTIN}/><circle cx="15" cy="43" r="2.5" ${ALTIN}/></svg>`,
+      hilal: `<svg width="30" height="32" viewBox="0 0 30 32"><path d="M20 2a14 14 0 1 0 8 25A11 11 0 1 1 20 2z" ${ALTIN}/></svg>`,
+      yildiz: `<svg width="22" height="22" viewBox="0 0 22 22"><path d="M11 1l2.6 6.4L20 8l-5 4.4L16.4 20 11 16.6 5.6 20 7 12.4 2 8l6.4-.6z" ${ALTIN}/></svg>`
+    };
+    const sus = document.createElement("div"); sus.className = "rz-sus"; sus.setAttribute("aria-hidden", "true");
+    [["yildiz", 58, 10], ["fener", 66, 24], ["yildiz", 74, 44], ["hilal", 82, 14], ["fener", 90, 34], ["yildiz", 97, 12]]
+      .forEach(([t, x, ip], i) => { const e = document.createElement("div"); e.className = "s"; e.style.left = x + "%"; e.style.setProperty("--ip", ip + "px"); e.style.animationDelay = -(i * .7) + "s"; e.style.animationDuration = (3.4 + (i % 3) * .6) + "s"; e.innerHTML = SEKIL[t]; sus.appendChild(e); });
+    const afisEl = document.querySelector(".afis");
+    if (afisEl) afisEl.appendChild(sus);   // süs yalnızca ana sayfa afişinin sağ üstünde
+
+    const afisKutu = document.querySelector(".afis .ust-bilgi");
+    let kutu = null, seritYazi = null;
+    if (afisKutu) {
+      const p = afisKutu.querySelector("p"); if (p) p.style.display = "none";
+      kutu = document.createElement("div"); kutu.className = "rz-kutu";
+      kutu.innerHTML = `<div class="rz-et"></div><div class="rz-sayac">--:--:--</div>
+        <div class="rz-hap"><span>İmsak<b class="rz-i">--:--</b></span><span>İftar<b class="rz-a">--:--</b></span></div>
+        <div class="rz-alt"><span class="rz-gun"></span><div class="rz-cubuk"><i></i></div></div>
+        <button class="rz-imsakiye" type="button">İmsakiye ›</button><span class="rz-not"></span>`;
+      afisKutu.appendChild(kutu);
+      kutu.querySelector(".rz-imsakiye").onclick = imsakiyeAc;
+    } else {
+      const serit = document.querySelector(".ozel-serit");
+      if (serit) { const a = serit.querySelector("span"); if (a) a.textContent = ""; seritYazi = document.createElement("span"); serit.appendChild(seritYazi); }
+    }
+
+    function guncelle() {
+      const s = saniyeTR();
+      let et = null, kalan = 0, gosterGun = tarih;
+      if (tarih < BAS) { const v = vakit(BAS); if (v) { et = "İlk sahurun bitişine (imsak)"; kalan = 86400 - s + sn(v.imsak); gosterGun = BAS; } }
+      else {
+        const v = vakit(tarih);
+        if (v) {
+          if (s < sn(v.imsak)) { et = "İmsaka kalan"; kalan = sn(v.imsak) - s; }
+          else if (s < sn(v.aksam)) { et = "İftara kalan"; kalan = sn(v.aksam) - s; }
+          else if (tarih < SON) { const v2 = vakit(ekle(tarih, 1)); if (v2) { et = "İmsaka kalan"; kalan = 86400 - s + sn(v2.imsak); gosterGun = ekle(tarih, 1); } }
+        }
+      }
+      const gv = vakit(gosterGun);
+      const gunNo = Math.min(toplam, Math.max(0, fark(BAS, tarih) + 1));
+      if (kutu) {
+        kutu.style.display = et ? "" : "none";
+        if (!et) return;
+        kutu.querySelector(".rz-et").textContent = et;
+        kutu.querySelector(".rz-sayac").textContent = sure(kalan);
+        kutu.querySelector(".rz-i").textContent = gv.imsak;
+        kutu.querySelector(".rz-a").textContent = gv.aksam;
+        kutu.querySelector(".rz-gun").textContent = "Elazığ · " + (gunNo ? `${gunNo}/${toplam}. gün` : "yarın ilk oruç");
+        kutu.querySelector(".rz-cubuk i").style.width = (gunNo / toplam * 100) + "%";
+        kutu.querySelector(".rz-not").textContent = gv.kesin ? "" : "Vakitler yaklaşık";
+      } else if (seritYazi) {
+        seritYazi.textContent = et ? `${et.replace("İlk sahurun bitişine (imsak)", "İlk imsaka kalan")}: ${sure(kalan)}` : "";
+      }
+    }
+    function imsakiyeAc() {
+      let d = document.querySelector(".rz-dlg");
+      if (!d) {
+        d = document.createElement("dialog"); d.className = "rz-dlg";
+        document.body.appendChild(d);
+        d.addEventListener("click", e => { if (e.target === d) d.close(); });
+      }
+      let satir = "", tum = true;
+      for (let g = BAS, n = 1; g <= SON; g = ekle(g, 1), n++) {
+        const v = vakit(g); if (!v.kesin) tum = false;
+        satir += `<tr class="${g === tarih ? "bugun" : ""}"><td>${n}</td><td>${gun(g).toLocaleDateString("tr-TR", { day: "numeric", month: "short", weekday: "short", timeZone: "UTC" })}</td><td>${v.imsak}</td><td>${v.aksam}</td></tr>`;
+      }
+      d.innerHTML = `<header><div><b>Elazığ İmsakiyesi</b><small>Ramazan 1448 · ${tum ? "Diyanet" : "kesinleşmeyen günler yaklaşıktır"}</small></div><button aria-label="Kapat">×</button></header>
+        <div class="rz-tablo"><table><thead><tr><th>Gün</th><th>Tarih</th><th>İmsak</th><th>İftar</th></tr></thead><tbody>${satir}</tbody></table></div>`;
+      d.querySelector("header button").onclick = () => d.close();
+      if (d.showModal) d.showModal(); else d.setAttribute("open", "");
+      const b = d.querySelector("tr.bugun"); if (b) b.scrollIntoView({ block: "center" });
+    }
+    fetch("/vakitler.json", { cache: "no-cache" }).then(r => r.json()).then(j => { V = j.gunler || null; }).catch(() => {})
+      .finally(() => { guncelle(); setInterval(guncelle, 1000); });
+  }
+
   /* ---------- süsleme ---------- */
   if (T.anma || !T.sus) return;
   try { if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; } catch (e) {}
