@@ -11,6 +11,10 @@ def blok(on):
             f'<meta name="apple-mobile-web-app-title" content="KampüsCepte">\n'
             f'<meta name="google-adsense-account" content="ca-pub-5083598455747122">\n'
             f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>\n'
+            f'<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>\n'
+            f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());'
+            f'(function(){{var u=false;try{{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}}catch(e){{}}'
+            f'gtag("config","G-EN48D4XWNB",{{nereden:u?"uygulama":"web"}})}})();</script>\n'
             f'<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("{on}sw.js",{{scope:"{on or "./"}"}}).catch(()=>{{}}));</script>\n'
             f'{SON}')
 

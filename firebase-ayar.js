@@ -6,5 +6,5 @@ window.FIREBASE_AYAR = {
   projectId: "kampuscepte-2b0a1",
   storageBucket: "kampuscepte-2b0a1.firebasestorage.app",
   messagingSenderId: "412379754608",
-  appId: "1:412379754608:web:7374a60f81ab9369b404b5"
+  appId: "1:412379754608:web:7374a60f81ab9369b404b5", measurementId: "G-EN48D4XWNB"
 };
