@@ -22,6 +22,7 @@
       "karışık salata": "yurt-karisik-salata",
       "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk",
       "etli dolma": "yurt-etli-dolma",
+      "mevsim türlü": "yurt-mevsim-turlu",
       "soslu makarna": "yurt-soslu-makarna"
     }
   };
