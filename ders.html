@@ -137,7 +137,7 @@ sub { font-size: .7em; }
 .sonuc .satirlar b { display: block; font-size: 18px; color: var(--yazi); }
 .sonuc .butonlar { justify-content: center; }
 
-.reklam { margin: 18px 0; min-height: 100px; display: grid; place-items: center; border: 1.5px dashed #c9d1ec; border-radius: 18px; color: var(--soluk); font-size: 12px; background: rgba(255,255,255,.35); }
+.vitrin { margin: 18px 0; min-height: 100px; display: grid; place-items: center; border: 1.5px dashed #c9d1ec; border-radius: 18px; color: var(--soluk); font-size: 12px; background: rgba(255,255,255,.35); }
 .hata { padding: 28px; text-align: center; color: var(--soluk); font-weight: 600; }
 .alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 40px 0 0; font-size: 13px; color: var(--soluk); }
 .alt-bilgi a { color: var(--soluk); font-weight: 600; }
@@ -149,7 +149,7 @@ sub { font-size: .7em; }
   .sekmeler .uzun { display: none; } .sekmeler .kisa { display: inline; }
 }
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
-.reklam { display: none !important; }
+.vitrin { display: none !important; }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="manifest.webmanifest">
@@ -255,9 +255,9 @@ function listeCiz() {
           ${t ? `<a class="btn ana" href="#test-${u.no}">${ikonTest}${cevap && cevap < t ? "Teste devam et" : "Kendini test et"}</a>` : ""}
         </div>
       </article>`;
-    if (i === 2) h += `<div class="reklam">Sponsorlu alan</div>`;
+    if (i === 2) h += `<div class="vitrin">Sponsorlu alan</div>`;
   });
-  h += `</div><div class="reklam">Sponsorlu alan</div>`;
+  h += `</div><div class="vitrin">Sponsorlu alan</div>`;
   ICERIK.innerHTML = h;
 }
 
@@ -329,7 +329,7 @@ function testCiz() {
       <button class="btn ana" id="ileriBtn">${ileri}</button>
     </div>`;
   }
-  h += `<div class="reklam">Sponsorlu alan</div>
+  h += `<div class="vitrin">Sponsorlu alan</div>
     <div class="butonlar"><a class="btn" href="${klasor + u.pdf}" target="_blank" rel="noopener">${ikonPdf}Ünitenin notunu aç</a></div>`;
   ICERIK.innerHTML = h;
 

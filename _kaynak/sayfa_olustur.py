@@ -89,7 +89,7 @@ sub, sup { font-size: .72em; }
 .gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
 .gecis .sonraki { text-align: right; grid-column: 2; }
 .not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
-.reklam { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.vitrin { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
 .ders { padding: 18px 20px; margin-bottom: 14px; }
 .ders h2 { margin: 0 0 2px; font-size: 19px; }
 .ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
@@ -177,7 +177,7 @@ def unite_sayfasi(klasor, ders, u, ozet, onceki, sonraki):
     <article class="metin cam">
 {govde}
     </article>
-    <div class="reklam">Sponsorlu alan</div>
+    <div class="vitrin">Sponsorlu alan</div>
     {gecis}
     <p class="not">Bu sayfa, {e(ders['yazarlar'])} tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
   </main>
