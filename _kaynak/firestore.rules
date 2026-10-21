@@ -5,6 +5,8 @@ service cloud.firestore {
   match /databases/{db}/documents {
 
     function girisli() { return request.auth != null; }
+    // Yol arkadaşı yalnızca Google hesabıyla (anonim oturum yetmez)
+    function googleli() { return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
     function benimTurum() {
       return get(/databases/$(db)/documents/kullanicilar/$(request.auth.uid)).data.tur;
     }
@@ -18,20 +20,20 @@ service cloud.firestore {
 
     // Kullanıcının seçtiği yurt (kız / erkek ayrımı buradan gelir)
     match /kullanicilar/{uid} {
-      allow read: if girisli() && request.auth.uid == uid;
-      allow write: if girisli() && request.auth.uid == uid
+      allow read: if googleli() && request.auth.uid == uid;
+      allow write: if googleli() && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['yurt', 'tur'])
         && yurtTuruUyar({ 'yurt': request.resource.data.yurt, 'yurtTur': request.resource.data.tur });
-      allow delete: if girisli() && request.auth.uid == uid;
+      allow delete: if googleli() && request.auth.uid == uid;
     }
 
     match /yolculuklar/{id} {
-      function sahip() { return girisli() && request.auth.uid == resource.data.sahipUid; }
+      function sahip() { return googleli() && request.auth.uid == resource.data.sahipUid; }
 
             // İlanlar herkese açık ve isimsizdir (isim ve telefon yalnızca iletisim alt koleksiyonunda, grup içinde görünür)
       allow read: if true;
 
-      allow create: if girisli()
+      allow create: if googleli()
         && request.resource.data.sahipUid == request.auth.uid
         && request.resource.data.keys().hasOnly(['sahipUid', 'yurt', 'yurtTur', 'yon', 'yer', 'zaman', 'aranan', 'ucret', 'not', 'katilanlar', 'olusturma'])
         && yurtTuruUyar(request.resource.data)
@@ -51,14 +53,14 @@ service cloud.firestore {
           && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
           && metin(request.resource.data.not, 120)
         // katılma: listeye yalnızca kendini ekleyebilirsin, yer varsa
-        || girisli() && resource.data.yurtTur == benimTurum()
+        || googleli() && resource.data.yurtTur == benimTurum()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
           && !(request.auth.uid in resource.data.katilanlar)
           && request.auth.uid != resource.data.sahipUid
           && request.resource.data.katilanlar == resource.data.katilanlar.concat([request.auth.uid])
           && request.resource.data.katilanlar.size() <= resource.data.aranan
         // vazgeçme: listeden yalnızca kendini çıkarabilirsin
-        || girisli()
+        || googleli()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
           && request.auth.uid in resource.data.katilanlar
           && request.resource.data.katilanlar.toSet() == resource.data.katilanlar.toSet().difference([request.auth.uid].toSet())
@@ -70,14 +72,14 @@ service cloud.firestore {
       match /iletisim/{uid} {
         function ilan() { return get(/databases/$(db)/documents/yolculuklar/$(id)).data; }
         function grupta() {
-          return girisli() && (request.auth.uid == ilan().sahipUid || request.auth.uid in ilan().katilanlar);
+          return googleli() && (request.auth.uid == ilan().sahipUid || request.auth.uid in ilan().katilanlar);
         }
         allow read: if grupta();
         allow write: if grupta() && request.auth.uid == uid
           && request.resource.data.keys().hasOnly(['ad', 'tel'])
           && metin(request.resource.data.ad, 40)
           && request.resource.data.tel is string && request.resource.data.tel.matches('^90[0-9]{10}$');
-        allow delete: if girisli() && (request.auth.uid == uid || request.auth.uid == ilan().sahipUid);
+        allow delete: if googleli() && (request.auth.uid == uid || request.auth.uid == ilan().sahipUid);
       }
     }
 
@@ -95,7 +97,7 @@ service cloud.firestore {
         allow create: if girisli() && menuGecerli()
           && request.resource.data.keys().hasOnly(['uid', 'ad', 'metin', 'ust', 'zaman'])
           && request.resource.data.uid == request.auth.uid
-          && request.resource.data.ad == request.auth.token.name
+          && metin(request.resource.data.ad, 40) && request.resource.data.ad.size() >= 2
           && metin(request.resource.data.metin, 500) && request.resource.data.metin.size() > 0
           && metin(request.resource.data.ust, 40)
           && request.resource.data.zaman == request.time;

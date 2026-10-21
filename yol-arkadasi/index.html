@@ -340,7 +340,7 @@ onAuthStateChanged(auth, async u => {
   ben = u;
   if (dinleyici) { dinleyici(); dinleyici = null; }
   if (typeof iletisimTemizle === "function") iletisimTemizle(null);
-  if (!u) { profil = null; $("sil-satir").classList.add("gizli"); misafirAc(); return; }
+  if (!u || u.isAnonymous) { ben = null; profil = null; $("sil-satir").classList.add("gizli"); misafirAc(); return; }
   goster("yukleniyor");
   try {
     const s = await getDoc(doc(db, "kullanicilar", u.uid));
