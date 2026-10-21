@@ -1,5 +1,8 @@
-/* Sponsorlu alan: Cadde Katık */
+/* Sponsorlu alan.
+   CADDE_KATIK_AKTIF = true yapılınca Cadde Katık menü reklamları döner;
+   false iken "Bu alana reklam verebilirsiniz" kartı görünür. */
 (function () {
+  const CADDE_KATIK_AKTIF = false;
 
   const TEL = "+904245022323";
   const R = "/gorseller/reklam/";
@@ -27,6 +30,7 @@
   .ck-alt{display:flex;align-items:center;gap:8px;margin-top:4px;min-width:0}
   .ck-yer{font-size:11px;font-weight:700;color:#8a90a8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ck-fiyat{flex:none;display:inline-block;font-size:12.5px;font-weight:800;color:#fff;background:#e53935;border-radius:8px;padding:2px 8px}
+  .ck-resim.rv{background:linear-gradient(140deg,#3b5bfd,#8b5cf6)}
   .ck-ara{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#e53935;color:#fff;box-shadow:0 8px 16px -8px #e53935}
   .ck-ara svg{width:20px;height:20px}
   .ck-onizleme{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:999;background:#141b34;color:#fff;font:700 12px/1 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.85}
@@ -34,6 +38,22 @@
   const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
 
   const ara = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>`;
+  if (!CADDE_KATIK_AKTIF) {
+    const konu = encodeURIComponent("KampüsCepte reklam");
+    document.querySelectorAll(".reklam").forEach(kutu => {
+      kutu.classList.add("ck-var");
+      kutu.innerHTML = `<a class="ck" href="mailto:iletisim@kampuscepte.com.tr?subject=${konu}">
+        <div class="ck-resim rv"><img src="${R}reklam-ver.webp" alt="" onerror="this.remove()"></div>
+        <div class="ck-orta">
+          <div class="ck-ust"><b style="color:#3b5bfd">Sponsorlu alan</b></div>
+          <div class="ck-baslik">Bu alana reklam verebilirsiniz</div>
+          <div class="ck-icerik">İşletmenizi Elazığ'daki öğrencilere tanıtın</div>
+          <div class="ck-alt"><span class="ck-fiyat" style="background:#3b5bfd">Bilgi al</span><span class="ck-yer">iletisim@kampuscepte.com.tr</span></div>
+        </div>
+      </a>`;
+    });
+    return;
+  }
   let sira = Math.floor(Math.random() * reklamlar.length);
   document.querySelectorAll(".reklam").forEach(kutu => {
     const r = reklamlar[sira++ % reklamlar.length];
