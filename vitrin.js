@@ -5,7 +5,7 @@
   const CADDE_KATIK_AKTIF = false;
 
   const TEL = "+904245022323";
-  const R = "/gorseller/reklam/";
+  const R = "/gorseller/vitrin/";
   const reklamlar = [
     { baslik: "Menü 1", icerik: "Tavuk dürüm · patates · ayran", fiyat: "200 TL", resim: "caddekatik-menu1.webp" },
     { baslik: "Menü 1 Plus", icerik: "Tavuk dürüm · patates · kola", fiyat: "220 TL", resim: "caddekatik-menu1plus.webp" },
@@ -17,7 +17,7 @@
   const yedek = `<svg viewBox="0 0 80 80"><rect width="80" height="80" fill="#3a1d17"/><g transform="rotate(-20 40 40)"><rect x="10" y="30" width="60" height="22" rx="11" fill="#e3b778"/><circle cx="18" cy="38" r="3.5" fill="#b5652c"/><circle cx="21" cy="45" r="3" fill="#6fbf4a"/><rect x="54" y="28" width="16" height="26" rx="4" fill="#fff"/><path d="M56 33h12M56 38h12M56 43h12M56 48h12" stroke="#e53935" stroke-width="2"/></g></svg>`;
 
   const css = `
-  .reklam.ck-var{display:block!important;contain:inline-size;border:0;background:none;min-height:0;padding:0;margin-top:18px}
+  .vitrin.ck-var{display:block!important;contain:inline-size;border:0;background:none;min-height:0;padding:0;margin-top:18px}
   .ck{width:100%;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:10px;border-radius:18px;text-decoration:none;color:inherit;
       background:rgba(255,255,255,.78);border:1px solid rgba(20,27,52,.07);box-shadow:0 8px 24px -16px rgba(40,60,140,.35)}
   .ck-resim{width:84px;height:84px;flex:none;border-radius:14px;overflow:hidden;background:#3a1d17}
@@ -49,7 +49,7 @@
   const ara = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>`;
   if (!CADDE_KATIK_AKTIF) {
     const mesaj = encodeURIComponent("Merhaba, KampüsCepte'de sponsorluk / reklam vermek istiyorum.");
-    document.querySelectorAll(".reklam").forEach(kutu => {
+    document.querySelectorAll(".vitrin").forEach(kutu => {
       kutu.classList.add("ck-var");
       kutu.innerHTML = `<a class="ck ck-rv" href="https://wa.me/905437813895?text=${mesaj}">
         <div class="ck-resim rv"><img src="${R}reklam-ver.webp" alt="" onerror="this.remove()"></div>
@@ -64,7 +64,7 @@
     return;
   }
   let sira = Math.floor(Math.random() * reklamlar.length);
-  document.querySelectorAll(".reklam").forEach(kutu => {
+  document.querySelectorAll(".vitrin").forEach(kutu => {
     const r = reklamlar[sira++ % reklamlar.length];
     kutu.classList.add("ck-var");
     kutu.innerHTML = `<a class="ck" href="tel:${TEL}" aria-label="Cadde Katık'ı ara: ${r.baslik} ${r.fiyat}">

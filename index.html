@@ -235,7 +235,7 @@ a.sekme { text-decoration: none; }
 .ik.r { background: var(--mor-acik); color: var(--mor); }
 
 /* ================= REKLAM ================= */
-.reklam {
+.vitrin {
   margin-top: 24px; min-height: 100px; display: grid; place-items: center;
   border: 1.5px dashed #c9d1ec; border-radius: 18px;
   color: var(--soluk); font-size: 12px; background: rgba(255,255,255,.35);
@@ -367,7 +367,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 @media (prefers-reduced-motion: reduce) { .yemekler li, .yemekler li::before, .gorselli img, .kutu .resim, .afis img, .baslik-g img, .kapak { animation: none !important; } }
 @media (prefers-reduced-motion: reduce) { .sayfa.aktif { animation: none; } }
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
-.reklam { display: none !important; }
+.vitrin { display: none !important; }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="manifest.webmanifest">
@@ -450,11 +450,10 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           </div>
           <div class="gunler" id="unievi-gunler"></div>
           <ul class="yemekler" id="unievi-yemekler"></ul>
-          <p class="ornek">Kaynak: <a href="https://unievi.firat.edu.tr/" target="_blank" rel="noopener" style="color:inherit">unievi.firat.edu.tr</a></p>
         </div>
       </div>
 
-      <div class="reklam">Sponsorlu alan</div>
+      <div class="vitrin">Sponsorlu alan</div>
 
       <div class="baslik">Hızlı erişim</div>
       <div class="kutular">
@@ -488,7 +487,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <button data-tur="erkek">Erkek</button>
         </div>
         <div class="liste" id="yurt-liste"></div>
-        <div class="reklam">Sponsorlu alan</div>
+        <div class="vitrin">Sponsorlu alan</div>
       </div>
 
       <div id="yurt-detay" style="display:none">
@@ -502,7 +501,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           </div>
           <ul class="yemekler" id="detay-yemekler"></ul>
         </div>
-        <div class="reklam">Sponsorlu alan</div>
+        <div class="vitrin">Sponsorlu alan</div>
       </div>
     </section>
 
@@ -549,7 +548,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <button data-sinif="4">4<small>Sınıf</small></button>
         </div>
         <div class="liste" id="ders-liste"></div>
-        <div class="reklam">Sponsorlu alan</div>
+        <div class="vitrin">Sponsorlu alan</div>
       </div>
     </section>
 
@@ -564,7 +563,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
       <div class="baslik">Tatiller</div>
       <div class="tatil-grid" id="tatiller"></div>
 
-      <div class="reklam">Sponsorlu alan</div>
+      <div class="vitrin">Sponsorlu alan</div>
 
       <div class="baslik">Tüm takvim</div>
       <div class="filtre" id="takvim-filtre">
@@ -1058,6 +1057,6 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/reklam.js?v=6"></script>
+<script src="/vitrin.js?v=7"></script>
 </body>
 </html>
