@@ -1,13 +1,5 @@
-/* Sponsorlu alan — ÖNİZLEME. Yalnızca ?onizleme=reklam ile açılınca görünür; diğer ziyaretçiler hiçbir şey görmez. */
+/* Sponsorlu alan: Cadde Katık */
 (function () {
-  let acik = false;
-  try {
-    const q = new URLSearchParams(location.search).get("onizleme");
-    if (q === "reklam") sessionStorage.setItem("kc-reklam-onizleme", "1");
-    if (q === "kapat") sessionStorage.removeItem("kc-reklam-onizleme");
-    acik = sessionStorage.getItem("kc-reklam-onizleme") === "1";
-  } catch (e) {}
-  if (!acik) return;
 
   const TEL = "+904245022323";
   const R = "/gorseller/reklam/";
@@ -58,7 +50,4 @@
     </a>`;
     kutu.querySelector(".ck-resim").dataset.y = yedek;
   });
-  const n = document.createElement("div"); n.className = "ck-onizleme";
-  n.innerHTML = `Reklam önizlemesi<a href="?onizleme=kapat">kapat</a>`;
-  document.body.appendChild(n);
 })();
