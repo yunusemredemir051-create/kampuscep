@@ -44,7 +44,7 @@ KITAPLAR = [
          uniteler=[(1, "İstatistik Serileri ve Grafikler", 8, 13), (2, "Ortalamalar", 14, 22)]),
     dict(pdf="fin.pdf", klasor="ybs/2/finansal-yonetim", testler={},
          ad="Finansal Yönetim", sinif=2, yazarlar="Yunus Emre Demir",
-         uniteler=[(1, "Finansal Yönetim ve Finansal Sistem", 8, 11)]),
+         uniteler=[(1, "Finansal Yönetim ve Finansal Sistem", 8, 11), (2, "Finansal Tablolar", 12, 14)]),
 ]
 
 def filigran_sayfasi(w, h):
