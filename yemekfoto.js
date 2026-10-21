@@ -1,6 +1,5 @@
 /* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları.
    Fotoğraflar her gün yemekhanede çekilen gerçek tabaklardan hazırlanır.
-   ÖNİZLEME: yalnızca ?onizleme=yemek ile açılınca görünür (?onizleme=kapat ile kapanır).
 
    FOTOLAR: "yer" (unievi ya da yurt id'si) altında yemek adı → görsel adı (gorseller/yemek/<ad>.webp).
      Aynı yemek o yerde tekrar çıktığında aynı fotoğraf kullanılır.
@@ -8,14 +7,6 @@
    YANINDA: her öğünde verilen sabit şeyler (ekmek, su). */
 (function () {
   "use strict";
-  let acik = false;
-  try {
-    const q = new URLSearchParams(location.search).get("onizleme");
-    if (q === "yemek") sessionStorage.setItem("kc-yemekfoto", "1");
-    if (q === "kapat") sessionStorage.removeItem("kc-yemekfoto");
-    acik = sessionStorage.getItem("kc-yemekfoto") === "1";
-  } catch (e) {}
-  if (!acik) return;
 
   const FOTOLAR = {
     "unievi": {
@@ -99,10 +90,6 @@
       const dg = ul.parentNode.querySelector(".degerlendir");
       if (dg) new MutationObserver(() => guncelle(ul)).observe(dg, { attributes: true, attributeFilter: ["data-menu"] });
     });
-    const n = document.createElement("div");
-    n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap";
-    n.innerHTML = 'Yemek fotoğrafı önizlemesi <a href="?onizleme=kapat" style="color:#9fb3ff;margin-left:6px">kapat</a>';
-    document.body.appendChild(n);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", baslat); else baslat();
 })();

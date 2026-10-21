@@ -159,6 +159,8 @@ a.sekme { text-decoration: none; }
 .gunler button b { display: block; font-size: 15px; color: var(--yazi); }
 .gunler button.aktif { background: var(--turuncu); border-color: var(--turuncu); color: #fff; }
 .gunler button.aktif b { color: #fff; }
+.ogun-saat { margin: 10px 2px 0; font-size: 12.5px; font-weight: 700; color: var(--soluk); }
+.ogun-saat::before { content: "🕒 "; }
 .bos-menu { color: var(--soluk); font-weight: 600; font-size: 14px; padding: 14px 2px; }
 
 /* ================= TAKVİM ÖZET (ana sayfa + takvim) ================= */
@@ -444,6 +446,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <button data-ogun="kahvalti">Kahvaltı</button>
             <button data-ogun="aksam">Akşam</button>
           </div>
+          <p class="ogun-saat" id="ana-saat"></p>
           <ul class="yemekler" id="ana-yemekler"></ul>
           <div class="degerlendir" id="dg-ana" data-menu=""></div>
                   </div>
@@ -505,6 +508,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <button data-ogun="kahvalti">Kahvaltı</button>
             <button data-ogun="aksam">Akşam</button>
           </div>
+          <p class="ogun-saat" id="detay-saat"></p>
           <ul class="yemekler" id="detay-yemekler"></ul>
           <div class="degerlendir" id="dg-detay" data-menu=""></div>
         </div>
@@ -688,7 +692,12 @@ document.getElementById("tarih").textContent = tarihYazi;
 document.getElementById("detay-tarih").textContent = tarihYazi;
 document.getElementById("selam").textContent =
   saat < 6 ? "İyi geceler" : saat < 12 ? "Günaydın" : saat < 18 ? "İyi günler" : "İyi akşamlar";
-const varsayilanOgun = saat < 11 ? "kahvalti" : "aksam";
+/* Öğün saatleri: yurt kahvaltısı 06.30–12.00 (hafta sonu 12.30'a kadar), akşam 16.00–22.00;
+   Üniversite Evi 11.00–13.30 ve 15.00–16.30. Kahvaltı saati bitince akşam yemeği öne gelir. */
+const kahvaltiBitis = d => haftaSonu(d) ? "12.30" : "12.00";
+const OGUN_SAAT = { kahvalti: d => "06.30–" + kahvaltiBitis(d), aksam: () => "16.00–22.00" };
+const dakika = new Date().getHours() * 60 + new Date().getMinutes();
+const varsayilanOgun = dakika < (haftaSonu(new Date()) ? 750 : 720) ? "kahvalti" : "aksam";
 
 /* =====================================================================
    AKADEMİK TAKVİM
@@ -920,6 +929,7 @@ anaSec.onchange = () => { anaYurt = anaSec.value; hafizaYaz("secilenYurt", anaYu
 function anaMenuGuncelle() {
   document.querySelectorAll("#ana-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === anaOgun));
   yurtMenuYaz("ana-yemekler", anaYurt, anaOgun);
+  document.getElementById("ana-saat").textContent = (anaOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[anaOgun](bugun);
 }
 document.querySelectorAll("#ana-secici button").forEach(b => b.onclick = () => { anaOgun = b.dataset.ogun; anaMenuGuncelle(); });
 anaMenuGuncelle();
@@ -941,7 +951,7 @@ function uniEviGoster(anahtar) {
 (function () {
   const d = bugun, hs = d.getDay() === 0 || d.getDay() === 6;
   document.getElementById("unievi-gunler").style.display = "none";
-  document.getElementById("unievi-bilgi").textContent = "Bugün · " + kisa(d) + " öğle menüsü";
+  document.getElementById("unievi-bilgi").textContent = "Bugün · " + kisa(d) + " · 11.00–13.30 ve 15.00–16.30";
   const liste = uniEviMenuleri[tarihAnahtar(d)];
   document.getElementById("dg-unievi").dataset.menu = liste ? "unievi_" + tarihAnahtar(d) : "";
   if (liste) listeYaz("unievi-yemekler", liste);
@@ -982,6 +992,7 @@ function yurtAc(id) {
 function detayMenuGuncelle() {
   document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
   yurtMenuYaz("detay-yemekler", detayYurt.id, detayOgun);
+  document.getElementById("detay-saat").textContent = (detayOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[detayOgun](bugun);
 }
 document.querySelectorAll("#detay-secici button").forEach(b => b.onclick = () => { detayOgun = b.dataset.ogun; detayMenuGuncelle(); });
 function yurtListeyeDon() {
@@ -1070,7 +1081,7 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=1"></script>
+<script src="/yemekfoto.js?v=2"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=2"></script>
 <script src="/vitrin.js?v=7"></script>
