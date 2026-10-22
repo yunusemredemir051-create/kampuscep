@@ -389,7 +389,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=5"></script>
+<script src="/tema.js?v=6"></script>
 <script defer src="/ozelgun.js?v=6"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
 <!-- /PWA -->
@@ -515,7 +515,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 
       <div id="yurt-detay" style="display:none">
         <button class="geri" onclick="yurtListeyeDon()">‹ Tüm yurtlar</button>
-        <div class="ust-bilgi gorselli"><div><small id="detay-tur"></small><h1 id="detay-ad"></h1></div><img class="yurt-b oz-yurtgorsel" id="detay-gorsel" alt="" loading="lazy"></div>
+        <div class="ust-bilgi gorselli"><div><small id="detay-tur"></small><h1 id="detay-ad"></h1></div><img class="yurt-b" id="detay-gorsel" alt="" loading="lazy"></div>
         <div class="menu-kart cam">
           <div class="menu-ust"><div><h2>Bugünün menüsü</h2><p id="detay-tarih"></p></div></div>
           <div class="secici" id="detay-secici" style="margin-top:14px">
@@ -993,8 +993,7 @@ function yurtListesiCiz() {
   const liste = yurtlar.filter(y => filtreTur === "hepsi" || y.tur === filtreTur);
   document.getElementById("yurt-liste").innerHTML = liste.map(y => `
     <button class="satir-kart cam" onclick="yurtAc('${y.id}')">
-      <span class="ik ${y.tur === "kiz" ? "p" : "m"} oz-yurtgorsel-eski">${y.ad.charAt(0)}</span>
-      <img class="yurt-k oz-yurtgorsel" src="gorseller/yurtlar/k/${y.id}.webp" alt="" width="84" height="56" loading="lazy">
+      <img class="yurt-k" src="gorseller/yurtlar/k/${y.id}.webp" alt="" width="84" height="56" loading="lazy">
       <div class="orta"><b>${y.ad}</b><small>${y.tur === "kiz" ? "Kız" : "Erkek"} yurdu · ${yurtMenuleri[y.id] ? "Menü var" : "Menü yakında"}</small></div>
       <span class="ok">›</span>
     </button>`).join("");

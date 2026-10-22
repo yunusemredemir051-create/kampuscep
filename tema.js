@@ -24,7 +24,6 @@
     if (oq) localStorage.setItem("kc-onizleme", JSON.stringify(ol));
     for (var oi = 0; oi < ol.length; oi++) kok.classList.add("oniz-" + ol[oi]);
   } catch (e) {}
-  stil("html:not(.oniz-yurtgorsel) .oz-yurtgorsel{display:none!important}html.oniz-yurtgorsel .oz-yurtgorsel-eski{display:none!important}");
 
   try {
     var q = new URLSearchParams(location.search).get("koyu");
