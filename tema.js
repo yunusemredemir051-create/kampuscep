@@ -6,7 +6,7 @@
    Tercih localStorage "kc-tema" içinde: "acik" | "koyu" | "sistem" (varsayılan: sistem = telefonun ayarı).
    Bu dosya <head> içinde defer OLMADAN yüklenir; böylece sayfa açılırken beyaz parlama olmaz. */
 (function () {
-  var HERKESE_ACIK = false;
+  var HERKESE_ACIK = true;
 
   var kok = document.documentElement;
   function oku(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
