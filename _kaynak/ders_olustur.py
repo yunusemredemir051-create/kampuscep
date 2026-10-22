@@ -41,7 +41,7 @@ KITAPLAR = [
                    (8, "Final Sınavı Soruları ve Çözümleri", 135, 146)]),
     dict(pdf="ist.pdf", klasor="ybs/2/istatistik", testler={},
          ad="İstatistik", sinif=2, yazarlar="Yunus Emre Demir",
-         uniteler=[(1, "İstatistik Serileri ve Grafikler", 8, 13), (2, "Ortalamalar", 14, 22)]),
+         uniteler=[(1, "İstatistik Serileri ve Grafikler", 8, 13), (2, "Ortalamalar", 14, 22), (3, "Değişkenlik Ölçüleri", 23, 26)]),
     dict(pdf="fin.pdf", klasor="ybs/2/finansal-yonetim", testler={},
          ad="Finansal Yönetim", sinif=2, yazarlar="Yunus Emre Demir",
          uniteler=[(1, "Finansal Yönetim ve Finansal Sistem", 8, 11), (2, "Finansal Tablolar", 12, 14)]),
