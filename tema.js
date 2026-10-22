@@ -64,6 +64,7 @@
     [" .ok", "color:#5b6382"],
     [" .not-kutu", "color:#ffb27a"],
     [" .uyari", "color:#ffae73"],
+    [" .ban-uyari", "color:#ff8fae"],
     [" .aciklama.iyi", "color:#5fe0ad"],
     [" .aciklama.kotu", "color:#ff8fae"],
     [" .sik:hover:not([disabled])", "border-color:rgba(107,132,255,.6)"],
