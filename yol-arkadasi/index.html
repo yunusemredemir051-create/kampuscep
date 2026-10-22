@@ -101,6 +101,17 @@ textarea { resize: vertical; min-height: 60px; }
 .hata { background: var(--pembe-acik); color: var(--pembe); border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 700; margin-top: 10px; display: none; }
 .uyari { background: var(--turuncu-acik); color: #b35a17; border-radius: 12px; padding: 10px 12px; font-size: 13px; font-weight: 600; line-height: 1.5; }
 .gizli { display: none !important; }
+/* Sahte ilan önlemleri (önizleme: ?yeni=onizleme) */
+body:not(.yeni) .onz { display: none !important; }
+.ban-uyari { background: var(--pembe-acik); color: #b3264d; border-radius: 12px; padding: 11px 12px; font-size: 13px; font-weight: 600; line-height: 1.5; margin: 14px 0 0; }
+.ban-uyari b { display: block; font-weight: 800; margin-bottom: 2px; }
+.onay { display: flex; gap: 10px; align-items: flex-start; text-transform: none; letter-spacing: 0; font-size: 13px; font-weight: 600; color: var(--yazi); margin: 12px 0; cursor: pointer; line-height: 1.45; }
+.onay input { width: 18px; height: 18px; flex: none; margin: 1px 0 0; padding: 0; accent-color: var(--mavi); }
+body.banli #ekle-ac, body.banli [data-katil] { display: none !important; }
+.yonetici { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--cizgi); }
+.yonetici small { display: block; font-size: 12px; font-weight: 700; color: var(--soluk); margin-bottom: 8px; line-height: 1.45; }
+.yonetici small.var { color: var(--pembe); }
+.yonetici .iki .btn { padding: 10px; font-size: 13px; }
 body.misafir .profil, body.misafir #ekle-ac, body.misafir #form, body.misafir #filtre [data-f="benim"] { display: none !important; }
 body.misafir #liste { margin-top: 4px; }
 .alt-menu { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); width: calc(100% - 24px); max-width: 600px; z-index: 50;
@@ -129,7 +140,7 @@ footer a { color: inherit; }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=3"></script>
+<script src="/tema.js?v=4"></script>
 <script defer src="/ozelgun.js?v=6"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(()=>{}));</script>
 <!-- /PWA -->
@@ -166,6 +177,10 @@ footer a { color: inherit; }
       <span><button id="yurt-degistir">Yurdu değiştir</button><button id="cikis">Çıkış</button></span>
     </div>
 
+    <section class="kart cam gizli" id="banli-kart" style="margin-bottom:14px">
+      <h2>Hesabın engellendi</h2>
+      <p style="margin:0">Sahte ilan verdiğin için yol arkadaşı bölümünde süresiz olarak ilan veremez ve ilanlara katılamazsın. Bir hata olduğunu düşünüyorsan <a href="mailto:iletisim@kampuscepte.com.tr">iletisim@kampuscepte.com.tr</a> adresine yaz.</p>
+    </section>
     <button class="btn ana" id="ekle-ac">+ Yolculuk ekle</button>
 
     <section class="kart cam gizli" id="form" style="margin-top:14px">
@@ -195,6 +210,8 @@ footer a { color: inherit; }
       <label for="f-not">Not <span style="text-transform:none;font-weight:600">(isteğe bağlı)</span></label>
       <textarea id="f-not" maxlength="120" placeholder="Örn. 13:30 otobüsüne yetişmem lazım, büyük valizim var"></textarea>
       <p style="margin:10px 0 12px;font-size:12px">Numaran listede görünmez; yalnızca seninle eşleşen kişilere açılır.</p>
+      <div class="ban-uyari onz"><b>Sahte ilan verenler sistemden süresiz olarak banlanacaktır.</b>Google hesabın ve WhatsApp numaran birlikte engellenir; yeni hesap açsan da aynı numarayla ilan veremezsin.</div>
+      <label class="onay onz"><input type="checkbox" id="f-onay">Bu ilanın gerçek olduğunu ve bu saatte gerçekten yolculuk yapacağımı onaylıyorum.</label>
       <button class="btn ana" id="f-kaydet">İlanı yayınla</button>
       <div style="height:8px"></div>
       <button class="btn soluk" id="f-vazgec">Vazgeç</button>
@@ -226,7 +243,7 @@ footer a { color: inherit; }
   </section>
 
     <section class="kart cam" style="margin-top:18px">
-      <div class="uyari">Tanımadığın biriyle yolculuk yapmadan önce WhatsApp'tan konuş, buluşmayı yurt kapısında yap. Rahatsız edici bir ilan görürsen “Şikâyet et”e bas.</div>
+      <div class="uyari">Tanımadığın biriyle yolculuk yapmadan önce WhatsApp'tan konuş, buluşmayı yurt kapısında yap. Rahatsız edici bir ilan görürsen “Şikâyet et”e bas.<span class="onz"> <b>Sahte ilan verenler sistemden süresiz olarak banlanacaktır.</b></span></div>
     </section>
   </div>
 
@@ -245,6 +262,20 @@ footer a { color: inherit; }
 
 <script src="../veri.js"></script>
 <script src="../firebase-ayar.js"></script>
+<script>
+/* Sahte ilan önlemleri. YENI_ACIK = false iken yalnızca ?yeni=onizleme ile açanlar görür (?yeni=kapat kapatır). */
+(function () {
+  var YENI_ACIK = false, yeni = YENI_ACIK;
+  try {
+    var q = new URLSearchParams(location.search).get("yeni");
+    if (q === "onizleme") localStorage.setItem("kc-yol-yeni", "1");
+    if (q === "kapat") localStorage.removeItem("kc-yol-yeni");
+    yeni = yeni || localStorage.getItem("kc-yol-yeni") === "1";
+  } catch (e) {}
+  window.KC_YOL_YENI = yeni;
+  document.body.classList.toggle("yeni", yeni);
+})();
+</script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -279,6 +310,12 @@ auth.languageCode = "tr";
 const db = getFirestore(app);
 
 let ben = null, profil = null, ilanlar = [], filtre = "hepsi", dinleyici = null;
+
+/* Sahte ilan önlemleri: önizleme bayrağı yukarıdaki küçük betikte (KC_YOL_YENI). */
+const YONETICI = "yunusemredemir051@gmail.com";   // Firestore kurallarındaki yonetici() ile aynı olmalı
+const yeni = !!window.KC_YOL_YENI;
+let banli = false, sikayetler = {}, sikayetDinle = null;
+const yoneticiMi = () => yeni && !!ben && ben.email === YONETICI && ben.emailVerified;
 const iletisimOnbellek = {};
 
 /* ---------------- Giriş ---------------- */
@@ -340,6 +377,8 @@ $("hesap-sil").onclick = async () => {
 onAuthStateChanged(auth, async u => {
   ben = u;
   if (dinleyici) { dinleyici(); dinleyici = null; }
+  if (sikayetDinle) { sikayetDinle(); sikayetDinle = null; sikayetler = {}; }
+  banli = false; document.body.classList.remove("banli");
   if (typeof iletisimTemizle === "function") iletisimTemizle(null);
   if (!u || u.isAnonymous) { ben = null; profil = null; $("sil-satir").classList.add("gizli"); misafirAc(); return; }
   goster("yukleniyor");
@@ -347,6 +386,7 @@ onAuthStateChanged(auth, async u => {
     const s = await getDoc(doc(db, "kullanicilar", u.uid));
     profil = s.exists() ? s.data() : null;
   } catch (e) { profil = null; }
+  if (yeni) { try { banli = (await getDoc(doc(db, "engelliler", u.uid))).exists(); } catch (e) { banli = false; } }
   if (!profil) yurtSecimAc(); else uygulamaAc();
 });
 
@@ -397,6 +437,19 @@ function uygulamaAc() {
   $("ben-yurt").textContent = YURT[profil.yurt] ? YURT[profil.yurt].ad : "";
   goster("uygulama");
   $("sil-satir").classList.remove("gizli");
+  document.body.classList.toggle("banli", banli);
+  $("banli-kart").classList.toggle("gizli", !banli);
+  if (yoneticiMi()) {
+    // Yönetici kız ve erkek yurtlarının bütün ilanlarını ve şikâyetleri görür
+    sikayetDinle = onSnapshot(collection(db, "sikayetler"), s => {
+      sikayetler = {};
+      s.docs.forEach(d => { const x = d.data(); (sikayetler[x.ilan] = sikayetler[x.ilan] || []).push(x.neden); });
+      listeCiz();
+    }, e => console.error(e));
+    dinleyici = onSnapshot(collection(db, "yolculuklar"), s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
+      e => console.error(e));
+    return;
+  }
   const q = query(collection(db, "yolculuklar"), where("yurtTur", "==", profil.tur));
   dinleyici = onSnapshot(q, s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
     e => { $("liste").innerHTML = `<div class="kart cam bos"><b>İlanlar yüklenemedi</b>Sayfayı yenileyip tekrar dene.</div>`; console.error(e); });
@@ -469,7 +522,15 @@ function ilanHtml(i, d) {
     ${i.not ? `<p class="ilan-not">“${esc(i.not)}”</p>` : ""}
     <div class="ilan-btnler">${btn}</div>
     ${benim ? "" : `<div class="alt-link"><span></span><button data-sikayet="${i.id}">Şikâyet et</button></div>`}
+    ${yoneticiMi() && !benim ? yoneticiHtml(i) : ""}
   </article>`;
+}
+function yoneticiHtml(i) {
+  const s = sikayetler[i.id] || [];
+  return `<div class="yonetici">
+    <small class="${s.length ? "var" : ""}">${s.length ? `${s.length} şikâyet: ${s.map(esc).join(" · ")}` : "Yönetici · şikâyet yok"}</small>
+    <div class="iki"><button class="btn soluk" data-ykaldir="${i.id}">Kaldır</button><button class="btn" data-yban="${i.id}" style="color:var(--pembe)">Kaldır ve banla</button></div>
+  </div>`;
 }
 
 /* Eşleşilen kişilerin numaraları canlı dinlenir: biri katılınca ya da çıkınca liste kendiliğinden güncellenir */
@@ -544,6 +605,7 @@ $("f-kaydet").onclick = async () => {
   const tel = telDuzelt($("f-tel").value);
   if (!tel) return hataYaz("f-hata", "WhatsApp numaranı 05xx xxx xx xx biçiminde yaz.");
   const ucret = Math.max(0, Math.min(5000, parseInt($("f-ucret").value, 10) || 0));
+  if (yeni && !$("f-onay").checked) return hataYaz("f-hata", "İlanın gerçek olduğunu onaylaman gerekiyor.");
   $("f-kaydet").disabled = true;
   try {
     const ref = await addDoc(collection(db, "yolculuklar"), {
@@ -552,12 +614,18 @@ $("f-kaydet").onclick = async () => {
       aranan: parseInt(secili("f-aranan"), 10), ucret, not: $("f-not").value.trim().slice(0, 120),
       katilanlar: [], olusturma: serverTimestamp()
     });
-    await setDoc(doc(db, "yolculuklar", ref.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel });
+    try { await setDoc(doc(db, "yolculuklar", ref.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel }); }
+    catch (e2) { await deleteDoc(ref).catch(() => {}); e2.numara = true; throw e2; }
     hafiza.yaz("kc-tel", tel);
-    $("f-not").value = ""; $("f-ucret").value = "";
+    $("f-not").value = ""; $("f-ucret").value = ""; $("f-onay").checked = false;
     $("form").classList.add("gizli"); $("ekle-ac").classList.remove("gizli");
     toast("İlanın yayında. Biri katılınca burada göreceksin.");
-  } catch (e) { console.error(e); hataYaz("f-hata", "İlan kaydedilemedi, tekrar dener misin?"); }
+  } catch (e) {
+    console.error(e);
+    hataYaz("f-hata", yeni && e.code === "permission-denied"
+      ? (e.numara ? "Bu WhatsApp numarası sahte ilan nedeniyle süresiz engellendi." : "Hesabın sahte ilan nedeniyle süresiz engellendi.")
+      : "İlan kaydedilemedi, tekrar dener misin?");
+  }
   $("f-kaydet").disabled = false;
 };
 
@@ -575,9 +643,16 @@ $("liste").addEventListener("click", async e => {
     b.disabled = true;
     try {
       await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: [...(i.katilanlar || []), ben.uid] });
-      await setDoc(doc(db, "yolculuklar", i.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel });
+      try { await setDoc(doc(db, "yolculuklar", i.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel }); }
+      catch (e2) {
+        await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: (i.katilanlar || []).filter(u => u !== ben.uid) }).catch(() => {});
+        e2.numara = true; throw e2;
+      }
       toast("Katıldın! Aşağıdan ilan sahibine WhatsApp'tan yaz.");
-    } catch (err) { console.error(err); toast("Katılamadın; yer dolmuş olabilir."); b.disabled = false; }
+    } catch (err) {
+      console.error(err); b.disabled = false;
+      toast(yeni && err.numara && err.code === "permission-denied" ? "Bu WhatsApp numarası sahte ilan nedeniyle engellendi." : "Katılamadın; yer dolmuş olabilir.");
+    }
   }
   if (b.dataset.vazgec) {
     const i = bul(b.dataset.vazgec); if (!i) return;
@@ -597,6 +672,23 @@ $("liste").addEventListener("click", async e => {
       toast("İlan kaldırıldı.");
     } catch (err) { console.error(err); toast("Kaldırılamadı, tekrar dene."); }
   }
+  if (b.dataset.ykaldir && yoneticiMi()) {
+    if (!confirm("Bu ilan kaldırılsın mı? (Sahibi banlanmaz.)")) return;
+    try { await ilanTamamenSil(b.dataset.ykaldir); toast("İlan kaldırıldı."); }
+    catch (err) { console.error(err); toast("Kaldırılamadı: " + (err.code || "")); }
+  }
+  if (b.dataset.yban && yoneticiMi()) {
+    const i = bul(b.dataset.yban); if (!i) return;
+    if (!confirm("İlan kaldırılsın ve sahibi süresiz banlansın mı? Google hesabı ve WhatsApp numarası engellenir, diğer ilanları da silinir.")) return;
+    try {
+      const s = await getDoc(doc(db, "yolculuklar", i.id, "iletisim", i.sahipUid));
+      const tel = s.exists() ? s.data().tel : "";
+      await setDoc(doc(db, "engelliler", i.sahipUid), { neden: "Sahte ilan", tel, zaman: serverTimestamp() });
+      if (tel) await setDoc(doc(db, "engelliTel", tel), { uid: i.sahipUid, zaman: serverTimestamp() });
+      for (const x of ilanlar.filter(x => x.sahipUid === i.sahipUid)) await ilanTamamenSil(x.id);
+      toast("İlan kaldırıldı, kullanıcı süresiz banlandı.");
+    } catch (err) { console.error(err); toast("Banlanamadı: " + (err.code || "")); }
+  }
   if (b.dataset.sikayet) {
     const neden = prompt("Bu ilanı neden şikâyet ediyorsun? (kısaca)");
     if (!neden) return;
@@ -606,6 +698,12 @@ $("liste").addEventListener("click", async e => {
     } catch (err) { toast("Gönderilemedi, tekrar dene."); }
   }
 });
+
+async function ilanTamamenSil(id) {
+  const s = await getDocs(collection(db, "yolculuklar", id, "iletisim"));
+  await Promise.all(s.docs.map(d => deleteDoc(d.ref)));
+  await deleteDoc(doc(db, "yolculuklar", id));
+}
 
 setInterval(() => { if (ben && profil) listeCiz(); }, 60e3);
 </script>

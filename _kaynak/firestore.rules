@@ -17,6 +17,13 @@ service cloud.firestore {
           || (d.yurtTur == 'erkek' && d.yurt in erkekYurtlari());
     }
     function metin(s, en) { return s is string && s.size() <= en; }
+    // Site yöneticisi (yol-arkadasi sayfasındaki YONETICI ile aynı e-posta)
+    function yonetici() {
+      return googleli() && request.auth.token.email == 'yunusemredemir051@gmail.com' && request.auth.token.email_verified == true;
+    }
+    // Sahte ilan nedeniyle süresiz banlananlar (hesap ve WhatsApp numarası)
+    function banli() { return exists(/databases/$(db)/documents/engelliler/$(request.auth.uid)); }
+    function numaraBanli(tel) { return exists(/databases/$(db)/documents/engelliTel/$(tel)); }
 
     // Kullanıcının seçtiği yurt (kız / erkek ayrımı buradan gelir)
     match /kullanicilar/{uid} {
@@ -33,7 +40,7 @@ service cloud.firestore {
             // İlanlar herkese açık ve isimsizdir (isim ve telefon yalnızca iletisim alt koleksiyonunda, grup içinde görünür)
       allow read: if true;
 
-      allow create: if googleli()
+      allow create: if googleli() && !banli()
         && request.resource.data.sahipUid == request.auth.uid
         && request.resource.data.keys().hasOnly(['sahipUid', 'yurt', 'yurtTur', 'yon', 'yer', 'zaman', 'aranan', 'ucret', 'not', 'katilanlar', 'olusturma'])
         && yurtTuruUyar(request.resource.data)
@@ -53,7 +60,7 @@ service cloud.firestore {
           && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
           && metin(request.resource.data.not, 120)
         // katılma: listeye yalnızca kendini ekleyebilirsin, yer varsa
-        || googleli() && resource.data.yurtTur == benimTurum()
+        || googleli() && !banli() && resource.data.yurtTur == benimTurum()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
           && !(request.auth.uid in resource.data.katilanlar)
           && request.auth.uid != resource.data.sahipUid
@@ -66,7 +73,7 @@ service cloud.firestore {
           && request.resource.data.katilanlar.toSet() == resource.data.katilanlar.toSet().difference([request.auth.uid].toSet())
           && request.resource.data.katilanlar.size() == resource.data.katilanlar.size() - 1;
 
-      allow delete: if sahip();
+      allow delete: if sahip() || yonetici();
 
       // Telefon numaraları: yalnızca ilan sahibi ve katılanlar birbirininkini görür
       match /iletisim/{uid} {
@@ -74,12 +81,13 @@ service cloud.firestore {
         function grupta() {
           return googleli() && (request.auth.uid == ilan().sahipUid || request.auth.uid in ilan().katilanlar);
         }
-        allow read: if grupta();
-        allow write: if grupta() && request.auth.uid == uid
+        allow read: if grupta() || yonetici();
+        allow write: if grupta() && request.auth.uid == uid && !banli()
           && request.resource.data.keys().hasOnly(['ad', 'tel'])
           && metin(request.resource.data.ad, 40)
-          && request.resource.data.tel is string && request.resource.data.tel.matches('^90[0-9]{10}$');
-        allow delete: if googleli() && (request.auth.uid == uid || request.auth.uid == ilan().sahipUid);
+          && request.resource.data.tel is string && request.resource.data.tel.matches('^90[0-9]{10}$')
+          && !numaraBanli(request.resource.data.tel);
+        allow delete: if googleli() && (request.auth.uid == uid || request.auth.uid == ilan().sahipUid) || yonetici();
       }
     }
 
@@ -105,8 +113,18 @@ service cloud.firestore {
       }
     }
 
-    // Şikâyetler yalnızca yazılabilir; konsoldan okunur
+    // Ban listeleri: yalnızca yönetici yazar; kişi yalnızca kendi kaydını görebilir
+    match /engelliler/{uid} {
+      allow read: if googleli() && request.auth.uid == uid || yonetici();
+      allow write: if yonetici();
+    }
+    match /engelliTel/{tel} {
+      allow read, write: if yonetici();
+    }
+
+    // Şikâyetler: kullanıcılar yazar, yönetici okur ve siler
     match /sikayetler/{id} {
+      allow read, delete: if yonetici();
       allow create: if girisli()
         && request.resource.data.keys().hasOnly(['ilan', 'neden', 'uid', 'zaman'])
         && request.resource.data.uid == request.auth.uid
