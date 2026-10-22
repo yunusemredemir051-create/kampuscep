@@ -91,10 +91,11 @@
   stil(kurallar.map(function (k) { return K + k[0] + "{" + k[1] + "}"; }).join("\n") +
     /* tema seçici ve ana sayfadaki hızlı düğme */
     "\n.secici.uc{grid-template-columns:repeat(3,1fr)}" +
-    "\n.tema-dugme{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;" +
-    "color:#fff;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.32);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}" +
+    "\n.tema-dugme{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;color:var(--yazi,#141b34);background:var(--kart,#fff);border:1px solid var(--cizgi,#e6e9f4);box-shadow:0 2px 8px rgba(20,27,52,.08)}" +
+    "\n.tema-sag{display:flex;align-items:center;gap:10px}" +
     "\n.tema-dugme svg{width:20px;height:20px}" +
-    "\n.tema-dugme .gunes," + K + " .tema-dugme .ay{display:none}" + K + " .tema-dugme .gunes{display:block}" +
+    "\n.tema-dugme .tema-gunes," + K + " .tema-dugme .tema-ay{display:none}" + K + " .tema-dugme .tema-gunes{display:block}" +
+    "\n.yan .tema-dugme{width:32px;height:32px}.yan .tema-dugme svg{width:17px;height:17px}" +
     "\n.tema-onizleme{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;" +
     "font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap;box-shadow:0 6px 18px -6px rgba(0,0,0,.4)}" +
     "\n.tema-onizleme a{all:unset;cursor:pointer;color:#9fb3ff;margin-left:6px;text-decoration:underline}" +
@@ -133,7 +134,17 @@
     if (b.hasAttribute("data-tema-sec")) kcTema.ayarla(b.getAttribute("data-tema-sec"));
     else kcTema.ayarla(kok.getAttribute("data-tema") === "koyu" ? "acik" : "koyu");
   });
+  var DUGME = '<button class="tema-dugme" type="button" data-tema-degistir aria-label="Koyu ve açık mod arasında geç">' +
+    '<svg class="tema-ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>' +
+    '<svg class="tema-gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>';
   document.addEventListener("DOMContentLoaded", function () {
+    // Diğer sayfalarda üst başlığın sağına düğme ekle (ana sayfada düğme sayfanın içinde zaten var)
+    var ust = document.querySelector("header.ust, div.ust");
+    if (ust && !document.querySelector(".tema-dugme")) {
+      var sag = document.createElement("div"); sag.className = "tema-sag";
+      if (ust.children.length > 1) sag.appendChild(ust.lastElementChild);
+      sag.insertAdjacentHTML("beforeend", DUGME); ust.appendChild(sag);
+    }
     dugmeler();
     if (onizleme) {
       var n = document.createElement("div");
