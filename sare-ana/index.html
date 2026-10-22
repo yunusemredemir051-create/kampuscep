@@ -73,6 +73,8 @@ footer { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 2
 footer a { color: inherit; }
 .baslik-g { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .baslik-g img { width: 110px; height: auto; flex: none; }
+.baslik-g img.yurt-b { width: 170px; animation: none; filter: drop-shadow(0 8px 14px rgba(40,60,140,.14)); }
+@media (max-width: 420px) { .baslik-g img.yurt-b { width: 140px; } }
 
 /* ================= HAREKET ================= */
 @keyframes kc-yuz { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-2deg); } }
@@ -98,7 +100,7 @@ footer a { color: inherit; }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=4"></script>
+<script src="/tema.js?v=5"></script>
 <script defer src="/ozelgun.js?v=6"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(()=>{}));</script>
 <!-- /PWA -->
@@ -112,7 +114,7 @@ footer a { color: inherit; }
   </div>
 
   <div class="baslik-g"><div><h1>Sare Ana Yurdu</h1>
-  <p class="alt" id="tarih"></p></div><img src="../gorseller/yurt-menu.webp" alt="" width="110"></div>
+  <p class="alt" id="tarih"></p></div><img class="oz-yurtgorsel-eski" src="../gorseller/yurt-menu.webp" alt="" width="110"><img class="yurt-b oz-yurtgorsel" src="../gorseller/yurtlar/sare-ana.webp" alt="Sare Ana Yurdu" width="170" loading="lazy"></div>
 
   <div class="gun-sec">
     <button data-g="0">Bugün</button>

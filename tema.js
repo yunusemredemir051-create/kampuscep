@@ -16,6 +16,16 @@
   // Tema düğmeleri, özellik açık değilken hiç görünmesin
   stil("html:not(.tema-var) .tema-ui{display:none!important}");
 
+  /* Genel önizleme: herhangi bir sayfaya ?onizleme=<ad> eklenince bu tarayıcıda <html class="oniz-<ad>"> olur.
+     ?onizleme=kapat hepsini kapatır. Sayfalar yeni özelliği bu sınıfa göre gösterir. */
+  try {
+    var oq = new URLSearchParams(location.search).get("onizleme"), ol = JSON.parse(localStorage.getItem("kc-onizleme") || "[]");
+    if (oq === "kapat") ol = []; else if (oq && /^[a-z0-9-]+$/.test(oq) && ol.indexOf(oq) < 0) ol.push(oq);
+    if (oq) localStorage.setItem("kc-onizleme", JSON.stringify(ol));
+    for (var oi = 0; oi < ol.length; oi++) kok.classList.add("oniz-" + ol[oi]);
+  } catch (e) {}
+  stil("html:not(.oniz-yurtgorsel) .oz-yurtgorsel{display:none!important}html.oniz-yurtgorsel .oz-yurtgorsel-eski{display:none!important}");
+
   try {
     var q = new URLSearchParams(location.search).get("koyu");
     if (q === "onizleme") { yaz("kc-koyu-onizleme", "1"); if (!oku("kc-tema")) yaz("kc-tema", "koyu"); }
