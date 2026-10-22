@@ -33,7 +33,7 @@ const yurtMenuleri = {
     "2026-10-21": { kahvalti: ["Haşlanmış yumurta", "Karışık kızartma", "Sade poğaça", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
                     aksam: ["Sebze çorbası / Mercimek çorbası", "Fırında sebzeli tavuk ızgara / Mevsim türlü / Etli dolma", "Soslu makarna", "Karışık salata"] },
     "2026-10-22": { kahvalti: ["Sade omlet", "Patates salatası", "Çikolatalı kek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
-                    aksam: ["Yayla çorbası / Sebze çorbası", "Etsiz kuru fasulye / Mevsim soslu karışık kızartma / Tavuk çöp şiş", "Bulgur pilavı", "Haydari", "Tulumba"] },
+                    aksam: ["Şehriye çorbası", "Etsiz kuru fasulye / Mevsim soslu karışık kızartma / Tavuk çöp şiş", "Bulgur pilavı", "Haydari", "Tulumba"] },
     "2026-10-23": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Peynirli börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
                     aksam: ["Ezogelin çorbası / Domates çorbası", "Patlıcan musakka / Nugget / Yoğurtlu kabak", "Soslu makarna", "Karışık salata"] },
     "2026-10-24": { kahvalti: ["Kaşarlı omlet", "Karışık kızartma", "Sucuklu yumurta", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
