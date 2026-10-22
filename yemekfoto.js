@@ -23,7 +23,13 @@
       "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk",
       "etli dolma": "yurt-etli-dolma",
       "mevsim türlü": "yurt-mevsim-turlu",
-      "soslu makarna": "yurt-soslu-makarna"
+      "soslu makarna": "yurt-soslu-makarna",
+      "sade omlet": "yurt-sade-omlet",
+      "patates salatası": "yurt-patates-salatasi",
+      "çikolatalı kek": "yurt-cikolatali-kek",
+      "beyaz peynir": "yurt-beyaz-peynir",
+      "siyah / yeşil zeytin": "yurt-zeytin",
+      "çay": "yurt-cay"
     }
   };
   const YANINDA = {
