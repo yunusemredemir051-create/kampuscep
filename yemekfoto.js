@@ -33,7 +33,12 @@
       "çikolatalı kek": "yurt-cikolatali-kek",
       "beyaz peynir": "yurt-beyaz-peynir",
       "siyah / yeşil zeytin": "yurt-zeytin",
-      "çay": "yurt-cay"
+      "çay": "yurt-cay",
+      "şehriye çorbası": "yurt-sehriye-corbasi",
+      "tavuk çöp şiş": "yurt-tavuk-cop-sis",
+      "bulgur pilavı": "yurt-bulgur-pilavi",
+      "haydari": "yurt-haydari",
+      "tulumba": "yurt-tulumba"
     }
   };
   const YANINDA = {
