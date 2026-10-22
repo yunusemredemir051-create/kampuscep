@@ -108,6 +108,9 @@ body:not(.yeni) .onz { display: none !important; }
 .onay { display: flex; gap: 10px; align-items: flex-start; text-transform: none; letter-spacing: 0; font-size: 13px; font-weight: 600; color: var(--yazi); margin: 12px 0; cursor: pointer; line-height: 1.45; }
 .onay input { width: 18px; height: 18px; flex: none; margin: 1px 0 0; padding: 0; accent-color: var(--mavi); }
 body.banli #ekle-ac, body.banli [data-katil] { display: none !important; }
+body.dogrulanmamis #ekle-ac { display: none !important; }
+.td-not { font-size: 12px; color: var(--soluk); margin: 10px 2px 0; line-height: 1.5; }
+.dogru-tel { color: var(--yesil); font-weight: 700; }
 .yonetici { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--cizgi); }
 .yonetici small { display: block; font-size: 12px; font-weight: 700; color: var(--soluk); margin-bottom: 8px; line-height: 1.45; }
 .yonetici small.var { color: var(--pembe); }
@@ -173,13 +176,34 @@ footer a { color: inherit; }
   <!-- Ana görünüm -->
   <div id="uygulama" class="gizli">
     <div class="profil">
-      <span>Merhaba <b id="ben-ad"></b> · <span id="ben-yurt"></span></span>
+      <span>Merhaba <b id="ben-ad"></b> · <span id="ben-yurt"></span><span id="ben-tel" class="dogru-tel"></span></span>
       <span><button id="yurt-degistir">Yurdu değiştir</button><button id="cikis">Çıkış</button></span>
     </div>
 
     <section class="kart cam gizli" id="banli-kart" style="margin-bottom:14px">
       <h2>Hesabın engellendi</h2>
       <p style="margin:0">Sahte ilan verdiğin için yol arkadaşı bölümünde süresiz olarak ilan veremez ve ilanlara katılamazsın. Bir hata olduğunu düşünüyorsan <a href="mailto:iletisim@kampuscepte.com.tr">iletisim@kampuscepte.com.tr</a> adresine yaz.</p>
+    </section>
+    <section class="kart cam gizli" id="tel-dogrula" style="margin-bottom:14px">
+      <h2>Numaranı doğrula</h2>
+      <p>İlan vermek ve ilanlara katılmak için WhatsApp numaranı bir kez doğrulaman gerekiyor. Numarana gelen SMS kodunu girmen yeterli.</p>
+      <div id="td-adim1">
+        <label for="td-tel">WhatsApp numaran</label>
+        <input type="tel" id="td-tel" inputmode="tel" placeholder="05xx xxx xx xx" autocomplete="tel">
+        <div style="height:12px"></div>
+        <button class="btn ana" id="td-gonder">SMS kodu gönder</button>
+      </div>
+      <div id="td-adim2" class="gizli">
+        <label for="td-kod">SMS ile gelen 6 haneli kod</label>
+        <input type="text" id="td-kod" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="••••••">
+        <div style="height:12px"></div>
+        <button class="btn ana" id="td-dogrula">Doğrula</button>
+        <div style="height:8px"></div>
+        <button class="btn soluk" id="td-geri">Numarayı değiştir</button>
+      </div>
+      <div class="hata" id="td-hata"></div>
+      <div id="td-robot"></div>
+      <p class="td-not">Sahte ilanları önlemek için her numara yalnızca bir hesaba bağlanabilir. Numaran listede görünmez; yalnızca eşleştiğin kişilere açılır.</p>
     </section>
     <button class="btn ana" id="ekle-ac">+ Yolculuk ekle</button>
 
@@ -278,7 +302,8 @@ footer a { color: inherit; }
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut, deleteUser } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut, deleteUser,
+         RecaptchaVerifier, linkWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection, query, where, onSnapshot,
          getDocs, Timestamp, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -316,6 +341,13 @@ const YONETICI = "yunusemredemir051@gmail.com";   // Firestore kurallarındaki y
 const yeni = !!window.KC_YOL_YENI;
 let banli = false, sikayetler = {}, sikayetDinle = null;
 const yoneticiMi = () => yeni && !!ben && ben.email === YONETICI && ben.emailVerified;
+/* SMS ile doğrulanmış numara (Firebase hesabına bağlı): "905xxxxxxxxx" ya da null */
+const dogruTel = () => (ben && ben.phoneNumber && /^\+905\d{9}$/.test(ben.phoneNumber)) ? ben.phoneNumber.slice(1) : null;
+const dogrulamaGerek = () => yeni && !dogruTel();
+function dogrulamaIste() {
+  toast("Önce numaranı doğrulaman gerekiyor.");
+  $("tel-dogrula").scrollIntoView({ behavior: "smooth", block: "center" });
+}
 const iletisimOnbellek = {};
 
 /* ---------------- Giriş ---------------- */
@@ -432,7 +464,14 @@ function girisIste(mesaj) {
 /* ---------------- Ana görünüm ---------------- */
 function adim() { return (ben.displayName || "Öğrenci").split(" ")[0]; }
 function uygulamaAc() {
+  if (dinleyici) { dinleyici(); dinleyici = null; }
+  if (sikayetDinle) { sikayetDinle(); sikayetDinle = null; sikayetler = {}; }
   document.body.classList.remove("misafir");
+  const dt = dogruTel();
+  $("ben-tel").textContent = yeni && dt ? " · ✓ 0" + dt.slice(2) : "";
+  $("tel-dogrula").classList.toggle("gizli", banli || !dogrulamaGerek());
+  document.body.classList.toggle("dogrulanmamis", !banli && dogrulamaGerek());
+  if (!dogrulamaGerek()) tdSifirla();
   $("ben-ad").textContent = adim();
   $("ben-yurt").textContent = YURT[profil.yurt] ? YURT[profil.yurt].ad : "";
   goster("uygulama");
@@ -567,6 +606,7 @@ function telDuzelt(t) {
   return /^5\d{9}$/.test(s) ? "90" + s : null;
 }
 function telSor() {
+  if (yeni) { if (!dogruTel()) { dogrulamaIste(); return null; } return dogruTel(); }
   const kayitli = hafiza.oku("kc-tel");
   if (kayitli) return kayitli;
   const t = prompt("WhatsApp numaranı yaz (ilan sahibi seninle iletişime geçebilsin):", "05");
@@ -588,8 +628,9 @@ $("ekle-ac").onclick = () => {
   const d = new Date(Date.now() + 3600e3);
   $("f-tarih").value = d.toLocaleDateString("sv-SE");
   $("f-saat").value = String(d.getHours()).padStart(2, "0") + ":00";
-  const tel = hafiza.oku("kc-tel");
+  const tel = (yeni && dogruTel()) || hafiza.oku("kc-tel");
   if (tel) $("f-tel").value = "0" + tel.slice(2);
+  $("f-tel").closest("div").classList.toggle("gizli", yeni && !!dogruTel());
   hataYaz("f-hata", "");
   $("form").classList.remove("gizli"); $("ekle-ac").classList.add("gizli");
 };
@@ -602,7 +643,8 @@ $("f-kaydet").onclick = async () => {
   const zaman = new Date(`${tarih}T${saat}`);
   if (isNaN(zaman) || zaman < Date.now() - 30 * 60e3) return hataYaz("f-hata", "Geçmiş bir saat seçtin.");
   if (zaman > Date.now() + 30 * 864e5) return hataYaz("f-hata", "En fazla 30 gün sonrası için ilan verebilirsin.");
-  const tel = telDuzelt($("f-tel").value);
+  if (dogrulamaGerek()) return hataYaz("f-hata", "Önce numaranı doğrulaman gerekiyor.");
+  const tel = yeni ? dogruTel() : telDuzelt($("f-tel").value);
   if (!tel) return hataYaz("f-hata", "WhatsApp numaranı 05xx xxx xx xx biçiminde yaz.");
   const ucret = Math.max(0, Math.min(5000, parseInt($("f-ucret").value, 10) || 0));
   if (yeni && !$("f-onay").checked) return hataYaz("f-hata", "İlanın gerçek olduğunu onaylaman gerekiyor.");
@@ -698,6 +740,64 @@ $("liste").addEventListener("click", async e => {
     } catch (err) { toast("Gönderilemedi, tekrar dene."); }
   }
 });
+
+/* ---------------- SMS ile numara doğrulama ---------------- */
+let tdRobot = null, tdSonuc = null;
+function tdSifirla() {
+  tdSonuc = null; $("td-kod").value = ""; hataYaz("td-hata", "");
+  $("td-adim1").classList.remove("gizli"); $("td-adim2").classList.add("gizli");
+}
+function tdHata(e) {
+  const k = (e && e.code) || "";
+  if (k === "auth/invalid-phone-number") return "Numara geçersiz. 05xx xxx xx xx biçiminde yaz.";
+  if (k === "auth/too-many-requests" || k === "auth/quota-exceeded") return "Çok fazla deneme yapıldı. Biraz bekleyip tekrar dene.";
+  if (k === "auth/invalid-verification-code") return "Kod yanlış. SMS'teki 6 haneli kodu kontrol et.";
+  if (k === "auth/code-expired") return "Kodun süresi doldu. Numarayı değiştir'e basıp yeni kod iste.";
+  if (k === "auth/credential-already-in-use" || k === "auth/account-exists-with-different-credential")
+    return "Bu numara başka bir hesaba bağlı. Her numara yalnızca bir hesapta kullanılabilir.";
+  if (k === "auth/captcha-check-failed" || k === "auth/invalid-app-credential") return "Robot doğrulaması tamamlanamadı. Sayfayı yenileyip tekrar dene.";
+  if (k === "auth/operation-not-allowed" || k === "auth/billing-not-enabled") return "SMS doğrulaması şu an kullanılamıyor. Biraz sonra tekrar dene.";
+  if (k === "auth/requires-recent-login") return "Güvenlik için çıkış yapıp tekrar giriş yapman gerekiyor.";
+  return "Bir sorun oldu, tekrar dener misin? (" + (k || "bilinmeyen") + ")";
+}
+$("td-gonder").onclick = async () => {
+  hataYaz("td-hata", "");
+  const tel = telDuzelt($("td-tel").value);
+  if (!tel) return hataYaz("td-hata", "Numaranı 05xx xxx xx xx biçiminde yaz.");
+  $("td-gonder").disabled = true;
+  try {
+    if (!tdRobot) tdRobot = new RecaptchaVerifier(auth, "td-robot", { size: "invisible" });
+    tdSonuc = await linkWithPhoneNumber(ben, "+" + tel, tdRobot);
+    $("td-adim1").classList.add("gizli"); $("td-adim2").classList.remove("gizli");
+    $("td-kod").focus();
+    toast("Kod 0" + tel.slice(2) + " numarasına gönderildi.");
+  } catch (e) {
+    console.error(e);
+    if (e.code === "auth/provider-already-linked") { await ben.reload(); ben = auth.currentUser; uygulamaAc(); }
+    else hataYaz("td-hata", tdHata(e));
+    try { if (tdRobot) tdRobot.clear(); } catch (_) {}
+    tdRobot = null; $("td-robot").innerHTML = "";
+  }
+  $("td-gonder").disabled = false;
+};
+$("td-dogrula").onclick = async () => {
+  hataYaz("td-hata", "");
+  const kod = $("td-kod").value.replace(/\D/g, "");
+  if (kod.length !== 6) return hataYaz("td-hata", "SMS'teki 6 haneli kodu yaz.");
+  if (!tdSonuc) return tdSifirla();
+  $("td-dogrula").disabled = true;
+  try {
+    await tdSonuc.confirm(kod);
+    await auth.currentUser.reload();
+    ben = auth.currentUser;
+    await ben.getIdToken(true);          // kuralların numarayı görmesi için oturum bilgisi yenilenir
+    if (dogruTel()) hafiza.yaz("kc-tel", dogruTel());
+    toast("Numaran doğrulandı. Artık ilan verebilir ve ilanlara katılabilirsin.");
+    uygulamaAc();
+  } catch (e) { console.error(e); hataYaz("td-hata", tdHata(e)); }
+  $("td-dogrula").disabled = false;
+};
+$("td-geri").onclick = tdSifirla;
 
 async function ilanTamamenSil(id) {
   const s = await getDocs(collection(db, "yolculuklar", id, "iletisim"));
