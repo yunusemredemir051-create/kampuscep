@@ -12,7 +12,11 @@
     "unievi": {
       "rosto köfte": "unievi-rosto-kofte",
       "makarna": "unievi-makarna",
-      "domates çorbası": "unievi-domates-corbasi"
+      "domates çorbası": "unievi-domates-corbasi",
+      "fırında tavuk": "unievi-firinda-tavuk",
+      "bulgur pilavı": "unievi-bulgur-pilavi",
+      "mercimek çorbası": "unievi-mercimek-corbasi",
+      "yoğurt": "unievi-yogurt"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
     /* KYK yurtları (Elazığ'daki KYK yurtlarında menü ortak) */
