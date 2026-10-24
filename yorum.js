@@ -129,6 +129,8 @@ css.textContent = `
 .dg-admin-giris-serit{text-align:right;margin-bottom:8px}
 .dg-giris-link{border:0;background:none;color:var(--soluk,#8a90a8);font:600 11.5px var(--font,inherit);cursor:pointer;text-decoration:underline}
 .dg-giris-link:hover{color:var(--mavi,#3b5bfd)}
+.dg-tum-btn{border:0;background:#3b5bfd;color:#fff;border-radius:8px;padding:4px 10px;font:700 11.5px var(--font,inherit);cursor:pointer;margin-right:6px}
+.dg-tum-btn:hover{background:#2546e5}
 .dg-cikis-btn{border:0;background:rgba(0,0,0,.08);color:#78350f;border-radius:8px;padding:4px 8px;font:700 11.5px var(--font,inherit);cursor:pointer}
 .dg-cikis-btn:hover{background:rgba(0,0,0,.15)}
 .dg-sil-btn{border:0;background:rgba(220,38,38,.08);color:#dc2626;border-radius:99px;padding:3px 8px;font:700 11px var(--font,inherit);cursor:pointer;transition:background .15s}
@@ -411,8 +413,11 @@ function panelCiz(el) {
   const p = el.querySelector(".dg-panel");
   const adminSerit = isAdmin()
     ? `<div class="dg-admin-serit">
-        <span>👑 Yönetici Modu: <b>${esc(ADMIN_EMAIL)}</b></span>
-        <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
+        <span>👑 Yönetici: <b>${esc(ADMIN_EMAIL)}</b></span>
+        <div style="display:flex;align-items:center">
+          <button type="button" class="dg-tum-btn" id="dg-tum-yemekler-btn">🍽️ Tüm Yemekler</button>
+          <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
+        </div>
        </div>`
     : `<div class="dg-admin-giris-serit">
         <button type="button" class="dg-giris-link" id="dg-admin-giris">🔑 Yönetici Girişi</button>
@@ -427,6 +432,8 @@ function panelCiz(el) {
   if (btnGiris) btnGiris.onclick = adminGirisYap;
   const btnCikis = p.querySelector("#dg-admin-cikis");
   if (btnCikis) btnCikis.onclick = adminCikisYap;
+  const btnTum = p.querySelector("#dg-tum-yemekler-btn");
+  if (btnTum) btnTum.onclick = () => window.KC_YEMEK_PANEL && window.KC_YEMEK_PANEL.ac();
 
   p.querySelector(".dg-ad").oninput = e => adYaz(e.target.value.trim());
   formBagla(el, p.querySelector(".dg-form"), null);
@@ -685,12 +692,36 @@ async function yukleYemekFoto(yemekAdi, base64Data) {
   }
 }
 
+async function silYemekFoto(yemekAdi) {
+  if (!isAdmin()) return false;
+  const slug = asciiYapici(yemekAdi);
+  if (!slug) return false;
+
+  delete window.KC_BULUT_FOTOLAR[slug];
+  try {
+    localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
+  } catch (e) {}
+  window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
+
+  try {
+    const ref = doc(db, "yemekFotolari", slug);
+    await deleteDoc(ref);
+    toast(`🗑️ "${yemekAdi}" fotoğrafı kaldırıldı.`);
+    return true;
+  } catch (err) {
+    console.error("Fotoğraf silme hatası:", err);
+    toast("Silinemedi: " + (err.message || err));
+    return false;
+  }
+}
+
 /* ---------- global admin köprüsü ---------- */
 window.KC_ADMIN = {
   isAdmin,
   adminGirisYap,
   adminCikisYap,
   yukleYemekFoto,
+  silYemekFoto,
   getDb: () => db,
   getAuth: () => auth,
   ADMIN_EMAIL

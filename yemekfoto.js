@@ -1,8 +1,106 @@
-/* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları ve yönetici fotoğraf yükleme desteği. */
+/* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları, yönetici paneli ve "Tüm Yemekler" fotoğraf yöneticisi. */
 (function () {
   "use strict";
 
   const Y = "/gorseller/yemek/";
+  const TUM_KATALOG = [
+  "Ayran",
+  "Ayran aşı çorbası",
+  "Beyaz peynir",
+  "Bezelye yemeği",
+  "Brownie",
+  "Bulgur pilavı",
+  "Çay",
+  "Çikolatalı kek",
+  "Çoban salata",
+  "Domates çorbası",
+  "Düğün çorbası",
+  "Ekmek arası köfte",
+  "Elma",
+  "Erişte pilavı",
+  "Etli dolma",
+  "Etli kuru fasulye",
+  "Etli taze fasulye",
+  "Etsiz kuru fasulye",
+  "Ezogelin çorbası",
+  "Fırında sebzeli tavuk ızgara",
+  "Fırında tavuk",
+  "Hamburger köfte + patates",
+  "Haşlanmış yumurta",
+  "Haydari",
+  "Ispanak yemeği",
+  "Ispanaklı börek",
+  "Karışık kızartma",
+  "Karışık pizza",
+  "Karışık salata",
+  "Karışık sebze graten",
+  "Kaşar peynir",
+  "Kaşarlı omlet",
+  "Kek + bal + tereyağı",
+  "Kıymalı ıspanak",
+  "Krem peynir",
+  "Kuşbaşılı patlıcan kebap",
+  "Labne peynir",
+  "Makarna",
+  "Makarna salatası",
+  "Menemen",
+  "Mercimek çorbası",
+  "Mevsim salata",
+  "Mevsim soslu karışık kızartma",
+  "Mevsim türlü",
+  "Meyve",
+  "Mozaik kek",
+  "Mücver",
+  "Nohutlu pirinç pilavı",
+  "Nugget",
+  "Orman kebabı",
+  "Orman kebap",
+  "Patates kavurma",
+  "Patates kızartma",
+  "Patates salatası",
+  "Patlıcan musakka",
+  "Patlıcan parmak kebabı",
+  "Peynirli börek",
+  "Peynirli omlet",
+  "Pirinç pilavı",
+  "Poğaça",
+  "Rosto köfte",
+  "Sade omlet",
+  "Sade poğaça",
+  "Salçalı mantı",
+  "Salçalı sosis",
+  "Sebze çorbası",
+  "Sebzeli bulgur pilavı",
+  "Simit",
+  "Siyah / yeşil zeytin",
+  "Sosis kızartma",
+  "Soslu makarna",
+  "Sucuklu omlet",
+  "Sucuklu yumurta",
+  "Sulu patates",
+  "Sütlaç",
+  "Şehriye çorbası",
+  "Şekerpare",
+  "Şinitzel",
+  "Tahin helva",
+  "Tarhana çorbası",
+  "Tatlı",
+  "Tavuk baget kızartma",
+  "Tavuk burger",
+  "Tavuk çöp şiş",
+  "Tavuk döner",
+  "Tavuk kavurma",
+  "Tavuk sote",
+  "Tavuk tantuni",
+  "Taze fasulye",
+  "Tulumba",
+  "Yayla çorbası",
+  "Yoğurt",
+  "Yoğurtlu kabak",
+  "Yoğurtlu mantı",
+  "Zeytinli / peynirli açma"
+];
+
   const FOTOLAR = {
     "unievi": {
       "rosto köfte": "unievi-rosto-kofte",
@@ -14,7 +112,7 @@
       "yoğurt": "unievi-yogurt"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
-    /* KYK yurtları (Elazığ'daki KYK yurtlarında menü ortak) */
+    /* KYK yurtları */
     "yurt": {
       "mercimek çorbası": "yurt-mercimek-corbasi",
       "süzme mercimek çorbası": "yurt-mercimek-corbasi",
@@ -37,9 +135,9 @@
       "peynir": "yurt-beyaz-peynir",
       "krem peynir": "yurt-beyaz-peynir",
       "siyah / yeşil zeytin": "yurt-zeytin",
+      "zeytin": "yurt-zeytin",
       "siyah zeytin": "yurt-zeytin",
       "yeşil zeytin": "yurt-zeytin",
-      "zeytin": "yurt-zeytin",
       "çay": "yurt-cay",
       "cay": "yurt-cay",
       "şehriye çorbası": "yurt-sehriye-corbasi",
@@ -57,7 +155,6 @@
 
   const css = document.createElement("style");
   css.textContent = `
-  /* Fotoğraflı satırlarda turuncu list noktasını tamamen gizle */
   ul.yemekler li.fotolu::before,
   .yemekler li.fotolu::before,
   li.fotolu::before {
@@ -165,7 +262,7 @@
     margin-top: 8px;
   }
 
-  /* Admin Fotoğraf Butonları */
+  /* Admin Butonları */
   .yf-admin-btn {
     margin-left: auto;
     border: 1px dashed #3b5bfd;
@@ -181,6 +278,30 @@
   .yf-admin-btn:hover {
     background: #3b5bfd;
     color: #fff;
+  }
+
+  /* Yönetici Floating Butonu (Tüm Yemekler) */
+  .yf-admin-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 9990;
+    background: linear-gradient(135deg, #1e3a8a, #3b5bfd);
+    color: #fff;
+    border: 0;
+    border-radius: 999px;
+    padding: 11px 18px;
+    font: 800 13px var(--font, inherit);
+    box-shadow: 0 10px 25px -5px rgba(59, 91, 253, .5);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .yf-admin-fab:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px -4px rgba(59, 91, 253, .65);
   }
 
   /* Seçenek Modal */
@@ -271,6 +392,231 @@
     background: #e2e8f0;
     color: #334155;
   }
+
+  /* Tüm Yemekler Tam Yönetici Modalı */
+  .yf-katalog-perde {
+    position: fixed;
+    inset: 0;
+    z-index: 10010;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 18, 40, .75);
+    padding: 16px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: gir .2s ease;
+  }
+  .yf-katalog-kutu {
+    background: #fff;
+    border-radius: 24px;
+    width: min(650px, 100%);
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 35px 70px -20px rgba(0, 0, 0, .45);
+    font-family: var(--font, system-ui);
+    overflow: hidden;
+  }
+  .yf-katalog-ust {
+    padding: 20px 22px 14px;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: none;
+  }
+  .yf-katalog-ust h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 800;
+    color: #141b34;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .yf-katalog-ust p {
+    margin: 2px 0 0;
+    font-size: 12.5px;
+    color: #6b7390;
+  }
+  .yf-katalog-kapat {
+    border: 0;
+    background: #f1f5f9;
+    color: #64748b;
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: all .15s;
+  }
+  .yf-katalog-kapat:hover {
+    background: #fee2e2;
+    color: #ef4444;
+  }
+  .yf-katalog-araclar {
+    padding: 12px 22px;
+    background: #f8faff;
+    border-bottom: 1px solid #eef2f6;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: none;
+  }
+  .yf-katalog-ara-kutu {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  .yf-katalog-ara {
+    flex: 1;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    border-radius: 12px;
+    padding: 9px 14px;
+    font: 600 13.5px var(--font, inherit);
+    color: #1e293b;
+  }
+  .yf-katalog-filtreler {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .yf-kat-sekme {
+    border: 0;
+    background: #e2e8f0;
+    color: #475569;
+    padding: 5px 12px;
+    border-radius: 99px;
+    font: 700 12px var(--font, inherit);
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .yf-kat-sekme.aktif {
+    background: #3b5bfd;
+    color: #fff;
+  }
+  .yf-yeni-yemek-bar {
+    display: flex;
+    gap: 8px;
+    margin-top: 2px;
+  }
+  .yf-yeni-yemek-inp {
+    flex: 1;
+    border: 1.5px dashed #cbd5e1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 7px 12px;
+    font: 500 12.5px var(--font, inherit);
+  }
+  .yf-yeni-yemek-btn {
+    border: 0;
+    background: #16a34a;
+    color: #fff;
+    border-radius: 10px;
+    padding: 7px 14px;
+    font: 700 12px var(--font, inherit);
+    cursor: pointer;
+  }
+  .yf-katalog-liste {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 22px;
+    display: grid;
+    gap: 8px;
+  }
+  .yf-katalog-satir {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    background: #fff;
+    border: 1px solid #eef2f6;
+    border-radius: 14px;
+    transition: background .12s;
+  }
+  .yf-katalog-satir:hover {
+    background: #f8faff;
+  }
+  .yf-satir-resim {
+    width: 44px;
+    height: 44px;
+    border-radius: 11px;
+    overflow: hidden;
+    background: #f1f5f9;
+    display: grid;
+    place-items: center;
+    flex: none;
+    cursor: zoom-in;
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  }
+  .yf-satir-resim img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .yf-satir-bilgi {
+    flex: 1;
+    min-width: 0;
+  }
+  .yf-satir-ad {
+    font-weight: 700;
+    font-size: 14px;
+    color: #1e293b;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .yf-satir-durum {
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .yf-satir-durum.var {
+    color: #16a34a;
+  }
+  .yf-satir-durum.yok {
+    color: #94a3b8;
+  }
+  .yf-satir-eylem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: none;
+  }
+  .yf-btn-yukle {
+    border: 0;
+    background: #3b5bfd;
+    color: #fff;
+    border-radius: 8px;
+    padding: 6px 11px;
+    font: 700 12px var(--font, inherit);
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .yf-btn-yukle:hover {
+    background: #2546e5;
+  }
+  .yf-btn-degistir {
+    border: 1px solid #3b5bfd;
+    background: #eef3ff;
+    color: #3b5bfd;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font: 700 11.5px var(--font, inherit);
+    cursor: pointer;
+  }
+  .yf-btn-sil {
+    border: 0;
+    background: #fee2e2;
+    color: #dc2626;
+    border-radius: 8px;
+    padding: 5px 9px;
+    font: 700 11.5px var(--font, inherit);
+    cursor: pointer;
+  }
   `;
   document.head.appendChild(css);
 
@@ -338,7 +684,7 @@
   }
 
   let seciciInput = null;
-  function fotoSeciciAc(yemekAdi) {
+  function fotoSeciciAc(yemekAdi, onUploadSuccess) {
     if (!seciciInput) {
       seciciInput = document.createElement("input");
       seciciInput.type = "file";
@@ -349,14 +695,42 @@
     seciciInput.onchange = e => {
       const file = e.target.files && e.target.files[0];
       if (!file) return;
-      resimSikistir(file, 650, 0.82, base64 => {
+      resimSikistir(file, 650, 0.82, async base64 => {
         if (window.KC_ADMIN && window.KC_ADMIN.yukleYemekFoto) {
-          window.KC_ADMIN.yukleYemekFoto(yemekAdi, base64);
+          const ok = await window.KC_ADMIN.yukleYemekFoto(yemekAdi, base64);
+          if (ok && onUploadSuccess) onUploadSuccess();
         }
       });
       seciciInput.value = "";
     };
     seciciInput.click();
+  }
+
+  // Seçenekleri ayırırken siyah / yeşil zeytini ASLA bölme
+  function seceneklereAyir(yazi) {
+    const k = kucuk(yazi);
+    if (k.includes("zeytin") || k === "siyah / yeşil zeytin") {
+      return [yazi];
+    }
+    if (!yazi.includes("/")) return [yazi];
+    return yazi.split("/").map(p => p.trim()).filter(Boolean);
+  }
+
+  function fotoBulGenel(ad) {
+    if (!ad) return null;
+    const bulut = window.KC_BULUT_FOTOLAR || {};
+    const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
+    if (bulut[asc]) return bulut[asc];
+    if (bulut[sl]) return bulut[sl];
+    if (bulut[k]) return bulut[k];
+
+    // Yurt ve unievi tablolarında ara
+    if (FOTOLAR.yurt[k]) return FOTOLAR.yurt[k];
+    if (FOTOLAR.yurt[asc]) return FOTOLAR.yurt[asc];
+    if (FOTOLAR.yurt[sl]) return FOTOLAR.yurt[sl];
+    if (FOTOLAR.unievi[k]) return FOTOLAR.unievi[k];
+    if (FOTOLAR.unievi[asc]) return FOTOLAR.unievi[asc];
+    return null;
   }
 
   function secimDialogGoster(parcalar, fotoBulFn, secildiCallback) {
@@ -390,6 +764,161 @@
     document.body.appendChild(d);
   }
 
+  /* =====================================================================
+     TÜM YEMEKLER — YÖNETİCİ FOTOĞRAF PANELİ
+     ===================================================================== */
+  let katalogModal = null;
+  function tumYemeklerPaneliniAc() {
+    if (!window.KC_ADMIN || !window.KC_ADMIN.isAdmin || !window.KC_ADMIN.isAdmin()) {
+      alert("Bu paneli yalnızca yönetici (yunusemredemir051@gmail.com) açabilir.");
+      return;
+    }
+    if (katalogModal) katalogModal.remove();
+
+    const d = document.createElement("div");
+    d.className = "yf-katalog-perde";
+    d.innerHTML = `
+      <div class="yf-katalog-kutu">
+        <div class="yf-katalog-ust">
+          <div>
+            <h2>🍽️ Tüm Yemekler – Fotoğraf Paneli</h2>
+            <p>Tüm KYK ve Üniversite Evi yemeklerinin fotoğraflarını buradan topluca yönetebilirsiniz.</p>
+          </div>
+          <button type="button" class="yf-katalog-kapat" title="Kapat">×</button>
+        </div>
+        <div class="yf-katalog-araclar">
+          <div class="yf-katalog-ara-kutu">
+            <input type="text" class="yf-katalog-ara" placeholder="🔍 Yemek ara (örn: Köfte, Çorba, Omlet)...">
+          </div>
+          <div class="yf-katalog-filtreler">
+            <button type="button" class="yf-kat-sekme aktif" data-filtre="hepsi">Tümü</button>
+            <button type="button" class="yf-kat-sekme" data-filtre="var">Fotoğraflı (✓)</button>
+            <button type="button" class="yf-kat-sekme" data-filtre="yok">Fotoğrafsız (⏳)</button>
+          </div>
+          <div class="yf-yeni-yemek-bar">
+            <input type="text" class="yf-yeni-yemek-inp" placeholder="Listede olmayan yeni yemek ekle...">
+            <button type="button" class="yf-yeni-yemek-btn">+ Fotoğraf Yükle</button>
+          </div>
+        </div>
+        <div class="yf-katalog-liste" id="yf-katalog-liste-govde"></div>
+      </div>
+    `;
+
+    const kapatBtn = d.querySelector(".yf-katalog-kapat");
+    kapatBtn.onclick = () => { d.remove(); katalogModal = null; };
+    d.onclick = e => { if (e.target === d) { d.remove(); katalogModal = null; } };
+
+    const araInp = d.querySelector(".yf-katalog-ara");
+    const listeGovde = d.querySelector("#yf-katalog-liste-govde");
+    let aktifFiltre = "hepsi";
+
+    // Sekmeler
+    d.querySelectorAll(".yf-kat-sekme").forEach(b => {
+      b.onclick = () => {
+        d.querySelectorAll(".yf-kat-sekme").forEach(x => x.classList.remove("aktif"));
+        b.classList.add("aktif");
+        aktifFiltre = b.dataset.filtre;
+        ciz();
+      };
+    });
+
+    // Yeni yemek ekleme
+    const yeniInp = d.querySelector(".yf-yeni-yemek-inp");
+    const yeniBtn = d.querySelector(".yf-yeni-yemek-btn");
+    yeniBtn.onclick = () => {
+      const ad = yeniInp.value.trim();
+      if (!ad) { yeniInp.focus(); return; }
+      fotoSeciciAc(ad, () => {
+        if (!TUM_KATALOG.includes(ad)) TUM_KATALOG.unshift(ad);
+        yeniInp.value = "";
+        ciz();
+      });
+    };
+
+    function ciz() {
+      const q = kucuk(araInp.value);
+      let liste = TUM_KATALOG.filter(ad => {
+        if (q && !kucuk(ad).includes(q)) return false;
+        const foto = fotoBulGenel(ad);
+        if (aktifFiltre === "var") return !!foto;
+        if (aktifFiltre === "yok") return !foto;
+        return true;
+      });
+
+      if (!liste.length) {
+        listeGovde.innerHTML = `<div style="text-align:center;padding:30px;color:#94a3b8;font-weight:600">Aramanıza uygun yemek bulunamadı.</div>`;
+        return;
+      }
+
+      listeGovde.innerHTML = liste.map(ad => {
+        const foto = fotoBulGenel(ad);
+        const varMi = !!foto;
+        const resimHtml = varMi
+          ? `<img src="${resimSrc(foto)}" alt="${ad}">`
+          : `<span style="font-size:22px">🍽️</span>`;
+
+        return `
+          <div class="yf-katalog-satir" data-ad="${ad}">
+            <div class="yf-satir-resim" ${varMi ? `onclick="window.KC_YEMEK_PANEL.buyut('${foto}', '${ad}')"` : ""}>
+              ${resimHtml}
+            </div>
+            <div class="yf-satir-bilgi">
+              <span class="yf-satir-ad">${ad}</span>
+              <span class="yf-satir-durum ${varMi ? "var" : "yok"}">
+                ${varMi ? "✓ Fotoğrafı Var" : "Fotoğraf Yok"}
+              </span>
+            </div>
+            <div class="yf-satir-eylem">
+              ${varMi ? `
+                <button type="button" class="yf-btn-degistir" data-degistir="${ad}">📷 Değiştir</button>
+                <button type="button" class="yf-btn-sil" data-sil="${ad}">🗑️</button>
+              ` : `
+                <button type="button" class="yf-btn-yukle" data-yukle="${ad}">➕ Fotoğraf Yükle</button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      // Satır buton olayları
+      listeGovde.querySelectorAll("[data-yukle]").forEach(btn => {
+        btn.onclick = () => {
+          fotoSeciciAc(btn.dataset.yukle, () => ciz());
+        };
+      });
+
+      listeGovde.querySelectorAll("[data-degistir]").forEach(btn => {
+        btn.onclick = () => {
+          fotoSeciciAc(btn.dataset.degistir, () => ciz());
+        };
+      });
+
+      listeGovde.querySelectorAll("[data-sil]").forEach(btn => {
+        btn.onclick = async () => {
+          const ad = btn.dataset.sil;
+          if (!confirm(`"${ad}" için yüklenen fotoğrafı kaldırmak istediğinize emin misiniz?`)) return;
+          if (window.KC_ADMIN && window.KC_ADMIN.silYemekFoto) {
+            await window.KC_ADMIN.silYemekFoto(ad);
+            ciz();
+          }
+        };
+      });
+    }
+
+    araInp.oninput = () => ciz();
+    ciz();
+    document.body.appendChild(d);
+    katalogModal = d;
+  }
+
+  window.KC_YEMEK_PANEL = {
+    ac: tumYemeklerPaneliniAc,
+    buyut: buyut
+  };
+
+  /* =====================================================================
+     MENÜ GÜNCELLEME
+     ===================================================================== */
   function guncelle(ul) {
     const kimlik = menuKimligi(ul);
     const eskiEk = ul.parentNode.querySelector(".yf-ek"); if (eskiEk) eskiEk.remove();
@@ -407,6 +936,23 @@
     );
 
     const yoneticiMi = window.KC_ADMIN && window.KC_ADMIN.isAdmin && window.KC_ADMIN.isAdmin();
+
+    // Floating admin butonu yöneticiye göster
+    let fab = document.getElementById("yf-admin-fab-btn");
+    if (yoneticiMi) {
+      if (!fab) {
+        fab = document.createElement("button");
+        fab.id = "yf-admin-fab-btn";
+        fab.className = "yf-admin-fab";
+        fab.type = "button";
+        fab.innerHTML = "👑 Tüm Yemekler";
+        fab.title = "Tüm Yemeklerin Fotoğraflarını Yönet";
+        fab.onclick = tumYemeklerPaneliniAc;
+        document.body.appendChild(fab);
+      }
+    } else if (fab) {
+      fab.remove();
+    }
 
     ul.querySelectorAll("li").forEach(li => {
       if (li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;
@@ -429,24 +975,22 @@
         return null;
       };
 
-      // 1) Önce tüm satır için fotoğraf var mı (Örn: "siyah / yeşil zeytin")
+      // 1) Siyah / yeşil zeytin gibi yemekler tek parçadır, ayrılmaz
+      const parcalar = seceneklereAyir(yazi);
       let secenekler = [];
-      const tumuFoto = fotoBul(yazi);
-      if (tumuFoto) {
-        secenekler = [[yazi, tumuFoto]];
-      } else if (yazi.includes("/")) {
-        // 2) Yoksa ve "/" varsa seçeneklere böl
-        const parcalar = yazi.split("/").map(p => p.trim()).filter(Boolean);
+
+      if (parcalar.length === 1) {
+        const f = fotoBul(parcalar[0]);
+        if (f) secenekler = [[parcalar[0], f]];
+      } else {
         secenekler = parcalar.map(p => [p, fotoBul(p)]).filter(([_, f]) => !!f);
       }
 
-      // Mevcut yf-grup ve admin butonunu kaldırıp baştan çizelim
+      // Temizleyip baştan çiz
       const eskiGrup = li.querySelector(".yf-grup");
       if (eskiGrup) eskiGrup.remove();
       const eskiMetin = li.querySelector(".yf-metin");
-      if (eskiMetin) {
-        li.textContent = yazi;
-      }
+      if (eskiMetin) li.textContent = yazi;
       const eskiAdminBtn = li.querySelector(".yf-admin-btn");
       if (eskiAdminBtn) eskiAdminBtn.remove();
 
@@ -485,13 +1029,13 @@
         btn.title = `"${yazi}" için fotoğraf yükle`;
         btn.onclick = (e) => {
           e.stopPropagation();
-          const parcalar = yazi.includes("/") ? yazi.split("/").map(p => p.trim()).filter(Boolean) : [yazi];
-          if (parcalar.length > 1) {
-            secimDialogGoster(parcalar, fotoBul, secilen => {
+          const secimParcalari = seceneklereAyir(yazi);
+          if (secimParcalari.length > 1) {
+            secimDialogGoster(secimParcalari, fotoBul, secilen => {
               fotoSeciciAc(secilen);
             });
           } else {
-            fotoSeciciAc(yazi);
+            fotoSeciciAc(secimParcalari[0]);
           }
         };
         li.appendChild(btn);
