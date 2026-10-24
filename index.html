@@ -376,6 +376,84 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 .kutu:hover .resim { animation-duration: .9s; }
 @media (prefers-reduced-motion: reduce) { .yemekler li, .yemekler li::before, .gorselli img, .kutu .resim, .afis img, .baslik-g img, .kapak { animation: none !important; } }
 @media (prefers-reduced-motion: reduce) { .sayfa.aktif { animation: none; } }
+/* ================= AYLIK MENÜ BUTONU VE MODAL ================= */
+.aylik-btn {
+  width: 100%; margin-top: 14px; padding: 11px 14px;
+  background: rgba(59, 91, 253, .08); color: var(--mavi);
+  border: 1px dashed rgba(59, 91, 253, .35); border-radius: 14px;
+  font: 700 13.5px var(--font); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all .15s ease;
+}
+.aylik-btn:hover { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+[data-tema="koyu"] .aylik-btn { background: rgba(90, 130, 255, .15); color: #8ea5ff; border-color: rgba(90, 130, 255, .3); }
+[data-tema="koyu"] .aylik-btn:hover { background: #3b5bfd; color: #fff; }
+
+.modal-perde {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(14, 20, 40, .45);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  display: none; align-items: center; justify-content: center;
+  padding: 16px; animation: modalAc .2s ease;
+}
+.modal-perde.aktif { display: flex; }
+@keyframes modalAc { from { opacity: 0; } to { opacity: 1; } }
+.modal-kutu {
+  background: #ffffff;
+  border: 1px solid var(--cam-kenar);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px -15px rgba(20, 30, 80, .3);
+  width: 100%; max-width: 600px;
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  animation: modalYuksel .25s cubic-bezier(.16, 1, .3, 1);
+}
+@keyframes modalYuksel { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: none; } }
+.modal-ust {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 20px; border-bottom: 1px solid var(--cizgi);
+  background: #fff; flex: none;
+}
+.modal-ust h3 { margin: 0; font-size: 18px; font-weight: 800; }
+.modal-ust p { margin: 2px 0 0; font-size: 12.5px; color: var(--soluk); font-weight: 600; }
+.modal-kapat {
+  width: 36px; height: 36px; border-radius: 12px; border: 0;
+  background: rgba(20, 27, 52, .06); color: var(--yazi);
+  font-size: 20px; font-weight: 700; cursor: pointer;
+  display: grid; place-items: center;
+}
+.modal-kapat:hover { background: rgba(20, 27, 52, .12); }
+.modal-icerik {
+  padding: 16px 20px; overflow-y: auto; flex: 1;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.aylik-gun-kart {
+  background: #f8faff; border: 1px solid var(--cizgi);
+  border-radius: 16px; padding: 14px 16px; text-align: left;
+}
+.aylik-gun-kart.bugun {
+  border-color: var(--mavi); background: var(--mavi-acik);
+  box-shadow: 0 4px 14px rgba(59, 91, 253, .12);
+}
+.aylik-gun-kart.yarin {
+  border-color: var(--yesil); background: var(--yesil-acik);
+}
+.aylik-gun-baslik {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 8px; font-weight: 800; font-size: 14.5px;
+}
+.aylik-ogun-bloku { margin-top: 6px; font-size: 13.5px; line-height: 1.45; }
+.aylik-ogun-bloku b { color: var(--soluk); font-size: 11.5px; text-transform: uppercase; letter-spacing: .5px; display: block; margin-bottom: 2px; }
+.aylik-ogun-bloku p { margin: 0; font-weight: 600; }
+
+[data-tema="koyu"] .modal-kutu { background: #1a2035; color: #f0f3fe; border-color: #2b3350; }
+[data-tema="koyu"] .modal-ust { background: #1a2035; border-color: #2b3350; }
+[data-tema="koyu"] .modal-kapat { background: rgba(255,255,255,.1); color: #fff; }
+[data-tema="koyu"] .aylik-gun-kart { background: #222942; border-color: #2e3758; }
+[data-tema="koyu"] .aylik-gun-kart.bugun { background: #1e2954; border-color: #4f6ff6; }
+[data-tema="koyu"] .aylik-gun-kart.yarin { background: #183329; border-color: #16b67a; }
+
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
 .vitrin { display: none !important; }
 </style>
@@ -456,10 +534,6 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <span class="etiket mavi">KYK</span>
           </div>
           <select class="yurt-sec" id="ana-yurt" aria-label="Yurt seç"></select>
-          <div class="secici" id="ana-gun-secici">
-            <button class="aktif" data-gun="0">Bugün</button>
-            <button data-gun="1">Yarın</button>
-          </div>
           <div class="secici" id="ana-secici">
             <button data-ogun="kahvalti">Kahvaltı</button>
             <button data-ogun="aksam">Akşam</button>
@@ -467,7 +541,11 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <p class="ogun-saat" id="ana-saat"></p>
           <ul class="yemekler" id="ana-yemekler"></ul>
           <div class="degerlendir" id="dg-ana" data-menu=""></div>
-                  </div>
+          <button class="aylik-btn" type="button" onclick="aylikMenuAc(anaYurt)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Tüm ayın menüsünü gör
+          </button>
+        </div>
 
         <div class="menu-kart cam">
           <div class="menu-ust">
@@ -521,18 +599,18 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
         <button class="geri" onclick="yurtListeyeDon()">‹ Tüm yurtlar</button>
         <div class="ust-bilgi gorselli"><div><small id="detay-tur"></small><h1 id="detay-ad"></h1></div><img class="yurt-b" id="detay-gorsel" alt="" loading="lazy"></div>
         <div class="menu-kart cam">
-          <div class="menu-ust"><div><h2>Yurt menüsü</h2></div></div>
-          <div class="secici" id="detay-gun-secici" style="margin-top:14px">
-            <button class="aktif" data-gun="0">Bugün</button>
-            <button data-gun="1">Yarın</button>
-          </div>
-          <div class="secici" id="detay-secici">
+          <div class="menu-ust"><div><h2>Bugünün menüsü</h2></div></div>
+          <div class="secici" id="detay-secici" style="margin-top:14px">
             <button data-ogun="kahvalti">Kahvaltı</button>
             <button data-ogun="aksam">Akşam</button>
           </div>
           <p class="ogun-saat" id="detay-saat"></p>
           <ul class="yemekler" id="detay-yemekler"></ul>
           <div class="degerlendir" id="dg-detay" data-menu=""></div>
+          <button class="aylik-btn" type="button" onclick="aylikMenuAc(detayYurt ? detayYurt.id : anaYurt)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            Tüm ayın menüsünü gör
+          </button>
         </div>
         <div class="vitrin">Sponsorlu alan</div>
       </div>
@@ -953,7 +1031,6 @@ function yurtMenuYaz(elId, id, ogun, d = bugun) {
 
 let anaYurt = hafizaOku("secilenYurt") || yurtlar[0].id;
 let anaOgun = varsayilanOgun;
-let anaGun = 0;
 const anaSec = document.getElementById("ana-yurt");
 anaSec.innerHTML =
   `<optgroup label="Kız yurtları">${yurtlar.filter(y => y.tur === "kiz").map(y => `<option value="${y.id}">${y.ad}</option>`).join("")}</optgroup>` +
@@ -962,13 +1039,10 @@ anaSec.value = anaYurt;
 anaSec.onchange = () => { anaYurt = anaSec.value; hafizaYaz("secilenYurt", anaYurt); anaMenuGuncelle(); };
 
 function anaMenuGuncelle() {
-  const d = ekle(bugun, anaGun);
-  document.querySelectorAll("#ana-gun-secici button").forEach(b => b.classList.toggle("aktif", +b.dataset.gun === anaGun));
   document.querySelectorAll("#ana-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === anaOgun));
-  yurtMenuYaz("ana-yemekler", anaYurt, anaOgun, d);
-  document.getElementById("ana-saat").textContent = (anaOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[anaOgun](d);
+  yurtMenuYaz("ana-yemekler", anaYurt, anaOgun, bugun);
+  document.getElementById("ana-saat").textContent = (anaOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[anaOgun](bugun);
 }
-document.querySelectorAll("#ana-gun-secici button").forEach(b => b.onclick = () => { anaGun = +b.dataset.gun; anaMenuGuncelle(); });
 document.querySelectorAll("#ana-secici button").forEach(b => b.onclick = () => { anaOgun = b.dataset.ogun; anaMenuGuncelle(); });
 anaMenuGuncelle();
 /* Üniversite Evi: tarihe göre menü */
@@ -1017,10 +1091,9 @@ document.querySelectorAll("#yurt-filtre button").forEach(b => b.onclick = () => 
 });
 yurtListesiCiz();
 
-let detayYurt = null, detayOgun = varsayilanOgun, detayGun = 0;
+let detayYurt = null, detayOgun = varsayilanOgun;
 function yurtAc(id) {
   detayYurt = yurtlar.find(y => y.id === id);
-  detayGun = 0;
   detayOgun = varsayilanOgun;
   document.getElementById("yurt-liste-gorunum").style.display = "none";
   document.getElementById("yurt-detay").style.display = "block";
@@ -1031,14 +1104,70 @@ function yurtAc(id) {
   window.scrollTo({ top: 0 });
 }
 function detayMenuGuncelle() {
-  const d = ekle(bugun, detayGun);
-  document.querySelectorAll("#detay-gun-secici button").forEach(b => b.classList.toggle("aktif", +b.dataset.gun === detayGun));
   document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
-  yurtMenuYaz("detay-yemekler", detayYurt.id, detayOgun, d);
-  document.getElementById("detay-saat").textContent = (detayOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[detayOgun](d);
+  yurtMenuYaz("detay-yemekler", detayYurt.id, detayOgun, bugun);
+  document.getElementById("detay-saat").textContent = (detayOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[detayOgun](bugun);
 }
-document.querySelectorAll("#detay-gun-secici button").forEach(b => b.onclick = () => { detayGun = +b.dataset.gun; detayMenuGuncelle(); });
 document.querySelectorAll("#detay-secici button").forEach(b => b.onclick = () => { detayOgun = b.dataset.ogun; detayMenuGuncelle(); });
+
+/* ================= AYLIK MENÜ MODAL MANTIĞI ================= */
+function aylikMenuAc(yurtId) {
+  const y = yurtlar.find(x => x.id === yurtId);
+  const ym = yurtMenuleri[yurtId];
+  const baslikEl = document.getElementById("aylik-modal-baslik");
+  const icerikEl = document.getElementById("aylik-modal-icerik");
+  baslikEl.textContent = (y ? y.ad : "Yurt") + " – Tüm Ayın Menüsü";
+
+  if (!ym) {
+    icerikEl.innerHTML = '<div class="bos-menu">Bu yurdun menüsü henüz eklenmedi.</div>';
+  } else {
+    const tarihler = Object.keys(ym).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+    if (!tarihler.length) {
+      icerikEl.innerHTML = '<div class="bos-menu">Bu yurt için tarihli menü listesi bulunamadı.</div>';
+    } else {
+      icerikEl.innerHTML = tarihler.map(k => {
+        const d = T(k);
+        const bugunMu = +d === +bugun;
+        const yarinMu = +d === +ekle(bugun, 1);
+        const rozet = bugunMu ? '<span class="etiket mavi">Bugün</span>' : yarinMu ? '<span class="etiket yesil">Yarın</span>' : '';
+        const sinif = bugunMu ? ' bugun' : yarinMu ? ' yarin' : '';
+        const idAttr = bugunMu ? ' id="aylik-bugun"' : (yarinMu ? ' id="aylik-yarin"' : '');
+        const gun = ym[k];
+        const khv = gun.kahvalti && gun.kahvalti.length ? gun.kahvalti.join(" · ") : "–";
+        const aks = gun.aksam && gun.aksam.length ? gun.aksam.join(" · ") : "–";
+        const tarihBaslik = d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" });
+
+        return `<div class="aylik-gun-kart${sinif}"${idAttr}>
+          <div class="aylik-gun-baslik">
+            <span>${tarihBaslik}</span>
+            ${rozet}
+          </div>
+          <div class="aylik-ogun-bloku">
+            <b>Kahvaltı:</b>
+            <p>${khv}</p>
+          </div>
+          <div class="aylik-ogun-bloku">
+            <b>Akşam yemeği:</b>
+            <p>${aks}</p>
+          </div>
+        </div>`;
+      }).join("");
+    }
+  }
+
+  document.getElementById("aylik-modal").classList.add("aktif");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => {
+    const hedef = document.getElementById("aylik-bugun") || document.getElementById("aylik-yarin");
+    if (hedef) hedef.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, 150);
+}
+
+function aylikMenuKapat() {
+  document.getElementById("aylik-modal").classList.remove("aktif");
+  document.body.style.overflow = "";
+}
+document.addEventListener("keydown", e => { if (e.key === "Escape") aylikMenuKapat(); });
 function yurtListeyeDon() {
   document.getElementById("yurt-liste-gorunum").style.display = "block";
   document.getElementById("yurt-detay").style.display = "none";
@@ -1129,5 +1258,18 @@ function geriSay() {
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=2"></script>
 <script src="/vitrin.js?v=7"></script>
+<!-- Aylık Menü Modalı -->
+<div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">
+  <div class="modal-kutu">
+    <div class="modal-ust">
+      <div>
+        <h3 id="aylik-modal-baslik">Aylık Menü</h3>
+        <p id="aylik-modal-alt">Ekim 2026 kahvaltı ve akşam yemekleri</p>
+      </div>
+      <button class="modal-kapat" type="button" onclick="aylikMenuKapat()" aria-label="Kapat">×</button>
+    </div>
+    <div class="modal-icerik" id="aylik-modal-icerik"></div>
+  </div>
+</div>
 </body>
 </html>
