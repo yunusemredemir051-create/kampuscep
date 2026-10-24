@@ -796,11 +796,24 @@ const bugun = new Date(); bugun.setHours(0, 0, 0, 0);
    SAYFA GEÇİŞLERİ
    ===================================================================== */
 function sayfaAc(id) {
+  if (!id) id = "ana";
   document.querySelectorAll(".sayfa").forEach(s => s.classList.toggle("aktif", s.id === id));
   document.querySelectorAll(".sekme").forEach(b => b.classList.toggle("aktif", b.dataset.sayfa === id));
   if (id === "yurtlar") yurtListeyeDon();
   if (id === "notlar") bolumKapat();
   window.scrollTo({ top: 0 });
+
+  hafizaYaz("kc-aktif-sayfa", id);
+  try {
+    if (id === "ana") {
+      if (location.hash && location.hash !== "#admin") {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+    } else {
+      history.replaceState(null, "", "#" + id);
+    }
+  } catch (e) {}
+
   /* Ziyaret istatistiği: sekme değişimini ayrı sayfa görüntüleme olarak say */
   if (sayfaAc.ilk && window.gtag) gtag("event", "page_view", { page_title: "KampüsCepte – " + id, page_location: location.origin + "/#" + id });
 }
@@ -1233,12 +1246,31 @@ function sinifSec(s) {
 }
 document.querySelectorAll("#sinif-sekme button").forEach(b => b.onclick = () => sinifSec(b.dataset.sinif));
 
-/* Adres çubuğundan doğrudan açma: index.html#takvim, index.html#ybs-1 gibi */
+/* Adres çubuğundan doğrudan açma ve yenilemede son bulunulan ekranda kalma */
 function adresiAc() {
   const h = location.hash.slice(1);
-  if (["yurtlar", "notlar", "takvim", "araclar"].includes(h)) sayfaAc(h);
+  if (h === "admin") return; // Yönetici girişi kontrolü, sekmeyi değiştirme
+
   const m = h.match(/^ybs-([1-4])$/);
-  if (m) { sayfaAc("notlar"); bolumAc(); sinifSec(m[1]); }
+  if (m) {
+    sayfaAc("notlar");
+    bolumAc();
+    sinifSec(m[1]);
+    return;
+  }
+
+  if (["ana", "yurtlar", "notlar", "takvim", "araclar"].includes(h)) {
+    sayfaAc(h);
+    return;
+  }
+
+  // Hash yoksa veya geçersizse son kalınan sayfada kal
+  const son = hafizaOku("kc-aktif-sayfa");
+  if (son && ["ana", "yurtlar", "notlar", "takvim", "araclar"].includes(son)) {
+    sayfaAc(son);
+  } else {
+    sayfaAc("ana");
+  }
 }
 adresiAc();
 window.addEventListener("hashchange", adresiAc);
@@ -1283,9 +1315,9 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=12"></script>
+<script src="/yemekfoto.js?v=13"></script>
 <script src="/firebase-ayar.js"></script>
-<script type="module" src="/yorum.js?v=7"></script>
+<script type="module" src="/yorum.js?v=8"></script>
 <script src="/vitrin.js?v=7"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">
