@@ -46,7 +46,7 @@ service cloud.firestore {
         && yurtTuruUyar(request.resource.data)
         && request.resource.data.yurtTur == benimTurum()
         && request.resource.data.yon in ['gidis', 'donus']
-        && request.resource.data.yer in ['otogar', 'havaalani']
+        && request.resource.data.yer in ['otogar', 'havaalani', 'miniterminal']
         && request.resource.data.zaman is timestamp
         && request.resource.data.zaman > request.time - duration.value(1, 'h')
         && request.resource.data.zaman < request.time + duration.value(31, 'd')
@@ -110,6 +110,17 @@ service cloud.firestore {
     }
 
 
+
+    // KPSS Sınav Arkadaşı (25-26 Ekim 2026)
+    match /kpss2026/{id} {
+      allow read: if true;
+      allow create: if girisli()
+        && metin(request.resource.data.okul, 100)
+        && metin(request.resource.data.ad, 40)
+        && metin(request.resource.data.cikis, 80);
+      allow update: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
+      allow delete: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
+    }
 
     // Ban listeleri: herkes okur (ban kontrolü için); yalnızca yönetici yazar ve siler
     match /engelliler/{uid} {
