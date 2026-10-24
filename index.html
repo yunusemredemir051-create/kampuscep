@@ -389,6 +389,20 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 [data-tema="koyu"] .aylik-btn { background: rgba(90, 130, 255, .15); color: #8ea5ff; border-color: rgba(90, 130, 255, .3); }
 [data-tema="koyu"] .aylik-btn:hover { background: #3b5bfd; color: #fff; }
 
+.menu-not-kutu {
+  margin-top: 12px; padding: 10px 12px;
+  background: rgba(255, 138, 61, .09);
+  border: 1px solid rgba(255, 138, 61, .28);
+  border-radius: 12px;
+  font-size: 12.5px; line-height: 1.45;
+  color: #a34e00; font-weight: 500;
+  display: none;
+}
+.menu-not-kutu.aktif { display: block; }
+.menu-not-kutu b { font-weight: 800; color: #803900; }
+[data-tema="koyu"] .menu-not-kutu { background: rgba(255, 138, 61, .15); border-color: rgba(255, 138, 61, .3); color: #ffb076; }
+[data-tema="koyu"] .menu-not-kutu b { color: #ffd0ab; }
+
 .modal-perde {
   position: fixed; inset: 0; z-index: 100;
   background: rgba(14, 20, 40, .45);
@@ -540,6 +554,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           </div>
           <p class="ogun-saat" id="ana-saat"></p>
           <ul class="yemekler" id="ana-yemekler"></ul>
+          <div class="menu-not-kutu" id="ana-menu-not"></div>
           <div class="degerlendir" id="dg-ana" data-menu=""></div>
           <button class="aylik-btn" type="button" onclick="aylikMenuAc(anaYurt)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -606,6 +621,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           </div>
           <p class="ogun-saat" id="detay-saat"></p>
           <ul class="yemekler" id="detay-yemekler"></ul>
+          <div class="menu-not-kutu" id="detay-menu-not"></div>
           <div class="degerlendir" id="dg-detay" data-menu=""></div>
           <button class="aylik-btn" type="button" onclick="aylikMenuAc(detayYurt ? detayYurt.id : anaYurt)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -1018,14 +1034,23 @@ function yurtMenusu(id, d = bugun) {
 }
 function yurtMenuYaz(elId, id, ogun, d = bugun) {
   const m = yurtMenusu(id, d), el = document.getElementById(elId);
+  const notEl = document.getElementById(elId === "ana-yemekler" ? "ana-menu-not" : "detay-menu-not");
   const dg = document.getElementById(elId === "ana-yemekler" ? "dg-ana" : "dg-detay");
   if (dg) dg.dataset.menu = m && m[ogun] && m[ogun].length ? `${id}_${tarihAnahtar(d)}_${ogun}` : "";
   if (m && m[ogun] && m[ogun].length) {
     listeYaz(elId, m[ogun]);
-    const not = ogun === "kahvalti" ? yurtMenuleri[id].kahvaltiNotu : null;
-    if (not) el.innerHTML += `<li class="bos-menu" style="list-style:none;font-size:13px">${not}</li>`;
   } else {
     el.innerHTML = `<li class="bos-menu" style="list-style:none">${yurtMenuleri[id] ? "Bu günün menüsü henüz eklenmedi." : "Bu yurdun menüsü henüz eklenmedi."}</li>`;
+  }
+  if (notEl) {
+    const ym = yurtMenuleri[id];
+    const notMetni = ogun === "kahvalti" ? (ym && ym.kahvaltiNotu) : (ym && ym.aksamNotu);
+    if (notMetni) {
+      notEl.innerHTML = `📌 <b>Not:</b> ${notMetni.replace(/^Not:\s*/i, "")}`;
+      notEl.classList.add("aktif");
+    } else {
+      notEl.classList.remove("aktif");
+    }
   }
 }
 
@@ -1127,7 +1152,9 @@ function aylikMenuAc(yurtId) {
     if (!tarihler.length) {
       icerikEl.innerHTML = '<div class="bos-menu">Bu ay için kalan başka menü bulunmuyor.</div>';
     } else {
-      icerikEl.innerHTML = tarihler.map(k => {
+      const notMetni = ym && ym.aksamNotu;
+      const notKutuHtml = notMetni ? `<div class="menu-not-kutu aktif" style="margin-bottom:12px">📌 <b>Not:</b> ${notMetni.replace(/^Not:\s*/i, "")}</div>` : "";
+      icerikEl.innerHTML = notKutuHtml + tarihler.map(k => {
         const d = T(k);
         const bugunMu = +d === +bugun;
         const yarinMu = +d === +ekle(bugun, 1);
