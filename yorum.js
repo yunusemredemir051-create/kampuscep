@@ -6,7 +6,7 @@ import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12
 import { getAuth, signInAnonymously, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, addDoc, onSnapshot, query, where,
-         getCountFromServer, getDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+         getCountFromServer, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 if (!window.FIREBASE_AYAR) throw new Error("firebase-ayar.js yok");
 const app = getApps()[0] || initializeApp(window.FIREBASE_AYAR);
@@ -36,14 +36,24 @@ const css = document.createElement("style");
 css.textContent = `
 .degerlendir{margin-top:12px;border-top:1px solid var(--cizgi,#e6e9f2);padding-top:12px}
 .degerlendir[data-menu=""]{display:none}
-.dg-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.dg-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.dg-puan-alani{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.8);padding:5px 12px;border-radius:999px;border:1px solid var(--cizgi,#e3e7f3)}
+.dg-yildizlar{display:inline-flex;align-items:center;gap:2px}
+.dg-star{background:none;border:0;padding:0 1px;font-size:22px;line-height:1;color:#c9d0e2;cursor:pointer;transition:transform .12s,color .12s;user-select:none}
+.dg-star:hover,.dg-star.aktif{color:#f59e0b;transform:scale(1.22)}
+.dg-star.secili{color:#f59e0b}
+.dg-puan-bilgi{font-size:13px;font-weight:700;color:var(--soluk,#6b7390);display:inline-flex;align-items:baseline;gap:4px}
+.dg-puan-bilgi b{color:#d97706;font-size:14px;font-weight:800}
+.dg-puan-bilgi small{font-size:12px;font-weight:600;color:var(--soluk,#8a90a8)}
 .dg-btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--cizgi,#e3e7f3);background:#fff;color:var(--soluk,#6b7390);
   font:700 13px var(--font,inherit);padding:7px 12px;border-radius:99px;cursor:pointer;transition:transform .15s,background .15s,color .15s}
 .dg-btn svg{width:16px;height:16px}
 .dg-btn:active{transform:scale(.94)}
-.dg-btn.secili.iyi{background:#e7f8ee;color:#1a9d55;border-color:#bfe9d1}
-.dg-btn.secili.kotu{background:#fdebec;color:#d23b4b;border-color:#f5c6cc}
 .dg-btn.yorum{margin-left:auto}
+[data-tema="koyu"] .dg-puan-alani{background:#1f263d;border-color:#2e3758}
+[data-tema="koyu"] .dg-star{color:#444d6e}
+[data-tema="koyu"] .dg-star:hover,[data-tema="koyu"] .dg-star.aktif,[data-tema="koyu"] .dg-star.secili{color:#fbbf24}
+[data-tema="koyu"] .dg-puan-bilgi b{color:#fbbf24}
 .dg-btn.yorum.acik{background:var(--mavi-acik,#e6ebff);color:var(--mavi,#3b5bfd);border-color:transparent}
 .dg-panel{margin-top:12px}
 .dg-ad{display:block;width:100%;margin-bottom:8px;border:1px solid var(--cizgi,#e3e7f3);border-radius:12px;padding:9px 12px;font:600 14px var(--font,inherit);color:var(--yazi,#141b34);background:#fff;box-sizing:border-box}
@@ -95,56 +105,137 @@ function kur(el) {
   if (eski && eski.id === id) return;
   if (eski && eski.dinle) eski.dinle();
   if (!MENU_RE.test(id)) { el.innerHTML = ""; kutular.delete(el); return; }
-  const d = { id, benimOy: 0, sayi: { iyi: 0, kotu: 0, yorum: 0 }, acik: false, yorumlar: [], yanit: null, dinle: null };
+  const d = { id, benimOy: 0, sayi: { toplam: 0, adet: 0, ortalama: 0, yorum: 0 }, acik: false, yorumlar: [], yanit: null, dinle: null };
   kutular.set(el, d);
   el.innerHTML = `<div class="dg-bar">
-      <button class="dg-btn iyi" data-oy="1" aria-label="Beğendim">${IKON.iyi}<span>0</span></button>
-      <button class="dg-btn kotu" data-oy="-1" aria-label="Beğenmedim">${IKON.kotu}<span>0</span></button>
+      <div class="dg-puan-alani">
+        <div class="dg-yildizlar" role="radiogroup" aria-label="5 yıldız üzerinden puanla">
+          <button type="button" class="dg-star" data-puan="1" aria-label="1 yıldız">★</button>
+          <button type="button" class="dg-star" data-puan="2" aria-label="2 yıldız">★</button>
+          <button type="button" class="dg-star" data-puan="3" aria-label="3 yıldız">★</button>
+          <button type="button" class="dg-star" data-puan="4" aria-label="4 yıldız">★</button>
+          <button type="button" class="dg-star" data-puan="5" aria-label="5 yıldız">★</button>
+        </div>
+        <span class="dg-puan-bilgi"><small>Puanla</small></span>
+      </div>
       <button class="dg-btn yorum" aria-expanded="false">${IKON.yorum}Yorumlar <span>0</span></button>
     </div><div class="dg-panel" hidden></div>`;
-  el.querySelectorAll("[data-oy]").forEach(b => b.onclick = () => oyVer(el, +b.dataset.oy));
+
+  const stars = el.querySelectorAll(".dg-star");
+  stars.forEach(btn => {
+    btn.onclick = () => oyVer(el, +btn.dataset.puan);
+    btn.onmouseenter = () => {
+      const p = +btn.dataset.puan;
+      stars.forEach(s => s.classList.toggle("aktif", +s.dataset.puan <= p));
+    };
+  });
+  const yildizKutu = el.querySelector(".dg-yildizlar");
+  if (yildizKutu) {
+    yildizKutu.onmouseleave = () => {
+      stars.forEach(s => s.classList.remove("aktif"));
+    };
+  }
   el.querySelector(".dg-btn.yorum").onclick = () => panelAc(el, !d.acik);
   sayilariGetir(el);
 }
 
 async function sayilariGetir(el) {
   const d = kutular.get(el); if (!d) return;
-  const oylar = collection(db, "menuler", d.id, "oylar");
+  const oylarRef = collection(db, "menuler", d.id, "oylar");
   try {
-    const [a, b, c] = await Promise.all([
-      getCountFromServer(query(oylar, where("d", "==", 1))),
-      getCountFromServer(query(oylar, where("d", "==", -1))),
+    const [snapOylar, c] = await Promise.all([
+      getDocs(oylarRef),
       d.acik ? Promise.resolve(null) : getCountFromServer(collection(db, "menuler", d.id, "yorumlar"))
     ]);
     if (kutular.get(el) !== d) return;
-    d.sayi.iyi = a.data().count; d.sayi.kotu = b.data().count;
+    let toplam = 0, adet = 0;
+    snapOylar.forEach(docSnap => {
+      const val = docSnap.data().d;
+      if (typeof val === "number" && val >= 1 && val <= 5) {
+        toplam += val;
+        adet++;
+      }
+    });
+    d.sayi.toplam = toplam;
+    d.sayi.adet = adet;
+    d.sayi.ortalama = adet > 0 ? (toplam / adet).toFixed(1) : 0;
     if (c) d.sayi.yorum = c.data().count;
-    if (ben) { const s = await getDoc(doc(oylar, ben.uid)); d.benimOy = s.exists() ? s.data().d : 0; } else d.benimOy = 0;
-  } catch (e) { console.warn("değerlendirme okunamadı", e); }
+
+    let kayitliOy = 0;
+    try { kayitliOy = parseInt(localStorage.getItem("kc-puan-" + d.id)) || 0; } catch (e) {}
+    if (ben) {
+      const s = await getDoc(doc(oylarRef, ben.uid));
+      if (s.exists() && typeof s.data().d === "number") kayitliOy = s.data().d;
+    }
+    d.benimOy = kayitliOy;
+  } catch (e) {
+    console.warn("değerlendirme okunamadı", e);
+    try { d.benimOy = parseInt(localStorage.getItem("kc-puan-" + d.id)) || 0; } catch (err) {}
+  }
   barCiz(el);
 }
+
 function barCiz(el) {
   const d = kutular.get(el); if (!d) return;
-  const [iyi, kotu, yorum] = el.querySelectorAll(".dg-bar button");
-  iyi.querySelector("span").textContent = d.sayi.iyi;
-  kotu.querySelector("span").textContent = d.sayi.kotu;
-  yorum.querySelector("span").textContent = d.sayi.yorum;
-  iyi.classList.toggle("secili", d.benimOy === 1); kotu.classList.toggle("secili", d.benimOy === -1);
-  iyi.setAttribute("aria-pressed", d.benimOy === 1); kotu.setAttribute("aria-pressed", d.benimOy === -1);
-  yorum.classList.toggle("acik", d.acik); yorum.setAttribute("aria-expanded", d.acik);
+  const stars = el.querySelectorAll(".dg-star");
+  stars.forEach(s => {
+    const val = +s.dataset.puan;
+    s.classList.toggle("secili", val <= d.benimOy);
+  });
+
+  const puanYazi = el.querySelector(".dg-puan-bilgi");
+  if (puanYazi) {
+    if (d.sayi.adet > 0) {
+      puanYazi.innerHTML = `<b>★ ${d.sayi.ortalama}</b> <small>(${d.sayi.adet} oy)</small>`;
+    } else if (d.benimOy > 0) {
+      puanYazi.innerHTML = `<b>★ ${d.benimOy}.0</b> <small>(Senin oyun)</small>`;
+    } else {
+      puanYazi.innerHTML = `<small>Puan ver</small>`;
+    }
+  }
+
+  const yorum = el.querySelector(".dg-btn.yorum");
+  if (yorum) {
+    const span = yorum.querySelector("span");
+    if (span) span.textContent = d.sayi.yorum;
+    yorum.classList.toggle("acik", d.acik);
+    yorum.setAttribute("aria-expanded", d.acik);
+  }
 }
 
 async function oyVer(el, deger) {
   const d = kutular.get(el); if (!d) return;
+  const onceki = d.benimOy;
+  const yeni = onceki === deger ? 0 : deger; // aynı yıldıza tekrar basarsa kaldırır
+
+  d.benimOy = yeni;
+  try { localStorage.setItem("kc-puan-" + d.id, yeni); } catch (e) {}
+
+  if (onceki > 0 && yeni === 0) {
+    d.sayi.toplam -= onceki;
+    d.sayi.adet--;
+  } else if (onceki > 0 && yeni > 0) {
+    d.sayi.toplam += (yeni - onceki);
+  } else if (onceki === 0 && yeni > 0) {
+    d.sayi.toplam += yeni;
+    d.sayi.adet++;
+  }
+  d.sayi.ortalama = d.sayi.adet > 0 ? (d.sayi.toplam / d.sayi.adet).toFixed(1) : 0;
+  barCiz(el);
+
+  if (yeni > 0) toast(`${yeni} yıldız verdin! ⭐`);
+
   if (!(await kimlik())) return;
   const ref = doc(db, "menuler", d.id, "oylar", auth.currentUser.uid);
-  const onceki = d.benimOy, yeni = onceki === deger ? 0 : deger;
-  // anında göster, sonra kaydet
-  if (onceki === 1) d.sayi.iyi--; if (onceki === -1) d.sayi.kotu--;
-  if (yeni === 1) d.sayi.iyi++; if (yeni === -1) d.sayi.kotu++;
-  d.benimOy = yeni; barCiz(el);
-  try { yeni ? await setDoc(ref, { d: yeni }) : await deleteDoc(ref); }
-  catch (e) { console.error(e); toast("Oyun kaydedilemedi, tekrar dener misin?"); sayilariGetir(el); }
+  try {
+    if (yeni > 0) {
+      await setDoc(ref, { d: yeni, zaman: serverTimestamp() });
+    } else {
+      await deleteDoc(ref);
+    }
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 function panelAc(el, ac) {

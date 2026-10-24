@@ -97,7 +97,7 @@ service cloud.firestore {
       match /oylar/{uid} {
         allow read: if true;
         allow create, update: if girisli() && request.auth.uid == uid && menuGecerli()
-          && request.resource.data.keys().hasOnly(['d']) && request.resource.data.d in [1, -1];
+          && request.resource.data.keys().hasAll(['d']) && request.resource.data.d in [1, 2, 3, 4, 5, -1];
         allow delete: if girisli() && request.auth.uid == uid;
       }
       match /yorumlar/{id} {

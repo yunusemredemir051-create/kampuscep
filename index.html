@@ -543,7 +543,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <div class="degerlendir" id="dg-ana" data-menu=""></div>
           <button class="aylik-btn" type="button" onclick="aylikMenuAc(anaYurt)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            Tüm ayın menüsünü gör
+            Gelecek günlerin menüsünü gör
           </button>
         </div>
 
@@ -609,7 +609,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <div class="degerlendir" id="dg-detay" data-menu=""></div>
           <button class="aylik-btn" type="button" onclick="aylikMenuAc(detayYurt ? detayYurt.id : anaYurt)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-            Tüm ayın menüsünü gör
+            Gelecek günlerin menüsünü gör
           </button>
         </div>
         <div class="vitrin">Sponsorlu alan</div>
@@ -1116,14 +1116,16 @@ function aylikMenuAc(yurtId) {
   const ym = yurtMenuleri[yurtId];
   const baslikEl = document.getElementById("aylik-modal-baslik");
   const icerikEl = document.getElementById("aylik-modal-icerik");
-  baslikEl.textContent = (y ? y.ad : "Yurt") + " – Tüm Ayın Menüsü";
+  baslikEl.textContent = (y ? y.ad : "Yurt") + " – Gelecek Günlerin Menüsü";
 
   if (!ym) {
     icerikEl.innerHTML = '<div class="bos-menu">Bu yurdun menüsü henüz eklenmedi.</div>';
   } else {
-    const tarihler = Object.keys(ym).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k)).sort();
+    const bugunStr = tarihAnahtar(bugun);
+    // Geçen günleri ve bugünü koyma: yalnızca bugünden sonraki (yarın ve sonrası) günleri al
+    const tarihler = Object.keys(ym).filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k) && k > bugunStr).sort();
     if (!tarihler.length) {
-      icerikEl.innerHTML = '<div class="bos-menu">Bu yurt için tarihli menü listesi bulunamadı.</div>';
+      icerikEl.innerHTML = '<div class="bos-menu">Bu ay için kalan başka menü bulunmuyor.</div>';
     } else {
       icerikEl.innerHTML = tarihler.map(k => {
         const d = T(k);
@@ -1256,15 +1258,15 @@ function geriSay() {
 <script src="cerez.js" defer></script>
 <script src="/yemekfoto.js?v=8"></script>
 <script src="/firebase-ayar.js"></script>
-<script type="module" src="/yorum.js?v=2"></script>
+<script type="module" src="/yorum.js?v=3"></script>
 <script src="/vitrin.js?v=7"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">
   <div class="modal-kutu">
     <div class="modal-ust">
       <div>
-        <h3 id="aylik-modal-baslik">Aylık Menü</h3>
-        <p id="aylik-modal-alt">Ekim 2026 kahvaltı ve akşam yemekleri</p>
+        <h3 id="aylik-modal-baslik">Gelecek Günlerin Menüsü</h3>
+        <p id="aylik-modal-alt">Yarından itibaren menü listesi</p>
       </div>
       <button class="modal-kapat" type="button" onclick="aylikMenuKapat()" aria-label="Kapat">×</button>
     </div>
