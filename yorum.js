@@ -419,9 +419,7 @@ function panelCiz(el) {
           <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
         </div>
        </div>`
-    : `<div class="dg-admin-giris-serit">
-        <button type="button" class="dg-giris-link" id="dg-admin-giris">🔑 Yönetici Girişi</button>
-       </div>`;
+    : "";
 
   p.innerHTML = adminSerit +
     `<input class="dg-ad" maxlength="40" placeholder="İsmin (isteğe bağlı, boş bırakırsan Anonim)" value="${esc(adOku())}">
@@ -746,3 +744,41 @@ onAuthStateChanged(auth, u => {
 });
 
 tara();
+
+/* ---------- gizli yönetici erişimi (#admin, logoya 4 tık veya Ctrl+Shift+A) ---------- */
+function gizliAdminKontrol() {
+  const h = location.hash, q = location.search;
+  if (h === "#admin" || q.includes("admin=1") || q.includes("admin")) {
+    if (!isAdmin()) {
+      adminGirisYap();
+    }
+    if (h === "#admin") {
+      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+    }
+  }
+}
+window.addEventListener("hashchange", gizliAdminKontrol);
+setTimeout(gizliAdminKontrol, 300);
+
+window.addEventListener("keydown", e => {
+  if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
+    e.preventDefault();
+    if (!isAdmin()) adminGirisYap();
+    else toast("Zaten yönetici girişi yapılmış durumda.");
+  }
+});
+
+let logoTikSayi = 0, logoZaman = 0;
+document.addEventListener("click", e => {
+  if (e.target && e.target.closest && e.target.closest(".logo, .logo-ikon, .logo-metin")) {
+    const simdi = Date.now();
+    if (simdi - logoZaman > 2500) logoTikSayi = 0;
+    logoZaman = simdi;
+    logoTikSayi++;
+    if (logoTikSayi >= 4) {
+      logoTikSayi = 0;
+      if (!isAdmin()) adminGirisYap();
+    }
+  }
+});
+
