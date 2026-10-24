@@ -56,35 +56,20 @@ const kykAnaMenu = {
                   aksam: ["Düğün çorbası / Domates çorbası", "Orman kebabı / Ispanak yemeği / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç"] }
 };
 
-/* Belirli yurtlar için özel gün akşam menüsü (Lahmacun menüsü) */
-const kykLahmacunAksam = ["Mercimek çorbası", "Lahmacun", "Mevsim salata", "Ayran"];
+/* Yurt panosundaki resmi bilgilendirme notu */
+const kykAksamNotu = "Not: (02.10–16.10) Ahmet Kabaklı, (05.10–22.10) Sare Ana, Harput, İzzetpaşa, (23.10–27.10) Ömer Bilginoğlu, Fethi Sekin, Fırat yurtlarımızda (Mercimek çorba, Lahmacun, Mevsim Salata, Ayran) menüsü verilecektir.";
 
-function yurtMenusuUret(ozelAksamBaslangic, ozelAksamBitis) {
-  const m = { kahvaltiNotu: kykAnaMenu.kahvaltiNotu };
-  for (const [tarih, veri] of Object.entries(kykAnaMenu)) {
-    if (tarih === "kahvaltiNotu") continue;
-    const ozelMi = tarih >= ozelAksamBaslangic && tarih <= ozelAksamBitis;
-    m[tarih] = {
-      kahvalti: veri.kahvalti,
-      aksam: ozelMi ? kykLahmacunAksam : veri.aksam
-    };
-  }
-  return m;
-}
+kykAnaMenu.aksamNotu = kykAksamNotu;
 
+/* Tüm Elazığ KYK yurtları ana takvim listesini uygular */
 const yurtMenuleri = {
-  /* Ahmet Kabaklı: (02.10-16.10) özel menü */
-  "ahmet-kabakli":   yurtMenusuUret("2026-10-02", "2026-10-16"),
-
-  /* Sare Ana, Harput, İzzetpaşa: (05.10-22.10) özel menü */
-  "sare-ana":        yurtMenusuUret("2026-10-05", "2026-10-22"),
-  "harput":          yurtMenusuUret("2026-10-05", "2026-10-22"),
-  "izzetpasa":       yurtMenusuUret("2026-10-05", "2026-10-22"),
-
-  /* Ömer Bilginoğlu, Fethi Sekin, Fırat: (23.10-27.10) özel menü */
-  "omer-bilginoglu": yurtMenusuUret("2026-10-23", "2026-10-27"),
-  "fethi-sekin":     yurtMenusuUret("2026-10-23", "2026-10-27"),
-  "firat":           yurtMenusuUret("2026-10-23", "2026-10-27")
+  "ahmet-kabakli":   kykAnaMenu,
+  "sare-ana":        kykAnaMenu,
+  "harput":          kykAnaMenu,
+  "izzetpasa":       kykAnaMenu,
+  "omer-bilginoglu": kykAnaMenu,
+  "fethi-sekin":     kykAnaMenu,
+  "firat":           kykAnaMenu
 };
 
 /* Üniversite Evi menüsü */

@@ -189,7 +189,7 @@ function goster(ekGun) {
   dg("kahvalti", gun && gun.kahvalti && gun.kahvalti.length, `${YURT}_${k}_kahvalti`);
   dg("aksam", gun && gun.aksam && gun.aksam.length, `${YURT}_${k}_aksam`);
   dg("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k], `unievi_${k}`);
-  yaz("aksam", gun && gun.aksam, bos);
+  yaz("aksam", gun && gun.aksam, bos, ym && ym.aksamNotu);
   const hs = d.getDay() === 0 || d.getDay() === 6;
   yaz("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k],
       hs ? "Üniversite Evi hafta sonu yemek vermiyor." : "Bu günün menüsü henüz eklenmedi.");
