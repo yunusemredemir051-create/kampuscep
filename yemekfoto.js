@@ -1,4 +1,5 @@
-/* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları, yönetici paneli ve "Tüm Yemekler" fotoğraf yöneticisi. */
+/* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları ve Tüm Yemekler yöneticisi.
+   KYK Yurtları ve Üniversite Evi yemek fotoğrafları tamamen ayrıdır, ortak paylaşılmaz. */
 (function () {
   "use strict";
 
@@ -6,478 +7,627 @@
   const TUM_KATALOG = [
   {
     "ad": "Ayran",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Ayran aşı çorbası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Beyaz peynir",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Bezelye yemeği",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Brownie",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Bulgur pilavı",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Çay",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Çikolatalı kek",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Çoban salata",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Domates çorbası",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Düğün çorbası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Ekmek arası köfte",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Elma",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Erişte pilavı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Etli dolma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Etli kuru fasulye",
-    "yurt": true,
-    "uni": true
-  },
-  {
-    "ad": "Etli taze fasulye",
-    "yurt": false,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Etsiz kuru fasulye",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Ezogelin çorbası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Fırında sebzeli tavuk ızgara",
-    "yurt": true,
-    "uni": false
-  },
-  {
-    "ad": "Fırında tavuk",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Hamburger köfte + patates",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Haşlanmış yumurta",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Haydari",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Ispanak yemeği",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Ispanaklı börek",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Karışık kızartma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Karışık pizza",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Karışık salata",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Karışık sebze graten",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Kaşar peynir",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Kaşarlı omlet",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Kek + bal + tereyağı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Kıymalı ıspanak",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Krem peynir",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Kuşbaşılı patlıcan kebap",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Labne peynir",
-    "yurt": true,
-    "uni": false
-  },
-  {
-    "ad": "Makarna",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Makarna salatası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Menemen",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Mercimek çorbası",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Mevsim salata",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Mevsim soslu karışık kızartma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Mevsim türlü",
-    "yurt": true,
-    "uni": false
-  },
-  {
-    "ad": "Meyve",
-    "yurt": false,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Mozaik kek",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Mücver",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Nohutlu pirinç pilavı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Nugget",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Orman kebabı",
-    "yurt": true,
-    "uni": false
-  },
-  {
-    "ad": "Orman kebap",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Patates kavurma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Patates kızartma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Patates salatası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Patlıcan musakka",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Patlıcan parmak kebabı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Peynirli börek",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Peynirli omlet",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Pirinç pilavı",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Poğaça",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Rosto köfte",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sade omlet",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sade poğaça",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Salçalı mantı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Salçalı sosis",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sebze çorbası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sebzeli bulgur pilavı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Simit",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Siyah / yeşil zeytin",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sosis kızartma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Soslu makarna",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sucuklu omlet",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sucuklu yumurta",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sulu patates",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Sütlaç",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Şehriye çorbası",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Şekerpare",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Şinitzel",
-    "yurt": true,
-    "uni": false
-  },
-  {
-    "ad": "Tahin helva",
-    "yurt": false,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tarhana çorbası",
-    "yurt": true,
-    "uni": false
-  },
-  {
-    "ad": "Tatlı",
-    "yurt": false,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk baget kızartma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk burger",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk çöp şiş",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk döner",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk kavurma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk sote",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tavuk tantuni",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Taze fasulye",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Tulumba",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Yayla çorbası",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Yoğurt",
-    "yurt": true,
-    "uni": true
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Yoğurtlu kabak",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Yoğurtlu mantı",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
   },
   {
     "ad": "Zeytinli / peynirli açma",
-    "yurt": true,
-    "uni": false
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
+  },
+  {
+    "ad": "Bulgur pilavı",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Domates çorbası",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Etli kuru fasulye",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Etli taze fasulye",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Fırında tavuk",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Makarna",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Mercimek çorbası",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Mevsim salata",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Meyve",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Orman kebap",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Pirinç pilavı",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Rosto köfte",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Tahin helva",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Tatlı",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Yayla çorbası",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
+  },
+  {
+    "ad": "Yoğurt",
+    "yer": "unievi",
+    "yerAdi": "Üniversite Evi",
+    "rozet": "🏛️ Üniversite Evi"
   }
 ];
 
@@ -489,10 +639,11 @@
       "fırında tavuk": "unievi-firinda-tavuk",
       "bulgur pilavı": "unievi-bulgur-pilavi",
       "mercimek çorbası": "unievi-mercimek-corbasi",
-      "yoğurt": "unievi-yogurt"
+      "yoğurt": "unievi-yogurt",
+      "tatlı": "unievi-baklava",
+      "baklava": "unievi-baklava"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
-    /* KYK yurtları */
     "yurt": {
       "mercimek çorbası": "yurt-mercimek-corbasi",
       "süzme mercimek çorbası": "yurt-mercimek-corbasi",
@@ -660,7 +811,7 @@
     color: #fff;
   }
 
-  /* Yönetici Floating Butonu (Tüm Yemekler) */
+  /* Yönetici Floating Butonu */
   .yf-admin-fab {
     position: fixed;
     bottom: 24px;
@@ -789,7 +940,7 @@
   .yf-katalog-kutu {
     background: #fff;
     border-radius: 24px;
-    width: min(680px, 100%);
+    width: min(700px, 100%);
     max-height: 88vh;
     display: flex;
     flex-direction: column;
@@ -868,9 +1019,9 @@
     border: 0;
     background: #e2e8f0;
     color: #475569;
-    padding: 5px 11px;
+    padding: 6px 13px;
     border-radius: 99px;
-    font: 700 11.5px var(--font, inherit);
+    font: 700 12px var(--font, inherit);
     cursor: pointer;
     transition: all .15s;
   }
@@ -885,6 +1036,14 @@
     display: flex;
     gap: 8px;
     margin-top: 2px;
+  }
+  .yf-yeni-yer-sec {
+    border: 1.5px solid #cbd5e1;
+    background: #fff;
+    border-radius: 10px;
+    padding: 6px 10px;
+    font: 700 12px var(--font, inherit);
+    color: #1e293b;
   }
   .yf-yeni-yemek-inp {
     flex: 1;
@@ -971,20 +1130,15 @@
     color: #94a3b8;
   }
 
-  /* Yer Rozetleri (KYK vs Üniversite Evi) */
+  /* Yer Rozetleri */
   .yf-rozet-yer {
     display: inline-flex;
     align-items: center;
     gap: 3px;
     font-size: 10.5px;
     font-weight: 700;
-    padding: 2px 7px;
+    padding: 2px 8px;
     border-radius: 6px;
-  }
-  .yf-rozet-yer.ortak {
-    background: #fdf2f8;
-    color: #be185d;
-    border: 1px solid #fbcfe8;
   }
   .yf-rozet-yer.yurt {
     background: #f0fdf4;
@@ -1101,7 +1255,7 @@
   }
 
   let seciciInput = null;
-  function fotoSeciciAc(yemekAdi, onUploadSuccess) {
+  function fotoSeciciAc(yemekAdi, yer, onUploadSuccess) {
     if (!seciciInput) {
       seciciInput = document.createElement("input");
       seciciInput.type = "file";
@@ -1114,7 +1268,7 @@
       if (!file) return;
       resimSikistir(file, 650, 0.82, async base64 => {
         if (window.KC_ADMIN && window.KC_ADMIN.yukleYemekFoto) {
-          const ok = await window.KC_ADMIN.yukleYemekFoto(yemekAdi, base64);
+          const ok = await window.KC_ADMIN.yukleYemekFoto(yemekAdi, base64, yer);
           if (ok && onUploadSuccess) onUploadSuccess();
         }
       });
@@ -1132,19 +1286,24 @@
     return yazi.split("/").map(p => p.trim()).filter(Boolean);
   }
 
-  function fotoBulGenel(ad) {
+  // Yurt ve Üniversite Evi tamamen ayrılmıştır!
+  function fotoBul(ad, yer = "yurt") {
     if (!ad) return null;
     const bulut = window.KC_BULUT_FOTOLAR || {};
     const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
-    if (bulut[asc]) return bulut[asc];
-    if (bulut[sl]) return bulut[sl];
-    if (bulut[k]) return bulut[k];
+    const yerKodu = yer === "unievi" ? "unievi" : "yurt";
 
-    if (FOTOLAR.yurt[k]) return FOTOLAR.yurt[k];
-    if (FOTOLAR.yurt[asc]) return FOTOLAR.yurt[asc];
-    if (FOTOLAR.yurt[sl]) return FOTOLAR.yurt[sl];
-    if (FOTOLAR.unievi[k]) return FOTOLAR.unievi[k];
-    if (FOTOLAR.unievi[asc]) return FOTOLAR.unievi[asc];
+    // 1) Yer önekiyle bulutta ara (örn: unievi_etli-kuru-fasulye veya yurt_etli-kuru-fasulye)
+    if (bulut[yerKodu + "_" + asc]) return bulut[yerKodu + "_" + asc];
+    if (bulut[yerKodu + "_" + sl]) return bulut[yerKodu + "_" + sl];
+    if (bulut[yerKodu + "_" + k]) return bulut[yerKodu + "_" + k];
+
+    // 2) Yerel sabit tabloda ara (FOTOLAR.yurt veya FOTOLAR.unievi)
+    const yerTablo = FOTOLAR[yerKodu] || {};
+    if (yerTablo[k]) return yerTablo[k];
+    if (yerTablo[asc]) return yerTablo[asc];
+    if (yerTablo[sl]) return yerTablo[sl];
+
     return null;
   }
 
@@ -1154,7 +1313,7 @@
     d.innerHTML = `
       <div class="yf-modal-kutu">
         <h3>📷 Hangi yemek için fotoğraf yüklenecek?</h3>
-        <p>Bu satırda <b>${parcalar.length} farklı seçenek</b> bulunuyor. Fotoğrafını yüklemek veya güncellemek istediğiniz yemeği seçin:</p>
+        <p>Bu satırda <b>${parcalar.length} farklı seçenek</b> bulunuyor. Fotoğrafını yüklemek istediğiniz yemeği seçin:</p>
         <div class="yf-secenekler-liste">
           ${parcalar.map((p, idx) => {
             const varMi = !!fotoBulFn(p);
@@ -1180,7 +1339,7 @@
   }
 
   /* =====================================================================
-     TÜM YEMEKLER — YÖNETİCİ FOTOĞRAF PANELİ (Yurt vs Üniversite Ayrımıyla)
+     TÜM YEMEKLER — YÖNETİCİ FOTOĞRAF PANELİ (Yurt vs Üniversite Ayrımı)
      ===================================================================== */
   let katalogModal = null;
   function tumYemeklerPaneliniAc() {
@@ -1197,7 +1356,7 @@
         <div class="yf-katalog-ust">
           <div>
             <h2>🍽️ Tüm Yemekler – Fotoğraf Paneli</h2>
-            <p>KYK Yurtları ve Üniversite Evi yemeklerini menü çıkış yerlerine göre yönetebilirsiniz.</p>
+            <p>KYK Yurtları ve Üniversite Evi yemek fotoğrafları ayrıdır.</p>
           </div>
           <button type="button" class="yf-katalog-kapat" title="Kapat">×</button>
         </div>
@@ -1206,15 +1365,18 @@
             <input type="text" class="yf-katalog-ara" placeholder="🔍 Yemek ara (örn: Kuru fasulye, Köfte, Çorba, Omlet)...">
           </div>
           <div class="yf-katalog-filtreler">
-            <button type="button" class="yf-kat-sekme aktif" data-filtre="hepsi">Tümü</button>
-            <button type="button" class="yf-kat-sekme" data-filtre="ortak">🌟 Hem Yurt Hem Üniversite</button>
-            <button type="button" class="yf-kat-sekme" data-filtre="yurt">🏠 KYK Yurdu</button>
+            <button type="button" class="yf-kat-sekme aktif" data-filtre="yurt">🏠 KYK Yurdu</button>
             <button type="button" class="yf-kat-sekme" data-filtre="uni">🏛️ Üniversite Evi</button>
+            <button type="button" class="yf-kat-sekme" data-filtre="hepsi">Tümü</button>
             <button type="button" class="yf-kat-sekme" data-filtre="var">✓ Fotoğraflı</button>
             <button type="button" class="yf-kat-sekme" data-filtre="yok">⏳ Fotoğrafsız</button>
           </div>
           <div class="yf-yeni-yemek-bar">
-            <input type="text" class="yf-yeni-yemek-inp" placeholder="Listede olmayan yeni yemek ekle...">
+            <select class="yf-yeni-yer-sec" id="yf-yeni-yer">
+              <option value="yurt">🏠 KYK Yurdu</option>
+              <option value="unievi">🏛️ Üniversite Evi</option>
+            </select>
+            <input type="text" class="yf-yeni-yemek-inp" id="yf-yeni-ad" placeholder="Yeni yemek ekle...">
             <button type="button" class="yf-yeni-yemek-btn">+ Fotoğraf Yükle</button>
           </div>
         </div>
@@ -1228,7 +1390,7 @@
 
     const araInp = d.querySelector(".yf-katalog-ara");
     const listeGovde = d.querySelector("#yf-katalog-liste-govde");
-    let aktifFiltre = "hepsi";
+    let aktifFiltre = "yurt";
 
     d.querySelectorAll(".yf-kat-sekme").forEach(b => {
       b.onclick = () => {
@@ -1239,14 +1401,21 @@
       };
     });
 
-    const yeniInp = d.querySelector(".yf-yeni-yemek-inp");
+    const yeniInp = d.querySelector("#yf-yeni-ad");
+    const yeniYer = d.querySelector("#yf-yeni-yer");
     const yeniBtn = d.querySelector(".yf-yeni-yemek-btn");
     yeniBtn.onclick = () => {
       const ad = yeniInp.value.trim();
+      const yer = yeniYer.value;
       if (!ad) { yeniInp.focus(); return; }
-      fotoSeciciAc(ad, () => {
-        if (!TUM_KATALOG.find(x => kucuk(x.ad) === kucuk(ad))) {
-          TUM_KATALOG.unshift({ ad, yurt: true, uni: true });
+      fotoSeciciAc(ad, yer, () => {
+        if (!TUM_KATALOG.find(x => kucuk(x.ad) === kucuk(ad) && x.yer === yer)) {
+          TUM_KATALOG.unshift({
+            ad,
+            yer,
+            yerAdi: yer === "unievi" ? "Üniversite Evi" : "KYK Yurdu",
+            rozet: yer === "unievi" ? "🏛️ Üniversite Evi" : "🏠 KYK Yurdu"
+          });
         }
         yeniInp.value = "";
         ciz();
@@ -1257,10 +1426,9 @@
       const q = kucuk(araInp.value);
       let liste = TUM_KATALOG.filter(item => {
         if (q && !kucuk(item.ad).includes(q)) return false;
-        const foto = fotoBulGenel(item.ad);
-        if (aktifFiltre === "ortak") return item.yurt && item.uni;
-        if (aktifFiltre === "yurt") return item.yurt;
-        if (aktifFiltre === "uni") return item.uni;
+        const foto = fotoBul(item.ad, item.yer);
+        if (aktifFiltre === "yurt") return item.yer === "yurt";
+        if (aktifFiltre === "uni") return item.yer === "unievi";
         if (aktifFiltre === "var") return !!foto;
         if (aktifFiltre === "yok") return !foto;
         return true;
@@ -1273,31 +1441,25 @@
 
       listeGovde.innerHTML = liste.map(item => {
         const ad = item.ad;
-        const foto = fotoBulGenel(ad);
+        const yer = item.yer;
+        const foto = fotoBul(ad, yer);
         const varMi = !!foto;
         const resimHtml = varMi
           ? `<img src="${resimSrc(foto)}" alt="${ad}">`
           : `<span style="font-size:22px">🍽️</span>`;
 
-        // Yer etiketi
-        let yerRozet = "";
-        if (item.yurt && item.uni) {
-          yerRozet = `<span class="yf-rozet-yer ortak">🌟 Hem Yurt Hem Üniversite</span>`;
-        } else if (item.yurt) {
-          yerRozet = `<span class="yf-rozet-yer yurt">🏠 KYK Yurdu</span>`;
-        } else if (item.uni) {
-          yerRozet = `<span class="yf-rozet-yer uni">🏛️ Üniversite Evi</span>`;
-        }
+        const rozetClass = yer === "unievi" ? "uni" : "yurt";
+        const rozetMetin = yer === "unievi" ? "🏛️ Üniversite Evi" : "🏠 KYK Yurdu";
 
         return `
-          <div class="yf-katalog-satir" data-ad="${ad}">
-            <div class="yf-satir-resim" ${varMi ? `onclick="window.KC_YEMEK_PANEL.buyut('${foto}', '${ad}')"` : ""}>
+          <div class="yf-katalog-satir" data-ad="${ad}" data-yer="${yer}">
+            <div class="yf-satir-resim" ${varMi ? `onclick="window.KC_YEMEK_PANEL.buyut('${foto}', '${ad} (${rozetMetin})')"` : ""}>
               ${resimHtml}
             </div>
             <div class="yf-satir-bilgi">
               <span class="yf-satir-ad">${ad}</span>
               <div class="yf-satir-alt">
-                ${yerRozet}
+                <span class="yf-rozet-yer ${rozetClass}">${rozetMetin}</span>
                 <span class="yf-satir-durum ${varMi ? "var" : "yok"}">
                   ${varMi ? "✓ Fotoğrafı Var" : "Fotoğraf Yok"}
                 </span>
@@ -1305,10 +1467,10 @@
             </div>
             <div class="yf-satir-eylem">
               ${varMi ? `
-                <button type="button" class="yf-btn-degistir" data-degistir="${ad}">📷 Değiştir</button>
-                <button type="button" class="yf-btn-sil" data-sil="${ad}">🗑️</button>
+                <button type="button" class="yf-btn-degistir" data-degistir="${ad}" data-yer="${yer}">📷 Değiştir</button>
+                <button type="button" class="yf-btn-sil" data-sil="${ad}" data-yer="${yer}">🗑️</button>
               ` : `
-                <button type="button" class="yf-btn-yukle" data-yukle="${ad}">➕ Fotoğraf Yükle</button>
+                <button type="button" class="yf-btn-yukle" data-yukle="${ad}" data-yer="${yer}">➕ Fotoğraf Yükle</button>
               `}
             </div>
           </div>
@@ -1317,22 +1479,24 @@
 
       listeGovde.querySelectorAll("[data-yukle]").forEach(btn => {
         btn.onclick = () => {
-          fotoSeciciAc(btn.dataset.yukle, () => ciz());
+          fotoSeciciAc(btn.dataset.yukle, btn.dataset.yer, () => ciz());
         };
       });
 
       listeGovde.querySelectorAll("[data-degistir]").forEach(btn => {
         btn.onclick = () => {
-          fotoSeciciAc(btn.dataset.degistir, () => ciz());
+          fotoSeciciAc(btn.dataset.degistir, btn.dataset.yer, () => ciz());
         };
       });
 
       listeGovde.querySelectorAll("[data-sil]").forEach(btn => {
         btn.onclick = async () => {
           const ad = btn.dataset.sil;
-          if (!confirm(`"${ad}" için yüklenen fotoğrafı kaldırmak istediğinize emin misiniz?`)) return;
+          const yer = btn.dataset.yer;
+          const yerBaslik = yer === "unievi" ? "Üniversite Evi" : "KYK Yurdu";
+          if (!confirm(`"${ad}" (${yerBaslik}) fotoğrafını kaldırmak istediğinize emin misiniz?`)) return;
           if (window.KC_ADMIN && window.KC_ADMIN.silYemekFoto) {
-            await window.KC_ADMIN.silYemekFoto(ad);
+            await window.KC_ADMIN.silYemekFoto(ad, yer);
             ciz();
           }
         };
@@ -1351,7 +1515,7 @@
   };
 
   /* =====================================================================
-     MENÜ GÜNCELLEME
+     MENÜ GÜNCELLEME (Yurt ve Üniversite Evi Kendi Görsellerini Alır)
      ===================================================================== */
   function guncelle(ul) {
     const kimlik = menuKimligi(ul);
@@ -1359,15 +1523,6 @@
     if (!kimlik) return;
     const [yer, tarih] = kimlik.split("_");
     const genel = yer === "unievi" ? "unievi" : "yurt";
-    const bulut = window.KC_BULUT_FOTOLAR || {};
-
-    const tablo = Object.assign(
-      {},
-      FOTOLAR[genel] || {},
-      FOTOLAR[yer] || {},
-      FOTOLAR[yer + "_" + tarih] || {},
-      FOTOLAR[genel + "_" + tarih] || {}
-    );
 
     const yoneticiMi = window.KC_ADMIN && window.KC_ADMIN.isAdmin && window.KC_ADMIN.isAdmin();
 
@@ -1396,26 +1551,14 @@
       const yazi = li.dataset.yemek;
       if (!yazi) return;
 
-      const fotoBul = ad => {
-        if (!ad) return null;
-        const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
-        if (bulut[asc]) return bulut[asc];
-        if (bulut[sl]) return bulut[sl];
-        if (bulut[k]) return bulut[k];
-        if (tablo[k]) return tablo[k];
-        if (tablo[asc]) return tablo[asc];
-        if (tablo[sl]) return tablo[sl];
-        return null;
-      };
-
       const parcalar = seceneklereAyir(yazi);
       let secenekler = [];
 
       if (parcalar.length === 1) {
-        const f = fotoBul(parcalar[0]);
+        const f = fotoBul(parcalar[0], genel);
         if (f) secenekler = [[parcalar[0], f]];
       } else {
-        secenekler = parcalar.map(p => [p, fotoBul(p)]).filter(([_, f]) => !!f);
+        secenekler = parcalar.map(p => [p, fotoBul(p, genel)]).filter(([_, f]) => !!f);
       }
 
       const eskiGrup = li.querySelector(".yf-grup");
@@ -1461,11 +1604,11 @@
           e.stopPropagation();
           const secimParcalari = seceneklereAyir(yazi);
           if (secimParcalari.length > 1) {
-            secimDialogGoster(secimParcalari, fotoBul, secilen => {
-              fotoSeciciAc(secilen);
+            secimDialogGoster(secimParcalari, p => fotoBul(p, genel), secilen => {
+              fotoSeciciAc(secilen, genel);
             });
           } else {
-            fotoSeciciAc(secimParcalari[0]);
+            fotoSeciciAc(secimParcalari[0], genel);
           }
         };
         li.appendChild(btn);

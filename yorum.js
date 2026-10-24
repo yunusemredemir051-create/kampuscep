@@ -650,12 +650,13 @@ const asciiYapici = s => String(s || "").toLocaleLowerCase("tr-TR").trim()
   .replace(/ö/g, "o").replace(/ü/g, "u").replace(/ç/g, "c")
   .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
-async function yukleYemekFoto(yemekAdi, base64Data) {
+async function yukleYemekFoto(yemekAdi, base64Data, yer = "yurt") {
   if (!isAdmin()) {
-    alert("Yalnızca yönetici (yunusemredemir051@gmail.com) fotoğraf yükleyebilir. Lütfen önce yorumlar altından yönetici girişi yapın.");
+    alert("Yalnızca yönetici (yunusemredemir051@gmail.com) fotoğraf yükleyebilir.");
     return false;
   }
-  const slug = asciiYapici(yemekAdi);
+  const yerPrefix = yer === "unievi" ? "unievi" : "yurt";
+  const slug = yerPrefix + "_" + asciiYapici(yemekAdi);
   if (!slug) return false;
 
   // Hemen yerelde göster
@@ -669,18 +670,20 @@ async function yukleYemekFoto(yemekAdi, base64Data) {
     const ref = doc(db, "yemekFotolari", slug);
     await setDoc(ref, {
       ad: yemekAdi,
+      yer: yerPrefix,
       foto: base64Data,
       ekleyen: ADMIN_EMAIL,
       zaman: serverTimestamp()
     });
-    toast(`📸 "${yemekAdi}" fotoğrafı kaydedildi ve yayında!`);
+    const yerBaslik = yerPrefix === "unievi" ? "Üniversite Evi" : "KYK Yurdu";
+    toast(`📸 "${yemekAdi}" (${yerBaslik}) fotoğrafı kaydedildi!`);
     return true;
   } catch (err) {
     console.error("Fotoğraf yükleme hatası:", err);
     if (err.code === "permission-denied" || String(err).includes("permission")) {
       alert(
         "⚠️ Firebase Kural İzni Gerekli!\n\n" +
-        "Fotoğraf cihazınızda yerel olarak görüntülendi, ancak herkese açık olarak sunucuda yayınlanabilmesi için:\n\n" +
+        "Fotoğraf cihazınızda yerel olarak görüntülendi, ancak sunucuda yayınlanabilmesi için:\n\n" +
         "Firebase Console -> Firestore Database -> Kurallar (Rules) sekmesinde yemekFotolari kuralını yayınlamanız gerekmektedir."
       );
     } else {
@@ -690,12 +693,14 @@ async function yukleYemekFoto(yemekAdi, base64Data) {
   }
 }
 
-async function silYemekFoto(yemekAdi) {
+async function silYemekFoto(yemekAdi, yer = "yurt") {
   if (!isAdmin()) return false;
-  const slug = asciiYapici(yemekAdi);
+  const yerPrefix = yer === "unievi" ? "unievi" : "yurt";
+  const slug = yerPrefix + "_" + asciiYapici(yemekAdi);
   if (!slug) return false;
 
   delete window.KC_BULUT_FOTOLAR[slug];
+  delete window.KC_BULUT_FOTOLAR[asciiYapici(yemekAdi)];
   try {
     localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
   } catch (e) {}
@@ -704,7 +709,8 @@ async function silYemekFoto(yemekAdi) {
   try {
     const ref = doc(db, "yemekFotolari", slug);
     await deleteDoc(ref);
-    toast(`🗑️ "${yemekAdi}" fotoğrafı kaldırıldı.`);
+    const yerBaslik = yerPrefix === "unievi" ? "Üniversite Evi" : "KYK Yurdu";
+    toast(`🗑️ "${yemekAdi}" (${yerBaslik}) fotoğrafı kaldırıldı.`);
     return true;
   } catch (err) {
     console.error("Fotoğraf silme hatası:", err);
