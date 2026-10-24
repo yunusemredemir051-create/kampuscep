@@ -456,6 +456,10 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
             <span class="etiket mavi">KYK</span>
           </div>
           <select class="yurt-sec" id="ana-yurt" aria-label="Yurt seç"></select>
+          <div class="secici" id="ana-gun-secici">
+            <button class="aktif" data-gun="0">Bugün</button>
+            <button data-gun="1">Yarın</button>
+          </div>
           <div class="secici" id="ana-secici">
             <button data-ogun="kahvalti">Kahvaltı</button>
             <button data-ogun="aksam">Akşam</button>
@@ -517,8 +521,12 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
         <button class="geri" onclick="yurtListeyeDon()">‹ Tüm yurtlar</button>
         <div class="ust-bilgi gorselli"><div><small id="detay-tur"></small><h1 id="detay-ad"></h1></div><img class="yurt-b" id="detay-gorsel" alt="" loading="lazy"></div>
         <div class="menu-kart cam">
-          <div class="menu-ust"><div><h2>Bugünün menüsü</h2><p id="detay-tarih"></p></div></div>
-          <div class="secici" id="detay-secici" style="margin-top:14px">
+          <div class="menu-ust"><div><h2>Yurt menüsü</h2></div></div>
+          <div class="secici" id="detay-gun-secici" style="margin-top:14px">
+            <button class="aktif" data-gun="0">Bugün</button>
+            <button data-gun="1">Yarın</button>
+          </div>
+          <div class="secici" id="detay-secici">
             <button data-ogun="kahvalti">Kahvaltı</button>
             <button data-ogun="aksam">Akşam</button>
           </div>
@@ -715,7 +723,7 @@ function hafizaYaz(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 const saat = new Date().getHours();
 const tarihYazi = bugun.toLocaleDateString("tr-TR", { weekday: "long", day: "numeric", month: "long" });
 document.getElementById("tarih").textContent = tarihYazi;
-document.getElementById("detay-tarih").textContent = tarihYazi;
+const dtEl = document.getElementById("detay-tarih"); if (dtEl) dtEl.textContent = tarihYazi;
 document.getElementById("selam").textContent =
   saat < 6 ? "İyi geceler" : saat < 12 ? "Günaydın" : saat < 18 ? "İyi günler" : "İyi akşamlar";
 /* Öğün saatleri: yurt kahvaltısı 06.30–12.00 (hafta sonu 12.30'a kadar), akşam 16.00–22.00;
@@ -924,27 +932,28 @@ function listeYaz(elId, liste) {
   document.getElementById(elId).innerHTML = liste.map(y => `<li>${y}</li>`).join("");
 }
 /* Yurt menüsü: veri.js'de tarihli ("2026-10-20": {...}) ya da sabit ({kahvalti, aksam}) olabilir */
-function yurtMenusu(id) {
+function yurtMenusu(id, d = bugun) {
   const m = yurtMenuleri[id];
   if (!m) return null;
   if (m.kahvalti || m.aksam) return m;
-  return m[tarihAnahtar(bugun)] || null;
+  return m[tarihAnahtar(d)] || null;
 }
-function yurtMenuYaz(elId, id, ogun) {
-  const m = yurtMenusu(id), el = document.getElementById(elId);
+function yurtMenuYaz(elId, id, ogun, d = bugun) {
+  const m = yurtMenusu(id, d), el = document.getElementById(elId);
   const dg = document.getElementById(elId === "ana-yemekler" ? "dg-ana" : "dg-detay");
-  if (dg) dg.dataset.menu = m && m[ogun] && m[ogun].length ? `${id}_${tarihAnahtar(bugun)}_${ogun}` : "";
+  if (dg) dg.dataset.menu = m && m[ogun] && m[ogun].length ? `${id}_${tarihAnahtar(d)}_${ogun}` : "";
   if (m && m[ogun] && m[ogun].length) {
     listeYaz(elId, m[ogun]);
     const not = ogun === "kahvalti" ? yurtMenuleri[id].kahvaltiNotu : null;
     if (not) el.innerHTML += `<li class="bos-menu" style="list-style:none;font-size:13px">${not}</li>`;
   } else {
-    el.innerHTML = `<li class="bos-menu" style="list-style:none">${yurtMenuleri[id] ? "Bugünün menüsü henüz eklenmedi." : "Bu yurdun menüsü henüz eklenmedi."}</li>`;
+    el.innerHTML = `<li class="bos-menu" style="list-style:none">${yurtMenuleri[id] ? "Bu günün menüsü henüz eklenmedi." : "Bu yurdun menüsü henüz eklenmedi."}</li>`;
   }
 }
 
 let anaYurt = hafizaOku("secilenYurt") || yurtlar[0].id;
 let anaOgun = varsayilanOgun;
+let anaGun = 0;
 const anaSec = document.getElementById("ana-yurt");
 anaSec.innerHTML =
   `<optgroup label="Kız yurtları">${yurtlar.filter(y => y.tur === "kiz").map(y => `<option value="${y.id}">${y.ad}</option>`).join("")}</optgroup>` +
@@ -953,10 +962,13 @@ anaSec.value = anaYurt;
 anaSec.onchange = () => { anaYurt = anaSec.value; hafizaYaz("secilenYurt", anaYurt); anaMenuGuncelle(); };
 
 function anaMenuGuncelle() {
+  const d = ekle(bugun, anaGun);
+  document.querySelectorAll("#ana-gun-secici button").forEach(b => b.classList.toggle("aktif", +b.dataset.gun === anaGun));
   document.querySelectorAll("#ana-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === anaOgun));
-  yurtMenuYaz("ana-yemekler", anaYurt, anaOgun);
-  document.getElementById("ana-saat").textContent = (anaOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[anaOgun](bugun);
+  yurtMenuYaz("ana-yemekler", anaYurt, anaOgun, d);
+  document.getElementById("ana-saat").textContent = (anaOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[anaOgun](d);
 }
+document.querySelectorAll("#ana-gun-secici button").forEach(b => b.onclick = () => { anaGun = +b.dataset.gun; anaMenuGuncelle(); });
 document.querySelectorAll("#ana-secici button").forEach(b => b.onclick = () => { anaOgun = b.dataset.ogun; anaMenuGuncelle(); });
 anaMenuGuncelle();
 /* Üniversite Evi: tarihe göre menü */
@@ -1005,9 +1017,11 @@ document.querySelectorAll("#yurt-filtre button").forEach(b => b.onclick = () => 
 });
 yurtListesiCiz();
 
-let detayYurt = null, detayOgun = varsayilanOgun;
+let detayYurt = null, detayOgun = varsayilanOgun, detayGun = 0;
 function yurtAc(id) {
   detayYurt = yurtlar.find(y => y.id === id);
+  detayGun = 0;
+  detayOgun = varsayilanOgun;
   document.getElementById("yurt-liste-gorunum").style.display = "none";
   document.getElementById("yurt-detay").style.display = "block";
   document.getElementById("detay-ad").textContent = detayYurt.ad;
@@ -1017,10 +1031,13 @@ function yurtAc(id) {
   window.scrollTo({ top: 0 });
 }
 function detayMenuGuncelle() {
+  const d = ekle(bugun, detayGun);
+  document.querySelectorAll("#detay-gun-secici button").forEach(b => b.classList.toggle("aktif", +b.dataset.gun === detayGun));
   document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
-  yurtMenuYaz("detay-yemekler", detayYurt.id, detayOgun);
-  document.getElementById("detay-saat").textContent = (detayOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[detayOgun](bugun);
+  yurtMenuYaz("detay-yemekler", detayYurt.id, detayOgun, d);
+  document.getElementById("detay-saat").textContent = (detayOgun === "kahvalti" ? "Kahvaltı " : "Akşam yemeği ") + OGUN_SAAT[detayOgun](d);
 }
+document.querySelectorAll("#detay-gun-secici button").forEach(b => b.onclick = () => { detayGun = +b.dataset.gun; detayMenuGuncelle(); });
 document.querySelectorAll("#detay-secici button").forEach(b => b.onclick = () => { detayOgun = b.dataset.ogun; detayMenuGuncelle(); });
 function yurtListeyeDon() {
   document.getElementById("yurt-liste-gorunum").style.display = "block";
