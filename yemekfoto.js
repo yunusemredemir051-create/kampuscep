@@ -5,35 +5,47 @@
   const Y = "/gorseller/yemek/";
   const FOTOLAR = {
     "unievi": {
-      "mercimek çorbası": "unievi-mercimek-corbasi",
-      "ezogelin çorbası": "unievi-ezogelin-corbasi",
-      "tavuk sote": "unievi-tavuk-sote",
-      "kuru fasulye": "unievi-kuru-fasulye",
-      "pirinç pilavı": "unievi-pirinc-pilavi",
-      "bulgur pilavı": "unievi-bulgur-pilavi",
+      "rosto köfte": "unievi-rosto-kofte",
       "makarna": "unievi-makarna",
+      "domates çorbası": "unievi-domates-corbasi",
+      "fırında tavuk": "unievi-firinda-tavuk",
+      "bulgur pilavı": "unievi-bulgur-pilavi",
+      "mercimek çorbası": "unievi-mercimek-corbasi",
       "yoğurt": "unievi-yogurt"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
+    /* KYK yurtları (Elazığ'daki KYK yurtlarında menü ortak) */
     "yurt": {
       "mercimek çorbası": "yurt-mercimek-corbasi",
+      "süzme mercimek çorbası": "yurt-mercimek-corbasi",
       "sebze çorbası": "yurt-sebze-corbasi",
-      "ezogelin çorbası": "yurt-ezogelin-corbasi",
-      "tavuk döner": "yurt-tavuk-doner",
-      "ormancı kebabı": "yurt-ormanci-kebabi",
-      "izmir köfte": "yurt-izmir-kofte",
-      "nohut": "yurt-nohut",
-      "kuru fasulye": "yurt-kuru-fasulye",
-      "türlü": "yurt-turlu",
-      "pirinç pilavı": "yurt-pirinc-pilavi",
+      "karışık salata": "yurt-karisik-salata",
+      "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk",
+      "fırında sebzeli tavuk": "yurt-firinda-sebzeli-tavuk",
+      "etli dolma": "yurt-etli-dolma",
+      "mevsim türlü": "yurt-mevsim-turlu",
+      "türlü": "yurt-mevsim-turlu",
+      "soslu makarna": "yurt-soslu-makarna",
+      "makarna": "yurt-soslu-makarna",
+      "sade omlet": "yurt-sade-omlet",
+      "omlet": "yurt-sade-omlet",
+      "kaşarlı omlet": "yurt-sade-omlet",
+      "patates salatası": "yurt-patates-salatasi",
+      "çikolatalı kek": "yurt-cikolatali-kek",
+      "kek": "yurt-cikolatali-kek",
+      "beyaz peynir": "yurt-beyaz-peynir",
+      "peynir": "yurt-beyaz-peynir",
+      "krem peynir": "yurt-beyaz-peynir",
+      "siyah / yeşil zeytin": "yurt-zeytin",
+      "siyah zeytin": "yurt-zeytin",
+      "yeşil zeytin": "yurt-zeytin",
+      "zeytin": "yurt-zeytin",
+      "çay": "yurt-cay",
+      "cay": "yurt-cay",
+      "şehriye çorbası": "yurt-sehriye-corbasi",
+      "tavuk çöp şiş": "yurt-tavuk-cop-sis",
       "bulgur pilavı": "yurt-bulgur-pilavi",
-      "makarna": "yurt-makarna",
-      "meyve": "yurt-elma",
-      "elma": "yurt-elma",
-      "mandalina": "yurt-mandalina",
-      "yoğurt": "yurt-yogurt",
-      "ayran": "yurt-ayran",
-      "cacık": "yurt-cacik",
+      "haydari": "yurt-haydari",
       "tulumba": "yurt-tulumba"
     }
   };
@@ -45,35 +57,220 @@
 
   const css = document.createElement("style");
   css.textContent = `
-  .fotolu{display:flex;align-items:center;gap:10px}
-  .yf-grup{display:inline-flex;align-items:center;gap:4px;flex:none}
-  .yf{width:36px;height:36px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.9);box-shadow:0 2px 6px -1px rgba(20,27,52,.15);flex:none;cursor:zoom-in;padding:0;background:#fff;transition:transform .12s}
-  .yf:hover{transform:scale(1.08)}
-  .yf img{width:100%;height:100%;object-fit:cover;display:block}
-  .yf-ek{margin-top:10px;padding-top:10px;border-top:1px dashed var(--cizgi,#e3e7f3);display:flex;gap:12px;align-items:center;font-size:12px;font-weight:700;color:var(--soluk,#6b7390)}
-  .yf-ek .yf-grup{display:inline-flex;gap:6px}
-  .yf-ek span.ad{font-size:11.5px;color:var(--soluk,#8a90a8);margin-left:2px}
-  .yf-buyuk{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:rgba(14,18,40,.65);padding:20px;cursor:zoom-out;animation:gir .2s ease}
-  .yf-buyuk figure{margin:0;background:#fff;border-radius:24px;padding:12px 12px 10px;text-align:center;width:min(420px,100%);box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
-  .yf-buyuk img{width:100%;height:auto;display:block;border-radius:16px}
-  .yf-buyuk figcaption{font:800 15px var(--font,system-ui);color:#141b34;margin-top:8px}
+  /* Fotoğraflı satırlarda turuncu list noktasını tamamen gizle */
+  ul.yemekler li.fotolu::before,
+  .yemekler li.fotolu::before,
+  li.fotolu::before {
+    display: none !important;
+  }
+  ul.yemekler li.fotolu,
+  .yemekler li.fotolu,
+  li.fotolu {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+  .yf-grup {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex: none;
+  }
+  .yf-grup .yf + .yf {
+    margin-left: -12px;
+  }
+  .yf {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 13px;
+    overflow: hidden;
+    background: #fff;
+    cursor: zoom-in;
+    padding: 0;
+    border: 0;
+    box-shadow: 0 0 0 2px #fff, 0 4px 12px -4px rgba(40, 60, 140, .35);
+    transition: transform .12s;
+  }
+  .yf:hover {
+    transform: scale(1.06);
+  }
+  .yf img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .yf-metin {
+    flex: 1;
+    min-width: 0;
+  }
+  .yf-ek {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin: 8px 0 4px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--soluk, #6b7390);
+  }
+  .yf-ek button {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid var(--cizgi, #e6e9f2);
+    background: #fff;
+    border-radius: 99px;
+    padding: 3px 10px 3px 3px;
+    font: 700 12.5px var(--font, inherit);
+    color: var(--yazi, #141b34);
+    cursor: zoom-in;
+  }
+  .yf-ek img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .yf-buyuk {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 18, 40, .65);
+    padding: 20px;
+    cursor: zoom-out;
+    animation: gir .2s ease;
+  }
+  .yf-buyuk figure {
+    margin: 0;
+    background: #fff;
+    border-radius: 24px;
+    padding: 12px 12px 10px;
+    text-align: center;
+    width: min(420px, 100%);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .45);
+  }
+  .yf-buyuk img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 16px;
+  }
+  .yf-buyuk figcaption {
+    font: 800 15px var(--font, system-ui);
+    color: #141b34;
+    margin-top: 8px;
+  }
 
   /* Admin Fotoğraf Butonları */
-  .yf-admin-btn{margin-left:auto;border:1px dashed #3b5bfd;background:rgba(59,91,253,.08);color:#3b5bfd;font:700 11.5px var(--font,inherit);padding:3px 9px;border-radius:8px;cursor:pointer;transition:all .15s;flex:none}
-  .yf-admin-btn:hover{background:#3b5bfd;color:#fff}
+  .yf-admin-btn {
+    margin-left: auto;
+    border: 1px dashed #3b5bfd;
+    background: rgba(59, 91, 253, .08);
+    color: #3b5bfd;
+    font: 700 11.5px var(--font, inherit);
+    padding: 4px 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .15s;
+    flex: none;
+  }
+  .yf-admin-btn:hover {
+    background: #3b5bfd;
+    color: #fff;
+  }
 
-  /* Seçenek Modal (Şinitzel / Rosto köfte / Sulu patates gibi satırlar için) */
-  .yf-modal-perde{position:fixed;inset:0;z-index:10005;display:grid;place-items:center;background:rgba(14,18,40,.68);padding:18px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);animation:gir .2s ease}
-  .yf-modal-kutu{background:#fff;border-radius:22px;padding:22px 20px 18px;width:min(420px,100%);box-shadow:0 25px 60px -15px rgba(0,0,0,.35);font-family:var(--font,system-ui)}
-  .yf-modal-kutu h3{margin:0 0 6px;font-size:16.5px;font-weight:800;color:#141b34}
-  .yf-modal-kutu p{margin:0 0 16px;font-size:13px;color:#6b7390;line-height:1.45}
-  .yf-secenekler-liste{display:grid;gap:8px;margin-bottom:14px}
-  .yf-secim-btn{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;background:#f8faff;border:1.5px solid #e2e8f0;padding:12px 14px;border-radius:14px;cursor:pointer;font-size:14px;font-family:inherit;color:#1e293b;transition:all .15s}
-  .yf-secim-btn:hover{background:#eef3ff;border-color:#3b5bfd;color:#3b5bfd;transform:translateY(-1px)}
-  .yf-secim-btn b{display:flex;align-items:center;gap:8px}
-  .yf-secim-btn .rozet{font-size:11px;font-weight:700;color:#16a34a;background:#dcfce7;padding:2px 8px;border-radius:6px}
-  .yf-modal-kapat-btn{width:100%;border:0;background:#f1f5f9;color:#64748b;font:700 13px var(--font,inherit);padding:11px;border-radius:12px;cursor:pointer;transition:background .15s}
-  .yf-modal-kapat-btn:hover{background:#e2e8f0;color:#334155}
+  /* Seçenek Modal */
+  .yf-modal-perde {
+    position: fixed;
+    inset: 0;
+    z-index: 10005;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 18, 40, .68);
+    padding: 18px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: gir .2s ease;
+  }
+  .yf-modal-kutu {
+    background: #fff;
+    border-radius: 22px;
+    padding: 22px 20px 18px;
+    width: min(420px, 100%);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, .35);
+    font-family: var(--font, system-ui);
+  }
+  .yf-modal-kutu h3 {
+    margin: 0 0 6px;
+    font-size: 16.5px;
+    font-weight: 800;
+    color: #141b34;
+  }
+  .yf-modal-kutu p {
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: #6b7390;
+    line-height: 1.45;
+  }
+  .yf-secenekler-liste {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .yf-secim-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    background: #f8faff;
+    border: 1.5px solid #e2e8f0;
+    padding: 12px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    color: #1e293b;
+    transition: all .15s;
+  }
+  .yf-secim-btn:hover {
+    background: #eef3ff;
+    border-color: #3b5bfd;
+    color: #3b5bfd;
+    transform: translateY(-1px);
+  }
+  .yf-secim-btn b {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .yf-secim-btn .rozet {
+    font-size: 11px;
+    font-weight: 700;
+    color: #16a34a;
+    background: #dcfce7;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+  .yf-modal-kapat-btn {
+    width: 100%;
+    border: 0;
+    background: #f1f5f9;
+    color: #64748b;
+    font: 700 13px var(--font, inherit);
+    padding: 11px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  .yf-modal-kapat-btn:hover {
+    background: #e2e8f0;
+    color: #334155;
+  }
   `;
   document.head.appendChild(css);
 
@@ -84,7 +281,6 @@
     .replace(/ö/g, "o").replace(/ü/g, "u").replace(/ç/g, "c")
     .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
-  // Yerel önbellekten yükle
   if (!window.KC_BULUT_FOTOLAR) {
     try {
       window.KC_BULUT_FOTOLAR = JSON.parse(localStorage.getItem("kc-bulut-fotolar") || "{}");
@@ -163,7 +359,6 @@
     seciciInput.click();
   }
 
-  /* Seçenekli yemek modalı */
   function secimDialogGoster(parcalar, fotoBulFn, secildiCallback) {
     const d = document.createElement("div");
     d.className = "yf-modal-perde";
@@ -223,23 +418,40 @@
       if (!yazi) return;
 
       const fotoBul = ad => {
+        if (!ad) return null;
         const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
         if (bulut[asc]) return bulut[asc];
         if (bulut[sl]) return bulut[sl];
         if (bulut[k]) return bulut[k];
         if (tablo[k]) return tablo[k];
         if (tablo[asc]) return tablo[asc];
+        if (tablo[sl]) return tablo[sl];
         return null;
       };
 
-      const parcalar = yazi.includes("/") ? yazi.split("/").map(p => p.trim()).filter(Boolean) : [yazi];
-      const secenekler = parcalar.map(p => [p, fotoBul(p)]).filter(([_, f]) => !!f);
+      // 1) Önce tüm satır için fotoğraf var mı (Örn: "siyah / yeşil zeytin")
+      let secenekler = [];
+      const tumuFoto = fotoBul(yazi);
+      if (tumuFoto) {
+        secenekler = [[yazi, tumuFoto]];
+      } else if (yazi.includes("/")) {
+        // 2) Yoksa ve "/" varsa seçeneklere böl
+        const parcalar = yazi.split("/").map(p => p.trim()).filter(Boolean);
+        secenekler = parcalar.map(p => [p, fotoBul(p)]).filter(([_, f]) => !!f);
+      }
 
-      // Mevcut yf-grup varsa kaldırıp tazeleyelim
+      // Mevcut yf-grup ve admin butonunu kaldırıp baştan çizelim
       const eskiGrup = li.querySelector(".yf-grup");
       if (eskiGrup) eskiGrup.remove();
+      const eskiMetin = li.querySelector(".yf-metin");
+      if (eskiMetin) {
+        li.textContent = yazi;
+      }
+      const eskiAdminBtn = li.querySelector(".yf-admin-btn");
+      if (eskiAdminBtn) eskiAdminBtn.remove();
 
       if (secenekler.length) {
+        li.textContent = "";
         const kutu = document.createElement("span"); kutu.className = "yf-grup";
         secenekler.slice(0, 4).forEach(([ad, g]) => {
           const b = document.createElement("button"); b.className = "yf"; b.type = "button"; b.setAttribute("aria-label", ad + " fotoğrafı");
@@ -251,12 +463,20 @@
           };
           kutu.appendChild(b);
         });
-        li.prepend(kutu); li.classList.add("fotolu");
+
+        const spanMetin = document.createElement("span");
+        spanMetin.className = "yf-metin";
+        spanMetin.textContent = yazi;
+
+        li.appendChild(kutu);
+        li.appendChild(spanMetin);
+        li.classList.add("fotolu");
+      } else {
+        li.classList.remove("fotolu");
+        li.textContent = yazi;
       }
 
       // Yönetici fotoğraf yükleme butonu
-      const eskiAdminBtn = li.querySelector(".yf-admin-btn");
-      if (eskiAdminBtn) eskiAdminBtn.remove();
       if (yoneticiMi) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -265,6 +485,7 @@
         btn.title = `"${yazi}" için fotoğraf yükle`;
         btn.onclick = (e) => {
           e.stopPropagation();
+          const parcalar = yazi.includes("/") ? yazi.split("/").map(p => p.trim()).filter(Boolean) : [yazi];
           if (parcalar.length > 1) {
             secimDialogGoster(parcalar, fotoBul, secilen => {
               fotoSeciciAc(secilen);
@@ -280,13 +501,12 @@
     const ek = YANINDA[yer === "unievi" ? "unievi" : "yurt"];
     if (ek && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
       const d = document.createElement("div"); d.className = "yf-ek";
-      d.innerHTML = `<span>Menüyle verilir:</span><div class="yf-grup"></div>`;
-      const grup = d.querySelector(".yf-grup");
-      ek.forEach(([ad, g]) => {
-        const b = document.createElement("button"); b.className = "yf"; b.type = "button"; b.setAttribute("aria-label", ad + " fotoğrafı");
-        b.innerHTML = `<img src="${Y}k/${g}.webp" alt="" loading="lazy">`;
-        b.onclick = () => buyut(g, ad);
-        grup.appendChild(b);
+      d.innerHTML = "<span>Menüyle verilir:</span>";
+      ek.forEach(([adLabel, dosyaAd]) => {
+        const b = document.createElement("button"); b.type = "button";
+        b.innerHTML = `<img src="${Y}k/${dosyaAd}.webp" alt="">${adLabel}`;
+        b.onclick = () => buyut(dosyaAd, adLabel);
+        d.appendChild(b);
       });
       ul.after(d);
     }
