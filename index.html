@@ -1036,7 +1036,7 @@ function yurtMenuYaz(elId, id, ogun, d = bugun) {
   const m = yurtMenusu(id, d), el = document.getElementById(elId);
   const notEl = document.getElementById(elId === "ana-yemekler" ? "ana-menu-not" : "detay-menu-not");
   const dg = document.getElementById(elId === "ana-yemekler" ? "dg-ana" : "dg-detay");
-  if (dg) dg.dataset.menu = m && m[ogun] && m[ogun].length ? `kyk_${tarihAnahtar(d)}_${ogun}` : "";
+  if (dg) dg.dataset.menu = m && m[ogun] && m[ogun].length ? `${id}_${tarihAnahtar(d)}_${ogun}` : "";
   if (m && m[ogun] && m[ogun].length) {
     listeYaz(elId, m[ogun]);
   } else {
@@ -1283,9 +1283,9 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=9"></script>
+<script src="/yemekfoto.js?v=10"></script>
 <script src="/firebase-ayar.js"></script>
-<script type="module" src="/yorum.js?v=5"></script>
+<script type="module" src="/yorum.js?v=6"></script>
 <script src="/vitrin.js?v=7"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">

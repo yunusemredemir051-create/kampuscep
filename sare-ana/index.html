@@ -200,8 +200,8 @@ function goster(ekGun) {
   const kk = document.getElementById("kart-kahvalti"), ka = document.getElementById("kart-aksam");
   if (ekGun === 0 && dk >= (hsonu ? 750 : 720)) kk.before(ka); else ka.before(kk);
   const dg = (i, var_, id) => { const e = document.getElementById("dg-" + i); if (e) e.dataset.menu = var_ ? id : ""; };
-  dg("kahvalti", gun && gun.kahvalti && gun.kahvalti.length, `kyk_${k}_kahvalti`);
-  dg("aksam", gun && gun.aksam && gun.aksam.length, `kyk_${k}_aksam`);
+  dg("kahvalti", gun && gun.kahvalti && gun.kahvalti.length, `${YURT}_${k}_kahvalti`);
+  dg("aksam", gun && gun.aksam && gun.aksam.length, `${YURT}_${k}_aksam`);
   dg("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k], `unievi_${k}`);
   yaz("aksam", gun && gun.aksam, bos, ym && ym.aksamNotu);
   const hs = d.getDay() === 0 || d.getDay() === 6;
@@ -213,9 +213,9 @@ function goster(ekGun) {
 document.querySelectorAll(".gun-sec button").forEach(b => b.onclick = () => goster(+b.dataset.g));
 goster(0);
 </script>
-<script src="/yemekfoto.js?v=9"></script>
+<script src="/yemekfoto.js?v=10"></script>
 <script src="/firebase-ayar.js"></script>
-<script type="module" src="/yorum.js?v=5"></script>
+<script type="module" src="/yorum.js?v=6"></script>
 <script src="/vitrin.js?v=7"></script>
 </body>
 </html>

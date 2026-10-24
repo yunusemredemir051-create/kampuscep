@@ -1,4 +1,6 @@
 /* KampüsCepte — yemek menüsü değerlendirme, puanlama, yorumlar, admin paneli ve yemek fotoğrafları.
+   Puanlama & Yıldızlar: Tüm KYK yurtları için tek ortak havuzda toplanır.
+   Yorumlar: Her yurda özel olarak ayrılır.
    Yönetici: yunusemredemir051@gmail.com */
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut }
@@ -6,8 +8,7 @@ import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, sig
 import { getFirestore, collection, doc, setDoc, deleteDoc, addDoc, onSnapshot, query, where,
          getCountFromServer, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-if (!window.FIREBASE_AYAR) throw new Error("firebase-ayar.js yok");
-const app = getApps()[0] || initializeApp(window.FIREBASE_AYAR);
+const app = getApps().length ? getApps()[0] : initializeApp(window.FIREBASE_AYAR);
 const auth = getAuth(app); auth.languageCode = "tr";
 const db = getFirestore(app);
 let ben = null;
@@ -18,7 +19,26 @@ const isAdmin = () => ben && ben.email === ADMIN_EMAIL;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
 
-/* ---------- kimlik: hesap gerekmez; arka planda anonim oturum açılır ---------- */
+// KYK yurtları için ortak oy/puanlama havuzu (tüm 7 yurt birleşik oy verir)
+function oyHavuzId(menuId) {
+  const m = String(menuId || "").match(/^([a-z0-9-]+)_(\d{4}-\d{2}-\d{2})(?:_(kahvalti|aksam))?$/);
+  if (!m) return menuId;
+  const [_, yer, tarih, ogun] = m;
+  const kykYurtlari = [
+    "ahmet-kabakli", "sare-ana", "harput", "izzetpasa",
+    "omer-bilginoglu", "fethi-sekin", "firat", "kyk"
+  ];
+  if (kykYurtlari.includes(yer)) {
+    return `kyk_${tarih}${ogun ? "_" + ogun : ""}`;
+  }
+  return menuId;
+}
+
+// Yorumlar ise her yurdun kendi özel menüsünde kalır (birbirine karışmaz)
+function yorumHavuzId(menuId) {
+  return menuId;
+}
+
 async function kimlik() {
   if (auth.currentUser) return true;
   try { await signInAnonymously(auth); return true; }
@@ -88,10 +108,9 @@ css.textContent = `
 .dg-form{display:flex;gap:8px;align-items:flex-end}
 .dg-form textarea{flex:1;min-height:42px;max-height:140px;resize:vertical;border:1px solid var(--cizgi,#e3e7f3);border-radius:14px;padding:10px 12px;font:500 14px var(--font,inherit);color:var(--yazi,#141b34);background:#fff}
 .dg-form button{border:0;border-radius:14px;padding:11px 14px;background:var(--mavi,#3b5bfd);color:#fff;font:700 13px var(--font,inherit);cursor:pointer}
-.dg-form button:disabled{opacity:.5}
-.dg-liste{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:10px}
-.dg-y{background:rgba(255,255,255,.8);border:1px solid var(--cizgi,#eef0f6);border-radius:14px;padding:10px 12px}
-.dg-y .ust{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.dg-liste{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.dg-y{background:#fff;border:1px solid var(--cizgi,#e6e9f2);border-radius:14px;padding:10px 12px}
+.dg-y-ust{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
 .dg-y b{font-size:13.5px;color:var(--yazi,#141b34)}
 .dg-y time{font-size:11.5px;color:var(--soluk,#8a90a8);font-weight:600}
 .dg-y p{margin:4px 0 6px;font-size:14px;line-height:1.5;color:var(--yazi,#141b34);white-space:pre-wrap;word-break:break-word}
@@ -99,9 +118,8 @@ css.textContent = `
 .dg-y .eylem button{border:0;background:none;padding:0;font:700 12px var(--font,inherit);color:var(--soluk,#8a90a8);cursor:pointer}
 .dg-y .eylem button.yanitla{color:var(--mavi,#3b5bfd)}
 .dg-y-begen{display:inline-flex;align-items:center;gap:4px;background:rgba(20,27,52,.04);color:var(--soluk,#6b7390);
-  border:0;padding:3px 9px;border-radius:99px;font:700 11.5px var(--font,inherit);cursor:pointer;transition:all .15s}
-.dg-y-begen:hover{background:#ffe4e6;color:#e11d48}
-.dg-y-begen.begenildi{background:#ffe4e6;color:#e11d48;font-weight:800}
+  border:0;border-radius:99px;padding:3px 9px;font:700 11.5px var(--font,inherit);cursor:pointer;transition:all .15s}
+.dg-y-begen.secili{background:#ffebee;color:#e11d48}
 .dg-yanitlar{list-style:none;margin:8px 0 0 14px;padding:0 0 0 10px;border-left:2px solid var(--mavi-acik,#e6ebff);display:grid;gap:8px}
 .dg-yanit-form{margin-top:8px}
 .dg-bos{font-size:13px;color:var(--soluk,#8a90a8);font-weight:600;margin:10px 2px 0}
@@ -113,40 +131,27 @@ css.textContent = `
 .dg-giris-link:hover{color:var(--mavi,#3b5bfd)}
 .dg-cikis-btn{border:0;background:rgba(0,0,0,.08);color:#78350f;border-radius:8px;padding:4px 8px;font:700 11.5px var(--font,inherit);cursor:pointer}
 .dg-cikis-btn:hover{background:rgba(0,0,0,.15)}
-.dg-sil-btn{border:0;background:rgba(220,38,38,.08);color:#dc2626;border-radius:99px;padding:3px 8px;font:700 11.5px var(--font,inherit);cursor:pointer}
-.dg-sil-btn:hover{background:#fee2e2}
-.dg-ban-btn{border:0;background:rgba(217,119,6,.1);color:#d97706;border-radius:99px;padding:3px 8px;font:700 11.5px var(--font,inherit);cursor:pointer}
-.dg-ban-btn:hover{background:#fef3c7}
+.dg-sil-btn{border:0;background:rgba(220,38,38,.08);color:#dc2626;border-radius:99px;padding:3px 8px;font:700 11px var(--font,inherit);cursor:pointer;transition:background .15s}
+.dg-sil-btn:hover{background:#dc2626;color:#fff}
+.dg-ban-btn{border:0;background:rgba(124,58,237,.08);color:#7c3aed;border-radius:99px;padding:3px 8px;font:700 11px var(--font,inherit);cursor:pointer;transition:background .15s}
+.dg-ban-btn:hover{background:#7c3aed;color:#fff}
+.dg-cezali-kutu{background:#fee2e2;border:1px solid #fecaca;border-radius:12px;padding:12px;color:#991b1b;font-size:13px;font-weight:700;text-align:center;margin-top:8px}
 
-/* Yemek fotoğrafı yükleme */
-.yf-admin-btn{margin-left:auto;border:1px dashed #3b5bfd;background:rgba(59,91,253,.07);color:#3b5bfd;font:700 11.5px var(--font,inherit);padding:3px 8px;border-radius:8px;cursor:pointer;transition:all .15s}
-.yf-admin-btn:hover{background:#3b5bfd;color:#fff}
-
-#dg-toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,20px);opacity:0;z-index:9999;background:#141b34;color:#fff;
-  font:600 13px/1.4 var(--font,system-ui);padding:10px 14px;border-radius:14px;max-width:88vw;text-align:center;transition:.25s;pointer-events:none}
-#dg-toast.goster{opacity:1;transform:translate(-50%,0)}
-
-[data-tema="koyu"] .dg-puan-alani{background:#1f263d;border-color:#2e3758}
-[data-tema="koyu"] .dg-star{color:#444d6e}
-[data-tema="koyu"] .dg-star:hover,[data-tema="koyu"] .dg-star.aktif,[data-tema="koyu"] .dg-star.secili{color:#fbbf24}
-[data-tema="koyu"] .dg-puan-bilgi b{color:#fbbf24}
-[data-tema="koyu"] .dg-btn{background:#1a2035;border-color:#2e3758;color:#a0aec0}
-[data-tema="koyu"] .dg-y{background:#1a2035;border-color:#2e3758}
-[data-tema="koyu"] .dg-y-begen{background:rgba(255,255,255,.08);color:#a0aec0}
-[data-tema="koyu"] .dg-y-begen.begenildi{background:#3b1e2b;color:#fb7185}
-[data-tema="koyu"] .dg-admin-serit{background:#2a2310;border-color:#483812;color:#fde68a}
-[data-tema="koyu"] .yf-admin-btn{background:rgba(59,91,253,.15);color:#93c5fd;border-color:#3b5bfd}
+#dg-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;
+  background:#141b34;color:#fff;font:700 13px var(--font,inherit);padding:9px 18px;border-radius:99px;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);transition:opacity .2s,transform .2s;z-index:9999}
+#dg-toast.goster{opacity:1;transform:translateX(-50%) translateY(0)}
 `;
 document.head.appendChild(css);
 
 const IKON = {
-  iyi: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v11H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h3zm0 0 4-7a2.5 2.5 0 0 1 3 2.6L13.4 9H19a2 2 0 0 1 2 2.3l-1.3 8A2 2 0 0 1 17.7 21H7"/></svg>',
-  kotu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-3zm0 0-4 7a2.5 2.5 0 0 1-3-2.6l.6-3.4H5a2 2 0 0 1-2-2.3l1.3-8A2 2 0 0 1 6.3 3H17"/></svg>',
-  yorum: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>'
+  iyi: '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333V17a1 1 0 001 1h6.72a2 2 0 001.97-1.637l1.3-6.5A2 2 0 0015.03 7.5H12V4a2 2 0 00-2-2l-3.333 6.667A2 2 0 006 10.333z"/></svg>',
+  kotu: '<svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667V3a1 1 0 00-1-1H6.28a2 2 0 00-1.97 1.637L3.01 10.137A2 2 0 005 12.5H8v3.5a2 2 0 002 2l3.333-6.667A2 2 0 0014 9.667z"/></svg>',
+  yorum: '<svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"/></svg>'
 };
 
-function zamanYaz(ts) {
-  if (!ts || !ts.toDate) return "az önce";
+function zamanFarki(ts) {
+  if (!ts) return "şimdi";
   const d = ts.toDate(), s = (Date.now() - d) / 1000;
   if (s < 60) return "az önce";
   if (s < 3600) return Math.floor(s / 60) + " dk önce";
@@ -182,17 +187,24 @@ function kur(el) {
   const eski = kutular.get(el);
   if (eski && eski.id === id) return;
   if (eski && eski.dinle) eski.dinle();
+  if (eski && eski.dinleOy) eski.dinleOy();
   if (!MENU_RE.test(id)) { el.innerHTML = ""; kutular.delete(el); return; }
+
+  const oyId = oyHavuzId(id);
+  const yorumId = yorumHavuzId(id);
 
   const d = {
     id,
+    oyId,
+    yorumId,
     benimPuan: 0,
     benimReaksiyon: 0,
     sayi: { starToplam: 0, starAdet: 0, starOrt: 0, iyi: 0, kotu: 0, yorum: 0 },
     acik: false,
     yorumlar: [],
     yanit: null,
-    dinle: null
+    dinle: null,
+    dinleOy: null
   };
   kutular.set(el, d);
 
@@ -216,7 +228,7 @@ function kur(el) {
       <button class="dg-btn yorum" aria-expanded="false">${IKON.yorum}Yorumlar <span>0</span></button>
     </div><div class="dg-panel" hidden></div>`;
 
-  // Yıldız olayları
+  // Yıldız tıklamaları
   const stars = el.querySelectorAll(".dg-star");
   stars.forEach(btn => {
     btn.onclick = () => starPuanVer(el, +btn.dataset.puan);
@@ -238,19 +250,32 @@ function kur(el) {
   // Yorumlar paneli
   el.querySelector(".dg-btn.yorum").onclick = () => panelAc(el, !d.acik);
 
-  sayilariGetir(el);
+  // Oyları ve yorum sayısını getir & gerçek zamanlı dinle
+  oyDinleVeSay(el);
 }
 
-async function sayilariGetir(el) {
+function oyDinleVeSay(el) {
   const d = kutular.get(el); if (!d) return;
-  const oylarRef = collection(db, "menuler", d.id, "oylar");
-  try {
-    const [snapOylar, c] = await Promise.all([
-      getDocs(oylarRef),
-      d.acik ? Promise.resolve(null) : getCountFromServer(collection(db, "menuler", d.id, "yorumlar"))
-    ]);
-    if (kutular.get(el) !== d) return;
+  if (d.dinleOy) { d.dinleOy(); d.dinleOy = null; }
 
+  // Yorum sayısını al
+  getCountFromServer(collection(db, "menuler", d.yorumId, "yorumlar")).then(c => {
+    if (kutular.get(el) === d) {
+      d.sayi.yorum = c.data().count;
+      barCiz(el);
+    }
+  }).catch(() => {});
+
+  // Yerel oy bilgilerini oku
+  try {
+    d.benimPuan = parseInt(localStorage.getItem("kc-puan-" + d.oyId)) || 0;
+    d.benimReaksiyon = parseInt(localStorage.getItem("kc-reak-" + d.oyId)) || 0;
+  } catch (e) {}
+
+  // Firestore'daki ortak havuz oylarını gerçek zamanlı dinle
+  const oylarRef = collection(db, "menuler", d.oyId, "oylar");
+  d.dinleOy = onSnapshot(oylarRef, snapOylar => {
+    if (kutular.get(el) !== d) return;
     let starTop = 0, starSay = 0, iyiSay = 0, kotuSay = 0;
     snapOylar.forEach(docSnap => {
       const data = docSnap.data();
@@ -269,35 +294,21 @@ async function sayilariGetir(el) {
     d.sayi.starOrt = starSay > 0 ? (starTop / starSay).toFixed(1) : 0;
     d.sayi.iyi = iyiSay;
     d.sayi.kotu = kotuSay;
-    if (c) d.sayi.yorum = c.data().count;
-
-    // Kendi oyumuz
-    let localPuan = 0, localReak = 0;
-    try {
-      localPuan = parseInt(localStorage.getItem("kc-puan-" + d.id)) || 0;
-      localReak = parseInt(localStorage.getItem("kc-reak-" + d.id)) || 0;
-    } catch (e) {}
 
     if (ben) {
-      const s = await getDoc(doc(oylarRef, ben.uid));
-      if (s.exists()) {
-        const myData = s.data();
-        if (typeof myData.puan === "number") localPuan = myData.puan;
-        else if (typeof myData.d === "number" && myData.d >= 1 && myData.d <= 5) localPuan = myData.d;
-        if (typeof myData.reaksiyon === "number") localReak = myData.reaksiyon;
-        else if (myData.d === 1 || myData.d === -1) localReak = myData.d;
+      const myDoc = snapOylar.docs.find(x => x.id === ben.uid);
+      if (myDoc) {
+        const myData = myDoc.data();
+        if (typeof myData.puan === "number") d.benimPuan = myData.puan;
+        else if (typeof myData.d === "number" && myData.d >= 1 && myData.d <= 5) d.benimPuan = myData.d;
+        if (typeof myData.reaksiyon === "number") d.benimReaksiyon = myData.reaksiyon;
+        else if (myData.d === 1 || myData.d === -1) d.benimReaksiyon = myData.d;
       }
     }
-    d.benimPuan = localPuan;
-    d.benimReaksiyon = localReak;
-  } catch (e) {
-    console.warn("değerlendirme okunamadı", e);
-    try {
-      d.benimPuan = parseInt(localStorage.getItem("kc-puan-" + d.id)) || 0;
-      d.benimReaksiyon = parseInt(localStorage.getItem("kc-reak-" + d.id)) || 0;
-    } catch (err) {}
-  }
-  barCiz(el);
+    barCiz(el);
+  }, err => {
+    console.warn("Ortak oy havuzu dinleme hatası:", err);
+  });
 }
 
 function barCiz(el) {
@@ -344,24 +355,15 @@ async function starPuanVer(el, p) {
   const yeni = onceki === p ? 0 : p;
 
   d.benimPuan = yeni;
-  try { localStorage.setItem("kc-puan-" + d.id, yeni); } catch (e) {}
-
-  if (onceki > 0 && yeni === 0) {
-    d.sayi.starToplam -= onceki; d.sayi.starAdet--;
-  } else if (onceki > 0 && yeni > 0) {
-    d.sayi.starToplam += (yeni - onceki);
-  } else if (onceki === 0 && yeni > 0) {
-    d.sayi.starToplam += yeni; d.sayi.starAdet++;
-  }
-  d.sayi.starOrt = d.sayi.starAdet > 0 ? (d.sayi.starToplam / d.sayi.starAdet).toFixed(1) : 0;
+  try { localStorage.setItem("kc-puan-" + d.oyId, yeni); } catch (e) {}
   barCiz(el);
 
   if (yeni > 0) toast(`${yeni} yıldız verdin! ⭐`);
 
   if (!(await kimlik())) return;
-  const ref = doc(db, "menuler", d.id, "oylar", auth.currentUser.uid);
+  const ref = doc(db, "menuler", d.oyId, "oylar", auth.currentUser.uid);
   try {
-    await setDoc(ref, { puan: yeni, zaman: serverTimestamp() }, { merge: true });
+    await setDoc(ref, { d: yeni, puan: yeni, zaman: serverTimestamp() }, { merge: true });
   } catch (e) {
     console.error("Firestore puan hatası:", e);
   }
@@ -372,19 +374,14 @@ async function reaksiyonVer(el, r) {
   const onceki = d.benimReaksiyon;
   const yeni = onceki === r ? 0 : r;
 
-  if (onceki === 1) d.sayi.iyi--;
-  if (onceki === -1) d.sayi.kotu--;
-  if (yeni === 1) d.sayi.iyi++;
-  if (yeni === -1) d.sayi.kotu++;
-
   d.benimReaksiyon = yeni;
-  try { localStorage.setItem("kc-reak-" + d.id, yeni); } catch (e) {}
+  try { localStorage.setItem("kc-reak-" + d.oyId, yeni); } catch (e) {}
   barCiz(el);
 
   if (!(await kimlik())) return;
-  const ref = doc(db, "menuler", d.id, "oylar", auth.currentUser.uid);
+  const ref = doc(db, "menuler", d.oyId, "oylar", auth.currentUser.uid);
   try {
-    await setDoc(ref, { reaksiyon: yeni, zaman: serverTimestamp() }, { merge: true });
+    await setDoc(ref, { d: yeni, reaksiyon: yeni, zaman: serverTimestamp() }, { merge: true });
   } catch (e) {
     console.error("Firestore reaksiyon hatası:", e);
   }
@@ -398,7 +395,7 @@ function panelAc(el, ac) {
   barCiz(el);
   if (!ac) { if (d.dinle) { d.dinle(); d.dinle = null; } return; }
   panelCiz(el);
-  d.dinle = onSnapshot(collection(db, "menuler", d.id, "yorumlar"), s => {
+  d.dinle = onSnapshot(collection(db, "menuler", d.yorumId, "yorumlar"), s => {
     d.yorumlar = s.docs.map(x => ({ id: x.id, ...x.data() }));
     d.sayi.yorum = d.yorumlar.length; barCiz(el);
     listeCiz(el);
@@ -410,131 +407,156 @@ function formHtml(yanit) {
 }
 
 function panelCiz(el) {
+  const d = kutular.get(el); if (!d) return;
   const p = el.querySelector(".dg-panel");
   const adminSerit = isAdmin()
-    ? `<div class="dg-admin-serit">👑 Yönetici: <b>${esc(ben.email)}</b> <button type="button" class="dg-cikis-btn">Çıkış Yap</button></div>`
-    : `<div class="dg-admin-giris-serit"><button type="button" class="dg-giris-link">🔑 Yönetici Girişi</button></div>`;
+    ? `<div class="dg-admin-serit">
+        <span>👑 Yönetici Modu: <b>${esc(ADMIN_EMAIL)}</b></span>
+        <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
+       </div>`
+    : `<div class="dg-admin-giris-serit">
+        <button type="button" class="dg-giris-link" id="dg-admin-giris">🔑 Yönetici Girişi</button>
+       </div>`;
 
-  p.innerHTML = adminSerit
-    + `<input class="dg-ad" maxlength="40" placeholder="Adın soyadın" autocomplete="name" value="${esc(adOku())}">${formHtml(false)}`
-    + `<ul class="dg-liste"><li class="dg-bos">Yükleniyor…</li></ul>`;
+  p.innerHTML = adminSerit +
+    `<input class="dg-ad" maxlength="40" placeholder="İsmin (isteğe bağlı, boş bırakırsan Anonim)" value="${esc(adOku())}">
+     <div id="dg-ana-form-kutu">${formHtml(false)}</div>
+     <ul class="dg-liste"></ul>`;
 
-  const btnGiris = p.querySelector(".dg-giris-link");
+  const btnGiris = p.querySelector("#dg-admin-giris");
   if (btnGiris) btnGiris.onclick = adminGirisYap;
-  const btnCikis = p.querySelector(".dg-cikis-btn");
+  const btnCikis = p.querySelector("#dg-admin-cikis");
   if (btnCikis) btnCikis.onclick = adminCikisYap;
 
-  const f = p.querySelector(":scope > .dg-form"); if (f) formBagla(el, f, "");
+  p.querySelector(".dg-ad").oninput = e => adYaz(e.target.value.trim());
+  formBagla(el, p.querySelector(".dg-form"), null);
   listeCiz(el);
 }
 
-function formBagla(el, f, ust) {
-  const ta = f.querySelector("textarea"), b = f.querySelector("button");
-  ta.addEventListener("input", () => { ta.style.height = "auto"; ta.style.height = Math.min(140, ta.scrollHeight) + "px"; });
-  b.onclick = async () => {
+function formBagla(el, f, ustId) {
+  const d = kutular.get(el);
+  const ta = f.querySelector("textarea"), btn = f.querySelector("button");
+  ta.oninput = () => { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 140) + "px"; };
+  btn.onclick = async () => {
     const metin = ta.value.trim();
-    if (!metin) return;
-    const adKutu = el.querySelector(".dg-ad"), ad = (adKutu ? adKutu.value : adOku()).trim().replace(/\s+/g, " ");
-    if (ad.length < 2) { toast("Önce adını yaz."); if (adKutu) adKutu.focus(); return; }
-    adYaz(ad);
-
+    if (!metin) { ta.focus(); return; }
     if (!(await kimlik())) return;
 
-    // Ceza kontrolü
+    // Ban kontrolü
     const ceza = await cezaKontrol(auth.currentUser.uid);
     if (ceza.cezali) {
-      alert(`⛔ Yorum yapma cezanız bulunmaktadır!\n\nKalan süre: ${ceza.kalanGun} gün\nBitiş tarihi: ${ceza.bitisStr}\n\nCeza süresince yeni yorum veya yanıt gönderemezsiniz.`);
+      alert(`⛔ Yorum yapma cezanız bulunmaktadır!\nKalan süre: Yaklaşık ${ceza.kalanGun} gün (Bitiş: ${ceza.bitisStr})\nBu süre zarfında yorum veya yanıt yazamazsınız.`);
       return;
     }
 
-    const d = kutular.get(el); b.disabled = true;
+    const adInp = el.querySelector(".dg-ad");
+    const ad = (adInp ? adInp.value.trim() : "") || adOku() || "Anonim";
+    adYaz(ad === "Anonim" ? "" : ad);
+    btn.disabled = true;
     try {
-      await addDoc(collection(db, "menuler", d.id, "yorumlar"), {
-        uid: auth.currentUser.uid, ad, metin: metin.slice(0, 500), ust, zaman: serverTimestamp(), begeni: 0
+      await addDoc(collection(db, "menuler", d.yorumId, "yorumlar"), {
+        uid: auth.currentUser.uid,
+        ad, metin,
+        ust: ustId || "",
+        zaman: serverTimestamp(),
+        begeniler: []
       });
-      ta.value = ""; ta.style.height = "";
-      if (ust) { d.yanit = null; listeCiz(el); }
-    } catch (e) { console.error(e); toast("Yorum gönderilemedi, tekrar dener misin?"); }
-    b.disabled = false;
+      ta.value = ""; ta.style.height = "auto";
+      if (ustId) { d.yanit = null; listeCiz(el); }
+    } catch (e) {
+      console.error(e); toast("Gönderilemedi, tekrar dener misin?");
+    } finally { btn.disabled = false; }
   };
 }
 
 function listeCiz(el) {
-  const d = kutular.get(el); if (!d || !d.acik) return;
+  const d = kutular.get(el); if (!d) return;
   const ul = el.querySelector(".dg-liste"); if (!ul) return;
-  const ms = y => (y.zaman && y.zaman.toMillis) ? y.zaman.toMillis() : Date.now();
-  const ana = d.yorumlar.filter(y => !y.ust).sort((a, b) => ms(b) - ms(a));
-  if (!ana.length) { ul.innerHTML = '<li class="dg-bos">Henüz yorum yok. İlk yorumu sen yaz!</li>'; return; }
+  if (!d.yorumlar.length) { ul.innerHTML = '<li class="dg-bos">Henüz yorum yok. İlk yorumu sen yap!</li>'; return; }
 
-  const tek = y => {
-    const benBegenmismiyim = localStorage.getItem("kc-yb-" + y.id) === "1";
-    const silYetkisi = isAdmin() || (ben && ben.uid === y.uid);
-    const banYetkisi = isAdmin() && (ben && ben.uid !== y.uid);
+  const kokler = d.yorumlar.filter(y => !y.ust).sort((a, b) => (b.zaman?.seconds || 0) - (a.zaman?.seconds || 0));
+  const yanitlar = new Map();
+  d.yorumlar.filter(y => y.ust).sort((a, b) => (a.zaman?.seconds || 0) - (b.zaman?.seconds || 0))
+    .forEach(y => { const l = yanitlar.get(y.ust) || []; l.push(y); yanitlar.set(y.ust, l); });
 
-    return `<div class="ust"><b>${esc(y.ad)}</b><time>${zamanYaz(y.zaman)}</time></div><p>${esc(y.metin)}</p>
+  const benUid = auth.currentUser ? auth.currentUser.uid : "";
+  const yoneticiMi = isAdmin();
+
+  const kart = y => {
+    const benim = y.uid && benUid && y.uid === benUid;
+    const begeniListesi = Array.isArray(y.begeniler) ? y.begeniler : [];
+    const benBegendim = benUid && begeniListesi.includes(benUid);
+    const begeniSayi = begeniListesi.length;
+
+    const silBtn = (benim || yoneticiMi) ? `<button class="dg-sil-btn" data-sil="${esc(y.id)}">🗑️ Sil</button>` : "";
+    const banBtn = (yoneticiMi && y.uid && y.uid !== benUid)
+      ? `<button class="dg-ban-btn" data-ban-uid="${esc(y.uid)}" data-ban-ad="${esc(y.ad)}">🚫 Ceza Ver</button>`
+      : "";
+
+    return `<li class="dg-y" data-id="${esc(y.id)}">
+      <div class="dg-y-ust"><b>${esc(y.ad)}</b><time>${zamanFarki(y.zaman)}</time></div>
+      <p>${esc(y.metin)}</p>
       <div class="eylem">
-        <button class="dg-y-begen ${benBegenmismiyim ? "begenildi" : ""}" data-yorum-begen="${y.id}" title="Yorumu beğen">
-          ❤️ <span>${y.begeni || 0}</span>
-        </button>
-        ${y.ust ? "" : `<button class="yanitla" data-yanit="${y.id}">Yanıtla</button>`}
-        ${silYetkisi ? `<button class="dg-sil-btn" data-sil="${y.id}" title="Yorumu sil">🗑️ Sil${isAdmin() && ben.uid !== y.uid ? " (Yönetici)" : ""}</button>` : ""}
-        ${banYetkisi ? `<button class="dg-ban-btn" data-ban-uid="${y.uid}" data-ban-ad="${esc(y.ad)}" title="Bu kullanıcıya yorum cezası ver">🚫 Ceza Ver</button>` : ""}
-        ${!silYetkisi ? `<button data-bildir="${y.id}">Bildir</button>` : ""}
-      </div>`;
+        <button class="dg-y-begen${benBegendim ? " secili" : ""}" data-yorum-begen="${esc(y.id)}" aria-label="Yorumu beğen">❤️ <span>${begeniSayi}</span></button>
+        <button class="yanitla" data-yanit="${esc(y.id)}">Yanıtla</button>
+        ${silBtn}
+        ${banBtn}
+        <button data-bildir="${esc(y.id)}">Bildir</button>
+      </div>
+      ${d.yanit === y.id ? `<div class="dg-yanit-form-alani">${formHtml(true)}</div>` : ""}
+      ${(yanitlar.get(y.id) || []).length ? `<ul class="dg-yanitlar">${(yanitlar.get(y.id) || []).map(kart).join("")}</ul>` : ""}
+    </li>`;
   };
 
-  ul.innerHTML = ana.map(y => {
-    const yanitlar = d.yorumlar.filter(x => x.ust === y.id).sort((a, b) => ms(a) - ms(b));
-    return `<li class="dg-y">${tek(y)}
-      ${yanitlar.length ? `<ul class="dg-yanitlar">${yanitlar.map(x => `<li class="dg-y">${tek(x)}</li>`).join("")}</ul>` : ""}
-      ${d.yanit === y.id ? formHtml(true) : ""}</li>`;
-  }).join("");
+  ul.innerHTML = kokler.map(kart).join("");
 
-  // Yorum beğen
-  ul.querySelectorAll("[data-yorum-begen]").forEach(btn => btn.onclick = async () => {
-    const yid = btn.dataset.yorumBegen;
-    const key = "kc-yb-" + yid;
-    let begenildi = false;
-    try { begenildi = localStorage.getItem(key) === "1"; } catch (e) {}
-
-    const yorum = d.yorumlar.find(x => x.id === yid);
-    if (!yorum) return;
-
-    const yeniSayi = begenildi ? Math.max(0, (yorum.begeni || 0) - 1) : (yorum.begeni || 0) + 1;
-    yorum.begeni = yeniSayi;
-    try { localStorage.setItem(key, begenildi ? "0" : "1"); } catch (e) {}
+  // Yanıt butonu
+  ul.querySelectorAll("[data-yanit]").forEach(b => b.onclick = () => {
+    d.yanit = d.yanit === b.dataset.yanit ? null : b.dataset.yanit;
     listeCiz(el);
-
-    if (!(await kimlik())) return;
-    try {
-      const yRef = doc(db, "menuler", d.id, "yorumlar", yid);
-      await setDoc(yRef, { begeni: yeniSayi }, { merge: true });
-    } catch (e) {
-      console.warn("Yorum beğeni hatası:", e);
+    if (d.yanit) {
+      const f = ul.querySelector(`.dg-y[data-id="${d.yanit}"] .dg-yanit-form`);
+      if (f) { formBagla(el, f, d.yanit); f.querySelector("textarea").focus(); }
     }
   });
 
-  // Yanıtla
-  ul.querySelectorAll("[data-yanit]").forEach(b => b.onclick = async () => {
-    d.yanit = d.yanit === b.dataset.yanit ? null : b.dataset.yanit; listeCiz(el);
-    const ta = ul.querySelector(".dg-yanit-form textarea"); if (ta) ta.focus();
-  });
-  const yf = ul.querySelector(".dg-yanit-form"); if (yf) formBagla(el, yf, d.yanit);
+  // Yorum Beğeni
+  ul.querySelectorAll("[data-yorum-begen]").forEach(b => b.onclick = async () => {
+    if (!(await kimlik())) return;
+    const yorumId = b.dataset.yorumBegen;
+    const hedef = d.yorumlar.find(x => x.id === yorumId);
+    if (!hedef) return;
 
-  // Sil (Kullanıcının kendi yorumu ya da Yönetici silmesi)
-  ul.querySelectorAll("[data-sil]").forEach(b => b.onclick = async () => {
-    const soru = isAdmin() ? "Yönetici olarak bu yorumu kalıcı olarak silmek istiyor musunuz?" : "Yorumun silinsin mi?";
-    if (!confirm(soru)) return;
+    const uId = auth.currentUser.uid;
+    let liste = Array.isArray(hedef.begeniler) ? [...hedef.begeniler] : [];
+    if (liste.includes(uId)) {
+      liste = liste.filter(x => x !== uId);
+    } else {
+      liste.push(uId);
+    }
+    hedef.begeniler = liste;
+    listeCiz(el);
+
     try {
-      for (const x of d.yorumlar.filter(x => x.ust === b.dataset.sil)) {
-        await deleteDoc(doc(db, "menuler", d.id, "yorumlar", x.id));
-      }
-      await deleteDoc(doc(db, "menuler", d.id, "yorumlar", b.dataset.sil));
-      toast("Yorum başarıyla silindi.");
-    } catch (e) { console.error(e); toast("Silinemedi, tekrar dener misin?"); }
+      const ref = doc(db, "menuler", d.yorumId, "yorumlar", yorumId);
+      await setDoc(ref, { begeniler: liste }, { merge: true });
+    } catch (e) {
+      console.error("Yorum beğenilemedi:", e);
+    }
   });
 
-  // Yönetici Ceza Ver (3 gün, 7 gün, 30 gün)
+  // Sil (Kullanıcının kendi yorumu veya Yönetici)
+  ul.querySelectorAll("[data-sil]").forEach(b => b.onclick = async () => {
+    if (!confirm("Bu yorumu silmek istediğine emin misin?")) return;
+    try {
+      await deleteDoc(doc(db, "menuler", d.yorumId, "yorumlar", b.dataset.sil));
+      toast("Yorum silindi.");
+    } catch (e) {
+      console.error(e); toast("Silinemedi: " + (e.message || e));
+    }
+  });
+
+  // Ceza Ver / Ban (3 gün, 7 gün, 30 gün)
   ul.querySelectorAll("[data-ban-uid]").forEach(b => b.onclick = async () => {
     if (!isAdmin()) return;
     const hedefUid = b.dataset.banUid;
@@ -590,7 +612,7 @@ function listeCiz(el) {
     if (!neden) return;
     try {
       await addDoc(collection(db, "sikayetler"), {
-        ilan: "yorum:" + d.id + "/" + b.dataset.bildir,
+        ilan: "yorum:" + d.yorumId + "/" + b.dataset.bildir,
         neden: neden.slice(0, 300),
         uid: auth.currentUser.uid,
         zaman: serverTimestamp()
@@ -601,7 +623,6 @@ function listeCiz(el) {
 }
 
 /* ---------- yemek fotoğrafları bulut senkronizasyonu ---------- */
-window.KC_BULUT_FOTOLAR = {};
 try {
   onSnapshot(collection(db, "yemekFotolari"), s => {
     s.docs.forEach(d => {
@@ -610,20 +631,34 @@ try {
         window.KC_BULUT_FOTOLAR[d.id] = data.foto;
       }
     });
+    try {
+      localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
+    } catch (e) {}
     window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
   });
 } catch (e) {
   console.warn("yemekFotolari dinleme hatası:", e);
 }
 
+const asciiYapici = s => String(s || "").toLocaleLowerCase("tr-TR").trim()
+  .replace(/ş/g, "s").replace(/ı/g, "i").replace(/ğ/g, "g")
+  .replace(/ö/g, "o").replace(/ü/g, "u").replace(/ç/g, "c")
+  .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+
 async function yukleYemekFoto(yemekAdi, base64Data) {
   if (!isAdmin()) {
-    alert("Yalnızca yönetici fotoğraf yükleyebilir.");
+    alert("Yalnızca yönetici (yunusemredemir051@gmail.com) fotoğraf yükleyebilir. Lütfen önce yorumlar altından yönetici girişi yapın.");
     return false;
   }
-  const slug = yemekAdi.toLocaleLowerCase("tr-TR").trim()
-    .replace(/[^a-z0-9çğıöşü]+/gi, "-").replace(/^-+|-+$/g, "");
+  const slug = asciiYapici(yemekAdi);
   if (!slug) return false;
+
+  // Hemen yerelde göster
+  window.KC_BULUT_FOTOLAR[slug] = base64Data;
+  try {
+    localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
+  } catch (e) {}
+  window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
 
   try {
     const ref = doc(db, "yemekFotolari", slug);
@@ -633,18 +668,24 @@ async function yukleYemekFoto(yemekAdi, base64Data) {
       ekleyen: ADMIN_EMAIL,
       zaman: serverTimestamp()
     });
-    window.KC_BULUT_FOTOLAR[slug] = base64Data;
-    toast(`📸 "${yemekAdi}" fotoğrafı başarıyla yüklendi!`);
-    window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
+    toast(`📸 "${yemekAdi}" fotoğrafı kaydedildi ve yayında!`);
     return true;
   } catch (err) {
     console.error("Fotoğraf yükleme hatası:", err);
-    toast("Fotoğraf kaydedilemedi: " + err.message);
+    if (err.code === "permission-denied" || String(err).includes("permission")) {
+      alert(
+        "⚠️ Firebase Kural İzni Gerekli!\n\n" +
+        "Fotoğraf cihazınızda yerel olarak görüntülendi, ancak herkese açık olarak sunucuda yayınlanabilmesi için:\n\n" +
+        "Firebase Console -> Firestore Database -> Kurallar (Rules) sekmesinde yemekFotolari kuralını yayınlamanız gerekmektedir."
+      );
+    } else {
+      toast("Fotoğraf yüklenemedi: " + (err.message || err));
+    }
     return false;
   }
 }
 
-/* ---------- global admin köprüsü (yemekfoto.js için) ---------- */
+/* ---------- global admin köprüsü ---------- */
 window.KC_ADMIN = {
   isAdmin,
   adminGirisYap,
@@ -659,7 +700,7 @@ window.KC_ADMIN = {
 function tara() { document.querySelectorAll(".degerlendir").forEach(kur); }
 new MutationObserver(ml => {
   for (const m of ml) {
-    if (m.type === "attributes" && m.target.classList && m.target.classList.contains("degerlendir")) kur(m.target);
+    if (m.type === "attributes" && m.target.classList.contains("degerlendir")) kur(m.target);
     else if (m.type === "childList") m.addedNodes.forEach(n => { if (n.nodeType === 1) { if (n.classList.contains("degerlendir")) kur(n); else n.querySelectorAll && n.querySelectorAll(".degerlendir").forEach(kur); } });
   }
 }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-menu"] });
@@ -668,7 +709,7 @@ onAuthStateChanged(auth, u => {
   ben = u;
   window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: isAdmin() } }));
   kutular.forEach((d, el) => {
-    sayilariGetir(el);
+    oyDinleVeSay(el);
     if (d.acik) panelCiz(el);
   });
 });
