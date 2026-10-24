@@ -83,6 +83,8 @@ textarea { resize: vertical; min-height: 60px; }
 .yer-rozet { font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 9px; white-space: nowrap; }
 .yer-rozet.otogar { background: var(--turuncu-acik); color: var(--turuncu); }
 .yer-rozet.havaalani { background: var(--mavi-acik); color: var(--mavi); }
+.yer-rozet.miniterminal { background: #e8f5e9; color: #2e7d32; }
+[data-tema="koyu"] .yer-rozet.miniterminal { background: rgba(46,125,50,0.25); color: #a5d6a7; }
 .ilan-bilgi { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0; }
 .ilan-bilgi span { background: rgba(20,27,52,.05); border-radius: 8px; padding: 5px 9px; font-size: 12px; font-weight: 700; color: var(--soluk); }
 .ilan-bilgi span.yesil { background: var(--yesil-acik); color: var(--yesil); }
@@ -218,6 +220,7 @@ footer a { color: inherit; }
       <div class="secim" id="f-yer">
         <button data-v="otogar" class="aktif">Otogar</button>
         <button data-v="havaalani">Havaalanı</button>
+        <button data-v="miniterminal">Mini Terminal</button>
       </div>
       <div class="iki">
         <div><label for="f-tarih">Tarih</label><input type="date" id="f-tarih"></div>
@@ -246,6 +249,7 @@ footer a { color: inherit; }
       <button data-f="hepsi" class="aktif">Hepsi</button>
       <button data-f="otogar">Otogar</button>
       <button data-f="havaalani">Havaalanı</button>
+      <button data-f="miniterminal">Mini Terminal</button>
       <button data-f="benim">Benimkiler</button>
     </div>
     <div id="liste"></div>
@@ -316,7 +320,7 @@ const hafiza = { oku(k) { try { return localStorage.getItem(k); } catch (e) { re
 
 const YURT = Object.fromEntries(yurtlar.map(y => [y.id, y]));
 const kisaAd = id => (YURT[id] ? YURT[id].ad.replace(/ Yurdu$/, "").replace(/^Elazığ /, "") : id);
-const YER = { otogar: "Otogar", havaalani: "Havaalanı" };
+const YER = { otogar: "Otogar", havaalani: "Havaalanı", miniterminal: "Mini Terminal" };
 
 /* WhatsApp'tan gelen biri geri tuşuna basınca ana sayfaya gitsin */
 (function () {
@@ -511,7 +515,7 @@ function listeCiz() {
   const simdi = Date.now();
   let l = ilanlar.filter(i => i.zaman && i.zaman.toMillis() > simdi - 2 * 3600e3)
                  .sort((a, b) => a.zaman.toMillis() - b.zaman.toMillis());
-  if (filtre === "otogar" || filtre === "havaalani") l = l.filter(i => i.yer === filtre);
+  if (filtre === "otogar" || filtre === "havaalani" || filtre === "miniterminal") l = l.filter(i => i.yer === filtre);
   if (filtre === "benim" && ben) l = l.filter(i => i.sahipUid === ben.uid || (i.katilanlar || []).includes(ben.uid));
   if (!l.length) {
     $("liste").innerHTML = `<div class="kart cam bos"><img src="../gorseller/bos-durum.webp" alt=""><b>${filtre === "benim" ? "Henüz bir yolculuğun yok" : "Şimdilik ilan yok"}</b>${ben ? "Gideceğin saati ekle, aynı saatte gidenler seni bulsun." : "Giriş yapıp ilk ilanı sen ver, aynı saatte gidenler seni bulsun."}</div>`;
