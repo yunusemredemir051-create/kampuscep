@@ -52,8 +52,29 @@ const yurtMenuleri = {
                     aksam: ["Mercimek çorbası / Yayla çorbası", "Ekmek arası köfte / Tavuk sote / Yoğurtlu mantı", "Nohutlu pirinç pilavı", "Mevsim salata"] },
     "2026-10-31": { kahvalti: ["Haşlanmış yumurta", "Salçalı sosis", "Ispanaklı börek", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
                     aksam: ["Düğün çorbası / Domates çorbası", "Orman kebabı / Ispanak yemeği / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç"] }
+  },
+  /* İzzetpaşa Yurdu — Ekim 2026 Bugünden İtibaren Geçerli Menü */
+  "izzetpasa": {
+    kahvaltiNotu: "Al götür kahvaltı her gün 10.30'a kadar verilir.",
+    "2026-10-24": { kahvalti: ["Kaşarlı omlet", "Karışık kızartma", "Sucuklu yumurta", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Ayran aşı çorbası / Tarhana çorbası", "Şinitzel / Rosto köfte", "Erişte pilavı", "Şekerpare", "500 ml su"] },
+    "2026-10-25": { kahvalti: ["Haşlanmış yumurta", "Sosis kızartma", "Simit", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Yayla çorbası / Ezogelin çorbası", "Patlıcan musakka / Tavuk baget", "Bulgur pilavı", "Elma", "500 ml su"] },
+    "2026-10-26": { kahvalti: ["Sucuklu omlet", "Patates salatası", "Poğaça", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Şehriye çorbası / Mercimek çorbası", "Tavuk döner / Sebze graten", "Pirinç pilavı", "Karışık salata", "500 ml su"] },
+    "2026-10-27": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Kek + bal + tereyağı", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Sebze çorbası / Tarhana çorbası", "Etsiz kuru fasulye / Nugget", "Erişte pilavı", "Yoğurt", "Brownie"] },
+    "2026-10-28": { kahvalti: ["Sucuklu omlet", "Patates kavurma", "Açma", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Mercimek çorbası / Domates çorbası", "Tavuk kavurma / Bezelye yemeği", "Sebzeli bulgur pilavı", "Çoban salata", "500 ml su"] },
+    "2026-10-29": { kahvalti: ["Menemen", "Karışık kızartma", "Mozaik kek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Ezogelin çorbası / Tarhana çorbası", "Tavuk tantuni / Ispanak", "Makarna salatası", "Ayran", "500 ml su"] },
+    "2026-10-30": { kahvalti: ["Sade omlet", "Patates kızartma", "Simit", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Mercimek çorbası / Yayla çorbası", "Köfte ekmek / Tavuk sote", "Nohutlu pirinç pilavı", "Mevsim salata", "500 ml su"] },
+    "2026-10-31": { kahvalti: ["Haşlanmış yumurta", "Salçalı sosis", "Ispanaklı börek", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
+                    aksam: ["Düğün çorbası / Domates çorbası", "Orman kebabı / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç", "500 ml su"] }
   }
 };
+
 
 /* Üniversite Evi menüsü — kaynak: https://unievi.firat.edu.tr ("Haftalık Menü")
    OTOMATİK: .github/workflows/unievi.yml her sabah siteyi okuyup bu bloğu kendisi günceller
