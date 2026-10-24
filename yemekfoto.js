@@ -1,10 +1,4 @@
-/* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları.
-   Fotoğraflar her gün yemekhanede çekilen gerçek tabaklardan hazırlanır.
-
-   FOTOLAR: "yer" (unievi ya da yurt id'si) altında yemek adı → görsel adı (gorseller/yemek/<ad>.webp).
-     Aynı yemek o yerde tekrar çıktığında aynı fotoğraf kullanılır.
-     "Tatlı" gibi genel adlar için o güne özel kayıt: "unievi_2026-10-21": { "Tatlı": "..." }
-   YANINDA: her öğünde verilen sabit şeyler (ekmek, su). */
+/* KampüsCepte — menüdeki yemeklerin gerçek fotoğrafları ve yönetici fotoğraf yükleme desteği. */
 (function () {
   "use strict";
 
@@ -19,7 +13,7 @@
       "yoğurt": "unievi-yogurt"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
-    /* KYK yurtları (Elazığ'daki KYK yurtlarında menü ortak) */
+    /* KYK yurtları */
     "yurt": {
       "mercimek çorbası": "yurt-mercimek-corbasi",
       "sebze çorbası": "yurt-sebze-corbasi",
@@ -41,6 +35,7 @@
       "tulumba": "yurt-tulumba"
     }
   };
+
   const YANINDA = {
     "unievi": [["Ekmek", "ekmek"], ["Su", "su-unievi"]],
     "yurt": [["Ekmek", "ekmek"], ["Su", "su-yurt"]]
@@ -63,22 +58,85 @@
   .yf-buyuk{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;background:rgba(14,18,40,.6);padding:20px;cursor:zoom-out}
   .yf-buyuk figure{margin:0;background:#fff;border-radius:24px;padding:12px 12px 10px;text-align:center;width:min(420px,100%);box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
   .yf-buyuk img{width:100%;height:auto;display:block;border-radius:16px}
-  .yf-buyuk figcaption{font:800 15px var(--font,system-ui);color:#141b34;margin-top:8px}`;
+  .yf-buyuk figcaption{font:800 15px var(--font,system-ui);color:#141b34;margin-top:8px}
+  .yf-admin-btn{margin-left:auto;border:1px dashed #3b5bfd;background:rgba(59,91,253,.07);color:#3b5bfd;font:700 11.5px var(--font,inherit);padding:3px 8px;border-radius:8px;cursor:pointer;transition:all .15s;flex:none}
+  .yf-admin-btn:hover{background:#3b5bfd;color:#fff}
+  `;
   document.head.appendChild(css);
 
   const kucuk = s => s.toLocaleLowerCase("tr-TR").trim();
-  function buyut(ad, yazi) {
+  const slugYap = s => kucuk(s).replace(/[^a-z0-9çğıöşü]+/gi, "-").replace(/^-+|-+$/g, "");
+
+  function resimSrc(g) {
+    if (!g) return "";
+    if (g.startsWith("data:") || g.startsWith("http://") || g.startsWith("https://")) return g;
+    return Y + "k/" + g + ".webp";
+  }
+
+  function buyukSrc(g) {
+    if (!g) return "";
+    if (g.startsWith("data:") || g.startsWith("http://") || g.startsWith("https://")) return g;
+    return Y + g + ".webp";
+  }
+
+  function buyut(gorsel, yazi) {
     const d = document.createElement("div"); d.className = "yf-buyuk";
-    d.innerHTML = `<figure><img src="${Y + ad}.webp" alt=""><figcaption></figcaption></figure>`;
+    d.innerHTML = `<figure><img src="${buyukSrc(gorsel)}" alt=""><figcaption></figcaption></figure>`;
     d.querySelector("figcaption").textContent = yazi;
     d.onclick = () => d.remove();
     document.body.appendChild(d);
   }
 
-  /* menünün kimliği, yanındaki değerlendirme kutusundan okunur: "unievi_2026-10-21" ya da "ahmet-kabakli_2026-10-21_aksam" */
   function menuKimligi(ul) {
     const dg = ul.parentNode.querySelector(".degerlendir");
     return dg ? dg.dataset.menu || "" : "";
+  }
+
+  /* Görsel sıkıştırma yardımcısı */
+  function resimSikistir(file, maxBoyut, kalite, cb) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        let w = img.width, h = img.height;
+        if (w > maxBoyut || h > maxBoyut) {
+          if (w > h) { h = Math.round((h * maxBoyut) / w); w = maxBoyut; }
+          else { w = Math.round((w * maxBoyut) / h); h = maxBoyut; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = w; canvas.height = h;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, w, h);
+        let res = canvas.toDataURL("image/webp", kalite);
+        if (!res.startsWith("data:image/webp")) res = canvas.toDataURL("image/jpeg", kalite);
+        cb(res);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  /* Gizli dosya seçici */
+  let seciciInput = null;
+  function fotoSeciciAc(yemekAdi) {
+    if (!seciciInput) {
+      seciciInput = document.createElement("input");
+      seciciInput.type = "file";
+      seciciInput.accept = "image/*";
+      seciciInput.style.display = "none";
+      document.body.appendChild(seciciInput);
+    }
+    seciciInput.onchange = e => {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      resimSikistir(file, 650, 0.82, base64 => {
+        if (window.KC_ADMIN && window.KC_ADMIN.yukleYemekFoto) {
+          window.KC_ADMIN.yukleYemekFoto(yemekAdi, base64);
+        }
+      });
+      seciciInput.value = "";
+    };
+    seciciInput.click();
   }
 
   function guncelle(ul) {
@@ -87,23 +145,69 @@
     if (!kimlik) return;
     const [yer, tarih] = kimlik.split("_");
     const genel = yer === "unievi" ? "unievi" : "yurt";
-    const tablo = Object.assign({}, FOTOLAR[genel] || {}, FOTOLAR[yer] || {}, FOTOLAR[yer + "_" + tarih] || {}, FOTOLAR[genel + "_" + tarih] || {});
+    const bulut = window.KC_BULUT_FOTOLAR || {};
+
+    const tablo = Object.assign(
+      {},
+      FOTOLAR[genel] || {},
+      FOTOLAR[yer] || {},
+      FOTOLAR[yer + "_" + tarih] || {},
+      FOTOLAR[genel + "_" + tarih] || {}
+    );
+
+    const yoneticiMi = window.KC_ADMIN && window.KC_ADMIN.isAdmin && window.KC_ADMIN.isAdmin();
+
     ul.querySelectorAll("li").forEach(li => {
-      if (li.querySelector(".yf-grup") || li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;
-      const yazi = li.textContent.trim();
-      /* "A / B" gibi seçenekli satırlarda fotoğrafı olan her seçenek yan yana gösterilir */
-      const secenekler = tablo[kucuk(yazi)] ? [[yazi, tablo[kucuk(yazi)]]]
-        : yazi.split("/").map(p => p.trim()).filter(p => tablo[kucuk(p)]).map(p => [p, tablo[kucuk(p)]]);
-      if (!secenekler.length) return;
-      const kutu = document.createElement("span"); kutu.className = "yf-grup";
-      secenekler.slice(0, 3).forEach(([ad, g]) => {
-        const b = document.createElement("button"); b.className = "yf"; b.type = "button"; b.setAttribute("aria-label", ad + " fotoğrafı");
-        b.innerHTML = `<img src="${Y}k/${g}.webp" alt="" loading="lazy">`;
-        b.onclick = () => buyut(g, ad);
-        kutu.appendChild(b);
-      });
-      li.prepend(kutu); li.classList.add("fotolu");
+      if (li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;
+
+      const yazi = li.childNodes[li.childNodes.length - 1].textContent ? li.textContent.replace(/📷 Fotoğraf.*$/i, "").trim() : li.textContent.trim();
+      const anahtar = kucuk(yazi);
+      const slug = slugYap(yazi);
+
+      // Fotoğraf bul: önce bulut (yönetici yüklemesi), sonra yerel FOTOLAR
+      const fotoBul = ad => {
+        const k = kucuk(ad), sl = slugYap(ad);
+        if (bulut[sl]) return bulut[sl];
+        if (bulut[k]) return bulut[k];
+        if (tablo[k]) return tablo[k];
+        return null;
+      };
+
+      const secenekler = fotoBul(yazi) ? [[yazi, fotoBul(yazi)]]
+        : yazi.split("/").map(p => p.trim()).filter(p => fotoBul(p)).map(p => [p, fotoBul(p)]);
+
+      // Mevcut yf-grup varsa kaldırıp tazeleyelim
+      const eskiGrup = li.querySelector(".yf-grup");
+      if (eskiGrup) eskiGrup.remove();
+
+      if (secenekler.length) {
+        const kutu = document.createElement("span"); kutu.className = "yf-grup";
+        secenekler.slice(0, 3).forEach(([ad, g]) => {
+          const b = document.createElement("button"); b.className = "yf"; b.type = "button"; b.setAttribute("aria-label", ad + " fotoğrafı");
+          b.innerHTML = `<img src="${resimSrc(g)}" alt="" loading="lazy">`;
+          b.onclick = () => buyut(g, ad);
+          kutu.appendChild(b);
+        });
+        li.prepend(kutu); li.classList.add("fotolu");
+      }
+
+      // Yönetici fotoğraf yükleme butonu
+      const eskiAdminBtn = li.querySelector(".yf-admin-btn");
+      if (eskiAdminBtn) eskiAdminBtn.remove();
+      if (yoneticiMi) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "yf-admin-btn";
+        btn.innerHTML = "📷 Fotoğraf";
+        btn.title = `"${yazi}" için fotoğraf yükle`;
+        btn.onclick = (e) => {
+          e.stopPropagation();
+          fotoSeciciAc(yazi);
+        };
+        li.appendChild(btn);
+      }
     });
+
     const ek = YANINDA[yer === "unievi" ? "unievi" : "yurt"];
     if (ek && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
       const d = document.createElement("div"); d.className = "yf-ek";
@@ -117,13 +221,21 @@
       ul.after(d);
     }
   }
+
+  function hepsiniGuncelle() {
+    document.querySelectorAll("ul.yemekler").forEach(guncelle);
+  }
+
   function baslat() {
+    hepsiniGuncelle();
     document.querySelectorAll("ul.yemekler").forEach(ul => {
-      guncelle(ul);
       new MutationObserver(() => guncelle(ul)).observe(ul, { childList: true });
       const dg = ul.parentNode.querySelector(".degerlendir");
       if (dg) new MutationObserver(() => guncelle(ul)).observe(dg, { attributes: true, attributeFilter: ["data-menu"] });
     });
+    window.addEventListener("kc-fotolar-guncellendi", hepsiniGuncelle);
+    window.addEventListener("kc-auth-degisti", hepsiniGuncelle);
   }
+
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", baslat); else baslat();
 })();

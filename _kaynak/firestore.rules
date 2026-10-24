@@ -103,20 +103,24 @@ service cloud.firestore {
       match /yorumlar/{id} {
         allow read: if true;
         allow create: if girisli() && menuGecerli()
-          && request.resource.data.keys().hasOnly(['uid', 'ad', 'metin', 'ust', 'zaman'])
           && request.resource.data.uid == request.auth.uid
           && metin(request.resource.data.ad, 40) && request.resource.data.ad.size() >= 2
-          && metin(request.resource.data.metin, 500) && request.resource.data.metin.size() > 0
-          && metin(request.resource.data.ust, 40)
-          && request.resource.data.zaman == request.time;
-        allow delete: if girisli() && resource.data.uid == request.auth.uid;
+          && metin(request.resource.data.metin, 500) && request.resource.data.metin.size() > 0;
+        allow update: if girisli();
+        allow delete: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
       }
     }
 
-    // Ban listeleri: yalnızca yönetici yazar; kişi yalnızca kendi kaydını görebilir
+    // Ban listeleri: herkes okur (ban kontrolü için); yalnızca yönetici yazar ve siler
     match /engelliler/{uid} {
-      allow read: if googleli() && request.auth.uid == uid || yonetici();
-      allow write: if yonetici();
+      allow read: if true;
+      allow write, delete: if yonetici();
+    }
+
+    // Yemek fotoğrafları: herkes okur; yalnızca yönetici yükler ve günceller
+    match /yemekFotolari/{id} {
+      allow read: if true;
+      allow write, delete: if yonetici();
     }
     match /engelliTel/{tel} {
       allow read, write: if yonetici();
