@@ -72,3 +72,11 @@ body{background:var(--zemin)}
 .secici{background:rgba(18,22,43,.06)}
 .secici button.aktif{box-shadow:0 4px 12px -4px rgba(18,22,43,.25)}
 .baslik{font-weight:800;letter-spacing:-.2px}
+
+/* Yemek fotoğrafları: daha büyük ve oturaklı */
+html body .yf { width: 62px; height: 62px; border-radius: 16px; box-shadow: 0 0 0 2px #fff, 0 6px 14px -6px rgba(30,45,110,.4); }
+html body .yf-grup .yf + .yf { margin-left: -20px; }
+html body ul.yemekler li.fotolu { gap: 14px !important; padding-top: 8px; padding-bottom: 8px; }
+html body .aylik-resim img { width: 52px; height: 52px; border-radius: 14px; }
+html body .aylik-resim img + img { margin-left: -18px; }
+html body .aylik-nokta { margin: 0 22px; }
