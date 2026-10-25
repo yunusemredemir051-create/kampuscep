@@ -13,13 +13,6 @@
   function yaz(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
   function stil(css) { var s = document.createElement("style"); s.textContent = css; document.head.appendChild(s); }
 
-  /* Telefonun WebView'i geniş (600-1100px) bir görünüm bildiriyorsa her şey küçük kalır: ölçeği 412px'e göre büyüt. */
-  try {
-    var dok = matchMedia("(hover:none) and (pointer:coarse)").matches;
-    var gen = Math.min(window.innerWidth || 0, screen.width || 9999);
-    if (dok && gen > 600 && gen <= 1100) kok.style.zoom = String(gen / 412);
-  } catch (e) {}
-
   // Tema düğmeleri, özellik açık değilken hiç görünmesin
   stil("html:not(.tema-var) .tema-ui{display:none!important}");
 
