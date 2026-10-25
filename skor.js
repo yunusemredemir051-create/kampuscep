@@ -65,8 +65,19 @@
     });
   }
 
+  /* ÖNİZLEME: ?skor=onizleme eklenirse örnek maçlar gösterilir (sadece o sayfada, gerçek veri çekilmez) */
+  var ONIZLEME = /[?&]skor=onizleme/.test(location.search);
+  function ornek() {
+    var n = Date.now(), z = function (dk) { return new Date(n + dk * 60000).toISOString(); };
+    return [
+      { id: 9001, lig: "Süper Lig", ligId: SUPER_LIG, zaman: z(-60), durum: "2H", dk: 63, ev: { id: 645, ad: "Galatasaray", gol: 2 }, dep: { id: 611, ad: "Fenerbahçe", gol: 1 } },
+      { id: 9002, lig: "UEFA Avrupa Ligi", ligId: 3, zaman: z(-130), durum: "FT", ev: { id: 549, ad: "Beşiktaş", gol: 3, kazandi: true }, dep: { id: 900, ad: "Ajax", gol: 1, kazandi: false } },
+      { id: 9003, lig: "UEFA Şampiyonlar Ligi", ligId: 2, zaman: z(200), durum: "NS", ev: { id: 2000, ad: "Real Madrid" }, dep: { id: 611, ad: "Fenerbahçe" } }
+    ];
+  }
   var zamanlayici;
   function cek() {
+    if (ONIZLEME) { var o = ornek(); bantYap(o); if (!document.querySelector(".kc-tebrik") && !window.__tbk) { window.__tbk = 1; tebrikGoster(o[1].ev, o[1].dep); } return; }
     clearTimeout(zamanlayici);
     var sonraki = 600000;
     if (document.hidden) { zamanlayici = setTimeout(cek, 120000); return; }
