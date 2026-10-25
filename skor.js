@@ -14,12 +14,12 @@
   var TURK = { 645: 1, 611: 1, 549: 1, 998: 1, 777: 1 };
 
   var st = document.createElement("style");
-  st.textContent = ".kc-skor{margin:10px 0 0;display:flex;flex-direction:column;gap:6px}" +
-    ".kc-mac{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:9px 12px;border-radius:14px;background:var(--kart,#fff);border:1px solid var(--cizgi,#e6e9f4);font:700 13px/1.25 var(--font,system-ui);color:var(--yazi,#141b34)}" +
-    ".kc-mac .t{min-width:0;overflow-wrap:anywhere}.kc-mac .t:last-of-type{text-align:right}" +
-    ".kc-mac .s{font-weight:800;font-size:16px;text-align:center;min-width:64px}.kc-mac .a{grid-column:1/-1;text-align:center;font-size:11px;color:var(--soluk,#6b7390);font-weight:600}" +
-    ".kc-mac.canli .s{color:#e5253d}.kc-mac.canli .a::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:#e5253d;margin-right:5px;animation:kcnb 1.2s infinite}" +
-    "@keyframes kcnb{50%{opacity:.25}}" +
+  st.textContent = ".kc-skor{margin:10px 0 0;width:0;min-width:100%;box-sizing:border-box;display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 1px 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}.kc-skor::-webkit-scrollbar{display:none}" +
+    ".kc-mac{flex:0 0 auto;width:152px;scroll-snap-align:start;padding:7px 10px 6px;border-radius:12px;background:var(--kart,rgba(255,255,255,.82));border:1px solid var(--cizgi,rgba(120,130,170,.22));font:700 12px/1.2 var(--font,system-ui,sans-serif);color:var(--yazi,#141b34);box-sizing:border-box}" +
+    ".kc-mac .r{display:flex;align-items:center;gap:6px;min-height:21px}.kc-mac .r img{width:16px;height:16px;object-fit:contain;flex:0 0 auto}.kc-mac .r b{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}.kc-mac .r em{font-style:normal;font-weight:800;font-size:13px;min-width:12px;text-align:right}" +
+    ".kc-mac .a{margin-top:3px;font-size:10px;font-weight:600;color:var(--soluk,#6b7390);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
+    ".kc-mac.canli .a{color:#e5253d}.kc-mac.canli .a::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#e5253d;margin-right:4px;animation:kcnb 1.2s infinite}" +
+    "@keyframes kcnb{50%{opacity:.25}}.kc-skor:empty{display:none}" +
     ".kc-tebrik{position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:rgba(10,14,28,.62);padding:20px}" +
     ".kc-tebrik .k{position:relative;overflow:hidden;width:min(340px,100%);border-radius:24px;padding:30px 22px 22px;text-align:center;color:#fff;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}" +
     ".kc-tebrik .e{font-size:46px}.kc-tebrik h3{margin:6px 0 4px;font-size:21px}.kc-tebrik p{margin:0 0 14px;font-size:14px;opacity:.92}" +
@@ -28,21 +28,22 @@
     "@keyframes kcdus{to{transform:translateY(420px) rotate(540deg)}}";
   document.head.appendChild(st);
 
+  function logo(t) { return '<img src="https://media.api-sports.io/football/teams/' + t.id + '.png" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'">'; }
   function bantYap(maclar) {
     var kutu = document.getElementById("kc-skor");
     if (!kutu) {
-      var ana = document.getElementById("ana"), afis = ana && ana.querySelector(".afis");
-      if (!afis) return;
+      var yer = document.querySelector("#ana .afis") || document.querySelector("main > .ust");
+      if (!yer) return;
       kutu = document.createElement("div"); kutu.id = "kc-skor"; kutu.className = "kc-skor"; kutu.setAttribute("translate", "no"); kutu.setAttribute("data-ceviri-yok", "");
-      afis.insertAdjacentElement("afterend", kutu);
+      yer.insertAdjacentElement("afterend", kutu);
     }
-    var goster = maclar.filter(function (m) { return m.ligId === SUPER_LIG || TURK[m.ev.id] || TURK[m.dep.id] ? true : false; });
-    kutu.innerHTML = goster.map(function (m) {
-      var canli = CANLI[m.durum], bitti = BITTI[m.durum];
+    kutu.innerHTML = maclar.map(function (m) {
+      var canli = CANLI[m.durum], bitti = BITTI[m.durum], basladi = canli || bitti;
       var saat = new Date(m.zaman).toLocaleTimeString("tr-TR", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Istanbul" });
-      var sk = canli || bitti ? (m.ev.gol == null ? 0 : m.ev.gol) + " - " + (m.dep.gol == null ? 0 : m.dep.gol) : saat;
-      var alt = m.lig + (canli ? " · " + (m.durum === "HT" ? "Devre arası" : (m.dk || "") + "'") : bitti ? " · Maç sonu" : "");
-      return '<div class="kc-mac' + (canli ? " canli" : "") + '"><span class="t">' + ad(m.ev) + '</span><span class="s">' + sk + '</span><span class="t">' + ad(m.dep) + '</span><span class="a">' + alt + "</span></div>";
+      var g1 = basladi ? (m.ev.gol == null ? 0 : m.ev.gol) : "", g2 = basladi ? (m.dep.gol == null ? 0 : m.dep.gol) : "";
+      var lig = m.lig.replace("UEFA ", "").replace("Şampiyonlar Ligi", "Şampiyonlar L.");
+      var alt = canli ? (m.durum === "HT" ? "Devre arası" : (m.dk || "") + "'") + " · " + lig : bitti ? "MS · " + lig : saat + " · " + lig;
+      return '<div class="kc-mac' + (canli ? " canli" : "") + '"><div class="r">' + logo(m.ev) + "<b>" + ad(m.ev) + "</b><em>" + g1 + '</em></div><div class="r">' + logo(m.dep) + "<b>" + ad(m.dep) + "</b><em>" + g2 + '</em></div><div class="a">' + alt + "</div></div>";
     }).join("");
   }
 
