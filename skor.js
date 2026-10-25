@@ -3,7 +3,7 @@
    Tebrik yalnızca: yabancı rakibe karşı kazanılan, Süper Lig dışındaki (Avrupa) maçlarda ve Türkiye Milli Takımı maçlarında çıkar. */
 (function () {
   "use strict";
-  var SKOR_URL = ""; /* örn. https://kc-skor.KULLANICI.workers.dev */
+  var SKOR_URL = "https://kc-skor.yunusemredemir051.workers.dev";
   if (!SKOR_URL) return;
   var SUPER_LIG = 203, TR_MILLI = 777;
   var RENK = { 645: ["#a90432", "#fdb913"], 611: ["#00205b", "#ffed00"], 549: ["#111111", "#9aa0aa"], 998: ["#7b0f2e", "#2a8fd6"], 777: ["#e30a17", "#ffffff"] };
