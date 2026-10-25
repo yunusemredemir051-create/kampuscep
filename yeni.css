@@ -5,12 +5,12 @@ body{background:var(--zemin)}
 .mobil-ust{box-shadow:none}
 
 /* Karşılama kartı */
-.afis{position:relative;overflow:hidden;min-height:0!important;padding:22px 22px 20px!important;border-radius:28px!important}
-.afis img{display:none!important}
+.afis{position:relative;overflow:hidden;min-height:176px!important;padding:22px 22px 20px!important;border-radius:28px!important;box-shadow:0 22px 40px -22px var(--mavi),inset 0 1px 0 rgba(255,255,255,.35)!important}
+.afis img{display:block!important;content:url("gorseller/afis-seffaf.webp");position:absolute!important;right:-8px;bottom:0;top:auto;left:auto;height:112%!important;width:auto!important;max-width:62%;object-fit:contain!important;object-position:right bottom;z-index:1;filter:drop-shadow(0 10px 18px rgba(0,0,0,.22))}
 .afis::before,.afis::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.12);pointer-events:none}
 .afis::before{width:190px;height:190px;right:-50px;top:-70px}
 .afis::after{width:110px;height:110px;right:-10px;bottom:-40px}
-.afis .ust-bilgi{max-width:100%!important;display:flex;flex-direction:column;gap:6px;position:relative;z-index:1}
+.afis .ust-bilgi{max-width:58%!important;display:flex;flex-direction:column;gap:6px;position:relative;z-index:1}
 .afis .ust-bilgi small{font-size:12.5px;font-weight:600;opacity:.9}
 .afis .ust-bilgi h1{font-size:26px!important;line-height:1.2;letter-spacing:-.4px}
 .afis .ust-bilgi p{display:none}
@@ -54,3 +54,21 @@ body{background:var(--zemin)}
 .renk-dugme.aktif i{box-shadow:0 0 0 2.5px var(--mavi)!important}
 .renk-sec::after{content:attr(data-aktif-ad);flex-basis:100%;font:700 12px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);margin-top:2px}
 [data-tema-sec] .ti{vertical-align:-3px;margin-right:4px}
+
+/* Premium dokunuşlar */
+.afis::before{background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.35),rgba(255,255,255,0) 70%)!important}
+.afis-chips span{box-shadow:0 6px 14px -6px rgba(0,0,0,.35)}
+.cam{box-shadow:0 1px 2px rgba(18,22,43,.04),0 14px 30px -18px rgba(18,22,43,.22)!important}
+.menu-kart,.durum,.kutu,.satir-kart{transition:transform .18s ease,box-shadow .18s ease}
+.kutu:active,.satir-kart:active{transform:scale(.97)}
+.kutu{box-shadow:0 1px 2px rgba(18,22,43,.04),0 10px 22px -16px rgba(18,22,43,.3)!important}
+@media (max-width:820px){
+  .yan{background:linear-gradient(180deg,rgba(28,33,64,.96),rgba(14,17,36,.98))!important;box-shadow:0 18px 36px -14px rgba(8,10,28,.65),inset 0 1px 0 rgba(255,255,255,.12)!important}
+  .yan .sekme.aktif{background:linear-gradient(135deg,var(--mavi),var(--mor))!important;box-shadow:0 8px 18px -8px var(--mavi)}
+}
+.mobil-ust{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(255,255,255,.86))!important;box-shadow:0 10px 24px -18px rgba(18,22,43,.4)!important}
+.logo-ikon{box-shadow:0 8px 16px -8px var(--mavi)}
+.menu-kart .yemekler li{border-radius:14px}
+.secici{background:rgba(18,22,43,.06)}
+.secici button.aktif{box-shadow:0 4px 12px -4px rgba(18,22,43,.25)}
+.baslik{font-weight:800;letter-spacing:-.2px}
