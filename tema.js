@@ -16,6 +16,23 @@
   // Tema düğmeleri, özellik açık değilken hiç görünmesin
   stil("html:not(.tema-var) .tema-ui{display:none!important}");
 
+  /* Uygulama modu: Android uygulaması (Capacitor/WebView) siteyi açıyorsa web sitesi gibi görünen öğeler gizlenir,
+     metin seçme / bağlantı alt çizgisi / çift dokunuş yakınlaştırma kapatılır. */
+  try {
+    var uyg = false;
+    try { if (/[?&]kaynak=uygulama/.test(location.search) || window.Capacitor) sessionStorage.setItem("kc-uyg", "1"); uyg = sessionStorage.getItem("kc-uyg") === "1"; } catch (e) {}
+    if (uyg || window.Capacitor || /; wv\)/.test(navigator.userAgent)) {
+      kok.classList.add("uygulama-modu");
+      stil("html.uygulama-modu{-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none;touch-action:manipulation}" +
+        "html.uygulama-modu body{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}" +
+        "html.uygulama-modu input,html.uygulama-modu textarea,html.uygulama-modu select,html.uygulama-modu [contenteditable]{-webkit-user-select:text;user-select:text}" +
+        "html.uygulama-modu a{text-decoration:none!important}" +
+        "html.uygulama-modu img{-webkit-user-drag:none;user-drag:none}" +
+        "html.uygulama-modu .alt-bilgi,html.uygulama-modu .site-btn,html.uygulama-modu .alt-yazi,html.uygulama-modu footer{display:none!important}" +
+        "html.uygulama-modu main,html.uygulama-modu .uygulama{padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}");
+    }
+  } catch (e) {}
+
   /* Genel önizleme: herhangi bir sayfaya ?onizleme=<ad> eklenince bu tarayıcıda <html class="oniz-<ad>"> olur.
      ?onizleme=kapat hepsini kapatır. Sayfalar yeni özelliği bu sınıfa göre gösterir. */
   try {
