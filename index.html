@@ -460,9 +460,16 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
   display: flex; align-items: center; justify-content: space-between;
   margin-bottom: 8px; font-weight: 800; font-size: 14.5px;
 }
-.aylik-ogun-bloku { margin-top: 6px; font-size: 13.5px; line-height: 1.45; }
-.aylik-ogun-bloku b { color: var(--soluk); font-size: 11.5px; text-transform: uppercase; letter-spacing: .5px; display: block; margin-bottom: 2px; }
-.aylik-ogun-bloku p { margin: 0; font-weight: 600; }
+.aylik-ogun-bloku { margin-top: 10px; }
+.aylik-ogun-bloku b { color: var(--soluk); font-size: 11px; text-transform: uppercase; letter-spacing: .6px; display: block; margin-bottom: 6px; }
+.aylik-yemek { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-top: 1px solid var(--cizgi); font-weight: 600; font-size: 14px; line-height: 1.3; }
+.aylik-yemek:first-of-type { border-top: 0; }
+.aylik-resim { display: flex; flex: none; }
+.aylik-resim img { width: 44px; height: 44px; border-radius: 12px; object-fit: cover; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.14); border: 2px solid var(--kart, #fff); }
+.aylik-resim img + img { margin-left: -14px; }
+.aylik-nokta { flex: none; width: 8px; height: 8px; margin: 0 18px 0 18px; border-radius: 50%; background: #f59e0b; }
+.aylik-ad { min-width: 0; }
+.aylik-bos { color: var(--soluk); font-size: 13px; }
 
 [data-tema="koyu"] .modal-kutu { background: #1a2035; color: #f0f3fe; border-color: #2b3350; }
 [data-tema="koyu"] .modal-ust { background: #1a2035; border-color: #2b3350; }
@@ -1347,9 +1354,16 @@ function aylikMenuAc(yurtId) {
         const sinif = bugunMu ? ' bugun' : yarinMu ? ' yarin' : '';
         const idAttr = bugunMu ? ' id="aylik-bugun"' : (yarinMu ? ' id="aylik-yarin"' : '');
         const gun = ym[k];
-        const khv = gun.kahvalti && gun.kahvalti.length ? gun.kahvalti.join(" · ") : "–";
-        const aks = gun.aksam && gun.aksam.length ? gun.aksam.join(" · ") : "–";
         const tarihBaslik = d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" });
+        const ogun = (liste) => {
+          if (!liste || !liste.length) return '<div class="aylik-bos">Menü yok</div>';
+          return liste.map(y => {
+            const parcalar = (window.KC_FOTO ? KC_FOTO.ayir(y) : [y]);
+            const resimler = window.KC_FOTO ? parcalar.map(p => [p, KC_FOTO.bul(p, "yurt")]).filter(x => x[1]) : [];
+            const kucukler = resimler.slice(0, 3).map(x => `<img loading="lazy" src="${KC_FOTO.src(x[1])}" alt="">`).join("");
+            return `<div class="aylik-yemek">${kucukler ? `<span class="aylik-resim n${Math.min(resimler.length,3)}">${kucukler}</span>` : '<span class="aylik-nokta"></span>'}<span class="aylik-ad">${y}</span></div>`;
+          }).join("");
+        };
 
         return `<div class="aylik-gun-kart${sinif}"${idAttr}>
           <div class="aylik-gun-baslik">
@@ -1357,12 +1371,12 @@ function aylikMenuAc(yurtId) {
             ${rozet}
           </div>
           <div class="aylik-ogun-bloku">
-            <b>Kahvaltı:</b>
-            <p>${khv}</p>
+            <b>Kahvaltı</b>
+            ${ogun(gun.kahvalti)}
           </div>
           <div class="aylik-ogun-bloku">
-            <b>Akşam yemeği:</b>
-            <p>${aks}</p>
+            <b>Akşam yemeği</b>
+            ${ogun(gun.aksam)}
           </div>
           ${gun.aksamNotu ? `<div class="menu-not-kutu aktif" style="margin-top:8px">📌 ${gun.aksamNotu}</div>` : ""}
         </div>`;
@@ -1488,7 +1502,7 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=16"></script>
+<script src="/yemekfoto.js?v=17"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=10"></script>
 <script src="/dil.js?v=3"></script>

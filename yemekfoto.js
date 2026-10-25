@@ -1307,6 +1307,9 @@
     return null;
   }
 
+  // Gelecek günlerin menüsü gibi başka yerlerde kullanılmak üzere dışa aç
+  window.KC_FOTO = { bul: fotoBul, src: resimSrc, ayir: seceneklereAyir, buyut: buyut };
+
   function secimDialogGoster(parcalar, fotoBulFn, secildiCallback) {
     const d = document.createElement("div");
     d.className = "yf-modal-perde";
