@@ -13,19 +13,6 @@
   function yaz(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
   function stil(css) { var s = document.createElement("style"); s.textContent = css; document.head.appendChild(s); }
 
-  /* GEÇİCİ TEŞHİS: uygulamada ekranın gerçek ölçülerini gösterir (dokununca kapanır) */
-  try {
-    if (/[?&]kaynak=uygulama/.test(location.search) || window.Capacitor || matchMedia("(display-mode: standalone)").matches) {
-      addEventListener("load", function () {
-        var d = document.createElement("div");
-        d.style.cssText = "position:fixed;left:0;right:0;top:0;z-index:99999;background:#000;color:#0f0;font:12px monospace;padding:6px;white-space:pre-wrap";
-        d.textContent = "iw=" + innerWidth + " sw=" + screen.width + " dpr=" + devicePixelRatio + " vv=" + (window.visualViewport ? visualViewport.width + "@" + visualViewport.scale : "-") + "\n" + navigator.userAgent;
-        d.onclick = function () { d.remove(); };
-        document.body.appendChild(d);
-      });
-    }
-  } catch (e) {}
-
   // Tema düğmeleri, özellik açık değilken hiç görünmesin
   stil("html:not(.tema-var) .tema-ui{display:none!important}");
 
