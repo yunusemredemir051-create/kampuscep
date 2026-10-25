@@ -165,7 +165,7 @@ function zamanFarki(ts) {
 async function cezaKontrol(uid) {
   if (!uid || isAdmin()) return { cezali: false };
   try {
-    const s = await getDoc(doc(db, "engelliler", uid));
+    const s = await getDoc(doc(db, "yorumCezalari", uid));
     if (s.exists()) {
       const data = s.data();
       const bitis = data.bitisMs || 0;
@@ -281,7 +281,7 @@ function oyDinleVeSay(el) {
     let starTop = 0, starSay = 0, iyiSay = 0, kotuSay = 0;
     snapOylar.forEach(docSnap => {
       const data = docSnap.data();
-      const p = typeof data.puan === "number" ? data.puan : (typeof data.d === "number" && data.d >= 1 && data.d <= 5 ? data.d : 0);
+      const p = typeof data.puan === "number" ? data.puan : 0;
       if (p >= 1 && p <= 5) {
         starTop += p;
         starSay++;
@@ -302,7 +302,6 @@ function oyDinleVeSay(el) {
       if (myDoc) {
         const myData = myDoc.data();
         if (typeof myData.puan === "number") d.benimPuan = myData.puan;
-        else if (typeof myData.d === "number" && myData.d >= 1 && myData.d <= 5) d.benimPuan = myData.d;
         if (typeof myData.reaksiyon === "number") d.benimReaksiyon = myData.reaksiyon;
         else if (myData.d === 1 || myData.d === -1) d.benimReaksiyon = myData.d;
       }
@@ -365,7 +364,7 @@ async function starPuanVer(el, p) {
   if (!(await kimlik())) return;
   const ref = doc(db, "menuler", d.oyId, "oylar", auth.currentUser.uid);
   try {
-    await setDoc(ref, { d: yeni, puan: yeni, zaman: serverTimestamp() }, { merge: true });
+    await setDoc(ref, { puan: yeni, zaman: serverTimestamp() }, { merge: true });
   } catch (e) {
     console.error("Firestore puan hatası:", e);
   }
@@ -383,7 +382,7 @@ async function reaksiyonVer(el, r) {
   if (!(await kimlik())) return;
   const ref = doc(db, "menuler", d.oyId, "oylar", auth.currentUser.uid);
   try {
-    await setDoc(ref, { d: yeni, reaksiyon: yeni, zaman: serverTimestamp() }, { merge: true });
+    await setDoc(ref, { reaksiyon: yeni, zaman: serverTimestamp() }, { merge: true });
   } catch (e) {
     console.error("Firestore reaksiyon hatası:", e);
   }
@@ -588,7 +587,7 @@ function listeCiz(el) {
     else { alert("Geçersiz seçim yapıldı."); return; }
 
     try {
-      const banRef = doc(db, "engelliler", hedefUid);
+      const banRef = doc(db, "yorumCezalari", hedefUid);
       if (gun === -1) {
         await deleteDoc(banRef);
         toast(`✅ ${hedefAd} kullanıcısının cezası kaldırıldı.`);
@@ -742,6 +741,7 @@ new MutationObserver(ml => {
 
 onAuthStateChanged(auth, u => {
   ben = u;
+  try { if (u && u.email) localStorage.setItem("kc-eposta", u.email); } catch (e) {}
   window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: isAdmin() } }));
   kutular.forEach((d, el) => {
     oyDinleVeSay(el);

@@ -544,109 +544,11 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 }
 .kc-toast.goster { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* ================= KPSS ALANI ================= */
-.kpss-alani {
-  border: 2px solid rgba(245, 158, 11, .35); border-radius: 20px;
-  padding: 22px; margin: 18px 0; background: linear-gradient(135deg, rgba(254, 243, 199, .4), rgba(255, 255, 255, .7));
-}
-[data-tema="koyu"] .kpss-alani {
-  background: linear-gradient(135deg, rgba(120, 53, 15, .25), rgba(30, 36, 56, .75));
-  border-color: rgba(245, 158, 11, .4);
-}
-.kpss-ust-baslik {
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.kpss-rozet-etiket {
-  display: inline-block; font-size: 11px; font-weight: 800; text-transform: uppercase;
-  background: #f59e0b; color: #fff; padding: 4px 10px; border-radius: 999px; margin-bottom: 6px;
-  letter-spacing: .5px;
-}
-.kpss-ust-baslik h2 { margin: 0; font-size: 20px; font-weight: 800; color: var(--yazi); }
-.kpss-ust-baslik p { margin: 4px 0 0; color: var(--soluk); font-size: 13.5px; line-height: 1.4; max-width: 600px; }
-.kpss-btn-ana {
-  padding: 11px 18px; border-radius: 14px; border: 0; background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #fff; font: 800 14px var(--font); cursor: pointer; white-space: nowrap;
-  box-shadow: 0 4px 14px rgba(245, 158, 11, .3); transition: all .2s ease;
-}
-.kpss-btn-ana:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(245, 158, 11, .45); }
-
-.kpss-arama-kutusu {
-  position: relative; margin-bottom: 16px;
-}
-.kpss-arama-kutusu svg {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--soluk);
-}
-.kpss-arama-kutusu input {
-  padding-left: 42px; width: 100%; border-radius: 14px; border: 1.5px solid var(--cizgi);
-  background: #fff; font-size: 14px;
-}
-[data-tema="koyu"] .kpss-arama-kutusu input { background: #1a2035; }
-
-.kpss-liste-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px;
-}
-.kpss-kart-item {
-  border: 1px solid var(--cizgi); border-radius: 16px; padding: 16px;
-  background: rgba(255, 255, 255, .85); display: flex; flex-direction: column; justify-content: space-between;
-  gap: 12px; transition: transform .2s ease, box-shadow .2s ease;
-}
-[data-tema="koyu"] .kpss-kart-item { background: rgba(26, 32, 53, .85); border-color: #2b3350; }
-.kpss-kart-item:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.06); }
-.kpss-item-ust { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.kpss-okul-rozet { font-weight: 800; font-size: 13.5px; color: var(--mavi); line-height: 1.3; }
-.kpss-vasita-rozet {
-  font-size: 11.5px; font-weight: 700; padding: 4px 8px; border-radius: 8px;
-  background: var(--turuncu-acik); color: var(--turuncu);
-}
-.kpss-item-orta { font-size: 13.5px; }
-.kpss-cikis-bilgi .etiket { color: var(--soluk); font-size: 12px; }
-.kpss-not-bilgi {
-  margin-top: 6px; padding: 8px 10px; background: rgba(0,0,0,.03); border-radius: 8px;
-  font-style: italic; font-size: 12.5px; color: var(--soluk);
-}
-[data-tema="koyu"] .kpss-not-bilgi { background: rgba(255,255,255,.05); }
-
-.kpss-item-alt {
-  display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--cizgi);
-  padding-top: 10px; margin-top: auto;
-}
-.kpss-kullanici-bilgi { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
-.kpss-item-eylemler { display: flex; align-items: center; gap: 8px; }
-.kpss-btn-wp {
-  display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 10px;
-  background: #25d366; color: #fff; text-decoration: none; font-weight: 700; font-size: 12.5px;
-  box-shadow: 0 2px 8px rgba(37, 211, 102, .3); transition: all .2s ease;
-}
-.kpss-btn-wp:hover { background: #1eb956; transform: translateY(-1px); }
-.kpss-btn-sil {
-  border: 0; background: transparent; cursor: pointer; font-size: 16px; padding: 4px 6px; border-radius: 8px;
-}
-.kpss-btn-sil:hover { background: rgba(239, 68, 68, .15); }
-.kpss-bos { grid-column: 1 / -1; text-align: center; padding: 32px 16px; color: var(--soluk); font-weight: 600; }
-
-/* KPSS MODAL */
-.kpss-modal-arka {
-  position: fixed; inset: 0; background: rgba(15, 23, 42, .6); backdrop-filter: blur(6px);
-  z-index: 1000; display: none; align-items: center; justify-content: center; padding: 16px;
-}
-.kpss-modal-arka.acik { display: flex; }
-.kpss-modal-kart {
-  background: #fff; border-radius: 20px; max-width: 460px; width: 100%; max-height: 90vh;
-  overflow-y: auto; padding: 24px; border: 1px solid var(--cizgi); box-shadow: 0 16px 36px rgba(0,0,0,.2);
-}
-[data-tema="koyu"] .kpss-modal-kart { background: #1a2035; border-color: #2b3350; }
-.kpss-modal-baslik { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.kpss-modal-baslik h3 { margin: 0; font-size: 18px; font-weight: 800; }
-.kpss-modal-kapat { border: 0; background: transparent; font-size: 26px; cursor: pointer; color: var(--soluk); }
-.kpss-modal-kart label { display: block; font-size: 13px; font-weight: 700; margin: 12px 0 4px; }
-.kpss-modal-kart input, .kpss-modal-kart select { width: 100%; }
-
 /* RTL Desteği (Arapça için) */
 [dir="rtl"] { text-align: right; }
+[dir="rtl"] .afis { direction: ltr; }
+[dir="rtl"] .afis .ust-bilgi { direction: rtl; text-align: right; }
 [dir="rtl"] .sekme { text-align: right; }
-[dir="rtl"] .kpss-arama-kutusu svg { left: auto; right: 14px; }
-[dir="rtl"] .kpss-arama-kutusu input { padding-left: 12px; padding-right: 42px; }
 
 </style>
 <!-- PWA -->
@@ -725,27 +627,6 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 
       <!-- Dönem durumu -->
       <div class="durum cam" id="ana-durum"></div>
-
-      <!-- KPSS Sınav Arkadaşı (25-26 Ekim 2026 Özel) -->
-      <div class="kpss-alani cam" id="kpss-alani" style="display:none">
-        <div class="kpss-ust-baslik">
-          <div>
-            <div class="kpss-rozet-etiket" data-i18n="kpss_rozet">25 - 26 Ekim Özel</div>
-            <h2 data-i18n="kpss_baslik">🎯 KPSS Sınav Arkadaşı</h2>
-            <p data-i18n="kpss_alt">Yarın sınava gireceğin okulu yaz veya bul; aynı okula gidenlerle taksiyi ve yolculuğu paylaş!</p>
-          </div>
-          <button type="button" class="kpss-btn-ana" id="kpss-btn-yeni" data-i18n="kpss_ilan_ekle">+ Sınav İlanı Ekle</button>
-        </div>
-
-        <div class="kpss-arama-kutusu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <input type="search" id="kpss-arama" data-i18n-placeholder="kpss_okul_ara" placeholder="Okul adına veya yurda göre ara...">
-        </div>
-
-        <div class="kpss-liste-grid" id="kpss-liste">
-          <!-- Dinamik yüklenecek -->
-        </div>
-      </div>
 
       <div class="menu-grid">
         <div class="menu-kart cam">
@@ -1078,63 +959,6 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
       <span>© 2026 KampüsCepte</span>
     </footer>
 
-  <!-- KPSS Yeni İlan Modalı -->
-  <div class="kpss-modal-arka" id="kpss-modal">
-    <div class="kpss-modal-kart cam">
-      <div class="kpss-modal-baslik">
-        <h3>🎯 KPSS Sınav Arkadaşı İlanı</h3>
-        <button type="button" class="kpss-modal-kapat" id="kpss-modal-kapat">&times;</button>
-      </div>
-      <form id="kpss-form">
-        <label for="kpss-form-okul">Sınava Gireceğin Okul / Fakülte</label>
-        <input list="kpss-okullar-listesi" id="kpss-form-okul" placeholder="Örn: Fırat Üniv. Mühendislik Fakültesi" required>
-        <datalist id="kpss-okullar-listesi">
-          <option value="Fırat Üniv. Mühendislik Fakültesi">
-          <option value="Fırat Üniv. İktisadi ve İdari Bilimler (İİBF)">
-          <option value="Fırat Üniv. Eğitim Fakültesi">
-          <option value="Fırat Üniv. Fen Fakültesi">
-          <option value="Fırat Üniv. İnsani ve Sosyal Bilimler Fakültesi">
-          <option value="Fırat Üniv. Teknoloji Fakültesi">
-          <option value="Fırat Üniv. Tıp Fakültesi">
-          <option value="Fırat Üniv. Sağlık Bilimleri Fakültesi">
-          <option value="Fırat Üniv. İletişim Fakültesi">
-          <option value="Mehmet Koloğlu Anadolu Lisesi">
-          <option value="Kaya Karakaya Fen Lisesi">
-          <option value="Kaya Karakaya Anadolu Lisesi">
-          <option value="Elazığ Anadolu Lisesi">
-          <option value="Balakgazi Anadolu Lisesi">
-          <option value="Çubukbey Anadolu Lisesi">
-          <option value="Ahmet Kabaklı Fen Lisesi">
-          <option value="Elazığ Lisesi">
-          <option value="Necip Fazıl Kısakürek Anadolu Lisesi">
-          <option value="Metin Koloğlu MTAL">
-          <option value="Atatürk Anadolu Lisesi">
-          <option value="Cemil Meriç Fen Lisesi">
-        </datalist>
-
-        <label for="kpss-form-cikis">Nereden Çıkacaksın (Yurt / Semt)</label>
-        <input id="kpss-form-cikis" placeholder="Örn: Ahmet Kabaklı Yurdu / Fethi Sekin / Çarşı" required>
-
-        <label for="kpss-form-vasita">Ulaşım Tercihi</label>
-        <select id="kpss-form-vasita">
-          <option value="taksi">🚖 Taksi Paylaşımı (Birlikte taksi tutalım)</option>
-          <option value="araba">🚗 Özel Arabam Var (Yer var, masrafı bölüşürüz)</option>
-          <option value="otobus">🚌 Otobüs / Birlikte Gidelim</option>
-        </select>
-
-        <label for="kpss-form-ad">Adınız / Rumuzunuz</label>
-        <input id="kpss-form-ad" placeholder="Adınız" required>
-
-        <label for="kpss-form-tel">WhatsApp / İletişim Numarası</label>
-        <input id="kpss-form-tel" type="tel" placeholder="05xxxxxxxxx" required>
-
-        <label for="kpss-form-not">Not (Opsiyonel)</label>
-        <input id="kpss-form-not" placeholder="Örn: Sabah 08:45'te çıkmayı planlıyorum">
-
-        <button type="submit" class="btn ana tam" style="margin-top:20px">İlanı Paylaş</button>
-      </form>
-    </div>
-  </div>
   </main>
 </div>
 
@@ -1427,7 +1251,7 @@ function yurtMenuYaz(elId, id, ogun, d = bugun) {
   }
   if (notEl) {
     const ym = yurtMenuleri[id];
-    const notMetni = ogun === "kahvalti" ? (ym && ym.kahvaltiNotu) : (ym && ym.aksamNotu);
+    const notMetni = ogun === "kahvalti" ? (ym && ym.kahvaltiNotu) : (m && m.aksamNotu);
     if (notMetni) {
       notEl.innerHTML = `📌 <b>Not:</b> ${notMetni.replace(/^Not:\s*/i, "")}`;
       notEl.classList.add("aktif");
@@ -1535,9 +1359,7 @@ function aylikMenuAc(yurtId) {
     if (!tarihler.length) {
       icerikEl.innerHTML = '<div class="bos-menu">Bu ay için kalan başka menü bulunmuyor.</div>';
     } else {
-      const notMetni = ym && ym.aksamNotu;
-      const notKutuHtml = notMetni ? `<div class="menu-not-kutu aktif" style="margin-bottom:12px">📌 <b>Not:</b> ${notMetni.replace(/^Not:\s*/i, "")}</div>` : "";
-      icerikEl.innerHTML = notKutuHtml + tarihler.map(k => {
+      icerikEl.innerHTML = tarihler.map(k => {
         const d = T(k);
         const bugunMu = +d === +bugun;
         const yarinMu = +d === +ekle(bugun, 1);
@@ -1562,6 +1384,7 @@ function aylikMenuAc(yurtId) {
             <b>Akşam yemeği:</b>
             <p>${aks}</p>
           </div>
+          ${gun.aksamNotu ? `<div class="menu-not-kutu aktif" style="margin-top:8px">📌 ${gun.aksamNotu}</div>` : ""}
         </div>`;
       }).join("");
     }
@@ -1687,9 +1510,8 @@ function geriSay() {
 <script src="cerez.js" defer></script>
 <script src="/yemekfoto.js?v=15"></script>
 <script src="/firebase-ayar.js"></script>
-<script type="module" src="/yorum.js?v=9"></script>
+<script type="module" src="/yorum.js?v=10"></script>
 <script src="/dil.js?v=1"></script>
-<script type="module" src="/kpss.js?v=1"></script>
 <script src="/ayarlar.js?v=1"></script>
 <script src="/vitrin.js?v=7"></script>
 <!-- Aylık Menü Modalı -->

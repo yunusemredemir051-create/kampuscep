@@ -56,21 +56,38 @@ const kykAnaMenu = {
                   aksam: ["Düğün çorbası / Domates çorbası", "Orman kebabı / Ispanak yemeği / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç"] }
 };
 
-/* Yurt panosundaki resmi bilgilendirme notu */
-const kykAksamNotu = "Not: (02.10–16.10) Ahmet Kabaklı, (05.10–22.10) Sare Ana, Harput, İzzetpaşa, (23.10–27.10) Ömer Bilginoğlu, Fethi Sekin, Fırat yurtlarımızda (Mercimek çorba, Lahmacun, Mevsim Salata, Ayran) menüsü verilecektir.";
-
-kykAnaMenu.aksamNotu = kykAksamNotu;
-
-/* Tüm Elazığ KYK yurtları ana takvim listesini uygular */
-const yurtMenuleri = {
-  "ahmet-kabakli":   kykAnaMenu,
-  "sare-ana":        kykAnaMenu,
-  "harput":          kykAnaMenu,
-  "izzetpasa":       kykAnaMenu,
-  "omer-bilginoglu": kykAnaMenu,
-  "fethi-sekin":     kykAnaMenu,
-  "firat":           kykAnaMenu
+/* İl Müdürlüğü'nün yurt gruplarına göre özel akşam menüsü (Lahmacun) tarih aralıkları */
+const kykOzelAksam = ["Mercimek çorbası", "Lahmacun", "Mevsim salata", "Ayran"];
+const kykOzelAralik = {
+  "ahmet-kabakli":   ["2026-10-02", "2026-10-16"],
+  "sare-ana":        ["2026-10-05", "2026-10-22"],
+  "harput":          ["2026-10-05", "2026-10-22"],
+  "izzetpasa":       ["2026-10-05", "2026-10-22"],
+  "omer-bilginoglu": ["2026-10-23", "2026-10-27"],
+  "fethi-sekin":     ["2026-10-23", "2026-10-27"],
+  "firat":           ["2026-10-23", "2026-10-27"]
 };
+
+/* Her yurt için ortak takvimden kendi menüsünü üretir; özel aralıktaki günlerde akşam menüsü Lahmacun menüsü olur
+   ve o güne "aksamNotu" eklenir (not yalnızca ilgili yurt ve günlerde görünür). */
+function kykYurtMenusu(yurtId) {
+  const [bas, bit] = kykOzelAralik[yurtId] || ["", ""];
+  const m = { kahvaltiNotu: kykAnaMenu.kahvaltiNotu };
+  Object.keys(kykAnaMenu).forEach(k => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return;
+    const gun = Object.assign({}, kykAnaMenu[k]);
+    if (bas && k >= bas && k <= bit) {
+      gun.aksam = kykOzelAksam.slice();
+      gun.aksamNotu = "İl Müdürlüğü notu: bu günlerde akşam yemeği (Mercimek çorbası, Lahmacun, Mevsim salata, Ayran) olarak verilir.";
+    }
+    m[k] = gun;
+  });
+  return m;
+}
+
+const yurtMenuleri = {};
+["ahmet-kabakli", "sare-ana", "harput", "izzetpasa", "omer-bilginoglu", "fethi-sekin", "firat"]
+  .forEach(id => { yurtMenuleri[id] = kykYurtMenusu(id); });
 
 /* Üniversite Evi menüsü */
 const uniEviMenuleri = {
