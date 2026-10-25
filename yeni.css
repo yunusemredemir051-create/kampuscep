@@ -18,3 +18,11 @@
 .renk-dugme.aktif i{box-shadow:0 0 0 2.5px var(--mavi)!important}
 .renk-sec::after{content:attr(data-aktif-ad);flex-basis:100%;font:700 12px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);margin-top:2px}
 [data-tema-sec] .ti{vertical-align:-3px;margin-right:4px}
+#ana{display:flex;flex-direction:column;gap:12px}
+#ana>.afis{order:0}#ana>.menu-grid{order:1}#ana>.baslik{order:2;margin:4px 2px 0!important}#ana>.kutular{order:3}#ana>.vitrin{order:4}#ana>.durum{order:5}
+.durum{padding:14px 16px!important}
+.durum .sayaclar{margin-top:12px!important;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.durum .sayaclar>button{display:none!important}
+.durum .sayac{padding:12px!important}
+.durum .sayac .sayi{font-size:26px!important}
+.durum-ust h2,.durum-ust b{font-size:17px}
