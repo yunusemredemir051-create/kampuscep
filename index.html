@@ -500,9 +500,9 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 [data-tema="koyu"] .ayar-grup { background: rgba(30, 36, 56, .6); }
 .ayar-grup-baslik { margin: 0 0 16px; font-size: 16px; font-weight: 800; color: var(--yazi); }
 
-.dil-sec { display: flex; flex-wrap: wrap; gap: 8px; }
+.dil-sec { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .dil-chip {
-  font: 700 13px var(--font); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  font: 700 12.5px var(--font); padding: 9px 4px; border-radius: 999px; cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   border: 1.5px solid var(--cizgi); background: var(--cam-guclu); color: var(--yazi);
 }
 .dil-chip:hover { border-color: var(--mavi); }
@@ -941,7 +941,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
   </main>
 </div>
 
-<script src="veri.js"></script>
+<script src="veri.js?v=3"></script>
 <script>
 /* =====================================================================
    TARİH YARDIMCILARI
@@ -1487,11 +1487,11 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=15"></script>
+<script src="/yemekfoto.js?v=16"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=10"></script>
-<script src="/dil.js?v=2"></script>
-<script src="/ayarlar.js?v=1"></script>
+<script src="/dil.js?v=3"></script>
+<script src="/ayarlar.js?v=2"></script>
 <script src="/vitrin.js?v=7"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">

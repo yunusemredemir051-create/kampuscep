@@ -401,7 +401,13 @@
 
   /* ------------------------------------------------------------------ DOM */
   let aktif = "tr";
-  try { const k = localStorage.getItem("kc-dil"); if (DILLER.indexOf(k) >= 0) aktif = k; } catch (e) {}
+  /* Varsayılan dil HER ZAMAN Türkçe'dir: yalnızca kullanıcı Ayarlar'dan açıkça başka dil seçtiyse o kullanılır
+     (telefon/tarayıcı dili hiç dikkate alınmaz). Adrese ?dil=tr eklenirse Türkçeye sıfırlanır. */
+  try {
+    const q = new URLSearchParams(location.search).get("dil");
+    if (DILLER.indexOf(q) >= 0) localStorage.setItem("kc-dil", q);
+    const k = localStorage.getItem("kc-dil"); if (DILLER.indexOf(k) >= 0) aktif = k;
+  } catch (e) {}
 
   const metinKayit = new Map();                 // metin düğümü -> { tr, ceviri }
   const ozellikKayit = new WeakMap();           // eleman -> { özellik: { tr, ceviri } }
@@ -477,6 +483,7 @@
     metinKayit.forEach(function (_, n) { if (!n.isConnected) metinKayit.delete(n); });
     gozlemciBaslat();
     document.querySelectorAll("[data-dil]").forEach(function (b) { b.classList.toggle("aktif", b.getAttribute("data-dil") === aktif); });
+    turkceDugmesi();
     window.dispatchEvent(new CustomEvent("kc-dil-degisti", { detail: { dil: aktif } }));
   }
 
@@ -519,6 +526,19 @@
       return o.apply(window, a);
     };
   });
+
+  /* Türkçe dışında bir dil açıkken üst başlıkta her zaman görünen "Türkçe" düğmesi (geri dönüş yolu) */
+  function turkceDugmesi() {
+    let b = document.getElementById("dil-tr-don");
+    if (aktif === "tr") { if (b) b.remove(); return; }
+    if (b || !document.body) return;
+    b = document.createElement("button");
+    b.id = "dil-tr-don"; b.type = "button"; b.setAttribute("data-ceviri-yok", ""); b.setAttribute("translate", "no");
+    b.textContent = "Türkçe";
+    b.style.cssText = "position:fixed;top:max(10px,env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:9998;border:0;border-radius:999px;padding:6px 14px;font:700 12px system-ui,sans-serif;background:#141b34;color:#fff;box-shadow:0 6px 18px -6px rgba(0,0,0,.4);cursor:pointer;opacity:.92";
+    b.onclick = function () { degistir("tr"); };
+    document.body.appendChild(b);
+  }
 
   function degistir(yeni) {
     if (DILLER.indexOf(yeni) < 0 || yeni === aktif) { if (DILLER.indexOf(yeni) >= 0) hepsiniGuncelle(); return; }
