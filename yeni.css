@@ -80,3 +80,11 @@ html body ul.yemekler li.fotolu { gap: 14px !important; padding-top: 8px; paddin
 html body .aylik-resim img { width: 52px; height: 52px; border-radius: 14px; }
 html body .aylik-resim img + img { margin-left: -18px; }
 html body .aylik-nokta { margin: 0 22px; }
+
+/* Özel günler: o günün kendi görseli afişi kaplar */
+html.ozel .afis{min-height:200px!important}
+html.ozel .afis img{content:normal!important;position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:right center!important;filter:none!important;z-index:0}
+html.ozel .afis::before{display:none}
+html.ozel .afis::after{width:auto;height:auto;border-radius:0;inset:0}
+html.ozel .afis .ust-bilgi{max-width:56%!important}
+html.ozel .ozel-yagmur{opacity:.55}
