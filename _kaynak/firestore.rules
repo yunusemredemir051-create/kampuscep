@@ -1,5 +1,5 @@
 rules_version = '2';
-// KampüsCepte — Yol arkadaşı güvenlik kuralları.
+// KampüsCepte — Firestore güvenlik kuralları (yol arkadaşı, yemek yorumları, fotoğraflar).
 // Firebase konsolu → Firestore Database → Kurallar sekmesine olduğu gibi yapıştırılıp Yayınla'ya basılır.
 service cloud.firestore {
   match /databases/{db}/documents {
@@ -19,7 +19,7 @@ service cloud.firestore {
     function metin(s, en) { return s is string && s.size() <= en; }
     // Site yöneticisi (yol-arkadasi sayfasındaki YONETICI ile aynı e-posta)
     function yonetici() {
-      return request.auth != null && request.auth.token.email == "yunusemredemir051@gmail.com";
+      return googleli() && request.auth.token.email == 'yunusemredemir051@gmail.com' && request.auth.token.email_verified == true;
     }
     // Sahte ilan nedeniyle süresiz banlananlar (hesap ve WhatsApp numarası)
     function banli() { return exists(/databases/$(db)/documents/engelliler/$(request.auth.uid)); }
@@ -37,7 +37,7 @@ service cloud.firestore {
     match /yolculuklar/{id} {
       function sahip() { return googleli() && request.auth.uid == resource.data.sahipUid; }
 
-            // İlanlar herkese açık ve isimsizdir (isim ve telefon yalnızca iletisim alt koleksiyonunda, grup içinde görünür)
+      // İlanlar herkese açık ve isimsizdir (isim ve telefon yalnızca iletisim alt koleksiyonunda, grup içinde görünür)
       allow read: if true;
 
       allow create: if googleli() && !banli()
@@ -91,47 +91,62 @@ service cloud.firestore {
       }
     }
 
-        // Yemek menüsü değerlendirmeleri: beğeni/beğenmeme ve yorumlar (herkes okur, girişli kullanıcı yazar)
+    // Yemek menüsü değerlendirmeleri: yıldız puanı, beğeni/beğenmeme ve yorumlar (herkes okur, girişli kullanıcı yazar)
     match /menuler/{menu} {
+      function menuGecerli() { return menu.matches('^[a-z0-9-]+_[0-9]{4}-[0-9]{2}-[0-9]{2}(_(kahvalti|aksam))?$'); }
+      // Yorum cezası süren kullanıcı yorum yazamaz (ceza kaydı yorumCezalari/{uid} içinde, bitisMs milisaniye)
+      function yorumCezali() {
+        return exists(/databases/$(db)/documents/yorumCezalari/$(request.auth.uid))
+          && get(/databases/$(db)/documents/yorumCezalari/$(request.auth.uid)).data.bitisMs > request.time.toMillis();
+      }
       match /oylar/{uid} {
         allow read: if true;
-        allow create, update: if girisli() && request.auth.uid == uid;
+        allow create, update: if girisli() && request.auth.uid == uid && menuGecerli()
+          && request.resource.data.keys().hasOnly(['d', 'puan', 'reaksiyon', 'zaman'])
+          && (!('puan' in request.resource.data) || (request.resource.data.puan is int && request.resource.data.puan >= 0 && request.resource.data.puan <= 5))
+          && (!('reaksiyon' in request.resource.data) || request.resource.data.reaksiyon in [-1, 0, 1])
+          && (!('d' in request.resource.data) || request.resource.data.d in [-1, 0, 1]);
         allow delete: if girisli() && request.auth.uid == uid;
       }
       match /yorumlar/{id} {
         allow read: if true;
-        allow create: if girisli()
+        allow create: if girisli() && menuGecerli() && !yorumCezali()
+          && request.resource.data.keys().hasOnly(['uid', 'ad', 'metin', 'ust', 'zaman', 'begeniler'])
           && request.resource.data.uid == request.auth.uid
           && metin(request.resource.data.ad, 40) && request.resource.data.ad.size() >= 2
-          && metin(request.resource.data.metin, 500) && request.resource.data.metin.size() > 0;
-        allow update: if girisli();
+          && metin(request.resource.data.metin, 500) && request.resource.data.metin.size() > 0
+          && metin(request.resource.data.ust, 40)
+          && request.resource.data.begeniler == []
+          && request.resource.data.zaman == request.time;
+        // Beğeni: yalnızca begeniler listesi değişir ve kişi yalnızca kendi kimliğini ekleyip çıkarabilir
+        allow update: if girisli()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['begeniler'])
+          && request.resource.data.begeniler is list
+          && request.resource.data.begeniler.toSet().difference(resource.data.get('begeniler', []).toSet()).hasOnly([request.auth.uid])
+          && resource.data.get('begeniler', []).toSet().difference(request.resource.data.begeniler.toSet()).hasOnly([request.auth.uid]);
         allow delete: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
       }
     }
 
-
-
-    // KPSS Sınav Arkadaşı (25-26 Ekim 2026)
-    match /kpss2026/{id} {
-      allow read: if true;
-      allow create: if girisli()
-        && metin(request.resource.data.okul, 100)
-        && metin(request.resource.data.ad, 40)
-        && metin(request.resource.data.cikis, 80);
-      allow update: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
-      allow delete: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
+    // Yorum cezaları (3/7/30 gün): yalnızca yönetici yazar; kişi yalnızca kendi kaydını okur
+    match /yorumCezalari/{uid} {
+      allow read: if girisli() && request.auth.uid == uid || yonetici();
+      allow write: if yonetici();
     }
 
-    // Ban listeleri: herkes okur (ban kontrolü için); yalnızca yönetici yazar ve siler
+    // Sahte ilan nedeniyle süresiz banlananlar (Yol arkadaşı): yalnızca yönetici yazar; kişi yalnızca kendi kaydını görebilir
     match /engelliler/{uid} {
-      allow read: if true;
-      allow write, delete: if yonetici();
+      allow read: if googleli() && request.auth.uid == uid || yonetici();
+      allow write: if yonetici();
     }
 
-    // Yemek fotoğrafları: herkes okur; yalnızca yönetici yükler ve günceller
+    // Yemek fotoğrafları: herkes okur; yalnızca yönetici yükler, günceller ve siler
     match /yemekFotolari/{id} {
       allow read: if true;
-      allow write, delete: if yonetici();
+      allow write: if yonetici()
+        && request.resource.data.keys().hasOnly(['ad', 'yer', 'foto', 'ekleyen', 'zaman'])
+        && request.resource.data.foto is string && request.resource.data.foto.size() < 900000;
+      allow delete: if yonetici();
     }
     match /engelliTel/{tel} {
       allow read, write: if yonetici();

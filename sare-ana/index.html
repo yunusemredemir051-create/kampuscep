@@ -90,20 +90,6 @@ footer a { color: inherit; }
 .baslik-g img { animation: kc-yuz 3.2s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .yemekler li, .yemekler li::before, .gorselli img, .kutu .resim, .afis img, .baslik-g img, .kapak { animation: none !important; } }
 </style>
-<!-- PWA -->
-<link rel="manifest" href="../manifest.webmanifest">
-<link rel="apple-touch-icon" href="../ikonlar/apple-touch-icon.png">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="KampüsCepte">
-<meta name="google-adsense-account" content="ca-pub-5083598455747122">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
-<style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=6"></script>
-<script defer src="/ozelgun.js?v=6"></script>
-<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../sw.js",{scope:"../"}).catch(()=>{}));</script>
-<!-- /PWA -->
 </head>
 <body>
 <div class="isik"></div>
@@ -203,7 +189,7 @@ function goster(ekGun) {
   dg("kahvalti", gun && gun.kahvalti && gun.kahvalti.length, `${YURT}_${k}_kahvalti`);
   dg("aksam", gun && gun.aksam && gun.aksam.length, `${YURT}_${k}_aksam`);
   dg("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k], `unievi_${k}`);
-  yaz("aksam", gun && gun.aksam, bos, ym && ym.aksamNotu);
+  yaz("aksam", gun && gun.aksam, bos, gun && gun.aksamNotu);
   const hs = d.getDay() === 0 || d.getDay() === 6;
   yaz("unievi", typeof uniEviMenuleri !== "undefined" && uniEviMenuleri[k],
       hs ? "Üniversite Evi hafta sonu yemek vermiyor." : "Bu günün menüsü henüz eklenmedi.");
@@ -215,7 +201,7 @@ goster(0);
 </script>
 <script src="/yemekfoto.js?v=15"></script>
 <script src="/firebase-ayar.js"></script>
-<script type="module" src="/yorum.js?v=9"></script>
+<script type="module" src="/yorum.js?v=10"></script>
 <script src="/vitrin.js?v=7"></script>
 </body>
 </html>
