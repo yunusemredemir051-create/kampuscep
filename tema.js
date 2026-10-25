@@ -71,7 +71,7 @@
   })();
   function renkOku() { var r = oku("kc-renk") || ""; return RENKLER.some(function (x) { return x.id === r; }) ? r : ""; }
   function renkUygula() {
-    var r = renkOku();
+    var r = kok.classList.contains("ozel-renkli") ? "" : renkOku(); /* özel günde seçilen takım teması geçici olarak devre dışı */
     if (r) kok.setAttribute("data-renk", r); else kok.removeAttribute("data-renk");
     var b = document.querySelectorAll("[data-renk-sec]");
     for (var i = 0; i < b.length; i++) {
@@ -95,7 +95,7 @@
     });
     renkUygula();
   }
-  window.kcRenk = { ayarla: function (r) { yaz("kc-renk", r || null); renkUygula(); }, liste: RENKLER, aktif: renkOku };
+  window.kcRenk = { ayarla: function (r) { yaz("kc-renk", r || null); renkUygula(); }, liste: RENKLER, aktif: renkOku, yenile: renkUygula };
   renkUygula();
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-renk-sec]");

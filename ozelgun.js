@@ -142,7 +142,7 @@
   const kok = document.documentElement;
   kok.classList.add("ozel", "ozel-" + t.id);
   if (T.anma) kok.classList.add("ozel-anma");
-  if (T.mavi) { kok.style.setProperty("--mavi", T.mavi); kok.style.setProperty("--mor", T.mor); kok.style.setProperty("--mavi-acik", T.acik); }
+  if (T.mavi) { kok.classList.add("ozel-renkli"); if (window.kcRenk && kcRenk.yenile) kcRenk.yenile(); kok.style.setProperty("--mavi", T.mavi); kok.style.setProperty("--mor", T.mor); kok.style.setProperty("--mavi-acik", T.acik); }
   const r = RENK[t.id] || ["#3765fe", "#5b61fc"];
 
   const css = document.createElement("style");
