@@ -39,6 +39,10 @@
      Tercih localStorage "kc-renk": "" (klasik mavi) | turk | gs | fb | bjk | ts | amed | erzincan | elazig | antep
      a = açık modda vurgu, k = koyu modda vurgu, t = açık vurgu zemini (rgb), h = afiş gradyanı, g1/g2 = ışıma rgb */
   var RENKLER = [
+    { id: "zumrut", m: "#0b6b4b", ad: "Zümrüt", c: ["#0e9f6e", "#0b6b4b"], a: "#0e9f6e", k: "#34d399", t: "221,243,232", h: "linear-gradient(120deg,#0e9f6e,#0b6b4b)", g1: "14,159,110", g2: "11,107,75" },
+    { id: "gunbatimi", m: "#e5484d", ad: "Gün Batımı", c: ["#ff7a45", "#e5484d"], a: "#ee5a2c", k: "#ff9566", t: "255,229,216", h: "linear-gradient(120deg,#ff7a45,#e5484d)", g1: "255,122,69", g2: "229,72,77" },
+    { id: "okyanus", m: "#3b82f6", ad: "Okyanus", c: ["#22d3ee", "#3b82f6"], a: "#1d8fd6", k: "#22d3ee", t: "216,240,252", h: "linear-gradient(120deg,#22d3ee,#3b82f6)", g1: "34,211,238", g2: "59,130,246" },
+    { id: "lavanta", m: "#6d4ae0", ad: "Lavanta", c: ["#8b5cf6", "#6d4ae0"], a: "#8b5cf6", k: "#b197fc", t: "235,227,255", h: "linear-gradient(120deg,#8b5cf6,#6d4ae0)", g1: "139,92,246", g2: "109,74,224" },
     { id: "turk", m: "#ff8a93",     ad: "Türk",         c: ["#e30a17", "#ffffff"], a: "#d4081a", k: "#ff5a66", t: "255,222,225", h: "linear-gradient(120deg,#e30a17,#b8000f)", g1: "227,10,23", g2: "255,120,120" },
     { id: "",         ad: "Klasik",       c: ["#3b5bfd", "#8d5cf6"], a: "#3b5bfd", k: "#6b84ff", t: "230,235,255", h: "linear-gradient(120deg,#3a63fd,#8d5cf6)", g1: "90,110,255", g2: "255,138,61" },
     { id: "gs", m: "#fdb912",       ad: "Galatasaray",  c: ["#a90432", "#fdb912"], a: "#a90432", k: "#ff5c7d", t: "255,226,232", h: "linear-gradient(120deg,#a90432,#d9182f 55%,#fdb912)", g1: "169,4,50", g2: "253,185,18" },
@@ -76,7 +80,8 @@
     var b = document.querySelectorAll("[data-renk-sec]");
     for (var i = 0; i < b.length; i++) {
       var on = b[i].getAttribute("data-renk-sec") === r;
-      b[i].classList.toggle("aktif", on); b[i].setAttribute("aria-pressed", on ? "true" : "false");
+      b[i].classList.toggle("aktif", on);
+      if (on && b[i].parentNode) b[i].parentNode.setAttribute("data-aktif-ad", b[i].getAttribute("title") || ""); b[i].setAttribute("aria-pressed", on ? "true" : "false");
     }
     var m = document.querySelector('meta[name="theme-color"]');
     if (m && kok.getAttribute("data-tema") !== "koyu") {
@@ -89,7 +94,7 @@
       if (kutu.getAttribute("data-kuruldu")) return;
       kutu.setAttribute("data-kuruldu", "1");
       kutu.innerHTML = RENKLER.map(function (r) {
-        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false"><i style="background:linear-gradient(135deg,' +
+        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false" title="' + r.ad + '" aria-label="' + r.ad + '"><i style="background:linear-gradient(135deg,' +
           r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i>' + r.ad + "</button>";
       }).join("");
     });
