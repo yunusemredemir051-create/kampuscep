@@ -1361,7 +1361,7 @@ function aylikMenuAc(yurtId) {
             const parcalar = (window.KC_FOTO ? KC_FOTO.ayir(y) : [y]);
             const resimler = window.KC_FOTO ? parcalar.map(p => [p, KC_FOTO.bul(p, "yurt")]).filter(x => x[1]) : [];
             const kucukler = resimler.slice(0, 3).map(x => `<img loading="lazy" src="${KC_FOTO.src(x[1])}" alt="">`).join("");
-            return `<div class="aylik-yemek">${kucukler ? `<span class="aylik-resim n${Math.min(resimler.length,3)}">${kucukler}</span>` : '<span class="aylik-nokta"></span>'}<span class="aylik-ad">${y}</span></div>`;
+            return `<div class="aylik-yemek">${kucukler ? `<span class="aylik-resim n${Math.min(resimler.length,3)}">${kucukler}</span>` : '<span class="aylik-nokta"></span>'}<span class="aylik-ad">${parcalar.join("<br>")}</span></div>`;
           }).join("");
         };
 
@@ -1502,7 +1502,7 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=17"></script>
+<script src="/yemekfoto.js?v=19"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=10"></script>
 <script src="/dil.js?v=3"></script>
