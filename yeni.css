@@ -88,3 +88,11 @@ html.ozel .afis::before{display:none}
 html.ozel .afis::after{width:auto;height:auto;border-radius:0;inset:0}
 html.ozel .afis .ust-bilgi{max-width:56%!important}
 html.ozel .ozel-yagmur{opacity:.55}
+
+/* Ramazan afişi (kendi yerleşimi var) */
+html.rz .afis{padding:0!important;min-height:0!important}
+html.rz .afis img{content:normal!important;position:relative!important;inset:auto!important;width:100%!important;height:170px!important;max-width:none!important;object-fit:cover!important;filter:none!important}
+html.rz .afis .ust-bilgi{max-width:none!important}
+html.rz .afis::before{width:auto;border-radius:0}
+html.rz .afis::after{display:none}
+html.rz .afis-chips{display:none!important}
