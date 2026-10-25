@@ -76,7 +76,8 @@
     var b = document.querySelectorAll("[data-renk-sec]");
     for (var i = 0; i < b.length; i++) {
       var on = b[i].getAttribute("data-renk-sec") === r;
-      b[i].classList.toggle("aktif", on); b[i].setAttribute("aria-pressed", on ? "true" : "false");
+      b[i].classList.toggle("aktif", on);
+      if (on && b[i].parentNode) b[i].parentNode.setAttribute("data-aktif-ad", b[i].getAttribute("title") || ""); b[i].setAttribute("aria-pressed", on ? "true" : "false");
     }
     var m = document.querySelector('meta[name="theme-color"]');
     if (m && kok.getAttribute("data-tema") !== "koyu") {
@@ -89,7 +90,7 @@
       if (kutu.getAttribute("data-kuruldu")) return;
       kutu.setAttribute("data-kuruldu", "1");
       kutu.innerHTML = RENKLER.map(function (r) {
-        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false"><i style="background:linear-gradient(135deg,' +
+        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false" title="' + r.ad + '" aria-label="' + r.ad + '"><i style="background:linear-gradient(135deg,' +
           r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i>' + r.ad + "</button>";
       }).join("");
     });

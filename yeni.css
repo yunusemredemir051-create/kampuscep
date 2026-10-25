@@ -1,0 +1,20 @@
+/* Yeni düzen denemesi — yalnızca önizleme dalında */
+.afis{min-height:0!important;padding:14px 18px!important;border-radius:18px!important}
+.afis img{display:none!important}
+.afis .ust-bilgi{max-width:100%!important;display:flex;flex-direction:column;gap:2px}
+.afis .ust-bilgi h1{font-size:22px!important;line-height:1.2}
+.afis .ust-bilgi small{font-size:12px}
+.afis .ust-bilgi p{display:none}
+.kutular{gap:8px}
+.kutu{padding:12px 4px!important;text-align:center!important}
+.kutu .resim{width:40px!important;height:36px!important;margin:0 auto 6px!important}
+.kutu small{display:none}
+.kutu b{font-size:12.5px}
+.baslik{margin:14px 2px 8px!important}
+.menu-grid{gap:10px}
+.renk-sec{display:flex!important;flex-wrap:wrap;gap:8px 9px}
+.renk-dugme{padding:2px!important;font-size:0!important;gap:0!important;border-radius:50%!important;background:none!important}
+.renk-dugme i{width:28px!important;height:28px!important}
+.renk-dugme.aktif i{box-shadow:0 0 0 2.5px var(--mavi)!important}
+.renk-sec::after{content:attr(data-aktif-ad);flex-basis:100%;font:700 12px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);margin-top:2px}
+[data-tema-sec] .ti{vertical-align:-3px;margin-right:4px}
