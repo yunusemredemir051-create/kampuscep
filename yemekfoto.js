@@ -1310,6 +1310,14 @@
   // Gelecek günlerin menüsü gibi başka yerlerde kullanılmak üzere dışa aç
   window.KC_FOTO = { bul: fotoBul, src: resimSrc, ayir: seceneklereAyir, buyut: buyut };
 
+  // "A / B / C" biçimindeki seçenekleri alt alta, ayrı satırlarda göster
+  function altAlta(el, yazi) {
+    el.textContent = "";
+    const p = seceneklereAyir(yazi);
+    if (p.length < 2) { el.textContent = yazi; return; }
+    const w = document.createElement("span"); w.style.cssText = "display:block;flex:1 1 0;min-width:0"; p.forEach(x => { const d = document.createElement("span"); d.style.display = "block"; d.textContent = x; w.appendChild(d); }); el.appendChild(w);
+  }
+
   function secimDialogGoster(parcalar, fotoBulFn, secildiCallback) {
     const d = document.createElement("div");
     d.className = "yf-modal-perde";
@@ -1554,7 +1562,7 @@
       const eskiGrup = li.querySelector(".yf-grup");
       if (eskiGrup) eskiGrup.remove();
       const eskiMetin = li.querySelector(".yf-metin");
-      if (eskiMetin) li.textContent = yazi;
+      if (eskiMetin) altAlta(li, yazi);
       const eskiAdminBtn = li.querySelector(".yf-admin-btn");
       if (eskiAdminBtn) eskiAdminBtn.remove();
 
@@ -1574,14 +1582,14 @@
 
         const spanMetin = document.createElement("span");
         spanMetin.className = "yf-metin";
-        spanMetin.textContent = yazi;
+        altAlta(spanMetin, yazi);
 
         li.appendChild(kutu);
         li.appendChild(spanMetin);
         li.classList.add("fotolu");
       } else {
         li.classList.remove("fotolu");
-        li.textContent = yazi;
+        altAlta(li, yazi);
       }
 
       if (yoneticiMi) {
