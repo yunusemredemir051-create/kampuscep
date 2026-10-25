@@ -1526,21 +1526,8 @@
 
     const yoneticiMi = window.KC_ADMIN && window.KC_ADMIN.isAdmin && window.KC_ADMIN.isAdmin();
 
-    let fab = document.getElementById("yf-admin-fab-btn");
-    if (yoneticiMi) {
-      if (!fab) {
-        fab = document.createElement("button");
-        fab.id = "yf-admin-fab-btn";
-        fab.className = "yf-admin-fab";
-        fab.type = "button";
-        fab.innerHTML = "👑 Tüm Yemekler";
-        fab.title = "Tüm Yemeklerin Fotoğraflarını Yönet";
-        fab.onclick = tumYemeklerPaneliniAc;
-        document.body.appendChild(fab);
-      }
-    } else if (fab) {
-      fab.remove();
-    }
+    // (Eski sabit "Tüm Yemekler" düğmesi kaldırıldı; panel Ayarlar > Yönetici bölümünden ve yorum panelinden açılır.)
+    const eskiFab = document.getElementById("yf-admin-fab-btn"); if (eskiFab) eskiFab.remove();
 
     ul.querySelectorAll("li").forEach(li => {
       if (li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;

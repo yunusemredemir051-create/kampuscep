@@ -38,22 +38,21 @@
       });
     }
 
-    // Admin kontrolü
-    if (adminRozet) {
-      // Eğer yorum.js admini ise veya localStorage admin modundaysa
-      const eposta = localStorage.getItem("kc-eposta") || "";
-      if (eposta === "yunusemredemir051@gmail.com") {
-        adminRozet.style.display = "inline-flex";
-      } else {
-        adminRozet.style.display = "none";
-      }
-    }
-
     // Aktif dil butonunu vurgula
     const aktifDil = (window.DIL && window.DIL.aktif()) || localStorage.getItem("kc-dil") || "tr";
-    document.querySelectorAll(".ayar-dil-kart").forEach(k => {
+    document.querySelectorAll(".dil-chip").forEach(k => {
       k.classList.toggle("aktif", k.getAttribute("data-dil") === aktifDil);
     });
+    yoneticiGoster();
+  }
+
+  /* Yönetici bölümü ve rozeti yalnızca yönetici hesabıyla girilmişse görünür */
+  function yoneticiGoster() {
+    const yonetici = !!(window.KC_ADMIN && window.KC_ADMIN.isAdmin && window.KC_ADMIN.isAdmin());
+    const g = document.getElementById("ayar-yonetici");
+    if (g) g.style.display = yonetici ? "" : "none";
+    const r = document.getElementById("ayar-admin-rozet");
+    if (r) r.style.display = yonetici ? "inline-flex" : "none";
   }
 
   function kaydetProfil() {
@@ -88,7 +87,7 @@
     localStorage.setItem("kc-avatar", yeniAvatar);
 
     // Bildirim göster
-    bildirimGoster(window.DIL ? window.DIL.get("profil_kaydedildi") : "Profil bilgileriniz kaydedildi! ✅");
+    bildirimGoster("Profil bilgileriniz kaydedildi! ✅");
   }
 
   function bildirimGoster(mesaj) {
@@ -116,17 +115,18 @@
     }
 
     // Dil seçimi butonları
-    document.querySelectorAll(".ayar-dil-kart").forEach(kart => {
+    document.querySelectorAll(".dil-chip").forEach(kart => {
       kart.onclick = () => {
         const dil = kart.getAttribute("data-dil");
         if (window.DIL && dil) {
           window.DIL.degistir(dil);
-          document.querySelectorAll(".ayar-dil-kart").forEach(k => k.classList.remove("aktif"));
-          kart.classList.add("aktif");
-          bildirimGoster("Dil değiştirildi / Language updated");
+          document.querySelectorAll(".dil-chip").forEach(k => k.classList.toggle("aktif", k === kart));
         }
       };
     });
+    const tum = document.getElementById("ayar-tum-yemekler");
+    if (tum) tum.onclick = () => window.KC_YEMEK_PANEL && window.KC_YEMEK_PANEL.ac();
+    window.addEventListener("kc-auth-degisti", yoneticiGoster);
   }
 
   window.AYARLAR = {

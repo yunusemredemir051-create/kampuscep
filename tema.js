@@ -34,6 +34,74 @@
   if (!HERKESE_ACIK && !onizleme) return;
   kok.classList.add("tema-var");
 
+  /* ---------- Renk temaları (takımlar) ----------
+     Açık/Koyu moddan bağımsızdır; yalnızca vurgu rengini, açılış afişini ve arka plan ışımasını değiştirir.
+     Tercih localStorage "kc-renk": "" (klasik mavi) | turk | gs | fb | bjk | ts | amed | erzincan | elazig | antep
+     a = açık modda vurgu, k = koyu modda vurgu, t = açık vurgu zemini (rgb), h = afiş gradyanı, g1/g2 = ışıma rgb */
+  var RENKLER = [
+    { id: "turk", m: "#ff8a93",     ad: "Türk",         c: ["#e30a17", "#ffffff"], a: "#d4081a", k: "#ff5a66", t: "255,222,225", h: "linear-gradient(120deg,#e30a17,#b8000f)", g1: "227,10,23", g2: "255,120,120" },
+    { id: "",         ad: "Klasik",       c: ["#3b5bfd", "#8d5cf6"], a: "#3b5bfd", k: "#6b84ff", t: "230,235,255", h: "linear-gradient(120deg,#3a63fd,#8d5cf6)", g1: "90,110,255", g2: "255,138,61" },
+    { id: "gs", m: "#fdb912",       ad: "Galatasaray",  c: ["#a90432", "#fdb912"], a: "#a90432", k: "#ff5c7d", t: "255,226,232", h: "linear-gradient(120deg,#a90432,#d9182f 55%,#fdb912)", g1: "169,4,50", g2: "253,185,18" },
+    { id: "fb", m: "#ffd800",       ad: "Fenerbahçe",   c: ["#12296b", "#ffd800"], a: "#163a93", k: "#ffd800", t: "224,232,255", h: "linear-gradient(120deg,#0c1d55,#1d3fa6 60%,#ffd800)", g1: "29,63,166", g2: "255,216,0" },
+    { id: "bjk", m: "#8a8d93",      ad: "Beşiktaş",     c: ["#111111", "#ffffff"], a: "#1b1b1b", k: "#b9bcc4", t: "232,232,234", h: "linear-gradient(120deg,#0b0b0b,#3b3b3d)", g1: "70,70,75", g2: "150,150,155" },
+    { id: "ts", m: "#1294de",       ad: "Trabzonspor",  c: ["#7d0f35", "#1294de"], a: "#7d0f35", k: "#ff6f9b", t: "255,226,236", h: "linear-gradient(120deg,#7d0f35,#a02a63 55%,#1294de)", g1: "125,15,53", g2: "18,148,222" },
+    { id: "amed", m: "#0f8a3c",     ad: "Amedspor",     c: ["#d3202b", "#0f8a3c"], a: "#c91b27", k: "#ff6a73", t: "255,228,229", h: "linear-gradient(120deg,#c91b27,#e2a817 52%,#0f8a3c)", g1: "201,27,39", g2: "15,138,60" },
+    { id: "erzincan", m: "#7a0f13", ad: "Erzincanspor", c: ["#d71920", "#141414"], a: "#d71920", k: "#ff5d63", t: "255,225,226", h: "linear-gradient(120deg,#151515,#7a0f13 55%,#d71920)", g1: "215,25,32", g2: "40,40,40" },
+    { id: "elazig", m: "#c25a6f",   ad: "Elazığspor",   c: ["#7a1426", "#ffffff"], a: "#7a1426", k: "#e5718a", t: "250,226,231", h: "linear-gradient(120deg,#5e0f1d,#8f1b33 65%,#c25a6f)", g1: "122,20,38", g2: "200,100,120" },
+    { id: "antep", m: "#8c0010",    ad: "Gaziantep FK", c: ["#e1001a", "#111111"], a: "#d4001a", k: "#ff5565", t: "255,225,228", h: "linear-gradient(120deg,#e1001a,#8c0010 60%,#111111)", g1: "225,0,26", g2: "30,30,30" }
+  ];
+  (function () {
+    var css = "";
+    RENKLER.forEach(function (r) {
+      if (!r.id) return;
+      var S = 'html[data-renk="' + r.id + '"]';
+      css += S + "{--mavi:" + r.a + ";--mor:" + r.m + ";--mavi-acik:rgb(" + r.t + ");--afis-bg:" + r.h + ";--afis-bg-masaustu:" + r.h + ";--afis-golge:0 18px 40px -20px " + r.a + "}" +
+        S + " .isik{background:radial-gradient(520px 380px at 90% 0%,rgba(" + r.g2 + ",.16),transparent 70%),radial-gradient(600px 460px at -5% 25%,rgba(" + r.g1 + ",.17),transparent 70%),var(--zemin)}" +
+        S + '[data-tema="koyu"]{--mavi:' + r.k + ";--mor:" + r.m + ";--mavi-acik:color-mix(in srgb," + r.k + " 22%,#141a2c)!important}" +
+        S + '[data-tema="koyu"] .isik{background:radial-gradient(520px 380px at 90% 0%,rgba(' + r.g2 + ',.13),transparent 70%),radial-gradient(600px 460px at -5% 25%,rgba(' + r.g1 + ',.2),transparent 70%),var(--zemin)}' +
+        S + '[data-tema="koyu"] .btn.ana,' + S + '[data-tema="koyu"] .filtre button.aktif{color:' + (r.id === "fb" || r.id === "bjk" ? "#101322" : "#fff") + "}\n";
+    });
+    /* seçici düğmeleri (iki renkli yuvarlak) */
+    css += ".renk-sec{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px 6px}" +
+      ".renk-dugme{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:7px 2px;border-radius:14px;font:700 11px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);text-align:center}" +
+      ".renk-dugme i{display:block;width:34px;height:34px;border-radius:50%;border:2px solid var(--cam-guclu,#fff);box-shadow:0 0 0 1px var(--cizgi,#e6e9f4)}" +
+      ".renk-dugme.aktif{background:var(--mavi-acik);color:var(--yazi,#141b34)}.renk-dugme.aktif i{box-shadow:0 0 0 2.5px var(--mavi)}" +
+      ".renk-dugme:focus-visible{outline:2px solid var(--mavi);outline-offset:1px}";
+    stil(css);
+  })();
+  function renkOku() { var r = oku("kc-renk") || ""; return RENKLER.some(function (x) { return x.id === r; }) ? r : ""; }
+  function renkUygula() {
+    var r = renkOku();
+    if (r) kok.setAttribute("data-renk", r); else kok.removeAttribute("data-renk");
+    var b = document.querySelectorAll("[data-renk-sec]");
+    for (var i = 0; i < b.length; i++) {
+      var on = b[i].getAttribute("data-renk-sec") === r;
+      b[i].classList.toggle("aktif", on); b[i].setAttribute("aria-pressed", on ? "true" : "false");
+    }
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m && kok.getAttribute("data-tema") !== "koyu") {
+      var cur = RENKLER.filter(function (x) { return x.id === r; })[0];
+      m.setAttribute("content", r && cur ? cur.a : "#eef3ff");
+    }
+  }
+  function renkSecicileriKur() {
+    document.querySelectorAll(".renk-sec").forEach(function (kutu) {
+      if (kutu.getAttribute("data-kuruldu")) return;
+      kutu.setAttribute("data-kuruldu", "1");
+      kutu.innerHTML = RENKLER.map(function (r) {
+        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false"><i style="background:linear-gradient(135deg,' +
+          r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i>' + r.ad + "</button>";
+      }).join("");
+    });
+    renkUygula();
+  }
+  window.kcRenk = { ayarla: function (r) { yaz("kc-renk", r || null); renkUygula(); }, liste: RENKLER, aktif: renkOku };
+  renkUygula();
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-renk-sec]");
+    if (b) kcRenk.ayarla(b.getAttribute("data-renk-sec"));
+  });
+
   var K = 'html[data-tema="koyu"]';
   var kurallar = [
     /* renk değişkenleri */
@@ -127,7 +195,7 @@
   function uygula() {
     var t = tercih(), koyu = t === "koyu" || (t === "sistem" && !!(mq && mq.matches));
     kok.setAttribute("data-tema", koyu ? "koyu" : "acik");
-    if (meta) meta.setAttribute("content", koyu ? "#0e1220" : ilkRenk);
+    if (meta) meta.setAttribute("content", koyu ? "#0e1220" : (renkOku() ? (RENKLER.filter(function (x) { return x.id === renkOku(); })[0] || {}).a || ilkRenk : ilkRenk));
     try {   // Android uygulamasında durum çubuğu
       var SB = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.StatusBar;
       if (SB) { SB.setStyle({ style: koyu ? "DARK" : "LIGHT" }); SB.setBackgroundColor({ color: koyu ? "#0e1220" : "#eef3ff" }); }
@@ -148,6 +216,7 @@
     '<svg class="tema-ay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>' +
     '<svg class="tema-gunes" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>';
   document.addEventListener("DOMContentLoaded", function () {
+    renkSecicileriKur();
     // Diğer sayfalarda üst başlığın sağına düğme ekle (ana sayfada düğme sayfanın içinde zaten var)
     var ust = document.querySelector("header.ust, div.ust");
     if (ust && !document.querySelector(".tema-dugme")) {
