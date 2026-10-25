@@ -56,8 +56,8 @@ const kykAnaMenu = {
                   aksam: ["Düğün çorbası / Domates çorbası", "Orman kebabı / Ispanak yemeği / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç"] }
 };
 
-/* İl Müdürlüğü'nün yurt gruplarına göre özel akşam menüsü (Lahmacun) tarih aralıkları */
-const kykOzelAksam = ["Mercimek çorbası", "Lahmacun", "Mevsim salata", "Ayran"];
+/* İl Müdürlüğü notu: bazı yurt gruplarına belirli tarihlerde özel akşam menüsü verilir.
+   Menü listesi DEĞİŞMEZ; yalnızca ilgili yurdun ilgili günlerinde kısa bir not gösterilir. */
 const kykOzelAralik = {
   "ahmet-kabakli":   ["2026-10-02", "2026-10-16"],
   "sare-ana":        ["2026-10-05", "2026-10-22"],
@@ -67,19 +67,19 @@ const kykOzelAralik = {
   "fethi-sekin":     ["2026-10-23", "2026-10-27"],
   "firat":           ["2026-10-23", "2026-10-27"]
 };
+const kykOzelNot = (bas, bit) => {
+  const g = t => t.slice(8, 10) + "." + t.slice(5, 7);
+  return "Not: " + g(bas) + "–" + g(bit) + " tarihleri arasında yurdumuzda (Mercimek çorba, Lahmacun, Mevsim Salata, Ayran) menüsü verilecektir.";
+};
 
-/* Her yurt için ortak takvimden kendi menüsünü üretir; özel aralıktaki günlerde akşam menüsü Lahmacun menüsü olur
-   ve o güne "aksamNotu" eklenir (not yalnızca ilgili yurt ve günlerde görünür). */
+/* Her yurt için ortak takvimden kendi menüsünü üretir; not yalnızca o yurdun özel tarih aralığındaki günlere eklenir. */
 function kykYurtMenusu(yurtId) {
   const [bas, bit] = kykOzelAralik[yurtId] || ["", ""];
   const m = { kahvaltiNotu: kykAnaMenu.kahvaltiNotu };
   Object.keys(kykAnaMenu).forEach(k => {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(k)) return;
     const gun = Object.assign({}, kykAnaMenu[k]);
-    if (bas && k >= bas && k <= bit) {
-      gun.aksam = kykOzelAksam.slice();
-      gun.aksamNotu = "İl Müdürlüğü notu: bu günlerde akşam yemeği (Mercimek çorbası, Lahmacun, Mevsim salata, Ayran) olarak verilir.";
-    }
+    if (bas && k >= bas && k <= bit) gun.aksamNotu = kykOzelNot(bas, bit);
     m[k] = gun;
   });
   return m;

@@ -337,10 +337,12 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 .afis {
   position: relative; overflow: hidden; border-radius: 26px; margin: 0 0 18px;
   min-height: 210px; display: flex; align-items: center; padding: 26px 28px;
-  background: linear-gradient(120deg, #3a63fd, #8d5cf6) center/cover;
-  box-shadow: 0 18px 40px -20px rgba(59,91,253,.55);
+  background: var(--afis-bg, linear-gradient(120deg, #3a63fd, #8d5cf6)) center/cover;
+  box-shadow: var(--afis-golge, 0 18px 40px -20px color-mix(in srgb, var(--mavi) 55%, transparent));
 }
 .afis img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right center; }
+/* Takım renk temasında şeffaf arka planlı afiş resmi: arka planı tema renginin gradyanı verir */
+html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .afis .ust-bilgi { position: relative; margin: 0; max-width: 48%; }
 .afis .ust-bilgi small { color: rgba(255,255,255,.85); }
 .afis .ust-bilgi h1 { color: #fff; font-size: 32px; line-height: 1.15; }
@@ -356,7 +358,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
   .gorselli img { width: 104px; margin: -8px 0 -6px; }
 }
 @media (min-width: 821px) {
-  .afis { min-height: 240px; background: linear-gradient(180deg, #3765fe, #5b61fc); }
+  .afis { min-height: 240px; background: var(--afis-bg-masaustu, linear-gradient(180deg, #3765fe, #5b61fc)); }
   .afis img { left: auto; width: auto; object-fit: contain; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%); mask-image: linear-gradient(90deg, transparent, #000 18%); }
 }
 
@@ -380,15 +382,15 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 /* ================= AYLIK MENÜ BUTONU VE MODAL ================= */
 .aylik-btn {
   width: 100%; margin-top: 14px; padding: 11px 14px;
-  background: rgba(59, 91, 253, .08); color: var(--mavi);
-  border: 1px dashed rgba(59, 91, 253, .35); border-radius: 14px;
+  background: color-mix(in srgb, var(--mavi) 8%, transparent); color: var(--mavi);
+  border: 1px dashed color-mix(in srgb, var(--mavi) 35%, transparent); border-radius: 14px;
   font: 700 13.5px var(--font); cursor: pointer;
   display: flex; align-items: center; justify-content: center; gap: 8px;
   transition: all .15s ease;
 }
 .aylik-btn:hover { background: var(--mavi); color: #fff; border-color: var(--mavi); }
-[data-tema="koyu"] .aylik-btn { background: rgba(90, 130, 255, .15); color: #8ea5ff; border-color: rgba(90, 130, 255, .3); }
-[data-tema="koyu"] .aylik-btn:hover { background: #3b5bfd; color: #fff; }
+[data-tema="koyu"] .aylik-btn { background: color-mix(in srgb, var(--mavi) 16%, transparent); color: var(--mavi); border-color: color-mix(in srgb, var(--mavi) 32%, transparent); }
+[data-tema="koyu"] .aylik-btn:hover { background: var(--mavi); color: #fff; }
 
 .menu-not-kutu {
   margin-top: 12px; padding: 10px 12px;
@@ -449,7 +451,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 }
 .aylik-gun-kart.bugun {
   border-color: var(--mavi); background: var(--mavi-acik);
-  box-shadow: 0 4px 14px rgba(59, 91, 253, .12);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--mavi) 12%, transparent);
 }
 .aylik-gun-kart.yarin {
   border-color: var(--yesil); background: var(--yesil-acik);
@@ -466,7 +468,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 [data-tema="koyu"] .modal-ust { background: #1a2035; border-color: #2b3350; }
 [data-tema="koyu"] .modal-kapat { background: rgba(255,255,255,.1); color: #fff; }
 [data-tema="koyu"] .aylik-gun-kart { background: #222942; border-color: #2e3758; }
-[data-tema="koyu"] .aylik-gun-kart.bugun { background: #1e2954; border-color: #4f6ff6; }
+[data-tema="koyu"] .aylik-gun-kart.bugun { background: #1e2954; border-color: var(--mavi); }
 [data-tema="koyu"] .aylik-gun-kart.yarin { background: #183329; border-color: #16b67a; }
 
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
@@ -498,24 +500,16 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 [data-tema="koyu"] .ayar-grup { background: rgba(30, 36, 56, .6); }
 .ayar-grup-baslik { margin: 0 0 16px; font-size: 16px; font-weight: 800; color: var(--yazi); }
 
-.ayar-diller-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;
+.dil-sec { display: flex; flex-wrap: wrap; gap: 8px; }
+.dil-chip {
+  font: 700 13px var(--font); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  border: 1.5px solid var(--cizgi); background: var(--cam-guclu); color: var(--yazi);
 }
-.ayar-dil-kart {
-  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
-  border-radius: 14px; border: 1.5px solid var(--cizgi); background: #fff;
-  cursor: pointer; transition: all .2s ease; text-align: left; font-family: var(--font);
-}
-[data-tema="koyu"] .ayar-dil-kart { background: #1a2035; color: #f0f3fe; border-color: #2b3350; }
-.ayar-dil-kart:hover { border-color: var(--mavi); transform: translateY(-2px); }
-.ayar-dil-kart.aktif {
-  border-color: var(--mavi); background: var(--mavi-acik);
-  box-shadow: 0 4px 14px rgba(59, 91, 253, .15);
-}
-[data-tema="koyu"] .ayar-dil-kart.aktif { background: rgba(59, 91, 253, .25); border-color: #6885ff; }
-.ayar-dil-bayrak { font-size: 26px; line-height: 1; }
-.ayar-dil-adlar b { display: block; font-size: 15px; font-weight: 700; color: var(--yazi); }
-.ayar-dil-adlar small { color: var(--soluk); font-size: 12px; }
+.dil-chip:hover { border-color: var(--mavi); }
+.dil-chip.aktif { background: var(--mavi); border-color: var(--mavi); color: #fff; }
+[data-tema="koyu"] .dil-chip { background: #1a2035; color: #f0f3fe; border-color: #2b3350; }
+[data-tema="koyu"] .dil-chip.aktif { background: var(--mavi); border-color: var(--mavi); color: #fff; }
+.ayar-alt-baslik { margin: 16px 0 8px; font-size: 13px; font-weight: 800; color: var(--soluk); }
 
 .ayar-form-satir { margin-bottom: 14px; }
 .ayar-form-satir label { display: block; font-weight: 700; font-size: 13.5px; margin-bottom: 6px; color: var(--yazi); }
@@ -530,7 +524,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 .ayar-avatar-btn:hover { transform: scale(1.1); border-color: var(--mavi); }
 .ayar-avatar-btn.secili {
   border-color: var(--mavi); background: var(--mavi-acik);
-  transform: scale(1.15); box-shadow: 0 3px 10px rgba(59, 91, 253, .25);
+  transform: scale(1.15); box-shadow: 0 3px 10px color-mix(in srgb, var(--mavi) 25%, transparent);
 }
 
 .ayar-surum-bilgi { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; }
@@ -561,7 +555,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=6"></script>
+<script src="/tema.js?v=8"></script>
 <script defer src="/ozelgun.js?v=6"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
 <!-- /PWA -->
@@ -827,11 +821,12 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
         <div class="baslik">Görünüm</div>
         <div class="panel cam">
           <div class="secici uc" role="group" aria-label="Tema">
-            <button type="button" data-tema-sec="acik">Açık</button>
-            <button type="button" data-tema-sec="koyu">Koyu</button>
-            <button type="button" data-tema-sec="sistem">Otomatik</button>
+            <button type="button" data-tema-sec="acik">☀️ Açık</button>
+            <button type="button" data-tema-sec="koyu">🌙 Koyu</button>
+            <button type="button" data-tema-sec="sistem">🌓 Otomatik</button>
           </div>
           <p class="aciklama" style="margin:10px 2px 0">Otomatik, telefonunun ayarına göre açık ya da koyu olur.</p>
+          <div class="renk-sec" role="group" aria-label="Renk teması" style="margin-top:12px"></div>
         </div>
       </div>
 
@@ -861,38 +856,26 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           <span id="ayar-admin-rozet" class="ayar-admin-rozet" style="display:none">🌟 Yönetici Hesabı</span>
         </div>
 
-        <!-- Dil Seçimi -->
+        <!-- Görünüm: mod + takım renkleri -->
         <div class="ayar-grup">
-          <h3 class="ayar-grup-baslik" data-i18n="dil_bolumu">Uygulama Dili</h3>
-          <div class="ayar-diller-grid">
-            <button type="button" class="ayar-dil-kart aktif" data-dil="tr">
-              <span class="ayar-dil-bayrak">🇹🇷</span>
-              <div class="ayar-dil-adlar">
-                <b>Türkçe</b>
-                <small>Varsayılan</small>
-              </div>
-            </button>
-            <button type="button" class="ayar-dil-kart" data-dil="en">
-              <span class="ayar-dil-bayrak">🇬🇧</span>
-              <div class="ayar-dil-adlar">
-                <b>English</b>
-                <small>English</small>
-              </div>
-            </button>
-            <button type="button" class="ayar-dil-kart" data-dil="ku">
-              <span class="ayar-dil-bayrak">☀️</span>
-              <div class="ayar-dil-adlar">
-                <b>Kurdî</b>
-                <small>Kurmancî</small>
-              </div>
-            </button>
-            <button type="button" class="ayar-dil-kart" data-dil="ar">
-              <span class="ayar-dil-bayrak">🇸🇦</span>
-              <div class="ayar-dil-adlar">
-                <b>العربية</b>
-                <small>Arabic</small>
-              </div>
-            </button>
+          <h3 class="ayar-grup-baslik">Görünüm</h3>
+          <div class="secici uc tema-ui" role="group" aria-label="Tema">
+            <button type="button" data-tema-sec="acik">☀️ Açık</button>
+            <button type="button" data-tema-sec="koyu">🌙 Koyu</button>
+            <button type="button" data-tema-sec="sistem">🌓 Otomatik</button>
+          </div>
+          <h4 class="ayar-alt-baslik">Renk teması</h4>
+          <div class="renk-sec" role="group" aria-label="Renk teması"></div>
+        </div>
+
+        <!-- Dil Seçimi (küçük) -->
+        <div class="ayar-grup">
+          <h3 class="ayar-grup-baslik">Uygulama Dili</h3>
+          <div class="dil-sec" role="group" aria-label="Dil">
+            <button type="button" class="dil-chip aktif" data-dil="tr" lang="tr">Türkçe</button>
+            <button type="button" class="dil-chip" data-dil="en" lang="en">English</button>
+            <button type="button" class="dil-chip" data-dil="ku" lang="ku">Kurdî</button>
+            <button type="button" class="dil-chip" data-dil="ar" lang="ar">العربية</button>
           </div>
         </div>
 
@@ -936,14 +919,10 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
           </form>
         </div>
 
-        <!-- Görünüm & Bilgi -->
-        <div class="ayar-grup">
-          <h3 class="ayar-grup-baslik" data-i18n="tema_bolumu">Görünüm Modu</h3>
-          <div class="ayar-tema-secim">
-            <button type="button" class="btn" onclick="document.querySelector('[data-tema-degistir]').click()">
-              🌓 Temayı Değiştir (Açık / Koyu Mod)
-            </button>
-          </div>
+        <!-- Yönetici (yalnızca yönetici hesabında görünür) -->
+        <div class="ayar-grup" id="ayar-yonetici" style="display:none">
+          <h3 class="ayar-grup-baslik">Yönetici</h3>
+          <button type="button" class="btn tam" id="ayar-tum-yemekler">🍽️ Tüm Yemekler – Fotoğraf Paneli</button>
         </div>
 
         <div class="ayar-surum-bilgi">
@@ -1511,7 +1490,7 @@ function geriSay() {
 <script src="/yemekfoto.js?v=15"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=10"></script>
-<script src="/dil.js?v=1"></script>
+<script src="/dil.js?v=2"></script>
 <script src="/ayarlar.js?v=1"></script>
 <script src="/vitrin.js?v=7"></script>
 <!-- Aylık Menü Modalı -->
