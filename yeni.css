@@ -103,3 +103,4 @@ html body ul.yemekler li.fotolu .yf-metin { flex: 1 1 130px; min-width: 0; }
 html body ul.yemekler li.fotolu .yf-admin-btn { margin-left: auto; flex: none; }
 html body .yf-grup .yf { width: 56px; height: 56px; }
 html body .yf-grup .yf + .yf { margin-left: -18px; }
+.menu-grid>.menu-kart:nth-child(2){order:-1}
