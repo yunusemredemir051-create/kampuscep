@@ -252,7 +252,7 @@
     "rozet": "🏠 KYK Yurdu"
   },
   {
-    "ad": "Mevsim soslu",
+    "ad": "Mevsim soslu karışık kızartma",
     "yer": "yurt",
     "yerAdi": "KYK Yurdu",
     "rozet": "🏠 KYK Yurdu"
@@ -1298,15 +1298,7 @@
   }
 
   // Yurt ve Üniversite Evi tamamen ayrılmıştır!
-  // Eskiden tek satır olan menü adları bölündü; yüklenmiş fotoğraflar eski adla kayıtlı
-  const ESKI_AD = { "mevsim soslu": "Mevsim soslu karışık kızartma" };
   function fotoBul(ad, yer = "yurt") {
-    const r = fotoBul1(ad, yer);
-    if (r || !ad) return r;
-    const e = ESKI_AD[kucuk(ad)];
-    return e ? fotoBul1(e, yer) : null;
-  }
-  function fotoBul1(ad, yer) {
     if (!ad) return null;
     const bulut = window.KC_BULUT_FOTOLAR || {};
     const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
