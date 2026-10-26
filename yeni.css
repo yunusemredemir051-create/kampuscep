@@ -135,3 +135,6 @@ html body .yf-grup .yf + .yf { margin-left: -18px; }
 [data-tema="koyu"] .yan{background:rgba(24,29,52,.94)!important;border-color:rgba(255,255,255,.08)!important}
 [data-tema="koyu"] .kc-sheet{background:#1a2035}
 [data-tema="koyu"] .kc-sheet-izgara button{background:rgba(255,255,255,.07)}
+/* koyu temada üst çubuk beyaz kalıyordu */
+[data-tema="koyu"] .mobil-ust{background:linear-gradient(135deg,rgba(30,36,60,.97),rgba(24,29,52,.94))!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 10px 24px -18px rgba(0,0,0,.7)!important}
+[data-tema="koyu"] .mobil-ust .logo{color:#f0f3fe}
