@@ -191,3 +191,77 @@ const takvim = [
   { ad: "15 Temmuz",                           bas: "2027-07-15", tur: "tatil" },
   { ad: "30 Ağustos Zafer Bayramı",            bas: "2027-08-30", tur: "tatil" }
 ];
+
+/* =====================================================================
+   AKADEMİK PROFİL (Ayarlar → Bölüm ve sınıf)
+   YBS / diğer bölümler: yukarıdaki genel akademik takvim.
+   Tıp: F.Ü. Tıp Fakültesi 2026-2027 eğitim rehberleri (1., 2. ve 3. sınıf) — ders kurulları dönem sayılır.
+   ===================================================================== */
+const YBS_TAKVIM = takvim.map(o => ({ ...o }));
+const YBS_DONEMLER = donemler.map(o => ({ ...o }));
+const TIP_RESMI_TATIL = takvim.filter(o => o.tur === "tatil").map(o => ({ ...o }));   // ulusal tatiller aynı
+const TIP_SINIFLAR = {
+  1: {
+    kurullar: [
+      ["I. Ders Kurulu", "2026-09-21", "2026-11-20"], ["II. Ders Kurulu", "2026-11-23", "2027-01-15"],
+      ["III. Ders Kurulu", "2027-02-01", "2027-03-26"], ["IV. Ders Kurulu", "2027-03-29", "2027-05-28"]],
+    olaylar: [
+      { ad: "I. Kurul sınavı", bas: "2026-11-20", tur: "sinav" }, { ad: "II. Kurul sınavı", bas: "2027-01-15", tur: "sinav" },
+      { ad: "Yarıyıl tatili", bas: "2027-01-18", bit: "2027-01-29", tur: "tatil" },
+      { ad: "III. Kurul sınavı", bas: "2027-03-26", tur: "sinav" }, { ad: "IV. Kurul sınavı", bas: "2027-05-28", tur: "sinav" },
+      { ad: "Mazeret sınavları", bas: "2027-06-03", bit: "2027-06-04", tur: "sinav" },
+      { ad: "Final sınavları", bas: "2027-06-07", bit: "2027-06-11", tur: "sinav" },
+      { ad: "Bütünleme sınavları", bas: "2027-06-25", bit: "2027-07-02", tur: "sinav" }]
+  },
+  2: {
+    kurullar: [
+      ["I. Ders Kurulu · Doku Biyolojisi", "2026-09-07", "2026-10-16"], ["II. Ders Kurulu · Solunum ve Dolaşım", "2026-10-19", "2026-11-27"],
+      ["III. Ders Kurulu · Sindirim, Metabolizma ve Mikrobiyoloji", "2026-11-30", "2027-01-15"],
+      ["IV. Ders Kurulu · Sinir ve Beş Duyu", "2027-02-01", "2027-03-26"], ["V. Ders Kurulu · Endokrin ve Ürogenital", "2027-03-29", "2027-05-28"]],
+    olaylar: [
+      { ad: "I. Kurul sınavı", bas: "2026-10-16", tur: "sinav" }, { ad: "II. Kurul sınavı", bas: "2026-11-27", tur: "sinav" },
+      { ad: "III. Kurul sınavı", bas: "2027-01-15", tur: "sinav" },
+      { ad: "Yarıyıl tatili", bas: "2027-01-18", bit: "2027-01-29", tur: "tatil" },
+      { ad: "IV. Kurul sınavı", bas: "2027-03-26", tur: "sinav" }, { ad: "V. Kurul sınavı", bas: "2027-05-28", tur: "sinav" }]
+  },
+  3: {
+    kurullar: [
+      ["1. Ders Kurulu", "2026-09-07", "2026-10-02"], ["2. Ders Kurulu", "2026-10-05", "2026-10-30"],
+      ["3. Ders Kurulu", "2026-11-02", "2026-12-25"], ["4. Ders Kurulu", "2027-01-11", "2027-02-05"],
+      ["5. Ders Kurulu", "2027-02-08", "2027-03-26"], ["6. Ders Kurulu", "2027-03-29", "2027-04-23"],
+      ["7. Ders Kurulu", "2027-04-26", "2027-05-28"]],
+    olaylar: [
+      { ad: "1. Kurul sınavı", bas: "2026-10-02", tur: "sinav" }, { ad: "2. Kurul sınavı", bas: "2026-10-30", tur: "sinav" },
+      { ad: "3. Kurul sınavı", bas: "2026-12-25", tur: "sinav" },
+      { ad: "Ara tatil", bas: "2026-12-28", bit: "2027-01-08", tur: "tatil" },
+      { ad: "4. Kurul sınavı", bas: "2027-02-05", tur: "sinav" }, { ad: "5. Kurul sınavı", bas: "2027-03-25", tur: "sinav" },
+      { ad: "6. Kurul sınavı", bas: "2027-04-22", tur: "sinav" }, { ad: "7. Kurul sınavı", bas: "2027-05-27", tur: "sinav" },
+      { ad: "Mazeret sınavları", bas: "2027-06-02", bit: "2027-06-03", tur: "sinav" },
+      { ad: "Final sınavı", bas: "2027-06-10", tur: "sinav" },
+      { ad: "Bütünleme sınavı", bas: "2027-07-01", tur: "sinav" }]
+  }
+};
+function akademikProfil() {
+  let b = "ybs", s = "1";
+  try { b = localStorage.getItem("kc-bolum") || "ybs"; s = localStorage.getItem("kc-sinif") || "1"; } catch (e) {}
+  if (b !== "tip") b = "ybs";
+  if (b === "tip" && !TIP_SINIFLAR[s]) s = "1";
+  if (b === "ybs" && !["1", "2", "3", "4"].includes(s)) s = "1";
+  return { bolum: b, sinif: s };
+}
+/* takvim ve donemler dizilerini yerinde değiştirir (diğer fonksiyonlar bu dizilere bakar) */
+function akademikUygula() {
+  const p = akademikProfil();
+  takvim.length = 0; donemler.length = 0;
+  if (p.bolum === "tip") {
+    const t = TIP_SINIFLAR[p.sinif];
+    t.kurullar.forEach(k => { donemler.push({ ad: k[0], bas: k[1], bit: k[2] }); takvim.push({ ad: k[0] + " başlıyor", bas: k[1], tur: "donem" }); });
+    takvim.push(...t.olaylar.map(o => ({ ...o })), ...TIP_RESMI_TATIL.map(o => ({ ...o })));
+  } else {
+    donemler.push(...YBS_DONEMLER.map(o => ({ ...o })));
+    takvim.push(...YBS_TAKVIM.map(o => ({ ...o })));
+  }
+  takvim.sort((a, c) => a.bas < c.bas ? -1 : a.bas > c.bas ? 1 : 0);
+  return p;
+}
+akademikUygula();
