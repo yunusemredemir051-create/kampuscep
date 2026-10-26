@@ -46,7 +46,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function profil() { return akademikProfil(); }
 
-  var tipVeri = {}, hafta = null, gun = 0;      /* hafta: gösterilen haftanın pazartesisi */
+  var tipVeri = {}, adliVeri = null, hafta = null, gun = 0;      /* hafta: gösterilen haftanın pazartesisi */
   function varsayilanHafta() {
     var d = new Date(); d.setHours(0, 0, 0, 0);
     if (d.getDay() === 6) d.setDate(d.getDate() + 2); else if (d.getDay() === 0) d.setDate(d.getDate() + 1);
@@ -78,7 +78,7 @@
     kutu.hidden = false;
     if (!hafta) varsayilanHafta();
     var bugunIso = iso(new Date());
-    var baslik = (tip ? "Tıp " : "YBS ") + p.sinif + ". sınıf · haftalık ders programı";
+    var baslik = (tip ? "Tıp " : p.bolum === "adli" ? "Adli Bilişim " : "YBS ") + p.sinif + ". sınıf · haftalık ders programı";
     var gunler = [], dersler = [[], [], [], [], []], bilgi = "", sonHafta = false, ilkHafta = false;
     for (var i = 0; i < 5; i++) { var d = new Date(hafta); d.setDate(d.getDate() + i); gunler.push(d); }
     if (tip && +p.sinif > 3) {
@@ -92,10 +92,19 @@
       else bilgi = "Bu hafta için ders programı yok (tatil ya da sınav haftası olabilir).";
       ilkHafta = iso(hafta) <= v.haftalar[0].gunler[0]; sonHafta = iso(hafta) >= v.haftalar[v.haftalar.length - 1].gunler[0];
       bilgi = bilgi || "";
+    } else if (p.bolum === "adli") {
+      if (!adliVeri) { kutu.innerHTML = '<div class="kc-bos">Program yükleniyor…</div>'; fetch("/adli/program.json").then(function (r) { return r.json(); }).then(function (j) { adliVeri = j; ciz(); }).catch(function () { kutu.innerHTML = '<div class="kc-bos">Program şu an yüklenemedi.</div>'; }); return; }
+      var kayit = (adliVeri["o" + p.ogretim] || {})[p.sinif] || [];
+      kayit.forEach(function (e) {
+        if (p.sube !== "0" && e.sube && String(e.sube) !== p.sube) return;
+        dersler[e.g].push({ s: e.s, e: e.e, d: e.d, h: [e.h, e.sube && p.sube === "0" ? "Şube " + e.sube : ""].filter(Boolean).join(" · ") });
+      });
+      dersler.forEach(function (g) { g.sort(function (a, b) { return a.s < b.s ? -1 : a.s > b.s ? 1 : 0; }); });
+      bilgi = kayit.length ? "Bu şube için ders yok." : p.ogretim + ". öğretim için bu sınıfın programı yayımlanmamış.";
     } else { dersler = ybsProgram(p.sinif); bilgi = "Bu sınıf için gün ve saati girilmiş ders yok."; }
     var bos = dersler.every(function (x) { return !x.length; });
     var ay = gunler[0].toLocaleDateString("tr-TR", { day: "numeric", month: "long" }) + " – " + gunler[4].toLocaleDateString("tr-TR", { day: "numeric", month: "long" });
-    var html = '<div class="kc-pust"><div><h2>' + esc(baslik) + '</h2><div class="alt">' + (tip ? ay : "Her hafta aynı") + '</div></div>' +
+    var html = '<div class="kc-pust"><div><h2>' + esc(baslik) + '</h2><div class="alt">' + (tip ? ay : p.bolum === "adli" ? "2026–2027 Güz · " + p.ogretim + ". öğretim" + (p.sube !== "0" ? " · Şube " + p.sube : "") : "Her hafta aynı") + '</div></div>' +
       (tip ? '<button class="kc-ok" data-y="-1" aria-label="Önceki hafta"' + (ilkHafta ? " disabled" : "") + '>‹</button><button class="kc-ok" data-y="1" aria-label="Sonraki hafta"' + (sonHafta ? " disabled" : "") + '>›</button>' : "") + '</div>';
     html += '<div class="kc-gunler">' + gunler.map(function (d, i) {
       return '<button class="kc-gun' + (i === gun ? " aktif" : "") + (iso(d) === bugunIso ? " bugun" : "") + '" data-g="' + i + '">' + KISA[i] + '<b>' + d.getDate() + '</b></button>';
@@ -127,9 +136,10 @@
       '<p style="margin:0 0 10px;font-size:13px;color:var(--soluk,#6b7390)">Fırat Üniversitesi bölümünü seç; akademik takvim ve (varsa) haftalık ders programı ona göre görünür.</p>' +
       '<select id="kc-bolum-sel" aria-label="Bölüm" style="width:100%;padding:12px;border-radius:12px;border:1.5px solid rgba(20,27,52,.15);font:inherit;font-weight:600;background:var(--kart,#fff);color:inherit">' + opts + '</select>' +
       '<div id="kc-sinif-blok" style="margin-top:12px"><div class="dil-sec" id="kc-sinif-sec" role="group" aria-label="Sınıf" style="grid-template-columns:repeat(3,1fr)"></div></div>' +
+      '<div id="kc-adli-blok" hidden style="margin-top:12px;display:grid;gap:10px"><div><div style="font-size:12.5px;font-weight:700;color:var(--soluk,#6b7390);margin-bottom:6px">Öğretim türü</div><div class="dil-sec" id="kc-og-sec" style="grid-template-columns:repeat(2,1fr)"></div></div><div><div style="font-size:12.5px;font-weight:700;color:var(--soluk,#6b7390);margin-bottom:6px">Şube (lab ve bazı dersler şubeye göre değişir)</div><div class="dil-sec" id="kc-sube-sec" style="grid-template-columns:repeat(3,1fr)"></div></div></div>' +
       '<p id="kc-akademik-not" style="margin:10px 0 0;font-size:12.5px;color:var(--soluk,#6b7390)"></p>';
     grup.insertAdjacentElement("beforebegin", g);
-    g.querySelector("#kc-bolum-sel").onchange = function () { kaydet(this.value === "__diger" ? "" : this.value, null); };
+    g.querySelector("#kc-bolum-sel").onchange = function () { kaydet(this.value === "__diger" ? "" : this.value, null, null, null); };
     ayarCiz();
   }
   function ayarCiz() {
@@ -138,19 +148,30 @@
     var blok = document.getElementById("kc-sinif-blok"); blok.hidden = p.bolum === "genel";
     var n = []; for (var i = 1; i <= p.max; i++) n.push(i);
     sinifSec.innerHTML = n.map(function (i) { return '<button type="button" class="dil-chip' + (String(i) === p.sinif ? " aktif" : "") + '" data-s="' + i + '">' + i + '. sınıf</button>'; }).join("");
-    sinifSec.querySelectorAll("button").forEach(function (b) { b.onclick = function () { kaydet(null, b.dataset.s); }; });
+    sinifSec.querySelectorAll("button").forEach(function (b) { b.onclick = function () { kaydet(null, b.dataset.s, null, null); }; });
+    var ab = document.getElementById("kc-adli-blok");
+    if (ab) {
+      ab.hidden = p.bolum !== "adli"; ab.style.display = p.bolum === "adli" ? "grid" : "none";
+      var og = document.getElementById("kc-og-sec"), sb = document.getElementById("kc-sube-sec");
+      og.innerHTML = [["1", "1. öğretim"], ["2", "2. öğretim"]].map(function (x) { return '<button type="button" class="dil-chip' + (x[0] === p.ogretim ? " aktif" : "") + '" data-o="' + x[0] + '">' + x[1] + '</button>'; }).join("");
+      sb.innerHTML = [["0", "Tümü"], ["1", "Şube 1"], ["2", "Şube 2"]].map(function (x) { return '<button type="button" class="dil-chip' + (x[0] === p.sube ? " aktif" : "") + '" data-u="' + x[0] + '">' + x[1] + '</button>'; }).join("");
+      og.querySelectorAll("button").forEach(function (b) { b.onclick = function () { kaydet(null, null, b.dataset.o, null); }; });
+      sb.querySelectorAll("button").forEach(function (b) { b.onclick = function () { kaydet(null, null, null, b.dataset.u); }; });
+    }
     var not = document.getElementById("kc-akademik-not"); if (!not) return;
     if (p.bolum === "tip") not.textContent = "Tıp: F.Ü. Tıp Fakültesi 2026–2027 akademik takvimi. Haftalık ders programı 1–3. sınıf için hazır; 4–6. sınıfta klinik uygulama/staj olduğu için yalnızca takvim tarihleri gösterilir.";
+    else if (p.bolum === "adli") not.textContent = "Adli Bilişim Mühendisliği 2026–2027 güz haftalık ders programı (Teknoloji Fakültesi). 2. öğretimde yalnızca 3. ve 4. sınıf programı yayımlanmış. Genel akademik takvim gösterilir.";
     else if (p.bolum === "ybs") not.textContent = "Genel akademik takvim gösterilir; haftalık ders programı seçtiğin sınıfa göre ana sayfada görünür.";
     else if (p.birim === "Diş Hekimliği") not.textContent = "Diş Hekimliği'nin kendi takvimi ve ders programı henüz eklenmedi; şimdilik genel akademik takvim gösteriliyor.";
     else if (p.birim) not.textContent = "Bu bölüm için genel akademik takvim gösterilir. Ders programı henüz eklenmedi.";
     else not.textContent = "";
   }
-  function kaydet(birim, sinif) {
-    var p = profil();
+  function kaydet(birim, sinif, og, sube) {
     try {
-      if (birim !== null) { localStorage.setItem("kc-birim", birim); localStorage.removeItem("kc-bolum"); localStorage.setItem("kc-sinif", "1"); }
+      if (birim !== null) { localStorage.setItem("kc-birim", birim); localStorage.removeItem("kc-bolum"); localStorage.setItem("kc-sinif", "1"); localStorage.setItem("kc-ogretim", "1"); localStorage.setItem("kc-sube", "0"); }
       if (sinif) localStorage.setItem("kc-sinif", sinif);
+      if (og) localStorage.setItem("kc-ogretim", og);
+      if (sube) localStorage.setItem("kc-sube", sube);
     } catch (e) {}
     yenile();
   }
