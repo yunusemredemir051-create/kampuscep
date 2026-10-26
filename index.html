@@ -211,7 +211,7 @@ a.sekme { text-decoration: none; }
 .ay { font-size: 13px; font-weight: 800; color: var(--soluk); padding: 16px 0 6px; }
 .olay { display: grid; grid-template-columns: 14px 1fr auto; gap: 14px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--cizgi); }
 .olay:last-child { border-bottom: 0; }
-.olay .nokta { width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; }
+.olay .nokta, .nokta.tatil { padding: 0; opacity: 1; flex: none; width: 12px; height: 12px; border-radius: 50%; margin-top: 5px; }
 .olay b { display: block; font-size: 15px; }
 .olay small { color: var(--soluk); font-size: 13px; font-weight: 600; }
 .olay .ne-zaman { font-size: 12px; font-weight: 700; color: var(--soluk); white-space: nowrap; margin-top: 3px; }
@@ -667,7 +667,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
         </div>
       </div>
 
-      <div class="vitrin">Sponsorlu alan</div>
+      <div class="vitrin" data-boyut="banner">Sponsorlu alan</div>
 
       <div class="baslik">Hızlı erişim</div>
       <div class="kutular">
@@ -701,7 +701,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <button data-tur="erkek">Erkek</button>
         </div>
         <div class="liste" id="yurt-liste"></div>
-        <div class="vitrin">Sponsorlu alan</div>
+        <div class="vitrin" data-boyut="serit">Sponsorlu alan</div>
       </div>
 
       <div id="yurt-detay" style="display:none">
@@ -722,7 +722,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
             Gelecek günlerin menüsünü gör
           </button>
         </div>
-        <div class="vitrin">Sponsorlu alan</div>
+        <div class="vitrin" data-boyut="mini">Sponsorlu alan</div>
       </div>
     </section>
 
@@ -773,7 +773,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <button data-donem="2">2. Dönem<small>Bahar</small></button>
         </div>
         <div class="liste" id="ders-liste"></div>
-        <div class="vitrin">Sponsorlu alan</div>
+        <div class="vitrin" data-boyut="banner">Sponsorlu alan</div>
       </div>
     </section>
 
@@ -788,7 +788,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
       <div class="baslik">Tatiller</div>
       <div class="tatil-grid" id="tatiller"></div>
 
-      <div class="vitrin">Sponsorlu alan</div>
+      <div class="vitrin" data-boyut="dikey">Sponsorlu alan</div>
 
       <div class="baslik">Tüm takvim</div>
       <div class="filtre" id="takvim-filtre">
@@ -1559,7 +1559,7 @@ function geriSay() {
 <script src="/ayarlar.js?v=2"></script>
 <script defer src="/skor.js?v=5"></script>
 <script defer src="/yeni.js?v=2"></script>
-<script src="/vitrin.js?v=8"></script>
+<script src="/vitrin.js?v=10"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">
   <div class="modal-kutu">
