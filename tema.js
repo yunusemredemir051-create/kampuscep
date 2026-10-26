@@ -255,3 +255,11 @@
     }
   });
 })();
+
+/* Telefonda sıkıştırarak yakınlaştırma / çift dokunma ile büyütme kapalı (iOS viewport kuralını yok sayar) */
+(function () {
+  try {
+    ["gesturestart", "gesturechange", "gestureend"].forEach(function (o) { document.addEventListener(o, function (e) { e.preventDefault(); }, { passive: false }); });
+    var st = document.createElement("style"); st.textContent = "html,body{touch-action:manipulation;-webkit-text-size-adjust:100%}"; document.head.appendChild(st);
+  } catch (e) {}
+})();

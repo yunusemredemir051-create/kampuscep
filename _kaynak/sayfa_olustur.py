@@ -35,7 +35,7 @@ def e(s):
     return html.escape(s, quote=True)
 
 ORTAK_HEAD = """<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#eef3ff">
 <link rel="icon" href="{kok}favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
