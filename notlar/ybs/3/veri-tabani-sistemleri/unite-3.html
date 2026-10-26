@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Varlık–İlişki (ER) Modeli – Veri Tabanı Sistemleri konu özeti | KampüsCepte</title>
+<meta name="description" content="ER diyagramı sembolleri, varlık ve nitelik türleri, birincil ve yabancı anahtar, 1–1, 1–N ve M–N bağıntılar, zayıf varlık ve ER modelinin tablolara dönüştürülmesi.">
+<link rel="canonical" href="https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-3.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCepte">
+<meta property="og:title" content="Ünite 3: Varlık–İlişki (ER) Modeli · Veri Tabanı Sistemleri">
+<meta property="og:description" content="ER diyagramı sembolleri, varlık ve nitelik türleri, birincil ve yabancı anahtar, 1–1, 1–N ve M–N bağıntılar, zayıf varlık ve ER modelinin tablolara dönüştürülmesi.">
+<meta property="og:url" content="https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-3.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 3: Varlık–İlişki (ER) Modeli", "description": "ER diyagramı sembolleri, varlık ve nitelik türleri, birincil ve yabancı anahtar, 1–1, 1–N ve M–N bağıntılar, zayıf varlık ve ER modelinin tablolara dönüştürülmesi.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCepte"}, "mainEntityOfPage": "https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-3.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanı Sistemleri", "provider": {"@type": "Organization", "name": "KampüsCepte"}}, "dateModified": "2026-10-27"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.vitrin { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+<!-- PWA -->
+<link rel="manifest" href="../../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../../ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<meta name="google-adsense-account" content="ca-pub-5083598455747122">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
+<style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
+<script src="/tema.js?v=15"></script>
+<script defer src="/ozelgun.js?v=7"></script>
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../../../../sw.js",{scope:"../../../../"}).catch(()=>{}));</script>
+<!-- /PWA -->
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/3/veri-tabani-sistemleri">Veri Tabanı Sistemleri</a> › Ünite 3</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 3. sınıf · Veri Tabanı Sistemleri · Ünite 3</small>
+      <h1>Varlık–İlişki (ER) Modeli</h1>
+      <p class="giris">ER diyagramı sembolleri, varlık ve nitelik türleri, birincil ve yabancı anahtar, 1–1, 1–N ve M–N bağıntılar, zayıf varlık ve ER modelinin tablolara dönüştürülmesi.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-3.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 15 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/3/veri-tabani-sistemleri#test-3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Kavramsal modellemede veri tabanının şematik tasarımı <strong>Varlık–İlişki (ER) diyagramlarıyla</strong> yapılır. Bu ünite diyagramdaki sembolleri, ilişki türlerini ve diyagramın tablolara nasıl dönüştürüleceğini anlatır.</p>
+<h2>Semboller</h2>
+<ul>
+<li><strong>Dikdörtgen:</strong> Varlık kümesi (veri tabanında tablo). <strong>Çift çizgili dikdörtgen:</strong> zayıf varlık.</li>
+<li><strong>Oval:</strong> Nitelik (tablonun sütunu). <strong>Altı çizili oval:</strong> anahtar nitelik. <strong>Çift çizgili oval:</strong> çok değerli nitelik. <strong>Kesik çizgili oval:</strong> türetilmiş nitelik.</li>
+<li><strong>Baklava dilimi:</strong> İlişki (bağıntı). <strong>Çift çizgili baklava:</strong> varolma bağıntısı.</li>
+</ul>
+<h2>Varlık, nitelik ve anahtar</h2>
+<p><strong>Varlık</strong>, var olan ve benzerlerinden ayırt edilebilen her şeydir; öğrenci, kitap gibi fiziksel ya da ders, şirket gibi soyut olabilir. Benzer varlıklar bir <strong>varlık kümesi</strong> oluşturur. Varlığın her özelliği bir <strong>nitelik</strong>tir. Niteliğin alabileceği değer aralığına <strong>etki alanı (domain)</strong> denir; örneğin sınav notu için 0–100.</p>
+<p>Nitelik türleri: bölünemeyen <strong>çekirdek</strong> nitelik (e-posta), parçalardan oluşan <strong>birleşik</strong> nitelik (isim = ad + soyad), başka niteliklerden hesaplanan <strong>türetilmiş</strong> nitelik (doğum tarihinden yaş) ve <strong>birden çok değer alabilen</strong> nitelik (birden fazla telefon).</p>
+<p><strong>Birincil anahtar (PK)</strong> NULL değer ve tekrar eden değer içeremez. <strong>Yabancı anahtar (FK)</strong> başka bir tablonun birincil anahtarıyla eşleşen sütundur ve tabloları birbirine bağlar.</p>
+<h2>Bağıntılar</h2>
+<p>Varlıklar arasındaki anlamlı bağlantılara bağıntı denir; iki varlık arasında birden fazla bağıntı olabilir. Bağıntılar tanımlanırken <strong>veri bütünlüğü</strong> için eleman sayısı ve katılım kısıtları belirlenir.</p>
+<ul>
+<li><strong>Bire-bir (1–1):</strong> Bir öğretim elemanının yalnızca bir ofisi vardır.</li>
+<li><strong>Bire-çok (1–N):</strong> Bir bölümde birçok öğrenci okur; en çok kullanılan türdür.</li>
+<li><strong>Çoğa-çok (M–N):</strong> Bir öğrenci birçok ders alır, bir dersi birçok öğrenci alır.</li>
+<li><strong>Katılım:</strong> Zorunlu katılım düz çizgiyle, isteğe bağlı (kısmi) katılım yuvarlakla gösterilir.</li>
+</ul>
+<h2>Zayıf varlık ve diğer kavramlar</h2>
+<p><strong>Zayıf varlık</strong>, tek başına ayakta duramayan, varlığı başka bir varlığa bağlı olan varlıktır. Bir personel işten ayrılınca çocuklarının kaydı da silinir; çocuğun adı tek başına anahtar olamaz, ancak personel_no + çocuk_adı birlikte benzersiz olur. Fakülte de üniversite olmadan var olamayacağı için zayıf varlıktır.</p>
+<ul>
+<li><strong>Özyineli bağıntı:</strong> Varlığın kendi içinde kurulan bağıntı; örneğin zümre başkanının da bir öğretmen olması.</li>
+<li><strong>Bağıntı derecesi:</strong> Bağıntıya katılan varlık sayısıdır. "Hangi firma, hangi projedeki hangi malzemeyi sağladı?" sorusu üç varlık içerdiği için 3. dereceden bir bağıntıdır.</li>
+<li><strong>Kümelenme:</strong> Bir ilişkinin tek bir varlığa değil, başka bir ilişkinin bütününe bağlanmasıdır.</li>
+</ul>
+<h2>ER modelinden tablolara</h2>
+<ul>
+<li><strong>1–1 ilişki:</strong> Bir tablonun birincil anahtarı diğerine yabancı anahtar olarak eklenir. Boş (NULL) değer az kalacak taraf seçilir; örneğin bölüm başkanının numarası bölüm tablosuna konur.</li>
+<li><strong>1–N ilişki:</strong> N tarafındaki tabloya 1 tarafının birincil anahtarı eklenir. Bir müşterinin birçok siparişi varsa musteri_no sipariş tablosuna eklenir.</li>
+<li><strong>M–N ilişki:</strong> İlişkinin adıyla yeni bir <strong>bağlantı tablosu</strong> oluşturulur; iki tablonun birincil anahtarları buna yabancı anahtar olarak eklenir. Gerekirse ayrı bir anahtar sütunu tanımlanır (aynı filmin aynı sinemada farklı saatlerde oynaması gibi).</li>
+<li><strong>Zayıf varlık:</strong> Güçlü varlığın anahtarı zayıf varlığın tablosuna eklenir ve bileşik birincil anahtarın parçası olur: Fakulte (univNo, fakulteNo, fakulteAdi).</li>
+</ul>
+    </article>
+    <div class="vitrin">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-2.html"><small>‹ Önceki ünite</small>Veri Tabanı Tasarımı</a><a class="cam sonraki" href="unite-4.html"><small>Sonraki ünite ›</small>Normalizasyon</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCepte</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

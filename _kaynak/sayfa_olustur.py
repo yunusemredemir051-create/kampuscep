@@ -15,7 +15,7 @@ import markdown
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_URL = "https://kampuscepte.com.tr"
 SITE_ADI = "KampüsCepte"
-DERSLER = ["ybs/1/bilisim-sistemleri", "ybs/1/veri-tabanina-giris", "ybs/2/istatistik", "ybs/2/finansal-yonetim", "ybs/2/inkilap-tarihi"]
+DERSLER = ["ybs/1/bilisim-sistemleri", "ybs/1/veri-tabanina-giris", "ybs/3/veri-tabani-sistemleri", "ybs/2/istatistik", "ybs/2/finansal-yonetim", "ybs/2/inkilap-tarihi"]
 BOLUM_KISA = {"Yönetim Bilişim Sistemleri": "YBS"}
 BUGUN = datetime.date.today().isoformat()
 
