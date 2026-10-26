@@ -232,7 +232,7 @@
     ["Harf notu", "Letter grade", "Nota herfî", "الدرجة الحرفية"],
     ["Dersi sil", "Delete course", "Dersê jê bibe", "احذف المقرر"],
     ["Tema", "Theme", "Tema", "السمة"],
-    ["Örn: Yunus Emre", "e.g. Yunus Emre", "Mînak: Azad", "مثال: يونس"],
+    ["Örn: Ayşe", "e.g. Ayşe", "Mînak: Azad", "مثال: عائشة"],
     ["Örn: Bilgisayar Mühendisliği", "e.g. Computer Engineering", "Mînak: Endezyariya Komputerê", "مثال: هندسة الحاسوب"],
     ["Kapat", "Close", "Bigire", "إغلاق"],
     ["Çerez bilgilendirmesi", "Cookie notice", "Agahdariya çerezan", "إشعار ملفات الارتباط"]
