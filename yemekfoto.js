@@ -1119,9 +1119,9 @@
     font-size: 14px;
     color: #1e293b;
     display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.25;
   }
   .yf-satir-alt {
     display: flex;
