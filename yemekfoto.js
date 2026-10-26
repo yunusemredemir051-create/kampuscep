@@ -640,7 +640,6 @@
       "bulgur pilavı": "unievi-bulgur-pilavi",
       "mercimek çorbası": "unievi-mercimek-corbasi",
       "yoğurt": "unievi-yogurt",
-      "tatlı": "unievi-baklava",
       "baklava": "unievi-baklava"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
