@@ -268,6 +268,7 @@ a.sekme { text-decoration: none; }
   border: 1px solid var(--cizgi); background: #fff; color: var(--soluk);
   font: 800 15px var(--font); padding: 14px 6px; border-radius: 16px; cursor: pointer;
 }
+.donem-sekme { grid-template-columns: repeat(2, 1fr); }
 .sinif-sekme button small { display: block; font-weight: 600; font-size: 11px; }
 .sinif-sekme button.aktif { background: var(--mavi); color: #fff; border-color: var(--mavi); }
 .sinif-sekme button.aktif small { color: rgba(255,255,255,.8); }
@@ -765,6 +766,10 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <button data-sinif="2">2<small>Sınıf</small></button>
           <button data-sinif="3">3<small>Sınıf</small></button>
           <button data-sinif="4">4<small>Sınıf</small></button>
+        </div>
+        <div class="sinif-sekme donem-sekme" id="donem-sekme">
+          <button data-donem="1">1. Dönem<small>Güz</small></button>
+          <button data-donem="2">2. Dönem<small>Bahar</small></button>
         </div>
         <div class="liste" id="ders-liste"></div>
         <div class="vitrin">Sponsorlu alan</div>
@@ -1458,8 +1463,10 @@ function bolumKapat() {
 }
 function sinifSec(s) {
   hafizaYaz("secilenSinif", s);
+  const donem = hafizaOku("secilenDonem") || "1";
+  document.querySelectorAll("#donem-sekme button").forEach(b => b.classList.toggle("aktif", b.dataset.donem === donem));
   document.querySelectorAll("#sinif-sekme button").forEach(b => b.classList.toggle("aktif", b.dataset.sinif === s));
-  const dersler = ybsDersleri[s];
+  const dersler = ybsDersleri[s].filter(d => String(d.donem || 1) === donem);
   const renkler = ["m", "t", "y", "p", "r"];
   document.getElementById("ders-liste").innerHTML = dersler.length
     ? dersler.map((d, i) => {
@@ -1470,9 +1477,10 @@ function sinifSec(s) {
         <div class="orta"><b>${d.ad}</b><small>${program || (d.kod ? d.kod : s + ". sınıf")}</small></div>
         <span class="rozet ${d.link ? "acik" : "yakinda"}">${d.link ? "Notlar" : "Yakında"}</span>
       </a>`; }).join("")
-    : `<div class="cam bos-kutu">${s}. sınıf dersleri yakında eklenecek.</div>`;
+    : `<div class="cam bos-kutu">${s}. sınıf ${donem}. dönem dersleri yakında eklenecek.</div>`;
 }
 document.querySelectorAll("#sinif-sekme button").forEach(b => b.onclick = () => sinifSec(b.dataset.sinif));
+document.querySelectorAll("#donem-sekme button").forEach(b => b.onclick = () => { hafizaYaz("secilenDonem", b.dataset.donem); sinifSec(hafizaOku("secilenSinif") || "1"); });
 
 /* Adres çubuğundan doğrudan açma ve yenilemede son bulunulan ekranda kalma */
 function adresiAc() {
