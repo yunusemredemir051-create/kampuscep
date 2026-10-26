@@ -85,6 +85,8 @@ css.textContent = `
 .degerlendir{--dg-yuzey:#fff;--dg-yuzey2:#f5f7fd;--dg-cizgi:#e4e8f4;--dg-yazi:#141b34;--dg-soluk:#6b7390;--dg-vurgu:var(--mavi,#3b5bfd);--dg-vurgu-acik:rgba(59,91,253,.1);
   margin-top:14px;border-top:1px solid var(--dg-cizgi);padding-top:14px}
 html[data-tema="koyu"] .degerlendir{--dg-yuzey:#1c2338;--dg-yuzey2:#232b45;--dg-cizgi:rgba(255,255,255,.1);--dg-yazi:#eef1ff;--dg-soluk:#9aa5c8;--dg-vurgu-acik:rgba(120,140,255,.16)}
+.degerlendir{min-width:0;max-width:100%;overflow-x:clip}
+.degerlendir *{min-width:0;box-sizing:border-box}
 .degerlendir[data-menu=""]{display:none}
 .dg-bar{display:flex;gap:10px 12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .dg-sol{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
@@ -107,7 +109,13 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
 .dg-btn.yorum{margin-left:auto}
 .dg-btn.yorum.acik{background:var(--dg-vurgu-acik);color:var(--dg-vurgu);border-color:transparent}
 
-.dg-panel{margin-top:14px;padding:14px;border-radius:20px;background:var(--dg-yuzey2);border:1px solid var(--dg-cizgi)}
+.dg-panel{margin-top:14px;padding:14px;border-radius:24px;background:linear-gradient(180deg,var(--dg-yuzey2),var(--dg-yuzey));border:1px solid var(--dg-cizgi);
+  box-shadow:0 18px 40px -26px rgba(40,50,120,.45);animation:dg-ac .28s ease both}
+@keyframes dg-ac{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.dg-baslik{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:15px;font-weight:800;color:var(--dg-yazi);letter-spacing:-.2px}
+.dg-say{font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:99px;background:var(--dg-vurgu-acik);color:var(--dg-vurgu)}
+.dg-av{box-shadow:0 0 0 2px var(--dg-yuzey),0 4px 10px -4px rgba(0,0,0,.35)}
+.dg-y{box-shadow:0 8px 22px -18px rgba(40,50,120,.5)}
 .dg-yazar{display:flex;align-items:center;gap:8px;margin:0 0 10px}
 .dg-yazar .dg-av{width:30px;height:30px;font-size:13px}
 .dg-ad{flex:1;min-width:0;display:block;border:0;border-bottom:1.5px solid var(--dg-cizgi);border-radius:0;padding:6px 2px;font:600 13.5px var(--font,inherit);
@@ -131,15 +139,15 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
 .dg-y-ust{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
 .dg-y b{font-size:13.5px;color:var(--dg-yazi);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .dg-y time{font-size:11.5px;color:var(--dg-soluk);font-weight:600;flex:none}
-.dg-y p{margin:3px 0 8px;font-size:14px;line-height:1.5;color:var(--dg-yazi);white-space:pre-wrap;word-break:break-word}
-.dg-y .eylem{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dg-y p{overflow-wrap:anywhere;margin:3px 0 8px;font-size:14px;line-height:1.5;color:var(--dg-yazi);white-space:pre-wrap;word-break:break-word}
+.dg-y .eylem{display:flex;gap:4px 10px;align-items:center;flex-wrap:wrap}
 .dg-y .eylem button{border:0;background:none;padding:2px 0;font:700 12px var(--font,inherit);color:var(--dg-soluk);cursor:pointer}
 .dg-y .eylem button.yanitla{color:var(--dg-vurgu)}
 .dg-y-begen{display:inline-flex;align-items:center;gap:4px;background:var(--dg-yuzey2)!important;color:var(--dg-soluk);
   border:0;border-radius:99px!important;padding:4px 10px!important;font:700 11.5px var(--font,inherit);cursor:pointer;transition:all .15s}
 .dg-y-begen.secili{background:#ffebee!important;color:#e11d48}
 .dg-yanitlar{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px;grid-column:1/-1}
-.dg-yanitlar .dg-y{background:var(--dg-yuzey2);border-radius:14px;padding:10px 12px;grid-template-columns:28px 1fr}
+.dg-yanitlar .dg-y{background:var(--dg-yuzey2);border-radius:14px;padding:10px 12px;grid-template-columns:28px minmax(0,1fr)}
 .dg-yanitlar .dg-av{width:28px;height:28px;font-size:12px}
 .dg-yanit-form-alani{margin-top:8px}
 .dg-yanit-form{margin-top:4px}
@@ -149,7 +157,7 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
 .dg-y>.dg-yanit-form-alani{grid-column:1/-1}
 
 /* Admin Stilleri */
-.dg-admin-serit{display:flex;align-items:center;justify-content:space-between;background:#fef3c7;border:1px solid #fde68a;border-radius:12px;padding:8px 12px;font-size:12.5px;color:#92400e;font-weight:700;margin-bottom:10px}
+.dg-admin-serit{flex-wrap:wrap;gap:6px;display:flex;align-items:center;justify-content:space-between;background:#fef3c7;border:1px solid #fde68a;border-radius:12px;padding:8px 12px;font-size:12.5px;color:#92400e;font-weight:700;margin-bottom:10px}
 .dg-admin-giris-serit{text-align:right;margin-bottom:8px}
 .dg-giris-link{border:0;background:none;color:var(--soluk,#8a90a8);font:600 11.5px var(--font,inherit);cursor:pointer;text-decoration:underline}
 .dg-giris-link:hover{color:var(--mavi,#3b5bfd)}
@@ -378,6 +386,7 @@ function barCiz(el) {
   if (yorum) {
     const span = yorum.querySelector("span");
     if (span) span.textContent = d.sayi.yorum;
+    const sy = el.querySelector(".dg-say"); if (sy) sy.textContent = d.sayi.yorum;
     yorum.classList.toggle("acik", d.acik);
     yorum.setAttribute("aria-expanded", d.acik);
   }
@@ -454,7 +463,7 @@ function panelCiz(el) {
     : "";
 
   p.innerHTML = adminSerit +
-    `<div class="dg-yazar">${avatar(adOku() || "Anonim")}<input class="dg-ad" maxlength="40" placeholder="Adın (isteğe bağlı)" value="${esc(adOku())}" aria-label="Adın, isteğe bağlı"></div>
+    `<div class="dg-baslik">Yorumlar <span class="dg-say">${d.sayi.yorum}</span></div><div class="dg-yazar">${avatar(adOku() || "Anonim")}<input class="dg-ad" maxlength="40" placeholder="Adın (isteğe bağlı)" value="${esc(adOku())}" aria-label="Adın, isteğe bağlı"></div>
      <div id="dg-ana-form-kutu">${formHtml(false)}</div>
      <ul class="dg-liste"></ul>`;
 
