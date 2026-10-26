@@ -23,7 +23,7 @@ def blok(on):
 
 sayi = 0
 for yol in glob.glob("**/*.html", recursive=True):
-    if yol.startswith(("_kaynak", "_uygulama", "uygulama", "node_modules", ".github")):
+    if yol.startswith(("reklam", "_kaynak", "_uygulama", "uygulama", "node_modules", ".github")):
         continue
     derinlik = yol.count("/")
     on = "../" * derinlik
