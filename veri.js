@@ -199,7 +199,17 @@ const takvim = [
    ===================================================================== */
 const YBS_TAKVIM = takvim.map(o => ({ ...o }));
 const YBS_DONEMLER = donemler.map(o => ({ ...o }));
-const TIP_RESMI_TATIL = takvim.filter(o => o.tur === "tatil").map(o => ({ ...o }));   // ulusal tatiller aynı
+// F.Ü. Tıp Fakültesi 2026-2027 akademik takvimindeki resmî tatiller (genel takvimden birkaç günde ayrılır)
+const TIP_RESMI_TATIL = [
+  { ad: "Cumhuriyet Bayramı", bas: "2026-10-28", bit: "2026-10-29", tur: "tatil", yarim: true },
+  { ad: "Yılbaşı", bas: "2027-01-01", tur: "tatil" },
+  { ad: "Ramazan Bayramı", bas: "2027-03-09", bit: "2027-03-11", tur: "tatil", yarim: true },
+  { ad: "23 Nisan", bas: "2027-04-23", tur: "tatil" },
+  { ad: "1 Mayıs", bas: "2027-05-01", tur: "tatil" },
+  { ad: "Kurban Bayramı ve 19 Mayıs", bas: "2027-05-16", bit: "2027-05-19", tur: "tatil", yarim: true },
+  { ad: "15 Temmuz", bas: "2027-07-15", tur: "tatil" },
+  { ad: "30 Ağustos Zafer Bayramı", bas: "2027-08-30", tur: "tatil" }
+];
 const TIP_SINIFLAR = {
   1: {
     kurullar: [
@@ -209,9 +219,14 @@ const TIP_SINIFLAR = {
       { ad: "I. Kurul sınavı", bas: "2026-11-20", tur: "sinav" }, { ad: "II. Kurul sınavı", bas: "2027-01-15", tur: "sinav" },
       { ad: "Yarıyıl tatili", bas: "2027-01-18", bit: "2027-01-29", tur: "tatil" },
       { ad: "III. Kurul sınavı", bas: "2027-03-26", tur: "sinav" }, { ad: "IV. Kurul sınavı", bas: "2027-05-28", tur: "sinav" },
-      { ad: "Mazeret sınavları", bas: "2027-06-03", bit: "2027-06-04", tur: "sinav" },
-      { ad: "Final sınavları", bas: "2027-06-07", bit: "2027-06-11", tur: "sinav" },
-      { ad: "Bütünleme sınavları", bas: "2027-06-25", bit: "2027-07-02", tur: "sinav" }]
+      { ad: "Yılsonu derslerin bitişi", bas: "2027-05-28", tur: "donem" },
+      { ad: "Mazeret sınavları", bas: "2027-06-04", tur: "sinav" },
+      { ad: "Türkçe ve İngilizce final sınavı", bas: "2027-06-07", tur: "sinav" },
+      { ad: "Pratik genel sınavlar", bas: "2027-06-09", tur: "sinav" },
+      { ad: "Teorik genel sınavlar", bas: "2027-06-11", tur: "sinav" },
+      { ad: "Türkçe ve İngilizce bütünleme", bas: "2027-06-25", tur: "sinav" },
+      { ad: "Pratik bütünleme sınavları", bas: "2027-06-30", tur: "sinav" },
+      { ad: "Teorik bütünleme sınavları", bas: "2027-07-02", tur: "sinav" }]
   },
   2: {
     kurullar: [
@@ -222,7 +237,15 @@ const TIP_SINIFLAR = {
       { ad: "I. Kurul sınavı", bas: "2026-10-16", tur: "sinav" }, { ad: "II. Kurul sınavı", bas: "2026-11-27", tur: "sinav" },
       { ad: "III. Kurul sınavı", bas: "2027-01-15", tur: "sinav" },
       { ad: "Yarıyıl tatili", bas: "2027-01-18", bit: "2027-01-29", tur: "tatil" },
-      { ad: "IV. Kurul sınavı", bas: "2027-03-26", tur: "sinav" }, { ad: "V. Kurul sınavı", bas: "2027-05-28", tur: "sinav" }]
+      { ad: "IV. Kurul sınavı", bas: "2027-03-26", tur: "sinav" }, { ad: "V. Kurul sınavı", bas: "2027-05-28", tur: "sinav" },
+      { ad: "Yılsonu derslerin bitişi", bas: "2027-05-28", tur: "donem" },
+      { ad: "Mazeret sınavları", bas: "2027-06-03", bit: "2027-06-04", tur: "sinav" },
+      { ad: "İnkılap Tarihi ve İngilizce final", bas: "2027-06-07", tur: "sinav" },
+      { ad: "Pratik genel sınavlar", bas: "2027-06-08", tur: "sinav" },
+      { ad: "Teorik genel sınavlar", bas: "2027-06-11", tur: "sinav" },
+      { ad: "İnkılap Tarihi ve İngilizce bütünleme", bas: "2027-06-21", tur: "sinav" },
+      { ad: "Pratik bütünleme sınavları", bas: "2027-06-29", tur: "sinav" },
+      { ad: "Teorik bütünleme sınavları", bas: "2027-07-02", tur: "sinav" }]
   },
   3: {
     kurullar: [
@@ -236,9 +259,30 @@ const TIP_SINIFLAR = {
       { ad: "Ara tatil", bas: "2026-12-28", bit: "2027-01-08", tur: "tatil" },
       { ad: "4. Kurul sınavı", bas: "2027-02-05", tur: "sinav" }, { ad: "5. Kurul sınavı", bas: "2027-03-25", tur: "sinav" },
       { ad: "6. Kurul sınavı", bas: "2027-04-22", tur: "sinav" }, { ad: "7. Kurul sınavı", bas: "2027-05-27", tur: "sinav" },
+      { ad: "Yılsonu derslerin bitişi", bas: "2027-05-28", tur: "donem" },
       { ad: "Mazeret sınavları", bas: "2027-06-02", bit: "2027-06-03", tur: "sinav" },
-      { ad: "Final sınavı", bas: "2027-06-10", tur: "sinav" },
-      { ad: "Bütünleme sınavı", bas: "2027-07-01", tur: "sinav" }]
+      { ad: "Teorik genel sınavlar", bas: "2027-06-10", tur: "sinav" },
+      { ad: "Teorik bütünleme sınavları", bas: "2027-07-01", tur: "sinav" }]
+  },
+  /* 4-6. sınıf: kurul yok, klinik uygulama/staj; yalnızca fakültenin akademik takvimindeki tarihler */
+  4: {
+    kurullar: [["4. sınıf eğitim yılı", "2026-09-07", "2027-06-18"]],
+    olaylar: [
+      { ad: "Hazır bulunuşluk sınavı", bas: "2026-09-10", tur: "sinav" },
+      { ad: "Ara tatil", bas: "2027-01-25", bit: "2027-01-29", tur: "tatil" },
+      { ad: "Yılsonu derslerin bitişi", bas: "2027-06-18", tur: "donem" },
+      { ad: "Bütünleme sınavları", bas: "2027-06-28", bit: "2027-07-23", tur: "sinav" }]
+  },
+  5: {
+    kurullar: [["5. sınıf eğitim yılı", "2026-08-24", "2027-05-28"]],
+    olaylar: [
+      { ad: "Ara tatil", bas: "2027-01-18", bit: "2027-01-22", tur: "tatil" },
+      { ad: "Yılsonu derslerin bitişi", bas: "2027-05-28", tur: "donem" },
+      { ad: "Bütünleme sınavları", bas: "2027-06-08", bit: "2027-06-18", tur: "sinav" }]
+  },
+  6: {
+    kurullar: [["İnternlik dönemi", "2026-07-01", "2027-06-30"]],
+    olaylar: [{ ad: "Mezuniyet", bas: "2027-06-30", tur: "donem" }]
   }
 };
 function akademikProfil() {
