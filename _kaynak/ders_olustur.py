@@ -45,6 +45,9 @@ KITAPLAR = [
     dict(pdf="fin.pdf", klasor="ybs/2/finansal-yonetim", testler={},
          ad="Finansal Yönetim", sinif=2, yazarlar="Yunus Emre Demir",
          uniteler=[(1, "Finansal Yönetim ve Finansal Sistem", 8, 11), (2, "Finansal Tablolar", 12, 14)]),
+    dict(pdf="inkilap.pdf", klasor="ybs/2/inkilap-tarihi", testler={},
+         ad="Atatürk İlkeleri ve İnkılap Tarihi I", sinif=2, yazarlar="Yunus Emre Demir",
+         uniteler=[(1, "İnkılap ve Konuyla İlgili Kavramlar", 8, 15), (2, "Osmanlı Devleti’nin Yıkılış Nedenleri: İç Nedenler", 16, 25)]),
 ]
 
 def filigran_sayfasi(w, h):
