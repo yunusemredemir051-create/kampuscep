@@ -116,7 +116,8 @@ const ybsDersleri = {
     { kod: "YBS1111", ad: "Muhasebe I", gun: "Pazartesi", saat: "13:15–16:00", hoca: "Doç. Dr. Meltem Gül", yer: "Çevre Amfi 3", link: "" },
     { kod: "YBS1103", ad: "İşletme Yönetimi", gun: "Perşembe", saat: "09:15–12:00", hoca: "Doç. Dr. Cem Ayden", yer: "Kimya Amfi 4", link: "" },
     { kod: "İKT1101", ad: "Mikro İktisat", gun: "Perşembe", saat: "13:15–16:00", hoca: "Doç. Dr. Yunus Gülcü", yer: "Kimya Amfi 4", link: "" },
-    { kod: "YBS1109", ad: "İşletme Matematiği", gun: "Cuma", saat: "09:15–12:00", hoca: "Öğr. Gör. Tuba Şekerci", yer: "Kimya Amfi 4", link: "" }
+    { kod: "YBS1109", ad: "İşletme Matematiği", gun: "Cuma", saat: "09:15–12:00", hoca: "Öğr. Gör. Tuba Şekerci", yer: "Kimya Amfi 4", link: "" },
+    { kod: "", ad: "Atatürk İlkeleri ve İnkılap Tarihi", gun: "", saat: "", hoca: "", yer: "", link: "" }
   ],
   2: [
     { kod: "YBS2103", ad: "İstatistik", gun: "Perşembe", saat: "09:15–12:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "Çevre Derslik 3", link: "ders.html?d=ybs/2/istatistik" },
