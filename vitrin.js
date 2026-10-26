@@ -2,7 +2,7 @@
    CADDE_KATIK_AKTIF = true yapılınca Cadde Katık menü reklamları döner;
    false iken "Bu alana reklam verebilirsiniz" kartı görünür. */
 (function () {
-  const CADDE_KATIK_AKTIF = false;
+  const CADDE_KATIK_AKTIF = true;
 
   const TEL = "+904245022323";
   const R = "/gorseller/vitrin/";
