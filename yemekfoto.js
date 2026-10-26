@@ -252,7 +252,7 @@
     "rozet": "🏠 KYK Yurdu"
   },
   {
-    "ad": "Mevsim soslu karışık kızartma",
+    "ad": "Mevsim soslu",
     "yer": "yurt",
     "yerAdi": "KYK Yurdu",
     "rozet": "🏠 KYK Yurdu"
