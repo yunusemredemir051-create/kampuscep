@@ -57,7 +57,7 @@
   .ckd .ckb-baslik{font-size:22px}
   .ckd .ckb-yazi{padding-top:70px}
   .ckd .ckb-btn{display:block;margin-top:10px;background:#e53935;color:#fff;text-align:center;border-radius:12px;padding:10px;font-weight:800;font-size:14px}
-  .ckm{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.78);border:1px solid rgba(20,27,52,.07);text-decoration:none;color:#141b34}
+  .ckm{display:flex;width:100%;box-sizing:border-box;align-items:center;gap:10px;padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.78);border:1px solid rgba(20,27,52,.07);text-decoration:none;color:#141b34}
   .ckm img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
   .ckm b{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ckm i{font-style:normal;font-size:11px;font-weight:800;color:#c62828}
@@ -81,6 +81,17 @@
       </a>`;
     });
     return;
+  }
+  /* Üst reklamlar: ara ara (her açılışta ~%50) sayfaların üstünde de küçük bir reklam çıkar */
+  if (document.getElementById("ana") && Math.random() < 0.5) {
+    const ust = (sayfa, ilkEl) => {
+      const el = document.createElement("div");
+      el.className = "vitrin"; el.dataset.boyut = Math.random() < 0.5 ? "mini" : "serit"; el.style.order = "0";
+      if (ilkEl) ilkEl.insertAdjacentElement("afterend", el); else sayfa.insertBefore(el, sayfa.firstElementChild);
+    };
+    const ana = document.getElementById("ana");
+    ust(ana, ana.querySelector(".afis"));
+    ["yurtlar", "notlar", "takvim"].forEach(id => { const k = document.getElementById(id); if (k && Math.random() < 0.6) ust(k); });
   }
   let sira = Math.floor(Math.random() * reklamlar.length);
   document.querySelectorAll(".vitrin").forEach(kutu => {
