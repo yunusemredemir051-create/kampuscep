@@ -95,8 +95,14 @@ const uniEviMenuleri = {
   "2026-10-20": ["Orman kebap", "Bulgur pilavı", "Yayla çorbası", "Meyve"],
   "2026-10-21": ["Rosto köfte", "Makarna", "Domates çorbası", "Tatlı"],
   "2026-10-22": ["Fırında tavuk", "Bulgur pilavı", "Mercimek çorbası", "Yoğurt"],
-  "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "Tahin helva"]
+  "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "Tahin helva"],
+  "2026-10-26": ["Etli nohut", "Bulgur pilavı", "Yoğurt", "Tatlı"],
+  "2026-10-27": ["Et kavurma", "Pirinç pilavı", "Mercimek çorbası", "Ayran"],
+  "2026-10-28": ["Tebiyeli köfte", "Makarna", "Domates çorbası", "Meyve"],
+  "2026-10-30": ["Etli bezelye", "Pirinç pilavı", "Mercimek çorbası", "Meyve"]
 };
+/* Üniversite Evi'nin kapalı olduğu özel günler */
+const uniEviKapali = { "2026-10-29": "29 Ekim Cumhuriyet Bayramı" };
 
 /* YBS dersleri — 2026-2027 güz dönemi ders programına göre (seçmeli ve staj dersleri hariç)
    link: ders sayfası ("ders.html?d=ybs/SINIF/klasor") ya da tek bir PDF ("notlar/ybs/2/dosya.pdf")
