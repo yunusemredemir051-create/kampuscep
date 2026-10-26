@@ -659,6 +659,10 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <div class="gunler" id="unievi-gunler"></div>
           <ul class="yemekler" id="unievi-yemekler"></ul>
           <div class="degerlendir" id="dg-unievi" data-menu=""></div>
+          <button class="aylik-btn" type="button" onclick="uniEviHaftaAc()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            Haftalık menüyü gör
+          </button>
         </div>
       </div>
 
@@ -1337,6 +1341,7 @@ function aylikMenuAc(yurtId) {
   const baslikEl = document.getElementById("aylik-modal-baslik");
   const icerikEl = document.getElementById("aylik-modal-icerik");
   baslikEl.textContent = (y ? y.ad : "Yurt") + " – Gelecek Günlerin Menüsü";
+  const altEl0 = document.getElementById("aylik-modal-alt"); if (altEl0) altEl0.textContent = "Yarından itibaren menü listesi";
 
   if (!ym) {
     icerikEl.innerHTML = '<div class="bos-menu">Bu yurdun menüsü henüz eklenmedi.</div>';
@@ -1391,6 +1396,42 @@ function aylikMenuAc(yurtId) {
     const hedef = document.getElementById("aylik-bugun") || document.getElementById("aylik-yarin");
     if (hedef) hedef.scrollIntoView({ behavior: "smooth", block: "center" });
   }, 150);
+}
+
+function uniEviHaftaAc() {
+  const baslikEl = document.getElementById("aylik-modal-baslik");
+  const altEl = document.getElementById("aylik-modal-alt");
+  const icerikEl = document.getElementById("aylik-modal-icerik");
+  baslikEl.textContent = "Üniversite Evi – Haftalık Menü";
+  if (altEl) altEl.textContent = "Bugünden itibaren öğle menüsü";
+  const bugunStr = tarihAnahtar(bugun);
+  const kapali = typeof uniEviKapali !== "undefined" ? uniEviKapali : {};
+  const gunler = [...new Set([...Object.keys(uniEviMenuleri), ...Object.keys(kapali)])].filter(k => /^\d{4}-\d{2}-\d{2}$/.test(k) && k >= bugunStr).sort();
+  if (!gunler.length) {
+    icerikEl.innerHTML = '<div class="bos-menu">Bu hafta için menü henüz yayımlanmadı.</div>';
+  } else {
+    icerikEl.innerHTML = gunler.map(k => {
+      const d = T(k);
+      const bugunMu = k === bugunStr, yarinMu = +d === +ekle(bugun, 1);
+      const rozet = bugunMu ? '<span class="etiket mavi">Bugün</span>' : yarinMu ? '<span class="etiket yesil">Yarın</span>' : '';
+      const sinif = bugunMu ? " bugun" : yarinMu ? " yarin" : "";
+      const baslik = d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" });
+      let govde;
+      if (uniEviMenuleri[k]) {
+        govde = uniEviMenuleri[k].map(y => {
+          const parcalar = window.KC_FOTO ? KC_FOTO.ayir(y) : [y];
+          const resimler = window.KC_FOTO ? parcalar.map(p => [p, KC_FOTO.bul(p, "unievi")]).filter(x => x[1]) : [];
+          const kucukler = resimler.slice(0, 3).map(x => `<img loading="lazy" src="${KC_FOTO.src(x[1])}" alt="">`).join("");
+          return `<div class="aylik-yemek">${kucukler ? `<span class="aylik-resim n${Math.min(resimler.length,3)}">${kucukler}</span>` : '<span class="aylik-nokta"></span>'}<span class="aylik-ad">${parcalar.join("<br>")}</span></div>`;
+        }).join("");
+      } else {
+        govde = `<div class="aylik-bos">Yemekhane kapalı${kapali[k] ? " · " + kapali[k] : ""}</div>`;
+      }
+      return `<div class="aylik-gun-kart${sinif}"><div class="aylik-gun-baslik"><span>${baslik}</span>${rozet}</div><div class="aylik-ogun-bloku"><b>Öğle yemeği</b>${govde}</div></div>`;
+    }).join("");
+  }
+  document.getElementById("aylik-modal").classList.add("aktif");
+  document.body.style.overflow = "hidden";
 }
 
 function aylikMenuKapat() {
