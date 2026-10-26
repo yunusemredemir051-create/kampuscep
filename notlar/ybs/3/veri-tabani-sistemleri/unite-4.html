@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Normalizasyon – Veri Tabanı Sistemleri konu özeti | KampüsCepte</title>
+<meta name="description" content="Normalizasyonun amacı, ekleme, güncelleme ve silme sorunları, fonksiyonel bağımlılık türleri, 1NF, 2NF, 3NF, BCNF ve 4NF.">
+<link rel="canonical" href="https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-4.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCepte">
+<meta property="og:title" content="Ünite 4: Normalizasyon · Veri Tabanı Sistemleri">
+<meta property="og:description" content="Normalizasyonun amacı, ekleme, güncelleme ve silme sorunları, fonksiyonel bağımlılık türleri, 1NF, 2NF, 3NF, BCNF ve 4NF.">
+<meta property="og:url" content="https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-4.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 4: Normalizasyon", "description": "Normalizasyonun amacı, ekleme, güncelleme ve silme sorunları, fonksiyonel bağımlılık türleri, 1NF, 2NF, 3NF, BCNF ve 4NF.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCepte"}, "mainEntityOfPage": "https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-4.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanı Sistemleri", "provider": {"@type": "Organization", "name": "KampüsCepte"}}, "dateModified": "2026-10-27"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.vitrin { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+<!-- PWA -->
+<link rel="manifest" href="../../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../../ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<meta name="google-adsense-account" content="ca-pub-5083598455747122">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
+<style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
+<script src="/tema.js?v=15"></script>
+<script defer src="/ozelgun.js?v=7"></script>
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../../../../sw.js",{scope:"../../../../"}).catch(()=>{}));</script>
+<!-- /PWA -->
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/3/veri-tabani-sistemleri">Veri Tabanı Sistemleri</a> › Ünite 4</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 3. sınıf · Veri Tabanı Sistemleri · Ünite 4</small>
+      <h1>Normalizasyon</h1>
+      <p class="giris">Normalizasyonun amacı, ekleme, güncelleme ve silme sorunları, fonksiyonel bağımlılık türleri, 1NF, 2NF, 3NF, BCNF ve 4NF.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-4.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 15 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/3/veri-tabani-sistemleri#test-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p><strong>Normalizasyon</strong>, ilişkisel veri tabanı tasarlanırken veri tekrarını, veri kaybını ve tutarsızlığı önlemek için tabloları mantıklı parçalara bölme işlemidir. Bir dolabı düzenlemeye benzer: çoraplar bir çekmecede, tişörtler başka rafta durursa aradığınızı bulmak kolaylaşır.</p>
+<h2>Normalizasyon yapılmazsa</h2>
+<ul>
+<li><strong>Ekleme sorunu:</strong> Yeni bir veri eklemek için ilgisiz başka verileri de girmek gerekir.</li>
+<li><strong>Güncelleme sorunu:</strong> Aynı veri birçok yerde durduğu için hepsinin tek tek düzeltilmesi gerekir; biri unutulursa veri tutarsızlaşır.</li>
+<li><strong>Silme sorunu:</strong> Bir satır silinince istenmeyen başka bir bilgi de kaybolur.</li>
+</ul>
+<p>Normalizasyonun amaçları veri tekrarını azaltıp bütünlüğü sağlamak, uygulamadan bağımsız bir model kurmak ve daha az kopya sayesinde performansı artırmaktır. Normalizasyon tablo sayısını azaltmaz, artırır.</p>
+<h2>Anahtarlar ve fonksiyonel bağımlılık</h2>
+<p>İki veya daha fazla sütundan oluşan birincil anahtara <strong>bileşik anahtar</strong> denir. A sütunu bilindiğinde B kesin olarak bulunabiliyorsa B, A'ya <strong>fonksiyonel bağımlıdır</strong> (A → B). Başka bir niteliğin bağımlı olduğu niteliğe <strong>belirleyici</strong> denir.</p>
+<ul>
+<li><strong>Tam bağımlılık:</strong> Sütun, bileşik anahtarın tamamına bağlıdır. (Öğrenci No, Kurs Kodu) → Not.</li>
+<li><strong>Kısmi bağımlılık:</strong> Sütun, bileşik anahtarın yalnızca bir parçasına bağlıdır. Öğrenci No → Öğrenci Adı. Anahtar tek sütunsa kısmi bağımlılık olamaz.</li>
+<li><strong>Geçişli bağımlılık:</strong> Sütun, anahtara başka bir sütun üzerinden dolaylı bağlıdır. Öğrenci No → Posta Kodu → Şehir.</li>
+</ul>
+<h2>Normal formlar</h2>
+<ul>
+<li><strong>1NF:</strong> Her hücre tek ve bölünemez (atomik) bir değer taşır. "555-111, 555-222" gibi liste değerler satırlara bölünür.</li>
+<li><strong>2NF:</strong> Tablo 1NF'dedir ve anahtar olmayan her sütun birincil anahtarın tamamına bağlıdır. Kural: "Bu bilgi kimin?" diye sor, o tabloya koy.</li>
+<li><strong>3NF:</strong> Tablo 2NF'dedir ve hiçbir sütun anahtara başka bir sütun üzerinden bağlı değildir. Bölüm telefonu öğrencinin değil bölümün bilgisidir; ayrı tabloya alınır.</li>
+<li><strong>BCNF:</strong> Her belirleyici bir aday anahtardır. Bir danışmanın tek bir bölümde çalıştığı ÖĞRENCİ (ÖğrNo, Bölüm, Danışman) tablosu 3NF'de olsa bile Danışman → Bölüm bağımlılığı yüzünden sorun çıkarır; tablo ikiye ayrılır.</li>
+<li><strong>4NF:</strong> Birbirinden bağımsız çok değerli bağımlılıklar ayrı tablolara alınır. Bir öğrencinin bölümleri ve sporları birbirinden bağımsızsa ÖĞRENCİ_BÖLÜM ve ÖĞRENCİ_SPOR olarak ayrılır.</li>
+</ul>
+<p>Üst normal formlar alttakileri kapsar; 3NF'deki bir tablo 1NF ve 2NF'yi de sağlar. Normalizasyon çoğu uygulamada 3NF'ye kadar yapılır.</p>
+<h2>Örnek: kurs kayıt tablosu</h2>
+<p>Bir hücrede birden fazla ders ve not tutan kayıt tablosu önce satırlara bölünür (1NF) ve bileşik anahtar (ÖğrenciNo, DersKodu) tanımlanır. Ardından öğrenci adı ve ders bilgileri ayrı tablolara alınır (2NF). Son olarak eğitmenin odası derse değil eğitmene bağlı olduğu için eğitmenler ayrı tabloya taşınır (3NF). Sonuçta Öğrenciler, Eğitmenler, Dersler ve Kayıtlar olmak üzere dört tablo oluşur; bir eğitmen odasını değiştirdiğinde yalnızca tek satır güncellenir. Ayrılan tablolar raporlama sırasında JOIN ile yeniden birleştirilir.</p>
+<h2>Örnek: DAĞITIM tablosu</h2>
+<p>DAĞITIM (müşteri_no, şehir_kodu, şehir_adı, gönderi_no, miktar) tablosunda müşteri_no → şehir kısmi, şehir_kodu → şehir_adı geçişli bağımlılıktır; miktar ise anahtarın tamamına bağlıdır. 2NF'de MÜŞTERİLER ve MİKTARLAR, 3NF'de ayrıca ŞEHİRLER tablosu oluşturulur. Böylece hiç dağıtım yapılmamış bir şehir de kaydedilebilir ve tek dağıtımı iptal edilen müşterinin bilgisi kaybolmaz.</p>
+    </article>
+    <div class="vitrin">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-3.html"><small>‹ Önceki ünite</small>Varlık–İlişki (ER) Modeli</a><a class="cam sonraki" href="unite-5.html"><small>Sonraki ünite ›</small>SQL’e Giriş: Veri Tipleri ve Veri Tanımlama</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCepte</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>

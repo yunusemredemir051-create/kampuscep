@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#eef3ff">
+<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Veri Tabanı Tasarımı – Veri Tabanı Sistemleri konu özeti | KampüsCepte</title>
+<meta name="description" content="Veri tabanı tasarım adımları, gereksinimlerin toplanması ve analizi, e-sınav örneği, kavramsal model ve kütüphane örneğiyle yedi adımda tasarım.">
+<link rel="canonical" href="https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-2.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="KampüsCepte">
+<meta property="og:title" content="Ünite 2: Veri Tabanı Tasarımı · Veri Tabanı Sistemleri">
+<meta property="og:description" content="Veri tabanı tasarım adımları, gereksinimlerin toplanması ve analizi, e-sınav örneği, kavramsal model ve kütüphane örneğiyle yedi adımda tasarım.">
+<meta property="og:url" content="https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-2.html">
+<meta property="og:locale" content="tr_TR">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 2: Veri Tabanı Tasarımı", "description": "Veri tabanı tasarım adımları, gereksinimlerin toplanması ve analizi, e-sınav örneği, kavramsal model ve kütüphane örneğiyle yedi adımda tasarım.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCepte"}, "mainEntityOfPage": "https://kampuscepte.com.tr/notlar/ybs/3/veri-tabani-sistemleri/unite-2.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanı Sistemleri", "provider": {"@type": "Organization", "name": "KampüsCepte"}}, "dateModified": "2026-10-27"}</script>
+<style>
+:root {
+  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
+  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
+  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
+  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
+  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
+  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
+.isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(520px 380px at 90% 0%, rgba(255,170,110,.40), transparent 70%),
+              radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
+a { color: var(--mavi); }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
+  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
+.ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
+.yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
+.baslik-alani { padding: 0 4px; }
+.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
+.giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
+.butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+  border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
+.btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn svg { width: 18px; height: 18px; }
+article.metin { padding: 22px 24px; font-size: 16px; }
+article.metin h2 { font-size: 20px; letter-spacing: -.3px; margin: 28px 0 8px; line-height: 1.3; }
+article.metin h2:first-child { margin-top: 0; }
+article.metin p { margin: 0 0 12px; }
+article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
+article.metin li { margin-bottom: 6px; }
+article.metin strong { font-weight: 800; }
+.ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
+sub, sup { font-size: .72em; }
+.gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+.gecis a { padding: 14px 16px; text-decoration: none; color: var(--yazi); font-weight: 700; font-size: 14px; }
+.gecis a small { display: block; color: var(--soluk); font-weight: 600; font-size: 12px; }
+.gecis .sonraki { text-align: right; grid-column: 2; }
+.not { font-size: 13px; color: var(--soluk); margin: 18px 4px 0; }
+.vitrin { display: none !important; /* AdSense onaylanınca bu satırı sil */ }
+.ders { padding: 18px 20px; margin-bottom: 14px; }
+.ders h2 { margin: 0 0 2px; font-size: 19px; }
+.ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+.ders ol { margin: 0; padding-left: 22px; }
+.ders li { margin: 4px 0; }
+.alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
+.alt-bilgi a { color: var(--soluk); font-weight: 600; }
+@media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
+</style>
+<!-- PWA -->
+<link rel="manifest" href="../../../../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../../../ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<meta name="google-adsense-account" content="ca-pub-5083598455747122">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
+<style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
+<script src="/tema.js?v=15"></script>
+<script defer src="/ozelgun.js?v=7"></script>
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../../../../sw.js",{scope:"../../../../"}).catch(()=>{}));</script>
+<!-- /PWA -->
+</head>
+<body>
+<div class="isik"></div>
+<div class="kap">
+  <header class="ust cam">
+    <a class="logo" href="../../../../index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
+    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+  </header>
+  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/3/veri-tabani-sistemleri">Veri Tabanı Sistemleri</a> › Ünite 2</nav>
+  <main>
+    <div class="baslik-alani">
+      <small>YBS 3. sınıf · Veri Tabanı Sistemleri · Ünite 2</small>
+      <h1>Veri Tabanı Tasarımı</h1>
+      <p class="giris">Veri tabanı tasarım adımları, gereksinimlerin toplanması ve analizi, e-sınav örneği, kavramsal model ve kütüphane örneğiyle yedi adımda tasarım.</p>
+    </div>
+    <div class="butonlar">
+      <a class="btn" href="unite-2.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 6 sayfa)</a>
+      <a class="btn ana" href="../../../../ders.html?d=ybs/3/veri-tabani-sistemleri#test-2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+    </div>
+    <article class="metin cam">
+<p>Bir bilgi sistemi, veri tabanının yapısı ve bu veri tabanı üzerinde çalışan uygulamadan oluşur. Veri tabanı projenin başında tasarlandığı için çok iyi tasarlanmalıdır; sonradan yapılacak yapısal değişiklikler zahmetli ve hatalıdır.</p>
+<h2>Tasarım adımları</h2>
+<ol>
+<li><strong>Gereksinim analizi:</strong> İhtiyacın ve mevcut sistemin incelenmesi, donanım ve yazılım maliyeti.</li>
+<li><strong>Kavramsal tasarım:</strong> Varlıkların, niteliklerin ve ilişkilerin belirlenmesi; Varlık–İlişki modelinin çıkarılması.</li>
+<li><strong>Mantıksal tasarım:</strong> ER modelinden tablolara geçiş.</li>
+<li><strong>Normalizasyon:</strong> Tabloların 1NF, 2NF, 3NF ve BCNF kurallarına göre düzenlenmesi.</li>
+<li><strong>Fiziksel tasarım:</strong> Tabloların ve kısıtların oluşturulması, güvenlik ve hakların tanımlanması, ilk verilerin yüklenmesi.</li>
+<li><strong>Uygulama programı:</strong> Kullanım durumlarının belirlenmesi ve programlama.</li>
+</ol>
+<h2>Gereksinimler</h2>
+<p><strong>Gereksinim</strong>, bir sistemin beklenen işlevleri yerine getirmesi için sahip olması gereken özelliktir. Bunları anlamak için kullanıcıların mevcut yöntemlerine, iş kurallarına ve yaşadıkları sorunlara bakılır.</p>
+<ul>
+<li><strong>Geleneksel toplama yöntemleri:</strong> Anket, açık uçlu görüşme ve doküman analizi (mevcut form ve raporların incelenmesi).</li>
+<li><strong>Grupsal yöntemler:</strong> Beyin fırtınası ve prototipleme.</li>
+</ul>
+<p>İyi bir gereksinim analisti görüştüğü kişileri yönlendirir, doğru soruları sorar ve unutulmuş gereksinimleri ortaya çıkarır. Yanlış ya da eksik toplanan gereksinimler, istenen işleri yanlış yapan sistemlere yol açar.</p>
+<h2>Örnek: e-sınav sistemi</h2>
+<p>Önce kullanıcı grupları (öğretmen, öğrenci, yönetici) belirlenir, ardından görüşme ve beyin fırtınası gibi yöntemlerle sorular sorulur: Kaç tür yönetici olacak? Öğretmenlerle ilgili hangi bilgiler tutulacak? Sınavlarda süre sınırı olacak mı? Çelişkili görüşler üzerinde uzlaşma sağlanır, gereksinimler madde madde yazılır, gereksizler çıkarılır ve son rapor kullanıcıların ve proje sahibinin onayına sunulur.</p>
+<h2>Kavramsal model</h2>
+<p>Kullanıcıların anlayacağı gereksinim modeli, veri tabanı uzmanlarının kullanacağı <strong>kavramsal modele</strong> dönüştürülür. Bunun için en çok <strong>Varlık–İlişki (ER) modeli</strong> kullanılır. ER modeli belirli bir VTYS'ye bağlı değildir; ortaya çıkan şema daha sonra herhangi bir sistemde tablolara dönüştürülebilir. ER diyagramı varlıkları, niteliklerini ve varlıklar arası ilişkileri gösterir.</p>
+<h2>Kütüphane örneği: yedi adımda tasarım</h2>
+<ol>
+<li>Nesneler tanımlanır: kitap, üyeler, türler, ödünç hareketleri.</li>
+<li>Her nesne için bir tablo oluşturulur.</li>
+<li>Her tablo için bir anahtar alan seçilir (kitapno, uyeno).</li>
+<li>Her özellik için tabloya sütun eklenir.</li>
+<li>Tekrarlayan özellikler için ek tablolar oluşturulur (örneğin üyelerin kitap istekleri).</li>
+<li>Tabloyla doğrudan ilişkili olmayan alanlar ayıklanır. Üyenin adresi ödünç hareketleri tablosunda değil, üyeler tablosunda tutulmalıdır.</li>
+<li>Tablolar arasındaki ilişkiler tanımlanır (üyeler tablosundaki uyeno ile ödünç hareketlerindeki uyeno).</li>
+</ol>
+    </article>
+    <div class="vitrin">Sponsorlu alan</div>
+    <nav class="gecis" aria-label="Üniteler arası geçiş"><a class="cam" href="unite-1.html"><small>‹ Önceki ünite</small>Veri Tabanına Giriş ve Temel Kavramlar</a><a class="cam sonraki" href="unite-3.html"><small>Sonraki ünite ›</small>Varlık–İlişki (ER) Modeli</a></nav>
+    <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
+  </main>
+  <footer class="alt-bilgi">
+    <a href="../../../../index.html">Ana sayfa</a>
+    <a href="../../../../dersler.html">Ders notları</a>
+    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <span>© 2026 KampüsCepte</span>
+  </footer>
+</div>
+<script src="../../../../cerez.js" defer></script>
+</body>
+</html>
