@@ -44,7 +44,7 @@ const kykAnaMenu = {
                   aksam: ["Yayla çorbası / Ezogelin çorbası", "Patlıcan parmak kebabı / Salçalı mantı / Tavuk baget kızartma", "Bulgur pilavı", "Ezme"] },
   "2026-10-26": { kahvalti: ["Sucuklu omlet", "Patates salatası", "Dere otlu poğaça", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
                   aksam: ["Şehriye çorbası / Mercimek çorbası", "Tavuk döner / Karışık sebze graten", "Pirinç pilavı", "Karışık salata"] },
-  "2026-10-27": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Kek + bal + tereyağı", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+  "2026-10-27": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Kek", "Bal", "Tereyağı", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
                   aksam: ["Sebze çorbası / Tarhana çorbası", "Etsiz kuru fasulye / Mevsim soslu karışık kızartma / Nugget", "Erişte pilavı", "Yoğurt", "Brownie"] },
   "2026-10-28": { kahvalti: ["Sucuklu omlet", "Patates kavurma", "Zeytinli / peynirli açma", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
                   aksam: ["Mercimek çorbası / Domates çorbası", "Kuşbaşılı patlıcan kebap / Tavuk kavurma / Bezelye yemeği", "Sebzeli bulgur pilavı", "Çoban salata"] },

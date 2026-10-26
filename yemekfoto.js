@@ -186,7 +186,19 @@
     "rozet": "🏠 KYK Yurdu"
   },
   {
-    "ad": "Kek + bal + tereyağı",
+    "ad": "Kek",
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
+  },
+  {
+    "ad": "Bal",
+    "yer": "yurt",
+    "yerAdi": "KYK Yurdu",
+    "rozet": "🏠 KYK Yurdu"
+  },
+  {
+    "ad": "Tereyağı",
     "yer": "yurt",
     "yerAdi": "KYK Yurdu",
     "rozet": "🏠 KYK Yurdu"
