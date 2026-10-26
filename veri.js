@@ -287,16 +287,18 @@ const TIP_SINIFLAR = {
 };
 function akademikProfil() {
   /* kc-birim: seçilen bölümün adı. "Tıp" ve "Yönetim Bilişim Sistemleri" dışındakilerde genel akademik takvim kullanılır. */
-  let birim = "", s = "1";
+  let birim = "", s = "1", og = "1", sube = "0";
   try {
     birim = localStorage.getItem("kc-birim") || "";
     s = localStorage.getItem("kc-sinif") || "1";
+    og = localStorage.getItem("kc-ogretim") === "2" ? "2" : "1";
+    sube = ["1", "2"].includes(localStorage.getItem("kc-sube")) ? localStorage.getItem("kc-sube") : "0";
     if (!birim && localStorage.getItem("kc-bolum") === "tip") birim = "Tıp";
   } catch (e) {}
-  const bolum = birim === "Tıp" ? "tip" : birim === "Yönetim Bilişim Sistemleri" ? "ybs" : "genel";
+  const bolum = birim === "Tıp" ? "tip" : birim === "Yönetim Bilişim Sistemleri" ? "ybs" : birim === "Adli Bilişim Mühendisliği" ? "adli" : "genel";
   const max = bolum === "tip" ? 6 : 4;
-  if (!(bolum === "tip" ? TIP_SINIFLAR[s] : (bolum === "ybs" && ["1", "2", "3", "4"].includes(s)))) s = "1";
-  return { bolum, birim, sinif: s, max };
+  if (!(bolum === "tip" ? TIP_SINIFLAR[s] : (bolum !== "genel" && ["1", "2", "3", "4"].includes(s)))) s = "1";
+  return { bolum, birim, sinif: s, max, ogretim: og, sube };
 }
 /* takvim ve donemler dizilerini yerinde değiştirir (diğer fonksiyonlar bu dizilere bakar) */
 function akademikUygula() {
