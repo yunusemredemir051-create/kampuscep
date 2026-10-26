@@ -57,6 +57,9 @@
     var baslik = (tip ? "Tıp " : "YBS ") + p.sinif + ". sınıf · haftalık ders programı";
     var gunler = [], dersler = [[], [], [], [], []], bilgi = "", sonHafta = false, ilkHafta = false;
     for (var i = 0; i < 5; i++) { var d = new Date(hafta); d.setDate(d.getDate() + i); gunler.push(d); }
+    if (tip && +p.sinif > 3) {
+      kutu.innerHTML = '<div class="kc-pust"><div><h2>' + esc(baslik) + '</h2></div></div><div class="kc-bos">4–6. sınıfta klinik uygulama ve staj rotasyonları olduğu için haftalık ders programı gösterilmiyor. Takvim ve sınav tarihleri aşağıda.</div>'; return;
+    }
     if (tip) {
       var v = tipVeri[p.sinif];
       if (!v) { kutu.innerHTML = '<div class="kc-bos">Program yükleniyor…</div>'; fetch("/tip/sinif" + p.sinif + ".json").then(function (r) { return r.json(); }).then(function (j) { tipVeri[p.sinif] = j; ciz(); }).catch(function () { kutu.innerHTML = '<div class="kc-bos">Program şu an yüklenemedi.</div>'; }); return; }
@@ -105,11 +108,11 @@
   function ayarCiz() {
     var p = profil(), sinifSec = document.getElementById("kc-sinif-sec"); if (!sinifSec) return;
     document.querySelectorAll("#kc-bolum-sec button").forEach(function (b) { b.classList.toggle("aktif", b.dataset.b === p.bolum); });
-    var n = p.bolum === "tip" ? [1, 2, 3] : [1, 2, 3, 4];
+    var n = p.bolum === "tip" ? [1, 2, 3, 4, 5, 6] : [1, 2, 3, 4];
     sinifSec.innerHTML = n.map(function (i) { return '<button type="button" class="dil-chip' + (String(i) === p.sinif ? " aktif" : "") + '" data-s="' + i + '">' + i + '. sınıf</button>'; }).join("");
     sinifSec.querySelectorAll("button").forEach(function (b) { b.onclick = function () { kaydet(null, b.dataset.s); }; });
     var not = document.getElementById("kc-akademik-not");
-    if (not) not.textContent = p.bolum === "tip" ? "Tıp: F.Ü. Tıp Fakültesi 2026–2027 eğitim rehberine göre ders kurulları ve sınavlar. 4–6. sınıf yakında." : "Diğer bölümler için genel akademik takvim gösterilir. Haftalık program şu an YBS için hazır.";
+    if (not) not.textContent = p.bolum === "tip" ? "Tıp: F.Ü. Tıp Fakültesi 2026–2027 akademik takvimi. Haftalık ders programı 1–3. sınıf için hazır; 4–6. sınıfta klinik uygulama/staj olduğu için yalnızca takvim tarihleri gösterilir." : "Diğer bölümler için genel akademik takvim gösterilir. Haftalık program şu an YBS için hazır.";
   }
   function kaydet(b, s) {
     var p = profil();
@@ -120,7 +123,7 @@
     var el = document.querySelector("#takvim .not, #takvim p.aciklama, #takvim-not");
     if (!el) { var ps = document.querySelectorAll("#takvim p"); for (var i = 0; i < ps.length; i++) if (/Güz dönemi vizeleri/.test(ps[i].textContent)) { el = ps[i]; break; } }
     if (!el) return; if (el.dataset.ilk === undefined) el.dataset.ilk = el.innerHTML;
-    el.innerHTML = profil().bolum === "tip" ? "Tarihler F.Ü. Tıp Fakültesi 2026–2027 eğitim rehberindeki ders kurulu takvimine göredir. Kurul sınav tarihleri ve final/bütünleme için fakülte duyurularını da kontrol et." : el.dataset.ilk;
+    el.innerHTML = profil().bolum === "tip" ? "Tarihler F.Ü. Tıp Fakültesi 2026–2027 akademik takvimi ve eğitim rehberlerine göredir. Değişiklik olursa fakülte duyurusu esastır." : el.dataset.ilk;
   }
   function yenile() {
     akademikUygula(); hafta = null; ayarCiz();
