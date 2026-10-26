@@ -24,32 +24,45 @@ function sade(f) {
 }
 const CANLI = ["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"];
 
+/* workers.dev adresinde caches.default (Cache API) ÇALIŞMAZ; bu yüzden her istek API'ye gidip dakikalık limiti dolduruyordu.
+   Çözüm: isolate belleğinde önbellek + aynı anda gelen istekleri tek isteğe indirme + hata olursa son iyi veriyi gösterme. */
+let SON = null, BITIS = 0, BEKLEYEN = null;
+
+async function yenile(env) {
+  const bugun = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul" }).format(new Date());
+  let veri, hata = null;
+  try {
+    const r = await fetch(`https://v3.football.api-sports.io/fixtures?date=${bugun}&timezone=Europe/Istanbul`,
+      { headers: { "x-apisports-key": env.API_KEY }, cf: { cacheTtl: 60, cacheEverything: true } });
+    veri = await r.json();
+    if (veri.errors && Object.keys(veri.errors).length) hata = JSON.stringify(veri.errors);
+  } catch (e) { hata = String(e); }
+  const simdi = Date.now();
+  if (hata) {                                  /* hata: son iyi veriyi koru, 2 dk sonra tekrar dene */
+    BITIS = simdi + 120000;
+    if (SON) return { ...SON, hata, eski: true };
+    return { guncelleme: simdi, maclar: [], hata };
+  }
+  const maclar = (veri.response || []).filter(ilgili).map(sade);
+  let ttl = 3600;
+  if (maclar.some(m => CANLI.includes(m.durum))) ttl = 90;
+  else if (maclar.some(m => m.durum === "NS" && Math.abs(new Date(m.zaman) - simdi) < 3 * 3600e3)) ttl = 600;
+  SON = { guncelleme: simdi, maclar, hata: null };
+  BITIS = simdi + ttl * 1000;
+  return SON;
+}
+
 export default {
-  async fetch(req, env, ctx) {
+  async fetch(req, env) {
     const origin = req.headers.get("Origin") || "";
-    const cors = { "Access-Control-Allow-Origin": IZIN.includes(origin) ? origin : IZIN[0], "Vary": "Origin" };
+    const cors = { "Access-Control-Allow-Origin": IZIN.includes(origin) ? origin : IZIN[0], "Vary": "Origin", "content-type": "application/json", "cache-control": "no-store" };
     if (req.method === "OPTIONS") return new Response(null, { headers: cors });
-    const onbellek = caches.default, anahtar = new Request("https://skor.cache/v1");
-    let yanit = await onbellek.match(anahtar);
-    if (!yanit) {
-      const bugun = new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Istanbul" }).format(new Date());
-      let veri, hata = null;
-      try {
-        const r = await fetch(`https://v3.football.api-sports.io/fixtures?date=${bugun}&timezone=Europe/Istanbul`, { headers: { "x-apisports-key": env.API_KEY } });
-        veri = await r.json();
-        if (veri.errors && Object.keys(veri.errors).length) hata = JSON.stringify(veri.errors);
-      } catch (e) { hata = String(e); }
-      const maclar = hata ? [] : (veri.response || []).filter(ilgili).map(sade);
-      /* ne kadar süre saklayalım: canlı maç varsa 2 dk, 3 saat içinde başlayacak varsa 10 dk, yoksa 60 dk */
-      const simdi = Date.now();
-      let ttl = 3600;
-      if (maclar.some(m => CANLI.includes(m.durum))) ttl = 120;
-      else if (maclar.some(m => m.durum === "NS" && Math.abs(new Date(m.zaman) - simdi) < 3 * 3600e3)) ttl = 600;
-      if (hata) ttl = 300;
-      yanit = new Response(JSON.stringify({ guncelleme: simdi, maclar, hata }), { headers: { "content-type": "application/json", "cache-control": "public, max-age=" + ttl } });
-      ctx.waitUntil(onbellek.put(anahtar, yanit.clone()));
+    let govde;
+    if (SON && Date.now() < BITIS) govde = SON;
+    else {
+      if (!BEKLEYEN) BEKLEYEN = yenile(env).finally(() => { BEKLEYEN = null; });
+      govde = await BEKLEYEN;
     }
-    const h = new Headers(yanit.headers); Object.entries(cors).forEach(([k, v]) => h.set(k, v));
-    return new Response(yanit.body, { headers: h });
+    return new Response(JSON.stringify(govde), { headers: cors });
   }
 };
