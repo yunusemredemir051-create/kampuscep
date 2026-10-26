@@ -286,12 +286,17 @@ const TIP_SINIFLAR = {
   }
 };
 function akademikProfil() {
-  let b = "ybs", s = "1";
-  try { b = localStorage.getItem("kc-bolum") || "ybs"; s = localStorage.getItem("kc-sinif") || "1"; } catch (e) {}
-  if (b !== "tip") b = "ybs";
-  if (b === "tip" && !TIP_SINIFLAR[s]) s = "1";
-  if (b === "ybs" && !["1", "2", "3", "4"].includes(s)) s = "1";
-  return { bolum: b, sinif: s };
+  /* kc-birim: seçilen bölümün adı. "Tıp" ve "Yönetim Bilişim Sistemleri" dışındakilerde genel akademik takvim kullanılır. */
+  let birim = "", s = "1";
+  try {
+    birim = localStorage.getItem("kc-birim") || "";
+    s = localStorage.getItem("kc-sinif") || "1";
+    if (!birim && localStorage.getItem("kc-bolum") === "tip") birim = "Tıp";
+  } catch (e) {}
+  const bolum = birim === "Tıp" ? "tip" : birim === "Yönetim Bilişim Sistemleri" ? "ybs" : "genel";
+  const max = bolum === "tip" ? 6 : 4;
+  if (!(bolum === "tip" ? TIP_SINIFLAR[s] : (bolum === "ybs" && ["1", "2", "3", "4"].includes(s)))) s = "1";
+  return { bolum, birim, sinif: s, max };
 }
 /* takvim ve donemler dizilerini yerinde değiştirir (diğer fonksiyonlar bu dizilere bakar) */
 function akademikUygula() {

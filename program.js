@@ -2,9 +2,31 @@
    Bölüm: YBS (genel takvim) veya Tıp (F.Ü. Tıp Fakültesi 1-3. sınıf). Seçim telefonda saklanır. */
 (function () {
   var GUNLER = ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma"], KISA = ["Pzt", "Sal", "Çar", "Per", "Cum"];
+  var BOLUMLER = [
+    ["Tıp Fakültesi", ["Tıp"]],
+    ["Diş Hekimliği Fakültesi", ["Diş Hekimliği"]],
+    ["Eczacılık Fakültesi", ["Eczacılık"]],
+    ["Veteriner Fakültesi", ["Veteriner"]],
+    ["İktisadi ve İdari Bilimler Fakültesi", ["Çalışma Ekonomisi ve Endüstri İlişkileri", "İktisat", "İşletme", "Maliye", "Siyaset Bilimi ve Kamu Yönetimi", "Sosyal Hizmet", "Yönetim Bilişim Sistemleri"]],
+    ["Mühendislik Fakültesi", ["Bilgisayar Mühendisliği", "Elektrik-Elektronik Mühendisliği", "İnşaat Mühendisliği", "Kimya Mühendisliği", "Makine Mühendisliği", "Mekatronik Mühendisliği", "Yapay Zeka ve Veri Mühendisliği"]],
+    ["Teknoloji Fakültesi", ["Adli Bilişim Mühendisliği", "Makine Mühendisliği (Teknoloji)", "Otomotiv Mühendisliği", "Yazılım Mühendisliği"]],
+    ["Fen Fakültesi", ["Biyoloji", "Fizik", "İstatistik", "Kimya", "Matematik", "Moleküler Biyoloji ve Genetik"]],
+    ["Sağlık Bilimleri Fakültesi", ["Beslenme ve Diyetetik", "Ebelik", "Fizyoterapi ve Rehabilitasyon", "Hemşirelik"]],
+    ["Eğitim Fakültesi", ["İlköğretim Matematik Öğretmenliği", "İngilizce Öğretmenliği", "Okul Öncesi Öğretmenliği", "Rehberlik ve Psikolojik Danışmanlık", "Sınıf Öğretmenliği", "Sosyal Bilgiler Öğretmenliği", "Türkçe Öğretmenliği"]],
+    ["İnsan ve Toplum Bilimleri Fakültesi", ["Alman Dili ve Edebiyatı", "Çağdaş Türk Lehçeleri ve Edebiyatları", "Coğrafya", "İngiliz Dili ve Edebiyatı", "Sanat Tarihi", "Sosyoloji", "Tarih", "Türk Dili ve Edebiyatı"]],
+    ["İletişim Fakültesi", ["Gazetecilik", "Görsel İletişim Tasarımı", "Halkla İlişkiler ve Tanıtım", "Radyo, Televizyon ve Sinema"]],
+    ["İlahiyat Fakültesi", ["İlahiyat"]],
+    ["Spor Bilimleri Fakültesi", ["Spor Yöneticiliği"]],
+    ["Su Ürünleri Fakültesi", ["Su Ürünleri Mühendisliği"]],
+    ["Sivil Havacılık Yüksekokulu", ["Havacılık Elektrik ve Elektroniği", "Uçak Bakım ve Onarım"]],
+    ["Sağlık Hizmetleri MYO", ["Anestezi", "Fizyoterapi (Ön Lisans)", "Odyometri", "Otopsi Yardımcılığı", "Tıbbi Dokümantasyon ve Sekreterlik", "Tıbbi Görüntüleme Teknikleri", "Tıbbi Laboratuvar Teknikleri"]],
+    ["Teknik Bilimler MYO", ["Bilgisayar Programcılığı", "Biyomedikal Cihaz Teknolojisi", "Elektrik", "Elektronik Teknolojisi", "Grafik Tasarımı", "Hibrid ve Elektrikli Taşıtlar Teknolojisi", "İç Mekan Tasarımı", "İnşaat Teknolojisi", "İş Sağlığı ve Güvenliği", "Makine", "Mekatronik", "Mimari Restorasyon", "Otomotiv Teknolojisi"]],
+    ["Sosyal Bilimler MYO", ["Aşçılık", "Bankacılık ve Sigortacılık", "Büro Yönetimi ve Yönetici Asistanlığı", "Dış Ticaret", "İşletme Yönetimi", "Muhasebe ve Vergi Uygulamaları", "Pazarlama", "Turizm ve Otel İşletmeciliği", "Yerel Yönetimler"]],
+    ["Diğer MYO'lar", ["Alternatif Enerji Kaynakları Teknolojisi", "Bahçe Tarımı", "Organik Tarım", "Raylı Sistemler Makinistliği", "Atçılık ve Antrenörlüğü", "Harita ve Kadastro", "Laborant ve Veteriner Sağlık", "Çevre Koruma ve Kontrol", "Elektrik Enerjisi Üretim, İletim ve Dağıtımı", "Geoteknik", "Gıda Teknolojisi", "Peyzaj ve Süs Bitkileri Yetiştiriciliği", "Çocuk Gelişimi", "Tapu ve Kadastro", "Doğalgaz ve Tesisatı Teknolojisi", "Endüstri Ürünleri Tasarımı", "Giyim Üretim Teknolojisi", "Kaynak Teknolojisi", "Kimya Teknolojisi", "Yapı Denetimi", "Eczane Hizmetleri", "Evde Hasta Bakımı", "İlk ve Acil Yardım", "Optisyenlik", "Sağlık Kurumları İşletmeciliği"]]
+  ];
   var st = document.createElement("style");
   st.textContent =
-    ".kc-prog{padding:18px;margin-top:14px}.kc-prog h2{margin:0;font-size:19px}.kc-prog .alt{color:var(--soluk,#6b7390);font-size:13px;font-weight:600;margin-top:2px}" +
+    ".kc-prog[hidden]{display:none}.kc-prog{padding:18px;margin-top:14px}.kc-prog h2{margin:0;font-size:19px}.kc-prog .alt{color:var(--soluk,#6b7390);font-size:13px;font-weight:600;margin-top:2px}" +
     ".kc-pust{display:flex;align-items:center;gap:8px}.kc-pust>div{flex:1;min-width:0}" +
     ".kc-ok{all:unset;cursor:pointer;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:20px;font-weight:800;background:rgba(91,75,255,.1);color:var(--mavi,#3b5bfd);flex:none}" +
     ".kc-ok:disabled{opacity:.3;cursor:default}" +
@@ -52,6 +74,8 @@
   function ciz() {
     var kutu = document.getElementById("kc-program"); if (!kutu) return;
     var p = profil(), tip = p.bolum === "tip";
+    if (p.bolum === "genel") { kutu.hidden = true; kutu.innerHTML = ""; return; }
+    kutu.hidden = false;
     if (!hafta) varsayilanHafta();
     var bugunIso = iso(new Date());
     var baslik = (tip ? "Tıp " : "YBS ") + p.sinif + ". sınıf · haftalık ders programı";
@@ -89,34 +113,45 @@
 
   function kartEkle() {
     var ana = document.getElementById("ana-durum"); if (!ana || document.getElementById("kc-program")) return;
-    var k = document.createElement("div"); k.id = "kc-program"; k.className = "kc-prog cam"; ana.insertAdjacentElement("afterend", k);
+    var k = document.createElement("div"); k.id = "kc-program"; k.className = "kc-prog cam"; k.hidden = true; ana.insertAdjacentElement("afterend", k);
   }
 
   function ayarEkle() {
     var form = document.getElementById("ayar-form"); if (!form || document.getElementById("kc-akademik")) return;
     var grup = form.closest(".ayar-grup"); if (!grup) return;
     var g = document.createElement("div"); g.className = "ayar-grup"; g.id = "kc-akademik";
+    var opts = '<option value="">Bölümünü seç…</option>' + BOLUMLER.map(function (f) {
+      return '<optgroup label="' + esc(f[0]) + '">' + f[1].map(function (b) { return '<option value="' + esc(b) + '">' + esc(b) + '</option>'; }).join("") + '</optgroup>';
+    }).join("") + '<option value="__diger">Listede yok / diğer</option>';
     g.innerHTML = '<h3 class="ayar-grup-baslik">Bölüm ve Sınıf</h3>' +
-      '<p style="margin:0 0 10px;font-size:13px;color:var(--soluk,#6b7390)">Akademik takvim ve haftalık ders programı seçtiğine göre değişir.</p>' +
-      '<div class="dil-sec" id="kc-bolum-sec" role="group" aria-label="Bölüm"><button type="button" class="dil-chip" data-b="ybs">YBS / Diğer</button><button type="button" class="dil-chip" data-b="tip">Tıp Fakültesi</button></div>' +
-      '<h4 class="ayar-alt-baslik">Sınıf</h4><div class="dil-sec" id="kc-sinif-sec" role="group" aria-label="Sınıf"></div>' +
+      '<p style="margin:0 0 10px;font-size:13px;color:var(--soluk,#6b7390)">Fırat Üniversitesi bölümünü seç; akademik takvim ve (varsa) haftalık ders programı ona göre görünür.</p>' +
+      '<select id="kc-bolum-sel" aria-label="Bölüm" style="width:100%;padding:12px;border-radius:12px;border:1.5px solid rgba(20,27,52,.15);font:inherit;font-weight:600;background:var(--kart,#fff);color:inherit">' + opts + '</select>' +
+      '<div id="kc-sinif-blok" style="margin-top:12px"><div class="dil-sec" id="kc-sinif-sec" role="group" aria-label="Sınıf" style="grid-template-columns:repeat(3,1fr)"></div></div>' +
       '<p id="kc-akademik-not" style="margin:10px 0 0;font-size:12.5px;color:var(--soluk,#6b7390)"></p>';
     grup.insertAdjacentElement("beforebegin", g);
-    g.querySelectorAll("#kc-bolum-sec button").forEach(function (b) { b.onclick = function () { kaydet(b.dataset.b, null); }; });
+    g.querySelector("#kc-bolum-sel").onchange = function () { kaydet(this.value === "__diger" ? "" : this.value, null); };
     ayarCiz();
   }
   function ayarCiz() {
     var p = profil(), sinifSec = document.getElementById("kc-sinif-sec"); if (!sinifSec) return;
-    document.querySelectorAll("#kc-bolum-sec button").forEach(function (b) { b.classList.toggle("aktif", b.dataset.b === p.bolum); });
-    var n = p.bolum === "tip" ? [1, 2, 3, 4, 5, 6] : [1, 2, 3, 4];
+    var sel = document.getElementById("kc-bolum-sel"); if (sel) sel.value = p.birim || "";
+    var blok = document.getElementById("kc-sinif-blok"); blok.hidden = p.bolum === "genel";
+    var n = []; for (var i = 1; i <= p.max; i++) n.push(i);
     sinifSec.innerHTML = n.map(function (i) { return '<button type="button" class="dil-chip' + (String(i) === p.sinif ? " aktif" : "") + '" data-s="' + i + '">' + i + '. sınıf</button>'; }).join("");
     sinifSec.querySelectorAll("button").forEach(function (b) { b.onclick = function () { kaydet(null, b.dataset.s); }; });
-    var not = document.getElementById("kc-akademik-not");
-    if (not) not.textContent = p.bolum === "tip" ? "Tıp: F.Ü. Tıp Fakültesi 2026–2027 akademik takvimi. Haftalık ders programı 1–3. sınıf için hazır; 4–6. sınıfta klinik uygulama/staj olduğu için yalnızca takvim tarihleri gösterilir." : "Diğer bölümler için genel akademik takvim gösterilir. Haftalık program şu an YBS için hazır.";
+    var not = document.getElementById("kc-akademik-not"); if (!not) return;
+    if (p.bolum === "tip") not.textContent = "Tıp: F.Ü. Tıp Fakültesi 2026–2027 akademik takvimi. Haftalık ders programı 1–3. sınıf için hazır; 4–6. sınıfta klinik uygulama/staj olduğu için yalnızca takvim tarihleri gösterilir.";
+    else if (p.bolum === "ybs") not.textContent = "Genel akademik takvim gösterilir; haftalık ders programı seçtiğin sınıfa göre ana sayfada görünür.";
+    else if (p.birim === "Diş Hekimliği") not.textContent = "Diş Hekimliği'nin kendi takvimi ve ders programı henüz eklenmedi; şimdilik genel akademik takvim gösteriliyor.";
+    else if (p.birim) not.textContent = "Bu bölüm için genel akademik takvim gösterilir. Ders programı henüz eklenmedi.";
+    else not.textContent = "";
   }
-  function kaydet(b, s) {
+  function kaydet(birim, sinif) {
     var p = profil();
-    try { localStorage.setItem("kc-bolum", b || p.bolum); localStorage.setItem("kc-sinif", s || (b && b !== p.bolum ? "1" : p.sinif)); } catch (e) {}
+    try {
+      if (birim !== null) { localStorage.setItem("kc-birim", birim); localStorage.removeItem("kc-bolum"); localStorage.setItem("kc-sinif", "1"); }
+      if (sinif) localStorage.setItem("kc-sinif", sinif);
+    } catch (e) {}
     yenile();
   }
   function not() {
