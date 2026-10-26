@@ -949,7 +949,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
   </main>
 </div>
 
-<script src="veri.js?v=4"></script>
+<script src="veri.js?v=5"></script>
 <script>
 /* =====================================================================
    TARİH YARDIMCILARI
@@ -1285,9 +1285,10 @@ function uniEviGoster(anahtar) {
   document.getElementById("unievi-bilgi").textContent = "Bugün · " + kisa(d) + " · 11.00–13.30 ve 15.00–16.30";
   const liste = uniEviMenuleri[tarihAnahtar(d)];
   document.getElementById("dg-unievi").dataset.menu = liste ? "unievi_" + tarihAnahtar(d) : "";
+  const kapali = typeof uniEviKapali !== "undefined" ? uniEviKapali[tarihAnahtar(d)] : null;
   if (liste) listeYaz("unievi-yemekler", liste);
   else document.getElementById("unievi-yemekler").innerHTML =
-    `<li class="bos-menu" style="list-style:none">${hs ? "Üniversite Evi hafta sonu yemek vermiyor." : "Bugünün menüsü henüz eklenmedi."}</li>`;
+    `<li class="bos-menu" style="list-style:none">${kapali ? "Yemekhane kapalı · " + kapali : hs ? "Üniversite Evi hafta sonu yemek vermiyor." : "Bugünün menüsü henüz eklenmedi."}</li>`;
 })();
 
 /* =====================================================================
