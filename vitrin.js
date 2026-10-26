@@ -42,6 +42,25 @@
   @media (prefers-reduced-motion:reduce){.ck-rv::before,.ck-rv .ck-resim img,.ck-rv .ck-fiyat{animation:none}}
   .ck-ara{flex:none;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#e53935;color:#fff;box-shadow:0 8px 16px -8px #e53935}
   .ck-ara svg{width:20px;height:20px}
+
+  .vitrin.ck-var{align-self:stretch;width:100%}
+  .ckb{display:block;width:100%;box-sizing:border-box;position:relative;height:170px;border-radius:20px;overflow:hidden;text-decoration:none;color:#fff;background:#3a1d17;box-shadow:0 10px 26px -16px rgba(40,60,140,.5)}
+  .ckb img{width:100%;height:100%;object-fit:cover;display:block}
+  .ckb-yazi{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.82))}
+  .ckb-ust{font-size:11px;font-weight:700;opacity:.85}
+  .ckb-baslik{font-size:18px;font-weight:800;margin-top:2px}
+  .ckb-alt{display:flex;align-items:center;gap:8px;font-size:12px;margin-top:2px}
+  .ckb-alt .ck-fiyat{margin-left:auto}
+  .ckb-ara{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#e53935;color:#fff}
+  .ckb-ara svg{width:18px;height:18px}
+  .ckd{height:auto;aspect-ratio:4/5;max-width:340px;margin-inline:auto}
+  .ckd .ckb-baslik{font-size:22px}
+  .ckd .ckb-yazi{padding-top:70px}
+  .ckd .ckb-btn{display:block;margin-top:10px;background:#e53935;color:#fff;text-align:center;border-radius:12px;padding:10px;font-weight:800;font-size:14px}
+  .ckm{display:flex;align-items:center;gap:10px;padding:7px 12px;border-radius:99px;background:rgba(255,255,255,.78);border:1px solid rgba(20,27,52,.07);text-decoration:none;color:#141b34}
+  .ckm img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
+  .ckm b{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ckm i{font-style:normal;font-size:11px;font-weight:800;color:#c62828}
   .ck-onizleme{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:999;background:#141b34;color:#fff;font:700 12px/1 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.85}
   .ck-onizleme a{color:#9fb3ff;margin-left:8px}`;
   const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
@@ -67,6 +86,20 @@
   document.querySelectorAll(".vitrin").forEach(kutu => {
     const r = reklamlar[sira++ % reklamlar.length];
     kutu.classList.add("ck-var");
+    const boyut = kutu.dataset.boyut || "serit";
+    const img = `<img src="${R + r.resim}" alt="" onerror="this.style.display='none'">`;
+    if (boyut === "banner" || boyut === "dikey") {
+      kutu.innerHTML = `<a class="ckb ${boyut === "dikey" ? "ckd" : ""}" href="tel:${TEL}" aria-label="Cadde Katık'ı ara: ${r.baslik} ${r.fiyat}">${img}
+        <span class="ckb-ara">${ara}</span>
+        <div class="ckb-yazi"><div class="ckb-ust">Sponsorlu · Cadde Katık</div><div class="ckb-baslik">${r.baslik}</div>
+          <div class="ckb-alt"><span>${r.icerik}</span><span class="ck-fiyat">${r.fiyat}</span></div>
+          ${boyut === "dikey" ? '<span class="ckb-btn">Hemen ara</span>' : ""}</div></a>`;
+      return;
+    }
+    if (boyut === "mini") {
+      kutu.innerHTML = `<a class="ckm" href="tel:${TEL}">${img}<b>Cadde Katık · ${r.baslik}</b><i>${r.fiyat}</i></a>`;
+      return;
+    }
     kutu.innerHTML = `<a class="ck" href="tel:${TEL}" aria-label="Cadde Katık'ı ara: ${r.baslik} ${r.fiyat}">
       <div class="ck-resim"><img src="${R + r.resim}" alt="" onerror="this.outerHTML=this.parentNode.dataset.y"></div>
       <div class="ck-orta">
