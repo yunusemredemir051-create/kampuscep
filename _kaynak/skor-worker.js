@@ -25,7 +25,7 @@ function sade(f) {
 const CANLI = ["1H", "HT", "2H", "ET", "BT", "P", "LIVE", "INT"];
 
 /* workers.dev adresinde caches.default (Cache API) ÇALIŞMAZ; bu yüzden her istek API'ye gidip dakikalık limiti dolduruyordu.
-   Çözüm: isolate belleğinde önbellek + aynı anda gelen istekleri tek isteğe indirme + hata olursa son iyi veriyi gösterme. */
+   Çözüm: isolate belleğinde önbellek + aynı anda gelen istekleri tek isteğe indirme + hata olursa boş liste döndürme. */
 let SON = null, BITIS = 0, BEKLEYEN = null;
 
 async function yenile(env) {
@@ -38,9 +38,8 @@ async function yenile(env) {
     if (veri.errors && Object.keys(veri.errors).length) hata = JSON.stringify(veri.errors);
   } catch (e) { hata = String(e); }
   const simdi = Date.now();
-  if (hata) {                                  /* hata: son iyi veriyi koru, 2 dk sonra tekrar dene */
+  if (hata) {                                  /* hata: skor gösterme (boş liste), 2 dk sonra tekrar dene */
     BITIS = simdi + 120000;
-    if (SON) return { ...SON, hata, eski: true };
     return { guncelleme: simdi, maclar: [], hata };
   }
   const maclar = (veri.response || []).filter(ilgili).map(sade);

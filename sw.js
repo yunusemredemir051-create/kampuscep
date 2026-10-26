@@ -1,7 +1,7 @@
 /* KampüsCepte service worker — sayfalar internet yokken de açılsın.
    Sayfalar ve veri.js önce internetten (güncel menü için), olmazsa önbellekten gelir.
    Görseller, PDF'ler ve yazı tipleri önce önbellekten gelir. */
-const SURUM = "kc-v67";
+const SURUM = "kc-v68";
 const TEMEL = ["./", "index.html", "veri.js", "cerez.js", "tema.js", "favicon.svg", "manifest.webmanifest",
                "ikonlar/ikon-192.png", "ikonlar/ikon-512.png", "dersler.html", "gizlilik.html", "hakkimizda.html", "404.html"];
 

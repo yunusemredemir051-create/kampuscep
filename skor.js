@@ -84,9 +84,7 @@
     if (document.hidden) { zamanlayici = setTimeout(cek, 120000); return; }
     fetch(SKOR_URL, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (v) {
       var m = v.maclar || [];
-      if (v.hata) { try { console.warn("[skor] Worker hata verdi:", v.hata); } catch (e) {} }
-      if (!m.length && v.hata) { try { var eski = JSON.parse(localStorage.getItem("kc-skor-son") || "null"); if (eski && Date.now() - eski.t < 6 * 3600e3) m = eski.m; } catch (e) {} }
-      else if (m.length) { try { localStorage.setItem("kc-skor-son", JSON.stringify({ t: Date.now(), m: m })); } catch (e) {} }
+      if (v.hata) { m = []; try { console.warn("[skor] Worker hata verdi:", v.hata); } catch (e) {} }   /* hata varsa eski/yanlış skor gösterme */
       bantYap(m); tebrikKontrol(m);
       if (m.some(function (x) { return CANLI[x.durum]; })) sonraki = 60000; else if (m.some(function (x) { return x.durum === "NS"; })) sonraki = 300000;
     }).catch(function () {}).then(function () { zamanlayici = setTimeout(cek, sonraki); });
