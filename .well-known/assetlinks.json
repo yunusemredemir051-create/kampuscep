@@ -1,8 +1,11 @@
 [{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "tr.com.kampuscepte.app",
-        "sha256_cert_fingerprints": ["8B:36:B8:03:81:CD:F3:5F:A8:10:78:48:34:3E:57:DB:BE:47:AB:54:EB:C5:22:FF:1E:8E:9E:5F:21:77:8D:35"]
-      }
-    }]
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "tr.com.kampuscepte.app",
+    "sha256_cert_fingerprints": [
+      "39:75:94:9C:9F:BC:F8:07:E6:2C:C1:67:5A:27:84:59:87:09:C1:46:BD:25:52:1F:6E:CB:36:A9:74:85:0E:83",
+      "8B:36:B8:03:81:CD:F3:5F:A8:10:78:48:34:3E:57:DB:BE:47:AB:54:EB:C5:22:FF:1E:8E:9E:5F:21:77:8D:35"
+    ]
+  }
+}]
