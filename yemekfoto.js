@@ -689,7 +689,10 @@
       "tavuk çöp şiş": "yurt-tavuk-cop-sis",
       "bulgur pilavı": "yurt-bulgur-pilavi",
       "haydari": "yurt-haydari",
-      "tulumba": "yurt-tulumba"
+      "tulumba": "yurt-tulumba",
+      "tereyağı": "yurt-tereyagi",
+      "bal": "yurt-bal",
+      "mozaik kek": "yurt-mozaik-kek"
     }
   };
 
