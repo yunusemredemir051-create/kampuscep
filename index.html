@@ -598,6 +598,22 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .iletisim-not { margin: 14px 0 0; font-size: 12.5px; }
 .iletisim-adres { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; border: 1px dashed var(--mavi); margin-bottom: 14px; font-weight: 800; font-size: 13px; overflow-wrap: anywhere; }
 .iletisim-adres span { min-width: 0; }
+.il-posta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px; border-radius: 18px; background: var(--mavi-acik, #e6ebff); margin-bottom: 20px; }
+.il-adres-metin { min-width: 0; flex: 1; display: grid; gap: 2px; }
+.il-adres-metin small { color: var(--soluk); font-weight: 700; font-size: 12px; }
+.il-adres-metin b { font-size: 13.5px; font-weight: 800; letter-spacing: -.2px; line-height: 1.3; white-space: nowrap; }
+.il-posta .btn { flex: 1 0 100%; justify-content: center; }
+.il-baslik { font-size: 13px; font-weight: 800; color: var(--soluk); text-transform: uppercase; letter-spacing: .6px; margin: 0 2px 10px; }
+.il-satir { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 18px; border: 1px solid var(--cizgi, rgba(20,27,52,.1)); background: rgba(255,255,255,.7); text-decoration: none; color: inherit; transition: transform .15s; }
+.il-satir:active { transform: scale(.98); }
+.il-metin { flex: 1; min-width: 0; display: grid; gap: 2px; }
+.il-metin b { font-size: 15.5px; font-weight: 800; }
+.il-metin small { color: var(--soluk); font-weight: 600; font-size: 12.5px; }
+.il-ok { color: var(--soluk); font-size: 22px; font-weight: 700; }
+.il-ikon { flex: none; width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center; background: #fff; }
+.il-ikon svg { width: 24px; height: 24px; }
+.il-ikon img { width: 100%; height: 100%; object-fit: contain; }
+.il-ikon.m { color: var(--mavi); } .il-ikon.t { background: #fff0e5; color: #e8731f; } .il-ikon.p { background: #ffe8ee; color: #e0436d; } .il-ikon.y { background: #fff6d6; color: #c99400; }
 .iletisim-konular { display: flex; flex-direction: column; gap: 10px; }
 .iletisim-konular .btn { text-decoration: none; text-align: center; }
 
@@ -1162,12 +1178,29 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
           <div class="ayar-gorunum" data-ayar-gorunum="iletisim" hidden>
             <div class="ayar-grup">
               <h3 class="ayar-grup-baslik">Bize yaz</h3>
-              <p class="iletisim-aciklama">Menüde yanlış bir bilgi mi gördün, bir önerin ya da sorunun mu var? E-posta ile ulaşabilirsin.</p>
-              <div class="iletisim-adres"><span id="iletisim-adres">iletisim@kampuscepte.com.tr</span><button type="button" class="btn kucuk" id="iletisim-kopyala">Kopyala</button></div>
+              <p class="iletisim-aciklama">Menüde yanlış bir bilgi mi gördün, bir önerin ya da sorunun mu var? Bize yaz, okuyup dönelim.</p>
+              <div class="il-posta">
+                <span class="il-ikon m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></span>
+                <div class="il-adres-metin"><small>E-posta adresimiz</small><b id="iletisim-adres">iletisim@kampuscepte.com.tr</b></div>
+                <button type="button" class="btn kucuk" id="iletisim-kopyala">Kopyala</button>
+              </div>
+              <div class="il-baslik">Ne hakkında yazacaksın?</div>
               <div class="iletisim-konular">
-                <a class="btn tam" href="mailto:iletisim@kampuscepte.com.tr?subject=Menü%20düzeltmesi">🍽️ Menü hatası bildir</a>
-                <a class="btn tam" href="mailto:iletisim@kampuscepte.com.tr?subject=Hata%20bildirimi">🐞 Hata bildir</a>
-                <a class="btn tam" href="mailto:iletisim@kampuscepte.com.tr?subject=Öneri">💡 Öneri gönder</a>
+                <a class="il-satir" href="mailto:iletisim@kampuscepte.com.tr?subject=Menü%20düzeltmesi">
+                  <span class="il-ikon t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1.5-3 4-3 7 0 1.5 1 2.5 3 2.5V21"/></svg></span>
+                  <span class="il-metin"><b>Menü hatası bildir</b><small>Yanlış ya da eksik yemek bilgisi</small></span>
+                  <span class="il-ok">›</span>
+                </a>
+                <a class="il-satir" href="mailto:iletisim@kampuscepte.com.tr?subject=Hata%20bildirimi">
+                  <span class="il-ikon p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="11" rx="4"/><path d="M12 8V5M9 5l1.5 1.5M15 5l-1.5 1.5M4 12h4M16 12h4M5 18l3-2M19 18l-3-2"/></svg></span>
+                  <span class="il-metin"><b>Hata bildir</b><small>Uygulamada çalışmayan bir şey</small></span>
+                  <span class="il-ok">›</span>
+                </a>
+                <a class="il-satir" href="mailto:iletisim@kampuscepte.com.tr?subject=Öneri">
+                  <span class="il-ikon y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span>
+                  <span class="il-metin"><b>Öneri gönder</b><small>Eklememizi istediğin bir şey</small></span>
+                  <span class="il-ok">›</span>
+                </a>
               </div>
               <p class="iletisim-not">E-posta uygulaması açılmazsa adresi kopyalayıp kendi e-posta uygulamandan yazabilirsin.</p>
             </div>
