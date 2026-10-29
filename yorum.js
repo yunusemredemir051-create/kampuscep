@@ -519,7 +519,6 @@ function panelCiz(el) {
     ? `<div class="dg-admin-serit">
         <span>👑 Yönetici: <b>${esc(ADMIN_EMAIL)}</b></span>
         <div style="display:flex;align-items:center">
-          <button type="button" class="dg-tum-btn" id="dg-tum-yemekler-btn">🍽️ Tüm Yemekler</button>
           <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
         </div>
        </div>`
@@ -735,22 +734,7 @@ function listeCiz(el) {
 }
 
 /* ---------- yemek fotoğrafları bulut senkronizasyonu ---------- */
-try {
-  onSnapshot(collection(db, "yemekFotolari"), s => {
-    s.docs.forEach(d => {
-      const data = d.data();
-      if (data && data.foto) {
-        window.KC_BULUT_FOTOLAR[d.id] = data.foto;
-      }
-    });
-    try {
-      localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
-    } catch (e) {}
-    window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
-  });
-} catch (e) {
-  console.warn("yemekFotolari dinleme hatası:", e);
-}
+/* Elle yüklenen bulut fotoğrafları kaldırıldı; fotoğraflar yalnızca sitenin kendi dosyalarından gelir. */
 
 const asciiYapici = s => String(s || "").toLocaleLowerCase("tr-TR").trim()
   .replace(/ş/g, "s").replace(/ı/g, "i").replace(/ğ/g, "g")
@@ -758,6 +742,7 @@ const asciiYapici = s => String(s || "").toLocaleLowerCase("tr-TR").trim()
   .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
 async function yukleYemekFoto(yemekAdi, base64Data, yer = "yurt") {
+  return false; // elle yükleme kapatıldı
   if (!isAdmin()) {
     alert("Yalnızca yönetici (yunusemredemir051@gmail.com) fotoğraf yükleyebilir.");
     return false;
