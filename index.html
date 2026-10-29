@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
 <meta name="theme-color" content="#eef3ff">
 <title>KampüsCepte – Elazığ öğrenci rehberi: ders notları, yemek menüsü, akademik takvim</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -359,10 +360,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
   .afis .ust-bilgi p { font-size: 12.5px; }
   .gorselli img { width: 104px; margin: -8px 0 -6px; }
 }
-@media (min-width: 821px) {
-  .afis { min-height: 240px; background: var(--afis-bg-masaustu, linear-gradient(180deg, #3765fe, #5b61fc)); }
-  .afis img { left: auto; width: auto; object-fit: contain; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%); mask-image: linear-gradient(90deg, transparent, #000 18%); }
-}
+/* Masaüstü düzeni: masaustu.css · Uygulama düzeni: uygulama.css */
 
 /* ================= HAREKET ================= */
 @keyframes kc-yuz { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-2deg); } }
@@ -768,6 +766,8 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
 
 </style>
 <link rel="stylesheet" href="/yeni.css?v=18">
+<link rel="stylesheet" href="/masaustu.css?v=1">
+<link rel="stylesheet" href="/uygulama.css?v=1">
 <!-- PWA -->
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="ikonlar/apple-touch-icon.png">
