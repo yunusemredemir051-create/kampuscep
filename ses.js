@@ -69,7 +69,7 @@
   }
   var N = { G4: 392, B4: 493.88, D5: 587.33, E5: 659.25, Fs5: 739.99, G5: 783.99, B5: 987.77, D6: 1174.66, E4: 329.63, A4: 440, A5: 880 };
   var SESLER = {
-    acilis: function () { pluck(N.G4, 0, 1.0, 0.2); pluck(N.B4, 0.12, 1.0, 0.18); pluck(N.D5, 0.24, 1.1, 0.18); cam(N.G5, 0.38, 1.6, 0.14); },
+    acilis: function () { pluck(N.D5, 0, 0.8, 0.07); pluck(N.G5, 0.16, 1.1, 0.06); },
     menu: function () { hisirti(0, 0.22, 0.06, 500, 2400); pluck(N.D5, 0.1, 0.5, 0.12); },
     kapat: function () { hisirti(0, 0.2, 0.08, 2200, 450); pluck(N.G4, 0.04, 0.4, 0.14); },
     basari: function () { cam(N.E5, 0, 0.7, 0.14); cam(N.B5, 0.11, 1.0, 0.13); },
