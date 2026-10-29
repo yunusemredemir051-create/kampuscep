@@ -604,7 +604,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .il-hero h2 { margin: 0 0 10px; font-size: 25px; line-height: 1.12; letter-spacing: -.8px; font-weight: 800; }
 .il-hero h2 em { font-style: normal; color: var(--mavi); }
 .il-hero p { margin: 0; color: var(--soluk); font-size: 13.5px; line-height: 1.5; font-weight: 600; }
-.il-cizim { flex: none; width: 132px; height: auto; margin-right: -8px; align-self: flex-start; }
+.il-cizim { flex: none; width: 128px; height: auto; margin-right: -6px; align-self: flex-start; filter: drop-shadow(0 10px 14px rgba(20,27,52,.18)); }
 .il-posta { padding: 16px; border-radius: 22px; background: rgba(255,255,255,.75); border: 1px solid var(--cizgi); margin-bottom: 22px; }
 .il-posta-ust { display: flex; align-items: center; gap: 12px; min-width: 0; }
 .il-posta-ust .il-ikon { flex: none; }
@@ -633,7 +633,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .il-ok svg { width: 20px; height: 20px; }
 .il-ikon { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: #fff; border: 1px solid var(--cizgi); }
 .il-ikon svg { width: 26px; height: 26px; }
-.il-ikon.m { color: var(--mavi); background: var(--mavi-acik); border-color: transparent; }
+.il-ikon.m { background: none; border: 0; }
 .il-ikon.g { background: none; border: 0; width: 48px; height: 48px; }
 .il-ikon img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 6px 8px rgba(20,27,52,.18)); }
 .il-not { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 20px; background: var(--yesil-acik); border: 1.5px solid #bfeedb; }
@@ -1206,21 +1206,12 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
                 <h2>Bize ulaşın, <em>birlikte daha iyi olalım</em></h2>
                 <p>Bir sorun mu var, bir hata mı fark ettin ya da KampüsCepte'yi daha iyi yapacak bir önerin mi var? Seni dinlemek isteriz.</p>
               </div>
-              <svg class="il-cizim" viewBox="0 0 150 120" aria-hidden="true">
-                <defs><linearGradient id="ilg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b7bff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient><linearGradient id="ilg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6fa0"/><stop offset="1" stop-color="#f2557f"/></linearGradient></defs>
-                <ellipse cx="78" cy="64" rx="64" ry="50" fill="currentColor" opacity=".08"/>
-                <path d="M28 30a10 10 0 0 1 10-10h46a10 10 0 0 1 10 10v28a10 10 0 0 1-10 10H52l-14 12V68a10 10 0 0 1-10-10z" fill="url(#ilg1)"/>
-                <circle cx="46" cy="44" r="4" fill="#fff"/><circle cx="61" cy="44" r="4" fill="#fff"/><circle cx="76" cy="44" r="4" fill="#fff"/>
-                <path d="M72 56a10 10 0 0 1 10-10h38a10 10 0 0 1 10 10v26a10 10 0 0 1-10 10h-2v12l-14-12H82a10 10 0 0 1-10-10z" fill="url(#ilg2)"/>
-                <circle cx="90" cy="69" r="4" fill="#fff"/><circle cx="104" cy="69" r="4" fill="#fff"/><circle cx="118" cy="69" r="4" fill="#fff"/>
-                <path d="M118 8l22 6-14 8-4 10-4-24z" fill="#5b7bff"/><path d="M110 30c-6-8-14-8-22-4" stroke="#8b9bff" stroke-width="1.6" stroke-dasharray="3 3" fill="none" stroke-linecap="round"/>
-                <path d="M138 44l6-6M141 52l8-2" stroke="#ff9f43" stroke-width="3" stroke-linecap="round"/>
-              </svg>
+              <img class="il-cizim" src="gorseller/ikon/iletisim-hero.webp" alt="" width="150" height="112">
             </section>
 
             <section class="il-posta">
               <div class="il-posta-ust">
-                <span class="il-ikon m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></span>
+                <span class="il-ikon m"><img src="gorseller/ikon/iletisim-eposta.webp" alt="" width="52" height="52"></span>
                 <div class="il-adres-metin"><small>E-posta desteği</small><b id="iletisim-adres">iletisim@kampuscepte.com.tr</b></div>
               </div>
               <p>Sorular, geri bildirimler ve diğer tüm konular için bize e-posta gönderebilirsin.</p>
