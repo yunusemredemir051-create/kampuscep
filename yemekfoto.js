@@ -1211,7 +1211,8 @@
 
   if (!window.KC_BULUT_FOTOLAR) {
     try {
-      window.KC_BULUT_FOTOLAR = JSON.parse(localStorage.getItem("kc-bulut-fotolar") || "{}");
+      localStorage.removeItem("kc-bulut-fotolar");
+      window.KC_BULUT_FOTOLAR = {};
     } catch (e) {
       window.KC_BULUT_FOTOLAR = {};
     }
@@ -1300,7 +1301,7 @@
   // Yurt ve Üniversite Evi tamamen ayrılmıştır!
   function fotoBul(ad, yer = "yurt") {
     if (!ad) return null;
-    const bulut = window.KC_BULUT_FOTOLAR || {};
+    const bulut = {}; // elle/bulut fotoğraflar kapatıldı: yalnızca sabit tablo (FOTOLAR) kullanılır
     const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
     const yerKodu = yer === "unievi" ? "unievi" : "yurt";
 
@@ -1532,7 +1533,7 @@
   }
 
   window.KC_YEMEK_PANEL = {
-    ac: tumYemeklerPaneliniAc,
+    ac: function () {},
     buyut: buyut
   };
 
@@ -1546,7 +1547,7 @@
     const [yer, tarih] = kimlik.split("_");
     const genel = yer === "unievi" ? "unievi" : "yurt";
 
-    const yoneticiMi = window.KC_ADMIN && window.KC_ADMIN.isAdmin && window.KC_ADMIN.isAdmin();
+    const yoneticiMi = false; // elle fotoğraf ekleme kaldırıldı
 
     // (Eski sabit "Tüm Yemekler" düğmesi kaldırıldı; panel Ayarlar > Yönetici bölümünden ve yorum panelinden açılır.)
     const eskiFab = document.getElementById("yf-admin-fab-btn"); if (eskiFab) eskiFab.remove();
