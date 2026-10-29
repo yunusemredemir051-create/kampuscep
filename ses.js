@@ -59,6 +59,14 @@
     o.type = "sine"; o.frequency.setValueAtTime(f * 1.5, z); o.frequency.exponentialRampToValueAtTime(f, z + 0.06);
     zarf(g, z, d, v, 0.004); o.connect(g); g.connect(ana); o.start(z); o.stop(z + d + 0.05);
   }
+  /* dokunma: kısa, yuvarlak, tok bir "tık" (klavye/cam tuş hissi); süre ~40 ms, çok düşük ses */
+  function tuk(yuk, v) {
+    var c = ctx, z = c.currentTime, o = c.createOscillator(), g = c.createGain(), f = c.createBiquadFilter();
+    o.type = "sine"; o.frequency.setValueAtTime(520 * yuk, z); o.frequency.exponentialRampToValueAtTime(300 * yuk, z + 0.04);
+    f.type = "lowpass"; f.frequency.value = 1800;
+    g.gain.setValueAtTime(0.0001, z); g.gain.linearRampToValueAtTime(0.3 * v, z + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, z + 0.05);
+    o.connect(f); f.connect(g); g.connect(ana); o.start(z); o.stop(z + 0.07);
+  }
   var N = { G4: 392, B4: 493.88, D5: 587.33, E5: 659.25, Fs5: 739.99, G5: 783.99, B5: 987.77, D6: 1174.66, E4: 329.63, A4: 440, A5: 880 };
   var SESLER = {
     acilis: function () { pluck(N.G4, 0, 1.0, 0.2); pluck(N.B4, 0.12, 1.0, 0.18); pluck(N.D5, 0.24, 1.1, 0.18); cam(N.G5, 0.38, 1.6, 0.14); },
@@ -67,8 +75,8 @@
     basari: function () { cam(N.E5, 0, 0.7, 0.14); cam(N.B5, 0.11, 1.0, 0.13); },
     hata: function () { vurus(165, 0, 0.35, 0.22); vurus(130, 0.15, 0.45, 0.2); },
     bilgi: function () { cam(N.A5, 0, 0.6, 0.2); },
-    sekme: function () { pluck(N.D6, 0, 0.12, 0.16); },
-    tik: function () { pluck(N.B5, 0, 0.09, 0.11); },
+    sekme: function () { tuk(1, 0.5); },
+    tik: function () { tuk(0.8, 0.4); },
     yildiz: function () { cam(N.G5, 0, 0.6, 0.12); cam(N.B5, 0.09, 0.6, 0.12); cam(N.D6, 0.18, 1.1, 0.13); },
     yenile: function () { hisirti(0, 0.35, 0.06, 400, 3000); pluck(N.E5, 0.28, 0.5, 0.1); }
   };
@@ -80,6 +88,7 @@
       if (!acik && !zorla) return; if (!hazir() || !SESLER[ad]) return;
       try { if (ctx.state !== "running") { ctx.resume().then(function () { SESLER[ad](); }); return; } SESLER[ad](); } catch (e) {}
     },
+    titret: function (ms) { if (acik && navigator.vibrate) try { navigator.vibrate(ms || 8); } catch (e) {} },
     acik: function (v) { if (v === undefined) return acik; acik = !!v; try { localStorage.setItem("kc-ses", acik ? "1" : "0"); } catch (e) {} return acik; },
     calisiyor: function () { var c = hazir(); return !!c && c.state === "running"; },
     adlar: Object.keys(SESLER),

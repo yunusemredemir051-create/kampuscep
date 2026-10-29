@@ -683,6 +683,11 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 #ayar-ses-satir[aria-checked="true"] .anahtar { background: var(--mavi); }
 #ayar-ses-satir[aria-checked="true"] .anahtar i { transform: translateX(18px); }
 
+/* dokunma geri bildirimi: bastığında hafifçe küçülür, bırakınca yaylanarak döner */
+button.sekme, .ayar-satir, .satir-kart, .btn, .pf-secim, .ayar-avatar-btn, .ayar-hero-btn, .pf-kaydet, .sheet-oge, .renk-dugme, .dil-chip { transition: transform .35s cubic-bezier(.34,1.56,.64,1), background-color .2s, box-shadow .2s; -webkit-tap-highlight-color: transparent; }
+button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-secim:active, .ayar-avatar-btn:active, .ayar-hero-btn:active, .pf-kaydet:active, .sheet-oge:active, .renk-dugme:active, .dil-chip:active { transform: scale(.965); transition-duration: .08s; }
+@media (prefers-reduced-motion: reduce) { button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active { transform: none; } }
+
 .ayar-surum-bilgi { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; }
 
 /* TOAST BİLDİRİM */
@@ -1761,7 +1766,7 @@ function geriSay() {
 <script src="cerez.js" defer></script>
 <script src="/yemekfoto.js?v=39"></script>
 <script src="/firebase-ayar.js"></script>
-<script src="/ses.js?v=6"></script>
+<script src="/ses.js?v=7"></script>
 <script src="/bildirim.js?v=1"></script>
 <script type="module" src="/yorum.js?v=16"></script>
 <script src="/dil.js?v=4"></script>
@@ -1837,8 +1842,8 @@ function geriSay() {
   ["pointerdown", "keydown"].forEach(function (o) { addEventListener(o, function f() { acilis(); removeEventListener(o, f, true); }, true); });
   document.addEventListener("click", function (e) {
     var t = e.target.closest && e.target.closest("button.sekme");
-    if (t) { KC_SES.cal("sekme"); return; }
-    if (e.target.closest && e.target.closest(".ayar-satir:not(#ayar-ses-satir), .renk-dugme, .dil-chip, .sheet-oge")) KC_SES.cal("tik");
+    if (t) { KC_SES.cal("sekme"); KC_SES.titret(8); return; }
+    if (e.target.closest && e.target.closest(".ayar-satir:not(#ayar-ses-satir), .renk-dugme, .dil-chip, .sheet-oge, .btn, .satir-kart, .pf-secim, .ayar-avatar-btn, .kb-btn, button.ogun, .kb-sekme")) { KC_SES.cal("tik"); KC_SES.titret(5); }
   }, true);
   var sat = document.getElementById("ayar-ses-satir");
   function guncelle() { var a = KC_SES.acik(); if (sat) { sat.setAttribute("aria-checked", a ? "true" : "false"); } var al = document.getElementById("ayar-ses-alt"); if (al) al.textContent = a ? "Açık" : "Kapalı"; }
