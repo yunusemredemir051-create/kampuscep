@@ -151,6 +151,10 @@ sub { font-size: .7em; }
 
 /* ===================== Prova / deneme ===================== */
 .pv-kartlar { display: grid; gap: 12px; margin-bottom: 22px; }
+.ls-sekme { margin: 4px 0 14px; }
+.ls-sekme button { display: flex; align-items: center; justify-content: center; gap: 7px; }
+.ls-sekme button i { font-style: normal; font-size: 11.5px; font-weight: 800; padding: 1px 7px; border-radius: 99px; background: rgba(20,27,52,.08); }
+.ls-sekme button.aktif i { background: rgba(255,255,255,.25); }
 .pv-kart { padding: 16px; display: grid; gap: 12px; }
 .pv-kart-ust { display: flex; gap: 14px; align-items: center; }
 .pv-ikon { width: 46px; height: 46px; border-radius: 14px; flex: none; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), var(--mor)); color: #fff; }
@@ -311,18 +315,30 @@ const anahtar = no => "kc-test:" + dersYolu + ":" + no;
 const soruSayisi = u => u.test ? TURLER.reduce((t, [k]) => t + (u.test[k] || []).length, 0) : 0;
 
 /* ===================== ÜNİTE LİSTESİ ===================== */
+let listeSekme = "unite";
 function listeCiz() {
   const toplam = ders.uniteler.reduce((t, u) => t + soruSayisi(u), 0);
+  const pv = (ders.provalar || []).length, dn = (ders.denemeler || []).length;
+  try { listeSekme = sessionStorage.getItem("kc-ls:" + dersYolu) || listeSekme; } catch (e) {}
+  if ((listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn)) listeSekme = "unite";
+  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
   let h = `
     <section class="ust-bilgi">
       <small>${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</small>
       <h1>${ders.ad}</h1>
       <p class="yazar">${ders.yazarlar}</p>
     </section>
-    <div class="ozet"><span>${ders.uniteler.length} ünite</span>${toplam ? `<span>${toplam} soru</span>` : ""}${(ders.provalar || []).length ? `<span>${ders.provalar.length} prova</span>` : ""}</div>
-    ${pvListeHtml()}
-    <div class="baslik">Üniteler</div>
-    <div class="uniteler">`;
+    <div class="ozet"><span>${ders.uniteler.length} ünite</span>${toplam ? `<span>${toplam} soru</span>` : ""}${pv ? `<span>${pv} prova</span>` : ""}</div>
+    ${sek.length > 1 ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
+  if (listeSekme === "prova") h += pvProvaHtml();
+  else if (listeSekme === "deneme") h += pvDenemeHtml();
+  else h += unitelerHtml();
+  h += `<div class="vitrin">Sponsorlu alan</div>`;
+  ICERIK.innerHTML = h;
+  ICERIK.querySelectorAll("[data-ls]").forEach(b => b.onclick = () => { listeSekme = b.dataset.ls; try { sessionStorage.setItem("kc-ls:" + dersYolu, listeSekme); } catch (e) {} listeCiz(); });
+}
+function unitelerHtml() {
+  let h = `<div class="baslik">Üniteler</div><div class="uniteler">`;
   ders.uniteler.forEach((u, i) => {
     const t = soruSayisi(u);
     const s = oku(anahtar(u.no));
@@ -340,10 +356,8 @@ function listeCiz() {
           ${t ? `<a class="btn ana" href="#test-${u.no}">${ikonTest}${cevap && cevap < t ? "Teste devam et" : "Kendini test et"}</a>` : ""}
         </div>
       </article>`;
-    if (i === 2) h += `<div class="vitrin">Sponsorlu alan</div>`;
   });
-  h += `</div><div class="vitrin">Sponsorlu alan</div>`;
-  ICERIK.innerHTML = h;
+  return h + `</div>`;
 }
 
 /* ===================== TEST ===================== */
@@ -594,28 +608,25 @@ function pvSorular(t) {
 const pvOnek = t => t.tur === "prova" ? "prova" : "deneme";
 
 /* Liste kartları */
-function pvListeHtml() {
-  const hepsi = [...(ders.provalar || []), ...(ders.denemeler || [])];
-  if (!hepsi.length) return "";
-  const kart = (x, tur, sinif) => {
-    const t = pvTanim(x.id), g = oku(pvGecmisK(x.id)) || [], dv = oku(pvDevam(x.id));
-    const en = g.length ? Math.max(...g.map(r => r.puan)) : null;
-    return `<a class="pv-kart cam" href="#${pvOnek(t)}-${x.id}" style="text-decoration:none;color:inherit">
-      <div class="pv-kart-ust"><span class="pv-ikon ${sinif}">${ikonSinav}</span>
-      <div style="min-width:0"><h3>${x.ad}${dv && !dv.bitti ? '<span class="pv-rozet" style="background:var(--turuncu-acik);color:#9a4a12">Devam ediyor</span>' : en !== null ? `<span class="pv-rozet">En iyi ${Math.round(en)}</span>` : ""}</h3>
-      <div class="meta">${x.konu} · ${t.adet} soru · ${t.sure} dk</div></div></div></a>`;
-  };
+function pvKart(x, sinif) {
+  const t = pvTanim(x.id), g = oku(pvGecmisK(x.id)) || [], dv = oku(pvDevam(x.id));
+  const en = g.length ? Math.max(...g.map(r => r.puan)) : null;
+  return `<a class="pv-kart cam" href="#${pvOnek(t)}-${x.id}" style="text-decoration:none;color:inherit">
+    <div class="pv-kart-ust"><span class="pv-ikon ${sinif}">${ikonSinav}</span>
+    <div style="min-width:0"><h3>${x.ad}${dv && !dv.bitti ? '<span class="pv-rozet" style="background:var(--turuncu-acik);color:#9a4a12">Devam ediyor</span>' : en !== null ? `<span class="pv-rozet">En iyi ${Math.round(en)}</span>` : ""}</h3>
+    <div class="meta">${x.konu} · ${t.adet} soru · ${t.sure} dk</div></div></div></a>`;
+}
+function pvProvaHtml() {
   let h = "";
   [["vize", "Vize provaları", "vize"], ["final", "Final provası", "final"]].forEach(([on, bas, sn]) => {
     const l = (ders.provalar || []).filter(x => x.id.startsWith(on));
-    if (l.length) h += `<div class="baslik">${bas}</div><div class="pv-kartlar">${l.map(x => kart(x, "prova", sn)).join("")}</div>`;
+    if (l.length) h += `<div class="baslik">${bas}</div><div class="pv-kartlar">${l.map(x => pvKart(x, sn)).join("")}</div>`;
   });
-  if ((ders.denemeler || []).length) {
-    h += `<div class="baslik" style="margin-top:22px">Karışık denemeler <small style="font-weight:600;color:var(--soluk)">her açılışta farklı sorular</small></div><div class="pv-kartlar">`;
-    ders.denemeler.forEach(x => h += kart(x, "deneme", "karma"));
-    h += `</div>`;
-  }
-  return h;
+  return h || '<div class="cam hata">Prova yok.</div>';
+}
+function pvDenemeHtml() {
+  const l = ders.denemeler || [];
+  return `<div class="baslik">Karışık denemeler <small style="font-weight:600;color:var(--soluk)">her açılışta farklı sorular</small></div><div class="pv-kartlar">${l.map(x => pvKart(x, "karma")).join("")}</div>`;
 }
 
 /* Giriş ekranı */
