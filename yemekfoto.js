@@ -654,7 +654,8 @@
       "yoğurt": "unievi-yogurt",
       "baklava": "unievi-baklava",
       "ayran": "unievi-ayran",
-      "nohutlu pirinç pilavı": "unievi-nohutlu-pirinc-pilavi"
+      "nohutlu pirinç pilavı": "unievi-nohutlu-pirinc-pilavi",
+      "et kavurma": "unievi-et-kavurma"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
     "yurt": {
