@@ -35,6 +35,7 @@
   window.KC_SES = {
     cal: function (ad, zorla) { if (!acik && !zorla) return; if (!hazir() || !SESLER[ad]) return; try { SESLER[ad](); } catch (e) {} },
     acik: function (v) { if (v === undefined) return acik; acik = !!v; try { localStorage.setItem("kc-ses", acik ? "1" : "0"); } catch (e) {} return acik; },
+    calisiyor: function () { var c = hazir(); return !!c && c.state === "running"; },
     adlar: Object.keys(SESLER)
   };
 })();
