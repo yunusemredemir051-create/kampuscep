@@ -1431,7 +1431,7 @@ function aylikMenuAc(yurtId, secOgun) {
           if (!liste || !liste.length) return '<div class="aylik-bos">Menü yok</div>';
           return liste.map(y => {
             const parcalar = (window.KC_FOTO ? KC_FOTO.ayir(y) : [y]);
-            const resimler = window.KC_FOTO ? parcalar.map(p => [p, KC_FOTO.bul(p, "yurt")]).filter(x => x[1]) : [];
+            const resimler = window.KC_FOTO ? parcalar.flatMap(p => (KC_FOTO.hepsi(p, "yurt") || []).map(f => [p, f])) : [];
             const kucukler = resimler.slice(0, 3).map(x => `<img loading="lazy" src="${KC_FOTO.src(x[1])}" alt="">`).join("");
             return `<div class="aylik-yemek">${kucukler ? `<span class="aylik-resim n${Math.min(resimler.length,3)}">${kucukler}</span>` : '<span class="aylik-nokta"></span>'}<span class="aylik-ad">${parcalar.join("<br>")}</span></div>`;
           }).join("");
@@ -1476,7 +1476,7 @@ function uniEviHaftaAc() {
       if (uniEviMenuleri[k]) {
         govde = uniEviMenuleri[k].map(y => {
           const parcalar = window.KC_FOTO ? KC_FOTO.ayir(y) : [y];
-          const resimler = window.KC_FOTO ? parcalar.map(p => [p, KC_FOTO.bul(p, "unievi")]).filter(x => x[1]) : [];
+          const resimler = window.KC_FOTO ? parcalar.flatMap(p => (KC_FOTO.hepsi(p, "unievi") || []).map(f => [p, f])) : [];
           const kucukler = resimler.slice(0, 3).map(x => `<img loading="lazy" src="${KC_FOTO.src(x[1])}" alt="">`).join("");
           return `<div class="aylik-yemek">${kucukler ? `<span class="aylik-resim n${Math.min(resimler.length,3)}">${kucukler}</span>` : '<span class="aylik-nokta"></span>'}<span class="aylik-ad">${parcalar.join("<br>")}</span></div>`;
         }).join("");
@@ -1603,7 +1603,7 @@ function geriSay() {
 }
 </script>
 <script src="cerez.js" defer></script>
-<script src="/yemekfoto.js?v=30"></script>
+<script src="/yemekfoto.js?v=31"></script>
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=15"></script>
 <script src="/dil.js?v=4"></script>
