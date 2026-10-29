@@ -903,6 +903,11 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
       <div id="bolum-gorunum">
         <div class="ust-bilgi gorselli"><div><small>Bölümünü seç</small><h1>Ders notları</h1></div><img src="gorseller/ders-notlari.webp" alt="" loading="lazy"></div>
         <div class="liste">
+          <button class="satir-kart cam" onclick="ortakAc()">
+            <span class="ik r">ORT</span>
+            <div class="orta"><b>Ortak dersler</b><small>Tüm bölümler · İnkılap Tarihi, İngilizce, Türk Dili</small></div>
+            <span class="rozet acik">Açık</span>
+          </button>
           <button class="satir-kart cam" onclick="bolumAc()">
             <span class="ik m">YBS</span>
             <div class="orta"><b>Yönetim Bilişim Sistemleri</b><small>1, 2, 3 ve 4. sınıf · ders programı ve notlar</small></div>
@@ -929,6 +934,28 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
           <div class="orta"><b>Tüm konu özetleri</b><small>Bütün derslerin ünite ünite özetleri tek sayfada</small></div>
           <span class="ok">›</span>
         </a>
+      </div>
+
+      <div id="ortak-gorunum" style="display:none">
+        <button class="geri" onclick="bolumKapat()">‹ Tüm bölümler</button>
+        <div class="ust-bilgi"><div><small>Bütün bölümlerin ortak dersleri</small><h1>Ortak dersler</h1></div></div>
+        <div class="liste">
+          <a class="satir-kart cam" href="ders.html?d=ortak/inkilap-tarihi-1">
+            <span class="ik m">A</span>
+            <div class="orta"><b>Atatürk İlkeleri ve İnkılap Tarihi I</b><small>14 bölüm · özetler, soru çözümü, vize ve final provaları</small></div>
+            <span class="rozet acik">Notlar</span>
+          </a>
+          <div class="satir-kart cam pasif">
+            <span class="ik t">E</span>
+            <div class="orta"><b>Yabancı Dil (İngilizce)</b><small>Yakında</small></div>
+            <span class="rozet yakinda">Yakında</span>
+          </div>
+          <div class="satir-kart cam pasif">
+            <span class="ik y">T</span>
+            <div class="orta"><b>Türk Dili</b><small>Yakında</small></div>
+            <span class="rozet yakinda">Yakında</span>
+          </div>
+        </div>
       </div>
 
       <div id="sinif-gorunum" style="display:none">
@@ -1159,7 +1186,7 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
   </main>
 </div>
 
-<script src="veri.js?v=17"></script>
+<script src="veri.js?v=18"></script>
 <script>
 /* =====================================================================
    TARİH YARDIMCILARI
@@ -1681,7 +1708,13 @@ function yurtListeyeDon() {
 /* =====================================================================
    DERS NOTLARI
    ===================================================================== */
+function ortakAc() {
+  document.getElementById("bolum-gorunum").style.display = "none";
+  document.getElementById("ortak-gorunum").style.display = "block";
+  window.scrollTo({ top: 0 });
+}
 function bolumAc() {
+  document.getElementById("ortak-gorunum").style.display = "none";
   document.getElementById("bolum-gorunum").style.display = "none";
   document.getElementById("sinif-gorunum").style.display = "block";
   sinifSec(hafizaOku("secilenSinif") || "1");
@@ -1690,6 +1723,7 @@ function bolumAc() {
 function bolumKapat() {
   document.getElementById("bolum-gorunum").style.display = "block";
   document.getElementById("sinif-gorunum").style.display = "none";
+  document.getElementById("ortak-gorunum").style.display = "none";
 }
 function sinifSec(s) {
   hafizaYaz("secilenSinif", s);
@@ -1717,6 +1751,7 @@ function adresiAc() {
   const h = location.hash.slice(1);
   if (h === "admin") return; // Yönetici girişi kontrolü, sekmeyi değiştirme
 
+  if (h === "ortak") { sayfaAc("notlar"); ortakAc(); return; }
   const m = h.match(/^ybs-([1-4])$/);
   if (m) {
     sayfaAc("notlar");
@@ -1786,7 +1821,7 @@ function geriSay() {
 <script src="/ses.js?v=8"></script>
 <script src="/bildirim.js?v=1"></script>
 <script type="module" src="/yorum.js?v=17"></script>
-<script src="/dil.js?v=5"></script>
+<script src="/dil.js?v=6"></script>
 <script src="/ayarlar.js?v=13"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=3"></script>
@@ -1832,6 +1867,8 @@ function geriSay() {
     if (yd && yd.style.display === "block" && gorunur(yd)) { yurtListeyeDon(); window.scrollTo({ top: 0 }); return true; }
     var sg = document.getElementById("sinif-gorunum");
     if (sg && sg.style.display === "block" && gorunur(sg)) { bolumKapat(); return true; }
+    var og = document.getElementById("ortak-gorunum");
+    if (og && og.style.display === "block" && gorunur(og)) { bolumKapat(); return true; }
     var aktif = document.querySelector(".sayfa.aktif");
     if (aktif && aktif.id !== "ana") { sayfaAc("ana"); return true; }
     return false;

@@ -1,0 +1,2857 @@
+{
+"1": [
+{
+"s": "Aşağıdakilerden hangisi bir yeniliğin inkılap sayılabilmesi için gereken şartlardan biri değildir?",
+"o": [
+"Kökten bir değişiklik olması",
+"Toplumun geniş kesimlerince benimsenmesi",
+"Çağdaş olması",
+"Zor kullanılarak yapılması",
+"İleriye dönük olması"
+],
+"c": 3,
+"a": "Zor kullanma ihtilalin özelliğidir; inkılap devlet eliyle, makul ve ölçülü metotlarla yapılır."
+},
+{
+"s": "Bir devlet, işlemeyen bir kurumunu kaldırmadan, mevcut sistemin içinde kalarak yeniden düzenliyor. Bu değişiklik en doğru hangi kavramla ifade edilir?",
+"o": [
+"İnkılap",
+"İhtilal",
+"Islahat",
+"Devrim",
+"İsyan"
+],
+"c": 2,
+"a": "Köklü olmayan, sistem içi düzenleme ıslahattır."
+},
+{
+"s": "İnkılap ile ihtilal arasındaki temel fark aşağıdakilerden hangisidir?",
+"o": [
+"İnkılap zora dayanır, ihtilal barışçıldır.",
+"İnkılap gelişmeye yöneliktir, ihtilal mevcut düzeni ortadan kaldırmaya yöneliktir.",
+"İnkılap halk tarafından, ihtilal devlet tarafından yapılır.",
+"İnkılap geçicidir, ihtilal kalıcıdır.",
+"İkisi arasında hiçbir fark yoktur."
+],
+"c": 1
+},
+{
+"s": "“Kendi kimliğini koruyarak Batı medeniyetinin unsurlarından faydalanma” anlayışı aşağıdaki kavramlardan hangisini açıklar?",
+"o": [
+"İhtilal",
+"Batılılaşma",
+"İsyan",
+"Ekberiyet",
+"İltizam"
+],
+"c": 1
+},
+{
+"s": "Aşağıdakilerden hangisi “devrim” kavramı için söylenemez?",
+"o": [
+"Günümüzde inkılabın karşılığı olarak da kullanılır.",
+"Dar anlamda zora dayalı bir değişimi anlatabilir.",
+"İhtilal yerine de kullanılabilir.",
+"Türk inkılabı “Türk devrimi” olarak da adlandırılır.",
+"Her zaman hukuki çerçeveye ve gönüllülüğe dayanır."
+],
+"c": 4,
+"a": "Devrim her zaman gönüllülüğe ve hukuki çerçeveye dayanmaz; bu yönüyle ihtilale yakındır."
+},
+{
+"s": "Osmanlı Devleti’nde Batılılaşma çabaları hangi dönemden itibaren başlamıştır?",
+"o": [
+"Kuruluş",
+"Yükselme",
+"Duraklama ve gerileme",
+"Cumhuriyet",
+"Beylikler"
+],
+"c": 2,
+"a": "Osmanlı, duraklama ve gerileme dönemlerinden itibaren Avrupa’yı model alan ıslahatlara girişmiştir."
+},
+{
+"s": "“İnkılap” kelimesi Arapça “çevirmek, döndürmek” anlamındaki …… kökünden gelir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"nakil",
+"inkâr",
+"kalb",
+"kalem",
+"hareket"
+],
+"c": 2
+},
+{
+"s": "Bir ihtilalin ilk aşaması ……dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"ıslahat",
+"reform",
+"inkılap",
+"isyan",
+"muasırlaşma"
+],
+"c": 3
+},
+{
+"s": "Batı dillerindeki “reform” kelimesinin karşılığı ……tır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"ihtilal",
+"inkılap",
+"ıslahat",
+"devrim",
+"isyan"
+],
+"c": 2
+},
+{
+"s": "Geriye dönük olarak yapılan köklü değişiklikler, …… olma şartını taşımadıkları için inkılap sayılmaz. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"köklü",
+"çağdaş",
+"yerli",
+"kalıcı",
+"devlet eliyle yapılmış"
+],
+"c": 1
+},
+{
+"s": "Modernleşme kavramı “çağa uygunluk” anlamında …… olarak da ifade edilir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"ıslahat",
+"Batıcılık",
+"inkılap",
+"muasırlaşma",
+"ihtilal"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"İhtilal, ülke kanunlarını dikkate almadan zor kullanılarak yapılan geniş çaplı bir harekettir.",
+"İnkılap, devletin aksayan kurumları karşısında bir ihtiyaçtan doğar.",
+"Islahat, inkılapta olduğu gibi kökten bir değişiklik içerir.",
+"Başarısız olan bir isyan, kalkışma olarak kalır ve ihtilale dönüşmez.",
+"Batılılaşma kimliği koruyarak Batı medeniyetinin unsurlarından faydalanmaktır."
+],
+"c": 2,
+"a": "Islahat mevcut sistemin içinde düzeltme yapar; kökten değişiklik içermez."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Başarısız olan bir isyan, kalkışma olarak kalır ve ihtilale dönüşmez.",
+"Batılılaşma, Batılıların örf, âdet ve geleneklerini her yönüyle benimsemek demektir.",
+"Islahat mevcut sistemin içinde düzeltme yapar; kökten değişiklik içermez.",
+"Osmanlı ıslahatları Türk inkılabına zemin hazırlamış, Cumhuriyet’in alt yapısını oluşturmuştur.",
+"İhtilal, ülke kanunlarını dikkate almadan zor kullanılarak yapılan geniş çaplı bir harekettir."
+],
+"c": 1,
+"a": "Batılılaşma kimliği koruyarak Batı medeniyetinin unsurlarından faydalanmaktır."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"İnkılap, devletin aksayan kurumları karşısında bir ihtiyaçtan doğar.",
+"Osmanlı ıslahatlarının Türk inkılabıyla hiçbir bağlantısı yoktur.",
+"Başarısız olan bir isyan, kalkışma olarak kalır ve ihtilale dönüşmez.",
+"Islahat mevcut sistemin içinde düzeltme yapar; kökten değişiklik içermez.",
+"Batılılaşma kimliği koruyarak Batı medeniyetinin unsurlarından faydalanmaktır."
+],
+"c": 1,
+"a": "Osmanlı ıslahatları Türk inkılabına zemin hazırlamış, Cumhuriyet’in alt yapısını oluşturmuştur."
+}
+],
+"2": [
+{
+"s": "Aşağıdakilerden hangisi Osmanlı Devleti’nin yıkılışının iç nedenlerinden biri değildir?",
+"o": [
+"Mülki idarenin bozulması",
+"Toprak sisteminin bozulması",
+"Coğrafi Keşifler",
+"Medreselerin bozulması",
+"Askerî teşkilatın bozulması"
+],
+"c": 2,
+"a": "Coğrafi Keşifler Osmanlı’nın kontrolü dışında gelişen bir dış nedendir."
+},
+{
+"s": "I. Ahmet döneminde ekberiyet sistemine geçilmesinin olumsuz sonucu aşağıdakilerden hangisidir?",
+"o": [
+"Taht kavgalarının artması",
+"Kardeş katlinin yaygınlaşması",
+"Tahta geçmede yalnızca yaşın belirleyici olması nedeniyle liyakatin göz ardı edilmesi",
+"Şehzadelerin sancaklara gönderilmeye başlanması",
+"Yeniçerilerin kaldırılması"
+],
+"c": 2,
+"a": "Sistem taht kavgalarını önlemiş, ama yaşı tek ölçüt yaptığı için liyakati engellemiştir."
+},
+{
+"s": "Şehzadelerin sancaklara gönderilmesi uygulamasının kaldırılması, en çok aşağıdakilerden hangisine yol açmıştır?",
+"o": [
+"Deneyimsiz padişahların tahta çıkmasına",
+"Kapitülasyonların genişlemesine",
+"Tımar sisteminin güçlenmesine",
+"Medreselerin gelişmesine",
+"Donanmanın güçlenmesine"
+],
+"c": 0,
+"a": "Sarayda yetişen şehzadeler devlet yönetimini öğrenemeden tahta çıkmıştır."
+},
+{
+"s": "İltizam usulü için aşağıdakilerden hangisi yanlıştır?",
+"o": [
+"Vergi geliri peşin para karşılığında satılırdı.",
+"Geçici olarak düşünülmüştü.",
+"Mültezimlerin köylüyü sömürmesine yol açtı.",
+"Tımarlı sipahi sayısını artırarak orduyu güçlendirdi.",
+"Artan devlet giderleri karşısında başvurulan bir çareydi."
+],
+"c": 3,
+"a": "İltizam toprak sistemini bozmuş, tımarlı sipahileri ve dolayısıyla orduyu zayıflatmıştır."
+},
+{
+"s": "Osmanlı toprak sisteminin iki temel dinamiği aşağıdakilerden hangisinde birlikte verilmiştir?",
+"o": [
+"Eğitim – hukuk",
+"Ekonomi – askeriye",
+"Ticaret – denizcilik",
+"Din – kültür",
+"Sanayi – teknoloji"
+],
+"c": 1,
+"a": "Tımar sistemi hem tarımsal üretimi hem de savaşta hazır askeri sağlıyordu."
+},
+{
+"s": "Aşağıdakilerden hangisi Osmanlı ekonomisinin bozulma nedenleri arasında sayılamaz?",
+"o": [
+"Kapitülasyonların Osmanlı aleyhine işlemesi",
+"Sanayi İnkılabı’na ayak uydurulamaması",
+"Ticaret yollarının değişmesi",
+"Savaşların büyük masraflara yol açması",
+"Tımar sisteminin güçlenmesi"
+],
+"c": 4,
+"a": "Tımar sistemi bu dönemde güçlenmemiş, tersine bozulmuştur."
+},
+{
+"s": "1838 Osmanlı–İngiliz Ticaret Antlaşması (Balta Limanı) ile ilgili aşağıdakilerden hangisi doğrudur?",
+"o": [
+"Kapitülasyonları tamamen kaldırmıştır.",
+"Osmanlı’yı Avrupa malları için açık bir pazar hâline getirmiştir.",
+"Yalnızca Fransa’ya ayrıcalık tanımıştır.",
+"Tımar sistemini yeniden kurmuştur.",
+"Osmanlı sanayisini korumuştur."
+],
+"c": 1
+},
+{
+"s": "Fransız İhtilali’nin yaydığı fikirlerden Osmanlı’nın çok uluslu yapısını en çok etkileyen hangisidir?",
+"o": [
+"Liberalizm",
+"Milliyetçilik",
+"Kapitalizm",
+"Sosyalizm",
+"Laiklik"
+],
+"c": 1,
+"a": "Milliyetçilik, farklı milletlerin bağımsızlık isyanlarını tetiklemiştir."
+},
+{
+"s": "I. Ahmet döneminde getirilen ve tahta hanedanın en büyük erkek üyesinin geçmesini öngören sisteme …… sistemi denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"ekber-erşed",
+"kafes",
+"ekberiyet",
+"iltizam",
+"veraset"
+],
+"c": 2
+},
+{
+"s": "Toprağın mülkiyetinin devlete ait olduğu Osmanlı toprak düzenine …… arazi denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"mülk",
+"mîrî",
+"vakıf",
+"has",
+"zeamet"
+],
+"c": 1
+},
+{
+"s": "Bir bölgenin vergi gelirinin belirli bir süre için peşin para karşılığında satıldığı usule …… denir; bu geliri satın alan kişiye …… denir. Yukarıdaki cümlede boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"iltizam; mültezim",
+"tımar; sipahi",
+"müsadere; mutasarrıf",
+"malikâne; ayan",
+"has; vezir"
+],
+"c": 0
+},
+{
+"s": "Müderrisliğin babadan oğula geçen bir meslek hâline gelmesine …… ulemalığı denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"beşik",
+"saray",
+"kafes",
+"ilmiye",
+"seyfiye"
+],
+"c": 0
+},
+{
+"s": "Osmanlı kara ordusu Yeniçeri Ocağı (Kapıkulu) ve …… olmak üzere iki kısımdan oluşuyordu. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"tımarlı sipahiler",
+"Nizam-ı Cedit Ordusu",
+"Asakir-i Mansure",
+"Sekban-ı Cedit",
+"Kuva-yı Milliye"
+],
+"c": 0
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Çok uluslu yapısı nedeniyle milliyetçilik akımlarından en çok etkilenen devletlerden biridir.",
+"Ekberiyet sistemi taht kavgalarını önlemiş, ancak liyakatli hükümdarların tahta çıkmasını zorlaştırmıştır.",
+"Osmanlı’da 16. yüzyılda görülen enflasyonun en önemli sebebi, Avrupa’dan gelen gümüşün piyasada para bolluğuna yol açmasıdır.",
+"Şehzadelerin sancaklara gönderilmesi uygulaması Osmanlı’nın son dönemine kadar devam etmiştir.",
+"Medreseler 18 ve 19. yüzyıllarda pozitif bilimleri dışlayarak yalnızca dinî ilimlerin okutulduğu kurumlara dönüşmüştür."
+],
+"c": 3,
+"a": "17. yüzyılın başlarında kaldırılmış; şehzadeler sarayda tutulmuştur."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Toprak sisteminin bozulması yalnızca ekonomiyi etkilemiş, orduya bir etkisi olmamıştır.",
+"17. yüzyılın başlarında kaldırılmış; şehzadeler sarayda tutulmuştur.",
+"Çok uluslu yapısı nedeniyle milliyetçilik akımlarından en çok etkilenen devletlerden biridir.",
+"Ekberiyet sistemi taht kavgalarını önlemiş, ancak liyakatli hükümdarların tahta çıkmasını zorlaştırmıştır.",
+"Osmanlı’da 16. yüzyılda görülen enflasyonun en önemli sebebi, Avrupa’dan gelen gümüşün piyasada para bolluğuna yol açmasıdır."
+],
+"c": 0,
+"a": "Tımarlı sipahiler toprak sistemine dayandığı için ordu da zayıflamıştır."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Osmanlı’da 16. yüzyılda görülen enflasyonun en önemli sebebi, Avrupa’dan gelen gümüşün piyasada para bolluğuna yol açmasıdır.",
+"Medreseler 18 ve 19. yüzyıllarda pozitif bilimleri dışlayarak yalnızca dinî ilimlerin okutulduğu kurumlara dönüşmüştür.",
+"Osmanlı Devleti tek uluslu bir yapıya sahip olduğu için milliyetçilik akımlarından etkilenmemiştir.",
+"17. yüzyılın başlarında kaldırılmış; şehzadeler sarayda tutulmuştur.",
+"Tımarlı sipahiler toprak sistemine dayandığı için ordu da zayıflamıştır."
+],
+"c": 2,
+"a": "Çok uluslu yapısı nedeniyle milliyetçilik akımlarından en çok etkilenen devletlerden biridir."
+}
+],
+"3": [
+{
+"s": "Aşağıdakilerden hangisi Coğrafi Keşiflerin Osmanlı Devleti’ne etkilerinden biridir?",
+"o": [
+"Osmanlı’nın sömürge yarışına katılması",
+"İpek ve Baharat yollarının önemini yitirmesiyle ticari gelirlerin azalması",
+"Kapitülasyonların kaldırılması",
+"Osmanlı’da sanayinin gelişmesi",
+"Kilisenin etkinliğinin azalması"
+],
+"c": 1,
+"a": "Yeni deniz yolları bulununca Osmanlı’nın elindeki kara ticaret yolları önemini yitirdi."
+},
+{
+"s": "Fransız İhtilali’nin yaydığı fikirlerden hangisi Osmanlı Devleti’nin dağılma sürecini en çok hızlandırmıştır?",
+"o": [
+"Liberalizm",
+"Laiklik",
+"Milliyetçilik",
+"Eşitlik",
+"Mülkiyet hakkı"
+],
+"c": 2,
+"a": "Milliyetçilik çok uluslu Osmanlı’da azınlık isyanlarını başlatmıştır."
+},
+{
+"s": "1877–78 Osmanlı-Rus Savaşı’ndan sonra İngiltere’nin Osmanlı politikasındaki değişikliğin somut göstergesi aşağıdakilerden hangisidir?",
+"o": [
+"Bağdat Demiryolu’nu yapması",
+"Kıbrıs ve Mısır’ı işgal etmesi",
+"Küçük Kaynarca Antlaşması’nı imzalaması",
+"Panslavizmi desteklemesi",
+"Trablusgarp’a saldırması"
+],
+"c": 1,
+"a": "İngiltere toprak bütünlüğünü koruma politikasını bırakıp Kıbrıs’ı ve Mısır’ı işgal etmiştir."
+},
+{
+"s": "“Sıcak denizlere inmek” ve “Boğazlara hâkim olmak” aşağıdaki devletlerden hangisinin temel dış politika hedefidir?",
+"o": [
+"Almanya",
+"Fransa",
+"Rusya",
+"İtalya",
+"İngiltere"
+],
+"c": 2
+},
+{
+"s": "Aşağıdaki eşleştirmelerden hangisi yanlıştır?",
+"o": [
+"Fransa – Cezayir’in işgali",
+"Avusturya – Bosna-Hersek",
+"İtalya – Trablusgarp",
+"Rusya – Bağdat Demiryolu",
+"İngiltere – Kıbrıs"
+],
+"c": 3,
+"a": "Bağdat Demiryolu Almanya’nın projesidir."
+},
+{
+"s": "Kapitülasyonlarla ilgili aşağıdakilerden hangisi söylenemez?",
+"o": [
+"İlk olarak Fransızlara verilmiştir.",
+"1740’ta sürekli hâle getirilmiştir.",
+"Osmanlı sanayisinin gerilemesine yol açmıştır.",
+"Zamanla diğer Avrupa devletlerine de tanınmıştır.",
+"Osmanlı yöneticileri tarafından 19. yüzyılda kolayca kaldırılmıştır."
+],
+"c": 4,
+"a": "Osmanlı yöneticileri kaldırmak istediyse de büyük devletlerin baskısı yüzünden başaramamıştır."
+},
+{
+"s": "Fransız tüccarlara ilk kapitülasyonlar …… döneminde, 1535’te verilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Kanuni",
+"Yavuz Sultan Selim",
+"III. Ahmet",
+"I. Mahmut",
+"Fatih Sultan Mehmet"
+],
+"c": 0
+},
+{
+"s": "Kapitülasyonlar 1740’ta …… döneminde sürekli hâle getirilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"III. Selim",
+"II. Mahmut",
+"Kanuni",
+"I. Mahmut",
+"III. Ahmet"
+],
+"c": 3
+},
+{
+"s": "Ekonomik, coğrafi, siyasi ve kültürel unsurların bir ülkenin dış politikasına etkisini inceleyen bilim dalına …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"jeopolitik",
+"etnografya",
+"demografi",
+"ekonomi politik",
+"kartografya"
+],
+"c": 0
+},
+{
+"s": "Rusya, 1774 …… Antlaşması ile Osmanlı’daki Ortodoksların hamiliğini almıştır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Karlofça",
+"Pasarofça",
+"Berlin",
+"Küçük Kaynarca",
+"Paris"
+],
+"c": 3
+},
+{
+"s": "Almanya’nın Osmanlı’ya yatırım yaptığı ve Türk-Alman yakınlaşmasını sağlayan en önemli proje …… Demiryolu’dur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Hicaz",
+"Rumeli",
+"İzmir–Aydın",
+"Mudanya–Bursa",
+"Bağdat"
+],
+"c": 4
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"İngiltere, 1877–78 Osmanlı-Rus Savaşı’na kadar Osmanlı’nın toprak bütünlüğünü korumaya çalışmıştır.",
+"Fransız İhtilali’nin yaydığı milliyetçilik fikri, tek uluslu devletleri çok uluslu devletlerden daha fazla etkilemiştir.",
+"Almanya’nın Osmanlı ile doğrudan sınırı olmadığı için Osmanlı topraklarını ele geçirmek gibi bir politikası yoktu.",
+"Sanayi İnkılabı ile ucuzlayan Avrupa malları, kapitülasyonlar sayesinde Osmanlı sanayisini çökertmiştir.",
+"Reform ile kilisenin etkinliği azalmış, bilimin önündeki engeller kalkmıştır."
+],
+"c": 1,
+"a": "Milliyetçilikten en çok çok uluslu imparatorluklar (Osmanlı, Avusturya-Macaristan) etkilenmiştir."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Almanya’nın Osmanlı ile doğrudan sınırı olmadığı için Osmanlı topraklarını ele geçirmek gibi bir politikası yoktu.",
+"Reform hareketleriyle kilisenin etkinliği artmıştır.",
+"Sanayi İnkılabı ile ucuzlayan Avrupa malları, kapitülasyonlar sayesinde Osmanlı sanayisini çökertmiştir.",
+"Milliyetçilikten en çok çok uluslu imparatorluklar (Osmanlı, Avusturya-Macaristan) etkilenmiştir.",
+"İngiltere, 1877–78 Osmanlı-Rus Savaşı’na kadar Osmanlı’nın toprak bütünlüğünü korumaya çalışmıştır."
+],
+"c": 1,
+"a": "Reform ile kilisenin etkinliği azalmış, bilimin önündeki engeller kalkmıştır."
+}
+],
+"4": [
+{
+"s": "Osmanlı’da ıslahatların ilk kez bir plan dâhilinde yapılmaya çalışıldığı dönem hangisidir?",
+"o": [
+"Lale Devri",
+"I. Mahmut",
+"III. Selim",
+"II. Mahmut",
+"Abdülmecid"
+],
+"c": 2,
+"a": "Nizam-ı Cedit, Meşveret Meclisi’nin layihalarına dayanan ilk planlı programdır."
+},
+{
+"s": "Padişahın yetkilerini ilk kez sınırlayan belge olarak kabul edilen hangisidir?",
+"o": [
+"Tanzimat Fermanı",
+"Sened-i İttifak",
+"Islahat Fermanı",
+"Kanun-ı Esasi",
+"Nizam-ı Cedit"
+],
+"c": 1,
+"a": "1808 Sened-i İttifak ile ayanlar resmî güç kazanmış, padişahın yetkisi ilk kez sınırlanmıştır."
+},
+{
+"s": "Aşağıdakilerden hangisi II. Mahmut döneminde yapılan yeniliklerden değildir?",
+"o": [
+"Takvim-i Vekayi’nin çıkarılması",
+"Tıbhane-i Âmire’nin açılması",
+"Muhtarlıkların kurulması",
+"İlk Türk matbaasının kurulması",
+"Mekteb-i Harbiye’nin açılması"
+],
+"c": 3,
+"a": "İlk Türk matbaası 1727’de, Lale Devri’nde kurulmuştur."
+},
+{
+"s": "Tanzimat Fermanı’nın en önemli özelliği aşağıdakilerden hangisidir?",
+"o": [
+"Meclisin açılmasını sağlaması",
+"Padişahın kendi yetkilerini ilk kez kendi isteğiyle sınırlaması",
+"Yeniçeri Ocağı’nı kaldırması",
+"Kapitülasyonları sona erdirmesi",
+"Gayrimüslimlere bedelli askerlik getirmesi"
+],
+"c": 1
+},
+{
+"s": "Islahat Fermanı’nın Müslüman halk tarafından hoş karşılanmamasının temel sebebi nedir?",
+"o": [
+"İltizamı kaldırması",
+"Bütçe yapılmasını öngörmesi",
+"Gayrimüslimler lehine hükümler içermesi",
+"Askerliği kaldırması",
+"Kanun-ı Esasi’yi yürürlüğe koyması"
+],
+"c": 2
+},
+{
+"s": "Osmanlı ıslahatlarının başarısız olmasının nedenleri arasında aşağıdakilerden hangisi yoktur?",
+"o": [
+"Toplumun ihtiyaçlarına göre yapılmaması",
+"Kökten değişiklik içermemesi",
+"Bilinçli kadrolar tarafından yürütülmemesi",
+"Kişilere bağlı kalması",
+"Halkın tamamının ıslahatları desteklemesi"
+],
+"c": 4
+},
+{
+"s": "İlk Türk matbaası 1727’de Said Efendi ve …… tarafından kurulmuştur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Yirmisekiz Mehmet Çelebi",
+"Nevşehirli Damat İbrahim Paşa",
+"Katip Çelebi",
+"İbrahim Müteferrika",
+"Ahmet Cevdet Paşa"
+],
+"c": 3
+},
+{
+"s": "III. Selim’in planlı ıslahat programına …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Nizam-ı Cedit",
+"Sened-i İttifak",
+"Vaka-i Hayriye",
+"Tanzimat",
+"Lale Devri"
+],
+"c": 0
+},
+{
+"s": "1826’da Yeniçeri Ocağı’nın kaldırılmasına …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Vaka-i Hayriye",
+"Kabakçı Mustafa İsyanı",
+"Sened-i İttifak",
+"Nizam-ı Cedit",
+"31 Mart Olayı"
+],
+"c": 0
+},
+{
+"s": "Tanzimat Fermanı 3 Kasım 1839’da …… tarafından okunmuştur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Mithat Paşa",
+"Âli Paşa",
+"Fuat Paşa",
+"Mustafa Reşit Paşa",
+"Damat İbrahim Paşa"
+],
+"c": 3
+},
+{
+"s": "İlk resmî Türk gazetesi 1831’de çıkarılan ……’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Tercüman-ı Ahval",
+"Tasvir-i Efkâr",
+"Takvim-i Vekayi",
+"İrade-i Milliye",
+"Ceride-i Havadis"
+],
+"c": 2
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"III. Selim, Kabakçı Mustafa İsyanı sonucunda tahttan indirilmiştir.",
+"Sened-i İttifak, II. Mahmut’un yeniçerilerle yaptığı bir antlaşmadır.",
+"Divan teşkilatının kaldırılıp yerine nazırlıkların kurulması II. Mahmut dönemindedir.",
+"Paris Kongresi öncesinde Avrupa devletlerinin baskısıyla ilan edilmiştir.",
+"Tanzimat öncesi ıslahatlarda Avrupa’nın zorlayıcı bir etkisi yoktur."
+],
+"c": 1,
+"a": "Sened-i İttifak ayanlarla imzalanmıştır."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"III. Selim, Kabakçı Mustafa İsyanı sonucunda tahttan indirilmiştir.",
+"Divan teşkilatının kaldırılıp yerine nazırlıkların kurulması II. Mahmut dönemindedir.",
+"Islahat Fermanı, Avrupa devletlerinin baskısı olmadan tamamen Osmanlı’nın isteğiyle ilan edilmiştir.",
+"Sened-i İttifak ayanlarla imzalanmıştır.",
+"Tanzimat öncesi ıslahatlarda Avrupa’nın zorlayıcı bir etkisi yoktur."
+],
+"c": 2,
+"a": "Paris Kongresi öncesinde Avrupa devletlerinin baskısıyla ilan edilmiştir."
+}
+],
+"5": [
+{
+"s": "Meşrutiyet yönetiminin temel özelliği aşağıdakilerden hangisidir?",
+"o": [
+"Hükümdarın olmaması",
+"Hükümdarın yetkilerinin anayasa ve meclisle sınırlandırılması",
+"Yönetimin din adamlarına geçmesi",
+"Meclisin padişahı seçmesi",
+"Halkın doğrudan yönetimi"
+],
+"c": 1
+},
+{
+"s": "Kanun-ı Esasi’nin aşağıdaki hükümlerinden hangisi padişahın yetkilerinin hâlâ çok geniş olduğunu gösterir?",
+"o": [
+"Temel hakların düzenlenmesi",
+"Mebusan Meclisi’nin seçimle oluşması",
+"Meclisi açma-kapatma ve sürgün yetkisinin padişahta olması",
+"Vergide eşitlik",
+"Konut dokunulmazlığı"
+],
+"c": 2
+},
+{
+"s": "I. Meşrutiyet’in ilan edilmesinde aşağıdakilerden hangisi etkili olmamıştır?",
+"o": [
+"Genç Osmanlıların faaliyetleri",
+"Balkan bunalımı",
+"İstanbul (Tersane) Konferansı",
+"Avrupa devletlerinin iç işlere karışmasını önleme isteği",
+"İttihat ve Terakki’nin Rumeli’deki ayaklanması"
+],
+"c": 4,
+"a": "Rumeli ayaklanması II. Meşrutiyet’in (1908) ilanında etkilidir."
+},
+{
+"s": "II. Meşrutiyet’in ilanından hemen sonra yaşanan gelişmelerden hangisi Osmanlı’nın toprak kaybına doğrudan yol açmamıştır?",
+"o": [
+"Bulgaristan’ın bağımsızlığı",
+"Bosna-Hersek’in Avusturya’ya katılması",
+"Girit’in Yunanistan’a katılmak istemesi",
+"31 Mart Olayı",
+"Hepsi toprak kaybına yol açmıştır"
+],
+"c": 3,
+"a": "31 Mart Olayı bir iç isyandır; sonucu padişahın tahttan indirilmesidir."
+},
+{
+"s": "31 Mart Olayı’nın sonuçlarından biri aşağıdakilerden hangisidir?",
+"o": [
+"Kanun-ı Esasi’nin ilk kez ilanı",
+"II. Abdülhamit’in tahttan indirilmesi",
+"Meclisin süresiz tatil edilmesi",
+"Yeniçeri Ocağı’nın kaldırılması",
+"Tanzimat Fermanı’nın okunması"
+],
+"c": 1
+},
+{
+"s": "1909’dan itibaren yönetime egemen olan İttihat ve Terakki dış politikada hangi devlete yakınlaşmıştır?",
+"o": [
+"İngiltere",
+"Rusya",
+"Fransa",
+"Almanya",
+"İtalya"
+],
+"c": 3
+},
+{
+"s": "Türk tarihinin ilk anayasası 1876’da ilan edilen ……’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Tanzimat Fermanı",
+"Islahat Fermanı",
+"Sened-i İttifak",
+"Kanun-ı Esasi",
+"Teşkilat-ı Esasiye"
+],
+"c": 3
+},
+{
+"s": "Kanun-ı Esasi’yi hazırlayan kurulun başkanı ……’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Mithat Paşa",
+"Mustafa Reşit Paşa",
+"Namık Kemal",
+"Ziya Paşa",
+"Hüseyin Avni Paşa"
+],
+"c": 0
+},
+{
+"s": "Kanun-ı Esasi’de üyelerini padişahın ömür boyu atadığı meclis …… Meclisi’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Mebusan",
+"Âyan",
+"Meşveret",
+"Divan-ı Hümayun",
+"Heyet-i Vükela"
+],
+"c": 1
+},
+{
+"s": "II. Abdülhamit’e karşı 1889’da kurulan cemiyet …… Cemiyeti’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Hürriyet ve İtilaf",
+"Ahrar Fırkası",
+"İttihat ve Terakki",
+"Teceddüt Fırkası",
+"Felah-ı Vatan"
+],
+"c": 2
+},
+{
+"s": "31 Mart Olayı’nı bastırmak için Selanik’ten İstanbul’a gelen orduya …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Hareket Ordusu",
+"Yıldırım Orduları",
+"Nizam-ı Cedit Ordusu",
+"Kuva-yı Milliye",
+"Asakir-i Mansure"
+],
+"c": 0
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"II. Abdülhamit, 1877–78 Osmanlı-Rus Savaşı’nı gerekçe göstererek meclisi süresiz tatil etmiştir.",
+"Kanun-ı Esasi’ye göre hükümet meclise karşı sorumludur.",
+"II. Meşrutiyet’in ilanından sonra Bulgaristan bağımsızlığını ilan etmiştir.",
+"31 Mart Olayı Meşrutiyet rejimine karşı çıkarılmış bir isyandır.",
+"I. Meşrutiyet ile halk ilk kez seçme ve seçilme hakkını kullanmıştır."
+],
+"c": 1,
+"a": "Hükümet padişaha karşı sorumludur."
+}
+],
+"6": [
+{
+"s": "“Ben tebaamın Müslüman olanını camide, Hristiyan olanını kilisede, Yahudi olanını havrada fark ederim.” sözü hangi akımı yansıtır?",
+"o": [
+"İslamcılık",
+"Türkçülük",
+"Osmanlıcılık",
+"Batıcılık",
+"Adem-i merkeziyetçilik"
+],
+"c": 2,
+"a": "II. Mahmut’un bu sözü, din farkı gözetmeyen Osmanlı milleti anlayışını anlatır."
+},
+{
+"s": "II. Abdülhamit’in İslamcılık politikasını benimsemesinin amaçlarından biri hangisidir?",
+"o": [
+"Balkanlarda Panslavizmi etkisiz bırakmak",
+"Meclisi açmak",
+"Kapitülasyonları kaldırmak",
+"Türkçülüğü yaymak",
+"Almanya ile ittifak kurmak"
+],
+"c": 0
+},
+{
+"s": "Fikir akımları içinde başarıya ulaşan ve Cumhuriyet’in kuruluşunda en etkili olan akım hangisidir?",
+"o": [
+"Osmanlıcılık",
+"İslamcılık",
+"Batıcılık",
+"Türkçülük",
+"Adem-i merkeziyetçilik"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki gelişmelerden hangisi İslamcılık akımının geçerliliğini yitirdiğini gösterir?",
+"o": [
+"Balkan Savaşları",
+"Şerif Hüseyin’in İngilizlerle birlikte Osmanlı’ya karşı ayaklanması",
+"Tanzimat Fermanı",
+"31 Mart Olayı",
+"Sened-i İttifak"
+],
+"c": 1,
+"a": "Müslüman Arapların halifeye karşı savaşması ümmet anlayışının sonu olmuştur."
+},
+{
+"s": "“Batılılaşmanın ilk şartı millet hâline gelmektir.” görüşü hangi akıma aittir?",
+"o": [
+"Batıcılık",
+"Türkçülük",
+"Osmanlıcılık",
+"İslamcılık",
+"Adem-i merkeziyetçilik"
+],
+"c": 1
+},
+{
+"s": "Merkezî yönetimin yetkilerinin azaltılmasını ve liberal ekonomiyi savunan akım hangisidir?",
+"o": [
+"Adem-i merkeziyetçilik",
+"Osmanlıcılık",
+"Batıcılık",
+"Türkçülük",
+"İslamcılık"
+],
+"c": 0
+},
+{
+"s": "Bütün unsurları tek bir “Osmanlı milleti” çatısında toplamayı amaçlayan akım ……’tır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"İslamcılık",
+"Türkçülük",
+"Batıcılık",
+"Osmanlıcılık",
+"Adem-i Merkeziyetçilik"
+],
+"c": 3
+},
+{
+"s": "İslamcılık akımının devlet politikası hâline geldiği padişah dönemi …… dönemidir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"II. Mahmut",
+"II. Abdülhamit",
+"Abdülmecit",
+"V. Mehmet Reşat",
+"Abdülaziz"
+],
+"c": 1
+},
+{
+"s": "Türkçülüğün Asya’daki bütün Türkleri birleştirme hedefine …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Panislamizm",
+"Turancılık",
+"Panslavizm",
+"Osmanlıcılık",
+"Adem-i Merkeziyet"
+],
+"c": 1
+},
+{
+"s": "Batıcılar fikirlerini çoğunlukla …… dergisinde yayımlamıştır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Sırat-ı Müstakim",
+"Türk Yurdu",
+"İçtihad",
+"Tercüman-ı Hakikat",
+"İrade-i Milliye"
+],
+"c": 2
+},
+{
+"s": "Adem-i merkeziyetçilik akımının savunucusu ……’tir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Abdullah Cevdet",
+"Ziya Gökalp",
+"Namık Kemal",
+"Prens Sabahattin",
+"Celal Nuri"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Osmanlıcılık, Balkan Savaşları ile geçerliliğini yitirmiştir.",
+"Batıcılık akımı Osmanlı döneminde büyük ölçüde Batı taklitçiliğinin ötesine geçememiştir.",
+"Türkçülük, millî kimliği koruyarak Batılılaşmayı ve modernleşmeyi savunur.",
+"İslamcılar Batı’nın tekniğinin alınmasına da karşı çıkmıştır.",
+"Fikir akımlarının ortak amacı Osmanlı Devleti’ni içinde bulunduğu durumdan kurtarmaktır."
+],
+"c": 3,
+"a": "İslamcılar Batı’nın tekniğinin alınmasını savunmuş, yalnızca ahlak ve kültür taklidine karşı çıkmıştır."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Osmanlıcılık, Balkan Savaşları ile geçerliliğini yitirmiştir.",
+"Batıcılık akımı Osmanlı döneminde büyük ölçüde Batı taklitçiliğinin ötesine geçememiştir.",
+"İslamcılar Batı’nın tekniğinin alınmasını savunmuş, yalnızca ahlak ve kültür taklidine karşı çıkmıştır.",
+"Fikir akımlarının ortak amacı Osmanlı Devleti’ni içinde bulunduğu durumdan kurtarmaktır.",
+"Türkçülük akımı Batılılaşmaya tamamen karşıdır."
+],
+"c": 4,
+"a": "Türkçülük, millî kimliği koruyarak Batılılaşmayı ve modernleşmeyi savunur."
+}
+],
+"7": [
+{
+"s": "Trablusgarp Savaşı’nda Osmanlı’nın bölgeye düzenli ordu gönderememesinin temel sebebi nedir?",
+"o": [
+"Osmanlı’nın savaşa girmek istememesi",
+"Bölgenin coğrafi uzaklığı, İtalyan donanması ve İngiltere-Fransa’nın kara yolunu kapatması",
+"Halkın direnişe katılmaması",
+"Almanya’nın engel olması",
+"Rusya’nın saldırısı"
+],
+"c": 1
+},
+{
+"s": "Osmanlı’nın Trablusgarp Savaşı’nı Uşi Antlaşması ile bitirmesinin en önemli nedeni hangisidir?",
+"o": [
+"İtalya’nın tüm Kuzey Afrika’yı alması",
+"Balkan Savaşı’nın başlaması",
+"Mustafa Kemal’in yaralanması",
+"Almanya’nın baskısı",
+"Halkın savaşa karşı olması"
+],
+"c": 1,
+"a": "İki cephede birden savaşacak maliyesi ve ordusu olmayan Osmanlı barışa yöneldi."
+},
+{
+"s": "Aşağıdakilerden hangisi Balkan Savaşları’nın nedenlerinden biri değildir?",
+"o": [
+"Rusya’nın Panslavist politikası",
+"Reval Görüşmesi",
+"Trablusgarp Savaşı’nın Osmanlı’yı zayıflatması",
+"Balkan devletlerinin ittifakı",
+"Mondros Ateşkes Antlaşması"
+],
+"c": 4,
+"a": "Mondros 1918’dedir."
+},
+{
+"s": "I. Balkan Savaşı’nın sonuçları arasında aşağıdakilerden hangisi yoktur?",
+"o": [
+"Arnavutluk’un bağımsızlığı",
+"Babıâli Baskını",
+"Türkçülüğün güçlenmesi",
+"Edirne’nin geri alınması",
+"Balkanlardan Anadolu’ya göç"
+],
+"c": 3,
+"a": "Edirne II. Balkan Savaşı’nda geri alınmıştır."
+},
+{
+"s": "II. Balkan Savaşı’nın çıkmasının temel nedeni nedir?",
+"o": [
+"Osmanlı’nın Bulgaristan’a saldırması",
+"Balkan devletlerinin topraklar paylaşımında anlaşamaması ve Bulgaristan’ın aşırı güçlenmesi",
+"İtalya’nın On İki Ada’yı alması",
+"Rusya’nın savaştan çekilmesi",
+"Arnavutluk’un bağımsızlığı"
+],
+"c": 1
+},
+{
+"s": "Balkan Savaşları sonrası imzalanan antlaşmalarda Osmanlı’nın en çok önem verdiği konu hangisidir?",
+"o": [
+"Savaş tazminatı almak",
+"Balkanlarda kalan Türklerin haklarını güvenceye almak",
+"Kapitülasyonları kaldırmak",
+"Boğazları açmak",
+"Girit’i geri almak"
+],
+"c": 1,
+"a": "İstanbul ve Atina antlaşmalarının hepsinde Türk azınlığın hakları güvenceye alınmıştır."
+},
+{
+"s": "Trablusgarp Savaşı’nı sona erdiren antlaşma …… Antlaşması’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Uşi (Ouchy)",
+"Londra",
+"Bükreş",
+"Atina",
+"Mondros"
+],
+"c": 0
+},
+{
+"s": "I. Balkan Savaşı’ndan sonra Osmanlı’nın batı sınırı …… hattı olmuştur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Meriç",
+"Tuna",
+"Midye–Enez",
+"Çatalca–Tekirdağ",
+"Edirne–Kırklareli"
+],
+"c": 2
+},
+{
+"s": "Osmanlı’dan ayrılan son Balkan devleti ……’tur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Bulgaristan",
+"Sırbistan",
+"Karadağ",
+"Yunanistan",
+"Arnavutluk"
+],
+"c": 4
+},
+{
+"s": "İttihat ve Terakki’nin tek başına iktidarını başlatan 1913 olayı …… Baskını’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"31 Mart",
+"Vaka-i Hayriye",
+"Kabakçı",
+"Edirne",
+"Babıâli"
+],
+"c": 4
+},
+{
+"s": "Bulgaristan ile imzalanan 1913 İstanbul Antlaşması’na göre …… Nehri sınır olmuştur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Tuna",
+"Vardar",
+"Sakarya",
+"Meriç",
+"Kızılırmak"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"II. Balkan Savaşı’nda Osmanlı Edirne ve Kırklareli’ni geri almıştır.",
+"Girit, Atina Antlaşması ile Yunanistan’a bırakılmıştır.",
+"Uşi Antlaşması’na göre On İki Ada kesin olarak İtalya’ya bırakılmıştır.",
+"Osmanlıcılık çökmüş, Türkçülük güçlenmiştir.",
+"Osmanlı, Trablusgarp’a İngiltere ve Fransa’nın izin vermemesi nedeniyle karadan yardım gönderememiştir."
+],
+"c": 2,
+"a": "Antlaşmaya göre İtalya adaları geri verecekti; ancak Balkan Savaşı yüzünden geri verilmedi."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"II. Balkan Savaşı’nda Osmanlı Edirne ve Kırklareli’ni geri almıştır.",
+"Girit, Atina Antlaşması ile Yunanistan’a bırakılmıştır.",
+"Antlaşmaya göre İtalya adaları geri verecekti; ancak Balkan Savaşı yüzünden geri verilmedi.",
+"I. Balkan Savaşı’ndan sonra Osmanlıcılık fikri güçlenmiştir.",
+"Osmanlı, Trablusgarp’a İngiltere ve Fransa’nın izin vermemesi nedeniyle karadan yardım gönderememiştir."
+],
+"c": 3,
+"a": "Osmanlıcılık çökmüş, Türkçülük güçlenmiştir."
+}
+],
+"8": [
+{
+"s": "Aşağıdakilerden hangisi Osmanlı Devleti’nin I. Dünya Savaşı’na girme nedenlerinden biri değildir?",
+"o": [
+"Siyasi yalnızlıktan kurtulmak",
+"Kaybedilen toprakları geri almak",
+"Almanya ile yapılan gizli antlaşma",
+"Kapitülasyonların ekonomik baskısından kurtulmak",
+"Sömürge elde etmek"
+],
+"c": 4,
+"a": "Osmanlı’nın sömürge elde etme amacı yoktu."
+},
+{
+"s": "Almanya’nın Osmanlı’yı savaşa çekmek istemesinin nedenlerinden biri hangisidir?",
+"o": [
+"Halifelik makamını kullanarak sömürgelerdeki Müslümanları ayaklandırmak",
+"Osmanlı’ya toprak vermek",
+"Kapitülasyonları kaldırmak",
+"İtalya’yı yanına çekmek",
+"Balkanları Osmanlı’ya geri vermek"
+],
+"c": 0
+},
+{
+"s": "Fransa’nın I. Dünya Savaşı’na katılmasındaki temel hedef hangisidir?",
+"o": [
+"Boğazlara hâkim olmak",
+"Alsas-Loren’i geri almak",
+"Kuzey Afrika’yı almak",
+"Balkanlara inmek",
+"Hindistan yolunu korumak"
+],
+"c": 1
+},
+{
+"s": "Çanakkale Savaşı’nın sonuçları arasında hangisi yoktur?",
+"o": [
+"Savaşın uzaması",
+"Bulgaristan’ın İttifak Devletleri’ne katılması",
+"Rusya’ya yardım gidememesi",
+"Mustafa Kemal’in tanınması",
+"Osmanlı’nın savaştan galip çıkması"
+],
+"c": 4,
+"a": "Osmanlı I. Dünya Savaşı’ndan yenik çıkmıştır."
+},
+{
+"s": "Almanya’nın doğudaki yükünü hafifletmek için açılmasını istediği cephe hangisidir?",
+"o": [
+"Kanal",
+"Kafkasya",
+"Çanakkale",
+"Irak",
+"Hicaz"
+],
+"c": 1,
+"a": "Kafkasya, Rusya’yı doğuda meşgul etmek içindi; Kanal ise İngiltere’yi meşgul etmek için."
+},
+{
+"s": "Mustafa Kemal’in I. Dünya Savaşı’nda görev yaptığı cepheler hangi seçenekte doğru verilmiştir?",
+"o": [
+"Çanakkale – Kafkasya – Suriye-Filistin",
+"Irak – Kanal – Hicaz",
+"Galiçya – Irak – Kanal",
+"Hicaz – Kafkasya – Irak",
+"Kanal – Makedonya – Romanya"
+],
+"c": 0,
+"a": "Çanakkale (Anafartalar), Kafkasya (Muş-Bitlis) ve Suriye-Filistin (Yıldırım Orduları)."
+},
+{
+"s": "I. Dünya Savaşı’nın görünen nedeni, Avusturya-Macaristan veliahdının ……’da öldürülmesidir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Belgrad",
+"Viyana",
+"Saraybosna",
+"Sofya",
+"Selanik"
+],
+"c": 2
+},
+{
+"s": "Osmanlı’ya sığınan Goben ve Breslav gemilerinin yeni adları …… ve ……’dir. Yukarıdaki cümlede boş bırakılan yerlere sırasıyla aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Hamidiye; Mecidiye",
+"Yavuz; Midilli",
+"Ertuğrul; Nusret",
+"Barbaros; Turgut Reis",
+"Mesudiye; Muavenet"
+],
+"c": 1
+},
+{
+"s": "Kafkasya Cephesi’nde Enver Paşa’nın başarısız harekâtı …… Harekâtı’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Kut’ül-Amare",
+"Anafartalar",
+"Sarıkamış",
+"Kanal",
+"Gelibolu"
+],
+"c": 2
+},
+{
+"s": "Irak Cephesi’nde İngilizlerin esir alındığı zafer …… zaferidir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Kut’ül-Amare",
+"Sarıkamış",
+"Conkbayırı",
+"Halep",
+"Medine"
+],
+"c": 0
+},
+{
+"s": "Medine’yi Mondros’a kadar savunan komutan ……’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Cemal Paşa",
+"Enver Paşa",
+"Kâzım Karabekir",
+"Fahrettin Paşa",
+"Ali Fuat Paşa"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Suriye-Filistin Cephesi’nde, Mustafa Kemal’in İngilizleri Halep’in kuzeyinde durdurmasıyla çizilmiştir.",
+"Kafkasya ve Kanal cepheleri Osmanlı’nın taarruz cepheleridir.",
+"Çanakkale Savaşı Rusya’ya yardım ulaşmasını engelleyerek Bolşevik İhtilali’ne ortam hazırlamıştır.",
+"Şerif Hüseyin’in isyanı ümmetçilik anlayışının zayıfladığını gösterir.",
+"İtalya, I. Dünya Savaşı’nın sonuna kadar İttifak Devletleri’nin yanında kalmıştır."
+],
+"c": 4,
+"a": "İtalya 1915’te taraf değiştirerek İtilaf Devletleri’ne katılmıştır."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Kafkasya ve Kanal cepheleri Osmanlı’nın taarruz cepheleridir.",
+"Misak-ı Millî’nin güney sınırı Irak Cephesi’nde çizilmiştir.",
+"Çanakkale Savaşı Rusya’ya yardım ulaşmasını engelleyerek Bolşevik İhtilali’ne ortam hazırlamıştır.",
+"Şerif Hüseyin’in isyanı ümmetçilik anlayışının zayıfladığını gösterir.",
+"İtalya 1915’te taraf değiştirerek İtilaf Devletleri’ne katılmıştır."
+],
+"c": 1,
+"a": "Suriye-Filistin Cephesi’nde, Mustafa Kemal’in İngilizleri Halep’in kuzeyinde durdurmasıyla çizilmiştir."
+}
+],
+"9": [
+{
+"s": "Aşağıdaki antlaşmalardan hangisi İtalya’yı İtilaf Devletleri’nin yanında savaşa sokmak için yapılmıştır?",
+"o": [
+"İstanbul",
+"Londra",
+"Sykes-Picot",
+"Brest-Litovsk",
+"Versay"
+],
+"c": 1
+},
+{
+"s": "İzmir’in İtalya yerine Yunanistan’a verilmesine zemin hazırlayan gelişme hangisidir?",
+"o": [
+"Londra Antlaşması",
+"St. Jean de Maurienne’in Rusya onaylamadığı için geçersiz sayılması",
+"Brest-Litovsk",
+"Wilson İlkeleri’nin kabulü",
+"Sykes-Picot’nun imzalanması"
+],
+"c": 1
+},
+{
+"s": "Brest-Litovsk Antlaşması’nın Osmanlı için en önemli sonucu hangisidir?",
+"o": [
+"İstanbul’un işgali",
+"Kars, Ardahan ve Batum’un geri alınması",
+"Kapitülasyonların kaldırılması",
+"Mondros’un imzalanması",
+"Suriye’nin geri alınması"
+],
+"c": 1
+},
+{
+"s": "Yenilen devletlerle imzalanan barış antlaşmalarının ortak özelliği değildir?",
+"o": [
+"Toprak kaybı",
+"Zorunlu askerliğin kaldırılması",
+"Ağır savaş tazminatı",
+"Yenilen devletin sömürge",
+"Ordunun sınırlandırılması kazanması"
+],
+"c": 3
+},
+{
+"s": "Wilson İlkeleri’nin Osmanlı’yı ilgilendiren maddesine göre aşağıdakilerden hangisi doğrudur?",
+"o": [
+"Türklerin yaşadığı bölgelerde Türklere kesin egemenlik verilmeli",
+"Osmanlı tamamen paylaşılmalı",
+"Boğazlar kapatılmalı",
+"Osmanlı tazminat ödemeli",
+"İstanbul Rusya’ya verilmeli"
+],
+"c": 0
+},
+{
+"s": "Osmanlı Devleti’nin Mondros Ateşkesi’ni imzalarken en çok güvendiği gelişme hangisidir?",
+"o": [
+"Almanya’nın desteği",
+"Wilson İlkeleri",
+"Brest-Litovsk",
+"Sykes-Picot",
+"Londra Antlaşması"
+],
+"c": 1
+},
+{
+"s": "İstanbul ve Boğazların Rusya’ya bırakıldığı gizli antlaşma 1915 …… Antlaşması’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Londra",
+"Sykes-Picot",
+"St. Jean de Maurienne",
+"Brest-Litovsk",
+"İstanbul"
+],
+"c": 4
+},
+{
+"s": "Orta Doğu’nun İngiltere ve Fransa arasında paylaşılmasını öngören antlaşma …… Antlaşması’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Londra",
+"İstanbul",
+"Sykes-Picot",
+"Brest-Litovsk",
+"Versay"
+],
+"c": 2
+},
+{
+"s": "Brest-Litovsk ile geri alınan Kars, Ardahan ve Batum’a …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Vilâyât-ı Sitte",
+"Misak-ı Millî",
+"Kilikya",
+"Batı Trakya",
+"Elviye-i Selase"
+],
+"c": 4
+},
+{
+"s": "Almanya ile imzalanan barış antlaşması …… Antlaşması’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Versay",
+"Sen Jermen",
+"Trianon",
+"Nöyyi",
+"Brest-Litovsk"
+],
+"c": 0
+},
+{
+"s": "Wilson İlkeleri’ne göre kurulacak uluslararası barış örgütü ……’tır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Birleşmiş Milletler",
+"Avrupa Konseyi",
+"NATO",
+"Paris Barış Konferansı",
+"Cemiyet-i Akvam (Milletler Cemiyeti)"
+],
+"c": 4
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Londra Antlaşması ile İtalya’ya Antalya ve çevresi vaat edilmiştir.",
+"Osmanlı Hükümeti gizli paylaşım antlaşmalarını savaşın başında öğrenmiştir.",
+"St. Jean de Maurienne Antlaşması Rusya’nın onayı alınamadığı için geçersiz sayılmıştır.",
+"Nöyyi Antlaşması ile Bulgaristan’ın Ege ile bağlantısı kesilmiştir.",
+"İtilaf Devletleri çıkarları doğrultusunda ilkelere aykırı davranmıştır."
+],
+"c": 1,
+"a": "Bolşevikler antlaşmaları 1917–18’de yayımlayınca öğrenmiştir."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Wilson İlkeleri’ne savaş sonrasında İtilaf Devletleri tamamen uymuştur.",
+"Nöyyi Antlaşması ile Bulgaristan’ın Ege ile bağlantısı kesilmiştir.",
+"Bolşevikler antlaşmaları 1917–18’de yayımlayınca öğrenmiştir.",
+"Londra Antlaşması ile İtalya’ya Antalya ve çevresi vaat edilmiştir.",
+"St. Jean de Maurienne Antlaşması Rusya’nın onayı alınamadığı için geçersiz sayılmıştır."
+],
+"c": 0,
+"a": "İtilaf Devletleri çıkarları doğrultusunda ilkelere aykırı davranmıştır."
+}
+],
+"V1": [
+{
+"s": "Bir yeniliğin inkılap sayılabilmesi için aşağıdaki şartlardan hangileri gereklidir?<br>I. Kökten bir değişiklik olması<br>II. Toplumun geniş kesimlerince benimsenmesi<br>III. Zor kullanılarak yapılması",
+"o": [
+"Yalnız I",
+"Yalnız III",
+"I ve II",
+"II ve III",
+"I, II ve III"
+],
+"c": 2,
+"a": "İnkılap köklü, toplumca benimsenen ve çağdaş bir değişimdir; zor kullanmak ihtilalin özelliğidir. (Bölüm 1)"
+},
+{
+"s": "Mevcut düzeni ortadan kaldırmaya yönelik olan ve ilk aşaması isyan olan hareket aşağıdakilerden hangisidir?",
+"o": [
+"Batılılaşma",
+"Islahat",
+"İnkılap",
+"İhtilal",
+"Modernleşme"
+],
+"c": 3,
+"a": "İsyan başarılı olursa ihtilale dönüşür. (Bölüm 1)"
+},
+{
+"s": "I. Ahmet döneminde getirilen ekberiyet sisteminin olumsuz sonucu aşağıdakilerden hangisidir?",
+"o": [
+"Taht kavgalarının çoğalması",
+"Tahta geçmede liyakatin göz ardı edilmesi",
+"Şehzadelerin sancağa gönderilmeye başlanması",
+"Tımar sisteminin güçlenmesi",
+"Kardeş katlinin artması"
+],
+"c": 1,
+"a": "Yalnızca yaş ölçüt olunca yetenekli hükümdarların tahta çıkması zorlaştı. (Bölüm 2)"
+},
+{
+"s": "Osmanlı’da 16. yüzyılın ikinci yarısında başlayan enflasyonun en önemli nedeni aşağıdakilerden hangisidir?",
+"o": [
+"Tımar topraklarının artması",
+"Yeniçeri Ocağı’nın kaldırılması",
+"Sanayi İnkılabı’nın Osmanlı’da yapılması",
+"Kapitülasyonların kaldırılması",
+"Avrupa’dan gelen gümüşün piyasada para bolluğu yaratması"
+],
+"c": 4,
+"a": "Amerika’dan Avrupa’ya, oradan Osmanlı’ya gelen gümüş paranın değerini düşürdü. (Bölüm 2)"
+},
+{
+"s": "Müderrisliğin babadan oğula geçen bir meslek hâline gelmesi aşağıdaki kurumlardan hangisinin bozulduğunu gösterir?",
+"o": [
+"Ordu",
+"Toprak düzeni",
+"Medrese (ilmiye)",
+"Divan",
+"Donanma"
+],
+"c": 2,
+"a": "Beşik ulemalığı, medreselerin bozulmasının göstergesidir. (Bölüm 2)"
+},
+{
+"s": "Aşağıdakilerden hangisi Osmanlı Devleti’nin yıkılışının dış nedenlerinden biridir?",
+"o": [
+"Fransız İhtilali’nin yaydığı milliyetçilik",
+"Yeniçerilerin siyasete karışması",
+"Ekberiyet sistemi",
+"İltizam usulü",
+"Beşik ulemalığı"
+],
+"c": 0,
+"a": "Diğerleri Osmanlı’nın kendi iç yapısından kaynaklanan iç nedenlerdir. (Bölüm 3)"
+},
+{
+"s": "1877–78 Osmanlı–Rus Savaşı’ndan sonra Osmanlı’nın toprak bütünlüğünü koruma politikasını bırakan ve Kıbrıs ile Mısır’ı işgal eden devlet hangisidir?",
+"o": [
+"Fransa",
+"Almanya",
+"Rusya",
+"İngiltere",
+"İtalya"
+],
+"c": 3,
+"a": "İngiltere bu savaştan sonra paylaşımdan pay alma politikasına geçti. (Bölüm 3)"
+},
+{
+"s": "Kapitülasyonlar için aşağıdakilerden hangisi yanlıştır?",
+"o": [
+"Osmanlı’yı Avrupa malları için açık pazar yapmıştır.",
+"Yerli sanayiyi korumuş ve güçlendirmiştir.",
+"Zamanla başka Avrupa devletlerine de verilmiştir.",
+"İlk kez 1535’te Fransızlara verilmiştir.",
+"1740’ta sürekli hâle getirilmiştir."
+],
+"c": 1,
+"a": "Kapitülasyonlar yerli sanayiyi çökertmiştir. (Bölüm 3)"
+},
+{
+"s": "Osmanlı’da ıslahatların ilk kez bir plan dâhilinde yapılmaya çalışıldığı dönem aşağıdakilerden hangisidir?",
+"o": [
+"II. Mahmut dönemi",
+"Tanzimat dönemi",
+"I. Meşrutiyet dönemi",
+"Lale Devri",
+"III. Selim dönemi"
+],
+"c": 4,
+"a": "III. Selim’in Nizam-ı Cedit programı ilk planlı ıslahat girişimidir. (Bölüm 4)"
+},
+{
+"s": "II. Mahmut döneminde yapılan aşağıdaki yeniliklerden hangisi yönetim alanındadır?",
+"o": [
+"Takvim-i Vekayi’nin çıkarılması",
+"Tıbhane-i Amire’nin açılması",
+"Divan’ın kaldırılıp nazırlıkların kurulması",
+"Askerlere fes giydirilmesi",
+"Mekteb-i Harbiye’nin açılması"
+],
+"c": 2,
+"a": "Diğerleri sırasıyla basın, sağlık, kıyafet ve askerî eğitim alanındadır. (Bölüm 4)"
+},
+{
+"s": "Tanzimat Fermanı ile Islahat Fermanı arasındaki temel fark aşağıdakilerden hangisidir?",
+"o": [
+"Islahat Fermanı’nın Avrupa’nın baskısıyla ve gayrimüslimler lehine ilan edilmesi",
+"Tanzimat Fermanı’nın meclisi açması",
+"Islahat Fermanı’nın kapitülasyonları kaldırması",
+"Tanzimat Fermanı’nın Yeniçeri Ocağı’nı kaldırması",
+"Tanzimat Fermanı’nın Abdülmecit, Islahat Fermanı’nın II. Mahmut döneminde ilan edilmesi"
+],
+"c": 0,
+"a": "Tanzimat Osmanlı’nın kendi isteğiyle, Islahat Fermanı Paris Kongresi öncesi Avrupa’nın baskısıyla ilan edildi. (Bölüm 4)"
+},
+{
+"s": "1876 Kanun-ı Esasi’ye göre aşağıdakilerden hangisi padişaha ait bir yetki değildir?",
+"o": [
+"Âyan üyelerini atamak",
+"Sakıncalı gördüğünü sürgüne göndermek",
+"Bakanları atamak",
+"Mebusan Meclisi üyelerini seçmek",
+"Meclisi açıp kapatmak"
+],
+"c": 3,
+"a": "Mebusları halk seçerdi; diğer yetkiler padişahındı. (Bölüm 5)"
+},
+{
+"s": "31 Mart Olayı’nın sonuçları arasında aşağıdakilerden hangisi yer alır?",
+"o": [
+"I. Meşrutiyet’in ilanı",
+"II. Abdülhamit’in tahttan indirilmesi",
+"Meclisin süresiz tatil edilmesi",
+"Tanzimat Fermanı’nın ilanı",
+"Babıali Baskını"
+],
+"c": 1,
+"a": "Hareket Ordusu isyanı bastırdı, II. Abdülhamit’in yerine V. Mehmet Reşat geçti. (Bölüm 5)"
+},
+{
+"s": "“Batılılaşmanın ilk şartı millet hâline gelmektir; millî kimlikten taviz vermeden modernleşmek gerekir.” görüşü hangi fikir akımına aittir?",
+"o": [
+"Batıcılık",
+"Adem-i Merkeziyetçilik",
+"Osmanlıcılık",
+"İslamcılık",
+"Türkçülük"
+],
+"c": 4,
+"a": "Türkçülük, millî kimliği koruyarak Batılılaşmayı savunur. (Bölüm 6)"
+},
+{
+"s": "Osmanlıcılık fikrinin geçerliliğini yitirdiği gelişme aşağıdakilerden hangisidir?",
+"o": [
+"Tanzimat Fermanı",
+"Kırım Savaşı",
+"Balkan Savaşları",
+"Mondros Ateşkesi",
+"Fransız İhtilali"
+],
+"c": 2,
+"a": "Balkan Savaşları’nda Osmanlı tebaası Balkan halklarının ayrılması, tek millet hedefinin gerçekleşmediğini gösterdi. (Bölüm 6)"
+},
+{
+"s": "Uşi Antlaşması ile Osmanlı Devleti aşağıdakilerden hangisini kaybetmiştir?",
+"o": [
+"Trablusgarp ve Bingazi",
+"Bosna-Hersek",
+"Edirne",
+"Girit",
+"Kıbrıs"
+],
+"c": 0,
+"a": "Osmanlı Kuzey Afrika’daki son toprağını kaybetti. (Bölüm 7)"
+},
+{
+"s": "I. Balkan Savaşı’ndan sonra imzalanan Londra Antlaşması’na göre Osmanlı’nın batı sınırı hangisi olmuştur?",
+"o": [
+"Vardar Nehri",
+"Meriç Nehri",
+"Tuna Nehri",
+"Midye–Enez hattı",
+"Çatalca hattı"
+],
+"c": 3,
+"a": "Meriç sınırı II. Balkan Savaşı sonrası İstanbul Antlaşması ile çizildi. (Bölüm 7)"
+},
+{
+"s": "I. Dünya Savaşı’nda Osmanlı’nın açtığı taarruz cepheleri hangileridir?",
+"o": [
+"Çanakkale ve Irak",
+"Kafkasya ve Kanal",
+"Suriye ve Hicaz",
+"Galiçya ve Romanya",
+"Irak ve Suriye"
+],
+"c": 1,
+"a": "Kafkasya ve Kanal cepheleri büyük ölçüde Almanya’nın isteğiyle açıldı. (Bölüm 8)"
+},
+{
+"s": "Çanakkale Savaşı’nın sonuçları arasında aşağıdakilerden hangisi yoktur?",
+"o": [
+"Rusya’ya yardım ulaştırılamaması",
+"Savaşın uzaması",
+"Bulgaristan’ın İttifak devletleri yanında savaşa girmesi",
+"Mustafa Kemal’in tanınması",
+"İstanbul’un İtilaf devletlerince işgal edilmesi"
+],
+"c": 4,
+"a": "Çanakkale zaferi İstanbul’u bir süre işgalden kurtardı. (Bölüm 8)"
+},
+{
+"s": "Sykes-Picot Antlaşması’na göre aşağıdaki eşleştirmelerden hangisi doğrudur?",
+"o": [
+"Yunanistan – İzmir",
+"İngiltere – Erzurum, Van, Bitlis",
+"Fransa – Suriye kıyıları ve Kilikya",
+"Rusya – Irak",
+"İtalya – Filistin"
+],
+"c": 2,
+"a": "Rusya Doğu Anadolu’yu, İngiltere Irak’ı alacak; Filistin uluslararası yönetime bırakılacaktı. (Bölüm 9)"
+}
+],
+"V2": [
+{
+"s": "Batı dillerindeki “reform” kelimesinin karşılığı olan ve kökten bir değişiklik içermeyen yenileşme hareketine ne ad verilir?",
+"o": [
+"İnkılap",
+"İhtilal",
+"Islahat",
+"Devrim",
+"İsyan"
+],
+"c": 2,
+"a": "Islahat mevcut sistemin içinde düzeltme yapar. (Bölüm 1)"
+},
+{
+"s": "Batılılaşma kavramı için aşağıdakilerden hangisi söylenebilir?",
+"o": [
+"Kendi kimliğini koruyarak Batı medeniyetinin unsurlarından faydalanmaktır.",
+"Zor kullanılarak yapılan bir değişimdir.",
+"Mevcut düzeni yıkmaktır.",
+"Yalnızca askerî alanda yapılan düzenlemedir.",
+"Batılıların bütün örf ve âdetlerini benimsemektir."
+],
+"c": 0,
+"a": "Hoca derste Batılılaşmanın kimlik kaybı olmadığını vurguladı. (Bölüm 1)"
+},
+{
+"s": "Tımar sisteminin bozulması aşağıdaki alanlardan hangilerini doğrudan olumsuz etkilemiştir?<br>I. Ekonomi<br>II. Ordu<br>III. Medrese eğitimi",
+"o": [
+"Yalnız I",
+"Yalnız II",
+"I ve II",
+"II ve III",
+"I, II ve III"
+],
+"c": 2,
+"a": "Tımar sistemi hem tarımsal üretimi hem de savaşa hazır askeri (tımarlı sipahi) sağlıyordu. (Bölüm 2)"
+},
+{
+"s": "Bir bölgenin vergi gelirinin belirli bir süre için peşin para karşılığında satılmasına ne ad verilir?",
+"o": [
+"Zeamet",
+"İltizam",
+"Müsadere",
+"Has",
+"Tımar"
+],
+"c": 1,
+"a": "Geliri satın alan kişiye mültezim denir. (Bölüm 2)"
+},
+{
+"s": "Şehzadelerin sancaklara gönderilmesi uygulamasının kaldırılmasının en önemli sonucu hangisidir?",
+"o": [
+"Yeniçerilerin güçlenmesi",
+"Kapitülasyonların genişlemesi",
+"Medreselerin gelişmesi",
+"Taht kavgalarının artması",
+"Deneyimsiz padişahların tahta çıkması"
+],
+"c": 4,
+"a": "Sarayda yetişen şehzadeler devlet yönetimini öğrenemedi. (Bölüm 2)"
+},
+{
+"s": "Rusya’nın Osmanlı’daki Ortodoksların hamisi olma hakkını elde ettiği antlaşma hangisidir?",
+"o": [
+"Brest-Litovsk",
+"Karlofça",
+"Küçük Kaynarca",
+"Paris",
+"Berlin"
+],
+"c": 2,
+"a": "1774 Küçük Kaynarca Antlaşması. (Bölüm 3)"
+},
+{
+"s": "Osmanlı’dan toprak alma politikası olmayan, ancak ekonomik nüfuz elde etmek ve İngiltere’nin Hindistan yolunu kesmek isteyen devlet hangisidir?",
+"o": [
+"Almanya",
+"İtalya",
+"Avusturya-Macaristan",
+"Fransa",
+"Rusya"
+],
+"c": 0,
+"a": "Bağdat Demiryolu ve krediler Türk–Alman yakınlaşmasını sağladı. (Bölüm 3)"
+},
+{
+"s": "Fransız İhtilali’nin yaydığı fikirlerden Osmanlı’yı en çok etkileyen hangisidir ve neden?",
+"o": [
+"Laiklik; medreseler kapandığı için",
+"Eşitlik; kapitülasyonlar kalktığı için",
+"Liberalizm; ekonomiyi güçlendirdiği için",
+"Milliyetçilik; Osmanlı çok uluslu olduğu için",
+"Sosyalizm; işçi sınıfı güçlü olduğu için"
+],
+"c": 3,
+"a": "Milliyetçilik, önce Balkanlarda azınlık isyanlarını tetikledi. (Bölüm 3)"
+},
+{
+"s": "İlk Türk matbaasının kurulduğu dönem aşağıdakilerden hangisidir?",
+"o": [
+"Kanuni dönemi",
+"Lale Devri (III. Ahmet)",
+"III. Selim dönemi",
+"II. Mahmut dönemi",
+"Tanzimat dönemi"
+],
+"c": 1,
+"a": "1727’de İbrahim Müteferrika ve Sait Efendi tarafından kuruldu. (Bölüm 4)"
+},
+{
+"s": "II. Mahmut’un ayanlarla imzaladığı Sened-i İttifak için aşağıdakilerden hangisi söylenebilir?",
+"o": [
+"Yeniçeri Ocağı’nı kaldırmıştır.",
+"Gayrimüslimlere eşitlik vermiştir.",
+"İlk anayasadır.",
+"Avrupa’nın baskısıyla imzalanmıştır.",
+"Padişahın yetkilerini kısıtlayan bir belge olarak da yorumlanır."
+],
+"c": 4,
+"a": "Ayanlar devlet nazarında resmiyet kazandı; padişah ilk kez bir zümreyle karşılıklı yükümlülük içeren belge imzaladı. (Bölüm 4)"
+},
+{
+"s": "Islahat Fermanı’nın aşağıdaki hükümlerinden hangisi gayrimüslimlere yönelik değildir?",
+"o": [
+"Bedel ödeyerek askerlikten muaf olma",
+"Karma mahkemelerde yargılanma",
+"Devletin bütçe yapması",
+"Askerî ve sivil okullara girebilme",
+"Devlet memuru olabilme"
+],
+"c": 2,
+"a": "Bütçe yapılması bütün devlet maliyesini ilgilendiren genel bir hükümdür. (Bölüm 4)"
+},
+{
+"s": "I. Meşrutiyet’in Osmanlı tarihi açısından önemi aşağıdakilerden hangisidir?",
+"o": [
+"Halkın ilk kez seçme ve seçilme hakkını kullanması",
+"Hükümetin meclise karşı sorumlu olması",
+"Yeniçeri Ocağı’nın kaldırılması",
+"Kapitülasyonların kaldırılması",
+"Saltanatın kaldırılması"
+],
+"c": 0,
+"a": "Kanun-ı Esasi ile halk ilk kez yönetime ortak oldu. (Bölüm 5)"
+},
+{
+"s": "II. Meşrutiyet’in ilanından hemen sonra yaşanan gelişmeler arasında aşağıdakilerden hangisi yoktur?",
+"o": [
+"Avusturya’nın Bosna-Hersek’i ilhak etmesi",
+"Girit’in Yunanistan’a katılma kararı",
+"31 Mart Olayı",
+"Kırım Savaşı",
+"Bulgaristan’ın bağımsızlığını ilan etmesi"
+],
+"c": 3,
+"a": "Kırım Savaşı 1853–1856’dadır. (Bölüm 5)"
+},
+{
+"s": "II. Abdülhamit’in İslamcılık politikasını benimsemesinin nedenlerinden biri aşağıdakilerden hangisidir?",
+"o": [
+"Batı’yı taklit etmek",
+"Panslavizmi etkisiz kılmak",
+"Kapitülasyonları kaldırmak",
+"Meşrutiyeti ilan etmek",
+"Turancılığı yaymak"
+],
+"c": 1,
+"a": "Ayrıca içerideki siyasi rakiplerinin gücünü kırmak istiyordu. (Bölüm 6)"
+},
+{
+"s": "“Merkezî hükümetin yetkileri azaltılmalı, yerel yönetimler güçlendirilmeli ve liberal ekonomi uygulanmalıdır.” görüşünün savunucusu kimdir?",
+"o": [
+"Namık Kemal",
+"Mithat Paşa",
+"Ziya Gökalp",
+"Abdullah Cevdet",
+"Prens Sabahattin"
+],
+"c": 4,
+"a": "Prens Sabahattin, Adem-i Merkeziyetçiliği savundu. (Bölüm 6)"
+},
+{
+"s": "Osmanlı Devleti’nin Trablusgarp’a yeterli askerî yardım gönderememesinin nedeni aşağıdakilerden hangisidir?",
+"o": [
+"Mustafa Kemal’in bölgeye gitmemesi",
+"Bölge halkının İtalya’yı desteklemesi",
+"Deniz yolunun İtalyan donanması, kara yolunun İngiltere ve Fransa tarafından kapatılması",
+"Almanya’nın karşı çıkması",
+"Rusya’nın Boğazları kapatması"
+],
+"c": 2,
+"a": "Bu yüzden Enver Bey ve Mustafa Kemal gibi subaylar gizlice bölgeye gitti. (Bölüm 7)"
+},
+{
+"s": "I. Balkan Savaşı’nın sonuçları arasında aşağıdakilerden hangisi yer almaz?",
+"o": [
+"Edirne’nin geri alınması",
+"Anadolu’ya Türk göçü",
+"Arnavutluk’un bağımsızlığı",
+"Babıali Baskını ile İttihat ve Terakki’nin iktidarı",
+"Türkçülük akımının güçlenmesi"
+],
+"c": 0,
+"a": "Edirne II. Balkan Savaşı’nda geri alındı. (Bölüm 7)"
+},
+{
+"s": "Almanya’nın Osmanlı Devleti’ni I. Dünya Savaşı’na çekmek istemesinin nedenleri arasında hangisi yoktur?",
+"o": [
+"Yeni cepheler açarak yükünü hafifletmek",
+"Boğazlardan Rusya’ya yardımı engellemek",
+"Musul–Kerkük petrolleri",
+"Osmanlı’dan Balkan toprakları almak",
+"Halifelikten yararlanmak"
+],
+"c": 3,
+"a": "Almanya’nın Osmanlı’dan toprak alma amacı yoktu. (Bölüm 8)"
+},
+{
+"s": "Misak-ı Millî’nin güney (Suriye) sınırının belirlenmesinde etkili olan cephe hangisidir?",
+"o": [
+"Irak",
+"Suriye–Filistin",
+"Hicaz–Yemen",
+"Kafkasya",
+"Kanal"
+],
+"c": 1,
+"a": "Mustafa Kemal İngiliz ilerleyişini Halep’in kuzeyinde durdurdu. (Bölüm 8)"
+},
+{
+"s": "Rusya’nın savaştan çekilmesi Osmanlı Devleti için aşağıdaki sonuçlardan hangisini doğurmuştur?",
+"o": [
+"Çanakkale’nin işgali",
+"Sykes-Picot’un uygulanması",
+"Kapitülasyonların genişlemesi",
+"İstanbul’un Rusya’ya bırakılması",
+"Kars, Ardahan ve Batum’un geri alınması"
+],
+"c": 4,
+"a": "Brest-Litovsk (3 Mart 1918) ile Elviye-i Selase geri alındı. (Bölüm 9)"
+}
+],
+"10": [
+{
+"s": "Mondros’un hangi hükmü Osmanlı’nın Anadolu ile Rumeli arasındaki bağlantısını kesmiştir?",
+"o": [
+"Ordunun terhisi",
+"Boğazların açılması ve işgali",
+"Demiryollarının denetimi",
+"Toros tünellerinin işgali",
+"Savaş gemilerinin teslimi"
+],
+"c": 1
+},
+{
+"s": "“İtilaf Devletleri güvenliklerini tehdit eden bir durumda herhangi bir stratejik noktayı işgal edebilecek.” maddesi için hangisi yanlıştır?",
+"o": [
+"Ateşkesin en ağır maddesidir.",
+"Bütün işgallere dayanak yapılmıştır.",
+"İzmir’in işgali bu maddeye dayandırılmıştır.",
+"Osmanlı’nın lehine yorumlanmıştır.",
+"Bütün yurdun işgaline zemin hazırlamıştır."
+],
+"c": 3
+},
+{
+"s": "Mondros’un 24. maddesi hangi amaca hizmet etmiştir?",
+"o": [
+"Pontus devletinin kurulmasına",
+"Doğuda bir Ermeni devletinin kurulmasına",
+"İstanbul’un işgaline",
+"Boğazların açılmasına",
+"Yunanistan’ın İzmir’i almasına"
+],
+"c": 1
+},
+{
+"s": "Aşağıdakilerden hangisi Mondros’tan sonraki ilk işgallerden biri değildir?",
+"o": [
+"Musul – İngiltere",
+"Adana – Fransa",
+"Antalya – İtalya",
+"İzmir – Yunanistan",
+"İstanbul – Almanya"
+],
+"c": 4,
+"a": "Almanya yenik devlettir; İstanbul’u İtilaf Devletleri işgal etmiştir."
+},
+{
+"s": "İzmir’in işgalinin Türk milleti üzerinde diğer işgallerden daha büyük tepki uyandırmasının nedeni nedir?",
+"o": [
+"Ateşkesten önce yapılması",
+"Eski tebaa olan Yunanlılar tarafından yapılması",
+"Barışla gerçekleşmesi",
+"İngilizlerin karşı çıkması",
+"İtalya’nın işgale katılması"
+],
+"c": 1
+},
+{
+"s": "Mondros’un ekonomik hükümleriyle ilgili hangisi söylenebilir?",
+"o": [
+"Osmanlı’nın ekonomik bağımsızlığı korunmuştur.",
+"Osmanlı İtilaf Devletleri’ne bağımlı hâle getirilmiştir.",
+"Kapitülasyonlar kaldırılmıştır.",
+"Demiryolları Osmanlı’ya bırakılmıştır.",
+"Osmanlı’ya kredi verilmiştir."
+],
+"c": 1
+},
+{
+"s": "Mondros Ateşkesi Osmanlı adına Bahriye Nazırı …… tarafından imzalanmıştır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Ahmet İzzet Paşa",
+"Damat Ferit Paşa",
+"Ali Fuat Paşa",
+"Rauf (Orbay) Bey",
+"Enver Paşa"
+],
+"c": 3
+},
+{
+"s": "Mondros’un en ağır maddesi olan ve bütün işgallere dayanak yapılan madde ……. maddedir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"24",
+"5",
+"7",
+"12",
+"1"
+],
+"c": 2
+},
+{
+"s": "Mondros’tan sonra işgal edilen ilk yer ……’tur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"İzmir",
+"Musul",
+"Antep",
+"Adana",
+"İstanbul"
+],
+"c": 1
+},
+{
+"s": "İzmir 15 Mayıs 1919’da …… tarafından işgal edilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"İtalyanlar",
+"Yunanlılar",
+"İngilizler",
+"Fransızlar",
+"Ermeniler"
+],
+"c": 1
+},
+{
+"s": "Mondros’un 24. maddesinde adı geçen altı doğu iline …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Elviye-i Selase",
+"Vilâyât-ı Sitte",
+"Kilikya",
+"Şark Vilayetleri",
+"Trakya-Paşaeli"
+],
+"c": 1
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Damat Ferit Paşa İngiliz yanlısı bir sadrazamdır.",
+"İzmir’in işgali 7. maddeye dayandırılmıştır.",
+"Sadrazam Ahmet İzzet Paşa Mondros’u diğer ateşkeslerden daha hafif bulmuştur.",
+"Mustafa Kemal, Mondros’un işgale açık hükümlerine tepki göstermiştir.",
+"Mondros Ateşkesi’ne göre Türk esirleri ile İtilaf esirlerine eşit davranılacaktı."
+],
+"c": 4,
+"a": "İtilaf esirleri teslim edilecek, Türk esirleri ise İtilaf denetiminde kalacaktı; eşitlik ilkesine uyulmadı."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"İtilaf esirleri teslim edilecek, Türk esirleri ise İtilaf denetiminde kalacaktı; eşitlik ilkesine uyulmadı.",
+"Sadrazam Ahmet İzzet Paşa Mondros’u diğer ateşkeslerden daha hafif bulmuştur.",
+"Mustafa Kemal, Mondros’un işgale açık hükümlerine tepki göstermiştir.",
+"İzmir’in işgali Mondros’un 24. maddesine dayandırılmıştır.",
+"Damat Ferit Paşa İngiliz yanlısı bir sadrazamdır."
+],
+"c": 3,
+"a": "İzmir’in işgali 7. maddeye dayandırılmıştır."
+}
+],
+"11": [
+{
+"s": "Aşağıdaki cemiyetlerden hangisi azınlıklar tarafından kurulmuştur?",
+"o": [
+"Kilikyalılar",
+"Etnik-i Eterya",
+"İslam Teali",
+"Millî Kongre",
+"Wilson Prensipleri"
+],
+"c": 1
+},
+{
+"s": "Zararlı cemiyetlerin ortak düşüncesi aşağıdakilerden hangisidir?",
+"o": [
+"Tam bağımsızlık",
+"Osmanlı’nın ancak bir devletin himayesinde yaşayabileceği",
+"Saltanatın kaldırılması",
+"Cumhuriyetin ilanı",
+"Kuva-yı Milliye ile direnmek"
+],
+"c": 1
+},
+{
+"s": "Fransız işgaline karşı Adana çevresinin Türk olduğunu kanıtlamak için kurulan cemiyet hangisidir?",
+"o": [
+"Trakya-Paşaeli",
+"Kilikyalılar",
+"Redd-i İlhak",
+"Trabzon Muhafaza-i Hukuk",
+"Millî Kongre"
+],
+"c": 1
+},
+{
+"s": "Trakya-Paşaeli Müdafaa-i Hukuk Cemiyeti hangi tehlikeye karşı kurulmuştur?",
+"o": [
+"Ermeni devleti",
+"Trakya’nın Yunanistan’a",
+"Pontus devleti verilmesi",
+"Fransız işgali",
+"İtalyan işgali"
+],
+"c": 1
+},
+{
+"s": "Millî cemiyetlerin Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti adı altında birleştirildiği kongre hangisidir?",
+"o": [
+"Erzurum",
+"Balıkesir",
+"Alaşehir",
+"Sivas",
+"Amasya"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki eşleştirmelerden hangisi yanlıştır?",
+"o": [
+"Mavri Mira – Rumlar",
+"Taşnak – Ermeniler",
+"Kürt Teali – İngiliz desteği",
+"İslam Teali – hilafeti güçlendirmek",
+"Redd-i İlhak – ABD mandası"
+],
+"c": 4,
+"a": "Redd-i İlhak İzmir’in işgaline karşı kurulmuş millî bir cemiyettir."
+},
+{
+"s": "Merkezi Rum Patrikhanesi olan ve Bizans’ı yeniden kurmayı amaçlayan cemiyet ……’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Etnik-i Eterya",
+"Mavri Mira",
+"Rum Pontus",
+"Taşnak",
+"Alyans İsrailit"
+],
+"c": 1
+},
+{
+"s": "Trabzon Rum İmparatorluğu’nu yeniden kurmak isteyen cemiyet …… Cemiyeti’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Mavri Mira",
+"Etnik-i Eterya",
+"Hınçak",
+"Kürt Teali",
+"Rum Pontus"
+],
+"c": 4
+},
+{
+"s": "ABD mandasını savunan zararlı cemiyet …… Cemiyeti’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"İngiliz Muhipleri",
+"Kürt Teali",
+"İslam Teali",
+"Wilson Prensipleri",
+"Sulh ve Selamet-i Osmaniye"
+],
+"c": 3
+},
+{
+"s": "“Kuva-yı Milliye” deyimini ilk kullanan cemiyet …… Cemiyeti’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Kilikyalılar",
+"İzmir Redd-i İlhak",
+"Trakya-Paşaeli",
+"Trabzon Muhafaza-i Hukuk",
+"Millî Kongre"
+],
+"c": 4
+},
+{
+"s": "Erzurum Kongresi’ni toplayan millî cemiyet …… Müdafaa-i Hukuk Cemiyeti’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Trakya-Paşaeli",
+"Şark Vilayetleri (Doğu Anadolu)",
+"Kilikya",
+"Trabzon",
+"İzmir"
+],
+"c": 1
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"İngiliz Muhipleri Cemiyeti İngiliz mandasını savunmuştur.",
+"Başlangıçta bölgesel ve birbirinden bağımsızdılar; Sivas Kongresi’nde birleştirildiler.",
+"Taşnak ve Hınçak cemiyetleri bağımsız bir Ermeni devleti kurmayı amaçlamıştır.",
+"Zararlı cemiyetler azınlıklar tarafından kurulmuştur.",
+"İzmir Redd-i İlhak Cemiyeti Yunan işgaline fiilen silahla karşı koymuştur."
+],
+"c": 3,
+"a": "Zararlı cemiyetler Türkler tarafından, işgalci devletlerin desteğiyle kurulmuştur."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"İzmir Redd-i İlhak Cemiyeti Yunan işgaline fiilen silahla karşı koymuştur.",
+"İngiliz Muhipleri Cemiyeti İngiliz mandasını savunmuştur.",
+"Zararlı cemiyetler Türkler tarafından, işgalci devletlerin desteğiyle kurulmuştur.",
+"Millî cemiyetler kurulduklarında ulusal ölçekte birleşik bir örgüttü.",
+"Taşnak ve Hınçak cemiyetleri bağımsız bir Ermeni devleti kurmayı amaçlamıştır."
+],
+"c": 3,
+"a": "Başlangıçta bölgesel ve birbirinden bağımsızdılar; Sivas Kongresi’nde birleştirildiler."
+}
+],
+"12": [
+{
+"s": "Amasya Genelgesi’nin hangi maddesi Millî Mücadele’nin gerekçesini belirtir?",
+"o": [
+"Vatanın bütünlüğü ve milletin bağımsızlığı tehlikededir.",
+"Sivas’ta bir kongre toplanacaktır.",
+"Temsilciler kimliklerini gizleyerek yolculuk etmelidir.",
+"Erzurum’da kongre toplanacaktır.",
+"Her sancaktan üç temsilci seçilecektir."
+],
+"c": 0
+},
+{
+"s": "Aşağıdakilerden hangisi Amasya Genelgesi’nin özelliklerinden biri değildir?",
+"o": [
+"Millî egemenlik fikrinin ilk kez dile getirilmesi",
+"Yeni bir yönetim fikrinin ortaya çıkması",
+"İstanbul hükümetinin eleştirilmesi",
+"Kongre toplanma kararı",
+"Misak-ı Millî’nin kabul edilmesi"
+],
+"c": 4,
+"a": "Misak-ı Millî 28 Ocak 1920’de Meclis-i Mebusan’da kabul edilmiştir."
+},
+{
+"s": "“Bu mesele millî bir sır olarak tutulmalıdır.” maddesi neyi gösterir?",
+"o": [
+"İşgalci devletlerin ve İstanbul hükümetinin engel olabileceğinden çekinildiğini",
+"Halkın desteğinin alınmadığını",
+"Kongrenin yurt dışında yapılacağını",
+"Mandanın kabul edildiğini",
+"Saltanatın kaldırılacağını"
+],
+"c": 0
+},
+{
+"s": "Havza Genelgesi’nden sonra İstanbul hükümetinin Mustafa Kemal’e karşı tutumu hangisidir?",
+"o": [
+"Ona yeni yetkiler vermesi",
+"Onu İstanbul’a geri çağırması",
+"Onu sadrazam yapması",
+"Kongreleri desteklemesi",
+"Ordu kurmasına izin vermesi"
+],
+"c": 1
+},
+{
+"s": "Amasya’da Mustafa Kemal ile buluşan ve Millî Mücadele’nin önder kadrosunu oluşturan isimler hangisinde doğru verilmiştir?",
+"o": [
+"Ali Fuat Paşa, Rauf Bey, Refet Bey",
+"Enver Paşa, Talat Paşa, Cemal Paşa",
+"Damat Ferit, Ahmet İzzet, Tevfik Paşa",
+"Ziya Gökalp, Namık Kemal, Ziya Paşa",
+"Mithat Paşa, Hüseyin Avni, Mustafa Reşit"
+],
+"c": 0
+},
+{
+"s": "Amasya Genelgesi için yapılabilecek en kapsamlı yorum hangisidir?",
+"o": [
+"Bir askerî ateşkes metnidir.",
+"Kurtuluş Savaşı’nın amacını, gerekçesini ve yöntemini belirleyen bir bağımsızlık bildirisidir.",
+"Bir barış antlaşmasıdır.",
+"Bir anayasadır.",
+"Bir manda talebidir."
+],
+"c": 1
+},
+{
+"s": "Mustafa Kemal Samsun’a …… Ordu Müfettişi olarak gönderilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"3.",
+"9.",
+"15.",
+"20.",
+"2."
+],
+"c": 1
+},
+{
+"s": "Millî Mücadele’nin ilk genelgesi …… Genelgesi’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Amasya",
+"Erzurum",
+"Sivas",
+"Havza",
+"Samsun"
+],
+"c": 3
+},
+{
+"s": "Amasya Genelgesi’ne göre millî kongre ……’ta toplanacaktır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Sivas",
+"Erzurum",
+"Ankara",
+"Amasya",
+"Konya"
+],
+"c": 0
+},
+{
+"s": "Amasya Genelgesi’ne göre her sancaktan …… temsilci seçilecektir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"bir",
+"iki",
+"beş",
+"üç",
+"on"
+],
+"c": 3
+},
+{
+"s": "15 Haziran 1919’da Mustafa Kemal’in unvanı …… Ordu Müfettişi olarak değiştirilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"9.",
+"3.",
+"15.",
+"20.",
+"1."
+],
+"c": 1
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"“Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.” maddesi millî egemenlik anlayışını yansıtır.",
+"Manda kesin olarak Sivas Kongresi’nde reddedilmiştir.",
+"Mustafa Kemal Samsun’a Millî Mücadele’yi başlatmak için padişah tarafından resmen gönderilmiştir.",
+"Havza Genelgesi ile halktan işgalleri mitinglerle protesto etmesi istenmiştir.",
+"Amasya Genelgesi’nde İstanbul hükümeti ilk kez açıkça eleştirilmiştir."
+],
+"c": 2,
+"a": "Asayişi sağlamak üzere resmî bir askerî görevle gönderilmiştir."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Amasya Genelgesi’nde manda ve himaye fikri kesin olarak reddedilmiştir.",
+"Havza Genelgesi ile halktan işgalleri mitinglerle protesto etmesi istenmiştir.",
+"Amasya Genelgesi’nde İstanbul hükümeti ilk kez açıkça eleştirilmiştir.",
+"“Milletin bağımsızlığını yine milletin azim ve kararı kurtaracaktır.” maddesi millî egemenlik anlayışını yansıtır.",
+"Asayişi sağlamak üzere resmî bir askerî görevle gönderilmiştir."
+],
+"c": 0,
+"a": "Manda kesin olarak Sivas Kongresi’nde reddedilmiştir."
+}
+],
+"13": [
+{
+"s": "Erzurum Kongresi’nde ilk kez aşağıdakilerden hangisi gerçekleşmiştir?",
+"o": [
+"Manda kesin olarak reddedildi.",
+"Bütün cemiyetler birleştirildi.",
+"Geçici hükümet kurulabileceği ve Heyet-i Temsiliye’nin oluşturulması kararı",
+"Misak-ı Millî kabul edildi.",
+"TBMM açıldı."
+],
+"c": 2
+},
+{
+"s": "Sivas Kongresi’nin Erzurum Kongresi’nden en önemli farkı nedir?",
+"o": [
+"Bölgesel olması",
+"Toplanış bakımından da ulusal olması",
+"Mustafa Kemal’in katılmaması",
+"Mandanın kabul edilmesi",
+"İstanbul’da toplanması"
+],
+"c": 1
+},
+{
+"s": "Sivas Kongresi’nde en çok tartışılan konu hangisidir?",
+"o": [
+"Saltanatın kaldırılması",
+"Manda ve himaye",
+"Meclisin yeri",
+"Kapitülasyonlar",
+"Halifelik"
+],
+"c": 1
+},
+{
+"s": "Amasya Görüşmesi’nin Millî Mücadele açısından en önemli sonucu hangisidir?",
+"o": [
+"Saltanatın kaldırılması",
+"Heyet-i Temsiliye’nin İstanbul hükümetince tanınması",
+"İzmir’in kurtarılması",
+"TBMM’nin açılması",
+"Mandanın kabulü"
+],
+"c": 1
+},
+{
+"s": "Ankara’nın merkez seçilmesinde aşağıdakilerden hangisi etkili olmamıştır?",
+"o": [
+"Cepheye yakın, düşmana uzak olması",
+"İstanbul ile demiryolu bağlantısı",
+"20. Kolordu’nun bulunması",
+"Halkın Millî Mücadele’yi desteklemesi",
+"Osmanlı’nın başkenti olması"
+],
+"c": 4,
+"a": "Osmanlı’nın başkenti İstanbul’dur."
+},
+{
+"s": "Erzurum Kongresi’nin “işgal amacı taşımayan bir devletin yardımı kabul edilebilir” kararı neyi gösterir?",
+"o": [
+"Mandanın kabul edildiğini",
+"Mandaya karşı ilk tavrın alındığını",
+"Almanya ile ittifak kurulduğunu",
+"Kapitülasyonların sürdüğünü",
+"Barış yapıldığını"
+],
+"c": 1,
+"a": "Yardım kabul edilebilir ama bağımsızlık şartıyla; himaye istenmemektedir."
+},
+{
+"s": "Erzurum Kongresi’ne Mustafa Kemal’i davet eden 15. Kolordu Komutanı ……’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Kâzım Karabekir Paşa",
+"Ali Fuat Paşa",
+"Refet Bey",
+"Rauf Bey",
+"Cemal Paşa"
+],
+"c": 0
+},
+{
+"s": "Erzurum Kongresi’nde kurulan ve kararları yürütecek kurula …… denir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Heyet-i Vükela",
+"Meşveret Meclisi",
+"Felah-ı Vatan",
+"Meclis-i Mebusan",
+"Heyet-i Temsiliye (Temsil Kurulu)"
+],
+"c": 4
+},
+{
+"s": "Sivas Kongresi’nde bütün millî cemiyetler …… adı altında birleştirildi. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti",
+"Şark-ı Anadolu Müdafaa-i Hukuk Cemiyeti",
+"İttihat ve Terakki Cemiyeti",
+"Millî Kongre Cemiyeti",
+"Felah-ı Vatan Grubu"
+],
+"c": 0
+},
+{
+"s": "Sivas Kongresi’nde çıkarılmasına karar verilen gazete ……’dir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"İrade-i Milliye",
+"Hâkimiyet-i Milliye",
+"Takvim-i Vekayi",
+"Tasvir-i Efkâr",
+"Açıksöz"
+],
+"c": 0
+},
+{
+"s": "Amasya Görüşmesi’nde İstanbul hükümetini temsil eden kişi Bahriye Nazırı ……’dır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Ali Rıza Paşa",
+"Damat Ferit Paşa",
+"Ahmet İzzet Paşa",
+"Salih Paşa",
+"Cemal Paşa"
+],
+"c": 3
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Manda ve himaye fikri ilk kez ve kesin olarak Erzurum Kongresi’nde reddedilmiştir.",
+"Amasya Görüşmesi ile İstanbul hükümeti Heyet-i Temsiliye’yi resmen tanımıştır.",
+"Konya Millî Mücadele’yi tam benimsemediği için elenmiş, Ankara seçilmiştir.",
+"Erzurum Kongresi toplanış bakımından bölgesel, kararlar bakımından ulusaldır.",
+"Balıkesir ve Alaşehir kongreleri Yunan işgaline karşı Batı Anadolu’da toplanmış bölgesel kongrelerdir."
+],
+"c": 0,
+"a": "Erzurum’da dolaylı bir tavır vardır; kesin ret Sivas Kongresi’ndedir."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Heyet-i Temsiliye Konya’yı merkez olarak seçmiştir.",
+"Erzurum Kongresi toplanış bakımından bölgesel, kararlar bakımından ulusaldır.",
+"Balıkesir ve Alaşehir kongreleri Yunan işgaline karşı Batı Anadolu’da toplanmış bölgesel kongrelerdir.",
+"Amasya Görüşmesi ile İstanbul hükümeti Heyet-i Temsiliye’yi resmen tanımıştır.",
+"Erzurum’da dolaylı bir tavır vardır; kesin ret Sivas Kongresi’ndedir."
+],
+"c": 0,
+"a": "Konya Millî Mücadele’yi tam benimsemediği için elenmiş, Ankara seçilmiştir."
+}
+],
+"14": [
+{
+"s": "Mustafa Kemal’in mebus seçildiği hâlde Ankara’da kalmasının temel nedeni nedir?",
+"o": [
+"Sağlık sorunları",
+"İstanbul işgal edilirse Anadolu’da yeni bir meclis açabilmek",
+"Padişahın izin vermemesi",
+"Seçimin iptal edilmesi",
+"Ordunun başında savaşmak"
+],
+"c": 1
+},
+{
+"s": "Misak-ı Millî’nin hangi maddesi tam bağımsızlık ilkesini en açık şekilde yansıtır?",
+"o": [
+"Arap topraklarının halkoyuyla belirlenmesi",
+"Elviye-i Selase",
+"Batı Trakya",
+"Boğazlar",
+"Kapitülasyonlara karşı olunması"
+],
+"c": 4
+},
+{
+"s": "Misak-ı Millî’de halkoyuna başvurulması öngörülen yerler arasında hangisi yoktur?",
+"o": [
+"Kars",
+"Ardahan",
+"Batum",
+"Batı Trakya",
+"İzmir"
+],
+"c": 4
+},
+{
+"s": "İstanbul’un işgali için İngilizlerin öne sürdüğü gerekçe hangisidir?",
+"o": [
+"Misak-ı Millî’nin kabulü",
+"Kilikya’da Ermenilerin katledildiği şeklindeki uydurma haberler",
+"Padişahın isteği",
+"Boğazların kapatılması",
+"Mondros’un sona ermesi"
+],
+"c": 1
+},
+{
+"s": "Aşağıdakilerden hangisi İstanbul’un işgalinin sonuçlarından biri değildir?",
+"o": [
+"Meclis-i Mebusan’ın dağılması",
+"Saltanata güvenin azalması",
+"Millî Mücadele aleyhine fetva verilmesi",
+"TBMM’nin açılmasına zemin hazırlanması",
+"Misak-ı Millî’nin kabul edilmesi"
+],
+"c": 4,
+"a": "Misak-ı Millî işgalden önce, 28 Ocak 1920’de kabul edilmiştir; işgalin nedenlerindendir."
+},
+{
+"s": "Misak-ı Millî’nin önemiyle ilgili hangisi yanlıştır?",
+"o": [
+"Millî sınırlar çizilmiştir.",
+"Kongre kararları Osmanlı Meclisi’nce de kabul edilmiştir.",
+"Bugünkü sınırlarımızın temelini oluşturmuştur.",
+"Tam bağımsızlık ilkesi kabul edilmiştir.",
+"Manda ve himaye kabul edilmiştir."
+],
+"c": 4
+},
+{
+"s": "Son Osmanlı Meclis-i Mebusanı …… tarihinde açılmıştır. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"28 Ocak 1920",
+"16 Mart 1920",
+"12 Ocak 1920",
+"23 Nisan 1920",
+"27 Aralık 1919"
+],
+"c": 2
+},
+{
+"s": "Mecliste Müdafaa-i Hukukçuların Rauf Bey başkanlığında kurduğu grup …… Grubu’dur. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Müdafaa-i Hukuk",
+"Halk Fırkası",
+"Teceddüt",
+"Felah-ı Vatan",
+"Hürriyet ve İtilaf"
+],
+"c": 3
+},
+{
+"s": "Misak-ı Millî …… tarihinde kabul edilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"12 Ocak 1920",
+"17 Şubat 1920",
+"28 Ocak 1920",
+"16 Mart 1920",
+"23 Nisan 1920"
+],
+"c": 2
+},
+{
+"s": "İstanbul …… tarihinde resmen işgal edilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"28 Ocak 1920",
+"13 Kasım 1918",
+"16 Mart 1920",
+"23 Nisan 1920",
+"15 Mayıs 1919"
+],
+"c": 2
+},
+{
+"s": "Mustafa Kemal 1919 seçimlerinde ……’dan mebus seçilmiştir. Yukarıdaki cümlede boş bırakılan yere aşağıdakilerden hangisi getirilmelidir?",
+"o": [
+"Sivas",
+"Erzurum",
+"Ankara",
+"İstanbul",
+"Samsun"
+],
+"c": 1
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Misak-ı Millî’nin kabulü TBMM’nin açılmasına zemin hazırlayan gelişmelerden biridir.",
+"İşgal tepki doğurmuş, katılımı artırmıştır.",
+"Misak-ı Millî ile kapitülasyonlara karşı olunduğu açıkça belirtilmiştir.",
+"Misak-ı Millî’ye göre Batı Trakya’nın durumu halkoyuyla belirlenmelidir.",
+"Mustafa Kemal mebus seçildikten sonra İstanbul’a giderek meclise katılmıştır."
+],
+"c": 4,
+"a": "İstanbul’a gitmemiş, Heyet-i Temsiliye’nin başında Ankara’da kalmıştır."
+},
+{
+"s": "Aşağıdaki ifadelerden hangisi yanlıştır?",
+"o": [
+"Misak-ı Millî ile kapitülasyonlara karşı olunduğu açıkça belirtilmiştir.",
+"İstanbul’un işgali Millî Mücadele’ye katılımı azaltmıştır.",
+"Misak-ı Millî’ye göre Batı Trakya’nın durumu halkoyuyla belirlenmelidir.",
+"Misak-ı Millî’nin kabulü TBMM’nin açılmasına zemin hazırlayan gelişmelerden biridir.",
+"İstanbul’a gitmemiş, Heyet-i Temsiliye’nin başında Ankara’da kalmıştır."
+],
+"c": 1,
+"a": "İşgal tepki doğurmuş, katılımı artırmıştır."
+}
+],
+"F": [
+{
+"s": "Mondros Ateşkes Antlaşması’nı Osmanlı Devleti adına imzalayan kişi kimdir?",
+"o": [
+"Damat Ferit Paşa",
+"Ali Rıza Paşa",
+"Mustafa Kemal Paşa",
+"Ahmet İzzet Paşa",
+"Rauf (Orbay) Bey"
+],
+"c": 4,
+"a": "Bahriye Nazırı Rauf Bey, İngiliz Amirali Calthorpe ile imzaladı (30 Ekim 1918). (Bölüm 10)"
+},
+{
+"s": "İtilaf devletlerinin işgallere dayanak yaptığı ve Mondros’un en ağır maddesi kabul edilen hüküm hangisidir?",
+"o": [
+"Boğazların açılması",
+"Ordunun terhisi",
+"Stratejik noktaların işgal edilebilmesi (7. madde)",
+"Savaş gemilerinin teslimi",
+"Haberleşmenin denetimi"
+],
+"c": 2,
+"a": "7. madde bütün yurdun işgaline zemin hazırladı. (Bölüm 10)"
+},
+{
+"s": "Mondros’un “Vilayat-ı Sitte’de karışıklık çıkarsa buralar işgal edilebilecek” hükmünün amacı aşağıdakilerden hangisidir?",
+"o": [
+"Doğu Anadolu’da bir Ermeni devletine zemin hazırlamak",
+"Boğazları kontrol etmek",
+"Kapitülasyonları genişletmek",
+"Arap bölgelerini ayırmak",
+"Rum Pontus devleti kurmak"
+],
+"c": 0,
+"a": "İngilizce metinde bu illerden “altı Ermeni vilayeti” diye söz edilir. (Bölüm 10)"
+},
+{
+"s": "Mondros’ta devletler arası eşitlik ilkesine uyulmadığını en açık biçimde gösteren hüküm hangisidir?",
+"o": [
+"Savaş gemilerinin teslimi",
+"Haberleşmenin denetimi",
+"Toros tünellerinin işgali",
+"Esirlerle ilgili hüküm",
+"Demiryollarının denetimi"
+],
+"c": 3,
+"a": "İtilaf esirleri teslim edilirken Türk esirler İtilaf denetiminde bırakıldı. (Bölüm 10)"
+},
+{
+"s": "Mondros Ateşkesi’nden sonra işgal edilen ilk yer neresidir?",
+"o": [
+"İstanbul",
+"Musul",
+"Antep",
+"Adana",
+"İzmir"
+],
+"c": 1,
+"a": "3 Kasım 1918’de Musul işgal edildi. (Bölüm 10)"
+},
+{
+"s": "İzmir’in Yunanlılar tarafından işgal edilmesi nerede kararlaştırılmıştır?",
+"o": [
+"Londra Konferansı’nda",
+"Sivas Kongresi’nde",
+"Berlin Kongresi’nde",
+"Mondros görüşmelerinde",
+"Paris Barış Konferansı’nda"
+],
+"c": 4,
+"a": "İngilizlerin desteğiyle Paris’te kararlaştırıldı; işgal 15 Mayıs 1919’da yapıldı. (Bölüm 10)"
+},
+{
+"s": "Mondros’un ülkeyi işgale açık bırakan hükümlerine tepki gösteren ve ordunun terhis edilmemesini isteyen komutan kimdir?",
+"o": [
+"Cemal Paşa",
+"Kâzım Karabekir",
+"Mustafa Kemal",
+"Ali Fuat Paşa",
+"Enver Paşa"
+],
+"c": 2,
+"a": "Yıldırım Orduları Grup Komutanı Mustafa Kemal; İstanbul hükümeti bu orduyu kaldırdı. (Bölüm 10)"
+},
+{
+"s": "Millî varlığa düşman (zararlı) cemiyetlerin ortak görüşü aşağıdakilerden hangisidir?",
+"o": [
+"Kurtuluşun bir devletin manda ve himayesiyle mümkün olduğu",
+"Saltanatın kaldırılması",
+"Cumhuriyetin ilanı",
+"Silahlı direniş",
+"Tam bağımsızlık"
+],
+"c": 0,
+"a": "İngiliz Muhipleri İngiliz, Wilson Prensipleri Cemiyeti ABD mandasını savundu. (Bölüm 11)"
+},
+{
+"s": "“Kuva-yı Milliye” deyimini ilk kullanan kuruluş hangisidir?",
+"o": [
+"Şark Vilayetleri Cemiyeti",
+"Kilikyalılar Cemiyeti",
+"İzmir Redd-i İlhak Cemiyeti",
+"Millî Kongre Cemiyeti",
+"Trakya-Paşaeli Cemiyeti"
+],
+"c": 3,
+"a": "Millî Kongre Cemiyeti Türk aleyhtarı propagandaya yayınla karşı koydu. (Bölüm 11)"
+},
+{
+"s": "Mustafa Kemal Samsun’a hangi görevle gönderilmiştir?",
+"o": [
+"3. Ordu Komutanı",
+"9. Ordu Müfettişi",
+"Yıldırım Orduları Komutanı",
+"Heyet-i Temsiliye Başkanı",
+"Harbiye Nazırı"
+],
+"c": 1,
+"a": "Resmî görevi bölgedeki asayişsizliği incelemekti; unvanı Amasya’da 3. Ordu Müfettişliği oldu. (Bölüm 12)"
+},
+{
+"s": "Havza Genelgesi’nin en önemli sonucu aşağıdakilerden hangisidir?",
+"o": [
+"Temsil Heyeti’nin kurulması",
+"Misak-ı Millî’nin kabulü",
+"Manda fikrinin reddi",
+"Sivas Kongresi’nin toplanması",
+"Mitinglerle ulusal bilincin uyanması"
+],
+"c": 4,
+"a": "Genelgeden sonra yurt genelinde yüze yakın miting yapıldı. (Bölüm 12)"
+},
+{
+"s": "Amasya Genelgesi’nde aşağıdakilerden hangileri yer alır?<br>I. Sivas’ta millî bir kongre toplanması<br>II. Manda ve himayenin kesin olarak reddedilmesi<br>III. İstanbul hükümetinin sorumluluğunu yerine getiremediği",
+"o": [
+"Yalnız I",
+"Yalnız II",
+"I ve III",
+"II ve III",
+"I, II ve III"
+],
+"c": 2,
+"a": "Manda ve himaye Sivas Kongresi’nde reddedildi. (Bölüm 12)"
+},
+{
+"s": "“Milletin istiklalini yine milletin azim ve kararı kurtaracaktır.” ifadesi Millî Mücadele’nin neyini belirtir?",
+"o": [
+"Yöntemini",
+"Merkezini",
+"Liderini",
+"Sınırlarını",
+"Gerekçesini"
+],
+"c": 0,
+"a": "Gerekçe “vatanın bütünlüğü ve milletin bağımsızlığı tehlikededir” maddesidir. (Bölüm 12)"
+},
+{
+"s": "Toplanış bakımından bölgesel, aldığı kararlar bakımından ulusal olan ve Heyet-i Temsiliye’nin ilk kez kurulduğu kongre hangisidir?",
+"o": [
+"Alaşehir",
+"Amasya",
+"Sivas",
+"Erzurum",
+"Balıkesir"
+],
+"c": 3,
+"a": "Erzurum Kongresi (23 Temmuz–7 Ağustos 1919). (Bölüm 13)"
+},
+{
+"s": "Aşağıdakilerden hangisi Sivas Kongresi’nin Erzurum Kongresi’nden farklarından biridir?",
+"o": [
+"Vatanın bütünlüğünün vurgulanması",
+"Bütün millî cemiyetlerin Anadolu ve Rumeli Müdafaa-i Hukuk Cemiyeti adıyla birleştirilmesi",
+"Azınlıklara ayrıcalık verilmemesi",
+"Kuva-yı Milliye’nin tanınması",
+"Millî meclisin toplanmasının istenmesi"
+],
+"c": 1,
+"a": "Diğer kararlar Erzurum’da da vardı; Sivas’ta ulusal çatı kuruldu ve manda kesin reddedildi. (Bölüm 13)"
+},
+{
+"s": "Amasya Görüşmesi’nin en önemli sonucu hangisidir?",
+"o": [
+"İstanbul’un işgali",
+"Misak-ı Millî’nin kabulü",
+"Saltanatın kaldırılması",
+"Meclisin Ankara’da açılması",
+"İstanbul hükümetinin Temsil Heyeti’ni tanıması"
+],
+"c": 4,
+"a": "Millî Mücadele hukuken tanınmış ve meşruluk kazanmıştır. (Bölüm 13)"
+},
+{
+"s": "Heyet-i Temsiliye’nin merkezi olarak Ankara’nın seçilme nedenleri arasında aşağıdakilerden hangisi yoktur?",
+"o": [
+"Halkın Millî Mücadele’yi desteklemesi",
+"20. Kolordu’nun burada bulunması",
+"Denize kıyısı olması ve donanmaya yakınlığı",
+"Anadolu’nun ortasında olması",
+"İstanbul ile demiryolu bağlantısı"
+],
+"c": 2,
+"a": "Ankara’nın denize kıyısı yoktur; bu durum güvenliğini artırıyordu. (Bölüm 13)"
+},
+{
+"s": "Misak-ı Millî’de aşağıdaki bölgelerden hangileri için halkoyu öngörülmüştür?<br>I. Batı Trakya<br>II. Kars, Ardahan, Batum<br>III. İstanbul ve Marmara",
+"o": [
+"Yalnız I",
+"Yalnız III",
+"I ve II",
+"II ve III",
+"I, II ve III"
+],
+"c": 2,
+"a": "İstanbul ve Marmara’nın güvenliği şarttır; halkoyu öngörülmemiştir. (Bölüm 14)"
+},
+{
+"s": "Misak-ı Millî’nin “siyasi, adli ve mali gelişmemizi engelleyen sınırlamalara karşıyız” maddesi neyi hedef alır?",
+"o": [
+"Arap bölgelerini",
+"Batı Trakya’yı",
+"Azınlık haklarını",
+"Kapitülasyonları",
+"Boğazların açılmasını"
+],
+"c": 3,
+"a": "Tam bağımsızlık ilkesinin ifadesidir. (Bölüm 14)"
+},
+{
+"s": "İstanbul’un 16 Mart 1920’de resmen işgal edilmesinin sonuçlarından biri hangisidir?",
+"o": [
+"Millî Mücadele’ye katılımın azalması",
+"Meclis-i Mebusan’ın dağıtılarak TBMM’nin açılmasına zemin hazırlanması",
+"Misak-ı Millî’nin kabul edilmesi",
+"Mondros’un imzalanması",
+"Saltanatın güç kazanması"
+],
+"c": 1,
+"a": "İşgal tersine sonuç verdi; Ankara’da TBMM 23 Nisan 1920’de açıldı. (Bölüm 14)"
+}
+]
+}

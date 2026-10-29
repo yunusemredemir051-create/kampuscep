@@ -15,8 +15,13 @@ import markdown
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_URL = "https://kampuscepte.com.tr"
 SITE_ADI = "KampüsCepte"
-DERSLER = ["ybs/1/bilisim-sistemleri", "ybs/1/veri-tabanina-giris", "ybs/3/veri-tabani-sistemleri", "ybs/2/istatistik", "ybs/2/finansal-yonetim", "ybs/2/inkilap-tarihi"]
+DERSLER = ["ybs/1/bilisim-sistemleri", "ybs/1/veri-tabanina-giris", "ybs/3/veri-tabani-sistemleri", "ybs/2/istatistik", "ybs/2/finansal-yonetim", "ortak/inkilap-tarihi-1"]
 BOLUM_KISA = {"Yönetim Bilişim Sistemleri": "YBS"}
+YAKINDA_ORTAK = [("İngilizce", "Tüm bölümlerin ortak dersi"), ("Türk Dili", "Tüm bölümlerin ortak dersi")]
+
+def sinif_etiket(ders):
+    bolum = BOLUM_KISA.get(ders["bolum"], ders["bolum"])
+    return f"{bolum} {ders['sinif']}. sınıf" if ders.get("sinif") else "Ortak ders · tüm bölümler"
 BUGUN = datetime.date.today().isoformat()
 
 def ozetleri_oku(klasor):
@@ -95,6 +100,7 @@ sub, sup { font-size: .72em; }
 .ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
 .ders ol { margin: 0; padding-left: 22px; }
 .ders li { margin: 4px 0; }
+.grup-baslik { font-size: 22px; letter-spacing: -.4px; margin: 26px 4px 6px; }
 .alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
 .alt-bilgi a { color: var(--soluk); font-weight: 600; }
 @media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
@@ -166,7 +172,7 @@ def unite_sayfasi(klasor, ders, u, ozet, onceki, sonraki):
   <nav class="yol" aria-label="Konum"><a href="{kok}index.html">Ana sayfa</a> › <a href="{kok}dersler.html">Ders notları</a> › <a href="{kok}ders.html?d={klasor}">{e(ders['ad'])}</a> › Ünite {u['no']}</nav>
   <main>
     <div class="baslik-alani">
-      <small>{bolum} {ders['sinif']}. sınıf · {e(ders['ad'])} · Ünite {u['no']}</small>
+      <small>{sinif_etiket(ders)} · {e(ders['ad'])} · Ünite {u['no']}</small>
       <h1>{e(u['ad'])}</h1>
       <p class="giris">{e(ozet['aciklama'])}</p>
     </div>
@@ -188,10 +194,19 @@ def unite_sayfasi(klasor, ders, u, ozet, onceki, sonraki):
 
 def dersler_sayfasi(dersler):
     kartlar = ""
-    for klasor, ders, ozetler in dersler:
-        bolum = BOLUM_KISA.get(ders["bolum"], ders["bolum"])
+    son_grup = None
+    for klasor, ders, ozetler in sorted(dersler, key=lambda d: 0 if d[0].startswith("ortak/") else 1):
+        grup = "ortak" if klasor.startswith("ortak/") else "bolum"
+        if grup != son_grup:
+            son_grup = grup
+            if grup == "ortak":
+                kartlar += '    <h2 class="grup-baslik">Ortak dersler</h2>\n    <p class="giris">Fırat Üniversitesi’nde tüm bölümlerin aldığı dersler.</p>\n'
+            else:
+                if son_grup and kartlar: kartlar += "".join(f'    <section class="ders cam"><h2>{e(ad)}</h2><div class="meta">{e(alt)} · yakında</div></section>\n' for ad, alt in YAKINDA_ORTAK)
+                kartlar += '    <h2 class="grup-baslik">Yönetim Bilişim Sistemleri</h2>\n'
         testli = sum(1 for u in ders["uniteler"] if u.get("test"))
-        meta = f"{bolum} {ders['sinif']}. sınıf · {len(ders['uniteler'])} ünite" + (f" · {testli} ünitede test" if testli else "")
+        prova = len(ders.get("provalar", []))
+        meta = f"{sinif_etiket(ders)} · {len(ders['uniteler'])} ünite" + (f" · {testli} ünitede test" if testli else "") + (f" · {prova} vize/final provası" if prova else "")
         li = "".join(
             f'<li><a href="notlar/{klasor}/unite-{u["no"]}.html">{e(u["ad"])}</a></li>' if u["no"] in ozetler
             else f'<li>{e(u["ad"])}</li>' for u in ders["uniteler"])

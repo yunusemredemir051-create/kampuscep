@@ -94,6 +94,13 @@
     ["Geçti", "Past", "Derbas bû", "انتهى"],
 
     /* notlar */
+    ["Ortak dersler", "Common courses", "Dersên hevpar", "المواد المشتركة"],
+    ["Tüm bölümler · İnkılap Tarihi, İngilizce, Türk Dili", "All departments · Revolution History, English, Turkish", "Hemû beş · Dîroka Şoreşê, Îngilîzî, Tirkî", "جميع الأقسام · تاريخ الثورة، الإنجليزية، التركية"],
+    ["Bütün bölümlerin ortak dersleri", "Courses shared by all departments", "Dersên hevpar ên hemû beşan", "المواد المشتركة لجميع الأقسام"],
+    ["Yabancı Dil (İngilizce)", "Foreign Language (English)", "Zimanê Biyanî (Îngilîzî)", "اللغة الأجنبية (الإنجليزية)"],
+    ["Türk Dili", "Turkish Language", "Zimanê Tirkî", "اللغة التركية"],
+    ["Atatürk İlkeleri ve İnkılap Tarihi I", "Atatürk's Principles and History of Revolution I", "Prensîbên Atatürk û Dîroka Şoreşê I", "مبادئ أتاتورك وتاريخ الثورة I"],
+    ["14 bölüm · özetler, soru çözümü, vize ve final provaları", "14 chapters · summaries, practice questions, midterm and final mock exams", "14 beş · kurte, çareserkirina pirsan, ceribandinên vîze û finalê", "14 فصلاً · ملخصات وحل الأسئلة وتجارب امتحان نصفي ونهائي"],
     ["Bölümünü seç", "Choose your department", "Beşa xwe hilbijêre", "اختر قسمك"],
     ["Yönetim Bilişim Sistemleri", "Management Information Systems", "Pergalên Agahdariya Rêveberiyê", "نظم المعلومات الإدارية"],
     ["1, 2, 3 ve 4. sınıf · ders programı ve notlar", "Years 1–4 · timetable and notes", "Polên 1, 2, 3 û 4 · bernameya dersan û nîşe", "السنوات 1–4 · الجدول الدراسي والملاحظات"],

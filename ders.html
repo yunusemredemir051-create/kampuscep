@@ -148,6 +148,82 @@ sub { font-size: .7em; }
   .soru { padding: 18px 16px; }
   .sekmeler .uzun { display: none; } .sekmeler .kisa { display: inline; }
 }
+
+/* ===================== Prova / deneme ===================== */
+.pv-kartlar { display: grid; gap: 12px; }
+.pv-kart { padding: 16px; display: grid; gap: 12px; }
+.pv-kart-ust { display: flex; gap: 14px; align-items: center; }
+.pv-ikon { width: 46px; height: 46px; border-radius: 14px; flex: none; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), var(--mor)); color: #fff; }
+.pv-ikon.vize { background: linear-gradient(140deg, #3b5bfd, #6a82ff); } .pv-ikon.final { background: linear-gradient(140deg, #f2557f, #ff8a3d); } .pv-ikon.karma { background: linear-gradient(140deg, #16b67a, #3fd6a0); }
+.pv-ikon svg { width: 24px; height: 24px; }
+.pv-kart h3 { margin: 0; font-size: 17px; letter-spacing: -.3px; }
+.pv-rozet { display: inline-block; margin-left: 6px; padding: 2px 9px; border-radius: 99px; font-size: 12px; font-weight: 800; background: var(--yesil-acik); color: #0c6e4b; vertical-align: 2px; }
+.pv-bilgi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0; }
+.pv-bilgi div { background: rgba(255,255,255,.7); border: 1px solid var(--cam-kenar); border-radius: 14px; padding: 12px 6px; text-align: center; font-size: 12px; font-weight: 700; color: var(--soluk); }
+.pv-bilgi b { display: block; font-size: 22px; color: var(--yazi); letter-spacing: -.5px; }
+.pv-mod { display: grid; gap: 10px; margin: 0 0 14px; }
+.pv-mod label { display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 16px; border: 1.5px solid var(--cizgi); background: #fff; cursor: pointer; }
+.pv-mod input { margin-top: 3px; accent-color: var(--mavi); width: 18px; height: 18px; }
+.pv-mod label:has(input:checked) { border-color: var(--mavi); background: var(--mavi-acik); }
+.pv-mod b { display: block; font-size: 15px; } .pv-mod small { color: var(--soluk); font-weight: 600; font-size: 13px; line-height: 1.45; }
+.pv-devam { padding: 14px 16px; margin-bottom: 12px; background: var(--turuncu-acik); border-radius: 16px; color: #9a4a12; font-weight: 700; font-size: 14px; display: grid; gap: 10px; }
+.pv-devam .butonlar .btn { flex: 1; }
+.pv-basla { width: 100%; padding: 15px; font-size: 16px; }
+.pv-gecmis { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; justify-content: center; }
+.pv-gecmis span { font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.7); border: 1px solid var(--cam-kenar); }
+.pv-ust { position: sticky; top: 8px; z-index: 5; display: flex; align-items: center; gap: 12px; padding: 10px 12px; margin-bottom: 12px; }
+.pv-sure { font-weight: 800; font-size: 17px; font-variant-numeric: tabular-nums; min-width: 72px; display: flex; gap: 6px; align-items: center; }
+.pv-sure.az { color: var(--pembe); animation: nabiz 1s infinite; }
+@keyframes nabiz { 50% { opacity: .45; } }
+.pv-ilerle { flex: 1; height: 8px; border-radius: 99px; background: rgba(20,27,52,.08); overflow: hidden; }
+.pv-ilerle i { display: block; height: 100%; background: linear-gradient(90deg, var(--mavi), var(--mor)); border-radius: 99px; transition: width .3s; }
+.pv-bitir { border: 0; background: var(--pembe); color: #fff; font: 800 13px var(--font); padding: 9px 14px; border-radius: 11px; cursor: pointer; }
+.pv-soru { padding: 20px; animation: gir .22s ease; }
+@keyframes gir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.pv-soru-ust { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+.pv-soru-ust .soru-no { margin: 0; }
+.pv-isaret { border: 1.5px solid var(--cizgi); background: #fff; color: var(--soluk); font: 700 12px var(--font); padding: 6px 10px; border-radius: 10px; cursor: pointer; }
+.pv-isaret.acik { background: var(--turuncu-acik); border-color: var(--turuncu); color: #b65a14; }
+.sik.secili { border-color: var(--mavi); background: var(--mavi-acik); }
+.sik.secili .harf { background: var(--mavi); color: #fff; }
+.pv-izgara { display: grid; grid-template-columns: repeat(auto-fill, minmax(38px, 1fr)); gap: 6px; margin: 14px 0; }
+.pv-izgara button { height: 38px; border-radius: 10px; border: 1.5px solid var(--cizgi); background: #fff; color: var(--soluk); font: 800 13px var(--font); cursor: pointer; position: relative; padding: 0; }
+.pv-izgara button.cevapli { background: var(--mavi-acik); border-color: #b8c3f5; color: var(--mavi); }
+.pv-izgara button.dogru { background: var(--yesil); border-color: var(--yesil); color: #fff; }
+.pv-izgara button.yanlis { background: var(--pembe); border-color: var(--pembe); color: #fff; }
+.pv-izgara button.su-an { box-shadow: 0 0 0 3px rgba(59,91,253,.3); border-color: var(--mavi); }
+.pv-izgara button.isaretli::after { content: ""; position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; border-radius: 50%; background: var(--turuncu); border: 2px solid #fff; }
+.pv-modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 20px; background: rgba(20,27,52,.45); backdrop-filter: blur(4px); }
+.pv-modal > div { background: #fff; border-radius: 22px; padding: 24px; max-width: 380px; width: 100%; text-align: center; box-shadow: 0 30px 60px -20px rgba(0,0,0,.4); }
+.pv-modal h3 { margin: 0 0 6px; font-size: 20px; } .pv-modal p { margin: 0 0 18px; color: var(--soluk); font-weight: 600; font-size: 14px; line-height: 1.5; }
+.pv-modal .butonlar { justify-content: center; } .pv-modal .btn { flex: 1; }
+.pv-halka { width: 156px; height: 156px; border-radius: 50%; margin: 0 auto 14px; display: grid; place-items: center;
+  background: conic-gradient(var(--renk, var(--mavi)) calc(var(--p) * 1%), rgba(20,27,52,.08) 0); }
+.pv-halka > div { width: 124px; height: 124px; border-radius: 50%; background: #fff; display: grid; place-items: center; align-content: center; }
+.pv-halka b { font-size: 44px; letter-spacing: -2px; line-height: 1; } .pv-halka small { color: var(--soluk); font-weight: 700; font-size: 12px; }
+.pv-sonuc { padding: 24px 20px; text-align: center; }
+.pv-sonuc h2 { margin: 0 0 4px; font-size: 22px; letter-spacing: -.4px; } .pv-sonuc > p { color: var(--soluk); font-weight: 600; margin: 0 0 16px; font-size: 14px; }
+.pv-say { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 18px; }
+.pv-say div { background: rgba(20,27,52,.04); border-radius: 12px; padding: 10px 4px; font-size: 11.5px; font-weight: 700; color: var(--soluk); }
+.pv-say b { display: block; font-size: 19px; color: var(--yazi); }
+.pv-say .d b { color: var(--yesil); } .pv-say .y b { color: var(--pembe); }
+.pv-zayif { text-align: left; margin: 0 0 18px; display: grid; gap: 8px; }
+.pv-zayif h4 { margin: 0; font-size: 14px; }
+.pv-zayif a { display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 12px; background: var(--pembe-acik); color: #a3264a; text-decoration: none; font-size: 13.5px; font-weight: 700; line-height: 1.35; }
+.pv-zayif a span { flex: none; font-size: 12px; background: #fff; padding: 3px 8px; border-radius: 99px; }
+.pv-filtre { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 12px; }
+.pv-filtre button { border: 1.5px solid var(--cizgi); background: #fff; color: var(--soluk); font: 700 13px var(--font); padding: 7px 12px; border-radius: 99px; cursor: pointer; }
+.pv-filtre button.aktif { background: var(--mavi); border-color: var(--mavi); color: #fff; }
+.pv-inc { padding: 18px; margin-bottom: 12px; }
+.pv-inc .soru-metin { font-size: 15.5px; }
+.pv-inc .durum { font-size: 12px; font-weight: 800; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; }
+.pv-inc .durum i { font-style: normal; padding: 2px 9px; border-radius: 99px; }
+.pv-inc .durum .d { background: var(--yesil-acik); color: #0c6e4b; } .pv-inc .durum .y { background: var(--pembe-acik); color: #a3264a; } .pv-inc .durum .b { background: rgba(20,27,52,.07); color: var(--soluk); }
+.pv-inc .sik { cursor: default; font-size: 14px; padding: 10px 12px; }
+.sik.senin { border-color: var(--pembe); background: var(--pembe-acik); }
+.sik.senin .harf { background: var(--pembe); color: #fff; }
+@media (max-width: 600px) { .pv-say { grid-template-columns: repeat(2, 1fr); } .pv-soru { padding: 18px 16px; } }
+
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
 .vitrin { display: none !important; }
 </style>
@@ -215,15 +291,18 @@ async function yukle() {
     return;
   }
   document.title = ders.ad + " – KampüsCepte";
-  document.getElementById("geri").href = "index.html#" + dersYolu.split("/").slice(0, 2).join("-");
+  document.getElementById("geri").href = "index.html#" + (ders.sinif ? dersYolu.split("/").slice(0, 2).join("-") : dersYolu.split("/")[0]);
   window.addEventListener("hashchange", yonlendir);
   yonlendir();
 }
 
 function yonlendir() {
+  clearInterval(pvZaman); P = null; pvFiltre = "hepsi";
   const m = location.hash.match(/^#test-(\d+)$/);
   const u = m && ders.uniteler.find(x => x.no === +m[1] && x.test);
-  if (u) testAc(u); else listeCiz();
+  const pm = location.hash.match(/^#(?:prova|deneme)-([a-z0-9]+)$/);
+  if (pm && pvTanim(pm[1])) pvGiris(pm[1]);
+  else if (u) testAc(u); else listeCiz();
   window.scrollTo({ top: 0 });
 }
 function listeyeDon() { history.pushState("", "", location.pathname + location.search); yonlendir(); }
@@ -236,11 +315,12 @@ function listeCiz() {
   const toplam = ders.uniteler.reduce((t, u) => t + soruSayisi(u), 0);
   let h = `
     <section class="ust-bilgi">
-      <small>${ders.bolum} · ${ders.sinif}. sınıf</small>
+      <small>${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</small>
       <h1>${ders.ad}</h1>
       <p class="yazar">${ders.yazarlar}</p>
     </section>
-    <div class="ozet"><span>${ders.uniteler.length} ünite</span>${toplam ? `<span>${toplam} soru</span>` : ""}</div>
+    <div class="ozet"><span>${ders.uniteler.length} ünite</span>${toplam ? `<span>${toplam} soru</span>` : ""}${(ders.provalar || []).length ? `<span>${ders.provalar.length} prova</span>` : ""}</div>
+    ${pvListeHtml()}
     <div class="baslik">Üniteler</div>
     <div class="uniteler">`;
   ders.uniteler.forEach((u, i) => {
@@ -491,6 +571,217 @@ function eslesir(yazilan, cevap) {
   const adaylar = [cevap, cevap.replace(/\(.*?\)/g, ""), ...ic, ...ic.flatMap(x => x.split("/"))];
   return adaylar.some(a => sade(a) && sade(a) === y);
 }
+
+/* ===================== PROVA / DENEME ===================== */
+const ikonSinav = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3h6v3H9zM9 12l2 2 4-4M9 18h6"/></svg>';
+const pvDevam = id => "kc-pv:" + dersYolu + ":" + id;
+const pvGecmisK = id => "kc-pvs:" + dersYolu + ":" + id;
+let P = null, pvZaman = null;
+const dkSn = ms => { const s = Math.max(0, Math.round(ms / 1000)); return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); };
+
+function pvTanim(id) {
+  const p = (ders.provalar || []).find(x => x.id === id);
+  if (p) return { ...p, tur: "prova", adet: p.sorular.length, puan: p.puan || 100 / p.sorular.length };
+  const d = (ders.denemeler || []).find(x => x.id === id);
+  if (d) return { ...d, tur: "deneme", puan: 100 / d.adet };
+  return null;
+}
+function pvSorular(t) {
+  if (t.tur === "prova") return t.sorular.map(q => ({ ...q, b: +((q.a || "").match(/\(Bölüm (\d+)\)/) || [])[1] || 0 }));
+  const havuz = ders.uniteler.filter(u => t.bolumler.includes(u.no) && u.test).flatMap(u => (u.test.test || []).map(q => ({ ...q, b: u.no })));
+  return karistir(havuz).slice(0, t.adet);
+}
+const pvOnek = t => t.tur === "prova" ? "prova" : "deneme";
+
+/* Liste kartları */
+function pvListeHtml() {
+  const hepsi = [...(ders.provalar || []), ...(ders.denemeler || [])];
+  if (!hepsi.length) return "";
+  const kart = (x, tur, sinif) => {
+    const t = pvTanim(x.id), g = oku(pvGecmisK(x.id)) || [], dv = oku(pvDevam(x.id));
+    const en = g.length ? Math.max(...g.map(r => r.puan)) : null;
+    return `<a class="pv-kart cam" href="#${pvOnek(t)}-${x.id}" style="text-decoration:none;color:inherit">
+      <div class="pv-kart-ust"><span class="pv-ikon ${sinif}">${ikonSinav}</span>
+      <div style="min-width:0"><h3>${x.ad}${dv && !dv.bitti ? '<span class="pv-rozet" style="background:var(--turuncu-acik);color:#9a4a12">Devam ediyor</span>' : en !== null ? `<span class="pv-rozet">En iyi ${Math.round(en)}</span>` : ""}</h3>
+      <div class="meta">${x.konu} · ${t.adet} soru · ${t.sure} dk</div></div></div></a>`;
+  };
+  let h = `<div class="baslik">Sınav provaları</div><div class="pv-kartlar">`;
+  (ders.provalar || []).forEach(x => h += kart(x, "prova", x.id.startsWith("final") ? "final" : "vize"));
+  h += `</div>`;
+  if ((ders.denemeler || []).length) {
+    h += `<div class="baslik">Karışık denemeler <small style="font-weight:600;color:var(--soluk)">her açılışta farklı sorular</small></div><div class="pv-kartlar">`;
+    ders.denemeler.forEach(x => h += kart(x, "deneme", "karma"));
+    h += `</div>`;
+  }
+  return h;
+}
+
+/* Giriş ekranı */
+function pvGiris(id) {
+  const t = pvTanim(id), g = oku(pvGecmisK(id)) || [], dv = oku(pvDevam(id));
+  P = null;
+  let h = `<a class="geri" href="#" onclick="event.preventDefault(); listeyeDon();">‹ ${ders.ad}</a>
+    <section class="ust-bilgi" style="margin-top:6px"><small>${t.tur === "prova" ? "Sınav provası" : "Karışık deneme"}</small><h1>${t.ad}</h1><p class="yazar">${t.konu}</p></section>
+    <div class="pv-bilgi"><div><b>${t.adet}</b>soru</div><div><b>${t.sure}</b>dakika</div><div><b>${Math.round(t.puan * 100) / 100}</b>puan / soru</div></div>`;
+  if (dv && !dv.bitti) {
+    const kalan = dv.bitis ? dv.bitis - Date.now() : null;
+    h += `<div class="pv-devam"><div>Yarım kalan bir denemen var (${dv.cevap.filter(x => x !== null).length}/${dv.sorular.length} cevaplı${kalan !== null ? kalan > 0 ? ` · ${dkSn(kalan)} kaldı` : " · süre doldu" : ""}).</div>
+      <div class="butonlar"><button class="btn ana" id="pvSurdur">Devam et</button><button class="btn" id="pvSil">Vazgeç</button></div></div>`;
+  }
+  h += `<div class="pv-mod">
+      <label><input type="radio" name="mod" value="sinav" checked><span><b>Sınav modu</b><small>${t.sure} dakika süre, cevaplar sonda açıklanır. Soruları işaretleyip geri dönebilirsin. Gerçek sınav gibi.</small></span></label>
+      <label><input type="radio" name="mod" value="calisma"><span><b>Çalışma modu</b><small>Süre yok. Her soruyu işaretleyince doğru cevap ve açıklama hemen görünür.</small></span></label></div>
+    <button class="btn ana pv-basla" id="pvBasla">${t.tur === "prova" ? "Provayı başlat" : "Denemeyi başlat"}</button>`;
+  if (g.length) h += `<div class="baslik" style="margin-top:22px">Önceki denemelerin</div><div class="pv-gecmis">${g.slice().reverse().map(r => `<span>${Math.round(r.puan)} puan · ${r.d}D ${r.y}Y ${r.b}B</span>`).join("")}</div>`;
+  h += `<div class="vitrin">Sponsorlu alan</div>`;
+  ICERIK.innerHTML = h;
+  const mod = () => document.querySelector('input[name="mod"]:checked').value;
+  document.getElementById("pvBasla").onclick = () => pvBaslat(t, mod());
+  if (dv && !dv.bitti) {
+    document.getElementById("pvSurdur").onclick = () => { P = dv; pvCiz(); };
+    document.getElementById("pvSil").onclick = () => { try { localStorage.removeItem(pvDevam(id)); } catch (e) {} pvGiris(id); };
+  }
+}
+
+function pvBaslat(t, mod) {
+  const sorular = pvSorular(t);
+  P = { id: t.id, ad: t.ad, tur: t.tur, mod, sorular, cevap: sorular.map(() => null), isaret: sorular.map(() => false), i: 0,
+        puan: t.puan, sure: t.sure, bitis: mod === "sinav" ? Date.now() + t.sure * 60000 : null, basla: Date.now(), bitti: false };
+  pvKaydet(); pvCiz();
+}
+function pvKaydet() { if (P && P.id !== "tekrar") yaz(pvDevam(P.id), P); }
+
+/* Çözüm ekranı */
+function pvCiz() {
+  clearInterval(pvZaman);
+  if (P.bitti) return pvSonuc();
+  if (P.bitis && P.bitis <= Date.now()) return pvBitir(true);
+  const n = P.sorular.length, i = P.i, q = P.sorular[i], c = P.cevap[i], sinav = P.mod === "sinav";
+  const cevapli = P.cevap.filter(x => x !== null).length;
+  let h = `<a class="geri" href="#" onclick="event.preventDefault(); clearInterval(pvZaman); listeyeDon();">‹ Çıkış (ilerlemen kayıtlı)</a>
+    <div class="pv-ust cam">
+      <div class="pv-sure" id="pvSure">${sinav ? "⏱ " + dkSn(P.bitis - Date.now()) : "Çalışma"}</div>
+      <div class="pv-ilerle"><i style="width:${Math.round(cevapli / n * 100)}%"></i></div>
+      <button class="pv-bitir" id="pvBitir">Bitir</button>
+    </div>
+    <article class="pv-soru cam"><div class="pv-soru-ust"><div class="soru-no">Soru ${i + 1} / ${n}</div>
+      ${sinav ? `<button class="pv-isaret ${P.isaret[i] ? "acik" : ""}" id="pvIsaret">${P.isaret[i] ? "⚑ İşaretli" : "⚐ İşaretle"}</button>` : ""}</div>
+      <div class="soru-metin">${html(q.s)}</div><div class="siklar">`;
+  q.o.forEach((o, j) => {
+    let cls = "";
+    if (sinav) cls = c === j ? "secili" : "";
+    else if (c !== null) cls = j === q.c ? "dogru" : j === c ? "yanlis" : "";
+    h += `<button class="sik ${cls}" data-k="${j}" ${!sinav && c !== null ? "disabled" : ""}><span class="harf">${"ABCDE"[j]}</span><span>${html(o)}</span></button>`;
+  });
+  h += `</div>`;
+  if (!sinav && c !== null) h += aciklamaHtml(c === q.c, `${"ABCDE"[q.c]}) ${html(q.o[q.c])}`, q.a);
+  h += `</article>
+    <div class="gezinme"><button class="btn" id="pvGeri" ${i === 0 ? "disabled" : ""}>‹ Önceki</button>
+    <button class="btn ana" id="pvIleri">${i < n - 1 ? "Sonraki ›" : "Bitir ›"}</button></div>
+    <div class="pv-izgara">${P.sorular.map((x, j) => {
+      const d = P.cevap[j];
+      const cls = sinav ? (d !== null ? "cevapli" : "") : (d === null ? "" : d === x.c ? "dogru" : "yanlis");
+      return `<button class="${cls} ${j === i ? "su-an" : ""} ${P.isaret[j] ? "isaretli" : ""}" data-git="${j}">${j + 1}</button>`;
+    }).join("")}</div>
+    <div class="vitrin">Sponsorlu alan</div>`;
+  ICERIK.innerHTML = h;
+  ICERIK.querySelectorAll(".siklar .sik").forEach(b => b.onclick = () => {
+    const k = +b.dataset.k;
+    if (sinav) P.cevap[i] = P.cevap[i] === k ? null : k; else P.cevap[i] = k;
+    pvKaydet(); pvCiz();
+  });
+  ICERIK.querySelectorAll("[data-git]").forEach(b => b.onclick = () => { P.i = +b.dataset.git; pvKaydet(); pvCiz(); window.scrollTo({ top: 0 }); });
+  document.getElementById("pvGeri").onclick = () => { P.i--; pvKaydet(); pvCiz(); window.scrollTo({ top: 0 }); };
+  document.getElementById("pvIleri").onclick = () => { if (i < n - 1) { P.i++; pvKaydet(); pvCiz(); window.scrollTo({ top: 0 }); } else pvBitirSor(); };
+  document.getElementById("pvBitir").onclick = pvBitirSor;
+  const is = document.getElementById("pvIsaret");
+  if (is) is.onclick = () => { P.isaret[i] = !P.isaret[i]; pvKaydet(); pvCiz(); };
+  if (sinav) {
+    pvZaman = setInterval(() => {
+      const kalan = P.bitis - Date.now(), el = document.getElementById("pvSure");
+      if (kalan <= 0) { clearInterval(pvZaman); pvBitir(true); return; }
+      if (el) { el.textContent = "⏱ " + dkSn(kalan); el.classList.toggle("az", kalan < 5 * 60000); }
+    }, 1000);
+  }
+}
+
+function pvBitirSor() {
+  const bos = P.cevap.filter(x => x === null).length, isr = P.isaret.filter(Boolean).length;
+  const m = document.createElement("div");
+  m.className = "pv-modal";
+  m.innerHTML = `<div><h3>${P.mod === "sinav" ? "Sınavı bitirelim mi?" : "Çalışmayı bitirelim mi?"}</h3>
+    <p>${bos ? `<b>${bos}</b> soru boş.` : "Tüm soruları cevapladın."}${isr ? ` <b>${isr}</b> soru işaretli.` : ""} Bitirdikten sonra cevaplarını değiştiremezsin.</p>
+    <div class="butonlar"><button class="btn" id="mDevam">Devam et</button><button class="btn ana" id="mBitir">Bitir</button></div></div>`;
+  document.body.appendChild(m);
+  m.querySelector("#mDevam").onclick = () => m.remove();
+  m.querySelector("#mBitir").onclick = () => { m.remove(); pvBitir(false); };
+}
+
+function pvBitir(sureDoldu) {
+  clearInterval(pvZaman);
+  P.bitti = true; P.sureDoldu = !!sureDoldu; P.bitisZ = Date.now();
+  const s = pvSay();
+  if (P.id !== "tekrar") {
+    const g = oku(pvGecmisK(P.id)) || [];
+    g.push({ t: Date.now(), d: s.d, y: s.y, b: s.b, puan: s.d * P.puan });
+    yaz(pvGecmisK(P.id), g.slice(-8));
+    try { localStorage.removeItem(pvDevam(P.id)); } catch (e) {}
+  }
+  pvSonuc();
+}
+function pvSay() {
+  let d = 0, y = 0, b = 0;
+  P.sorular.forEach((q, i) => { const c = P.cevap[i]; if (c === null) b++; else if (c === q.c) d++; else y++; });
+  return { d, y, b };
+}
+
+/* Sonuç + inceleme */
+let pvFiltre = "hepsi";
+function pvSonuc() {
+  const s = pvSay(), n = P.sorular.length, puan = Math.round(s.d * P.puan * 10) / 10, oran = s.d / n;
+  const sureMs = Math.min(P.bitisZ || Date.now(), P.bitis || Infinity) - P.basla;
+  const renk = oran >= .7 ? "var(--yesil)" : oran >= .5 ? "var(--turuncu)" : "var(--pembe)";
+  const yorum = P.sureDoldu ? "Süre doldu. " : "";
+  const metin = oran >= .85 ? "Harika, sınava hazırsın!" : oran >= .7 ? "Güzel sonuç. Yanlışlarına bir göz at." : oran >= .5 ? "Fena değil, eksik konuları tekrar edelim." : "Konuları tekrar okuyup yeniden dene, olur.";
+  // zayıf bölümler
+  const zayif = {};
+  P.sorular.forEach((q, i) => { if (P.cevap[i] !== q.c && q.b) zayif[q.b] = (zayif[q.b] || 0) + 1; });
+  const zl = Object.entries(zayif).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([no, k]) => ({ u: ders.uniteler.find(x => x.no === +no), k })).filter(x => x.u);
+  const hata = s.y + s.b;
+  let h = `<a class="geri" href="#" onclick="event.preventDefault(); listeyeDon();">‹ ${ders.ad}</a>
+    <section class="pv-sonuc cam">
+      <div class="pv-halka" style="--p:${Math.round(oran * 100)};--renk:${renk}"><div><b>${puan}</b><small>/ ${Math.round(P.puan * n)} puan</small></div></div>
+      <h2>${P.ad}</h2><p>${yorum}${metin}</p>
+      <div class="pv-say"><div class="d"><b>${s.d}</b>Doğru</div><div class="y"><b>${s.y}</b>Yanlış</div><div><b>${s.b}</b>Boş</div><div><b>${dkSn(sureMs)}</b>Süre</div></div>
+      ${zl.length ? `<div class="pv-zayif"><h4>Tekrar etmen gereken bölümler</h4>${zl.map(x => `<a href="#test-${x.u.no}"><div>${x.u.no}. ${x.u.ad}</div><span>${x.k} hata</span></a>`).join("")}</div>` : ""}
+      <div class="butonlar" style="justify-content:center">
+        ${hata ? `<button class="btn ana" id="pvTekrar">Yanlışları tekrar çöz (${hata})</button>` : ""}
+        ${P.id !== "tekrar" ? `<button class="btn" id="pvYeni">Yeniden dene</button>` : ""}
+      </div>
+    </section>
+    <div class="baslik">Soruları incele</div>
+    <div class="pv-filtre">${[["hepsi", "Tümü", n], ["yanlis", "Yanlış", s.y], ["bos", "Boş", s.b], ["dogru", "Doğru", s.d], ["isaret", "İşaretli", P.isaret.filter(Boolean).length]].map(([k, ad, c]) => `<button data-f="${k}" class="${pvFiltre === k ? "aktif" : ""}">${ad} ${c}</button>`).join("")}</div>`;
+  P.sorular.forEach((q, i) => {
+    const c = P.cevap[i], durum = c === null ? "bos" : c === q.c ? "dogru" : "yanlis";
+    if (pvFiltre === "isaret" ? !P.isaret[i] : pvFiltre !== "hepsi" && pvFiltre !== durum) return;
+    h += `<article class="pv-inc cam"><div class="durum">Soru ${i + 1}<i class="${durum === "dogru" ? "d" : durum === "yanlis" ? "y" : "b"}">${durum === "dogru" ? "Doğru" : durum === "yanlis" ? "Yanlış" : "Boş"}</i>${P.isaret[i] ? "⚑" : ""}</div>
+      <div class="soru-metin">${html(q.s)}</div><div class="siklar">${q.o.map((o, j) => `<div class="sik ${j === q.c ? "dogru" : j === c ? "senin" : ""}"><span class="harf">${"ABCDE"[j]}</span><span>${html(o)}</span></div>`).join("")}</div>
+      ${q.a ? `<div class="aciklama iyi"><b>Açıklama:</b> ${html(q.a)}</div>` : ""}</article>`;
+  });
+  h += `<div class="vitrin">Sponsorlu alan</div>`;
+  ICERIK.innerHTML = h;
+  ICERIK.querySelectorAll("[data-f]").forEach(b => b.onclick = () => { pvFiltre = b.dataset.f; pvSonuc(); });
+  const tk = document.getElementById("pvTekrar");
+  if (tk) tk.onclick = () => {
+    const idx = P.sorular.map((q, i) => i).filter(i => P.cevap[i] !== P.sorular[i].c);
+    const sorular = idx.map(i => P.sorular[i]);
+    P = { id: "tekrar", ad: "Yanlışlarım", tur: "tekrar", mod: "calisma", sorular, cevap: sorular.map(() => null), isaret: sorular.map(() => false), i: 0, puan: 100 / sorular.length, bitis: null, basla: Date.now(), bitti: false };
+    pvFiltre = "hepsi"; pvCiz(); window.scrollTo({ top: 0 });
+  };
+  const yn = document.getElementById("pvYeni");
+  if (yn) yn.onclick = () => pvGiris(P.id);
+}
+
 
 yukle();
 </script>
