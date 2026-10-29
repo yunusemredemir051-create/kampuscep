@@ -228,6 +228,46 @@ sub { font-size: .7em; }
 .sik.senin .harf { background: var(--pembe); color: #fff; }
 @media (max-width: 600px) { .pv-say { grid-template-columns: repeat(2, 1fr); } .pv-soru { padding: 18px 16px; } }
 
+
+/* ===================== Premium liste görünümü ===================== */
+.ders-hero { position: relative; overflow: hidden; border-radius: 28px; padding: 22px 20px 18px; color: #fff; margin-bottom: 18px;
+  background: linear-gradient(135deg, var(--mavi), var(--mor)); box-shadow: 0 22px 40px -22px var(--mavi); isolation: isolate; }
+.ders-hero::before { content: ""; position: absolute; right: -60px; top: -80px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.28), transparent); z-index: -1; }
+.ders-hero::after { content: ""; position: absolute; left: -40px; bottom: -90px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.14), transparent); z-index: -1; }
+.dh-etiket { display: inline-flex; align-items: center; gap: 7px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.28); font-size: 11.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; backdrop-filter: blur(8px); }
+.dh-etiket svg { width: 14px; height: 14px; }
+.ders-hero h1 { margin: 14px 0 6px; font-size: 27px; line-height: 1.12; letter-spacing: -.9px; font-weight: 800; text-wrap: balance; }
+.dh-yazar { margin: 0; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.82); }
+.dh-yazar b { color: #fff; font-weight: 800; }
+.dh-istat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 18px; }
+.dh-istat div { background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.22); border-radius: 16px; padding: 11px 6px 9px; text-align: center; backdrop-filter: blur(8px); font-size: 11.5px; font-weight: 700; color: rgba(255,255,255,.85); }
+.dh-istat b { display: block; font-size: 22px; letter-spacing: -.6px; color: #fff; line-height: 1.1; }
+.dh-ilerle { margin-top: 14px; }
+.dh-ilerle small { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: rgba(255,255,255,.85); margin-bottom: 6px; }
+.dh-ilerle i { display: block; height: 7px; border-radius: 99px; background: rgba(255,255,255,.22); overflow: hidden; }
+.dh-ilerle i b { display: block; height: 100%; border-radius: 99px; background: #fff; }
+.ls-sekme { background: rgba(255,255,255,.7); border: 1px solid var(--cam-kenar); padding: 5px; border-radius: 18px; box-shadow: var(--golge); margin: 0 0 6px; }
+.ls-sekme button { padding: 11px 6px; border-radius: 14px; font-size: 13.5px; }
+.ls-sekme button.aktif { background: linear-gradient(135deg, var(--mavi), var(--mor)); color: #fff; box-shadow: 0 8px 16px -8px var(--mavi); }
+.baslik { font-size: 19px; letter-spacing: -.5px; margin: 22px 2px 12px; }
+.unite { padding: 18px; border-radius: 24px; position: relative; overflow: hidden; }
+.unite::before { content: ""; position: absolute; left: 0; top: 18px; bottom: 18px; width: 4px; border-radius: 0 4px 4px 0; background: var(--ak, var(--mavi)); }
+.unite:nth-child(5n+1) { --ak: var(--mavi); } .unite:nth-child(5n+2) { --ak: var(--turuncu); } .unite:nth-child(5n+3) { --ak: var(--yesil); } .unite:nth-child(5n+4) { --ak: var(--pembe); } .unite:nth-child(5n+5) { --ak: var(--mor); }
+.unite .no { width: 54px; height: 54px; border-radius: 17px; color: #fff !important; box-shadow: 0 12px 20px -12px currentColor; font-size: 10.5px; letter-spacing: .5px; text-transform: uppercase; }
+.unite .no b { font-size: 21px; letter-spacing: -.5px; margin-top: 1px; }
+.unite .no.c0 { background: linear-gradient(145deg, #5b7bff, #3b5bfd); } .unite .no.c1 { background: linear-gradient(145deg, #ffa05c, #ff7a2b); }
+.unite .no.c2 { background: linear-gradient(145deg, #3fd6a0, #16b67a); } .unite .no.c3 { background: linear-gradient(145deg, #ff7fa3, #f2557f); } .unite .no.c4 { background: linear-gradient(145deg, #a587ff, #8b5cf6); }
+.unite h2 { font-size: 17.5px; letter-spacing: -.4px; }
+.unite .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 7px; }
+.unite .meta span { font-size: 11.5px; font-weight: 800; padding: 3px 9px; border-radius: 99px; background: rgba(20,27,52,.06); color: var(--soluk); }
+.unite .meta span.ok { background: var(--yesil-acik); color: #0c6e4b; }
+.unite .butonlar .btn { border-radius: 15px; padding: 13px 14px; }
+.unite .butonlar .btn.ana { flex: 1 0 100%; background: linear-gradient(135deg, var(--mavi), var(--mor)); border-color: transparent; box-shadow: 0 14px 22px -14px var(--mavi); font-size: 15px; }
+.pv-kart { transition: transform .15s; position: relative; } .pv-kart:active { transform: scale(.985); }
+.pv-kart::after { content: "›"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 24px; font-weight: 700; color: var(--soluk); }
+.pv-kart-ust { padding-right: 22px; }
+.pv-ikon { width: 52px; height: 52px; border-radius: 17px; box-shadow: 0 12px 20px -12px currentColor; }
+
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
 .vitrin { display: none !important; }
 </style>
@@ -322,13 +362,15 @@ function listeCiz() {
   try { listeSekme = sessionStorage.getItem("kc-ls:" + dersYolu) || listeSekme; } catch (e) {}
   if ((listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn)) listeSekme = "unite";
   const sek = [["unite", "Üniteler", ders.uniteler.length], ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
+  const cozulen = ders.uniteler.reduce((t, u) => { const k = oku(anahtar(u.no)); return t + (k ? k.cevap || 0 : 0); }, 0);
   let h = `
-    <section class="ust-bilgi">
-      <small>${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</small>
+    <section class="ders-hero">
+      <span class="dh-etiket">${ikonOzet}${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</span>
       <h1>${ders.ad}</h1>
-      <p class="yazar">${ders.yazarlar}</p>
+      <p class="dh-yazar">Hazırlayan · <b>${ders.yazarlar}</b></p>
+      <div class="dh-istat"><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div><div><b>${pv + dn}</b>sınav</div></div>
+      ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
-    <div class="ozet"><span>${ders.uniteler.length} ünite</span>${toplam ? `<span>${toplam} soru</span>` : ""}${pv ? `<span>${pv} prova</span>` : ""}</div>
     ${sek.length > 1 ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
   if (listeSekme === "prova") h += pvProvaHtml();
   else if (listeSekme === "deneme") h += pvDenemeHtml();
@@ -347,7 +389,7 @@ function unitelerHtml() {
       <article class="unite cam">
         <div class="unite-ust">
           <span class="no ${renk(i)}"><span>Ünite<b>${u.no}</b></span></span>
-          <div><h2>${u.ad}</h2><div class="meta">${u.sayfa} sayfa${t ? ` · ${cevap ? `${t} sorudan ${s.dogru} doğru` : `${t} soru`}` : ""}</div></div>
+          <div><h2>${u.ad}</h2><div class="meta"><span>${u.sayfa} sayfa</span>${t ? (cevap ? `<span class="ok">${t} sorudan ${s.dogru} doğru</span>` : `<span>${t} soru</span>`) : ""}</div></div>
         </div>
         ${cevap ? `<div class="ilerleme"><div style="width:${Math.round(cevap / t * 100)}%"></div></div>` : ""}
         <div class="butonlar">
