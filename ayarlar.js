@@ -3,7 +3,13 @@
 (function () {
   /* Avatar görselleri: /gorseller/avatar/ klasörüne konan dosya adları (uzantısız) buraya eklenir.
      Liste boşken geçici olarak emoji avatarlar kullanılır. */
-  const AVATAR_DOSYALAR = ["a01","a02","a03","a04","a05","a06","a07","a08","a09","a10","a11","a12","a13","a14","a15","a16","a17","a18","a19","a20","a21","a22","a23","a24","a25","a26","a27","a28","a29","a30"];
+  const AVATAR_BILGI = {
+    a01:["Başörtülü Öğrenci","k"],a02:["Başörtülü Doktor","k"],a03:["Kulaklıklı Genç","e"],a04:["Takkeli Genç","e"],a05:["Gözlüklü Öğrenci","e"],a06:["Mezun Kız","k"],a07:["Sırt Çantalı Genç","e"],a08:["Sarıklı Genç","e"],a09:["Hintli Öğrenci","k"],a10:["Keşiş","e"],a11:["Kapüşonlu Kız","k"],a12:["Kıvırcık Saçlı Kız","k"],a13:["Baretli Usta","e"],a14:["Uzun Saçlı Kız","k"],a15:["Ressam Kız","k"],a16:["Laboratuvarcı","e"],a17:["Kitap Kurdu","k"],a18:["Profesör","e"],a19:["Mimar Adayı","e"],a20:["Renkli Saçlı Kız","k"],a21:["Yayıncı","e"],a22:["Gözlüklü Abi","e"],a23:["Siyah Başörtülü","k"],a24:["Doktor Kız","k"],a25:["Mavi Sarıklı","e"],a26:["Bilge Hanım","k"],
+    b01:["Yöresel Kız","k"],b02:["Zeybek","e"],b03:["Kot Ceketli Genç","e"],b04:["Kemençeci","e"],b05:["Kemençeci Kız","k"],b06:["Mezun","e"],b07:["Laborant","e"],b08:["Örgülü Kız","k"],b09:["Öğretmen Kız","k"],b10:["Hemşire (Erkek)","e"],b11:["Hemşire","k"],b12:["Öğretmen","e"],b13:["Pilot Kız","k"],b14:["Pilot","e"],b15:["Mühendis Kız","k"],b16:["Avukat","e"],b17:["Baklavacı Kız","k"],b18:["Aşçı","e"],b19:["Yazılımcı","e"],b20:["Avukat Kız","k"],b21:["Mimar Kız","k"],b22:["Bağlamacı","e"],b23:["Veteriner Kız","k"],b24:["Altınlı Yöresel Kız","k"],b25:["Yöresel Genç","e"],b26:["İtfaiyeci","e"],b27:["Kasketli Genç","e"],
+    a27:["Gülümseyen Kız","k"],a28:["Neşeli Genç","e"],a29:["Cihazlı Genç","e"],a30:["Tekerlekli Sandalyeli Kız","k"]
+  };
+  const AVATAR_DOSYALAR = Object.keys(AVATAR_BILGI);
+  const avatarAd = a => (AVATAR_BILGI[String(a).slice(4)] || ["Avatar"])[0];
   const AVATARLAR = AVATAR_DOSYALAR.length ? AVATAR_DOSYALAR.map(d => "img:" + d) : ["🎓", "⚡", "🚀", "💻", "🩺", "⚖️", "🎨", "🌟", "📚", "🦁"];
   const avatarHtml = a => String(a).startsWith("img:") ? `<img src="/gorseller/avatar/${String(a).slice(4)}.webp" alt="" loading="lazy">` : a;
   const DIL_ADLARI = { tr: "Türkçe", en: "English", ku: "Kurdî", ar: "العربية" };
@@ -135,23 +141,21 @@
 
     // Avatar listesi (cinsiyete göre gruplu)
     if (avatarGrid) {
-      const GRUP = { k: "Kadın", e: "Erkek", d: "Diğer" };
-      const kadin = "a01 a02 a06 a09 a11 a12 a14 a15 a17 a23 a24 a26 a27 a30".split(" ");
-      const diger = "a10 a20".split(" ");
-      const grupOf = a => { const n = String(a).slice(4); return kadin.includes(n) ? "k" : diger.includes(n) ? "d" : "e"; };
+      const GRUP = { k: "Kadın", e: "Erkek" };
+      const grupOf = a => (AVATAR_BILGI[String(a).slice(4)] || ["", "e"])[1];
       let secili = AVATARLAR.includes(kayitliAvatar) ? kayitliAvatar : AVATARLAR[0];
       let grup = grupOf(secili);
       avatarGrid.dataset.secili = secili;
       avatarGrid.className = "av-kutu";
       avatarGrid.innerHTML = `
         <div class="av-onizleme"><button type="button" class="av-buyuk" id="av-buyuk" aria-label="Büyüt"></button>
-          <div class="av-yazi"><b>Seçtiğin avatar</b><small>Büyütmek için üzerine dokun</small></div></div>
+          <div class="av-yazi"><b id="av-ad"></b><small>Seçtiğin avatar · büyütmek için dokun</small></div></div>
         <div class="av-segment" role="tablist"></div><div class="av-izgara"></div>`;
       const seg = avatarGrid.querySelector(".av-segment"), izg = avatarGrid.querySelector(".av-izgara"), buy = avatarGrid.querySelector("#av-buyuk");
       const ciz = () => {
-        buy.innerHTML = avatarHtml(secili);
+        buy.innerHTML = avatarHtml(secili); avatarGrid.querySelector("#av-ad").textContent = avatarAd(secili);
         seg.innerHTML = Object.keys(GRUP).filter(g => AVATARLAR.some(a => grupOf(a) === g)).map(g => `<button type="button" data-g="${g}" class="${g === grup ? "aktif" : ""}">${GRUP[g]}</button>`).join("");
-        izg.innerHTML = AVATARLAR.filter(a => grupOf(a) === grup).map(a => `<button type="button" class="ayar-avatar-btn ${a === secili ? "secili" : ""}" data-avatar="${a}" aria-label="Avatar seç">${avatarHtml(a)}</button>`).join("");
+        izg.innerHTML = AVATARLAR.filter(a => grupOf(a) === grup).map(a => `<button type="button" class="ayar-avatar-btn ${a === secili ? "secili" : ""}" data-avatar="${a}" aria-label="${avatarAd(a)}"><span class="av-daire">${avatarHtml(a)}</span><span class="av-ad">${avatarAd(a)}</span></button>`).join("");
       };
       seg.onclick = ev => { const b = ev.target.closest("button[data-g]"); if (b) { grup = b.dataset.g; ciz(); } };
       izg.onclick = ev => { const b = ev.target.closest(".ayar-avatar-btn"); if (!b) return; secili = b.dataset.avatar; avatarGrid.dataset.secili = secili; ciz(); try { navigator.vibrate && navigator.vibrate(8); } catch (x) {} };

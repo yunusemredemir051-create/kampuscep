@@ -694,13 +694,18 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
 .av-onizleme .av-buyuk img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .av-onizleme .av-yazi b { display: block; font-size: 15px; font-weight: 800; }
 .av-onizleme .av-yazi small { color: var(--soluk, #6b7390); font-size: 13px; font-weight: 600; }
-.av-segment { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; border-radius: 14px; background: color-mix(in srgb, var(--mavi) 7%, transparent); margin-bottom: 14px; }
+.av-segment { display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; padding: 4px; border-radius: 14px; background: color-mix(in srgb, var(--mavi) 7%, transparent); margin-bottom: 14px; }
 .av-segment button { all: unset; cursor: pointer; text-align: center; padding: 9px 4px; border-radius: 11px; font: 700 13.5px var(--font, inherit); color: var(--soluk, #6b7390); }
 .av-segment button.aktif { background: var(--kart, #fff); color: var(--yazi, #141b34); box-shadow: 0 4px 10px -4px rgba(20,27,52,.3); }
 [data-tema="koyu"] .av-segment button.aktif { background: #2a3150; color: #f0f3fe; }
-.pf-kart .av-izgara { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 12px; margin: 0; }
-.pf-kart .av-izgara .ayar-avatar-btn { width: 100%; height: auto; aspect-ratio: 1; padding: 0; border-width: 3px; border-radius: 50%; overflow: hidden; background: #eef1fb; }
-.pf-kart .av-izgara .ayar-avatar-btn.secili { border-color: var(--mavi); box-shadow: 0 0 0 3px color-mix(in srgb, var(--mavi) 25%, transparent); transform: scale(1.04); }
+.pf-kart .av-izgara { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px 10px; margin: 0; }
+.pf-kart .av-izgara .ayar-avatar-btn { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; -webkit-tap-highlight-color: transparent; }
+.pf-kart .av-izgara .av-daire { width: 100%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: #eef1fb; border: 3px solid transparent; box-sizing: border-box; transition: transform .15s, border-color .15s; }
+.pf-kart .av-izgara .av-daire img { width: 100%; height: 100%; display: block; object-fit: cover; }
+.pf-kart .av-izgara .av-ad { font: 700 12px/1.2 var(--font, inherit); text-align: center; color: var(--soluk, #6b7390); overflow-wrap: anywhere; }
+.pf-kart .av-izgara .secili .av-daire { border-color: var(--mavi); box-shadow: 0 0 0 3px color-mix(in srgb, var(--mavi) 25%, transparent); transform: scale(1.04); }
+.pf-kart .av-izgara .secili .av-ad { color: var(--mavi); }
+.pf-kart .av-izgara .ayar-avatar-btn:focus-visible .av-daire { outline: 3px solid var(--mavi); outline-offset: 2px; }
 
 .ayar-surum-bilgi { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; }
 
@@ -1782,7 +1787,7 @@ function geriSay() {
 <script src="/bildirim.js?v=1"></script>
 <script type="module" src="/yorum.js?v=17"></script>
 <script src="/dil.js?v=4"></script>
-<script src="/ayarlar.js?v=11"></script>
+<script src="/ayarlar.js?v=12"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=3"></script>
 <script src="/program.js?v=5"></script>
