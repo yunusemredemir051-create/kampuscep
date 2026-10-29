@@ -300,6 +300,7 @@ input:focus, select:focus { outline: none; border-color: var(--mavi); }
   font: 700 14px var(--font); border: 1px solid var(--cizgi); background: #fff; color: var(--yazi);
 }
 .btn.ana { background: var(--mavi); color: #fff; border: 0; }
+.btn.kucuk { padding: 8px 14px; font-size: 13px; flex: none; }
 .btn.tam { width: 100%; margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
 .btn svg { width: 18px; height: 18px; }
 .buyuk-sayi { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1; margin-top: 22px; color: var(--mavi); }
@@ -563,6 +564,42 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
   border-color: var(--mavi); background: var(--mavi-acik);
   transform: scale(1.15); box-shadow: 0 3px 10px color-mix(in srgb, var(--mavi) 25%, transparent);
 }
+
+/* ---- Ayarlar: liste menüsü ---- */
+.ayar-profil-kart { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; padding: 16px; margin-bottom: 8px; border-radius: 20px; border: 1px solid var(--cizgi); background: linear-gradient(135deg, color-mix(in srgb, var(--mavi) 10%, #fff), #fff); box-shadow: 0 6px 18px rgba(30,45,110,.08); }
+[data-tema="koyu"] .ayar-profil-kart { background: linear-gradient(135deg, color-mix(in srgb, var(--mavi) 22%, #1a2035), #1a2035); border-color: #2b3350; }
+.ayar-avatar-buyuk { flex: none; width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; font-size: 30px; background: #fff; border: 2px solid var(--mavi); overflow: hidden; }
+[data-tema="koyu"] .ayar-avatar-buyuk { background: #232b47; }
+.ayar-avatar-buyuk img, .ayar-avatar-btn img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ayar-metin { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.ayar-metin b { font-size: 15.5px; font-weight: 800; }
+.ayar-metin small { color: var(--soluk); font-size: 12.5px; font-weight: 600; margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ayar-ok { flex: none; color: var(--soluk); font-size: 24px; line-height: 1; }
+.ayar-liste-baslik { margin: 22px 4px 8px; font-size: 12px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--soluk); }
+.ayar-liste { border-radius: 18px; border: 1px solid var(--cizgi); background: var(--kart, #fff); overflow: hidden; }
+[data-tema="koyu"] .ayar-liste { background: #1e2438; border-color: #2b3350; }
+.ayar-satir { display: flex; align-items: center; gap: 14px; width: 100%; padding: 13px 16px; background: transparent; border: 0; border-top: 1px solid var(--cizgi); font: inherit; color: inherit; text-align: left; text-decoration: none; cursor: pointer; }
+.ayar-satir:first-child { border-top: 0; }
+[data-tema="koyu"] .ayar-satir { border-color: #2b3350; }
+.ayar-satir:hover { background: color-mix(in srgb, var(--mavi) 6%, transparent); }
+.ayar-ik { flex: none; width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; color: #fff; background: var(--r, #64748b); }
+.ayar-geri-satir { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.ayar-geri-satir h2 { margin: 0; min-width: 0; font-size: 18px; line-height: 1.2; font-weight: 800; }
+.ayar-geri { white-space: nowrap; flex: none; border: 0; background: color-mix(in srgb, var(--mavi) 10%, transparent); color: var(--mavi); font: 800 14px var(--font, inherit); padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+.sss-liste { display: flex; flex-direction: column; gap: 10px; }
+.sss-ogesi { border: 1px solid var(--cizgi); border-radius: 16px; background: var(--kart, #fff); padding: 0 16px; }
+[data-tema="koyu"] .sss-ogesi { background: #1e2438; border-color: #2b3350; }
+.sss-ogesi summary { cursor: pointer; list-style: none; padding: 15px 22px 15px 0; font-weight: 800; font-size: 14.5px; position: relative; }
+.sss-ogesi summary::-webkit-details-marker { display: none; }
+.sss-ogesi summary::after { content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 22px; font-weight: 600; color: var(--mavi); }
+.sss-ogesi[open] summary::after { content: "–"; }
+.sss-ogesi p { margin: 0 0 15px; color: var(--soluk); font-size: 14px; line-height: 1.55; font-weight: 600; }
+.iletisim-aciklama, .iletisim-not { margin: 0 0 14px; color: var(--soluk); font-size: 14px; line-height: 1.55; font-weight: 600; }
+.iletisim-not { margin: 14px 0 0; font-size: 12.5px; }
+.iletisim-adres { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; border: 1px dashed var(--mavi); margin-bottom: 14px; font-weight: 800; font-size: 13px; overflow-wrap: anywhere; }
+.iletisim-adres span { min-width: 0; }
+.iletisim-konular { display: flex; flex-direction: column; gap: 10px; }
+.iletisim-konular .btn { text-decoration: none; text-align: center; }
 
 .ayar-surum-bilgi { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; }
 
@@ -891,44 +928,56 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
     <!-- ================= AYARLAR & PROFİL ================= -->
     <section class="sayfa" id="ayarlar">
       <div class="panel cam">
-        <div class="ayar-ust-baslik">
-          <div class="ayar-baslik-sol">
-            <span class="ayar-buyuk-ikon">⚙️</span>
-            <div>
-              <h2 data-i18n="ayarlar_baslik">Ayarlar & Profil</h2>
-              <p data-i18n="ayarlar_alt">Hesap bilgilerinizi, dilinizi ve tercihlerinizi buradan yönetin</p>
+        <!-- ANA MENÜ -->
+        <div id="ayar-ana">
+          <div class="ayar-ust-baslik">
+            <div class="ayar-baslik-sol">
+              <div>
+                <h2>Ayarlar</h2>
+                <p>Profilini ve uygulamayı buradan yönet</p>
+              </div>
             </div>
+            <span id="ayar-admin-rozet" class="ayar-admin-rozet" style="display:none">🌟 Yönetici Hesabı</span>
           </div>
-          <span id="ayar-admin-rozet" class="ayar-admin-rozet" style="display:none">🌟 Yönetici Hesabı</span>
+
+          <button type="button" class="ayar-profil-kart" data-ayar-ac="profil">
+            <span class="ayar-avatar-buyuk" id="ayar-kart-avatar">🎓</span>
+            <span class="ayar-metin"><b id="ayar-kart-ad">Profilini oluştur</b><small id="ayar-kart-alt">Adını, yurdunu ve avatarını seç</small></span>
+            <span class="ayar-ok">›</span>
+          </button>
+
+          <h3 class="ayar-liste-baslik">Tercihler</h3>
+          <div class="ayar-liste">
+            <button type="button" class="ayar-satir" data-ayar-ac="gorunum"><span class="ayar-ik" style="--r:#6366f1"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></span><span class="ayar-metin"><b>Görünüm</b><small id="ayar-alt-gorunum">Tema ve renkler</small></span><span class="ayar-ok">›</span></button>
+            <button type="button" class="ayar-satir" data-ayar-ac="dil"><span class="ayar-ik" style="--r:#0ea5e9"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><span class="ayar-metin"><b>Dil</b><small id="ayar-alt-dil">Türkçe</small></span><span class="ayar-ok">›</span></button>
+          </div>
+
+          <h3 class="ayar-liste-baslik">Destek</h3>
+          <div class="ayar-liste">
+            <button type="button" class="ayar-satir" data-ayar-ac="sss"><span class="ayar-ik" style="--r:#f59e0b"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></svg></span><span class="ayar-metin"><b>Sıkça Sorulan Sorular</b><small id="ayar-alt-sss">Merak edilenler</small></span><span class="ayar-ok">›</span></button>
+            <button type="button" class="ayar-satir" data-ayar-ac="iletisim"><span class="ayar-ik" style="--r:#10b981"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="ayar-metin"><b>İletişim</b><small id="ayar-alt-iletisim">Bize ulaş</small></span><span class="ayar-ok">›</span></button>
+          </div>
+
+          <h3 class="ayar-liste-baslik">Hakkında</h3>
+          <div class="ayar-liste">
+            <a class="ayar-satir" href="hakkimizda.html"><span class="ayar-ik" style="--r:#64748b"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></svg></span><span class="ayar-metin"><b>Hakkımızda ve iletişim</b><small>KampüsCepte kimin için?</small></span><span class="ayar-ok">›</span></a>
+            <a class="ayar-satir" href="gizlilik.html"><span class="ayar-ik" style="--r:#ef4444"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><span class="ayar-metin"><b>Gizlilik ve çerezler</b><small>Verilerin nasıl korunuyor</small></span><span class="ayar-ok">›</span></a>
+          </div>
+
+          <div class="ayar-surum-bilgi">
+            <p>KampüsCepte v2.7 • Fırat Üniversitesi Öğrenci Platformu</p>
+          </div>
         </div>
 
-        <!-- Görünüm: mod + takım renkleri -->
-        <div class="ayar-grup">
-          <h3 class="ayar-grup-baslik">Görünüm</h3>
-          <div class="secici uc tema-ui" role="group" aria-label="Tema">
-            <button type="button" data-tema-sec="acik"><svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg> Açık</button>
-            <button type="button" data-tema-sec="koyu"><svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg> Koyu</button>
-            <button type="button" data-tema-sec="sistem"><svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg> Otomatik</button>
+        <!-- ALT GÖRÜNÜMLER -->
+        <div id="ayar-alt" hidden>
+          <div class="ayar-geri-satir">
+            <button type="button" class="ayar-geri" id="ayar-geri" aria-label="Ayarlara dön">‹ Ayarlar</button>
+            <h2 id="ayar-alt-baslik"></h2>
           </div>
-          <h4 class="ayar-alt-baslik">Renk teması</h4>
-          <div class="renk-sec" role="group" aria-label="Renk teması"></div>
-        </div>
 
-        <!-- Dil Seçimi (küçük) -->
-        <div class="ayar-grup">
-          <h3 class="ayar-grup-baslik">Uygulama Dili</h3>
-          <div class="dil-sec" role="group" aria-label="Dil">
-            <button type="button" class="dil-chip aktif" data-dil="tr" lang="tr">Türkçe</button>
-            <button type="button" class="dil-chip" data-dil="en" lang="en">English</button>
-            <button type="button" class="dil-chip" data-dil="ku" lang="ku">Kurdî</button>
-            <button type="button" class="dil-chip" data-dil="ar" lang="ar">العربية</button>
-          </div>
-        </div>
-
-        <!-- Öğrenci Profili Formu -->
-        <div class="ayar-grup">
-          <h3 class="ayar-grup-baslik" data-i18n="profil_bolumu">Öğrenci Profili</h3>
-          <form id="ayar-form">
+          <div class="ayar-gorunum" data-ayar-gorunum="profil" hidden>
+            <div class="ayar-grup"><form id="ayar-form">
             <div class="ayar-form-satir">
               <label for="ayar-ad" data-i18n="profil_ad">Adınız / Rumuzunuz</label>
               <input type="text" id="ayar-ad" data-i18n-placeholder="profil_ad_placeholder" placeholder="Örn: Ayşe" maxlength="40">
@@ -962,13 +1011,52 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
             <div class="btnlar" style="margin-top:20px">
               <button type="submit" class="btn ana tam" data-i18n="profil_kaydet">Profili Kaydet</button>
             </div>
-          </form>
-        </div>
+          </form></div>
+          </div>
 
-        <!-- Yönetici (yalnızca yönetici hesabında görünür) -->
+          <div class="ayar-gorunum" data-ayar-gorunum="gorunum" hidden>
+            <div class="ayar-grup">
+              <h3 class="ayar-grup-baslik">Tema</h3>
+              <div class="secici uc tema-ui" role="group" aria-label="Tema">
+            <button type="button" data-tema-sec="acik"><svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg> Açık</button>
+            <button type="button" data-tema-sec="koyu"><svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg> Koyu</button>
+            <button type="button" data-tema-sec="sistem"><svg class="ti" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg> Otomatik</button>
+          </div>
+          <h4 class="ayar-alt-baslik">Renk teması</h4>
+          <div class="renk-sec" role="group" aria-label="Renk teması"></div>
+        
+            </div>
+          </div>
 
-        <div class="ayar-surum-bilgi">
-          <p>KampüsCepte v2.6 • Fırat Üniversitesi Öğrenci Platformu</p>
+          <div class="ayar-gorunum" data-ayar-gorunum="dil" hidden>
+            <div class="ayar-grup">
+              <h3 class="ayar-grup-baslik">Uygulama dili</h3>
+              <div class="dil-sec" role="group" aria-label="Dil">
+            <button type="button" class="dil-chip aktif" data-dil="tr" lang="tr">Türkçe</button>
+            <button type="button" class="dil-chip" data-dil="en" lang="en">English</button>
+            <button type="button" class="dil-chip" data-dil="ku" lang="ku">Kurdî</button>
+            <button type="button" class="dil-chip" data-dil="ar" lang="ar">العربية</button>
+          </div>
+            </div>
+          </div>
+
+          <div class="ayar-gorunum" data-ayar-gorunum="sss" hidden>
+            <div class="sss-liste"><details class="sss-ogesi"><summary>KampüsCepte nedir?</summary><p>Elazığ'daki üniversite öğrencileri için yurt ve Üniversite Evi yemek menüleri, ders notları, takvim ve yol arkadaşı gibi araçları tek yerde toplayan ücretsiz bir uygulama.</p></details><details class="sss-ogesi"><summary>Yemek menüleri ne kadar güncel?</summary><p>Menüler KYK ve Üniversite Evi'nin yayımladığı listelerden hazırlanıyor. Yurt müdürlüğü gün içinde değişiklik yaparsa menü farklı olabilir; bir yanlışlık görürsen İletişim bölümünden haber verebilirsin.</p></details><details class="sss-ogesi"><summary>Yemeklerin fotoğrafları neden bazen çizim?</summary><p>Yemeklerin gerçek fotoğraflarını tek tek ekliyoruz. Fotoğrafı henüz olmayan yemeklerde geçici bir çizim görürsün; fotoğraf eklendiğinde çizimin yerine otomatik geçer.</p></details><details class="sss-ogesi"><summary>“Kişi bu menüye baktı” sayısı neyi gösteriyor?</summary><p>O gün aynı menüyü gören farklı kişi sayısı. Tüm KYK yurtlarında menü aynı olduğu için sayı ortak tutulur; aynı kişi menüyü birkaç kez açsa bir kez sayılır.</p></details><details class="sss-ogesi"><summary>Yemeğe nasıl puan verir, yorum yazarım?</summary><p>Her menünün altındaki değerlendirme alanından yıldız verip yorum yazabilirsin. Uygunsuz bir yorum görürsen yorumun yanındaki bildir düğmesini kullanabilirsin.</p></details><details class="sss-ogesi"><summary>Yurdumu nasıl değiştiririm?</summary><p>Ayarlar > Profil bölümünde “Kaldığınız Yurt” alanından seçersin. Seçtiğin yurt bir sonraki açılışta hatırlanır.</p></details><details class="sss-ogesi"><summary>Bilgilerim nerede saklanıyor?</summary><p>Adın, yurdun, bölümün ve avatarın yalnızca bu cihazda tutulur. Ayrıntılar için Gizlilik ve çerezler sayfasına bakabilirsin.</p></details><details class="sss-ogesi"><summary>Karanlık modu nasıl açarım?</summary><p>Ayarlar > Görünüm bölümünden Açık, Koyu ya da Sistem temasını seçebilirsin. Ana ekranın üstündeki ay simgesi de aynı işi yapar.</p></details><details class="sss-ogesi"><summary>Telefonuma uygulama gibi nasıl eklerim?</summary><p>Tarayıcının menüsünden “Ana ekrana ekle” seçeneğini kullan. Böylece KampüsCepte uygulama gibi tam ekran açılır.</p></details><details class="sss-ogesi"><summary>Bir hata buldum ya da öneri vermek istiyorum.</summary><p>İletişim bölümünden bize yazabilirsin. Menü hatası, öneri ve sorunları okuyup mümkün olan en kısa sürede değerlendiriyoruz.</p></details></div>
+          </div>
+
+          <div class="ayar-gorunum" data-ayar-gorunum="iletisim" hidden>
+            <div class="ayar-grup">
+              <h3 class="ayar-grup-baslik">Bize yaz</h3>
+              <p class="iletisim-aciklama">Menüde yanlış bir bilgi mi gördün, bir önerin ya da sorunun mu var? E-posta ile ulaşabilirsin.</p>
+              <div class="iletisim-adres"><span id="iletisim-adres">iletisim@kampuscepte.com.tr</span><button type="button" class="btn kucuk" id="iletisim-kopyala">Kopyala</button></div>
+              <div class="iletisim-konular">
+                <a class="btn tam" href="mailto:iletisim@kampuscepte.com.tr?subject=Menü%20düzeltmesi">🍽️ Menü hatası bildir</a>
+                <a class="btn tam" href="mailto:iletisim@kampuscepte.com.tr?subject=Hata%20bildirimi">🐞 Hata bildir</a>
+                <a class="btn tam" href="mailto:iletisim@kampuscepte.com.tr?subject=Öneri">💡 Öneri gönder</a>
+              </div>
+              <p class="iletisim-not">E-posta uygulaması açılmazsa adresi kopyalayıp kendi e-posta uygulamandan yazabilirsin.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1607,7 +1695,7 @@ function geriSay() {
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=15"></script>
 <script src="/dil.js?v=4"></script>
-<script src="/ayarlar.js?v=2"></script>
+<script src="/ayarlar.js?v=3"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=2"></script>
 <script src="/program.js?v=4"></script>
