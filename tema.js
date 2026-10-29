@@ -69,7 +69,11 @@
     { id: "amed", m: "#0f8a3c",     ad: "Amedspor",     c: ["#d3202b", "#0f8a3c"], a: "#c91b27", k: "#ff6a73", t: "255,228,229", h: "linear-gradient(120deg,#c91b27,#e2a817 52%,#0f8a3c)", g1: "201,27,39", g2: "15,138,60" },
     { id: "erzincan", m: "#7a0f13", ad: "Erzincanspor", c: ["#d71920", "#141414"], a: "#d71920", k: "#ff5d63", t: "255,225,226", h: "linear-gradient(120deg,#151515,#7a0f13 55%,#d71920)", g1: "215,25,32", g2: "40,40,40" },
     { id: "elazig", m: "#c25a6f",   ad: "Elazığspor",   c: ["#7a1426", "#ffffff"], a: "#7a1426", k: "#e5718a", t: "250,226,231", h: "linear-gradient(120deg,#5e0f1d,#8f1b33 65%,#c25a6f)", g1: "122,20,38", g2: "200,100,120" },
-    { id: "antep", m: "#8c0010",    ad: "Gaziantep FK", c: ["#e1001a", "#111111"], a: "#d4001a", k: "#ff5565", t: "255,225,228", h: "linear-gradient(120deg,#e1001a,#8c0010 60%,#111111)", g1: "225,0,26", g2: "30,30,30" }
+    { id: "antep", m: "#8c0010",    ad: "Gaziantep FK", c: ["#e1001a", "#111111"], a: "#d4001a", k: "#ff5565", t: "255,225,228", h: "linear-gradient(120deg,#e1001a,#8c0010 60%,#111111)", g1: "225,0,26", g2: "30,30,30" },
+    { id: "bursa", m: "#c9a227", ad: "Bursaspor", c: ["#0a7a3a", "#ffffff"], a: "#0a7a3a", k: "#3ddc84", t: "221,243,230", h: "linear-gradient(120deg,#075d2c,#0a7a3a 60%,#e8efe9)", g1: "10,122,58", g2: "180,200,185" },
+    { id: "malatya", m: "#111111", ad: "Yeni Malatyaspor", c: ["#f5c400", "#111111"], a: "#a87f00", k: "#ffd21f", t: "255,243,196", h: "linear-gradient(120deg,#111111,#3a3000 55%,#f5c400)", g1: "245,196,0", g2: "40,40,40" },
+    { id: "erzurum", m: "#0d2f9c", ad: "Erzurumspor", c: ["#1b4fd8", "#ffffff"], a: "#1b4fd8", k: "#6f9bff", t: "222,232,255", h: "linear-gradient(120deg,#0d2f9c,#1b4fd8 60%,#7fb0ff)", g1: "27,79,216", g2: "170,205,255" },
+    { id: "urfa", m: "#0b6b32", ad: "Şanlıurfaspor", c: ["#0b7a3b", "#f2c400"], a: "#0b7a3b", k: "#3ddc84", t: "221,243,230", h: "linear-gradient(120deg,#075d2c,#0b7a3b 55%,#f2c400)", g1: "11,122,59", g2: "242,196,0" }
   ];
   (function () {
     var css = "";
@@ -80,16 +84,18 @@
         S + " .isik{background:radial-gradient(520px 380px at 90% 0%,rgba(" + r.g2 + ",.16),transparent 70%),radial-gradient(600px 460px at -5% 25%,rgba(" + r.g1 + ",.17),transparent 70%),var(--zemin)}" +
         S + '[data-tema="koyu"]{--mavi:' + r.k + ";--mor:" + r.m + ";--mavi-acik:color-mix(in srgb," + r.k + " 22%,#141a2c)!important}" +
         S + '[data-tema="koyu"] .isik{background:radial-gradient(520px 380px at 90% 0%,rgba(' + r.g2 + ',.13),transparent 70%),radial-gradient(600px 460px at -5% 25%,rgba(' + r.g1 + ',.2),transparent 70%),var(--zemin)}' +
-        S + '[data-tema="koyu"] .btn.ana,' + S + '[data-tema="koyu"] .filtre button.aktif{color:' + (r.id === "fb" || r.id === "bjk" ? "#101322" : "#fff") + "}\n";
+        S + '[data-tema="koyu"] .btn.ana,' + S + '[data-tema="koyu"] .filtre button.aktif{color:' + (r.id === "fb" || r.id === "bjk" || r.id === "malatya" ? "#101322" : "#fff") + "}\n";
     });
     /* seçici düğmeleri (iki renkli yuvarlak) */
     css += ".renk-sec{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px 6px}" +
       ".renk-dugme{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:7px 2px;border-radius:14px;font:700 11px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);text-align:center}" +
       ".renk-dugme i{display:block;width:34px;height:34px;border-radius:50%;border:2px solid var(--cam-guclu,#fff);box-shadow:0 0 0 1px var(--cizgi,#e6e9f4)}" +
       ".renk-dugme.aktif{background:var(--mavi-acik);color:var(--yazi,#141b34)}.renk-dugme.aktif i{box-shadow:0 0 0 2.5px var(--mavi)}" +
+      ".renk-dugme i.renk-img{border:0;box-shadow:none;border-radius:0;background:none;width:46px;height:46px}.renk-img img{width:100%;height:100%;object-fit:contain;display:block}" +
       ".renk-dugme:focus-visible{outline:2px solid var(--mavi);outline-offset:1px}";
     stil(css);
   })();
+  var TEMA_IMG = { zumrut: 1, gunbatimi: 1, okyanus: 1, turk: 1, klasik: 1, gs: 1, fb: 1, bjk: 1, ts: 1, amed: 1, erzincan: 1, elazig: 1, antep: 1, bursa: 1, malatya: 1, erzurum: 1, urfa: 1 };
   function renkOku() { var r = oku("kc-renk") || ""; return RENKLER.some(function (x) { return x.id === r; }) ? r : ""; }
   function renkUygula() {
     var r = kok.classList.contains("ozel-renkli") ? "" : renkOku(); /* özel günde seçilen takım teması geçici olarak devre dışı */
@@ -111,8 +117,8 @@
       if (kutu.getAttribute("data-kuruldu")) return;
       kutu.setAttribute("data-kuruldu", "1");
       kutu.innerHTML = RENKLER.map(function (r) {
-        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false" title="' + r.ad + '" aria-label="' + r.ad + '"><i style="background:linear-gradient(135deg,' +
-          r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i><span>' + r.ad + '</span><b class="ayar-tik">✓</b></button>';
+        return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false" title="' + r.ad + '" aria-label="' + r.ad + '">' + ((TEMA_IMG[r.id || "klasik"]) ? '<i class="renk-img"><img src="gorseller/tema/' + (r.id || "klasik") + '.webp" alt="" width="48" height="48" loading="lazy"></i>' : '<i style="background:linear-gradient(135deg,' +
+          r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i>') + '<span>' + r.ad + '</span><b class="ayar-tik">✓</b></button>';
       }).join("");
     });
     renkUygula();
