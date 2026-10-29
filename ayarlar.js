@@ -1,7 +1,45 @@
 /* KampüsCepte — Ayarlar ve Profil Yönetimi */
 
 (function () {
-  const AVATARLAR = ["🎓", "⚡", "🚀", "💻", "🩺", "⚖️", "🎨", "🌟", "📚", "🦁"];
+  /* Avatar görselleri: /gorseller/avatar/ klasörüne konan dosya adları (uzantısız) buraya eklenir.
+     Liste boşken geçici olarak emoji avatarlar kullanılır. */
+  const AVATAR_DOSYALAR = [];
+  const AVATARLAR = AVATAR_DOSYALAR.length ? AVATAR_DOSYALAR.map(d => "img:" + d) : ["🎓", "⚡", "🚀", "💻", "🩺", "⚖️", "🎨", "🌟", "📚", "🦁"];
+  const avatarHtml = a => String(a).startsWith("img:") ? `<img src="/gorseller/avatar/${String(a).slice(4)}.webp" alt="" loading="lazy">` : a;
+  const DIL_ADLARI = { tr: "Türkçe", en: "English", ku: "Kurdî", ar: "العربية" };
+  const GORUNUMLER = { profil: "Profil", gorunum: "Görünüm", dil: "Dil", sss: "Sıkça Sorulan Sorular", iletisim: "İletişim" };
+
+  function anaGoster() {
+    const ana = document.getElementById("ayar-ana"), alt = document.getElementById("ayar-alt");
+    if (ana) ana.hidden = false;
+    if (alt) alt.hidden = true;
+  }
+  function altGoster(ad) {
+    const ana = document.getElementById("ayar-ana"), alt = document.getElementById("ayar-alt");
+    if (!alt || !GORUNUMLER[ad]) return;
+    document.querySelectorAll("[data-ayar-gorunum]").forEach(g => { g.hidden = g.dataset.ayarGorunum !== ad; });
+    const b = document.getElementById("ayar-alt-baslik"); if (b) b.textContent = GORUNUMLER[ad];
+    if (ana) ana.hidden = true;
+    alt.hidden = false;
+    window.scrollTo({ top: 0 });
+  }
+  function kartGuncelle() {
+    const ad = localStorage.getItem("kc-ad") || "";
+    const yurtDeger = localStorage.getItem("kc-yurt") || "";
+    const bolum = localStorage.getItem("kc-bolum") || "";
+    const av = localStorage.getItem("kc-avatar") || "🎓";
+    const yurtSel = document.getElementById("ayar-yurt");
+    let yurtAd = "";
+    if (yurtDeger && yurtSel) { const o = [...yurtSel.options].find(x => x.value === yurtDeger); yurtAd = o ? o.textContent : ""; }
+    const parca = [yurtAd, bolum].filter(Boolean).join(" · ");
+    const kAv = document.getElementById("ayar-kart-avatar"), kAd = document.getElementById("ayar-kart-ad"), kAlt = document.getElementById("ayar-kart-alt");
+    if (kAv) kAv.innerHTML = avatarHtml(av);
+    if (kAd) kAd.textContent = ad || "Profilini oluştur";
+    if (kAlt) kAlt.textContent = parca || "Adını, yurdunu ve avatarını seç";
+    const dilAlt = document.getElementById("ayar-alt-dil");
+    const dil = (window.DIL && window.DIL.aktif()) || localStorage.getItem("kc-dil") || "tr";
+    if (dilAlt) dilAlt.textContent = DIL_ADLARI[dil] || "Türkçe";
+  }
 
   function baslat() {
     yukleProfil();
@@ -27,7 +65,7 @@
     // Avatar listesi
     if (avatarGrid) {
       avatarGrid.innerHTML = AVATARLAR.map(a => `
-        <button type="button" class="ayar-avatar-btn ${a === kayitliAvatar ? 'secili' : ''}" data-avatar="${a}">${a}</button>
+        <button type="button" class="ayar-avatar-btn ${a === kayitliAvatar ? 'secili' : ''}" data-avatar="${a}">${avatarHtml(a)}</button>
       `).join("");
 
       avatarGrid.querySelectorAll(".ayar-avatar-btn").forEach(btn => {
@@ -44,6 +82,8 @@
       k.classList.toggle("aktif", k.getAttribute("data-dil") === aktifDil);
     });
     yoneticiGoster();
+    kartGuncelle();
+    anaGoster();
   }
 
   /* Yönetici bölümü ve rozeti yalnızca yönetici hesabıyla girilmişse görünür */
@@ -88,6 +128,9 @@
 
     // Bildirim göster
     bildirimGoster("Profil bilgileriniz kaydedildi! ✅");
+    kartGuncelle();
+    anaGoster();
+    window.scrollTo({ top: 0 });
   }
 
   function bildirimGoster(mesaj) {
@@ -121,11 +164,23 @@
         if (window.DIL && dil) {
           window.DIL.degistir(dil);
           document.querySelectorAll(".dil-chip").forEach(k => k.classList.toggle("aktif", k === kart));
+          kartGuncelle();
         }
       };
     });
-    const tum = document.getElementById("ayar-tum-yemekler");
-    if (tum) tum.onclick = () => window.KC_YEMEK_PANEL && window.KC_YEMEK_PANEL.ac();
+    document.querySelectorAll("[data-ayar-ac]").forEach(b => { b.onclick = () => altGoster(b.dataset.ayarAc); });
+    const geri = document.getElementById("ayar-geri");
+    if (geri) geri.onclick = () => { anaGoster(); window.scrollTo({ top: 0 }); };
+    const kop = document.getElementById("iletisim-kopyala");
+    if (kop) kop.onclick = async () => {
+      const adres = "iletisim@kampuscepte.com.tr";
+      try { await navigator.clipboard.writeText(adres); bildirimGoster("E-posta adresi kopyalandı ✅"); }
+      catch (e) {
+        const r = document.createRange(); r.selectNodeContents(document.getElementById("iletisim-adres"));
+        const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        bildirimGoster("Adresi seçtim, kopyalayabilirsin");
+      }
+    };
     window.addEventListener("kc-auth-degisti", yoneticiGoster);
   }
 
