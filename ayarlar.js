@@ -39,7 +39,7 @@
     const et = document.getElementById("ayar-kart-etiketler");
     if (et) {
       const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-      et.innerHTML = [yurtAd && "🏠 " + yurtAd, bolum && "🎓 " + bolum].filter(Boolean).map(t => `<span>${esc(t)}</span>`).join("");
+      et.innerHTML = [yurtAd && "🏠 " + yurtAd, bolum && "🎓 " + bolum, (localStorage.getItem("kc-sinif") || "") && "📚 " + localStorage.getItem("kc-sinif")].filter(Boolean).map(t => `<span>${esc(t)}</span>`).join("");
     }
     const dilAlt = document.getElementById("ayar-alt-dil");
     const dil = (window.DIL && window.DIL.aktif()) || localStorage.getItem("kc-dil") || "tr";
@@ -59,11 +59,27 @@
     "Diğer Fakülteler": ["Hukuk", "İlahiyat", "Güzel Sanatlar", "Mimarlık", "Spor Bilimleri", "Teknoloji Fakültesi", "Ziraat Fakültesi", "Su Ürünleri"],
     "Meslek Yüksekokulu": ["Bilgisayar Programcılığı", "Muhasebe ve Vergi Uygulamaları", "Büro Yönetimi ve Yönetici Asistanlığı", "Elektrik", "Makine", "İnşaat Teknolojisi", "Tıbbi Hizmetler ve Teknikler", "Turizm ve Otel İşletmeciliği", "Adalet", "Halkla İlişkiler ve Tanıtım", "Lojistik", "Ön Büro Hizmetleri"]
   };
+  function sinifSecenekleri(secili) {
+    const sel = document.getElementById("ayar-sinif"); if (!sel) return;
+    const b = ((document.getElementById("ayar-bolum") || {}).value || "");
+    let n = 4, onlisans = BOLUMLER["Meslek Yüksekokulu"].includes(b);
+    if (b === "Tıp") n = 6;
+    else if (b === "Diş Hekimliği" || b === "Eczacılık") n = 5;
+    else if (b === "Veteriner Hekimliği") n = 5;
+    else if (onlisans) n = 2;
+    const secenekler = ["Sınıf seç", "Hazırlık"];
+    for (let i = 1; i <= n; i++) secenekler.push(i + ". sınıf");
+    secenekler.push("Yüksek lisans / Doktora");
+    const cur = secili !== undefined ? secili : sel.value;
+    sel.innerHTML = secenekler.map((t, i) => `<option value="${i === 0 ? "" : t}">${t}</option>`).join("");
+    sel.value = secenekler.includes(cur) ? cur : "";
+  }
   function bolumMetinGuncelle() {
     const v = (document.getElementById("ayar-bolum") || {}).value || "";
     const m = document.getElementById("ayar-bolum-metin"), b = document.getElementById("ayar-bolum-btn");
     if (m) m.textContent = v || "Bölüm seç";
     if (b) b.classList.toggle("bos", !v);
+    sinifSecenekleri();
   }
   function bolumSheetKur() {
     const perde = document.getElementById("bolum-sheet"), liste = document.getElementById("bolum-liste"), ara = document.getElementById("bolum-ara");
@@ -118,6 +134,7 @@
     if (adInput) adInput.value = kayitliAd;
     if (yurtSelect) yurtSelect.value = kayitliYurt;
     if (bolumInput) bolumInput.value = kayitliBolum;
+    sinifSecenekleri(localStorage.getItem("kc-sinif") || "");
     bolumMetinGuncelle();
 
     // Avatar listesi
@@ -182,6 +199,8 @@
     if (yeniBolum) localStorage.setItem("kc-bolum", yeniBolum);
     else localStorage.removeItem("kc-bolum");
 
+    const yeniSinif = (document.getElementById("ayar-sinif") || {}).value || "";
+    if (yeniSinif) localStorage.setItem("kc-sinif", yeniSinif); else localStorage.removeItem("kc-sinif");
     localStorage.setItem("kc-avatar", yeniAvatar);
 
     // Bildirim göster
