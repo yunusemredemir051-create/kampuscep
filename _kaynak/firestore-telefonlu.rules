@@ -115,6 +115,14 @@ service cloud.firestore {
           && (!('d' in request.resource.data) || request.resource.data.d in [-1, 0, 1]);
         allow delete: if girisli() && request.auth.uid == uid;
       }
+      // Menüye bakan cihaz sayısı: her kimlik (anonim oturum dahil) bir menü için yalnızca bir kez kayıt açabilir
+      match /gorenler/{uid} {
+        allow read: if true;
+        allow create: if girisli() && request.auth.uid == uid && menuGecerli()
+          && request.resource.data.keys().hasOnly(['zaman'])
+          && request.resource.data.zaman == request.time;
+        allow update, delete: if false;
+      }
       match /yorumlar/{id} {
         allow read: if true;
         allow create: if girisli() && menuGecerli() && !yorumCezali()
