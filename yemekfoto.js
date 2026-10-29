@@ -691,6 +691,8 @@
       "haydari": "yurt-haydari",
       "tulumba": "yurt-tulumba",
       "tereyağı": "yurt-tereyagi",
+      "etsiz kuru fasulye": "yurt-etsiz-kuru-fasulye",
+      "simit": "yurt-simit",
       "dere otlu poğaça": "yurt-dere-otlu-pogaca",
       "sosis kızartma": "yurt-sosis-kizartma",
       "sucuklu yumurta": "yurt-sucuklu-yumurta",
