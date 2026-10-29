@@ -95,8 +95,8 @@ const uniEviMenuleri = {
   "2026-10-20": ["Orman kebap", "Bulgur pilavı", "Yayla çorbası", "Meyve"],
   "2026-10-21": ["Rosto köfte", "Makarna", "Domates çorbası", "Tatlı"],
   "2026-10-22": ["Fırında tavuk", "Bulgur pilavı", "Mercimek çorbası", "Yoğurt"],
-  "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "Tahin helva"],
-  "2026-10-26": ["Etli nohut", "Bulgur pilavı", "Yoğurt", "Tahin helvası"],
+  "2026-10-23": ["Etli kuru fasulye", "Pirinç pilavı", "Mevsim salata", "Tulumba tatlısı"],
+  "2026-10-26": ["Etli nohut", "Bulgur pilavı", "Yoğurt", "Tulumba tatlısı"],
   "2026-10-27": ["Et kavurma", "Pirinç pilavı", "Mercimek çorbası", "Ayran"],
   "2026-10-28": ["Tebiyeli köfte", "Makarna", "Domates çorbası", "Meyve"],
   "2026-10-30": ["Etli bezelye", "Pirinç pilavı", "Mercimek çorbası", "Meyve"]

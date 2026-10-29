@@ -618,7 +618,7 @@
     "rozet": "🏛️ Üniversite Evi"
   },
   {
-    "ad": "Tahin helva",
+    "ad": "Tulumba tatlısı",
     "yer": "unievi",
     "yerAdi": "Üniversite Evi",
     "rozet": "🏛️ Üniversite Evi"
