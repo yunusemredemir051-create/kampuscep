@@ -261,6 +261,98 @@
     "İzzetpaşa": "عزت باشا", "Sare Ana": "سارة آنا"
   };
 
+  /* ---- ek sözlük: ders programı, bayram afişleri, sayaçlar ---- */
+  const EK_TABLO = [
+    ["Pzt", "Mon", "Duş", "الاثنين"], ["Sal", "Tue", "Sêş", "الثلاثاء"], ["Çar", "Wed", "Çar", "الأربعاء"], ["Per", "Thu", "Pên", "الخميس"], ["Cum", "Fri", "Îne", "الجمعة"],
+    ["Her hafta aynı", "Same every week", "Her hefte yek e", "نفسه كل أسبوع"],
+    ["Bu sınıf için gün ve saati girilmiş ders yok.", "No classes with a day and time have been entered for this year.", "Ji bo vê polê ders bi roj û demjimêr nehatiye tomarkirin.", "لا توجد دروس مُدخلة بيوم وساعة لهذا الصف."],
+    ["Bu şube için ders yok.", "No classes for this section.", "Ji bo vê şaxê ders tune.", "لا توجد دروس لهذه الشعبة."],
+    ["Şu an sınavda", "Exam in progress", "Niha di azmûnê de", "الامتحان جارٍ الآن"],
+    ["Şu an tatilde", "On break now", "Niha di betlaneyê de", "في عطلة الآن"],
+    ["Sınav yarın", "Exam tomorrow", "Azmûn sibê ye", "الامتحان غدًا"],
+    ["Tatil yarın", "Holiday tomorrow", "Betlane sibê ye", "العطلة غدًا"],
+    ["Bu gece yılbaşı", "New Year's Eve tonight", "Îşev sersal e", "الليلة رأس السنة"],
+    ["Yılbaşı", "New Year", "Sersal", "رأس السنة"],
+    ["Adli Bilişim", "Digital Forensics", "Zanista Dîjîtal a Edlî", "الحاسوب الجنائي"],
+    ["2026–2027 Güz", "2026–2027 Fall", "Payîza 2026–2027", "خريف 2026–2027"],
+    ["Seminer Salonu", "Seminar Hall", "Salona Semînerê", "قاعة الندوات"],
+    /* ders adları */
+    ["Algoritma", "Algorithms", "Algorîtma", "الخوارزميات"],
+    ["Atatürk İlkeleri ve İnkılap Tarihi I", "Atatürk's Principles and History of the Turkish Revolution I", "Prensîbên Atatürk û Dîroka Şoreşê I", "مبادئ أتاتورك وتاريخ الثورة التركية I"],
+    ["Bilgi Sistemleri Güvenliği ve Risk Yönetimi", "Information Systems Security and Risk Management", "Ewlehiya Pergalên Agahdariyê û Rêveberiya Rîskê", "أمن نظم المعلومات وإدارة المخاطر"],
+    ["Bilişim Hukuku", "IT Law", "Hiqûqa Agahdariyê", "قانون المعلوماتية"],
+    ["Bilişim Sistemleri ve Teknolojilerine Giriş", "Introduction to Information Systems and Technologies", "Destpêka Pergalên Agahdariyê û Teknolojiyan", "مدخل إلى نظم المعلومات وتقنياتها"],
+    ["Bilişim Toplumu ve E-Devlet", "Information Society and E-Government", "Civaka Agahdariyê û E-Dewlet", "مجتمع المعلومات والحكومة الإلكترونية"],
+    ["Finansal Yönetim", "Financial Management", "Rêveberiya Darayî", "الإدارة المالية"],
+    ["Girişimcilik", "Entrepreneurship", "Karsazî", "ريادة الأعمال"],
+    ["Grafik Tasarımı ve Animasyon", "Graphic Design and Animation", "Sêwirana Grafîk û Anîmasyon", "التصميم الغرافيكي والرسوم المتحركة"],
+    ["Mikro İktisat", "Microeconomics", "Aboriya Mîkro", "الاقتصاد الجزئي"],
+    ["Muhasebe I", "Accounting I", "Hesabdarî I", "المحاسبة I"],
+    ["Müşteri İlişkileri Yönetimi", "Customer Relationship Management", "Rêveberiya Têkiliyên Mişteriyan", "إدارة علاقات العملاء"],
+    ["Nesne Tabanlı Programlama II", "Object-Oriented Programming II", "Bernamesaziya Objeyî II", "البرمجة كائنية التوجه II"],
+    ["Pazarlama İlkeleri", "Principles of Marketing", "Prensîbên Bazarkirinê", "مبادئ التسويق"],
+    ["Proje Yönetimi", "Project Management", "Rêveberiya Projeyê", "إدارة المشاريع"],
+    ["Sistem Analizi ve Tasarımı", "Systems Analysis and Design", "Analîz û Sêwirana Pergalê", "تحليل النظم وتصميمها"],
+    ["Sosyal Medya Analizi", "Social Media Analysis", "Analîza Medyaya Civakî", "تحليل وسائل التواصل الاجتماعي"],
+    ["Stratejik Yönetim", "Strategic Management", "Rêveberiya Stratejîk", "الإدارة الاستراتيجية"],
+    ["Teknolojik Liderlik ve Motivasyon", "Technological Leadership and Motivation", "Rêberiya Teknolojîk û Motîvasyon", "القيادة التكنولوجية والتحفيز"],
+    ["Veri Madenciliği", "Data Mining", "Kanîkariya Daneyan", "التنقيب في البيانات"],
+    ["Veri Tabanı Sistemleri", "Database Systems", "Pergalên Danegehê", "نظم قواعد البيانات"],
+    ["Veri Tabanına Giriş", "Introduction to Databases", "Destpêka Danegehê", "مدخل إلى قواعد البيانات"],
+    ["Web Tabanlı Uygulamalar", "Web-Based Applications", "Sepanên Li ser Webê", "تطبيقات الويب"],
+    ["Yapay Zekâ", "Artificial Intelligence", "Zekaya Çêkirî", "الذكاء الاصطناعي"],
+    ["Yöneylem Araştırması", "Operations Research", "Lêkolîna Operasyonan", "بحوث العمليات"],
+    ["İstatistik", "Statistics", "Îstatîstîk", "الإحصاء"],
+    ["İşletme Matematiği", "Business Mathematics", "Matematîka Karsaziyê", "رياضيات الأعمال"],
+    ["İşletme Yönetimi", "Business Management", "Rêveberiya Karsaziyê", "إدارة الأعمال"],
+    ["İşletmeler için Karar Destek Sistemleri", "Decision Support Systems for Businesses", "Pergalên Piştgiriya Biryarê ji bo Karsaziyan", "نظم دعم القرار للمنشآت"],
+    /* özel gün afişleri */
+    ["Cumhuriyet Bayramımız kutlu olsun!", "Happy Republic Day!", "Cejna Komarê pîroz be!", "كل عام وجمهوريتنا بخير!"],
+    ["Saygı ve özlemle anıyoruz", "We remember with respect and longing", "Bi rêz û hesretê tînin bîra xwe", "نستذكره باحترام وشوق"],
+    ["Öğretmenler Günü kutlu olsun!", "Happy Teachers' Day!", "Roja Mamosteyan pîroz be!", "عيد المعلم سعيد!"],
+    ["Bize emek veren tüm hocalarımıza teşekkürler.", "Thank you to all our teachers who work for us.", "Spas ji hemû mamosteyên me yên ku ji bo me ked didin.", "شكرًا لجميع معلمينا على جهودهم."],
+    ["Regaip Kandiliniz mübarek olsun", "Blessed Regaib Night", "Şeva Regaîbê pîroz be", "ليلة الرغائب مباركة"],
+    ["Üç ayların ilk kandili; dualarınız kabul olsun.", "The first holy night of the Three Months; may your prayers be accepted.", "Şeva pîroz a yekem a sê mehan; dua û dilxwaziyên we qebûl bin.", "أولى ليالي الأشهر الثلاثة؛ تقبّل الله دعاءكم."],
+    ["Yeni yıla az kaldı!", "Almost the new year!", "Sersal nêzîk e!", "اقتربت السنة الجديدة!"],
+    ["Mutlu yıllar!", "Happy New Year!", "Sala we pîroz be!", "كل عام وأنتم بخير!"],
+    ["Miraç Kandiliniz mübarek olsun", "Blessed Miraj Night", "Şeva Mîracê pîroz be", "ليلة المعراج مباركة"],
+    ["Bu mübarek gece dualarınıza vesile olsun.", "May this blessed night bring your prayers answered.", "Bila ev şeva pîroz bibe sedema dua û dilxwaziyên we.", "نسأل الله أن تكون هذه الليلة المباركة سببًا لإجابة دعائكم."],
+    ["Berat Kandiliniz mübarek olsun", "Blessed Berat Night", "Şeva Beratê pîroz be", "ليلة البراءة مباركة"],
+    ["Bu mübarek gece hayırlara vesile olsun.", "May this blessed night bring good things.", "Bila ev şeva pîroz bibe sedema başiyê.", "نسأل الله أن تكون هذه الليلة المباركة سببًا للخير."],
+    ["6 Şubat'ı unutmadık", "We have not forgotten 6 February", "6'ê Sibatê ji bîr nekirine", "لم ننسَ 6 شباط"],
+    ["6 Şubat 2023 depremlerinde hayatını kaybedenleri rahmetle anıyoruz.", "We remember with mercy those who lost their lives in the 6 February 2023 earthquakes.", "Em kesên di erdhejên 6'ê Sibata 2023'an de jiyana xwe ji dest dan bi rehmê tînin bîra xwe.", "نستذكر برحمة من فقدوا حياتهم في زلزال 6 شباط 2023."],
+    ["Hoş geldin Ramazan", "Welcome, Ramadan", "Bi xêr hatî Remezan", "أهلًا رمضان"],
+    ["Bu gece ilk sahur. Hayırlı Ramazanlar!", "First suhoor tonight. Ramadan Mubarak!", "Îşev sehura yekem e. Remezana we pîroz be!", "الليلة أول سحور. رمضان مبارك!"],
+    ["Hayırlı Ramazanlar", "Ramadan Mubarak", "Remezana we pîroz be", "رمضان مبارك"],
+    ["On bir ayın sultanı bereket, huzur ve sağlık getirsin.", "May the sultan of eleven months bring blessings, peace and health.", "Bila sultanê yanzdeh mehan bereket, aramî û tenduristî bîne.", "نسأل الله أن يحمل سلطان الأشهر الأحد عشر البركة والسلام والصحة."],
+    ["Kadir Geceniz mübarek olsun", "Blessed Night of Power", "Şeva Qedrê pîroz be", "ليلة القدر مباركة"],
+    ["Bin aydan hayırlı bu gecede dualarınız kabul olsun.", "May your prayers be accepted on this night better than a thousand months.", "Dua û dilxwaziyên we di vê şeva ji hezar mehan çêtir de qebûl bin.", "تقبّل الله دعاءكم في هذه الليلة الخير من ألف شهر."],
+    ["Yarın bayram!", "Holiday tomorrow!", "Sibê cejn e!", "غدًا العيد!"],
+    ["Ramazan Bayramınız mübarek olsun!", "Happy Eid al-Fitr!", "Cejna we ya Remezanê pîroz be!", "عيد فطر مبارك!"],
+    ["Bayramın huzuru ve sevinci sevdiklerinizle birlikte olsun.", "May the peace and joy of the holiday be with your loved ones.", "Bila aramî û şahiya cejnê bi hezkirinên we re be.", "نتمنى أن يكون العيد بسلامه وفرحه مع أحبّتكم."],
+    ["Yarın 23 Nisan!", "Tomorrow is 23 April!", "Sibê 23'ê Nîsanê ye!", "غدًا 23 نيسان!"],
+    ["23 Nisan kutlu olsun!", "Happy 23 April!", "23'ê Nîsanê pîroz be!", "23 نيسان مبارك!"],
+    ["Anneler Günü kutlu olsun!", "Happy Mother's Day!", "Roja Dayikan pîroz be!", "عيد الأم سعيد!"],
+    ["Bugün annene bir telefon aç, bir sarıl.", "Call your mom today, give her a hug.", "Îro telefonekê ji diya xwe re bike, ala wê bigire.", "اتصل بأمك اليوم واحضنها."],
+    ["Kurban Bayramınız mübarek olsun!", "Happy Eid al-Adha!", "Cejna we ya Qurbanê pîroz be!", "عيد أضحى مبارك!"],
+    ["Bayramınız sevdiklerinizle birlikte, bereketli ve huzurlu geçsin.", "May your holiday be blessed and peaceful with your loved ones.", "Bila cejna we bi hezkirinên we re bi bereket û aramî derbaz bibe.", "نتمنى لكم عيدًا مباركًا هادئًا بين أحبّتكم."],
+    ["Yarın 19 Mayıs!", "Tomorrow is 19 May!", "Sibê 19'ê Gulanê ye!", "غدًا 19 أيار!"],
+    ["19 Mayıs kutlu olsun!", "Happy 19 May!", "19'ê Gulanê pîroz be!", "19 أيار مبارك!"],
+    ["Babalar Günü kutlu olsun!", "Happy Father's Day!", "Roja Bavan pîroz be!", "عيد الأب سعيد!"],
+    ["Bugün babana bir telefon aç, bir sarıl.", "Call your dad today, give him a hug.", "Îro telefonekê ji bavê xwe re bike, ala wî bigire.", "اتصل بأبيك اليوم واحضنه."],
+    ["15 Temmuz Demokrasi ve Milli Birlik Günü", "15 July Democracy and National Unity Day", "Roja Demokrasî û Yekîtiya Neteweyî ya 15'ê Tîrmehê", "يوم الديمقراطية والوحدة الوطنية 15 تموز"],
+    ["15 Temmuz şehitlerimizi rahmetle, gazilerimizi minnetle anıyoruz.", "We remember our martyrs of 15 July with mercy and our veterans with gratitude.", "Em şehîdên xwe yên 15'ê Tîrmehê bi rehmê û gaziyên xwe bi spasdarî tînin bîra xwe.", "نستذكر شهداءنا في 15 تموز بالرحمة وجرحانا بالعرفان."],
+    ["Mevlid Kandiliniz mübarek olsun", "Blessed Mawlid Night", "Şeva Mewlîdê pîroz be", "ليلة المولد مباركة"],
+    ["Yarın 30 Ağustos!", "Tomorrow is 30 August!", "Sibê 30'ê Tebaxê ye!", "غدًا 30 آب!"],
+    ["Zafer Bayramımız kutlu olsun!", "Happy Victory Day!", "Cejna Serkeftinê pîroz be!", "عيد النصر مبارك!"],
+    ["Sınavlarında başarılar!", "Good luck on your exams!", "Di azmûnên te de serkeftin!", "بالتوفيق في امتحاناتك!"],
+    ["Notlar ve testler KampüsCepte'de seni bekliyor. Kolay gelsin!", "Notes and tests are waiting for you on KampüsCepte. Good luck!", "Nîşe û test li KampüsCepte li benda te ne. Serkeftin!", "الملاحظات والاختبارات بانتظارك في KampüsCepte. بالتوفيق!"],
+    ["Vize haftası", "Midterm week", "Hefteya vîzeyan", "أسبوع الامتحانات النصفية"],
+    ["Final haftası", "Finals week", "Hefteya finalan", "أسبوع الامتحانات النهائية"],
+    ["Bütünleme haftası", "Make-up exam week", "Hefteya bütünlemeyê", "أسبوع امتحانات الإكمال"]
+  ];
+  EK_TABLO.forEach(function (r) { TABLO.push(r); });
+
   /* ------------------------------------------------------------------ yardımcılar */
   const DILLER = ["tr", "en", "ku", "ar"];
   const IDX = { en: 1, ku: 2, ar: 3 };
@@ -293,6 +385,38 @@
   /* ------------------------------------------------------------------ kalıplar (sayı / tarih içeren metinler)
      [düzenli ifade, fonksiyon(m, d, c)]  —  c = çeviri fonksiyonu (iç içe parça çevirmek için) */
   const KALIPLAR = [
+    [/^(Sınava|Tatile) (\d+) gün$/, function (m, d) {
+      const n = +m[2], sinav = m[1] === "Sınava";
+      return d === "en" ? n + " " + gunKelime(n, d) + " to " + (sinav ? "exams" : "holiday")
+           : d === "ku" ? (sinav ? "Heta azmûnê " : "Heta betlaneyê ") + n + " roj"
+           : (sinav ? "للامتحان " : "للعطلة ") + n + " " + gunKelime(n, d);
+    }],
+    [/^(\d+) gün kaldı$/, function (m, d) {
+      const n = +m[1];
+      return d === "en" ? n + " " + gunKelime(n, d) + " left" : d === "ku" ? n + " roj mane" : "باقٍ " + n + " " + gunKelime(n, d);
+    }],
+    [/^Cumhuriyetimizin (\d+)\. yılı kutlu olsun\.$/, function (m, d) {
+      return d === "en" ? "Happy " + m[1] + "th anniversary of our Republic." : d === "ku" ? "Salvegera " + m[1] + "an a Komara me pîroz be." : "كل عام والذكرى " + m[1] + " لجمهوريتنا بخير.";
+    }],
+    [/^(YBS|Tıp|Adli Bilişim) (\d)\. sınıf · haftalık ders programı$/, function (m, d, c) {
+      const b = c(m[1]);
+      return d === "en" ? b + " Year " + m[2] + " · weekly class schedule" : d === "ku" ? "Bernameya dersên hefteyî · " + b + " polê " + m[2] + "an" : "الجدول الأسبوعي للدروس · " + b + " الصف " + m[2];
+    }],
+    [/^(\d)\. öğretim$/, function (m, d) { return d === "en" ? (m[1] === "1" ? "Day program" : "Evening program") : d === "ku" ? "Ferma " + m[1] + "an" : (m[1] === "1" ? "الدوام الأول" : "الدوام الثاني"); }],
+    [/^Şube (\d)$/, function (m, d) { return d === "en" ? "Section " + m[1] : d === "ku" ? "Şaxa " + m[1] : "الشعبة " + m[1]; }],
+    [/^(Pazartesi|Salı|Çarşamba|Perşembe|Cuma) günü ders yok\.$/, function (m, d, c) {
+      const g = tarihKelime(m[1], d);
+      return d === "en" ? "No classes on " + g + "." : d === "ku" ? "Roja " + g + "ê ders tune." : "لا دروس يوم " + g + ".";
+    }],
+    [/^(Dr\. Öğr\. Üyesi|Doç\. Dr\.|Prof\. Dr\.|Öğr\. Gör\.|Arş\. Gör\.) ((?:(?! · ).)+)$/, function (m, d) {
+      const T = { "Dr. Öğr. Üyesi": ["Asst. Prof. Dr.", "Dr. Alîkar", "أ.م.د."], "Doç. Dr.": ["Assoc. Prof. Dr.", "Doç. Dr.", "أ.مشارك د."], "Prof. Dr.": ["Prof. Dr.", "Prof. Dr.", "أ.د."], "Öğr. Gör.": ["Lecturer", "Mamoste", "محاضر"], "Arş. Gör.": ["Research Asst.", "Lêkolîner", "باحث مساعد"] };
+      return T[m[1]][IDX[d] - 1] + " " + m[2];
+    }],
+    [/^(Kimya|Çevre|Sosyal Hizmetler|Çalışma Ekonomisi) (Amfi|Derslik) (\d+)$/, function (m, d) {
+      const B = { "Kimya": ["Chemistry", "Kîmya", "الكيمياء"], "Çevre": ["Environmental", "Jîngeh", "البيئة"], "Sosyal Hizmetler": ["Social Services", "Karûbarên Civakî", "الخدمات الاجتماعية"], "Çalışma Ekonomisi": ["Labour Economics", "Aboriya Xebatê", "اقتصاد العمل"] };
+      const amfi = m[2] === "Amfi", b = B[m[1]][IDX[d] - 1];
+      return d === "en" ? b + (amfi ? " Amphitheater " : " Classroom ") + m[3] : d === "ku" ? b + (amfi ? " Amfî " : " Dersxane ") + m[3] : (amfi ? "مدرج " : "قاعة ") + b + " " + m[3];
+    }],
     [/^(\d+) gün$/, function (m, d) { const n = +m[1]; return n + " " + gunKelime(n, d); }],
     [/^([\d]+,[\d]+) gün$/, function (m, d) { return sayi(m[1], d) + " " + (d === "ar" ? "أيام" : d === "ku" ? "roj" : "days"); }],
     [/^(\d+)\. hafta$/, function (m, d) { return d === "en" ? "Week " + m[1] : d === "ku" ? "Hefteya " + m[1] + "." : "الأسبوع " + m[1]; }],
