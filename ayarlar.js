@@ -3,7 +3,7 @@
 (function () {
   /* Avatar görselleri: /gorseller/avatar/ klasörüne konan dosya adları (uzantısız) buraya eklenir.
      Liste boşken geçici olarak emoji avatarlar kullanılır. */
-  const AVATAR_DOSYALAR = [];
+  const AVATAR_DOSYALAR = ["a01","a02","a03","a04","a05","a06","a07","a08","a09","a10","a11","a12","a13","a14","a15","a16","a17","a18","a19","a20","a21","a22","a23","a24","a25","a26","a27","a28","a29","a30"];
   const AVATARLAR = AVATAR_DOSYALAR.length ? AVATAR_DOSYALAR.map(d => "img:" + d) : ["🎓", "⚡", "🚀", "💻", "🩺", "⚖️", "🎨", "🌟", "📚", "🦁"];
   const avatarHtml = a => String(a).startsWith("img:") ? `<img src="/gorseller/avatar/${String(a).slice(4)}.webp" alt="" loading="lazy">` : a;
   const DIL_ADLARI = { tr: "Türkçe", en: "English", ku: "Kurdî", ar: "العربية" };
@@ -27,7 +27,7 @@
     const ad = localStorage.getItem("kc-ad") || "";
     const yurtDeger = localStorage.getItem("kc-yurt") || "";
     const bolum = localStorage.getItem("kc-birim") || "";
-    const av = localStorage.getItem("kc-avatar") || "🎓";
+    const av = localStorage.getItem("kc-avatar") || AVATARLAR[0];
     const yurtSel = document.getElementById("ayar-yurt");
     let yurtAd = "";
     if (yurtDeger && yurtSel) { const o = [...yurtSel.options].find(x => x.value === yurtDeger); yurtAd = o ? o.textContent : ""; }
@@ -121,7 +121,7 @@
     const kayitliAd = localStorage.getItem("kc-ad") || "";
     const kayitliYurt = localStorage.getItem("kc-yurt") || "";
     const kayitliBolum = localStorage.getItem("kc-birim") || (localStorage.getItem("kc-bolum") === "tip" ? "Tıp" : "");
-    const kayitliAvatar = localStorage.getItem("kc-avatar") || "🎓";
+    const kayitliAvatar = localStorage.getItem("kc-avatar") || AVATARLAR[0];
 
     if (adInput) adInput.value = kayitliAd;
     if (yurtSelect) yurtSelect.value = kayitliYurt;
@@ -174,7 +174,7 @@
     const yeniAd = (adInput ? adInput.value : "").trim();
     const yeniYurt = yurtSelect ? yurtSelect.value : "";
     const yeniBolum = (bolumInput ? bolumInput.value : "").trim();
-    const yeniAvatar = seciliAvatarBtn ? seciliAvatarBtn.getAttribute("data-avatar") : "🎓";
+    const yeniAvatar = seciliAvatarBtn ? seciliAvatarBtn.getAttribute("data-avatar") : AVATARLAR[0];
 
     if (yeniAd) localStorage.setItem("kc-ad", yeniAd);
     else localStorage.removeItem("kc-ad");
