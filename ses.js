@@ -19,6 +19,20 @@
   }
   /* parlak çan sesi: temel + 2. ve 3. harmonik */
   function can(f, t, d, v) { nota(f, t, d, v); nota(f * 2.01, t, d * 0.6, v * 0.35); nota(f * 3.02, t, d * 0.35, v * 0.12); }
+  /* iOS: sessiz anahtarı ve ilk dokunuş kilidini aşmak için ses oturumunu "playback" yap, sessiz bir ses çal */
+  var kilit = false;
+  function ac() {
+    var c = hazir(); if (!c) return;
+    try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+    try { var b = c.createBuffer(1, 1, 22050), n = c.createBufferSource(); n.buffer = b; n.connect(c.destination); n.start(0); } catch (e) {}
+    if (kilit) return; kilit = true;
+    try {
+      var a = document.createElement("audio");
+      a.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+      a.loop = true; a.setAttribute("playsinline", ""); a.volume = 0.01; a.play().catch(function () {});
+    } catch (e) {}
+  }
+  ["touchend", "pointerup", "click", "keydown"].forEach(function (o) { addEventListener(o, ac, { capture: true, passive: true }); });
   var SESLER = {
     acilis: function () { can(523.25, 0, 0.9, 0.16); can(659.25, 0.11, 0.9, 0.15); can(783.99, 0.22, 0.9, 0.15); can(1046.5, 0.34, 1.3, 0.16); },
     menu: function () { nota(520, 0, 0.16, 0.11, "triangle", 880); nota(880, 0.07, 0.2, 0.08, "sine"); },
@@ -33,7 +47,7 @@
   };
   var acik = true; try { acik = localStorage.getItem("kc-ses") !== "0"; } catch (e) {}
   window.KC_SES = {
-    cal: function (ad, zorla) { if (!acik && !zorla) return; if (!hazir() || !SESLER[ad]) return; try { SESLER[ad](); } catch (e) {} },
+    cal: function (ad, zorla) { if (!acik && !zorla) return; if (!hazir() || !SESLER[ad]) return; try { if (ctx.state !== "running") { ctx.resume().then(function () { SESLER[ad](); }); return; } SESLER[ad](); } catch (e) {} },
     acik: function (v) { if (v === undefined) return acik; acik = !!v; try { localStorage.setItem("kc-ses", acik ? "1" : "0"); } catch (e) {} return acik; },
     calisiyor: function () { var c = hazir(); return !!c && c.state === "running"; },
     adlar: Object.keys(SESLER)
