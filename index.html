@@ -619,6 +619,65 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .ayar-liste.renk-sec .renk-dugme i { flex: none; width: 30px !important; height: 30px !important; }
 .ayar-liste.renk-sec .renk-dugme .ayar-tik { margin-left: auto; }
 
+/* ---- Ayarlar: premium görünüm ---- */
+.ayar-hero { position: relative; overflow: hidden; border-radius: 26px; padding: 22px 20px 18px; color: #fff; background: linear-gradient(135deg, var(--mavi), var(--mor, #8d5cf6)); box-shadow: 0 18px 38px -18px var(--mavi); }
+.ayar-hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(220px 160px at 100% 0%, rgba(255,255,255,.28), transparent 70%), radial-gradient(180px 140px at 0% 110%, rgba(255,255,255,.18), transparent 70%); }
+.ayar-hero > * { position: relative; }
+.ayar-hero .ayar-admin-rozet { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,.22); box-shadow: none; backdrop-filter: blur(6px); font-size: 11px; padding: 5px 10px; }
+.ayar-hero-ust { display: flex; align-items: center; gap: 14px; }
+.ayar-hero .ayar-avatar-buyuk { width: 76px; height: 76px; font-size: 38px; border: 3px solid rgba(255,255,255,.85); box-shadow: 0 8px 20px rgba(0,0,0,.18); background: #fff; }
+.ayar-hero-metin { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.ayar-hero-metin b { font-size: 21px; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; }
+.ayar-hero-metin small { font-size: 13px; font-weight: 600; opacity: .85; }
+.ayar-hero-etiketler { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.ayar-hero-etiketler span { background: rgba(255,255,255,.2); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.25); padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+.ayar-hero-btn { margin-top: 16px; width: 100%; border: 0; cursor: pointer; border-radius: 14px; padding: 12px; font: 800 14px var(--font, inherit); color: var(--mavi); background: #fff; box-shadow: 0 8px 18px -10px rgba(0,0,0,.4); }
+.ayar-liste-baslik { margin: 26px 6px 10px; }
+.ayar-liste { border-radius: 22px; box-shadow: 0 10px 26px -18px rgba(30,45,110,.35); }
+.ayar-satir { padding: 14px 16px; min-height: 66px; }
+.ayar-ik { width: 40px; height: 40px; border-radius: 13px; background: linear-gradient(145deg, color-mix(in srgb, var(--r) 70%, #fff), var(--r)); box-shadow: 0 8px 16px -8px var(--r); }
+#ayarlar .panel { padding-bottom: 130px; }
+/* profil formu */
+.profil-form { display: flex; flex-direction: column; gap: 14px; }
+.pf-kart { border-radius: 22px; border: 1px solid var(--cizgi); background: var(--kart, #fff); padding: 18px; box-shadow: 0 10px 26px -18px rgba(30,45,110,.35); }
+[data-tema="koyu"] .pf-kart { background: #1e2438; border-color: #2b3350; }
+.pf-baslik { margin: 0 0 14px; font-size: 12px; font-weight: 800; letter-spacing: .8px; text-transform: uppercase; color: var(--soluk); }
+.pf-kart .ayar-avatar-secici { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 0; }
+.pf-kart .ayar-avatar-btn { width: 100%; height: auto; aspect-ratio: 1; font-size: 28px; }
+.pf-alan { display: block; margin-bottom: 14px; }
+.pf-alan:last-child { margin-bottom: 0; }
+.pf-alan > span { display: block; font-size: 12.5px; font-weight: 800; color: var(--soluk); margin-bottom: 6px; }
+.pf-alan input, .pf-alan select, .pf-secim { width: 100%; box-sizing: border-box; font: 700 15px var(--font, inherit); padding: 13px 14px; border-radius: 14px; border: 1.5px solid var(--cizgi); background: color-mix(in srgb, var(--mavi) 3%, var(--kart, #fff)); color: inherit; outline: none; }
+[data-tema="koyu"] .pf-alan input, [data-tema="koyu"] .pf-alan select, [data-tema="koyu"] .pf-secim { background: #161b2e; border-color: #2b3350; }
+.pf-alan input:focus, .pf-alan select:focus, .pf-secim:focus-visible { border-color: var(--mavi); box-shadow: 0 0 0 4px color-mix(in srgb, var(--mavi) 16%, transparent); }
+.pf-secim { display: flex; align-items: center; justify-content: space-between; text-align: left; cursor: pointer; }
+.pf-secim i { font-style: normal; font-size: 22px; color: var(--soluk); }
+.pf-secim.bos #ayar-bolum-metin { color: var(--soluk); font-weight: 600; }
+.pf-kaydet { border: 0; cursor: pointer; border-radius: 16px; padding: 15px; font: 800 16px var(--font, inherit); color: #fff; background: linear-gradient(135deg, var(--mavi), var(--mor, #8d5cf6)); box-shadow: 0 14px 28px -14px var(--mavi); }
+/* bölüm seçici (alt sayfa) */
+.sheet-perde { position: fixed; inset: 0; z-index: 10000; background: rgba(10,14,30,.5); display: flex; align-items: flex-end; justify-content: center; animation: sheetPerde .2s ease; }
+.sheet-perde[hidden] { display: none; }
+.sheet { width: 100%; max-width: 560px; max-height: 82vh; display: flex; flex-direction: column; background: #fff; color: #141b34; border-radius: 26px 26px 0 0; padding: 10px 18px calc(18px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -20px 50px rgba(0,0,0,.25); animation: sheetYukari .25s cubic-bezier(.16,1,.3,1); }
+[data-tema="koyu"] .sheet { background: #1a2035; color: #f0f3fe; }
+@keyframes sheetPerde { from { opacity: 0; } }
+@keyframes sheetYukari { from { transform: translateY(40px); opacity: .6; } }
+.sheet-tutamac { align-self: center; width: 42px; height: 5px; border-radius: 3px; background: rgba(120,130,160,.4); margin-bottom: 8px; }
+.sheet-ust { display: flex; align-items: center; justify-content: space-between; }
+.sheet-ust h3 { margin: 0; font-size: 19px; font-weight: 800; }
+.sheet-kapat { border: 0; width: 34px; height: 34px; border-radius: 50%; font-size: 22px; cursor: pointer; background: rgba(120,130,160,.15); color: inherit; }
+.sheet-ara { margin: 12px 0; width: 100%; box-sizing: border-box; padding: 13px 14px; border-radius: 14px; border: 1.5px solid var(--cizgi); font: 600 15px var(--font, inherit); background: color-mix(in srgb, var(--mavi) 4%, transparent); color: inherit; outline: none; }
+.sheet-ara:focus { border-color: var(--mavi); }
+.sheet-liste { overflow-y: auto; overscroll-behavior: contain; display: flex; flex-direction: column; }
+.sheet-fak { margin: 14px 4px 6px; font-size: 11.5px; font-weight: 800; letter-spacing: .7px; text-transform: uppercase; color: var(--mavi); }
+.sheet-oge { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; text-align: left; border: 0; border-radius: 12px; background: transparent; color: inherit; font: 700 15px var(--font, inherit); padding: 12px 10px; cursor: pointer; }
+.sheet-oge:hover, .sheet-oge.aktif { background: color-mix(in srgb, var(--mavi) 9%, transparent); }
+.sheet-oge .ayar-tik { opacity: 0; }
+.sheet-oge.aktif .ayar-tik { opacity: 1; transform: none; }
+.sheet-yaz { display: flex; gap: 8px; padding: 10px; }
+.sheet-yaz input { flex: 1; min-width: 0; padding: 11px 12px; border-radius: 12px; border: 1.5px solid var(--mavi); font: 600 15px var(--font, inherit); background: transparent; color: inherit; outline: none; }
+.sheet-yaz button { border: 0; border-radius: 12px; padding: 0 16px; font: 800 14px var(--font, inherit); color: #fff; background: var(--mavi); cursor: pointer; }
+.sheet-bos { padding: 22px 10px; text-align: center; color: var(--soluk); font-weight: 600; }
+
 .ayar-surum-bilgi { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; }
 
 /* TOAST BİLDİRİM */
@@ -948,21 +1007,19 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
       <div class="panel cam">
         <!-- ANA MENÜ -->
         <div id="ayar-ana">
-          <div class="ayar-ust-baslik">
-            <div class="ayar-baslik-sol">
-              <div>
-                <h2>Ayarlar</h2>
-                <p>Profilini ve uygulamayı buradan yönet</p>
+          <div class="ayar-hero">
+            <span class="ayar-hero-bg" aria-hidden="true"></span>
+            <span id="ayar-admin-rozet" class="ayar-admin-rozet" style="display:none">★ Yönetici</span>
+            <div class="ayar-hero-ust">
+              <span class="ayar-avatar-buyuk" id="ayar-kart-avatar">🎓</span>
+              <div class="ayar-hero-metin">
+                <b id="ayar-kart-ad">Profilini oluştur</b>
+                <small id="ayar-kart-alt">Adını, yurdunu ve avatarını seç</small>
               </div>
             </div>
-            <span id="ayar-admin-rozet" class="ayar-admin-rozet" style="display:none">🌟 Yönetici Hesabı</span>
+            <div class="ayar-hero-etiketler" id="ayar-kart-etiketler"></div>
+            <button type="button" class="ayar-hero-btn" data-ayar-ac="profil">Profili düzenle <span aria-hidden="true">›</span></button>
           </div>
-
-          <button type="button" class="ayar-profil-kart" data-ayar-ac="profil">
-            <span class="ayar-avatar-buyuk" id="ayar-kart-avatar">🎓</span>
-            <span class="ayar-metin"><b id="ayar-kart-ad">Profilini oluştur</b><small id="ayar-kart-alt">Adını, yurdunu ve avatarını seç</small></span>
-            <span class="ayar-ok">›</span>
-          </button>
 
           <h3 class="ayar-liste-baslik">Tercihler</h3>
           <div class="ayar-liste">
@@ -995,41 +1052,35 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           </div>
 
           <div class="ayar-gorunum" data-ayar-gorunum="profil" hidden>
-            <div class="ayar-grup"><form id="ayar-form">
-            <div class="ayar-form-satir">
-              <label for="ayar-ad" data-i18n="profil_ad">Adınız / Rumuzunuz</label>
-              <input type="text" id="ayar-ad" data-i18n-placeholder="profil_ad_placeholder" placeholder="Örn: Ayşe" maxlength="40">
-            </div>
+            <form id="ayar-form" class="profil-form" autocomplete="off">
+              <div class="pf-kart">
+                <h3 class="pf-baslik">Avatar</h3>
+                <div class="ayar-avatar-secici" id="ayar-avatar-secici"></div>
+              </div>
 
-            <div class="ayar-form-satir">
-              <label for="ayar-yurt" data-i18n="profil_yurt">Kaldığınız Yurt</label>
-              <select id="ayar-yurt">
-                <option value="" data-i18n="profil_yurt_sec">Yurt Seçiniz</option>
-                <option value="ahmet-kabakli">Ahmet Kabaklı Erkek Yurdu</option>
-                <option value="fethi-sekin">Fethi Sekin Kız Yurdu</option>
-                <option value="firat">Fırat Erkek Yurdu</option>
-                <option value="harput">Harput Kız Yurdu</option>
-                <option value="izzetpasa">İzzetpaşa Kız Yurdu</option>
-                <option value="omer-bilginoglu">Ömer Bilginoğlu Erkek Yurdu</option>
-                <option value="sare-ana">Sare Ana Kız Yurdu</option>
-                <option value="ev">Yurtta Kalmıyorum / Evde Kalıyorum</option>
-              </select>
-            </div>
+              <div class="pf-kart">
+                <h3 class="pf-baslik">Bilgilerin</h3>
+                <label class="pf-alan"><span>Adın / Rumuzun</span>
+                  <input type="text" id="ayar-ad" placeholder="Örn: Ayşe" maxlength="40"></label>
+                <label class="pf-alan"><span>Kaldığın yurt</span>
+                  <select id="ayar-yurt">
+                    <option value="">Yurt seç</option>
+                    <option value="ahmet-kabakli">Ahmet Kabaklı Erkek Yurdu</option>
+                    <option value="fethi-sekin">Fethi Sekin Kız Yurdu</option>
+                    <option value="firat">Fırat Erkek Yurdu</option>
+                    <option value="harput">Harput Kız Yurdu</option>
+                    <option value="izzetpasa">İzzetpaşa Kız Yurdu</option>
+                    <option value="omer-bilginoglu">Ömer Bilginoğlu Erkek Yurdu</option>
+                    <option value="sare-ana">Sare Ana Kız Yurdu</option>
+                    <option value="ev">Yurtta kalmıyorum / Evde kalıyorum</option>
+                  </select></label>
+                <div class="pf-alan"><span>Bölümün</span>
+                  <input type="hidden" id="ayar-bolum">
+                  <button type="button" class="pf-secim" id="ayar-bolum-btn"><span id="ayar-bolum-metin">Bölüm seç</span><i aria-hidden="true">›</i></button></div>
+              </div>
 
-            <div class="ayar-form-satir">
-              <label for="ayar-bolum" data-i18n="profil_bolum">Bölümünüz / Fakülteniz</label>
-              <input type="text" id="ayar-bolum" data-i18n-placeholder="profil_bolum_placeholder" placeholder="Örn: Bilgisayar Mühendisliği" maxlength="60">
-            </div>
-
-            <div class="ayar-form-satir">
-              <label data-i18n="profil_avatar">Profil Avatarı</label>
-              <div class="ayar-avatar-secici" id="ayar-avatar-secici"></div>
-            </div>
-
-            <div class="btnlar" style="margin-top:20px">
-              <button type="submit" class="btn ana tam" data-i18n="profil_kaydet">Profili Kaydet</button>
-            </div>
-          </form></div>
+              <button type="submit" class="pf-kaydet">Kaydet</button>
+            </form>
           </div>
 
           <div class="ayar-gorunum" data-ayar-gorunum="gorunum" hidden>
@@ -1698,7 +1749,7 @@ function geriSay() {
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=15"></script>
 <script src="/dil.js?v=4"></script>
-<script src="/ayarlar.js?v=3"></script>
+<script src="/ayarlar.js?v=4"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=2"></script>
 <script src="/program.js?v=4"></script>
@@ -1714,6 +1765,16 @@ function geriSay() {
       <button class="modal-kapat" type="button" onclick="aylikMenuKapat()" aria-label="Kapat">×</button>
     </div>
     <div class="modal-icerik" id="aylik-modal-icerik"></div>
+  </div>
+</div>
+
+<!-- Bölüm seçimi -->
+<div class="sheet-perde" id="bolum-sheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="Bölüm seç">
+    <span class="sheet-tutamac" aria-hidden="true"></span>
+    <div class="sheet-ust"><h3>Bölümünü seç</h3><button type="button" class="sheet-kapat" id="bolum-sheet-kapat" aria-label="Kapat">×</button></div>
+    <input type="search" class="sheet-ara" id="bolum-ara" placeholder="Bölüm ara… (örn. yönetim, hemşirelik)" autocomplete="off">
+    <div class="sheet-liste" id="bolum-liste"></div>
   </div>
 </div>
 </body>
