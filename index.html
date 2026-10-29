@@ -678,6 +678,11 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .sheet-yaz button { border: 0; border-radius: 12px; padding: 0 16px; font: 800 14px var(--font, inherit); color: #fff; background: var(--mavi); cursor: pointer; }
 .sheet-bos { padding: 22px 10px; text-align: center; color: var(--soluk); font-weight: 600; }
 
+.anahtar { flex: none; width: 46px; height: 28px; border-radius: 999px; background: rgba(120,130,160,.35); position: relative; transition: background .2s; }
+.anahtar i { position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,.25); transition: transform .22s cubic-bezier(.16,1,.3,1); }
+#ayar-ses-satir[aria-checked="true"] .anahtar { background: var(--mavi); }
+#ayar-ses-satir[aria-checked="true"] .anahtar i { transform: translateX(18px); }
+
 .ayar-surum-bilgi { text-align: center; color: var(--soluk); font-size: 12px; margin-top: 24px; }
 
 /* TOAST BİLDİRİM */
@@ -1025,6 +1030,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <div class="ayar-liste">
             <button type="button" class="ayar-satir" data-ayar-ac="gorunum"><span class="ayar-ik" style="--r:#6366f1"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg></span><span class="ayar-metin"><b>Görünüm</b><small id="ayar-alt-gorunum">Tema ve renkler</small></span><span class="ayar-ok">›</span></button>
             <button type="button" class="ayar-satir" data-ayar-ac="dil"><span class="ayar-ik" style="--r:#0ea5e9"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span><span class="ayar-metin"><b>Dil</b><small id="ayar-alt-dil">Türkçe</small></span><span class="ayar-ok">›</span></button>
+            <button type="button" class="ayar-satir" id="ayar-ses-satir" role="switch" aria-checked="true"><span class="ayar-ik" style="--r:#ec4899"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg></span><span class="ayar-metin"><b>Ses efektleri</b><small id="ayar-ses-alt">Açık</small></span><span class="anahtar" aria-hidden="true"><i></i></span></button>
           </div>
 
           <h3 class="ayar-liste-baslik">Destek</h3>
@@ -1548,6 +1554,7 @@ function kitapKur(el, sayfalar, ilk, sekme) {
 }
 
 function aylikMenuAc(yurtId, secOgun) {
+  if (window.KC_SES) KC_SES.cal("menu");
   const sabitOgun = secOgun === "kahvalti" ? "kahvalti" : "aksam";
   const y = yurtlar.find(x => x.id === yurtId);
   const ym = yurtMenuleri[yurtId];
@@ -1639,6 +1646,7 @@ function uniEviHaftaAc() {
 }
 
 function aylikMenuKapat() {
+  if (window.KC_SES && document.getElementById("aylik-modal").classList.contains("aktif")) KC_SES.cal("kapat");
   document.getElementById("aylik-modal").classList.remove("aktif");
   document.body.style.overflow = "";
 }
@@ -1753,6 +1761,7 @@ function geriSay() {
 <script src="cerez.js" defer></script>
 <script src="/yemekfoto.js?v=37"></script>
 <script src="/firebase-ayar.js"></script>
+<script src="/ses.js?v=2"></script>
 <script src="/bildirim.js?v=1"></script>
 <script type="module" src="/yorum.js?v=16"></script>
 <script src="/dil.js?v=4"></script>
@@ -1815,6 +1824,26 @@ function geriSay() {
     if (geriIslem()) tuzak();
     else history.back();
   });
+})();
+</script>
+<script>
+/* Ses efektleri: açılış, sekme, tıklama ve anahtar */
+(function () {
+  if (!window.KC_SES) return;
+  var ilk = false;
+  function acilis() { if (ilk) return; ilk = true; KC_SES.cal("acilis"); }
+  /* tarayıcılar ses için ilk dokunuşu bekler; uygulamada hemen çalar */
+  try { if (KC_SES.calisiyor()) acilis(); } catch (e) {}
+  ["pointerdown", "keydown"].forEach(function (o) { addEventListener(o, function f() { acilis(); removeEventListener(o, f, true); }, true); });
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest && e.target.closest("button.sekme");
+    if (t) { KC_SES.cal("sekme"); return; }
+    if (e.target.closest && e.target.closest(".ayar-satir:not(#ayar-ses-satir), .renk-dugme, .dil-chip, .sheet-oge")) KC_SES.cal("tik");
+  }, true);
+  var sat = document.getElementById("ayar-ses-satir");
+  function guncelle() { var a = KC_SES.acik(); if (sat) { sat.setAttribute("aria-checked", a ? "true" : "false"); } var al = document.getElementById("ayar-ses-alt"); if (al) al.textContent = a ? "Açık" : "Kapalı"; }
+  if (sat) sat.onclick = function () { var yeni = !KC_SES.acik(); KC_SES.acik(yeni); guncelle(); if (yeni) KC_SES.cal("basari"); };
+  guncelle();
 })();
 </script>
 </body>
