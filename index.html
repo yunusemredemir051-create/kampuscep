@@ -598,22 +598,44 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .iletisim-not { margin: 14px 0 0; font-size: 12.5px; }
 .iletisim-adres { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; border: 1px dashed var(--mavi); margin-bottom: 14px; font-weight: 800; font-size: 13px; overflow-wrap: anywhere; }
 .iletisim-adres span { min-width: 0; }
-.il-posta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 14px; border-radius: 18px; background: var(--mavi-acik, #e6ebff); margin-bottom: 20px; }
-.il-adres-metin { min-width: 0; flex: 1; display: grid; gap: 2px; }
-.il-adres-metin small { color: var(--soluk); font-weight: 700; font-size: 12px; }
-.il-adres-metin b { font-size: 13.5px; font-weight: 800; letter-spacing: -.2px; line-height: 1.3; white-space: nowrap; }
-.il-posta .btn { flex: 1 0 100%; justify-content: center; }
-.il-baslik { font-size: 13px; font-weight: 800; color: var(--soluk); text-transform: uppercase; letter-spacing: .6px; margin: 0 2px 10px; }
-.il-satir { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 18px; border: 1px solid var(--cizgi, rgba(20,27,52,.1)); background: rgba(255,255,255,.7); text-decoration: none; color: inherit; transition: transform .15s; }
-.il-satir:active { transform: scale(.98); }
-.il-metin { flex: 1; min-width: 0; display: grid; gap: 2px; }
-.il-metin b { font-size: 15.5px; font-weight: 800; }
-.il-metin small { color: var(--soluk); font-weight: 600; font-size: 12.5px; }
-.il-ok { color: var(--soluk); font-size: 22px; font-weight: 700; }
-.il-ikon { flex: none; width: 46px; height: 46px; border-radius: 15px; display: grid; place-items: center; background: #fff; }
-.il-ikon svg { width: 24px; height: 24px; }
-.il-ikon img { width: 100%; height: 100%; object-fit: contain; }
-.il-ikon.m { color: var(--mavi); } .il-ikon.t { background: #fff0e5; color: #e8731f; } .il-ikon.p { background: #ffe8ee; color: #e0436d; } .il-ikon.y { background: #fff6d6; color: #c99400; }
+.il-hero { position: relative; display: flex; align-items: center; gap: 6px; margin-bottom: 14px; color: var(--mavi); }
+.il-hero-metin { flex: 1; min-width: 0; color: var(--yazi); }
+.il-etiket { display: inline-block; padding: 6px 12px; border-radius: 99px; background: var(--mavi-acik); color: var(--mavi); font-size: 12.5px; font-weight: 800; margin-bottom: 12px; }
+.il-hero h2 { margin: 0 0 10px; font-size: 25px; line-height: 1.12; letter-spacing: -.8px; font-weight: 800; }
+.il-hero h2 em { font-style: normal; color: var(--mavi); }
+.il-hero p { margin: 0; color: var(--soluk); font-size: 13.5px; line-height: 1.5; font-weight: 600; }
+.il-cizim { flex: none; width: 132px; height: auto; margin-right: -8px; align-self: flex-start; }
+.il-posta { padding: 16px; border-radius: 22px; background: rgba(255,255,255,.75); border: 1px solid var(--cizgi); margin-bottom: 22px; }
+.il-posta-ust { display: flex; align-items: center; gap: 14px; }
+.il-posta p { margin: 12px 0 14px; color: var(--soluk); font-size: 13px; line-height: 1.5; font-weight: 600; }
+.il-adres-metin { min-width: 0; display: grid; gap: 2px; }
+.il-adres-metin small { color: var(--soluk); font-weight: 700; font-size: 12.5px; }
+.il-adres-metin b { font-size: clamp(13px, 4.1vw, 17px); font-weight: 800; letter-spacing: -.3px; white-space: nowrap; }
+.il-butonlar { display: flex; gap: 10px; flex-wrap: wrap; }
+.il-btn { flex: 1 1 130px; white-space: nowrap; font-size: 13.5px !important; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 13px 8px; border-radius: 14px; border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); font: 800 14px var(--font, inherit); text-decoration: none; cursor: pointer; }
+.il-btn svg { width: 19px; height: 19px; flex: none; }
+.il-btn.ana { background: linear-gradient(135deg, var(--mavi), var(--mor)); color: #fff; border-color: transparent; box-shadow: 0 10px 20px -10px var(--mavi); }
+.il-baslik { margin: 0 2px 4px; font-size: 20px; letter-spacing: -.5px; font-weight: 800; }
+.il-alt { margin: 0 2px 12px; color: var(--soluk); font-size: 13.5px; font-weight: 600; }
+.il-kartlar { display: grid; gap: 10px; margin-bottom: 14px; }
+.il-kart { display: flex; align-items: center; gap: 14px; padding: 14px; border-radius: 20px; border: 1.5px solid var(--kenar); background: var(--zemin); text-decoration: none; color: var(--yazi); transition: transform .15s; }
+.il-kart:active { transform: scale(.98); }
+.il-kart.t { --kenar: #ffd9b8; --zemin: #fff8f1; --ik: #ff8a3d; --ikz: #ffe7d1; }
+.il-kart.p { --kenar: #ffc9d6; --zemin: #fff3f6; --ik: #f2557f; --ikz: #ffdde6; }
+.il-kart.y { --kenar: #c7d4ff; --zemin: #f3f6ff; --ik: #3b5bfd; --ikz: #dfe6ff; }
+.il-kart .il-ikon { background: var(--ikz); color: var(--ik); width: 56px; height: 56px; border-radius: 18px; }
+.il-kart .il-ikon svg { width: 28px; height: 28px; }
+.il-metin { flex: 1; min-width: 0; display: grid; gap: 3px; }
+.il-metin b { font-size: 16.5px; font-weight: 800; letter-spacing: -.2px; }
+.il-metin small { color: var(--soluk); font-weight: 600; font-size: 13px; line-height: 1.4; }
+.il-ok { color: var(--soluk); display: grid; place-items: center; }
+.il-ok svg { width: 20px; height: 20px; }
+.il-ikon { flex: none; width: 52px; height: 52px; border-radius: 16px; display: grid; place-items: center; background: #fff; border: 1px solid var(--cizgi); }
+.il-ikon svg { width: 26px; height: 26px; }
+.il-ikon.m { color: var(--mavi); background: var(--mavi-acik); border-color: transparent; }
+.il-ikon.g { color: var(--yesil); background: var(--yesil-acik); border-color: transparent; }
+.il-not { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 20px; background: var(--yesil-acik); border: 1.5px solid #bfeedb; }
+.il-not b { display: block; font-size: 14.5px; margin-bottom: 3px; } .il-not small { color: #3d6b58; font-weight: 600; font-size: 12.5px; line-height: 1.45; }
 .iletisim-konular { display: flex; flex-direction: column; gap: 10px; }
 .iletisim-konular .btn { text-decoration: none; text-align: center; }
 
@@ -1176,33 +1198,46 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
           </div>
 
           <div class="ayar-gorunum" data-ayar-gorunum="iletisim" hidden>
-            <div class="ayar-grup">
-              <h3 class="ayar-grup-baslik">Bize yaz</h3>
-              <p class="iletisim-aciklama">Menüde yanlış bir bilgi mi gördün, bir önerin ya da sorunun mu var? Bize yaz, okuyup dönelim.</p>
-              <div class="il-posta">
-                <span class="il-ikon m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></span>
-                <div class="il-adres-metin"><small>E-posta adresimiz</small><b id="iletisim-adres">iletisim@kampuscepte.com.tr</b></div>
-                <button type="button" class="btn kucuk" id="iletisim-kopyala">Kopyala</button>
+            <section class="il-hero">
+              <div class="il-hero-metin">
+                <span class="il-etiket">İletişim &amp; Destek</span>
+                <h2>Bize ulaşın, <em>birlikte daha iyi olalım</em></h2>
+                <p>Bir sorun mu var, bir hata mı fark ettin ya da KampüsCepte'yi daha iyi yapacak bir önerin mi var? Seni dinlemek isteriz.</p>
               </div>
-              <div class="il-baslik">Ne hakkında yazacaksın?</div>
-              <div class="iletisim-konular">
-                <a class="il-satir" href="mailto:iletisim@kampuscepte.com.tr?subject=Menü%20düzeltmesi">
-                  <span class="il-ikon t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1.5-3 4-3 7 0 1.5 1 2.5 3 2.5V21"/></svg></span>
-                  <span class="il-metin"><b>Menü hatası bildir</b><small>Yanlış ya da eksik yemek bilgisi</small></span>
-                  <span class="il-ok">›</span>
-                </a>
-                <a class="il-satir" href="mailto:iletisim@kampuscepte.com.tr?subject=Hata%20bildirimi">
-                  <span class="il-ikon p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="11" rx="4"/><path d="M12 8V5M9 5l1.5 1.5M15 5l-1.5 1.5M4 12h4M16 12h4M5 18l3-2M19 18l-3-2"/></svg></span>
-                  <span class="il-metin"><b>Hata bildir</b><small>Uygulamada çalışmayan bir şey</small></span>
-                  <span class="il-ok">›</span>
-                </a>
-                <a class="il-satir" href="mailto:iletisim@kampuscepte.com.tr?subject=Öneri">
-                  <span class="il-ikon y"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span>
-                  <span class="il-metin"><b>Öneri gönder</b><small>Eklememizi istediğin bir şey</small></span>
-                  <span class="il-ok">›</span>
-                </a>
+              <svg class="il-cizim" viewBox="0 0 150 120" aria-hidden="true">
+                <defs><linearGradient id="ilg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5b7bff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient><linearGradient id="ilg2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6fa0"/><stop offset="1" stop-color="#f2557f"/></linearGradient></defs>
+                <ellipse cx="78" cy="64" rx="64" ry="50" fill="currentColor" opacity=".08"/>
+                <path d="M28 30a10 10 0 0 1 10-10h46a10 10 0 0 1 10 10v28a10 10 0 0 1-10 10H52l-14 12V68a10 10 0 0 1-10-10z" fill="url(#ilg1)"/>
+                <circle cx="46" cy="44" r="4" fill="#fff"/><circle cx="61" cy="44" r="4" fill="#fff"/><circle cx="76" cy="44" r="4" fill="#fff"/>
+                <path d="M72 56a10 10 0 0 1 10-10h38a10 10 0 0 1 10 10v26a10 10 0 0 1-10 10h-2v12l-14-12H82a10 10 0 0 1-10-10z" fill="url(#ilg2)"/>
+                <circle cx="90" cy="69" r="4" fill="#fff"/><circle cx="104" cy="69" r="4" fill="#fff"/><circle cx="118" cy="69" r="4" fill="#fff"/>
+                <path d="M118 8l22 6-14 8-4 10-4-24z" fill="#5b7bff"/><path d="M110 30c-6-8-14-8-22-4" stroke="#8b9bff" stroke-width="1.6" stroke-dasharray="3 3" fill="none" stroke-linecap="round"/>
+                <path d="M138 44l6-6M141 52l8-2" stroke="#ff9f43" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </section>
+
+            <section class="il-posta">
+              <div class="il-posta-ust">
+                <span class="il-ikon m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3.5 7.5l8.5 6 8.5-6"/></svg></span>
+                <div class="il-adres-metin"><small>E-posta desteği</small><b id="iletisim-adres">iletisim@kampuscepte.com.tr</b></div>
               </div>
-              <p class="iletisim-not">E-posta uygulaması açılmazsa adresi kopyalayıp kendi e-posta uygulamandan yazabilirsin.</p>
+              <p>Sorular, geri bildirimler ve diğer tüm konular için bize e-posta gönderebilirsin.</p>
+              <div class="il-butonlar">
+                <button type="button" class="il-btn ana" id="iletisim-kopyala"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg><span>Adresi kopyala</span></button>
+                <a class="il-btn" href="mailto:iletisim@kampuscepte.com.tr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3L10 14M21 3l-7 18-4-7-7-4z"/></svg><span>E-posta gönder</span></a>
+              </div>
+            </section>
+
+            <h3 class="il-baslik">Ne hakkında yazacaksın?</h3>
+            <p class="il-alt">Bir kategori seç, e-posta konusu hazır gelsin.</p>
+            <div class="il-kartlar">
+              <a class="il-kart t" href="mailto:iletisim@kampuscepte.com.tr?subject=Menü%20düzeltmesi"><span class="il-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 1.5-3 4-3 7 0 1.5 1 2.5 3 2.5V21"/></svg></span><span class="il-metin"><b>Menü hatası bildir</b><small>Yanlış ya da eksik yemek bilgisi, güncel olmayan menüler.</small></span><span class="il-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a>
+              <a class="il-kart p" href="mailto:iletisim@kampuscepte.com.tr?subject=Hata%20bildirimi"><span class="il-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="8" height="11" rx="4"/><path d="M12 8V5M9 5l1.5 1.5M15 5l-1.5 1.5M4 12h4M16 12h4M5 18l3-2M19 18l-3-2"/></svg></span><span class="il-metin"><b>Hata bildir</b><small>Uygulamada beklenmeyen bir sorun mu yaşıyorsun? Bize bildir.</small></span><span class="il-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a>
+              <a class="il-kart y" href="mailto:iletisim@kampuscepte.com.tr?subject=Öneri"><span class="il-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span><span class="il-metin"><b>Öneri gönder</b><small>Görmek istediğin bir özellik ya da iyileştirme fikrini paylaş.</small></span><span class="il-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span></a>
+            </div>
+            <div class="il-not">
+              <span class="il-ikon g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+              <div><b>Geri bildirimlerin bizim için değerli</b><small>Tüm mesajlar dikkatle incelenir. E-posta uygulaması açılmazsa adresi kopyalayıp kendi uygulamandan yazabilirsin.</small></div>
             </div>
           </div>
         </div>
