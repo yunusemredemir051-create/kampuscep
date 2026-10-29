@@ -481,6 +481,9 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 
 /* ---- Kitap sayfası menü ---- */
 .modal-icerik.kitap { padding: 12px 0 14px; gap: 10px; overflow: hidden; flex: none; height: min(560px, calc(85vh - 92px)); }
+.kb-sekme { display: flex; gap: 4px; margin: 0 20px; padding: 4px; border-radius: 14px; background: color-mix(in srgb, var(--mavi) 9%, transparent); }
+.kb-sekme button { flex: 1; border: 0; border-radius: 11px; padding: 9px 6px; font: 700 13.5px inherit; font-family: inherit; background: transparent; color: var(--soluk); cursor: pointer; transition: all .2s; }
+.kb-sekme button.aktif { background: var(--mavi); color: #fff; box-shadow: 0 3px 10px color-mix(in srgb, var(--mavi) 35%, transparent); }
 .kb-ust { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
 .kb-say { font-weight: 700; font-size: 13px; color: var(--soluk); letter-spacing: .4px; }
 .kb-say b { color: var(--mavi); font-size: 16px; }
@@ -1372,13 +1375,15 @@ function sayfaBaslik(d, rozet) {
   const gun = d.toLocaleDateString("tr-TR", { weekday: "long" });
   return `<div class="kb-baslik"><div class="kb-no">${d.getDate()}</div><div class="kb-tarih"><b>${ay}</b><span>${gun}</span></div>${rozet || ""}</div>`;
 }
-function kitapKur(el, sayfalar, ilk) {
+function kitapKur(el, sayfalar, ilk, sekme) {
   const n = sayfalar.length;
   if (!n) { el.classList.remove("kitap"); el.innerHTML = ""; return; }
   el.classList.add("kitap");
-  el.innerHTML = `<div class="kb-ust"><button type="button" class="kb-ok" data-y="-1" aria-label="Önceki gün">‹</button><div class="kb-say"><b class="kb-n">1</b> / ${n}</div><button type="button" class="kb-ok" data-y="1" aria-label="Sonraki gün">›</button></div>
+  const sekmeHtml = sekme ? `<div class="kb-sekme">${sekme.liste.map(x => `<button type="button" data-k="${x[0]}" class="${x[0] === sekme.aktif ? "aktif" : ""}">${x[1]}</button>`).join("")}</div>` : "";
+  el.innerHTML = sekmeHtml + `<div class="kb-ust"><button type="button" class="kb-ok" data-y="-1" aria-label="Önceki gün">‹</button><div class="kb-say"><b class="kb-n">1</b> / ${n}</div><button type="button" class="kb-ok" data-y="1" aria-label="Sonraki gün">›</button></div>
     <div class="kb-iz">${sayfalar.map((h, i) => `<section class="kb-sayfa" aria-label="Gün ${i + 1}"><div class="kb-kart">${h}</div></section>`).join("")}</div>
     <div class="kb-noktalar">${sayfalar.map((_, i) => `<i data-i="${i}"></i>`).join("")}</div>`;
+  el.querySelectorAll(".kb-sekme button").forEach(b => b.onclick = () => sekme.sec(b.dataset.k, akt));
   const iz = el.querySelector(".kb-iz"), sayac = el.querySelector(".kb-n");
   const noktalar = [...el.querySelectorAll(".kb-noktalar i")], oklar = [...el.querySelectorAll(".kb-ok")];
   let akt = -1;
@@ -1415,7 +1420,8 @@ function aylikMenuAc(yurtId) {
     if (!tarihler.length) {
       icerikEl.innerHTML = '<div class="bos-menu">Bu ay için kalan başka menü bulunmuyor.</div>';
     } else {
-      kitapKur(icerikEl, tarihler.map(k => {
+      const ilkIdx = Math.max(0, tarihler.findIndex(k => k > bugunStr));
+      const ciz = (ogunKey, ilk) => kitapKur(icerikEl, tarihler.map(k => {
         const d = T(k);
         const bugunMu = +d === +bugun;
         const yarinMu = +d === +ekle(bugun, 1);
@@ -1437,16 +1443,13 @@ function aylikMenuAc(yurtId) {
         return `<div class="kb-ic${sinif}">
           ${sayfaBaslik(d, rozet)}
           <div class="aylik-ogun-bloku">
-            <b>Kahvaltı</b>
-            ${ogun(gun.kahvalti)}
+            <b>${ogunKey === "kahvalti" ? "Kahvaltı" : "Akşam yemeği"}</b>
+            ${ogun(gun[ogunKey])}
           </div>
-          <div class="aylik-ogun-bloku">
-            <b>Akşam yemeği</b>
-            ${ogun(gun.aksam)}
-          </div>
-          ${gun.aksamNotu ? `<div class="menu-not-kutu aktif" style="margin-top:8px">📌 ${gun.aksamNotu}</div>` : ""}
+          ${ogunKey === "aksam" && gun.aksamNotu ? `<div class="menu-not-kutu aktif" style="margin-top:8px">📌 ${gun.aksamNotu}</div>` : ""}
         </div>`;
-      }), tarihler.indexOf(tarihler.find(k => k > bugunStr)));
+      }), ilk, { liste: [["kahvalti", "☀️ Kahvaltı"], ["aksam", "🌙 Akşam yemeği"]], aktif: ogunKey, sec: (k, i) => ciz(k, i) });
+      ciz("kahvalti", ilkIdx);
     }
   }
 
