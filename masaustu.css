@@ -1,0 +1,7 @@
+/* ===== MASAÜSTÜ (yalnızca web, geniş ekran) =====
+   Masaüstü görünümüyle ilgili her değişiklik BURAYA yazılır.
+   Her kural `html.web` ile başlar; uygulamada (html.uyg) hiç çalışmaz. */
+@media (min-width: 821px) {
+  html.web .afis { min-height: 240px; background: var(--afis-bg-masaustu, linear-gradient(180deg, #3765fe, #5b61fc)); }
+  html.web .afis img { left: auto; width: auto; object-fit: contain; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%); mask-image: linear-gradient(90deg, transparent, #000 18%); }
+}
