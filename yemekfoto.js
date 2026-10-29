@@ -701,7 +701,7 @@
       "tereyağı": "yurt-tereyagi",
       "etsiz kuru fasulye": "yurt-etsiz-kuru-fasulye",
       "simit": ["yurt-simit", "yurt-simit-2"],
-      "yayla çorbası": ["yurt-yayla-corbasi", "yurt-yayla-corbasi-2"],
+      "yayla çorbası": "yurt-yayla-corbasi",
       "salçalı mantı": "yurt-salcali-manti",
       "şekerpare": "yurt-sekerpare",
       "rosto köfte": "yurt-rosto-kofte",
