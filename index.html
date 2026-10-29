@@ -675,7 +675,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <ul class="yemekler" id="ana-yemekler"></ul>
           <div class="menu-not-kutu" id="ana-menu-not"></div>
           <div class="degerlendir" id="dg-ana" data-menu=""></div>
-          <button class="aylik-btn" type="button" onclick="aylikMenuAc(anaYurt)">
+          <button class="aylik-btn" type="button" onclick="aylikMenuAc(anaYurt, anaOgun)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             Gelecek günlerin menüsünü gör
           </button>
@@ -746,7 +746,7 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
           <ul class="yemekler" id="detay-yemekler"></ul>
           <div class="menu-not-kutu" id="detay-menu-not"></div>
           <div class="degerlendir" id="dg-detay" data-menu=""></div>
-          <button class="aylik-btn" type="button" onclick="aylikMenuAc(detayYurt ? detayYurt.id : anaYurt)">
+          <button class="aylik-btn" type="button" onclick="aylikMenuAc(detayYurt ? detayYurt.id : anaYurt, detayYurt ? detayOgun : anaOgun)">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             Gelecek günlerin menüsünü gör
           </button>
@@ -1403,12 +1403,13 @@ function kitapKur(el, sayfalar, ilk, sekme) {
   requestAnimationFrame(() => { git(ilk || 0, false); guncelle(); });
 }
 
-function aylikMenuAc(yurtId) {
+function aylikMenuAc(yurtId, secOgun) {
+  const sabitOgun = secOgun === "kahvalti" ? "kahvalti" : "aksam";
   const y = yurtlar.find(x => x.id === yurtId);
   const ym = yurtMenuleri[yurtId];
   const baslikEl = document.getElementById("aylik-modal-baslik");
   const icerikEl = document.getElementById("aylik-modal-icerik");
-  baslikEl.textContent = (y ? y.ad : "Yurt") + " – Gelecek Günlerin Menüsü";
+  baslikEl.textContent = (y ? y.ad : "Yurt") + (sabitOgun === "kahvalti" ? " – Gelecek Kahvaltılar" : " – Gelecek Akşam Yemekleri");
   const altEl0 = document.getElementById("aylik-modal-alt"); if (altEl0) altEl0.textContent = "Sayfaları kaydırarak günleri gez";
 
   if (!ym) {
@@ -1448,8 +1449,8 @@ function aylikMenuAc(yurtId) {
           </div>
           ${ogunKey === "aksam" && gun.aksamNotu ? `<div class="menu-not-kutu aktif" style="margin-top:8px">📌 ${gun.aksamNotu}</div>` : ""}
         </div>`;
-      }), ilk, { liste: [["kahvalti", "☀️ Kahvaltı"], ["aksam", "🌙 Akşam yemeği"]], aktif: ogunKey, sec: (k, i) => ciz(k, i) });
-      ciz("kahvalti", ilkIdx);
+      }), ilk);
+      ciz(sabitOgun, ilkIdx);
     }
   }
 
