@@ -7,8 +7,9 @@
       if (!kutu || typeof siradaki !== "function" || typeof kalanYazi !== "function") return;
       var eski = kutu.querySelector(".afis-chips"); if (eski) eski.remove();
       var s = siradaki("sinav"), t = siradaki("tatil"), h = [];
-      if (s) { var a = kalanYazi(s); h.push("Sınava " + a.sayi + " " + a.ek); }
-      if (t) { var b = kalanYazi(t); h.push("Tatile " + b.sayi + " " + b.ek); }
+      var yaz = function (k, ad, ek, simdi) { return k.sayi === "Şu an" ? "Şu an " + simdi : k.sayi === "Yarın" ? ad + " yarın" : ek + " " + k.sayi + " " + k.ek; };
+      if (s) h.push(yaz(kalanYazi(s), "Sınav", "Sınava", "sınavda"));
+      if (t) h.push(yaz(kalanYazi(t), "Tatil", "Tatile", "tatilde"));
       if (!h.length) return;
       var d = document.createElement("div"); d.className = "afis-chips";
       d.innerHTML = h.map(function (x) { return "<span>" + x + "</span>"; }).join("");
