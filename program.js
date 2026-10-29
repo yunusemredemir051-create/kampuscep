@@ -27,19 +27,22 @@
   window.KC_BOLUM_LISTESI = BOLUMLER;
   var st = document.createElement("style");
   st.textContent =
-    ".kc-prog[hidden]{display:none}.kc-prog{padding:18px;margin-top:14px}.kc-prog h2{margin:0;font-size:19px}.kc-prog .alt{color:var(--soluk,#6b7390);font-size:13px;font-weight:600;margin-top:2px}" +
-    ".kc-pust{display:flex;align-items:center;gap:8px}.kc-pust>div{flex:1;min-width:0}" +
-    ".kc-ok{all:unset;cursor:pointer;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;font-size:20px;font-weight:800;background:rgba(91,75,255,.1);color:var(--mavi,#3b5bfd);flex:none}" +
+    ".kc-prog[hidden]{display:none}.kc-prog{padding:20px 18px 12px;margin-top:14px;position:relative;overflow:hidden}.kc-prog::before{content:'';position:absolute;right:-70px;top:-90px;width:230px;height:230px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--mavi,#3b5bfd) 16%,transparent),transparent);pointer-events:none}" +
+    ".kc-prog h2{margin:0;font-size:25px;line-height:1.1;letter-spacing:-.8px;font-weight:800}.kc-prog .alt{color:var(--soluk,#6b7390);font-size:13px;font-weight:600;margin-top:5px}" +
+    ".kc-etiket{display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 8px;margin-bottom:10px;border-radius:99px;background:var(--mavi-acik,#e6ebff);color:var(--mavi,#3b5bfd);font-size:11.5px;font-weight:800;letter-spacing:.2px}.kc-etiket svg{width:14px;height:14px}" +
+    ".kc-pust{display:flex;align-items:center;gap:8px;position:relative}.kc-pust>div{flex:1;min-width:0}" +
+    ".kc-ok{all:unset;cursor:pointer;width:36px;height:36px;border-radius:12px;display:grid;place-items:center;font-size:20px;font-weight:800;background:var(--mavi-acik,#e6ebff);color:var(--mavi,#3b5bfd);flex:none}" +
     ".kc-ok:disabled{opacity:.3;cursor:default}" +
-    ".kc-gunler{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:14px 0 10px}" +
-    ".kc-gun{all:unset;cursor:pointer;text-align:center;border-radius:12px;padding:7px 0;font-size:12px;font-weight:700;background:rgba(20,27,52,.05);color:var(--soluk,#6b7390)}" +
-    ".kc-gun b{display:block;font-size:15px;color:var(--yazi,#141b34)}.kc-gun.bugun{outline:2px solid rgba(91,75,255,.35)}" +
-    ".kc-gun.aktif{background:var(--mavi,#3b5bfd);color:#fff}.kc-gun.aktif b{color:#fff}" +
-    ".kc-ders{display:flex;gap:12px;padding:10px 0;border-top:1px solid rgba(20,27,52,.07)}.kc-ders:first-child{border-top:0}" +
-    ".kc-saat{flex:none;width:52px;font-size:12px;font-weight:800;color:var(--mavi,#3b5bfd);line-height:1.35}.kc-saat span{display:block;color:var(--soluk,#6b7390);font-weight:600}" +
-    ".kc-ders b{display:block;font-size:14.5px;line-height:1.3}.kc-ders small{display:block;color:var(--soluk,#6b7390);font-size:12.5px;margin-top:1px}" +
-    ".kc-bos{padding:18px 4px 6px;color:var(--soluk,#6b7390);font-size:14px;font-weight:600;text-align:center}" +
-    "html[data-tema=koyu] .kc-gun{background:rgba(255,255,255,.07)}html[data-tema=koyu] .kc-ders{border-color:rgba(255,255,255,.08)}";
+    ".kc-gunler{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:16px 0 8px;position:relative}" +
+    ".kc-gun{all:unset;cursor:pointer;text-align:center;border-radius:16px;padding:9px 0 8px;font-size:11.5px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;background:rgba(20,27,52,.045);color:var(--soluk,#6b7390);transition:transform .15s,background .2s;position:relative}" +
+    ".kc-gun:active{transform:scale(.95)}.kc-gun b{display:block;font-size:18px;letter-spacing:-.4px;margin-top:2px;color:var(--yazi,#141b34)}" +
+    ".kc-gun.bugun::after{content:'';position:absolute;bottom:5px;left:50%;width:4px;height:4px;margin-left:-2px;border-radius:50%;background:var(--mavi,#3b5bfd)}.kc-gun.aktif.bugun::after{background:#fff}" +
+    ".kc-gun.aktif{background:linear-gradient(145deg,var(--mavi,#3b5bfd),var(--mor,#8d5cf6));color:rgba(255,255,255,.85);box-shadow:0 10px 18px -10px var(--mavi,#3b5bfd)}.kc-gun.aktif b{color:#fff}" +
+    ".kc-ders{display:flex;gap:14px;align-items:stretch;padding:12px 0;border-top:1px solid rgba(20,27,52,.07);position:relative}.kc-gunler+.kc-ders{border-top:0}" +
+    ".kc-saat{flex:none;width:58px;padding:8px 0;border-radius:14px;text-align:center;font-size:13px;font-weight:800;color:var(--mavi,#3b5bfd);background:var(--mavi-acik,#e6ebff);line-height:1.3;display:grid;align-content:center}.kc-saat span{display:block;color:var(--soluk,#6b7390);font-weight:700;font-size:12px}" +
+    ".kc-ders>div:last-child{align-self:center;min-width:0}.kc-ders b{display:block;font-size:15.5px;line-height:1.3;letter-spacing:-.2px}.kc-ders small{display:block;color:var(--soluk,#6b7390);font-size:12.5px;margin-top:3px;line-height:1.4}" +
+    ".kc-bos{padding:20px 4px 10px;color:var(--soluk,#6b7390);font-size:14px;font-weight:600;text-align:center}" +
+    "html[data-tema=koyu] .kc-gun{background:rgba(255,255,255,.07)}html[data-tema=koyu] .kc-gun.aktif{background:linear-gradient(145deg,var(--mavi),var(--mor))}html[data-tema=koyu] .kc-ders{border-color:rgba(255,255,255,.08)}";
   document.head.appendChild(st);
 
   function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
@@ -79,11 +82,12 @@
     kutu.hidden = false;
     if (!hafta) varsayilanHafta();
     var bugunIso = iso(new Date());
-    var baslik = (tip ? "Tıp " : p.bolum === "adli" ? "Adli Bilişim " : "YBS ") + p.sinif + ". sınıf · haftalık ders programı";
+    var baslik = (tip ? "Tıp " : p.bolum === "adli" ? "Adli Bilişim " : "YBS ") + p.sinif + ". sınıf";
+    var rozet = '<span class="kc-etiket"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5"/><path d="M8 3v4M16 3v4M3.5 10.5h17"/></svg>Haftalık ders programı</span>';
     var gunler = [], dersler = [[], [], [], [], []], bilgi = "", sonHafta = false, ilkHafta = false;
     for (var i = 0; i < 5; i++) { var d = new Date(hafta); d.setDate(d.getDate() + i); gunler.push(d); }
     if (tip && +p.sinif > 3) {
-      kutu.innerHTML = '<div class="kc-pust"><div><h2>' + esc(baslik) + '</h2></div></div><div class="kc-bos">4–6. sınıfta klinik uygulama ve staj rotasyonları olduğu için haftalık ders programı gösterilmiyor. Takvim ve sınav tarihleri aşağıda.</div>'; return;
+      kutu.innerHTML = '<div class="kc-pust"><div>' + rozet + '<h2>' + esc(baslik) + '</h2></div></div><div class="kc-bos">4–6. sınıfta klinik uygulama ve staj rotasyonları olduğu için haftalık ders programı gösterilmiyor. Takvim ve sınav tarihleri aşağıda.</div>'; return;
     }
     if (tip) {
       var v = tipVeri[p.sinif];
@@ -105,7 +109,7 @@
     } else { dersler = ybsProgram(p.sinif); bilgi = "Bu sınıf için gün ve saati girilmiş ders yok."; }
     var bos = dersler.every(function (x) { return !x.length; });
     var ay = gunler[0].toLocaleDateString("tr-TR", { day: "numeric", month: "long" }) + " – " + gunler[4].toLocaleDateString("tr-TR", { day: "numeric", month: "long" });
-    var html = '<div class="kc-pust"><div><h2>' + esc(baslik) + '</h2><div class="alt">' + (tip ? ay : p.bolum === "adli" ? "2026–2027 Güz · " + p.ogretim + ". öğretim" + (p.sube !== "0" ? " · Şube " + p.sube : "") : "Her hafta aynı") + '</div></div>' +
+    var html = '<div class="kc-pust"><div>' + rozet + '<h2>' + esc(baslik) + '</h2><div class="alt">' + (tip ? ay : p.bolum === "adli" ? "2026–2027 Güz · " + p.ogretim + ". öğretim" + (p.sube !== "0" ? " · Şube " + p.sube : "") : "Her hafta aynı") + '</div></div>' +
       (tip ? '<button class="kc-ok" data-y="-1" aria-label="Önceki hafta"' + (ilkHafta ? " disabled" : "") + '>‹</button><button class="kc-ok" data-y="1" aria-label="Sonraki hafta"' + (sonHafta ? " disabled" : "") + '>›</button>' : "") + '</div>';
     html += '<div class="kc-gunler">' + gunler.map(function (d, i) {
       return '<button class="kc-gun' + (i === gun ? " aktif" : "") + (iso(d) === bugunIso ? " bugun" : "") + '" data-g="' + i + '">' + KISA[i] + '<b>' + d.getDate() + '</b></button>';
