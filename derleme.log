@@ -1,0 +1,627 @@
+Downloading https://services.gradle.org/distributions/gradle-8.14.3-all.zip
+.....................10%.....................20%......................30%.....................40%......................50%.....................60%.....................70%......................80%.....................90%......................100%
+
+Welcome to Gradle 8.14.3!
+
+Here are the highlights of this release:
+ - Java 24 support
+ - GraalVM Native Image toolchain selection
+ - Enhancements to test reporting
+ - Build Authoring improvements
+
+For more details see https://docs.gradle.org/8.14.3/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: Using flatDir should be avoided because it doesn't support any meta-data formats.
+
+> Configure project :capacitor-cordova-android-plugins
+WARNING: Using flatDir should be avoided because it doesn't support any meta-data formats.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :capacitor-android:preBuild UP-TO-DATE
+> Task :capacitor-android:preDebugBuild UP-TO-DATE
+> Task :capacitor-app:preBuild UP-TO-DATE
+> Task :capacitor-app:preDebugBuild UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:preBuild UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:preDebugBuild UP-TO-DATE
+> Task :capacitor-android:writeDebugAarMetadata
+> Task :capacitor-firebase-authentication:preBuild UP-TO-DATE
+> Task :capacitor-firebase-authentication:preDebugBuild UP-TO-DATE
+> Task :capacitor-app:writeDebugAarMetadata
+> Task :capacitor-cordova-android-plugins:writeDebugAarMetadata
+> Task :app:javaPreCompileDebug
+> Task :capacitor-splash-screen:preBuild UP-TO-DATE
+> Task :capacitor-splash-screen:preDebugBuild UP-TO-DATE
+> Task :capacitor-firebase-authentication:writeDebugAarMetadata
+> Task :capacitor-status-bar:preBuild UP-TO-DATE
+> Task :capacitor-splash-screen:writeDebugAarMetadata
+> Task :capacitor-status-bar:preDebugBuild UP-TO-DATE
+> Task :capacitor-status-bar:writeDebugAarMetadata
+> Task :capacitor-android:processDebugNavigationResources
+> Task :capacitor-app:processDebugNavigationResources
+> Task :capacitor-cordova-android-plugins:processDebugNavigationResources
+> Task :app:checkDebugAarMetadata
+> Task :capacitor-firebase-authentication:processDebugNavigationResources
+> Task :capacitor-splash-screen:processDebugNavigationResources
+> Task :capacitor-status-bar:processDebugNavigationResources
+> Task :app:processDebugNavigationResources
+> Task :app:generateDebugResValues
+> Task :app:compileDebugNavigationResources
+> Task :app:processDebugGoogleServices
+> Task :capacitor-android:generateDebugResValues
+> Task :capacitor-android:generateDebugResources
+> Task :capacitor-android:packageDebugResources
+> Task :capacitor-app:generateDebugResValues
+> Task :capacitor-app:generateDebugResources
+> Task :capacitor-app:packageDebugResources
+> Task :capacitor-cordova-android-plugins:generateDebugResValues
+> Task :capacitor-cordova-android-plugins:generateDebugResources
+> Task :capacitor-cordova-android-plugins:packageDebugResources
+> Task :capacitor-firebase-authentication:generateDebugResValues
+> Task :capacitor-firebase-authentication:generateDebugResources
+> Task :capacitor-firebase-authentication:packageDebugResources
+> Task :capacitor-splash-screen:generateDebugResValues
+> Task :capacitor-splash-screen:generateDebugResources
+> Task :capacitor-splash-screen:packageDebugResources
+> Task :capacitor-status-bar:generateDebugResValues
+> Task :capacitor-status-bar:generateDebugResources
+> Task :capacitor-status-bar:packageDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :capacitor-android:extractDeepLinksDebug
+> Task :capacitor-app:extractDeepLinksDebug
+> Task :capacitor-cordova-android-plugins:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :capacitor-firebase-authentication:extractDeepLinksDebug
+> Task :capacitor-app:processDebugManifest
+> Task :capacitor-cordova-android-plugins:processDebugManifest
+> Task :capacitor-android:processDebugManifest
+> Task :capacitor-splash-screen:extractDeepLinksDebug
+> Task :capacitor-status-bar:extractDeepLinksDebug
+> Task :capacitor-firebase-authentication:processDebugManifest
+> Task :capacitor-splash-screen:processDebugManifest
+> Task :capacitor-status-bar:processDebugManifest
+> Task :capacitor-android:compileDebugLibraryResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:processDebugManifestForPackage
+> Task :capacitor-app:compileDebugLibraryResources
+> Task :capacitor-android:parseDebugLocalResources
+> Task :capacitor-cordova-android-plugins:compileDebugLibraryResources
+> Task :capacitor-app:parseDebugLocalResources
+> Task :capacitor-firebase-authentication:compileDebugLibraryResources
+> Task :capacitor-cordova-android-plugins:parseDebugLocalResources
+> Task :capacitor-app:generateDebugRFile
+> Task :capacitor-android:generateDebugRFile
+> Task :capacitor-firebase-authentication:parseDebugLocalResources
+> Task :capacitor-cordova-android-plugins:generateDebugRFile
+> Task :capacitor-splash-screen:compileDebugLibraryResources
+> Task :capacitor-firebase-authentication:generateDebugRFile
+> Task :capacitor-status-bar:compileDebugLibraryResources
+> Task :capacitor-android:javaPreCompileDebug
+> Task :capacitor-app:javaPreCompileDebug
+> Task :capacitor-splash-screen:parseDebugLocalResources
+> Task :capacitor-status-bar:parseDebugLocalResources
+
+> Task :capacitor-android:compileDebugJavaWithJavac
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :capacitor-status-bar:generateDebugRFile
+> Task :capacitor-splash-screen:generateDebugRFile
+> Task :capacitor-android:bundleLibCompileToJarDebug
+> Task :capacitor-app:compileDebugJavaWithJavac
+> Task :capacitor-app:bundleLibCompileToJarDebug
+> Task :capacitor-cordova-android-plugins:javaPreCompileDebug
+> Task :capacitor-firebase-authentication:javaPreCompileDebug
+> Task :capacitor-cordova-android-plugins:compileDebugJavaWithJavac NO-SOURCE
+> Task :capacitor-cordova-android-plugins:bundleLibCompileToJarDebug
+> Task :app:processDebugResources
+
+> Task :capacitor-firebase-authentication:compileDebugJavaWithJavac
+Note: /home/runner/work/kampuscep/kampuscep/_uygulama/node_modules/@capacitor-firebase/authentication/android/src/main/java/io/capawesome/capacitorjs/plugins/firebase/authentication/FirebaseAuthentication.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /home/runner/work/kampuscep/kampuscep/_uygulama/node_modules/@capacitor-firebase/authentication/android/src/main/java/io/capawesome/capacitorjs/plugins/firebase/authentication/FirebaseAuthentication.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :capacitor-status-bar:javaPreCompileDebug
+> Task :capacitor-splash-screen:javaPreCompileDebug
+> Task :capacitor-firebase-authentication:bundleLibCompileToJarDebug
+> Task :app:mergeDebugShaders
+> Task :capacitor-splash-screen:compileDebugJavaWithJavac
+> Task :capacitor-splash-screen:bundleLibCompileToJarDebug
+> Task :capacitor-status-bar:compileDebugJavaWithJavac
+> Task :capacitor-status-bar:bundleLibCompileToJarDebug
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:compileDebugJavaWithJavac
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :capacitor-android:mergeDebugShaders
+> Task :capacitor-android:compileDebugShaders NO-SOURCE
+> Task :capacitor-android:generateDebugAssets UP-TO-DATE
+> Task :capacitor-android:mergeDebugAssets
+> Task :capacitor-app:mergeDebugShaders
+> Task :capacitor-app:compileDebugShaders NO-SOURCE
+> Task :capacitor-app:generateDebugAssets UP-TO-DATE
+> Task :capacitor-app:mergeDebugAssets
+> Task :capacitor-cordova-android-plugins:mergeDebugShaders
+> Task :capacitor-cordova-android-plugins:compileDebugShaders NO-SOURCE
+> Task :capacitor-cordova-android-plugins:generateDebugAssets UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:mergeDebugAssets
+> Task :capacitor-firebase-authentication:mergeDebugShaders
+> Task :capacitor-firebase-authentication:compileDebugShaders NO-SOURCE
+> Task :capacitor-firebase-authentication:generateDebugAssets UP-TO-DATE
+> Task :capacitor-firebase-authentication:mergeDebugAssets
+> Task :capacitor-splash-screen:mergeDebugShaders
+> Task :capacitor-splash-screen:compileDebugShaders NO-SOURCE
+> Task :capacitor-splash-screen:generateDebugAssets UP-TO-DATE
+> Task :capacitor-splash-screen:mergeDebugAssets
+> Task :capacitor-status-bar:mergeDebugShaders
+> Task :capacitor-status-bar:compileDebugShaders NO-SOURCE
+> Task :capacitor-status-bar:generateDebugAssets UP-TO-DATE
+> Task :capacitor-status-bar:mergeDebugAssets
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :capacitor-firebase-authentication:bundleLibRuntimeToJarDebug
+> Task :capacitor-app:bundleLibRuntimeToJarDebug
+> Task :capacitor-splash-screen:bundleLibRuntimeToJarDebug
+> Task :capacitor-status-bar:bundleLibRuntimeToJarDebug
+> Task :capacitor-android:bundleLibRuntimeToJarDebug
+> Task :capacitor-cordova-android-plugins:bundleLibRuntimeToJarDebug
+> Task :app:desugarDebugFileDependencies
+> Task :app:dexBuilderDebug
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :capacitor-android:processDebugJavaRes NO-SOURCE
+> Task :capacitor-app:processDebugJavaRes NO-SOURCE
+> Task :capacitor-cordova-android-plugins:processDebugJavaRes NO-SOURCE
+> Task :capacitor-firebase-authentication:processDebugJavaRes NO-SOURCE
+> Task :capacitor-splash-screen:processDebugJavaRes NO-SOURCE
+> Task :capacitor-status-bar:processDebugJavaRes NO-SOURCE
+> Task :app:checkDebugDuplicateClasses
+> Task :capacitor-firebase-authentication:bundleLibRuntimeToDirDebug
+> Task :app:mergeDebugJavaResource
+> Task :app:mergeDebugGlobalSynthetics
+> Task :capacitor-app:bundleLibRuntimeToDirDebug
+> Task :capacitor-status-bar:bundleLibRuntimeToDirDebug
+> Task :capacitor-splash-screen:bundleLibRuntimeToDirDebug
+> Task :capacitor-android:bundleLibRuntimeToDirDebug
+> Task :capacitor-cordova-android-plugins:bundleLibRuntimeToDirDebug
+> Task :app:mergeDebugJniLibFolders
+> Task :capacitor-android:mergeDebugJniLibFolders
+> Task :capacitor-android:mergeDebugNativeLibs NO-SOURCE
+> Task :app:mergeProjectDexDebug
+> Task :capacitor-android:copyDebugJniLibsProjectOnly
+> Task :capacitor-app:mergeDebugJniLibFolders
+> Task :capacitor-app:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-app:copyDebugJniLibsProjectOnly
+> Task :capacitor-cordova-android-plugins:mergeDebugJniLibFolders
+> Task :capacitor-cordova-android-plugins:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-cordova-android-plugins:copyDebugJniLibsProjectOnly
+> Task :capacitor-firebase-authentication:mergeDebugJniLibFolders
+> Task :capacitor-firebase-authentication:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-splash-screen:mergeDebugJniLibFolders
+> Task :capacitor-firebase-authentication:copyDebugJniLibsProjectOnly
+> Task :capacitor-splash-screen:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-splash-screen:copyDebugJniLibsProjectOnly
+> Task :capacitor-status-bar:mergeDebugJniLibFolders
+> Task :capacitor-status-bar:mergeDebugNativeLibs NO-SOURCE
+> Task :capacitor-status-bar:copyDebugJniLibsProjectOnly
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :capacitor-android:stripDebugDebugSymbols NO-SOURCE
+> Task :capacitor-android:checkDebugAarMetadata
+> Task :capacitor-android:copyDebugJniLibsProjectAndLocalJars
+> Task :app:mergeExtDexDebug
+> Task :capacitor-android:extractDebugAnnotations
+> Task :capacitor-android:extractDeepLinksForAarDebug
+> Task :capacitor-android:mergeDebugGeneratedProguardFiles
+> Task :capacitor-android:mergeDebugConsumerProguardFiles
+> Task :capacitor-android:prepareDebugArtProfile
+> Task :capacitor-android:prepareLintJarForPublish
+> Task :capacitor-android:mergeDebugJavaResource
+> Task :capacitor-app:checkDebugAarMetadata
+> Task :app:mergeLibDexDebug
+> Task :capacitor-android:syncDebugLibJars
+> Task :capacitor-android:bundleDebugAar
+> Task :capacitor-android:assembleDebug
+> Task :capacitor-app:stripDebugDebugSymbols NO-SOURCE
+> Task :capacitor-app:copyDebugJniLibsProjectAndLocalJars
+> Task :capacitor-app:extractDebugAnnotations
+> Task :capacitor-app:extractDeepLinksForAarDebug
+> Task :capacitor-app:mergeDebugGeneratedProguardFiles
+> Task :capacitor-app:mergeDebugConsumerProguardFiles
+> Task :capacitor-app:prepareDebugArtProfile
+> Task :capacitor-app:prepareLintJarForPublish
+> Task :capacitor-app:mergeDebugJavaResource
+> Task :capacitor-cordova-android-plugins:checkDebugAarMetadata
+> Task :capacitor-app:syncDebugLibJars
+> Task :capacitor-app:bundleDebugAar
+> Task :capacitor-app:assembleDebug
+> Task :capacitor-cordova-android-plugins:stripDebugDebugSymbols NO-SOURCE
+> Task :capacitor-cordova-android-plugins:copyDebugJniLibsProjectAndLocalJars
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :capacitor-cordova-android-plugins:extractDebugAnnotations
+> Task :capacitor-cordova-android-plugins:extractDeepLinksForAarDebug
+> Task :capacitor-cordova-android-plugins:mergeDebugGeneratedProguardFiles
+> Task :capacitor-cordova-android-plugins:mergeDebugConsumerProguardFiles
+> Task :capacitor-cordova-android-plugins:prepareDebugArtProfile
+> Task :capacitor-cordova-android-plugins:prepareLintJarForPublish
+> Task :capacitor-cordova-android-plugins:mergeDebugJavaResource
+> Task :capacitor-firebase-authentication:checkDebugAarMetadata
+> Task :capacitor-cordova-android-plugins:syncDebugLibJars
+> Task :capacitor-cordova-android-plugins:bundleDebugAar
+> Task :capacitor-cordova-android-plugins:assembleDebug
+> Task :capacitor-firebase-authentication:stripDebugDebugSymbols NO-SOURCE
+> Task :capacitor-firebase-authentication:copyDebugJniLibsProjectAndLocalJars
+> Task :capacitor-firebase-authentication:extractDebugAnnotations
+> Task :capacitor-firebase-authentication:extractDeepLinksForAarDebug
+> Task :capacitor-firebase-authentication:mergeDebugGeneratedProguardFiles
+> Task :capacitor-firebase-authentication:mergeDebugConsumerProguardFiles
+> Task :capacitor-firebase-authentication:prepareDebugArtProfile
+> Task :capacitor-firebase-authentication:prepareLintJarForPublish
+> Task :capacitor-firebase-authentication:mergeDebugJavaResource
+> Task :capacitor-splash-screen:checkDebugAarMetadata
+> Task :capacitor-firebase-authentication:syncDebugLibJars
+> Task :capacitor-firebase-authentication:bundleDebugAar
+> Task :capacitor-firebase-authentication:assembleDebug
+> Task :capacitor-splash-screen:stripDebugDebugSymbols NO-SOURCE
+> Task :capacitor-splash-screen:copyDebugJniLibsProjectAndLocalJars
+> Task :capacitor-splash-screen:extractDebugAnnotations
+> Task :capacitor-splash-screen:extractDeepLinksForAarDebug
+> Task :capacitor-splash-screen:mergeDebugGeneratedProguardFiles
+> Task :capacitor-splash-screen:mergeDebugConsumerProguardFiles
+> Task :capacitor-splash-screen:prepareDebugArtProfile
+> Task :capacitor-splash-screen:prepareLintJarForPublish
+> Task :capacitor-splash-screen:mergeDebugJavaResource
+> Task :capacitor-status-bar:checkDebugAarMetadata
+> Task :capacitor-splash-screen:syncDebugLibJars
+> Task :capacitor-splash-screen:bundleDebugAar
+> Task :capacitor-splash-screen:assembleDebug
+> Task :capacitor-status-bar:stripDebugDebugSymbols NO-SOURCE
+> Task :capacitor-status-bar:copyDebugJniLibsProjectAndLocalJars
+> Task :capacitor-status-bar:extractDebugAnnotations
+> Task :capacitor-status-bar:extractDeepLinksForAarDebug
+> Task :capacitor-status-bar:mergeDebugGeneratedProguardFiles
+> Task :capacitor-status-bar:mergeDebugConsumerProguardFiles
+> Task :capacitor-status-bar:prepareDebugArtProfile
+> Task :capacitor-status-bar:prepareLintJarForPublish
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :capacitor-android:preReleaseBuild UP-TO-DATE
+> Task :capacitor-status-bar:mergeDebugJavaResource
+> Task :capacitor-android:processReleaseNavigationResources
+> Task :capacitor-status-bar:syncDebugLibJars
+> Task :capacitor-status-bar:bundleDebugAar
+> Task :capacitor-status-bar:assembleDebug
+> Task :capacitor-app:preReleaseBuild UP-TO-DATE
+> Task :capacitor-app:processReleaseNavigationResources
+> Task :capacitor-cordova-android-plugins:preReleaseBuild UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:processReleaseNavigationResources
+> Task :capacitor-firebase-authentication:preReleaseBuild UP-TO-DATE
+> Task :capacitor-firebase-authentication:processReleaseNavigationResources
+> Task :capacitor-splash-screen:preReleaseBuild UP-TO-DATE
+> Task :capacitor-splash-screen:processReleaseNavigationResources
+> Task :capacitor-status-bar:preReleaseBuild UP-TO-DATE
+> Task :capacitor-status-bar:processReleaseNavigationResources
+> Task :app:processReleaseNavigationResources
+> Task :app:compileReleaseNavigationResources
+> Task :app:generateReleaseResValues
+> Task :app:processReleaseGoogleServices
+> Task :capacitor-android:generateReleaseResValues
+> Task :capacitor-android:generateReleaseResources
+> Task :capacitor-android:packageReleaseResources
+> Task :capacitor-app:generateReleaseResValues
+> Task :capacitor-app:generateReleaseResources
+> Task :capacitor-app:packageReleaseResources
+> Task :capacitor-cordova-android-plugins:generateReleaseResValues
+> Task :capacitor-cordova-android-plugins:generateReleaseResources
+> Task :capacitor-cordova-android-plugins:packageReleaseResources
+> Task :capacitor-firebase-authentication:generateReleaseResValues
+> Task :capacitor-firebase-authentication:generateReleaseResources
+> Task :capacitor-firebase-authentication:packageReleaseResources
+> Task :capacitor-splash-screen:generateReleaseResValues
+> Task :capacitor-splash-screen:generateReleaseResources
+> Task :capacitor-splash-screen:packageReleaseResources
+> Task :capacitor-status-bar:generateReleaseResValues
+> Task :capacitor-status-bar:generateReleaseResources
+> Task :capacitor-status-bar:packageReleaseResources
+> Task :app:mapReleaseSourceSetPaths
+> Task :app:generateReleaseResources
+> Task :app:createReleaseCompatibleScreenManifests
+> Task :app:extractDeepLinksRelease
+> Task :capacitor-android:extractDeepLinksRelease
+> Task :capacitor-app:extractDeepLinksRelease
+> Task :capacitor-cordova-android-plugins:extractDeepLinksRelease
+> Task :capacitor-android:processReleaseManifest
+> Task :capacitor-firebase-authentication:extractDeepLinksRelease
+> Task :capacitor-app:processReleaseManifest
+> Task :capacitor-splash-screen:extractDeepLinksRelease
+> Task :capacitor-firebase-authentication:processReleaseManifest
+> Task :capacitor-status-bar:extractDeepLinksRelease
+> Task :capacitor-cordova-android-plugins:processReleaseManifest
+> Task :capacitor-android:writeReleaseAarMetadata
+> Task :capacitor-splash-screen:processReleaseManifest
+> Task :capacitor-status-bar:processReleaseManifest
+> Task :app:processReleaseMainManifest
+> Task :app:processReleaseManifest
+> Task :app:processApplicationManifestReleaseForBundle
+> Task :capacitor-app:writeReleaseAarMetadata
+> Task :capacitor-firebase-authentication:writeReleaseAarMetadata
+> Task :capacitor-splash-screen:writeReleaseAarMetadata
+> Task :app:packageReleaseResources
+> Task :capacitor-cordova-android-plugins:writeReleaseAarMetadata
+> Task :capacitor-status-bar:writeReleaseAarMetadata
+> Task :app:parseReleaseLocalResources
+> Task :capacitor-android:compileReleaseLibraryResources
+> Task :app:checkReleaseAarMetadata
+> Task :app:processReleaseManifestForPackage
+> Task :capacitor-android:parseReleaseLocalResources
+> Task :capacitor-app:compileReleaseLibraryResources
+> Task :capacitor-app:parseReleaseLocalResources
+> Task :capacitor-cordova-android-plugins:compileReleaseLibraryResources
+> Task :capacitor-app:generateReleaseRFile
+> Task :capacitor-android:generateReleaseRFile
+> Task :capacitor-cordova-android-plugins:parseReleaseLocalResources
+> Task :capacitor-firebase-authentication:compileReleaseLibraryResources
+> Task :capacitor-splash-screen:compileReleaseLibraryResources
+> Task :capacitor-firebase-authentication:parseReleaseLocalResources
+> Task :capacitor-cordova-android-plugins:generateReleaseRFile
+> Task :capacitor-splash-screen:parseReleaseLocalResources
+> Task :capacitor-firebase-authentication:generateReleaseRFile
+> Task :capacitor-status-bar:compileReleaseLibraryResources
+> Task :capacitor-splash-screen:generateReleaseRFile
+> Task :capacitor-status-bar:parseReleaseLocalResources
+> Task :app:extractReleaseVersionControlInfo
+> Task :capacitor-android:javaPreCompileRelease
+> Task :capacitor-status-bar:generateReleaseRFile
+> Task :capacitor-firebase-authentication:javaPreCompileRelease
+> Task :app:mergeReleaseResources
+
+> Task :capacitor-android:compileReleaseJavaWithJavac
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :capacitor-app:javaPreCompileRelease
+> Task :capacitor-android:bundleLibCompileToJarRelease
+> Task :capacitor-splash-screen:javaPreCompileRelease
+> Task :capacitor-status-bar:javaPreCompileRelease
+> Task :app:processReleaseResources
+
+> Task :capacitor-firebase-authentication:compileReleaseJavaWithJavac
+Note: /home/runner/work/kampuscep/kampuscep/_uygulama/node_modules/@capacitor-firebase/authentication/android/src/main/java/io/capawesome/capacitorjs/plugins/firebase/authentication/FirebaseAuthentication.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /home/runner/work/kampuscep/kampuscep/_uygulama/node_modules/@capacitor-firebase/authentication/android/src/main/java/io/capawesome/capacitorjs/plugins/firebase/authentication/FirebaseAuthentication.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+> Task :capacitor-firebase-authentication:bundleLibRuntimeToDirRelease
+> Task :capacitor-app:compileReleaseJavaWithJavac
+> Task :capacitor-app:bundleLibRuntimeToDirRelease
+> Task :app:bundleReleaseResources
+> Task :capacitor-splash-screen:compileReleaseJavaWithJavac
+> Task :capacitor-splash-screen:bundleLibRuntimeToDirRelease
+> Task :capacitor-status-bar:compileReleaseJavaWithJavac
+> Task :capacitor-status-bar:bundleLibRuntimeToDirRelease
+> Task :capacitor-cordova-android-plugins:javaPreCompileRelease
+> Task :capacitor-cordova-android-plugins:compileReleaseJavaWithJavac NO-SOURCE
+> Task :capacitor-cordova-android-plugins:bundleLibRuntimeToDirRelease
+> Task :capacitor-android:bundleLibRuntimeToDirRelease
+> Task :app:checkReleaseDuplicateClasses
+> Task :app:javaPreCompileRelease
+> Task :capacitor-app:bundleLibCompileToJarRelease
+> Task :capacitor-cordova-android-plugins:bundleLibCompileToJarRelease
+> Task :capacitor-splash-screen:bundleLibCompileToJarRelease
+> Task :capacitor-firebase-authentication:bundleLibCompileToJarRelease
+> Task :capacitor-status-bar:bundleLibCompileToJarRelease
+> Task :app:compileReleaseJavaWithJavac
+> Task :app:dexBuilderRelease
+> Task :app:desugarReleaseFileDependencies
+> Task :app:mergeReleaseStartupProfile
+> Task :app:mergeReleaseShaders
+> Task :app:compileReleaseShaders NO-SOURCE
+> Task :app:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-android:mergeReleaseShaders
+> Task :capacitor-android:compileReleaseShaders NO-SOURCE
+> Task :capacitor-android:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-android:mergeReleaseAssets
+> Task :capacitor-app:mergeReleaseShaders
+> Task :capacitor-app:compileReleaseShaders NO-SOURCE
+> Task :capacitor-app:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-app:mergeReleaseAssets
+> Task :capacitor-cordova-android-plugins:mergeReleaseShaders
+> Task :capacitor-cordova-android-plugins:compileReleaseShaders NO-SOURCE
+> Task :capacitor-cordova-android-plugins:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-cordova-android-plugins:mergeReleaseAssets
+> Task :capacitor-firebase-authentication:mergeReleaseShaders
+> Task :capacitor-firebase-authentication:compileReleaseShaders NO-SOURCE
+> Task :capacitor-firebase-authentication:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-firebase-authentication:mergeReleaseAssets
+> Task :capacitor-splash-screen:mergeReleaseShaders
+> Task :capacitor-splash-screen:compileReleaseShaders NO-SOURCE
+> Task :capacitor-splash-screen:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-splash-screen:mergeReleaseAssets
+> Task :capacitor-status-bar:mergeReleaseShaders
+> Task :capacitor-status-bar:compileReleaseShaders NO-SOURCE
+> Task :capacitor-status-bar:generateReleaseAssets UP-TO-DATE
+> Task :capacitor-status-bar:mergeReleaseAssets
+> Task :app:mergeReleaseAssets
+> Task :capacitor-firebase-authentication:bundleLibRuntimeToJarRelease
+> Task :capacitor-splash-screen:bundleLibRuntimeToJarRelease
+> Task :capacitor-app:bundleLibRuntimeToJarRelease
+> Task :capacitor-status-bar:bundleLibRuntimeToJarRelease
+> Task :capacitor-android:bundleLibRuntimeToJarRelease
+> Task :capacitor-cordova-android-plugins:bundleLibRuntimeToJarRelease
+> Task :app:processReleaseJavaRes NO-SOURCE
+> Task :capacitor-android:processReleaseJavaRes NO-SOURCE
+> Task :capacitor-app:processReleaseJavaRes NO-SOURCE
+> Task :capacitor-cordova-android-plugins:processReleaseJavaRes NO-SOURCE
+> Task :capacitor-firebase-authentication:processReleaseJavaRes NO-SOURCE
+> Task :capacitor-splash-screen:processReleaseJavaRes NO-SOURCE
+> Task :capacitor-status-bar:processReleaseJavaRes NO-SOURCE
+> Task :app:mergeReleaseJniLibFolders
+> Task :capacitor-android:mergeReleaseJniLibFolders
+> Task :capacitor-android:mergeReleaseNativeLibs NO-SOURCE
+> Task :capacitor-android:copyReleaseJniLibsProjectOnly
+> Task :capacitor-app:mergeReleaseJniLibFolders
+> Task :capacitor-app:mergeReleaseNativeLibs NO-SOURCE
+> Task :capacitor-app:copyReleaseJniLibsProjectOnly
+> Task :capacitor-cordova-android-plugins:mergeReleaseJniLibFolders
+> Task :capacitor-cordova-android-plugins:mergeReleaseNativeLibs NO-SOURCE
+> Task :capacitor-cordova-android-plugins:copyReleaseJniLibsProjectOnly
+> Task :capacitor-firebase-authentication:mergeReleaseJniLibFolders
+> Task :capacitor-firebase-authentication:mergeReleaseNativeLibs NO-SOURCE
+> Task :capacitor-firebase-authentication:copyReleaseJniLibsProjectOnly
+> Task :capacitor-splash-screen:mergeReleaseJniLibFolders
+> Task :capacitor-splash-screen:mergeReleaseNativeLibs NO-SOURCE
+> Task :capacitor-splash-screen:copyReleaseJniLibsProjectOnly
+> Task :capacitor-status-bar:mergeReleaseJniLibFolders
+> Task :capacitor-status-bar:mergeReleaseNativeLibs NO-SOURCE
+> Task :capacitor-status-bar:copyReleaseJniLibsProjectOnly
+> Task :app:mergeReleaseNativeLibs NO-SOURCE
+> Task :app:stripReleaseDebugSymbols NO-SOURCE
+> Task :app:writeReleaseAppMetadata
+> Task :capacitor-android:prepareReleaseArtProfile
+> Task :capacitor-app:prepareReleaseArtProfile
+> Task :capacitor-cordova-android-plugins:prepareReleaseArtProfile
+> Task :capacitor-firebase-authentication:prepareReleaseArtProfile
+> Task :capacitor-splash-screen:prepareReleaseArtProfile
+> Task :capacitor-status-bar:prepareReleaseArtProfile
+> Task :app:mergeReleaseJavaResource
+> Task :app:mergeReleaseArtProfile
+> Task :app:collectReleaseDependencies
+> Task :app:mergeReleaseGlobalSynthetics
+> Task :app:configureReleaseDependencies
+> Task :app:extractReleaseNativeSymbolTables NO-SOURCE
+> Task :app:extractProguardFiles
+> Task :capacitor-android:createFullJarRelease
+> Task :capacitor-android:extractProguardFiles
+> Task :capacitor-android:generateReleaseLintModel
+> Task :capacitor-app:createFullJarRelease
+> Task :capacitor-app:extractProguardFiles
+> Task :capacitor-app:generateReleaseLintModel
+> Task :capacitor-cordova-android-plugins:createFullJarRelease
+> Task :capacitor-cordova-android-plugins:extractProguardFiles
+> Task :capacitor-cordova-android-plugins:generateReleaseLintModel
+> Task :capacitor-firebase-authentication:createFullJarRelease
+> Task :capacitor-firebase-authentication:extractProguardFiles
+> Task :app:mergeExtDexRelease
+> Task :capacitor-firebase-authentication:generateReleaseLintModel
+> Task :capacitor-splash-screen:createFullJarRelease
+> Task :capacitor-splash-screen:extractProguardFiles
+> Task :capacitor-splash-screen:generateReleaseLintModel
+> Task :capacitor-status-bar:createFullJarRelease
+> Task :capacitor-status-bar:extractProguardFiles
+> Task :capacitor-status-bar:generateReleaseLintModel
+> Task :app:generateReleaseLintVitalReportModel
+> Task :capacitor-firebase-authentication:stripReleaseDebugSymbols NO-SOURCE
+> Task :capacitor-firebase-authentication:checkReleaseAarMetadata
+> Task :capacitor-firebase-authentication:extractDeepLinksForAarRelease
+> Task :capacitor-firebase-authentication:copyReleaseJniLibsProjectAndLocalJars
+> Task :capacitor-firebase-authentication:extractReleaseAnnotations
+> Task :capacitor-firebase-authentication:mergeReleaseGeneratedProguardFiles
+> Task :capacitor-firebase-authentication:mergeReleaseConsumerProguardFiles
+> Task :capacitor-firebase-authentication:mergeReleaseJavaResource
+> Task :capacitor-app:checkReleaseAarMetadata
+> Task :capacitor-app:stripReleaseDebugSymbols NO-SOURCE
+> Task :capacitor-firebase-authentication:syncReleaseLibJars
+> Task :capacitor-firebase-authentication:bundleReleaseLocalLintAar
+> Task :capacitor-app:copyReleaseJniLibsProjectAndLocalJars
+> Task :capacitor-app:extractDeepLinksForAarRelease
+> Task :capacitor-app:extractReleaseAnnotations
+> Task :capacitor-app:mergeReleaseGeneratedProguardFiles
+> Task :capacitor-app:mergeReleaseConsumerProguardFiles
+> Task :capacitor-splash-screen:stripReleaseDebugSymbols NO-SOURCE
+> Task :capacitor-app:mergeReleaseJavaResource
+> Task :capacitor-splash-screen:checkReleaseAarMetadata
+> Task :capacitor-splash-screen:copyReleaseJniLibsProjectAndLocalJars
+> Task :capacitor-app:syncReleaseLibJars
+> Task :capacitor-app:bundleReleaseLocalLintAar
+> Task :capacitor-splash-screen:extractDeepLinksForAarRelease
+> Task :capacitor-splash-screen:extractReleaseAnnotations
+> Task :capacitor-splash-screen:mergeReleaseGeneratedProguardFiles
+> Task :capacitor-splash-screen:mergeReleaseConsumerProguardFiles
+> Task :capacitor-status-bar:checkReleaseAarMetadata
+> Task :capacitor-splash-screen:mergeReleaseJavaResource
+> Task :capacitor-status-bar:stripReleaseDebugSymbols NO-SOURCE
+> Task :capacitor-splash-screen:syncReleaseLibJars
+> Task :capacitor-splash-screen:bundleReleaseLocalLintAar
+> Task :capacitor-status-bar:copyReleaseJniLibsProjectAndLocalJars
+> Task :capacitor-status-bar:extractDeepLinksForAarRelease
+> Task :capacitor-status-bar:extractReleaseAnnotations
+> Task :capacitor-status-bar:mergeReleaseGeneratedProguardFiles
+> Task :capacitor-status-bar:mergeReleaseConsumerProguardFiles
+> Task :capacitor-status-bar:mergeReleaseJavaResource
+> Task :capacitor-android:checkReleaseAarMetadata
+> Task :capacitor-status-bar:syncReleaseLibJars
+> Task :capacitor-status-bar:bundleReleaseLocalLintAar
+> Task :capacitor-android:stripReleaseDebugSymbols NO-SOURCE
+> Task :capacitor-android:copyReleaseJniLibsProjectAndLocalJars
+> Task :capacitor-android:extractDeepLinksForAarRelease
+> Task :capacitor-android:extractReleaseAnnotations
+> Task :capacitor-android:mergeReleaseGeneratedProguardFiles
+> Task :capacitor-android:mergeReleaseConsumerProguardFiles
+> Task :capacitor-cordova-android-plugins:stripReleaseDebugSymbols NO-SOURCE
+> Task :capacitor-android:mergeReleaseJavaResource
+> Task :capacitor-cordova-android-plugins:checkReleaseAarMetadata
+> Task :capacitor-cordova-android-plugins:copyReleaseJniLibsProjectAndLocalJars
+> Task :capacitor-android:syncReleaseLibJars
+> Task :capacitor-android:bundleReleaseLocalLintAar
+> Task :capacitor-cordova-android-plugins:extractDeepLinksForAarRelease
+> Task :capacitor-cordova-android-plugins:extractReleaseAnnotations
+> Task :capacitor-cordova-android-plugins:mergeReleaseGeneratedProguardFiles
+> Task :capacitor-cordova-android-plugins:mergeReleaseConsumerProguardFiles
+> Task :capacitor-cordova-android-plugins:mergeReleaseJavaResource
+> Task :capacitor-cordova-android-plugins:syncReleaseLibJars
+> Task :capacitor-cordova-android-plugins:bundleReleaseLocalLintAar
+> Task :capacitor-android:writeReleaseLintModelMetadata
+> Task :capacitor-app:writeReleaseLintModelMetadata
+> Task :capacitor-cordova-android-plugins:writeReleaseLintModelMetadata
+> Task :capacitor-firebase-authentication:writeReleaseLintModelMetadata
+> Task :capacitor-splash-screen:writeReleaseLintModelMetadata
+> Task :capacitor-status-bar:writeReleaseLintModelMetadata
+> Task :capacitor-android:generateReleaseLintVitalModel
+> Task :capacitor-app:generateReleaseLintVitalModel
+> Task :capacitor-cordova-android-plugins:generateReleaseLintVitalModel
+> Task :capacitor-firebase-authentication:generateReleaseLintVitalModel
+> Task :capacitor-splash-screen:generateReleaseLintVitalModel
+> Task :capacitor-status-bar:generateReleaseLintVitalModel
+> Task :app:parseReleaseIntegrityConfig
+> Task :app:mergeDexRelease
+> Task :app:buildReleasePreBundle
+> Task :app:compileReleaseArtProfile
+> Task :capacitor-app:lintVitalAnalyzeRelease
+> Task :capacitor-cordova-android-plugins:lintVitalAnalyzeRelease
+> Task :capacitor-android:lintVitalAnalyzeRelease
+> Task :capacitor-firebase-authentication:lintVitalAnalyzeRelease
+> Task :capacitor-splash-screen:lintVitalAnalyzeRelease
+> Task :capacitor-status-bar:lintVitalAnalyzeRelease
+> Task :app:lintVitalAnalyzeRelease
+> Task :app:lintVitalReportRelease
+> Task :app:lintVitalRelease
+> Task :app:packageReleaseBundle
+> Task :app:signReleaseBundle
+> Task :app:produceReleaseBundleIdeListingFile
+> Task :app:createReleaseBundleListingFileRedirect
+> Task :app:bundleRelease
+
+[Incubating] Problems report is available at: file:///home/runner/work/kampuscep/kampuscep/_uygulama/android/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.3/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 8s
+471 actionable tasks: 471 executed

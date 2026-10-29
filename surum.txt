@@ -1,0 +1,3 @@
+surum_kodu=7
+sonuc=success
+commit=43a68d2df0b7c4be7e9904f7ebc1bae0a028f855
