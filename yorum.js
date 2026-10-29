@@ -88,6 +88,9 @@ html[data-tema="koyu"] .degerlendir{--dg-yuzey:#1c2338;--dg-yuzey2:#232b45;--dg-
 .degerlendir{min-width:0;max-width:100%;overflow-x:clip}
 .degerlendir *{min-width:0;box-sizing:border-box}
 .degerlendir[data-menu=""]{display:none}
+.dg-gor{display:flex;align-items:center;gap:6px;margin:8px 2px 0;font:600 12px var(--font,inherit);color:var(--dg-soluk)}
+.dg-gor b{color:var(--dg-yazi,inherit);font-weight:800}
+.dg-gor-ik{font-size:13px;line-height:1}
 .dg-bar{display:flex;gap:10px 12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
 .dg-sol{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .dg-puan-alani{display:inline-flex;align-items:center;gap:8px;background:var(--dg-yuzey);padding:5px 13px;border-radius:999px;border:1px solid var(--dg-cizgi)}
@@ -231,6 +234,7 @@ function kur(el) {
   if (eski && eski.id === id) return;
   if (eski && eski.dinle) eski.dinle();
   if (eski && eski.dinleOy) eski.dinleOy();
+  if (eski && eski.gorGoz) eski.gorGoz.disconnect();
   if (!MENU_RE.test(id)) { el.innerHTML = ""; kutular.delete(el); return; }
 
   const oyId = oyHavuzId(id);
@@ -243,6 +247,7 @@ function kur(el) {
     benimPuan: 0,
     benimReaksiyon: 0,
     sayi: { starToplam: 0, starAdet: 0, starOrt: 0, iyi: 0, kotu: 0, yorum: 0 },
+    goren: 0, gorGoz: null, gorZaman: 0,
     acik: false,
     yorumlar: [],
     yanit: null,
@@ -269,7 +274,7 @@ function kur(el) {
         </div>
       </div>
       <button class="dg-btn yorum" aria-expanded="false">${IKON.yorum}Yorumlar <span>0</span></button>
-    </div><div class="dg-panel" hidden></div>`;
+    </div><div class="dg-gor" hidden></div><div class="dg-panel" hidden></div>`;
 
   // Yıldız tıklamaları
   const stars = el.querySelectorAll(".dg-star");
@@ -295,6 +300,63 @@ function kur(el) {
 
   // Oyları ve yorum sayısını getir & gerçek zamanlı dinle
   oyDinleVeSay(el);
+  gorunumBaslat(el);
+}
+
+/* ---------- günlük görüntüleyen kişi sayısı ----------
+   Her cihaz (anonim Firebase kimliği) bir menüyü yalnızca bir kez sayılır: menuler/{menu}/gorenler/{uid}.
+   Menü kutusu ekranda en az yarım görünüp 1,5 sn kalınca kayıt atılır; sayı Firestore'dan kesin sayılır. */
+function gorYaz(el) {
+  const d = kutular.get(el); if (!d) return;
+  const k = el.querySelector(".dg-gor"); if (!k) return;
+  if (d.goren > 0) {
+    k.hidden = false;
+    k.innerHTML = `<span class="dg-gor-ik" aria-hidden="true">👁</span><b>${d.goren}</b> kişi bu menüye baktı`;
+    k.title = "Her cihaz bir menüyü bir kez sayılır";
+  } else k.hidden = true;
+}
+
+function gorSay(el) {
+  const d = kutular.get(el); if (!d) return;
+  getCountFromServer(collection(db, "menuler", d.yorumId, "gorenler")).then(c => {
+    if (kutular.get(el) !== d) return;
+    d.goren = c.data().count; gorYaz(el);
+  }).catch(() => {});
+}
+
+async function gorKaydet(el) {
+  const d = kutular.get(el); if (!d) return;
+  const anahtar = "kc-gor-" + d.yorumId;
+  try { if (localStorage.getItem(anahtar)) return; } catch (e) {}
+  if (!(await kimlik())) return;
+  const u = auth.currentUser; if (!u) return;
+  try {
+    await setDoc(doc(db, "menuler", d.yorumId, "gorenler", u.uid), { zaman: serverTimestamp() });
+  } catch (e) {
+    // Bu kimlik bu menüyü zaten saymış olabilir (yerel kayıt silinmişse); yine de sayacı yenile
+  }
+  try { localStorage.setItem(anahtar, "1"); } catch (e) {}
+  if (kutular.get(el) === d) gorSay(el);
+}
+
+function gorunumBaslat(el) {
+  const d = kutular.get(el); if (!d) return;
+  if (d.gorGoz) { d.gorGoz.disconnect(); d.gorGoz = null; }
+  gorSay(el);
+  if (!("IntersectionObserver" in window)) return;
+  d.gorGoz = new IntersectionObserver(es => {
+    es.forEach(e => {
+      clearTimeout(d.gorZaman);
+      if (e.isIntersecting && document.visibilityState === "visible") {
+        d.gorZaman = setTimeout(() => {
+          if (kutular.get(el) === d && document.visibilityState === "visible") {
+            gorKaydet(el); if (d.gorGoz) { d.gorGoz.disconnect(); d.gorGoz = null; }
+          }
+        }, 1500);
+      }
+    });
+  }, { threshold: 0.5 });
+  d.gorGoz.observe(el);
 }
 
 function oyDinleVeSay(el) {
