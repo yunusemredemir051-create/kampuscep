@@ -1777,5 +1777,38 @@ function geriSay() {
     <div class="sheet-liste" id="bolum-liste"></div>
   </div>
 </div>
+<script>
+/* Geri tuşu: önce açık katmanları/alt ekranları kapatır, sonra ana sayfaya döner; ana sayfadayken uygulamadan çıkar */
+(function () {
+  var gorunur = function (el) { return el && el.offsetParent !== null; };
+  function geriIslem() {
+    var b = document.querySelector(".yf-buyuk");
+    if (b) { b.remove(); return true; }
+    var sh = document.getElementById("bolum-sheet");
+    if (sh && !sh.hidden) { document.getElementById("bolum-sheet-kapat").click(); return true; }
+    var am = document.getElementById("aylik-modal");
+    if (am && am.classList.contains("aktif")) { aylikMenuKapat(); return true; }
+    var aa = document.getElementById("ayar-alt");
+    if (aa && !aa.hidden && document.getElementById("ayarlar").classList.contains("aktif")) { document.getElementById("ayar-geri").click(); return true; }
+    var yd = document.getElementById("yurt-detay");
+    if (yd && yd.style.display === "block" && gorunur(yd)) { yurtListeyeDon(); window.scrollTo({ top: 0 }); return true; }
+    var sg = document.getElementById("sinif-gorunum");
+    if (sg && sg.style.display === "block" && gorunur(sg)) { bolumKapat(); return true; }
+    var aktif = document.querySelector(".sayfa.aktif");
+    if (aktif && aktif.id !== "ana") { sayfaAc("ana"); return true; }
+    return false;
+  }
+  function tuzak() { try { history.pushState({ kc: 1 }, "", location.href); } catch (e) {} }
+  var geriZamani = 0;
+  removeEventListener("hashchange", adresiAc);
+  addEventListener("hashchange", function () { if (Date.now() - geriZamani > 400) adresiAc(); });
+  tuzak();
+  addEventListener("popstate", function () {
+    geriZamani = Date.now();
+    if (geriIslem()) tuzak();
+    else history.back();
+  });
+})();
+</script>
 </body>
 </html>
