@@ -24,6 +24,7 @@
     ["Sosyal Bilimler MYO", ["Aşçılık", "Bankacılık ve Sigortacılık", "Büro Yönetimi ve Yönetici Asistanlığı", "Dış Ticaret", "İşletme Yönetimi", "Muhasebe ve Vergi Uygulamaları", "Pazarlama", "Turizm ve Otel İşletmeciliği", "Yerel Yönetimler"]],
     ["Diğer MYO'lar", ["Alternatif Enerji Kaynakları Teknolojisi", "Bahçe Tarımı", "Organik Tarım", "Raylı Sistemler Makinistliği", "Atçılık ve Antrenörlüğü", "Harita ve Kadastro", "Laborant ve Veteriner Sağlık", "Çevre Koruma ve Kontrol", "Elektrik Enerjisi Üretim, İletim ve Dağıtımı", "Geoteknik", "Gıda Teknolojisi", "Peyzaj ve Süs Bitkileri Yetiştiriciliği", "Çocuk Gelişimi", "Tapu ve Kadastro", "Doğalgaz ve Tesisatı Teknolojisi", "Endüstri Ürünleri Tasarımı", "Giyim Üretim Teknolojisi", "Kaynak Teknolojisi", "Kimya Teknolojisi", "Yapı Denetimi", "Eczane Hizmetleri", "Evde Hasta Bakımı", "İlk ve Acil Yardım", "Optisyenlik", "Sağlık Kurumları İşletmeciliği"]]
   ];
+  window.KC_BOLUM_LISTESI = BOLUMLER;
   var st = document.createElement("style");
   st.textContent =
     ".kc-prog[hidden]{display:none}.kc-prog{padding:18px;margin-top:14px}.kc-prog h2{margin:0;font-size:19px}.kc-prog .alt{color:var(--soluk,#6b7390);font-size:13px;font-weight:600;margin-top:2px}" +
