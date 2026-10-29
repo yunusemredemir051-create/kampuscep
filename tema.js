@@ -112,7 +112,7 @@
       kutu.setAttribute("data-kuruldu", "1");
       kutu.innerHTML = RENKLER.map(function (r) {
         return '<button type="button" class="renk-dugme" data-renk-sec="' + r.id + '" aria-pressed="false" title="' + r.ad + '" aria-label="' + r.ad + '"><i style="background:linear-gradient(135deg,' +
-          r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i>' + r.ad + "</button>";
+          r.c[0] + ' 0 50%,' + r.c[1] + ' 50% 100%)"></i><span>' + r.ad + '</span><b class="ayar-tik">✓</b></button>';
       }).join("");
     });
     renkUygula();
