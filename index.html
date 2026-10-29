@@ -479,6 +479,32 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 [data-tema="koyu"] .aylik-gun-kart.bugun { background: #1e2954; border-color: var(--mavi); }
 [data-tema="koyu"] .aylik-gun-kart.yarin { background: #183329; border-color: #16b67a; }
 
+/* ---- Kitap sayfası menü ---- */
+.modal-icerik.kitap { padding: 12px 0 14px; gap: 10px; overflow: hidden; flex: none; height: min(560px, calc(85vh - 92px)); }
+.kb-ust { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+.kb-say { font-weight: 700; font-size: 13px; color: var(--soluk); letter-spacing: .4px; }
+.kb-say b { color: var(--mavi); font-size: 16px; }
+.kb-ok { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--cizgi); background: var(--kart, #fff); color: var(--mavi); font-size: 24px; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgba(20,30,70,.08); }
+.kb-ok:disabled { opacity: .3; cursor: default; box-shadow: none; }
+.kb-iz { display: flex; flex: 1; min-height: 0; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.kb-iz::-webkit-scrollbar { display: none; }
+.kb-sayfa { flex: 0 0 100%; min-width: 0; scroll-snap-align: center; scroll-snap-stop: always; padding: 4px 20px 6px; box-sizing: border-box; display: flex; }
+.kb-kart { flex: 1; min-width: 0; overflow-y: auto; border-radius: 22px; padding: 18px 18px 20px; background: linear-gradient(160deg, #ffffff 0%, #f3f6ff 100%); border: 1px solid var(--cizgi); box-shadow: 0 10px 28px rgba(30,45,110,.12), inset 0 1px 0 #fff; text-align: left; }
+.kb-baslik { display: flex; align-items: center; gap: 14px; padding-bottom: 14px; margin-bottom: 4px; border-bottom: 1px dashed var(--cizgi); }
+.kb-no { font: 800 44px/1 Georgia, "Times New Roman", serif; color: var(--mavi); min-width: 52px; }
+.kb-tarih { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.kb-tarih b { font-size: 17px; font-weight: 800; text-transform: capitalize; }
+.kb-tarih span { font-size: 13px; font-weight: 600; color: var(--soluk); text-transform: capitalize; }
+.kb-kart .aylik-ogun-bloku { margin-top: 16px; }
+.kb-kart .aylik-ogun-bloku b { color: var(--mavi); }
+.kb-kart .aylik-resim img { width: 52px; height: 52px; border-radius: 14px; }
+.kb-noktalar { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; padding: 0 20px; max-height: 40px; overflow: hidden; }
+.kb-noktalar i { width: 6px; height: 6px; border-radius: 50%; background: var(--cizgi); cursor: pointer; transition: all .2s; }
+.kb-noktalar i.aktif { width: 18px; border-radius: 4px; background: var(--mavi); }
+[data-tema="koyu"] .kb-kart { background: linear-gradient(160deg, #232b47 0%, #1b2138 100%); border-color: #2e3758; box-shadow: 0 10px 28px rgba(0,0,0,.4); }
+[data-tema="koyu"] .kb-kart .aylik-yemek, [data-tema="koyu"] .kb-baslik { border-color: #2e3758; }
+[data-tema="koyu"] .kb-ok { background: #232b47; border-color: #2e3758; }
+
 /* Reklam alanları AdSense onaylanana kadar gizli; onaydan sonra bu satırı sil */
 .vitrin { display: none !important; }
 
@@ -1340,13 +1366,45 @@ function detayMenuGuncelle() {
 document.querySelectorAll("#detay-secici button").forEach(b => b.onclick = () => { detayOgun = b.dataset.ogun; detayMenuGuncelle(); });
 
 /* ================= AYLIK MENÜ MODAL MANTIĞI ================= */
+/* Kitap sayfası gibi ilerleyen menü görünümü */
+function sayfaBaslik(d, rozet) {
+  const ay = d.toLocaleDateString("tr-TR", { month: "long" });
+  const gun = d.toLocaleDateString("tr-TR", { weekday: "long" });
+  return `<div class="kb-baslik"><div class="kb-no">${d.getDate()}</div><div class="kb-tarih"><b>${ay}</b><span>${gun}</span></div>${rozet || ""}</div>`;
+}
+function kitapKur(el, sayfalar, ilk) {
+  const n = sayfalar.length;
+  if (!n) { el.classList.remove("kitap"); el.innerHTML = ""; return; }
+  el.classList.add("kitap");
+  el.innerHTML = `<div class="kb-ust"><button type="button" class="kb-ok" data-y="-1" aria-label="Önceki gün">‹</button><div class="kb-say"><b class="kb-n">1</b> / ${n}</div><button type="button" class="kb-ok" data-y="1" aria-label="Sonraki gün">›</button></div>
+    <div class="kb-iz">${sayfalar.map((h, i) => `<section class="kb-sayfa" aria-label="Gün ${i + 1}"><div class="kb-kart">${h}</div></section>`).join("")}</div>
+    <div class="kb-noktalar">${sayfalar.map((_, i) => `<i data-i="${i}"></i>`).join("")}</div>`;
+  const iz = el.querySelector(".kb-iz"), sayac = el.querySelector(".kb-n");
+  const noktalar = [...el.querySelectorAll(".kb-noktalar i")], oklar = [...el.querySelectorAll(".kb-ok")];
+  let akt = -1;
+  const guncelle = () => {
+    const i = Math.max(0, Math.min(n - 1, Math.round(iz.scrollLeft / iz.clientWidth)));
+    if (i === akt) return; akt = i;
+    sayac.textContent = i + 1;
+    noktalar.forEach((x, j) => x.classList.toggle("aktif", j === i));
+    oklar[0].disabled = i === 0; oklar[1].disabled = i === n - 1;
+  };
+  const git = (i, yumusak) => iz.scrollTo({ left: Math.max(0, Math.min(n - 1, i)) * iz.clientWidth, behavior: yumusak ? "smooth" : "auto" });
+  oklar.forEach(b => b.onclick = () => git(akt + +b.dataset.y, true));
+  noktalar.forEach(x => x.onclick = () => git(+x.dataset.i, true));
+  iz.addEventListener("scroll", guncelle, { passive: true });
+  iz.tabIndex = 0;
+  iz.onkeydown = e => { if (e.key === "ArrowRight") git(akt + 1, true); if (e.key === "ArrowLeft") git(akt - 1, true); };
+  requestAnimationFrame(() => { git(ilk || 0, false); guncelle(); });
+}
+
 function aylikMenuAc(yurtId) {
   const y = yurtlar.find(x => x.id === yurtId);
   const ym = yurtMenuleri[yurtId];
   const baslikEl = document.getElementById("aylik-modal-baslik");
   const icerikEl = document.getElementById("aylik-modal-icerik");
   baslikEl.textContent = (y ? y.ad : "Yurt") + " – Gelecek Günlerin Menüsü";
-  const altEl0 = document.getElementById("aylik-modal-alt"); if (altEl0) altEl0.textContent = "Yarından itibaren menü listesi";
+  const altEl0 = document.getElementById("aylik-modal-alt"); if (altEl0) altEl0.textContent = "Sayfaları kaydırarak günleri gez";
 
   if (!ym) {
     icerikEl.innerHTML = '<div class="bos-menu">Bu yurdun menüsü henüz eklenmedi.</div>';
@@ -1357,7 +1415,7 @@ function aylikMenuAc(yurtId) {
     if (!tarihler.length) {
       icerikEl.innerHTML = '<div class="bos-menu">Bu ay için kalan başka menü bulunmuyor.</div>';
     } else {
-      icerikEl.innerHTML = tarihler.map(k => {
+      kitapKur(icerikEl, tarihler.map(k => {
         const d = T(k);
         const bugunMu = +d === +bugun;
         const yarinMu = +d === +ekle(bugun, 1);
@@ -1376,11 +1434,8 @@ function aylikMenuAc(yurtId) {
           }).join("");
         };
 
-        return `<div class="aylik-gun-kart${sinif}"${idAttr}>
-          <div class="aylik-gun-baslik">
-            <span>${tarihBaslik}</span>
-            ${rozet}
-          </div>
+        return `<div class="kb-ic${sinif}">
+          ${sayfaBaslik(d, rozet)}
           <div class="aylik-ogun-bloku">
             <b>Kahvaltı</b>
             ${ogun(gun.kahvalti)}
@@ -1391,16 +1446,12 @@ function aylikMenuAc(yurtId) {
           </div>
           ${gun.aksamNotu ? `<div class="menu-not-kutu aktif" style="margin-top:8px">📌 ${gun.aksamNotu}</div>` : ""}
         </div>`;
-      }).join("");
+      }), tarihler.indexOf(tarihler.find(k => k > bugunStr)));
     }
   }
 
   document.getElementById("aylik-modal").classList.add("aktif");
   document.body.style.overflow = "hidden";
-  setTimeout(() => {
-    const hedef = document.getElementById("aylik-bugun") || document.getElementById("aylik-yarin");
-    if (hedef) hedef.scrollIntoView({ behavior: "smooth", block: "center" });
-  }, 150);
 }
 
 function uniEviHaftaAc() {
@@ -1415,7 +1466,7 @@ function uniEviHaftaAc() {
   if (!gunler.length) {
     icerikEl.innerHTML = '<div class="bos-menu">Bu hafta için menü henüz yayımlanmadı.</div>';
   } else {
-    icerikEl.innerHTML = gunler.map(k => {
+    kitapKur(icerikEl, gunler.map(k => {
       const d = T(k);
       const bugunMu = k === bugunStr, yarinMu = +d === +ekle(bugun, 1);
       const rozet = bugunMu ? '<span class="etiket mavi">Bugün</span>' : yarinMu ? '<span class="etiket yesil">Yarın</span>' : '';
@@ -1432,8 +1483,8 @@ function uniEviHaftaAc() {
       } else {
         govde = `<div class="aylik-bos">Yemekhane kapalı${kapali[k] ? " · " + kapali[k] : ""}</div>`;
       }
-      return `<div class="aylik-gun-kart${sinif}"><div class="aylik-gun-baslik"><span>${baslik}</span>${rozet}</div><div class="aylik-ogun-bloku"><b>Öğle yemeği</b>${govde}</div></div>`;
-    }).join("");
+      return `<div class="kb-ic${sinif}">${sayfaBaslik(d, rozet)}<div class="aylik-ogun-bloku"><b>Öğle yemeği</b>${govde}</div></div>`;
+    }), 0);
   }
   document.getElementById("aylik-modal").classList.add("aktif");
   document.body.style.overflow = "hidden";
@@ -1567,7 +1618,7 @@ function geriSay() {
     <div class="modal-ust">
       <div>
         <h3 id="aylik-modal-baslik">Gelecek Günlerin Menüsü</h3>
-        <p id="aylik-modal-alt">Yarından itibaren menü listesi</p>
+        <p id="aylik-modal-alt">Sayfaları kaydırarak günleri gez</p>
       </div>
       <button class="modal-kapat" type="button" onclick="aylikMenuKapat()" aria-label="Kapat">×</button>
     </div>
