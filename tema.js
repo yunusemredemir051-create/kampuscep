@@ -73,7 +73,9 @@
     { id: "bursa", m: "#c9a227", ad: "Bursaspor", c: ["#0a7a3a", "#ffffff"], a: "#0a7a3a", k: "#3ddc84", t: "221,243,230", h: "linear-gradient(120deg,#075d2c,#0a7a3a 60%,#e8efe9)", g1: "10,122,58", g2: "180,200,185" },
     { id: "malatya", m: "#111111", ad: "Yeni Malatyaspor", c: ["#f5c400", "#111111"], a: "#a87f00", k: "#ffd21f", t: "255,243,196", h: "linear-gradient(120deg,#111111,#3a3000 55%,#f5c400)", g1: "245,196,0", g2: "40,40,40" },
     { id: "erzurum", m: "#0d2f9c", ad: "Erzurumspor", c: ["#1b4fd8", "#ffffff"], a: "#1b4fd8", k: "#6f9bff", t: "222,232,255", h: "linear-gradient(120deg,#0d2f9c,#1b4fd8 60%,#7fb0ff)", g1: "27,79,216", g2: "170,205,255" },
-    { id: "urfa", m: "#0b6b32", ad: "Şanlıurfaspor", c: ["#0b7a3b", "#f2c400"], a: "#0b7a3b", k: "#3ddc84", t: "221,243,230", h: "linear-gradient(120deg,#075d2c,#0b7a3b 55%,#f2c400)", g1: "11,122,59", g2: "242,196,0" }
+    { id: "urfa", m: "#0b6b32", ad: "Şanlıurfaspor", c: ["#0b7a3b", "#f2c400"], a: "#0b7a3b", k: "#3ddc84", t: "221,243,230", h: "linear-gradient(120deg,#075d2c,#0b7a3b 55%,#f2c400)", g1: "11,122,59", g2: "242,196,0" },
+    { id: "aydin", m: "#e3a91f", ad: "Aydınspor", c: ["#111111", "#e3a91f"], a: "#1b1b1b", k: "#f0b92a", t: "255,240,200", h: "linear-gradient(120deg,#0b0b0b,#2b2410 55%,#e3a91f)", g1: "227,169,31", g2: "40,40,40" },
+    { id: "afyon", m: "#5b2aa8", ad: "Afyonspor", c: ["#6a2fc0", "#ffffff"], a: "#6a2fc0", k: "#b38cff", t: "236,226,255", h: "linear-gradient(120deg,#4a1f8f,#6a2fc0 60%,#b38cff)", g1: "106,47,192", g2: "179,140,255" }
   ];
   (function () {
     var css = "";
@@ -84,7 +86,7 @@
         S + " .isik{background:radial-gradient(520px 380px at 90% 0%,rgba(" + r.g2 + ",.16),transparent 70%),radial-gradient(600px 460px at -5% 25%,rgba(" + r.g1 + ",.17),transparent 70%),var(--zemin)}" +
         S + '[data-tema="koyu"]{--mavi:' + r.k + ";--mor:" + r.m + ";--mavi-acik:color-mix(in srgb," + r.k + " 22%,#141a2c)!important}" +
         S + '[data-tema="koyu"] .isik{background:radial-gradient(520px 380px at 90% 0%,rgba(' + r.g2 + ',.13),transparent 70%),radial-gradient(600px 460px at -5% 25%,rgba(' + r.g1 + ',.2),transparent 70%),var(--zemin)}' +
-        S + '[data-tema="koyu"] .btn.ana,' + S + '[data-tema="koyu"] .filtre button.aktif{color:' + (r.id === "fb" || r.id === "bjk" || r.id === "malatya" ? "#101322" : "#fff") + "}\n";
+        S + '[data-tema="koyu"] .btn.ana,' + S + '[data-tema="koyu"] .filtre button.aktif{color:' + (r.id === "fb" || r.id === "bjk" || r.id === "malatya" || r.id === "aydin" ? "#101322" : "#fff") + "}\n";
     });
     /* seçici düğmeleri (iki renkli yuvarlak) */
     css += ".renk-sec{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px 6px}" +
@@ -95,7 +97,7 @@
       ".renk-dugme:focus-visible{outline:2px solid var(--mavi);outline-offset:1px}";
     stil(css);
   })();
-  var TEMA_IMG = { zumrut: 1, lavanta: 1, gunbatimi: 1, okyanus: 1, turk: 1, klasik: 1, gs: 1, fb: 1, bjk: 1, ts: 1, amed: 1, erzincan: 1, elazig: 1, antep: 1, bursa: 1, malatya: 1, erzurum: 1, urfa: 1 };
+  var TEMA_IMG = { zumrut: 1, lavanta: 1, gunbatimi: 1, okyanus: 1, turk: 1, klasik: 1, gs: 1, fb: 1, bjk: 1, ts: 1, amed: 1, erzincan: 1, elazig: 1, antep: 1, bursa: 1, malatya: 1, erzurum: 1, urfa: 1, aydin: 1, afyon: 1 };
   function renkOku() { var r = oku("kc-renk") || ""; return RENKLER.some(function (x) { return x.id === r; }) ? r : ""; }
   function renkUygula() {
     var r = kok.classList.contains("ozel-renkli") ? "" : renkOku(); /* özel günde seçilen takım teması geçici olarak devre dışı */
