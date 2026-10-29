@@ -95,7 +95,7 @@
       ".renk-dugme:focus-visible{outline:2px solid var(--mavi);outline-offset:1px}";
     stil(css);
   })();
-  var TEMA_IMG = { zumrut: 1, gunbatimi: 1, okyanus: 1, turk: 1, klasik: 1, gs: 1, fb: 1, bjk: 1, ts: 1, amed: 1, erzincan: 1, elazig: 1, antep: 1, bursa: 1, malatya: 1, erzurum: 1, urfa: 1 };
+  var TEMA_IMG = { zumrut: 1, lavanta: 1, gunbatimi: 1, okyanus: 1, turk: 1, klasik: 1, gs: 1, fb: 1, bjk: 1, ts: 1, amed: 1, erzincan: 1, elazig: 1, antep: 1, bursa: 1, malatya: 1, erzurum: 1, urfa: 1 };
   function renkOku() { var r = oku("kc-renk") || ""; return RENKLER.some(function (x) { return x.id === r; }) ? r : ""; }
   function renkUygula() {
     var r = kok.classList.contains("ozel-renkli") ? "" : renkOku(); /* özel günde seçilen takım teması geçici olarak devre dışı */
