@@ -68,6 +68,7 @@ sub, sup { font-size: .72em; }
 .ders .meta { color: var(--soluk); font-size: 13px; font-weight: 600; margin-bottom: 10px; }
 .ders ol { margin: 0; padding-left: 22px; }
 .ders li { margin: 4px 0; }
+.grup-baslik { font-size: 22px; letter-spacing: -.4px; margin: 26px 4px 6px; }
 .alt-bilgi { display: flex; flex-wrap: wrap; gap: 8px 18px; justify-content: center; margin: 36px 0 0; font-size: 13px; color: var(--soluk); }
 .alt-bilgi a { color: var(--soluk); font-weight: 600; }
 @media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
@@ -101,6 +102,17 @@ sub, sup { font-size: .72em; }
       <h1>Ders notları ve konu özetleri</h1>
       <p class="giris">Her ünitenin konu özetini okuyabilir, PDF notunu açabilir ve sorusu olan ünitelerde kendini test edebilirsin. Yeni dersler dönem boyunca eklenecek.</p>
     </div>
+    <h2 class="grup-baslik">Ortak dersler</h2>
+    <p class="giris">Fırat Üniversitesi’nde tüm bölümlerin aldığı dersler.</p>
+    <section class="ders cam">
+      <h2><a href="ders.html?d=ortak/inkilap-tarihi-1" style="color:inherit;text-decoration:none">Atatürk İlkeleri ve İnkılap Tarihi I</a></h2>
+      <div class="meta">Ortak ders · tüm bölümler · 15 ünite · 14 ünitede test · 3 vize/final provası</div>
+      <ol><li><a href="notlar/ortak/inkilap-tarihi-1/unite-1.html">İnkılap ve Konuyla İlgili Kavramlar</a></li><li><a href="notlar/ortak/inkilap-tarihi-1/unite-2.html">Osmanlı Devleti’nin Yıkılış Nedenleri: İç Nedenler</a></li><li>Osmanlı Devleti’nin Yıkılış Nedenleri: Dış Nedenler</li><li>Osmanlı Devleti’ni Kurtarma Çabaları: Tanzimat Öncesi ve Tanzimat Dönemi</li><li>Meşrutiyet Dönemi</li><li>Osmanlı Devleti’nde Son Dönem Fikir Akımları</li><li>Parçalanma Süreci: İttihat ve Terakki, Trablusgarp ve Balkan Savaşları</li><li>Birinci Dünya Savaşı</li><li>Paylaşma Projeleri ve Savaşı Sona Erdiren Antlaşmalar</li><li>Mondros Ateşkes Antlaşması ve İlk İşgaller</li><li>Azınlık Faaliyetleri, Zararlı ve Millî Cemiyetler</li><li>Millî Mücadelenin Başlaması: Samsun, Havza ve Amasya</li><li>Kongreler Dönemi ve Heyet-i Temsiliye’nin Ankara’ya Gelişi</li><li>Son Osmanlı Meclis-i Mebusanı, Misak-ı Millî ve İstanbul’un İşgali</li><li>Dönem Planı ve Kronoloji (hızlı tekrar)</li></ol>
+      <div class="butonlar" style="margin:14px 0 0"><a class="btn ana" href="ders.html?d=ortak/inkilap-tarihi-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Notlar ve testler</a></div>
+    </section>
+    <section class="ders cam"><h2>İngilizce</h2><div class="meta">Tüm bölümlerin ortak dersi · yakında</div></section>
+    <section class="ders cam"><h2>Türk Dili</h2><div class="meta">Tüm bölümlerin ortak dersi · yakında</div></section>
+    <h2 class="grup-baslik">Yönetim Bilişim Sistemleri</h2>
     <section class="ders cam">
       <h2><a href="ders.html?d=ybs/1/bilisim-sistemleri" style="color:inherit;text-decoration:none">Bilişim Sistemleri ve Teknolojilerine Giriş</a></h2>
       <div class="meta">YBS 1. sınıf · 8 ünite · 8 ünitede test</div>
@@ -130,12 +142,6 @@ sub, sup { font-size: .72em; }
       <div class="meta">YBS 2. sınıf · 2 ünite</div>
       <ol><li><a href="notlar/ybs/2/finansal-yonetim/unite-1.html">Finansal Yönetim ve Finansal Sistem</a></li><li><a href="notlar/ybs/2/finansal-yonetim/unite-2.html">Finansal Tablolar</a></li></ol>
       <div class="butonlar" style="margin:14px 0 0"><a class="btn ana" href="ders.html?d=ybs/2/finansal-yonetim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Notlar ve testler</a></div>
-    </section>
-    <section class="ders cam">
-      <h2><a href="ders.html?d=ybs/2/inkilap-tarihi" style="color:inherit;text-decoration:none">Atatürk İlkeleri ve İnkılap Tarihi I</a></h2>
-      <div class="meta">YBS 2. sınıf · 2 ünite</div>
-      <ol><li><a href="notlar/ybs/2/inkilap-tarihi/unite-1.html">İnkılap ve Konuyla İlgili Kavramlar</a></li><li><a href="notlar/ybs/2/inkilap-tarihi/unite-2.html">Osmanlı Devleti’nin Yıkılış Nedenleri: İç Nedenler</a></li></ol>
-      <div class="butonlar" style="margin:14px 0 0"><a class="btn ana" href="ders.html?d=ybs/2/inkilap-tarihi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Notlar ve testler</a></div>
     </section>
   </main>
   <footer class="alt-bilgi">
