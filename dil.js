@@ -271,6 +271,7 @@
   /* ---- ek sözlük: ders programı, bayram afişleri, sayaçlar ---- */
   const EK_TABLO = [
     ["Pzt", "Mon", "Duş", "الاثنين"], ["Sal", "Tue", "Sêş", "الثلاثاء"], ["Çar", "Wed", "Çar", "الأربعاء"], ["Per", "Thu", "Pên", "الخميس"], ["Cum", "Fri", "Îne", "الجمعة"],
+    ["Haftalık ders programı", "Weekly class schedule", "Bernameya dersên hefteyî", "الجدول الأسبوعي للدروس"],
     ["Her hafta aynı", "Same every week", "Her hefte yek e", "نفسه كل أسبوع"],
     ["Bu sınıf için gün ve saati girilmiş ders yok.", "No classes with a day and time have been entered for this year.", "Ji bo vê polê ders bi roj û demjimêr nehatiye tomarkirin.", "لا توجد دروس مُدخلة بيوم وساعة لهذا الصف."],
     ["Bu şube için ders yok.", "No classes for this section.", "Ji bo vê şaxê ders tune.", "لا توجد دروس لهذه الشعبة."],
@@ -408,6 +409,10 @@
     [/^(YBS|Tıp|Adli Bilişim) (\d)\. sınıf · haftalık ders programı$/, function (m, d, c) {
       const b = c(m[1]);
       return d === "en" ? b + " Year " + m[2] + " · weekly class schedule" : d === "ku" ? "Bernameya dersên hefteyî · " + b + " polê " + m[2] + "an" : "الجدول الأسبوعي للدروس · " + b + " الصف " + m[2];
+    }],
+    [/^(YBS|Tıp|Adli Bilişim) (\d)\. sınıf$/, function (m, d, c) {
+      const b = c(m[1]);
+      return d === "en" ? b + " · Year " + m[2] : d === "ku" ? b + " · polê " + m[2] + "an" : b + " · الصف " + m[2];
     }],
     [/^(\d)\. öğretim$/, function (m, d) { return d === "en" ? (m[1] === "1" ? "Day program" : "Evening program") : d === "ku" ? "Ferma " + m[1] + "an" : (m[1] === "1" ? "الدوام الأول" : "الدوام الثاني"); }],
     [/^Şube (\d)$/, function (m, d) { return d === "en" ? "Section " + m[1] : d === "ku" ? "Şaxa " + m[1] : "الشعبة " + m[1]; }],
