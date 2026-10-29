@@ -59,18 +59,39 @@
     o.type = "sine"; o.frequency.setValueAtTime(f * 1.5, z); o.frequency.exponentialRampToValueAtTime(f, z + 0.06);
     zarf(g, z, d, v, 0.004); o.connect(g); g.connect(ana); o.start(z); o.stop(z + d + 0.05);
   }
-  var N = { G4: 392, B4: 493.88, D5: 587.33, E5: 659.25, Fs5: 739.99, G5: 783.99, B5: 987.77, D6: 1174.66, E4: 329.63, A4: 440, A5: 880 };
+  /* piyano benzeri: harmonik seri, üst harmonikler daha hızlı söner */
+  function piyano(f, t, d, v) {
+    var c = ctx, z = c.currentTime + t;
+    [[1, 1, 1], [2, 0.42, 0.7], [3, 0.2, 0.5], [4, 0.1, 0.35], [5, 0.05, 0.25]].forEach(function (p) {
+      var o = c.createOscillator(), g = c.createGain(); o.type = "sine"; o.frequency.value = f * p[0];
+      zarf(g, z, d * p[2], v * p[1], 0.006); o.connect(g); g.connect(ana); o.start(z); o.stop(z + d * p[2] + 0.05);
+    });
+  }
+  /* çan: eşuyumsuz üst tonlar (kule saati / kampüs çanı) */
+  function can(f, t, d, v) {
+    var c = ctx, z = c.currentTime + t;
+    [[1, 1, 1], [2.0, 0.55, 0.8], [2.76, 0.35, 0.55], [5.4, 0.16, 0.32], [8.93, 0.07, 0.18]].forEach(function (p) {
+      var o = c.createOscillator(), g = c.createGain(); o.type = "sine"; o.frequency.value = f * p[0];
+      zarf(g, z, d * p[2], v * p[1], 0.004); o.connect(g); g.connect(ana); o.start(z); o.stop(z + d * p[2] + 0.05);
+    });
+  }
+  /* sayfa çevirme: kısa, parlak kâğıt hışırtısı */
+  function sayfa(t, v) { hisirti(t, 0.16, v, 3200, 7000); hisirti(t + 0.05, 0.2, v * 0.6, 1800, 4200); }
+  /* tahta tıkırtı */
+  function tahta(f, t, d, v) { vurus(f, t, d, v); hisirti(t, 0.03, v * 0.35, 1500, 900); }
+  var N = { E4: 329.63, Gs4: 415.3, Fs4: 369.99, B3: 246.94, G4: 392, B4: 493.88, D5: 587.33, E5: 659.25, G5: 783.99, B5: 987.77, D6: 1174.66 };
   var SESLER = {
-    acilis: function () { pluck(N.G4, 0, 1.0, 0.2); pluck(N.B4, 0.12, 1.0, 0.18); pluck(N.D5, 0.24, 1.1, 0.18); cam(N.G5, 0.38, 1.6, 0.14); },
-    menu: function () { hisirti(0, 0.22, 0.06, 500, 2400); pluck(N.D5, 0.1, 0.5, 0.12); },
-    kapat: function () { hisirti(0, 0.2, 0.08, 2200, 450); pluck(N.G4, 0.04, 0.4, 0.14); },
-    basari: function () { cam(N.E5, 0, 0.7, 0.14); cam(N.B5, 0.11, 1.0, 0.13); },
-    hata: function () { vurus(165, 0, 0.35, 0.22); vurus(130, 0.15, 0.45, 0.2); },
-    bilgi: function () { cam(N.A5, 0, 0.6, 0.2); },
-    sekme: function () { pluck(N.D6, 0, 0.12, 0.16); },
-    tik: function () { pluck(N.B5, 0, 0.09, 0.11); },
-    yildiz: function () { cam(N.G5, 0, 0.6, 0.12); cam(N.B5, 0.09, 0.6, 0.12); cam(N.D6, 0.18, 1.1, 0.13); },
-    yenile: function () { hisirti(0, 0.35, 0.06, 400, 3000); pluck(N.E5, 0.28, 0.5, 0.1); }
+    /* açılış: kampüs saat kulesi — dört çanlı kısa dizi */
+    acilis: function () { can(N.E4 * 2, 0, 1.2, 0.14); can(N.Gs4 * 2, 0.3, 1.2, 0.13); can(N.Fs4 * 2, 0.6, 1.2, 0.13); can(N.B3 * 2, 0.95, 2.0, 0.15); },
+    menu: function () { sayfa(0, 0.07); piyano(N.D5, 0.12, 0.7, 0.1); },
+    kapat: function () { vurus(120, 0, 0.22, 0.24); hisirti(0, 0.12, 0.07, 2600, 1200); },
+    basari: function () { piyano(N.G5, 0, 0.8, 0.15); piyano(N.B5, 0.1, 1.1, 0.14); },
+    hata: function () { tahta(150, 0, 0.18, 0.22); tahta(125, 0.17, 0.26, 0.2); },
+    bilgi: function () { can(N.G5 * 1.5, 0, 0.9, 0.12); },
+    sekme: function () { sayfa(0, 0.09); },
+    tik: function () { piyano(N.B5, 0, 0.12, 0.06); },
+    yildiz: function () { piyano(N.G5, 0, 0.7, 0.12); piyano(N.B5, 0.09, 0.7, 0.12); piyano(N.D6, 0.18, 1.3, 0.13); },
+    yenile: function () { sayfa(0, 0.06); sayfa(0.14, 0.06); piyano(N.E5, 0.3, 0.7, 0.1); }
   };
   var acik = true; try { acik = localStorage.getItem("kc-ses") !== "0"; } catch (e) {}
   function ac() { var c = hazir(); if (c && c.state === "suspended") c.resume(); }
