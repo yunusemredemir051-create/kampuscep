@@ -620,18 +620,22 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .ayar-liste.renk-sec .renk-dugme .ayar-tik { margin-left: auto; }
 
 /* ---- Ayarlar: premium görünüm ---- */
-.ayar-hero { position: relative; overflow: hidden; border-radius: 26px; padding: 22px 20px 18px; color: #fff; background: linear-gradient(135deg, var(--mavi), var(--mor, #8d5cf6)); box-shadow: 0 18px 38px -18px var(--mavi); }
-.ayar-hero-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(220px 160px at 100% 0%, rgba(255,255,255,.28), transparent 70%), radial-gradient(180px 140px at 0% 110%, rgba(255,255,255,.18), transparent 70%); }
-.ayar-hero > * { position: relative; }
-.ayar-hero .ayar-admin-rozet { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,.22); box-shadow: none; backdrop-filter: blur(6px); font-size: 11px; padding: 5px 10px; }
-.ayar-hero-ust { display: flex; align-items: center; gap: 14px; }
-.ayar-hero .ayar-avatar-buyuk { width: 76px; height: 76px; font-size: 38px; border: 3px solid rgba(255,255,255,.85); box-shadow: 0 8px 20px rgba(0,0,0,.18); background: #fff; }
-.ayar-hero-metin { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
-.ayar-hero-metin b { font-size: 21px; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; }
-.ayar-hero-metin small { font-size: 13px; font-weight: 600; opacity: .85; }
-.ayar-hero-etiketler { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-.ayar-hero-etiketler span { background: rgba(255,255,255,.2); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.25); padding: 5px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; }
-.ayar-hero-btn { margin-top: 16px; width: 100%; border: 0; cursor: pointer; border-radius: 14px; padding: 12px; font: 800 14px var(--font, inherit); color: var(--mavi); background: #fff; box-shadow: 0 8px 18px -10px rgba(0,0,0,.4); }
+.ayar-hero { position: relative; overflow: hidden; border-radius: 28px; padding: 0 20px 20px; text-align: center; color: var(--yazi, #141b34); background: var(--kart, #fff); border: 1px solid var(--cizgi, rgba(20,27,52,.08)); box-shadow: 0 18px 40px -22px rgba(30,45,110,.45); }
+[data-tema="koyu"] .ayar-hero { background: #1e2438; border-color: #2b3350; color: #f0f3fe; }
+.ayar-hero-bg { position: absolute; left: 0; right: 0; top: 0; height: 96px; pointer-events: none; background: radial-gradient(180px 120px at 100% 0%, rgba(255,255,255,.35), transparent 70%), linear-gradient(120deg, var(--mavi), var(--mor, #8d5cf6)); }
+.ayar-hero > *:not(.ayar-hero-bg):not(.ayar-admin-rozet) { position: relative; }
+.ayar-hero .ayar-admin-rozet { position: absolute; top: 12px; right: 12px; background: rgba(255,255,255,.25); color: #fff; box-shadow: none; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 11px; padding: 5px 10px; }
+.ayar-hero-ust { display: flex; flex-direction: column; align-items: center; gap: 10px; padding-top: 44px; }
+.ayar-hero .ayar-avatar-buyuk { width: 104px; height: 104px; font-size: 44px; border: 4px solid var(--kart, #fff); box-shadow: 0 10px 24px -8px rgba(20,27,52,.45); background: #eef1fb; }
+[data-tema="koyu"] .ayar-hero .ayar-avatar-buyuk { border-color: #1e2438; background: #2a3150; }
+.ayar-hero .av-harf { font: 800 44px var(--font, inherit); color: #fff; width: 100%; height: 100%; display: grid; place-items: center; background: linear-gradient(135deg, var(--mavi), var(--mor, #8d5cf6)); }
+.ayar-hero-metin { min-width: 0; display: flex; flex-direction: column; gap: 3px; align-items: center; }
+.ayar-hero-metin b { font-size: 22px; font-weight: 800; line-height: 1.15; overflow-wrap: anywhere; }
+.ayar-hero-metin small { font-size: 13px; font-weight: 600; color: var(--soluk, #6b7390); }
+.ayar-hero-etiketler { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; margin-top: 14px; }
+.ayar-hero-etiketler span { background: color-mix(in srgb, var(--mavi) 9%, transparent); color: var(--mavi); padding: 6px 12px; border-radius: 999px; font-size: 12.5px; font-weight: 700; }
+.ayar-hero-etiketler:empty { display: none; }
+.ayar-hero-btn { margin-top: 16px; width: 100%; cursor: pointer; border-radius: 14px; padding: 13px; font: 800 14px var(--font, inherit); color: #fff; border: 0; background: linear-gradient(135deg, var(--mavi), var(--mor, #8d5cf6)); box-shadow: 0 12px 24px -14px var(--mavi); }
 .ayar-liste-baslik { margin: 26px 6px 10px; }
 .ayar-liste { border-radius: 22px; box-shadow: 0 10px 26px -18px rgba(30,45,110,.35); }
 .ayar-satir { padding: 14px 16px; min-height: 66px; }
@@ -1768,9 +1772,9 @@ function geriSay() {
 <script src="/firebase-ayar.js"></script>
 <script src="/ses.js?v=7"></script>
 <script src="/bildirim.js?v=1"></script>
-<script type="module" src="/yorum.js?v=16"></script>
+<script type="module" src="/yorum.js?v=17"></script>
 <script src="/dil.js?v=4"></script>
-<script src="/ayarlar.js?v=8"></script>
+<script src="/ayarlar.js?v=9"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=3"></script>
 <script src="/program.js?v=5"></script>

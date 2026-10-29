@@ -33,7 +33,7 @@
     if (yurtDeger && yurtSel) { const o = [...yurtSel.options].find(x => x.value === yurtDeger); yurtAd = o ? o.textContent : ""; }
     const parca = [yurtAd, bolum].filter(Boolean).join(" · ");
     const kAv = document.getElementById("ayar-kart-avatar"), kAd = document.getElementById("ayar-kart-ad"), kAlt = document.getElementById("ayar-kart-alt");
-    if (kAv) kAv.innerHTML = avatarHtml(av);
+    if (kAv) kAv.innerHTML = String(av).startsWith("img:") ? avatarHtml(av) : `<span class="av-harf">${(ad || "K").trim().charAt(0).toLocaleUpperCase("tr")}</span>`;
     if (kAd) kAd.textContent = ad || "Profilini oluştur";
     if (kAlt) kAlt.textContent = ad ? "KampüsCepte üyesi" : "Adını, yurdunu ve avatarını seç";
     const et = document.getElementById("ayar-kart-etiketler");
