@@ -74,6 +74,7 @@ async function adminCikisYap() {
 const adOku = () => { try { return localStorage.getItem("kc-ad") || ""; } catch (e) { return ""; } };
 const adYaz = a => { try { localStorage.setItem("kc-ad", a); } catch (e) {} };
 function toast(m) {
+  if (window.kcBildirim) return window.kcBildirim(m);
   let t = document.getElementById("dg-toast");
   if (!t) { t = document.createElement("div"); t.id = "dg-toast"; document.body.appendChild(t); }
   t.textContent = m; t.classList.add("goster"); clearTimeout(toast.z); toast.z = setTimeout(() => t.classList.remove("goster"), 3200);

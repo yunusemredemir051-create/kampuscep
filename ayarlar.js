@@ -208,20 +208,7 @@
     window.scrollTo({ top: 0 });
   }
 
-  function bildirimGoster(mesaj) {
-    let toast = document.getElementById("kc-toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "kc-toast";
-      toast.className = "kc-toast cam";
-      document.body.appendChild(toast);
-    }
-    toast.textContent = mesaj;
-    toast.classList.add("goster");
-    setTimeout(() => {
-      toast.classList.remove("goster");
-    }, 3000);
-  }
+  function bildirimGoster(mesaj) { if (window.kcBildirim) window.kcBildirim(mesaj); }
 
   function baglaOlaylar() {
     const form = document.getElementById("ayar-form");
