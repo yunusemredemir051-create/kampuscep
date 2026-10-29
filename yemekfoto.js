@@ -661,6 +661,12 @@
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
     "yurt": {
+      "makarna salatası": "yurt-makarna-salatasi",
+      "tarhana çorbası": "yurt-tarhana-corbasi",
+      "kıymalı ıspanak": "yurt-kiymali-ispanak",
+      "tavuk tantuni": "yurt-tavuk-tantuni",
+      "tantuni": "yurt-tavuk-tantuni",
+      "ayran": "yurt-ayran",
       "mercimek çorbası": "yurt-mercimek-corbasi",
       "süzme mercimek çorbası": "yurt-mercimek-corbasi",
       "sebze çorbası": "yurt-sebze-corbasi",
