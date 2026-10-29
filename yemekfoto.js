@@ -1363,7 +1363,112 @@
     peynir: '<ellipse cx="100" cy="146" rx="62" ry="12" fill="#e2e8f0"/><path d="M42 132l116-44-6-26L42 90z" fill="#fde047" stroke="#ca8a04" stroke-width="3"/><path d="M42 90l110-28" stroke="#facc15" stroke-width="3"/><path d="M42 90v42l116-44" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/><circle cx="78" cy="112" r="6" fill="#fbbf24"/><circle cx="112" cy="102" r="5" fill="#fbbf24"/><circle cx="64" cy="120" r="3.5" fill="#fbbf24"/>',
     varsayilan: () => VEK_CIZIM.tabak + '<path d="M40 60v34c0 8 12 8 12 0V60M46 60v66M148 60c-14 6-20 24-18 40h18V60zM148 100v34" fill="none" stroke="#64748b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'
   };
+  /* ---- Yemeğe özel vektörel çizimler (üstten bakış, fotoğraf yoksa gösterilir) ---- */
+  const CZ = (function () {
+    const rnd = seed => { let s = seed % 2147483647; if (s <= 0) s += 2147483646; return () => (s = (s * 16807) % 2147483647) / 2147483647; };
+    const dots = (n, seed, rad, fn, cx = 100, cy = 100) => {
+      const r = rnd(seed); let o = "";
+      for (let i = 0; i < n; i++) { const a = r() * 6.2832, d = Math.sqrt(r()) * rad; o += fn(cx + Math.cos(a) * d, cy + Math.sin(a) * d * 0.95, i, r); }
+      return o;
+    };
+    const rot = (x, y, a) => `transform="rotate(${Math.round(a)} ${x.toFixed(1)} ${y.toFixed(1)})"`;
+    const plate = () => '<circle cx="100" cy="100" r="82" fill="#fff" stroke="#dbe3ee" stroke-width="3"/><circle cx="100" cy="100" r="64" fill="#f8fafc" stroke="#e8edf4" stroke-width="2"/>';
+    const bowl = c => '<circle cx="100" cy="100" r="82" fill="#fff" stroke="#dbe3ee" stroke-width="3"/><circle cx="100" cy="100" r="68" fill="#f1f5f9" stroke="#e2e8f0" stroke-width="2"/><circle cx="100" cy="100" r="60" fill="' + c + '"/><path d="M58 76a50 50 0 0 1 38-22" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="5" stroke-linecap="round"/>';
+    const pea = (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4.6" fill="#6cc66d" stroke="#2f8f3a" stroke-width="1.6"/>`;
+    const chick = (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5.2" fill="#eac680" stroke="#b98a3a" stroke-width="1.6"/>`;
+    const bean = (x, y, i, r) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="6.5" ry="3.8" ${rot(x, y, r() * 180)} fill="#fff4de" stroke="#d4b483" stroke-width="1.6"/>`;
+    const cube = (f, s, w = 9) => (x, y, i, r) => `<rect x="${(x - w / 2).toFixed(1)}" y="${(y - w / 2).toFixed(1)}" width="${w}" height="${w}" rx="2" ${rot(x, y, r() * 90)} fill="${f}" stroke="${s}" stroke-width="1.6"/>`;
+    const meat = cube("#8a4b22", "#5a2b10", 10);
+    const carrot = cube("#f97316", "#c2410c", 7);
+    const potc = cube("#fbc54d", "#c58a1a", 10);
+    const green = (x, y, i, r) => `<path d="M${(x - 9).toFixed(1)} ${y.toFixed(1)}q9 -7 18 0" ${rot(x, y, r() * 180)} fill="none" stroke="#4e9d3b" stroke-width="6" stroke-linecap="round"/>`;
+    const herb = (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.1" fill="#3f8f2f"/>`;
+    const grain = c => (x, y, i, r) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="4" ry="1.9" ${rot(x, y, r() * 180)} fill="${c[0]}" stroke="${c[1]}" stroke-width=".8"/>`;
+    const mint = (x, y) => `<ellipse cx="${x}" cy="${y}" rx="6" ry="3.2" fill="#4caf50" stroke="#2e7d32" stroke-width="1.4" ${rot(x, y, 30)}/>`;
+    const lemon = '<path d="M150 56a20 20 0 0 1 14 22z" fill="#fde047" stroke="#ca8a04" stroke-width="2.5"/><path d="M152 64l8 10" stroke="#fef9c3" stroke-width="2"/>';
+    const pepperoni = (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7.5" fill="#c2331f" stroke="#8f1d10" stroke-width="1.6"/>`;
+    const olive = (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="4" fill="#27272a"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.4" fill="#d4d4d8"/>`;
+    const fry = (x, y, a) => `<rect x="${x - 17}" y="${y - 3.5}" width="34" height="7" rx="2.5" fill="#fbbf24" stroke="#b45309" stroke-width="1.6" ${rot(x, y, a)}/>`;
+    const patty = (x, y, rx, ry) => `<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="#8b4a22" stroke="#4e2610" stroke-width="2.5"/><path d="M${x - rx * .6} ${y - ry * .5}l${rx * .5} ${ry}M${x - rx * .1} ${y - ry * .7}l${rx * .5} ${ry * 1.3}M${x + rx * .35} ${y - ry * .6}l${rx * .45} ${ry}" stroke="#5a2f12" stroke-width="3" stroke-linecap="round" opacity=".7"/>`;
+    const tomSl = (x, y, r = 11) => `<circle cx="${x}" cy="${y}" r="${r}" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/><circle cx="${x}" cy="${y}" r="${r * .45}" fill="#fca5a5"/>`;
+    const leafBlob = (x, y, c = "#5cb85c", s = "#2f8f3a") => `<path d="M${x - 14} ${y}c0-14 12-18 16-10 6-12 22-4 14 8 10 4 4 16-8 14-8 8-22 2-22-12z" fill="${c}" stroke="${s}" stroke-width="2"/>`;
+    const cheeseSl = (x, y, a) => `<rect x="${x - 22}" y="${y - 14}" width="44" height="28" rx="3" fill="#fde047" stroke="#ca8a04" stroke-width="2.2" ${rot(x, y, a)}/><circle cx="${x - 8}" cy="${y}" r="3" fill="#fbbf24" ${rot(x, y, a)}/>`;
+    const eggp = (x, y, a, l = 58) => `<rect x="${x - l / 2}" y="${y - 11}" width="${l}" height="22" rx="11" fill="#4c2a5e" stroke="#2e1740" stroke-width="2.2" ${rot(x, y, a)}/><rect x="${x - l / 2 + 8}" y="${y - 6}" width="${l - 20}" height="5" rx="2.5" fill="#7b4a8c" opacity=".7" ${rot(x, y, a)}/>`;
+
+    const B = {}; // ad -> [arka, gövde()]
+    const set = (adlar, bg, fn) => adlar.split("|").forEach(a => (B[a] = [bg, fn]));
+
+    // çorbalar
+    set("domates çorbası", "#fee2e2", () => bowl("#e5522a") + '<path d="M70 98q12-15 30-6t30 4" stroke="#fff1e6" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M92 106q8 8 18 2" stroke="#fff1e6" stroke-width="4" fill="none" stroke-linecap="round"/>' + dots(10, 3, 48, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.4" fill="#3b1a0e"/>`) + mint(112, 84));
+    set("ezogelin çorbası", "#ffedd5", () => bowl("#e8802a") + dots(60, 5, 52, grain(["#c2410c", "#9a3412"])) + mint(96, 92) + mint(108, 98) + lemon);
+    set("tarhana çorbası", "#fef3c7", () => bowl("#d6823f") + dots(50, 7, 52, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.7" fill="#a85a22"/>`) + '<path d="M72 104q14-12 28-2t28-4" stroke="#f2b783" stroke-width="3.5" fill="none" stroke-linecap="round"/>' + mint(104, 86));
+    set("dövme çorbası", "#fef9c3", () => bowl("#f5ebd0") + dots(34, 9, 50, (x, y) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="3.6" ry="2" fill="#d9b779" stroke="#b8924c" stroke-width=".8"/>`) + dots(7, 12, 46, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.6" fill="#dc2626" opacity=".85"/>`) + mint(100, 96));
+    set("ayran aşı çorbası", "#ecfccb", () => bowl("#f4f0d6") + dots(11, 4, 44, chick) + dots(36, 6, 50, herb));
+    set("yayla çorbası", "#f0fdf4", () => bowl("#f6f1dc") + dots(40, 8, 52, herb) + dots(12, 3, 50, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.4" fill="#d9c98d"/>`));
+    // etli / sebzeli yemekler
+    set("taze fasulye", "#dcfce7", () => bowl("#e0592a") + dots(9, 11, 40, green) + dots(8, 14, 44, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2" fill="#b6361a"/>`));
+    set("etli taze fasulye", "#dcfce7", () => bowl("#e0592a") + dots(8, 11, 40, green) + dots(4, 21, 36, meat));
+    set("etli kuru fasulye", "#ffedd5", () => bowl("#c8501f") + dots(17, 13, 44, bean) + dots(4, 23, 34, meat));
+    set("etli nohut", "#fef3c7", () => bowl("#d4672a") + dots(17, 15, 44, chick) + dots(4, 25, 34, meat));
+    set("bezelye yemeği", "#dcfce7", () => bowl("#e58a3a") + dots(20, 17, 44, pea) + dots(6, 19, 36, carrot) + dots(3, 27, 30, potc));
+    set("etli bezelye", "#dcfce7", () => bowl("#e58a3a") + dots(20, 17, 44, pea) + dots(5, 19, 36, carrot) + dots(4, 29, 32, meat));
+    set("ıspanak yemeği", "#dcfce7", () => plate() + '<circle cx="100" cy="102" r="44" fill="#3d7a33"/>' + dots(10, 31, 38, (x, y) => leafBlob(x, y, "#4f9a43", "#27642a")) + dots(7, 33, 34, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#ef4444"/>`) + '<ellipse cx="124" cy="82" rx="10" ry="6" fill="#fff"/>');
+    set("kıymalı ıspanak", "#dcfce7", () => plate() + '<circle cx="100" cy="102" r="44" fill="#3d7a33"/>' + dots(9, 31, 38, (x, y) => leafBlob(x, y, "#4f9a43", "#27642a")) + dots(24, 35, 38, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.8" fill="#7c4a24"/>`));
+    // pilavlar
+    const pilav = c => '<circle cx="100" cy="102" r="44" fill="' + c + '" stroke="#d8c680" stroke-width="2.5"/>';
+    set("pirinç pilavı", "#fef9c3", () => plate() + pilav("#fffdf0") + dots(70, 41, 40, grain(["#fff", "#e5d9a8"])));
+    set("nohutlu pirinç pilavı", "#fef9c3", () => plate() + pilav("#fffdf0") + dots(56, 41, 40, grain(["#fff", "#e5d9a8"])) + dots(10, 43, 36, chick));
+    set("sebzeli bulgur pilavı", "#ffedd5", () => plate() + pilav("#d9a05b") + dots(70, 45, 40, grain(["#c68a42", "#8f5e22"])) + dots(9, 47, 36, pea) + dots(6, 49, 34, carrot));
+    // etler
+    set("ekmek arası köfte", "#ffedd5", () => plate() + '<ellipse cx="100" cy="102" rx="60" ry="38" fill="#f0c98a" stroke="#b9822f" stroke-width="3"/><ellipse cx="100" cy="100" rx="50" ry="29" fill="#fff4dc"/>' + patty(100, 102, 36, 17) + tomSl(70, 88, 8) + leafBlob(128, 90, "#7ccf5a", "#3b8a2a"));
+    set("hamburger köfte + patates", "#fee2e2", () => plate() + patty(84, 90, 32, 21) + fry(118, 122, -20) + fry(132, 112, -50) + fry(104, 130, 10) + fry(138, 128, -80));
+    set("orman kebabı|orman kebap", "#fee2e2", () => plate() + '<circle cx="100" cy="102" r="46" fill="#b86a30" opacity=".85"/>' + dots(6, 51, 36, meat) + dots(5, 53, 36, potc) + dots(5, 55, 36, carrot) + dots(10, 57, 38, pea));
+    set("tebiyeli köfte", "#fef9c3", () => bowl("#f6dc86") + dots(6, 61, 38, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="10" fill="#8b4a22" stroke="#5a2b10" stroke-width="2"/>`) + dots(14, 63, 48, herb));
+    set("kuşbaşılı patlıcan kebap", "#f3e8ff", () => plate() + '<circle cx="100" cy="102" r="46" fill="#d9482b" opacity=".9"/>' + dots(6, 71, 34, cube("#4c2a5e", "#2e1740", 12)) + dots(5, 73, 34, meat) + '<path d="M70 120q20 12 44 4" stroke="#4ca13a" stroke-width="6" fill="none" stroke-linecap="round"/>');
+    set("patlıcan musakka", "#f3e8ff", () => plate() + eggp(100, 82, -8, 70) + eggp(100, 114, 6, 70) + '<path d="M70 80q30-10 60 0M70 112q30-10 60 2" stroke="#9a4a1f" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M76 82q24-6 48 0M76 114q24-6 48 0" stroke="#e5522a" stroke-width="5" fill="none" stroke-linecap="round"/>');
+    set("patlıcan parmak kebabı", "#f3e8ff", () => plate() + eggp(100, 76, -4, 74) + eggp(100, 100, 0, 74) + eggp(100, 124, 4, 74) + '<path d="M70 76h60M70 100h60M70 124h60" stroke="#8a4b22" stroke-width="6" stroke-linecap="round" opacity=".9"/>');
+    set("patates kavurma", "#fef3c7", () => plate() + dots(16, 81, 40, potc) + dots(14, 83, 40, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.8" fill="#dc2626"/>`) + dots(4, 85, 36, (x, y) => `<rect x="${(x - 5).toFixed(1)}" y="${(y - 2).toFixed(1)}" width="10" height="4" rx="2" fill="#4ca13a"/>`));
+    set("tavuk burger", "#ffedd5", () => '<ellipse cx="100" cy="150" rx="62" ry="10" fill="#e2e8f0"/><path d="M42 92c0-34 30-50 58-50s58 16 58 50z" fill="#e8a54b" stroke="#a86a1c" stroke-width="3"/><g fill="#f5d9a0"><ellipse cx="80" cy="66" rx="4" ry="2"/><ellipse cx="104" cy="58" rx="4" ry="2"/><ellipse cx="124" cy="72" rx="4" ry="2"/></g><path d="M38 96q14 12 28 0t28 0 28 0 28 0" fill="#6dbf4a" stroke="#3b8a2a" stroke-width="3"/><rect x="44" y="104" width="112" height="10" rx="5" fill="#ef4444" stroke="#b91c1c" stroke-width="2.5"/><rect x="40" y="114" width="120" height="16" rx="8" fill="#e9a23b" stroke="#a8641a" stroke-width="3"/><path d="M44 132h112c0 14-14 18-56 18s-56-4-56-18z" fill="#e8a54b" stroke="#a86a1c" stroke-width="3"/>');
+    set("tavuk döner", "#ffedd5", () => plate() + dots(9, 91, 36, (x, y, i, r) => `<path d="M${(x - 16).toFixed(1)} ${y.toFixed(1)}q16 -12 32 0" ${rot(x, y, r() * 60 - 30)} fill="none" stroke="#c98a4b" stroke-width="7" stroke-linecap="round"/>`) + tomSl(66, 126, 8) + tomSl(80, 132, 8) + leafBlob(132, 128, "#7ccf5a", "#3b8a2a"));
+    set("tavuk tantuni", "#fef3c7", () => '<ellipse cx="100" cy="156" rx="64" ry="9" fill="#e2e8f0"/><g ' + rot(100, 100, -28) + '><rect x="34" y="72" width="132" height="56" rx="28" fill="#f4dfb4" stroke="#c49a4b" stroke-width="3"/><ellipse cx="160" cy="100" rx="9" ry="22" fill="#f8eccd" stroke="#c49a4b" stroke-width="2.5"/><ellipse cx="164" cy="100" rx="5" ry="16" fill="#b9602a"/><circle cx="162" cy="90" r="3" fill="#4ca13a"/><circle cx="162" cy="108" r="3" fill="#ef4444"/><rect x="60" y="72" width="40" height="56" fill="#e9d29c" opacity=".55"/></g>');
+    set("tavuk kavurma", "#fee2e2", () => plate() + dots(7, 101, 36, (x, y, i, r) => `<rect x="${(x - 13).toFixed(1)}" y="${(y - 8).toFixed(1)}" width="26" height="16" rx="7" ${rot(x, y, r() * 180)} fill="#d79d5a" stroke="#9a6322" stroke-width="2"/>`) + dots(5, 103, 38, (x, y, i, r) => `<rect x="${(x - 8).toFixed(1)}" y="${(y - 2.5).toFixed(1)}" width="16" height="5" rx="2.5" ${rot(x, y, r() * 180)} fill="${i % 2 ? "#ef4444" : "#4ca13a"}"/>`));
+    set("tavuk sote", "#fee2e2", () => plate() + '<circle cx="100" cy="102" r="44" fill="#e3683a" opacity=".55"/>' + dots(7, 111, 34, (x, y, i, r) => `<rect x="${(x - 13).toFixed(1)}" y="${(y - 6).toFixed(1)}" width="26" height="12" rx="6" ${rot(x, y, r() * 180)} fill="#e0b070" stroke="#9a6322" stroke-width="2"/>`) + dots(10, 113, 38, (x, y, i, r) => `<rect x="${(x - 9).toFixed(1)}" y="${(y - 2.5).toFixed(1)}" width="18" height="5" rx="2.5" ${rot(x, y, r() * 180)} fill="${["#ef4444", "#4ca13a", "#facc15"][i % 3]}"/>`));
+    set("salçalı sosis", "#fee2e2", () => bowl("#d94a24") + dots(7, 121, 36, (x, y) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="11" ry="9" fill="#b9573a" stroke="#7a2f18" stroke-width="2.2"/><ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="6" ry="4.5" fill="#d98a6a"/>`));
+    set("yoğurtlu mantı", "#fef9c3", () => plate() + dots(16, 131, 38, (x, y, i, r) => `<rect x="${(x - 6).toFixed(1)}" y="${(y - 6).toFixed(1)}" width="12" height="12" rx="3" ${rot(x, y, r() * 90)} fill="#f2dcae" stroke="#c9a566" stroke-width="1.6"/>`) + '<path d="M62 100q18-24 40-16t34 22q-10 18-38 18t-36-24z" fill="#fff" opacity=".92"/>' + dots(6, 133, 34, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.4" fill="#e0391f"/>`));
+    // hamur işleri
+    set("karışık pizza", "#ffedd5", () => '<circle cx="100" cy="100" r="86" fill="#c9965a" stroke="#8a5a28" stroke-width="3"/><circle cx="100" cy="100" r="74" fill="#e8a74a" stroke="#b8791f" stroke-width="3"/><circle cx="100" cy="100" r="64" fill="#f3c254"/>' + dots(6, 141, 46, pepperoni) + dots(7, 143, 50, olive) + dots(5, 145, 46, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="none" stroke="#4ca13a" stroke-width="3"/>`) + dots(10, 147, 50, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.4" fill="#ef4444"/>`) + '<path d="M100 36v128M36 100h128" stroke="#b8791f" stroke-width="1.5" opacity=".5"/>');
+    set("sade poğaça", "#ffedd5", () => plate() + '<ellipse cx="100" cy="102" rx="50" ry="36" fill="#e9a23b" stroke="#a8641a" stroke-width="3"/><ellipse cx="94" cy="92" rx="30" ry="14" fill="#f6c46b" opacity=".8"/>' + dots(14, 151, 34, (x, y) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="2.3" ry="1.2" fill="#fff4cf"/>`) + dots(5, 153, 30, (x, y) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="1.6" ry="1" fill="#27272a"/>`));
+    set("zeytinli / peynirli açma", "#ffedd5", () => plate() + '<path d="M44 112c2-40 26-62 58-60 34 2 56 30 52 66-30 8-70 8-110-6z" fill="#e9a23b" stroke="#a8641a" stroke-width="3"/><path d="M70 100q30-26 62 2M62 114q38-20 80 0" fill="none" stroke="#f6c46b" stroke-width="5" stroke-linecap="round"/>' + olive(88, 92) + olive(108, 84) + olive(122, 98) + '<ellipse cx="100" cy="106" rx="9" ry="5" fill="#fff8e1"/>');
+    const borek = (ic) => plate() + [[78, 84, -14], [122, 92, 10], [96, 124, 0]].map(([x, y, a]) => `<rect x="${x - 25}" y="${y - 15}" width="50" height="30" rx="7" ${rot(x, y, a)} fill="#e6a640" stroke="#a8641a" stroke-width="2.6"/><rect x="${x - 25}" y="${y - 8}" width="50" height="8" ${rot(x, y, a)} fill="${ic}" opacity=".9"/>`).join("");
+    set("peynirli börek", "#fef3c7", () => borek("#fff8e8"));
+    set("ıspanaklı börek", "#ecfccb", () => borek("#5fa84a"));
+    set("karışık sebze graten", "#fef3c7", () => '<rect x="22" y="44" width="156" height="112" rx="22" fill="#fff" stroke="#cbd5e1" stroke-width="3"/><rect x="34" y="56" width="132" height="88" rx="14" fill="#f3c254" stroke="#d29a1c" stroke-width="2"/>' + dots(7, 161, 50, (x, y) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="12" ry="8" fill="#c98a2c" opacity=".75"/>`) + dots(5, 163, 52, carrot) + dots(4, 165, 50, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="#4ca13a"/>`));
+    // yumurta / peynir
+    set("menemen", "#fee2e2", () => bowl("#e9462d") + dots(9, 171, 40, (x, y, i, r) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="11" ry="7" ${rot(x, y, r() * 180)} fill="#fde047" stroke="#d4a017" stroke-width="1.8"/>`) + dots(5, 173, 42, (x, y, i, r) => `<rect x="${(x - 8).toFixed(1)}" y="${(y - 2.5).toFixed(1)}" width="16" height="5" rx="2.5" ${rot(x, y, r() * 180)} fill="#4ca13a"/>`));
+    set("peynirli omlet", "#fef9c3", () => plate() + '<path d="M40 112c0-40 28-54 60-54s60 14 60 54c-40 18-80 18-120 0z" fill="#fde047" stroke="#d4a017" stroke-width="3"/><path d="M52 104q48-30 96 0" fill="none" stroke="#fef08a" stroke-width="5" stroke-linecap="round"/><path d="M70 106q10 14 22 4t24 6" fill="none" stroke="#fff7d1" stroke-width="5" stroke-linecap="round"/>' + dots(8, 181, 40, herb));
+    set("kaşar peynir", "#fef9c3", () => plate() + cheeseSl(84, 84, -10) + cheeseSl(118, 100, 8) + cheeseSl(90, 122, -3));
+    // tatlılar
+    set("brownie", "#f5e6d8", () => plate() + '<rect x="56" y="56" width="88" height="88" rx="9" ' + rot(100, 100, -8) + ' fill="#4a2512" stroke="#2a1208" stroke-width="3"/><path d="M66 74l22 8-8 18 24 4M104 66l6 22 20-8M76 124l18-6 12 20" fill="none" stroke="#7a4b2a" stroke-width="3" stroke-linecap="round"/>' + dots(5, 191, 28, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" fill="#c9965a" stroke="#8a5a28" stroke-width="1.5"/>`));
+    set("sütlaç", "#fef3c7", () => bowl("#fffaf0") + dots(7, 201, 42, (x, y) => `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="9" ry="6" fill="#d58a35" opacity=".8"/>`) + dots(20, 203, 44, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.4" fill="#8a4b22"/>`));
+    set("tulumba tatlısı|tulumba", "#fef3c7", () => plate() + [[78, 82, -18], [122, 90, 12], [84, 122, 6], [124, 124, -14]].map(([x, y, a]) => `<g ${rot(x, y, a)}><rect x="${x - 27}" y="${y - 10}" width="54" height="20" rx="10" fill="#dd8a22" stroke="#a85a0c" stroke-width="2.6"/><path d="${[-16, -6, 4, 14].map(d => `M${x + d} ${y - 9}v18`).join("")}" stroke="#f6b04a" stroke-width="2.4"/><rect x="${x - 21}" y="${y - 7}" width="40" height="3.5" rx="1.7" fill="#fff" opacity=".4"/></g>`).join(""));
+    set("yoğurt", "#f8fafc", () => bowl("#fffdf7") + '<path d="M66 100q16-20 34-8t32 6" fill="none" stroke="#efe6d0" stroke-width="4" stroke-linecap="round"/><circle cx="100" cy="100" r="14" fill="#fff" stroke="#efe6d0" stroke-width="2.5"/>');
+    set("meyve", "#dcfce7", () => bowl("#f0fdf4") + '<circle cx="82" cy="86" r="17" fill="#ef4444" stroke="#b91c1c" stroke-width="3"/><path d="M82 70c0-6 3-10 8-12" stroke="#78350f" stroke-width="3" fill="none"/><circle cx="118" cy="92" r="17" fill="#fb923c" stroke="#c2410c" stroke-width="3"/><path d="M104 120q20 18 44-8-8 6-22 6t-22-8z" fill="#fde047" stroke="#ca8a04" stroke-width="3"/>' + dots(7, 211, 12, (x, y) => `<circle cx="${(x - 20).toFixed(1)}" cy="${(y + 28).toFixed(1)}" r="6" fill="#7c3aed" stroke="#5b21b6" stroke-width="1.8"/>`));
+    // salatalar
+    set("mevsim salata", "#d1fae5", () => bowl("#e9f7e1") + dots(8, 221, 40, (x, y) => leafBlob(x, y, "#78c850", "#3b8a2a")) + dots(3, 223, 32, (x, y) => tomSl(x.toFixed(1), y.toFixed(1), 9)) + dots(4, 225, 38, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="#bbf7d0" stroke="#15803d" stroke-width="2.2"/>`) + dots(9, 227, 40, (x, y, i, r) => `<path d="M${(x - 7).toFixed(1)} ${y.toFixed(1)}h14" ${rot(x, y, r() * 180)} stroke="#f97316" stroke-width="2.6" stroke-linecap="round"/>`));
+    set("çoban salata", "#d1fae5", () => bowl("#f4faee") + dots(12, 231, 42, cube("#ef4444", "#b91c1c", 8)) + dots(11, 233, 42, cube("#bbf7d0", "#15803d", 8)) + dots(8, 235, 42, cube("#f5f5f4", "#a8a29e", 6)) + dots(5, 237, 40, cube("#4ca13a", "#2f6f24", 6)) + dots(18, 239, 46, herb));
+    set("makarna salatası", "#fef9c3", () => bowl("#fffaf0") + dots(14, 241, 40, (x, y, i, r) => `<path d="M${(x - 9).toFixed(1)} ${y.toFixed(1)}q4.5 -9 9 0t9 0" ${rot(x, y, r() * 180)} fill="none" stroke="#e9c46a" stroke-width="6" stroke-linecap="round"/>`) + dots(9, 243, 42, (x, y) => `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="#facc15"/>`) + dots(5, 245, 40, cube("#ef4444", "#b91c1c", 7)) + dots(6, 247, 40, pea) + dots(10, 249, 44, herb));
+    set("ayran", "#dbeafe", () => '<ellipse cx="100" cy="164" rx="40" ry="9" fill="#e2e8f0"/><path d="M60 46h80l-10 118H70z" fill="#eef6ff" stroke="#94a3b8" stroke-width="3"/><path d="M65 78h70l-7 86H72z" fill="#fff"/><path d="M62 74q10-14 22-6t22-8 22 8 12 6v12H62z" fill="#fff" stroke="#dbeafe" stroke-width="2"/><circle cx="84" cy="80" r="3" fill="#dbeafe"/><circle cx="112" cy="76" r="2.5" fill="#dbeafe"/>');
+    return function (ad) {
+      const k = String(ad || "").toLocaleLowerCase("tr-TR").trim();
+      const e = B[k];
+      if (!e) return null;
+      return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" rx="28" fill="' + e[0] + '"/>' + e[1]() + "</svg>";
+    };
+  })();
+
   function vektorCiz(ad) {
+    const ozel = CZ(ad);
+    if (ozel) return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(ozel);
     const k = kucuk(ad);
     let tur = "varsayilan";
     for (const [t, re] of VEK_TURLER) { if (re.test(k)) { tur = t; break; } }
