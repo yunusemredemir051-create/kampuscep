@@ -654,6 +654,8 @@
       "yoğurt": "unievi-yogurt",
       "baklava": "unievi-baklava",
       "ayran": "unievi-ayran",
+      "tahin helva": "unievi-tahin-helvasi",
+      "tahin helvası": "unievi-tahin-helvasi",
       "nohutlu pirinç pilavı": "unievi-nohutlu-pirinc-pilavi",
       "et kavurma": "unievi-et-kavurma"
     },
@@ -1329,6 +1331,48 @@
   }
 
   // Yurt ve Üniversite Evi tamamen ayrılmıştır!
+
+  /* ---- Fotoğrafı olmayan yemekler için vektörel (SVG) yer tutucu çizimler ---- */
+  const VEK_TURLER = [
+    ["icecek", /ayran|su\b|çay|süt|kola|meşrubat|şalgam|limonata|komposto|içecek/],
+    ["corba", /çorba/],
+    ["tatli", /tatlı|baklava|kek|pasta|helva|sütlaç|tulumba|revani|kadayıf|şekerpare|kazandibi|puding|lokma|profiterol|browni|kurabiye|dondurma|irmik|aşure|künefe|ekler|supangle/],
+    ["meyve", /meyve|elma|portakal|mandalina|muz|armut|üzüm|karpuz|kavun|şeftali|kiraz|çilek|erik|nar\b|ayva/],
+    ["salata", /salata|ezme|cacık|haydari|turşu|zeytin|piyaz|közleme|çoban|havuç tarator|yoğurt/],
+    ["yumurta", /yumurta|omlet|menemen|sahanda/],
+    ["ekmek", /ekmek|poğaça|börek|simit|çörek|açma|pide|gözleme|lavaş|tost|sandviç|burger|bazlama|katmer|kruvasan/],
+    ["peynir", /peynir|labne|kaşar|tereyağ|bal\b|reçel|çikolata|krema|tahin|pekmez|helva|ezo/],
+    ["et", /et\b|köfte|tavuk|kebap|kebab|şiş|kavurma|sote|şinitzel|baget|nugget|kıyma|döner|tantuni|bonfile|biftek|piliç|kanat|kızartma|izgara|sosis|sucuk|salam|hindi|balık|orman|tas |musakka|patlıcan|karnıyarık|dolma|sarma/],
+    ["pilav", /pilav|makarna|bulgur|erişte|mantı|şehriye|noodle|spagetti|kuskus|arpa|börülce|lazanya|tel şehriye/],
+    ["yemek", /fasulye|nohut|mercimek|bezelye|patates|türlü|kabak|ıspanak|pırasa|karnabahar|brokoli|bamya|havuç|enginar|barbunya|lahana|biber|domates|yeşil|taze|kuru|mevsim|etli|etsiz/]
+  ];
+  const VEK_ARKA = { icecek:"#dbeafe", corba:"#fef3c7", tatli:"#fce7f3", meyve:"#dcfce7", salata:"#d1fae5", yumurta:"#fef9c3", ekmek:"#ffedd5", peynir:"#fef3c7", et:"#fee2e2", pilav:"#fef9c3", yemek:"#ffedd5", varsayilan:"#e0e7ff" };
+  const VEK_CIZIM = {
+    tabak: '<ellipse cx="100" cy="128" rx="74" ry="26" fill="#fff" stroke="#cbd5e1" stroke-width="3"/><ellipse cx="100" cy="124" rx="54" ry="17" fill="#f8fafc" stroke="#e2e8f0" stroke-width="2"/>',
+    kase: '<path d="M30 98h140c0 38-28 62-70 62s-70-24-70-62z" fill="#fff" stroke="#cbd5e1" stroke-width="3"/><ellipse cx="100" cy="98" rx="70" ry="13" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="3"/>',
+    corba: () => VEK_CIZIM.kase + '<ellipse cx="100" cy="98" rx="60" ry="9" fill="#f59e0b"/><circle cx="82" cy="97" r="3" fill="#fde68a"/><circle cx="112" cy="99" r="3.5" fill="#fde68a"/><circle cx="98" cy="95" r="2.5" fill="#65a30d"/><path d="M80 78c-8-10 8-14 0-26M104 78c-8-10 8-14 0-26M128 78c-8-10 8-14 0-26" fill="none" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>',
+    pilav: () => VEK_CIZIM.tabak + '<path d="M48 120c4-40 30-56 52-56s48 16 52 56c-30 12-74 12-104 0z" fill="#fff7d6" stroke="#eab308" stroke-width="3"/><g fill="#fde68a"><ellipse cx="80" cy="96" rx="9" ry="4"/><ellipse cx="108" cy="88" rx="9" ry="4"/><ellipse cx="124" cy="104" rx="9" ry="4"/><ellipse cx="94" cy="108" rx="9" ry="4"/></g>',
+    yemek: () => VEK_CIZIM.kase + '<ellipse cx="100" cy="98" rx="60" ry="9" fill="#dc2626"/><g fill="#fde68a" stroke="#d97706" stroke-width="2"><ellipse cx="80" cy="95" rx="9" ry="5"/><ellipse cx="102" cy="99" rx="9" ry="5"/><ellipse cx="124" cy="95" rx="9" ry="5"/></g><path d="M84 78c-8-10 8-14 0-26M112 78c-8-10 8-14 0-26" fill="none" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>',
+    et: () => VEK_CIZIM.tabak + '<path d="M62 112c-6-26 8-48 40-48 26 0 44 16 36 40-6 16-26 22-46 20-14-2-26-4-30-12z" fill="#b45309" stroke="#78350f" stroke-width="3"/><path d="M80 84c14-8 30-6 42 4M78 100c18 8 34 6 48-4" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" opacity=".7"/>',
+    salata: () => VEK_CIZIM.kase + '<g stroke="#15803d" stroke-width="2"><path d="M50 98c0-26 20-34 30-22 6-16 30-16 34-2 14-10 36 0 36 24z" fill="#4ade80"/></g><circle cx="86" cy="84" r="8" fill="#ef4444"/><circle cx="118" cy="88" r="7" fill="#f97316"/><circle cx="102" cy="78" r="5" fill="#fde047"/>',
+    tatli: '<ellipse cx="100" cy="146" rx="64" ry="14" fill="#fff" stroke="#cbd5e1" stroke-width="3"/><path d="M52 138V96l96-0v42c0 8-96 8-96 0z" fill="#fbbf24" stroke="#b45309" stroke-width="3"/><path d="M52 96c0-22 96-22 96 0 0 8-96 8-96 0z" fill="#92400e" stroke="#78350f" stroke-width="3"/><path d="M60 118h80" stroke="#fff7ed" stroke-width="4" stroke-linecap="round" opacity=".8"/><circle cx="100" cy="76" r="9" fill="#ef4444"/><path d="M100 67c2-8 8-10 10-10" stroke="#16a34a" stroke-width="3" fill="none"/>',
+    meyve: '<ellipse cx="100" cy="152" rx="52" ry="10" fill="#e2e8f0"/><path d="M100 70c-30-18-62 6-54 44 6 28 30 40 54 30 24 10 48-2 54-30 8-38-24-62-54-44z" fill="#ef4444" stroke="#b91c1c" stroke-width="3"/><path d="M100 70c0-14 6-24 18-30" stroke="#78350f" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M104 56c14-10 28-4 30 4-12 6-24 4-30-4z" fill="#22c55e" stroke="#15803d" stroke-width="2"/>',
+    icecek: '<ellipse cx="100" cy="158" rx="40" ry="9" fill="#e2e8f0"/><path d="M62 58h76l-10 98H72z" fill="#e0f2fe" stroke="#94a3b8" stroke-width="3"/><path d="M67 88h66l-6 68H73z" fill="#f8fafc"/><path d="M67 88c16 8 30-8 66 0" fill="none" stroke="#bae6fd" stroke-width="4"/>',
+    yumurta: () => VEK_CIZIM.tabak + '<ellipse cx="82" cy="104" rx="30" ry="22" fill="#fff" stroke="#cbd5e1" stroke-width="3"/><circle cx="82" cy="104" r="11" fill="#fbbf24" stroke="#d97706" stroke-width="2"/><ellipse cx="122" cy="108" rx="24" ry="17" fill="#fff" stroke="#cbd5e1" stroke-width="3"/><circle cx="122" cy="108" r="9" fill="#fbbf24" stroke="#d97706" stroke-width="2"/>',
+    ekmek: () => VEK_CIZIM.tabak + '<path d="M44 116c-8-30 18-52 56-52s64 22 56 52c-18 12-94 12-112 0z" fill="#f59e0b" stroke="#b45309" stroke-width="3"/><path d="M72 76l-8 30M100 70l-4 36M128 76l8 30" stroke="#fde68a" stroke-width="5" stroke-linecap="round"/>',
+    peynir: '<ellipse cx="100" cy="146" rx="62" ry="12" fill="#e2e8f0"/><path d="M42 132l116-44-6-26L42 90z" fill="#fde047" stroke="#ca8a04" stroke-width="3"/><path d="M42 90l110-28" stroke="#facc15" stroke-width="3"/><path d="M42 90v42l116-44" fill="#fef08a" stroke="#ca8a04" stroke-width="3"/><circle cx="78" cy="112" r="6" fill="#fbbf24"/><circle cx="112" cy="102" r="5" fill="#fbbf24"/><circle cx="64" cy="120" r="3.5" fill="#fbbf24"/>',
+    varsayilan: () => VEK_CIZIM.tabak + '<path d="M40 60v34c0 8 12 8 12 0V60M46 60v66M148 60c-14 6-20 24-18 40h18V60zM148 100v34" fill="none" stroke="#64748b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>'
+  };
+  function vektorCiz(ad) {
+    const k = kucuk(ad);
+    let tur = "varsayilan";
+    for (const [t, re] of VEK_TURLER) { if (re.test(k)) { tur = t; break; } }
+    const c = VEK_CIZIM[tur] || VEK_CIZIM.varsayilan;
+    const govde = typeof c === "function" ? c() : (tur === "tatli" || tur === "meyve" || tur === "icecek" || tur === "peynir" ? c : c);
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" rx="28" fill="' + VEK_ARKA[tur] + '"/>' + govde + '</svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+
   function fotoBulHepsi(ad, yer = "yurt") {
     if (!ad) return null;
     const bulut = {}; // elle/bulut fotoğraflar kapatıldı: yalnızca sabit tablo (FOTOLAR) kullanılır
@@ -1342,7 +1386,7 @@
     const v = yerTablo[k] || yerTablo[asc] || yerTablo[sl];
     if (v) return Array.isArray(v) ? v : [v];
 
-    return null;
+    return [vektorCiz(ad)]; // gerçek fotoğraf yoksa vektörel çizim
   }
   function fotoBul(ad, yer = "yurt") {
     const h = fotoBulHepsi(ad, yer);
@@ -1351,7 +1395,7 @@
 
 
   // Gelecek günlerin menüsü gibi başka yerlerde kullanılmak üzere dışa aç
-  window.KC_FOTO = { bul: fotoBul, hepsi: fotoBulHepsi, src: resimSrc, ayir: seceneklereAyir, buyut: buyut };
+  window.KC_FOTO = { gercekMi: g => !!g && !String(g).startsWith("data:image/svg"), bul: fotoBul, hepsi: fotoBulHepsi, src: resimSrc, ayir: seceneklereAyir, buyut: buyut };
 
   // "A / B / C" biçimindeki seçenekleri alt alta, ayrı satırlarda göster
   function altAlta(el, yazi) {
