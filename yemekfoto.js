@@ -653,7 +653,8 @@
       "mercimek çorbası": "unievi-mercimek-corbasi",
       "yoğurt": "unievi-yogurt",
       "baklava": "unievi-baklava",
-      "ayran": "unievi-ayran"
+      "ayran": "unievi-ayran",
+      "nohutlu pirinç pilavı": "unievi-nohutlu-pirinc-pilavi"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
     "yurt": {
