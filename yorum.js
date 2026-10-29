@@ -305,6 +305,7 @@ function kur(el) {
 
 /* ---------- günlük görüntüleyen kişi sayısı ----------
    Her cihaz (anonim Firebase kimliği) bir menüyü yalnızca bir kez sayılır: menuler/{menu}/gorenler/{uid}.
+   KYK yurtlarının menüsü aynı olduğu için sayım oy havuzu gibi ortaktır (kyk_{tarih}_{öğün}); hangi yurttan bakılırsa bakılsın tek menü sayılır.
    Menü kutusu ekranda en az yarım görünüp 1,5 sn kalınca kayıt atılır; sayı Firestore'dan kesin sayılır. */
 function gorYaz(el) {
   const d = kutular.get(el); if (!d) return;
@@ -318,7 +319,7 @@ function gorYaz(el) {
 
 function gorSay(el) {
   const d = kutular.get(el); if (!d) return;
-  getCountFromServer(collection(db, "menuler", d.yorumId, "gorenler")).then(c => {
+  getCountFromServer(collection(db, "menuler", d.oyId, "gorenler")).then(c => {
     if (kutular.get(el) !== d) return;
     d.goren = c.data().count; gorYaz(el);
   }).catch(() => {});
@@ -326,12 +327,12 @@ function gorSay(el) {
 
 async function gorKaydet(el) {
   const d = kutular.get(el); if (!d) return;
-  const anahtar = "kc-gor-" + d.yorumId;
+  const anahtar = "kc-gor-" + d.oyId;
   try { if (localStorage.getItem(anahtar)) return; } catch (e) {}
   if (!(await kimlik())) return;
   const u = auth.currentUser; if (!u) return;
   try {
-    await setDoc(doc(db, "menuler", d.yorumId, "gorenler", u.uid), { zaman: serverTimestamp() });
+    await setDoc(doc(db, "menuler", d.oyId, "gorenler", u.uid), { zaman: serverTimestamp() });
   } catch (e) {
     // Bu kimlik bu menüyü zaten saymış olabilir (yerel kayıt silinmişse); yine de sayacı yenile
   }
