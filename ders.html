@@ -150,7 +150,7 @@ sub { font-size: .7em; }
 }
 
 /* ===================== Prova / deneme ===================== */
-.pv-kartlar { display: grid; gap: 12px; }
+.pv-kartlar { display: grid; gap: 12px; margin-bottom: 22px; }
 .pv-kart { padding: 16px; display: grid; gap: 12px; }
 .pv-kart-ust { display: flex; gap: 14px; align-items: center; }
 .pv-ikon { width: 46px; height: 46px; border-radius: 14px; flex: none; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), var(--mor)); color: #fff; }
@@ -605,11 +605,13 @@ function pvListeHtml() {
       <div style="min-width:0"><h3>${x.ad}${dv && !dv.bitti ? '<span class="pv-rozet" style="background:var(--turuncu-acik);color:#9a4a12">Devam ediyor</span>' : en !== null ? `<span class="pv-rozet">En iyi ${Math.round(en)}</span>` : ""}</h3>
       <div class="meta">${x.konu} · ${t.adet} soru · ${t.sure} dk</div></div></div></a>`;
   };
-  let h = `<div class="baslik">Sınav provaları</div><div class="pv-kartlar">`;
-  (ders.provalar || []).forEach(x => h += kart(x, "prova", x.id.startsWith("final") ? "final" : "vize"));
-  h += `</div>`;
+  let h = "";
+  [["vize", "Vize provaları", "vize"], ["final", "Final provası", "final"]].forEach(([on, bas, sn]) => {
+    const l = (ders.provalar || []).filter(x => x.id.startsWith(on));
+    if (l.length) h += `<div class="baslik">${bas}</div><div class="pv-kartlar">${l.map(x => kart(x, "prova", sn)).join("")}</div>`;
+  });
   if ((ders.denemeler || []).length) {
-    h += `<div class="baslik">Karışık denemeler <small style="font-weight:600;color:var(--soluk)">her açılışta farklı sorular</small></div><div class="pv-kartlar">`;
+    h += `<div class="baslik" style="margin-top:22px">Karışık denemeler <small style="font-weight:600;color:var(--soluk)">her açılışta farklı sorular</small></div><div class="pv-kartlar">`;
     ders.denemeler.forEach(x => h += kart(x, "deneme", "karma"));
     h += `</div>`;
   }
