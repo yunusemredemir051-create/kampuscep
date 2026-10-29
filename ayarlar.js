@@ -26,7 +26,7 @@
   function kartGuncelle() {
     const ad = localStorage.getItem("kc-ad") || "";
     const yurtDeger = localStorage.getItem("kc-yurt") || "";
-    const bolum = localStorage.getItem("kc-bolum") || "";
+    const bolum = localStorage.getItem("kc-birim") || "";
     const av = localStorage.getItem("kc-avatar") || "🎓";
     const yurtSel = document.getElementById("ayar-yurt");
     let yurtAd = "";
@@ -39,7 +39,7 @@
     const et = document.getElementById("ayar-kart-etiketler");
     if (et) {
       const esc = t => String(t).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-      et.innerHTML = [yurtAd && "🏠 " + yurtAd, bolum && "🎓 " + bolum, (localStorage.getItem("kc-sinif") || "") && "📚 " + localStorage.getItem("kc-sinif")].filter(Boolean).map(t => `<span>${esc(t)}</span>`).join("");
+      et.innerHTML = [yurtAd && "🏠 " + yurtAd, bolum && "🎓 " + bolum, (bolum && localStorage.getItem("kc-sinif")) && "📚 " + localStorage.getItem("kc-sinif") + ". sınıf"].filter(Boolean).map(t => `<span>${esc(t)}</span>`).join("");
     }
     const dilAlt = document.getElementById("ayar-alt-dil");
     const dil = (window.DIL && window.DIL.aktif()) || localStorage.getItem("kc-dil") || "tr";
@@ -48,31 +48,23 @@
 
 
   /* ---- Bölüm seçici ---- */
-  const BOLUMLER = {
-    "Fen Fakültesi": ["Biyoloji", "Fizik", "Kimya", "Matematik", "Moleküler Biyoloji ve Genetik", "İstatistik"],
-    "Mühendislik Fakültesi": ["Bilgisayar Mühendisliği", "Yazılım Mühendisliği", "Elektrik-Elektronik Mühendisliği", "Makine Mühendisliği", "İnşaat Mühendisliği", "Endüstri Mühendisliği", "Kimya Mühendisliği", "Metalurji ve Malzeme Mühendisliği", "Çevre Mühendisliği", "Jeoloji Mühendisliği", "Gıda Mühendisliği", "Biyomühendislik", "Mekatronik Mühendisliği"],
-    "İktisadi ve İdari Bilimler": ["İşletme", "İktisat", "Maliye", "Çalışma Ekonomisi ve Endüstri İlişkileri", "Siyaset Bilimi ve Kamu Yönetimi", "Uluslararası İlişkiler", "Yönetim Bilişim Sistemleri", "Uluslararası Ticaret ve Lojistik", "Bankacılık ve Finans"],
-    "Eğitim Fakültesi": ["Sınıf Öğretmenliği", "Okul Öncesi Öğretmenliği", "Rehberlik ve Psikolojik Danışmanlık", "Türkçe Öğretmenliği", "Matematik Öğretmenliği", "Fen Bilgisi Öğretmenliği", "İngilizce Öğretmenliği", "Sosyal Bilgiler Öğretmenliği", "Özel Eğitim Öğretmenliği", "Bilgisayar ve Öğretim Teknolojileri Öğretmenliği", "Resim-İş Öğretmenliği", "Müzik Öğretmenliği"],
-    "Fen-Edebiyat Fakültesi": ["Türk Dili ve Edebiyatı", "Tarih", "Coğrafya", "Sosyoloji", "Psikoloji", "Felsefe", "İngiliz Dili ve Edebiyatı", "Arkeoloji", "Arap Dili ve Edebiyatı"],
-    "Sağlık Bilimleri": ["Hemşirelik", "Ebelik", "Fizyoterapi ve Rehabilitasyon", "Beslenme ve Diyetetik", "Sağlık Yönetimi", "Odyoloji", "Çocuk Gelişimi", "Sosyal Hizmet"],
-    "Tıp / Diş / Eczacılık / Veteriner": ["Tıp", "Diş Hekimliği", "Eczacılık", "Veteriner Hekimliği"],
-    "Diğer Fakülteler": ["Hukuk", "İlahiyat", "Güzel Sanatlar", "Mimarlık", "Spor Bilimleri", "Teknoloji Fakültesi", "Ziraat Fakültesi", "Su Ürünleri"],
-    "Meslek Yüksekokulu": ["Bilgisayar Programcılığı", "Muhasebe ve Vergi Uygulamaları", "Büro Yönetimi ve Yönetici Asistanlığı", "Elektrik", "Makine", "İnşaat Teknolojisi", "Tıbbi Hizmetler ve Teknikler", "Turizm ve Otel İşletmeciliği", "Adalet", "Halkla İlişkiler ve Tanıtım", "Lojistik", "Ön Büro Hizmetleri"]
-  };
+  const bolumListesi = () => window.KC_BOLUM_LISTESI || [];
+  const kisaAd = f => f;
   function sinifSecenekleri(secili) {
     const sel = document.getElementById("ayar-sinif"); if (!sel) return;
     const b = ((document.getElementById("ayar-bolum") || {}).value || "");
-    let n = 4, onlisans = BOLUMLER["Meslek Yüksekokulu"].includes(b);
+    const fak = (bolumListesi().find(f => f[1].includes(b)) || [""])[0];
+    let n = 4;
     if (b === "Tıp") n = 6;
-    else if (b === "Diş Hekimliği" || b === "Eczacılık") n = 5;
-    else if (b === "Veteriner Hekimliği") n = 5;
-    else if (onlisans) n = 2;
-    const secenekler = ["Sınıf seç", "Hazırlık"];
-    for (let i = 1; i <= n; i++) secenekler.push(i + ". sınıf");
-    secenekler.push("Yüksek lisans / Doktora");
-    const cur = secili !== undefined ? secili : sel.value;
-    sel.innerHTML = secenekler.map((t, i) => `<option value="${i === 0 ? "" : t}">${t}</option>`).join("");
-    sel.value = secenekler.includes(cur) ? cur : "";
+    else if (b === "Diş Hekimliği" || b === "Eczacılık" || b === "Veteriner") n = 5;
+    else if (/MYO/.test(fak)) n = 2;
+    const cur = secili !== undefined ? String(secili) : sel.value;
+    let h = '<option value="">Sınıf seç</option>';
+    for (let i = 1; i <= n; i++) h += `<option value="${i}">${i}. sınıf</option>`;
+    sel.innerHTML = h;
+    sel.value = +cur >= 1 && +cur <= n ? cur : "";
+    const ad = b === "Adli Bilişim Mühendisliği";
+    const blok = document.getElementById("ayar-adli-blok"); if (blok) blok.hidden = !ad;
   }
   function bolumMetinGuncelle() {
     const v = (document.getElementById("ayar-bolum") || {}).value || "";
@@ -90,7 +82,7 @@
     function ciz() {
       const q = kucuk(ara.value.trim()), sec = hid.value;
       let h = "";
-      for (const [fak, ler] of Object.entries(BOLUMLER)) {
+      for (const [fak, ler] of bolumListesi()) {
         const f = ler.filter(x => !q || kucuk(x).includes(q) || kucuk(fak).includes(q));
         if (!f.length) continue;
         h += `<div class="sheet-fak">${esc(fak)}</div>` + f.map(x => `<button type="button" class="sheet-oge ${x === sec ? "aktif" : ""}" data-b="${esc(x)}"><span>${esc(x)}</span><b class="ayar-tik">✓</b></button>`).join("");
@@ -128,13 +120,16 @@
 
     const kayitliAd = localStorage.getItem("kc-ad") || "";
     const kayitliYurt = localStorage.getItem("kc-yurt") || "";
-    const kayitliBolum = localStorage.getItem("kc-bolum") || "";
+    const kayitliBolum = localStorage.getItem("kc-birim") || (localStorage.getItem("kc-bolum") === "tip" ? "Tıp" : "");
     const kayitliAvatar = localStorage.getItem("kc-avatar") || "🎓";
 
     if (adInput) adInput.value = kayitliAd;
     if (yurtSelect) yurtSelect.value = kayitliYurt;
     if (bolumInput) bolumInput.value = kayitliBolum;
     sinifSecenekleri(localStorage.getItem("kc-sinif") || "");
+    const ogS = document.getElementById("ayar-ogretim"), sbS = document.getElementById("ayar-sube");
+    if (ogS) ogS.value = localStorage.getItem("kc-ogretim") === "2" ? "2" : "1";
+    if (sbS) sbS.value = ["1", "2"].includes(localStorage.getItem("kc-sube")) ? localStorage.getItem("kc-sube") : "0";
     bolumMetinGuncelle();
 
     // Avatar listesi
@@ -196,14 +191,17 @@
       localStorage.removeItem("kc-yurt");
     }
 
-    if (yeniBolum) localStorage.setItem("kc-bolum", yeniBolum);
-    else localStorage.removeItem("kc-bolum");
+    try { localStorage.removeItem("kc-bolum"); } catch (e) {}
+    if (yeniBolum) localStorage.setItem("kc-birim", yeniBolum); else localStorage.removeItem("kc-birim");
 
     const yeniSinif = (document.getElementById("ayar-sinif") || {}).value || "";
-    if (yeniSinif) localStorage.setItem("kc-sinif", yeniSinif); else localStorage.removeItem("kc-sinif");
+    localStorage.setItem("kc-sinif", yeniSinif || "1");
+    const og = (document.getElementById("ayar-ogretim") || {}).value, sb = (document.getElementById("ayar-sube") || {}).value;
+    localStorage.setItem("kc-ogretim", og === "2" ? "2" : "1"); localStorage.setItem("kc-sube", sb === "1" || sb === "2" ? sb : "0");
     localStorage.setItem("kc-avatar", yeniAvatar);
 
     // Bildirim göster
+    if (window.kcProgramYenile) window.kcProgramYenile();
     bildirimGoster("Profil bilgileriniz kaydedildi! ✅");
     kartGuncelle();
     anaGoster();

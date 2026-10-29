@@ -1079,6 +1079,10 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
                   <button type="button" class="pf-secim" id="ayar-bolum-btn"><span id="ayar-bolum-metin">Bölüm seç</span><i aria-hidden="true">›</i></button></div>
                 <label class="pf-alan"><span>Sınıfın</span>
                   <select id="ayar-sinif"></select></label>
+                <div id="ayar-adli-blok" hidden>
+                  <label class="pf-alan"><span>Öğretim türü</span><select id="ayar-ogretim"><option value="1">1. öğretim</option><option value="2">2. öğretim</option></select></label>
+                  <label class="pf-alan"><span>Şube</span><select id="ayar-sube"><option value="0">Tümü</option><option value="1">Şube 1</option><option value="2">Şube 2</option></select></label>
+                </div>
               </div>
 
               <button type="submit" class="pf-kaydet">Kaydet</button>
@@ -1751,10 +1755,10 @@ function geriSay() {
 <script src="/firebase-ayar.js"></script>
 <script type="module" src="/yorum.js?v=15"></script>
 <script src="/dil.js?v=4"></script>
-<script src="/ayarlar.js?v=5"></script>
+<script src="/ayarlar.js?v=6"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=2"></script>
-<script src="/program.js?v=4"></script>
+<script src="/program.js?v=5"></script>
 <script src="/vitrin.js?v=12"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">
