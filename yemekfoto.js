@@ -675,7 +675,7 @@
       "kaşarlı omlet": "yurt-sade-omlet",
       "patates salatası": "yurt-patates-salatasi",
       "çikolatalı kek": "yurt-cikolatali-kek",
-      "kek": "yurt-cikolatali-kek",
+      "kek": ["yurt-cikolatali-kek", "yurt-susamli-kek"],
       "beyaz peynir": "yurt-beyaz-peynir",
       "peynir": "yurt-beyaz-peynir",
       "krem peynir": "yurt-beyaz-peynir",
@@ -691,6 +691,10 @@
       "haydari": "yurt-haydari",
       "tulumba": "yurt-tulumba",
       "tereyağı": "yurt-tereyagi",
+      "dere otlu poğaça": "yurt-dere-otlu-pogaca",
+      "sosis kızartma": "yurt-sosis-kizartma",
+      "sucuklu yumurta": "yurt-sucuklu-yumurta",
+      "sucuklu omlet": "yurt-sucuklu-yumurta",
       "bal": "yurt-bal",
       "mozaik kek": "yurt-mozaik-kek"
     }
@@ -1305,28 +1309,29 @@
   }
 
   // Yurt ve Üniversite Evi tamamen ayrılmıştır!
-  function fotoBul(ad, yer = "yurt") {
+  function fotoBulHepsi(ad, yer = "yurt") {
     if (!ad) return null;
     const bulut = {}; // elle/bulut fotoğraflar kapatıldı: yalnızca sabit tablo (FOTOLAR) kullanılır
     const k = kucuk(ad), sl = slugYap(ad), asc = asciiYap(ad);
     const yerKodu = yer === "unievi" ? "unievi" : "yurt";
 
     // 1) Yer önekiyle bulutta ara (örn: unievi_etli-kuru-fasulye veya yurt_etli-kuru-fasulye)
-    if (bulut[yerKodu + "_" + asc]) return bulut[yerKodu + "_" + asc];
-    if (bulut[yerKodu + "_" + sl]) return bulut[yerKodu + "_" + sl];
-    if (bulut[yerKodu + "_" + k]) return bulut[yerKodu + "_" + k];
-
+    
     // 2) Yerel sabit tabloda ara (FOTOLAR.yurt veya FOTOLAR.unievi)
     const yerTablo = FOTOLAR[yerKodu] || {};
-    if (yerTablo[k]) return yerTablo[k];
-    if (yerTablo[asc]) return yerTablo[asc];
-    if (yerTablo[sl]) return yerTablo[sl];
+    const v = yerTablo[k] || yerTablo[asc] || yerTablo[sl];
+    if (v) return Array.isArray(v) ? v : [v];
 
     return null;
   }
+  function fotoBul(ad, yer = "yurt") {
+    const h = fotoBulHepsi(ad, yer);
+    return h ? h[0] : null;
+  }
+
 
   // Gelecek günlerin menüsü gibi başka yerlerde kullanılmak üzere dışa aç
-  window.KC_FOTO = { bul: fotoBul, src: resimSrc, ayir: seceneklereAyir, buyut: buyut };
+  window.KC_FOTO = { bul: fotoBul, hepsi: fotoBulHepsi, src: resimSrc, ayir: seceneklereAyir, buyut: buyut };
 
   // "A / B / C" biçimindeki seçenekleri alt alta, ayrı satırlarda göster
   function altAlta(el, yazi) {
@@ -1571,10 +1576,9 @@
       let secenekler = [];
 
       if (parcalar.length === 1) {
-        const f = fotoBul(parcalar[0], genel);
-        if (f) secenekler = [[parcalar[0], f]];
+        secenekler = (fotoBulHepsi(parcalar[0], genel) || []).map(f => [parcalar[0], f]);
       } else {
-        secenekler = parcalar.map(p => [p, fotoBul(p, genel)]).filter(([_, f]) => !!f);
+        secenekler = parcalar.flatMap(p => (fotoBulHepsi(p, genel) || []).map(f => [p, f]));
       }
 
       const eskiGrup = li.querySelector(".yf-grup");
