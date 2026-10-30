@@ -153,7 +153,11 @@ sub { font-size: .7em; }
 
 /* ===================== Prova / deneme ===================== */
 .pv-kartlar { display: grid; gap: 12px; margin-bottom: 22px; }
-.ls-sekme { margin: 4px 0 14px; }
+.ls-sekme { margin: 4px 0 14px; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+.ls-sekme::-webkit-scrollbar { display: none; }
+.ls-sekme button { flex: 1 0 auto !important; padding-left: 8px !important; padding-right: 8px !important; font-size: 13px !important; gap: 5px !important; }
+.kap, #icerik { min-width: 0; max-width: 100%; }
+body { overflow-x: hidden; }
 .ls-sekme button { display: flex; align-items: center; justify-content: center; gap: 7px; }
 .ls-sekme button i { font-style: normal; font-size: 11.5px; font-weight: 800; padding: 1px 7px; border-radius: 99px; background: rgba(20,27,52,.08); }
 .ls-sekme button.aktif i { background: rgba(255,255,255,.25); }
@@ -375,7 +379,7 @@ function listeCiz() {
   try { listeSekme = sessionStorage.getItem("kc-ls:" + dersYolu) || listeSekme; } catch (e) {}
   const at = ders.atolye && window.KodAtolye ? KodAtolye.sayi() : 0;
   if ((listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn) || (listeSekme === "atolye" && !at)) listeSekme = "unite";
-  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(at ? [["atolye", "Kod atölyesi", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
+  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(at ? [["atolye", "Atölye", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
   const cozulen = ders.uniteler.reduce((t, u) => { const k = oku(anahtar(u.no)); return t + (k ? k.cevap || 0 : 0); }, 0);
   let h = `
     <section class="ders-hero">
