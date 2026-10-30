@@ -298,6 +298,7 @@
     ["Muhasebe I", "Accounting I", "Hesabdarî I", "المحاسبة I"],
     ["Müşteri İlişkileri Yönetimi", "Customer Relationship Management", "Rêveberiya Têkiliyên Mişteriyan", "إدارة علاقات العملاء"],
     ["Nesne Tabanlı Programlama II", "Object-Oriented Programming II", "Bernamesaziya Objeyî II", "البرمجة كائنية التوجه II"],
+    ["İngilizce I", "English I", "Îngilîzî I", "الإنجليزية I"],
     ["Pazarlama İlkeleri", "Principles of Marketing", "Prensîbên Bazarkirinê", "مبادئ التسويق"],
     ["Proje Yönetimi", "Project Management", "Rêveberiya Projeyê", "إدارة المشاريع"],
     ["Sistem Analizi ve Tasarımı", "Systems Analysis and Design", "Analîz û Sêwirana Pergalê", "تحليل النظم وتصميمها"],
