@@ -120,6 +120,7 @@ const ybsDersleri = {
   ],
   2: [
     { kod: "", ad: "Atatürk İlkeleri ve İnkılap Tarihi I", gun: "", saat: "", hoca: "Rahmi Doğanay", yer: "", link: "ders.html?d=ortak/inkilap-tarihi-1" },
+    { kod: "YDİ107", ad: "İngilizce I", gun: "", saat: "", hoca: "", yer: "", link: "ders.html?d=ortak/ingilizce-1" },
     { kod: "YBS2103", ad: "İstatistik", gun: "Perşembe", saat: "09:15–12:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "Çevre Derslik 3", link: "ders.html?d=ybs/2/istatistik" },
     { kod: "YBS2101", ad: "Finansal Yönetim", gun: "Salı", saat: "13:15–16:00", hoca: "Dr. Öğr. Üyesi Emre Bulut", yer: "Seminer Salonu", link: "ders.html?d=ybs/2/finansal-yonetim" },
     { kod: "YBS2105", ad: "Web Tabanlı Uygulamalar", gun: "Pazartesi", saat: "13:15–17:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2", link: "" },
