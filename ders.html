@@ -56,6 +56,7 @@ a { color: inherit; }
   font: 700 14px var(--font); border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
 .btn svg { width: 18px; height: 18px; flex: none; }
 .btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
+.btn.btn-atolye { background: linear-gradient(120deg, #0f1630, #3b5bfd 70%, #8b5cf6); border-color: transparent; }
 .btn:hover { filter: brightness(1.04); }
 .btn[disabled] { opacity: .4; cursor: default; }
 
@@ -306,6 +307,7 @@ sub { font-size: .7em; }
   </footer>
 </div>
 
+<script src="kodatolye.js?v=2"></script>
 <script>
 /* =====================================================================
    Ders sayfası: ders.html?d=ybs/1/bilisim-sistemleri
@@ -322,6 +324,7 @@ const renk = i => "c" + (i % 5);
 const ikonPdf = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>';
 const ikonOzet = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h14v16H6a2 2 0 0 0-2 2zm0 0A2 2 0 0 0 6 22h14"/><path d="M8 7h8M8 11h6"/></svg>';
 const ikonTest = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>';
+const ikonKod = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>';
 const html = s => String(s).replace(/<span class="ust">/g, '<span class="ust-cizgi">');
 const duz = s => String(s).replace(/<[^>]+>/g, "").replace(/&gt;/g, ">").replace(/&lt;/g, "<").replace(/&amp;/g, "&");
 const TURLER = [["test", "Çoktan seçmeli", "Test"], ["dy", "Doğru – Yanlış", "D / Y"], ["bosluk", "Boşluk doldurma", "Boşluk"]];
@@ -338,6 +341,7 @@ async function yukle() {
     return;
   }
   document.title = ders.ad + " – KampüsCepte";
+  if (ders.atolye && window.KodAtolye) KodAtolye.kur({ ders, yol: dersYolu, oku, yaz });
   document.getElementById("geri").href = "index.html#" + (ders.sinif ? dersYolu.split("/").slice(0, 2).join("-") : dersYolu.split("/")[0]);
   window.addEventListener("hashchange", yonlendir);
   yonlendir();
@@ -348,7 +352,13 @@ function yonlendir() {
   const m = location.hash.match(/^#test-(\d+)$/);
   const u = m && ders.uniteler.find(x => x.no === +m[1] && x.test);
   const pm = location.hash.match(/^#(?:prova|deneme)-([a-z0-9]+)$/);
-  if (pm && pvTanim(pm[1])) pvGiris(pm[1]);
+  const am = ders.atolye && window.KodAtolye && location.hash.match(/^#atolye(?:-(\d+\.\d+|b\d+))?$/);
+  if (am) {
+    const a = am[1];
+    if (a && a[0] !== "b") KodAtolye.ac(a, ICERIK);
+    else { KodAtolye.ayarla(a ? +a.slice(1) : 0); listeSekme = "atolye"; try { sessionStorage.setItem("kc-ls:" + dersYolu, "atolye"); } catch (e) {} listeCiz(); }
+  }
+  else if (pm && pvTanim(pm[1])) pvGiris(pm[1]);
   else if (u) testAc(u); else listeCiz();
   window.scrollTo({ top: 0 });
 }
@@ -363,8 +373,9 @@ function listeCiz() {
   const toplam = ders.uniteler.reduce((t, u) => t + soruSayisi(u), 0);
   const pv = (ders.provalar || []).length, dn = (ders.denemeler || []).length;
   try { listeSekme = sessionStorage.getItem("kc-ls:" + dersYolu) || listeSekme; } catch (e) {}
-  if ((listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn)) listeSekme = "unite";
-  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
+  const at = ders.atolye && window.KodAtolye ? KodAtolye.sayi() : 0;
+  if ((listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn) || (listeSekme === "atolye" && !at)) listeSekme = "unite";
+  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(at ? [["atolye", "Kod atölyesi", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
   const cozulen = ders.uniteler.reduce((t, u) => { const k = oku(anahtar(u.no)); return t + (k ? k.cevap || 0 : 0); }, 0);
   let h = `
     <section class="ders-hero">
@@ -375,11 +386,13 @@ function listeCiz() {
       ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
     ${sek.length > 1 ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
-  if (listeSekme === "prova") h += pvProvaHtml();
+  if (listeSekme === "atolye") h += KodAtolye.listeHtml();
+  else if (listeSekme === "prova") h += pvProvaHtml();
   else if (listeSekme === "deneme") h += pvDenemeHtml();
   else h += unitelerHtml();
   h += `<div class="vitrin">Sponsorlu alan</div>`;
   ICERIK.innerHTML = h;
+  if (listeSekme === "atolye") KodAtolye.listeBagla(ICERIK, listeCiz);
   ICERIK.querySelectorAll("[data-ls]").forEach(b => b.onclick = () => { listeSekme = b.dataset.ls; try { sessionStorage.setItem("kc-ls:" + dersYolu, listeSekme); } catch (e) {} listeCiz(); });
 }
 function unitelerHtml() {
@@ -398,7 +411,8 @@ function unitelerHtml() {
         <div class="butonlar">
           ${u.ozet ? `<a class="btn" href="${klasor + u.ozet}">${ikonOzet}Konu özeti</a>` : ""}
           <a class="btn${t ? "" : " ana"}" href="${klasor + u.pdf}" target="_blank" rel="noopener">${ikonPdf}Notu aç</a>
-          ${t ? `<a class="btn ana" href="#test-${u.no}">${ikonTest}${cevap && cevap < t ? "Teste devam et" : "Kendini test et"}</a>` : ""}
+          ${t ? `<a class="btn${u.atolye && u.atolye.length ? "" : " ana"}" href="#test-${u.no}">${ikonTest}${cevap && cevap < t ? "Teste devam et" : "Kendini test et"}</a>` : ""}
+          ${u.atolye && u.atolye.length && window.KodAtolye ? `<a class="btn ana btn-atolye" href="#atolye-b${u.no}">${ikonKod}Kod atölyesi · ${u.atolye.length} soru</a>` : ""}
         </div>
       </article>`;
   });
