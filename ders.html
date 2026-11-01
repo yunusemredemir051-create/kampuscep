@@ -432,8 +432,13 @@ function cikmisHtml() {
   const indir = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>';
   const goz = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
   const yildiz = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z"/></svg>';
-  let h = `<div class="baslik">Çıkmış Sorular</div><div class="ck-liste">`;
-  ders.cikmis.forEach(c => {
+  const GR = [["vize", "Vize"], ["final", "Final"], ["but", "Bütünleme"], ["diger", "Diğer sınavlar"]];
+  let h = "";
+  GR.forEach(([tk, tad]) => {
+  const grup = ders.cikmis.filter(c => (c.tur || "diger") === tk);
+  if (!grup.length) return;
+  h += `<div class="baslik">${tad} <span style="color:var(--soluk);font-weight:700">· ${grup.length}</span></div><div class="ck-liste">`;
+  grup.forEach(c => {
     const yol = klasor + c.gorsel, dosya = "KampusCepte-" + c.gorsel.split("/").pop().split("?")[0];
     h += `
       <article class="ck-kart cam" data-ck="${c.id}">
@@ -453,7 +458,9 @@ function cikmisHtml() {
         </div>
       </article>`;
   });
-  return h + `</div>`;
+  h += `</div>`;
+  });
+  return h;
 }
 let ckYuklendi = false;
 function cikmisBagla() {
