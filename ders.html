@@ -405,17 +405,18 @@ function listeCiz() {
   const at = ders.atolye && window.KodAtolye ? KodAtolye.sayi() : 0;
   const ck = (ders.cikmis || []).length;
   if ((listeSekme === "cikmis" && !ck) || (listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn) || (listeSekme === "atolye" && !at)) listeSekme = "unite";
-  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(at ? [["atolye", "Atölye", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : []), ...(ck ? [["cikmis", "Çıkmış", ck]] : [])];
+  const sek = [...(ders.uniteler.length ? [["unite", "Üniteler", ders.uniteler.length]] : []), ...(at ? [["atolye", "Atölye", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : []), ...(ck ? [["cikmis", "Çıkmış", ck]] : [])];
   const cozulen = ders.uniteler.reduce((t, u) => { const k = oku(anahtar(u.no)); return t + (k ? k.cevap || 0 : 0); }, 0);
+  if (!sek.some(x => x[0] === listeSekme) && sek.length) listeSekme = sek[0][0];
   let h = `
     <section class="ders-hero">
       <span class="dh-etiket">${ikonOzet}${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</span>
       <h1>${ders.ad}</h1>
       <p class="dh-yazar">Hazırlayan · <b>${ders.yazarlar}</b></p>
-      <div class="dh-istat"><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div><div><b>${pv + dn}</b>sınav</div></div>
+      ${ders.uniteler.length ? `<div class="dh-istat"><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div><div><b>${pv + dn}</b>sınav</div></div>` : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
       ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
-    ${sek.length > 1 ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
+    ${sek.length > 1 || !ders.uniteler.length ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
   if (listeSekme === "atolye") h += KodAtolye.listeHtml();
   else if (listeSekme === "prova") h += pvProvaHtml();
   else if (listeSekme === "deneme") h += pvDenemeHtml();
