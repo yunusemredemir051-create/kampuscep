@@ -83,6 +83,7 @@ a { color: inherit; }
 .ck-onizle { display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--cizgi); background: #fff; aspect-ratio: 794/1123; box-shadow: 0 6px 18px rgba(20,27,52,.10); }
 .ck-onizle img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .ck-kart h2 { margin: 2px 0 0; font-size: 16.5px; letter-spacing: -.3px; line-height: 1.3; }
+.ck-rozet.ck-klasik { color: var(--mavi); background: var(--mavi-acik); }
 .ck-alt { color: var(--soluk); font-size: 12.5px; font-weight: 600; margin-top: 4px; }
 .ck-rozet { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; letter-spacing: .4px; color: var(--yesil); background: var(--yesil-acik); padding: 4px 9px; border-radius: 99px; margin-bottom: 6px; }
 .ck-istat { display: flex; gap: 14px; margin: 12px 0; flex-wrap: wrap; align-items: center; }
@@ -437,7 +438,7 @@ function cikmisHtml() {
       <article class="ck-kart cam" data-ck="${c.id}">
         <a class="ck-onizle" href="${yol}" target="_blank" rel="noopener"><img src="${yol}" alt="${c.ad}" loading="lazy"></a>
         <div>
-          <span class="ck-rozet">● CEVAPLI · ${c.soru} SORU</span>
+          <span class="ck-rozet${c.cevapsiz ? " ck-klasik" : ""}">● ${c.cevapsiz ? "KLASİK" : "CEVAPLI"} · ${c.soru} SORU</span>
           <h2>${c.ad}</h2>
           <div class="ck-alt">${c.alt}</div>
           <div class="ck-istat">
