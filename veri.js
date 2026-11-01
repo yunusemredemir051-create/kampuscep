@@ -53,7 +53,9 @@ const kykAnaMenu = {
   "2026-10-30": { kahvalti: ["Sade omlet", "Patates kızartma", "Simit", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
                   aksam: ["Mercimek çorbası / Yayla çorbası", "Ekmek arası köfte / Tavuk sote / Yoğurtlu mantı", "Nohutlu pirinç pilavı", "Mevsim salata"] },
   "2026-10-31": { kahvalti: ["Haşlanmış yumurta", "Salçalı sosis", "Ispanaklı börek", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
-                  aksam: ["Dövme çorbası / Domates çorbası", "Orman kebabı / Ispanak yemeği / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç"] }
+                  aksam: ["Dövme çorbası / Domates çorbası", "Orman kebabı / Ispanak yemeği / Tavuk çöp şiş", "Bulgur pilavı", "Sütlaç"] },
+  "2026-11-01": { kahvalti: ["Peynirli omlet", "Sosis kızartma", "Sade poğaça", "Labne", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası / Şehriye çorbası", "Tavuk kavurma / İmam bayıldı / Çiftlik kebabı", "Soslu makarna", "Haydari"] }
 };
 
 /* İl Müdürlüğü notu: bazı yurt gruplarına belirli tarihlerde özel akşam menüsü verilir.
