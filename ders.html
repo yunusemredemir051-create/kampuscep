@@ -76,6 +76,30 @@ a { color: inherit; }
 .ilerleme div { height: 100%; background: linear-gradient(90deg, var(--yesil), #3fd6a0); border-radius: 99px; }
 .unite .butonlar .btn { flex: 1; min-width: 130px; }
 
+
+/* Çıkmış sorular */
+.ck-liste { display: grid; gap: 14px; }
+.ck-kart { padding: 14px; display: grid; grid-template-columns: 132px 1fr; gap: 16px; align-items: start; }
+.ck-onizle { display: block; border-radius: 12px; overflow: hidden; border: 1px solid var(--cizgi); background: #fff; aspect-ratio: 794/1123; box-shadow: 0 6px 18px rgba(20,27,52,.10); }
+.ck-onizle img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.ck-kart h2 { margin: 2px 0 0; font-size: 16.5px; letter-spacing: -.3px; line-height: 1.3; }
+.ck-alt { color: var(--soluk); font-size: 12.5px; font-weight: 600; margin-top: 4px; }
+.ck-rozet { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 800; letter-spacing: .4px; color: var(--yesil); background: var(--yesil-acik); padding: 4px 9px; border-radius: 99px; margin-bottom: 6px; }
+.ck-istat { display: flex; gap: 14px; margin: 12px 0; flex-wrap: wrap; align-items: center; }
+.ck-istat > div { font-size: 12px; color: var(--soluk); font-weight: 600; display: flex; align-items: center; gap: 6px; }
+.ck-istat b { color: var(--yazi); font-size: 15px; font-weight: 800; }
+.ck-istat > div > svg { width: 16px; height: 16px; color: var(--mavi); }
+.ck-yildiz { display: inline-flex; gap: 2px; }
+.ck-yildiz button { border: 0; background: none; padding: 2px; cursor: pointer; color: #d5dae6 !important; line-height: 0; box-shadow: none !important; transition: transform .15s; }
+.ck-yildiz button:hover { transform: scale(1.15); }
+.ck-yildiz button svg { width: 22px; height: 22px; fill: currentColor !important; stroke: none !important; }
+.ck-yildiz button.dolu { color: #f5b301 !important; }
+.ck-yildiz button.benim { color: #f59e0b !important; }
+.ck-oy { font-size: 11.5px; color: var(--soluk); font-weight: 600; margin-left: 4px; }
+.ck-butonlar { display: flex; gap: 8px; flex-wrap: wrap; }
+.ck-butonlar .btn { flex: 1; min-width: 120px; }
+@media (max-width: 520px) { .ck-kart { grid-template-columns: 96px 1fr; gap: 12px; } .ck-yildiz button svg { width: 20px; height: 20px; } }
+
 /* Test */
 .sekmeler { display: flex; gap: 6px; background: rgba(20,27,52,.05); border-radius: 14px; padding: 4px; margin: 16px 0 12px; }
 .sekmeler button { flex: 1; white-space: nowrap; border: 0; background: transparent; color: var(--soluk); font: 700 13px var(--font); padding: 10px 8px; border-radius: 11px; cursor: pointer; }
@@ -378,8 +402,9 @@ function listeCiz() {
   const pv = (ders.provalar || []).length, dn = (ders.denemeler || []).length;
   try { listeSekme = sessionStorage.getItem("kc-ls:" + dersYolu) || listeSekme; } catch (e) {}
   const at = ders.atolye && window.KodAtolye ? KodAtolye.sayi() : 0;
-  if ((listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn) || (listeSekme === "atolye" && !at)) listeSekme = "unite";
-  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(at ? [["atolye", "Atölye", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : [])];
+  const ck = (ders.cikmis || []).length;
+  if ((listeSekme === "cikmis" && !ck) || (listeSekme === "prova" && !pv) || (listeSekme === "deneme" && !dn) || (listeSekme === "atolye" && !at)) listeSekme = "unite";
+  const sek = [["unite", "Üniteler", ders.uniteler.length], ...(at ? [["atolye", "Atölye", at]] : []), ...(pv ? [["prova", "Provalar", pv]] : []), ...(dn ? [["deneme", "Denemeler", dn]] : []), ...(ck ? [["cikmis", "Çıkmış", ck]] : [])];
   const cozulen = ders.uniteler.reduce((t, u) => { const k = oku(anahtar(u.no)); return t + (k ? k.cevap || 0 : 0); }, 0);
   let h = `
     <section class="ders-hero">
@@ -393,11 +418,49 @@ function listeCiz() {
   if (listeSekme === "atolye") h += KodAtolye.listeHtml();
   else if (listeSekme === "prova") h += pvProvaHtml();
   else if (listeSekme === "deneme") h += pvDenemeHtml();
+  else if (listeSekme === "cikmis") h += cikmisHtml();
   else h += unitelerHtml();
   h += `<div class="vitrin">Sponsorlu alan</div>`;
   ICERIK.innerHTML = h;
   if (listeSekme === "atolye") KodAtolye.listeBagla(ICERIK, listeCiz);
+  if (listeSekme === "cikmis") cikmisBagla();
   ICERIK.querySelectorAll("[data-ls]").forEach(b => b.onclick = () => { listeSekme = b.dataset.ls; try { sessionStorage.setItem("kc-ls:" + dersYolu, listeSekme); } catch (e) {} listeCiz(); });
+}
+function cikmisHtml() {
+  const indir = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>';
+  const goz = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const yildiz = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z"/></svg>';
+  let h = `<div class="baslik">Çıkmış Sorular</div><div class="ck-liste">`;
+  ders.cikmis.forEach(c => {
+    const yol = klasor + c.gorsel, dosya = "KampusCepte-" + c.gorsel.split("/").pop();
+    h += `
+      <article class="ck-kart cam" data-ck="${c.id}">
+        <a class="ck-onizle" href="${yol}" target="_blank" rel="noopener"><img src="${yol}" alt="${c.ad}" loading="lazy"></a>
+        <div>
+          <span class="ck-rozet">● CEVAPLI · ${c.soru} SORU</span>
+          <h2>${c.ad}</h2>
+          <div class="ck-alt">${c.alt}</div>
+          <div class="ck-istat">
+            <div>${indir}<b class="ck-say">…</b> indirme</div>
+            <div><b class="ck-ort">–</b><span class="ck-yildiz">${[1,2,3,4,5].map(n => `<button aria-label="${n} yıldız">${yildiz}</button>`).join("")}</span><span class="ck-oy"></span></div>
+          </div>
+          <div class="ck-butonlar">
+            <a class="btn" href="${yol}" target="_blank" rel="noopener">${goz}Görüntüle</a>
+            <a class="btn ana ck-indir" href="${yol}" download="${dosya}">${indir}İndir</a>
+          </div>
+        </div>
+      </article>`;
+  });
+  return h + `</div>`;
+}
+let ckYuklendi = false;
+function cikmisBagla() {
+  if (window.Cikmis) return Cikmis.bagla(ICERIK);
+  document.addEventListener("cikmis-hazir", () => Cikmis.bagla(ICERIK), { once: true });
+  if (ckYuklendi) return; ckYuklendi = true;
+  const f = document.createElement("script"); f.src = "firebase-ayar.js";
+  f.onload = () => { const m = document.createElement("script"); m.type = "module"; m.src = "cikmis.js?v=1"; document.body.appendChild(m); };
+  document.body.appendChild(f);
 }
 function unitelerHtml() {
   let h = `<div class="baslik">Üniteler</div><div class="uniteler">`;
