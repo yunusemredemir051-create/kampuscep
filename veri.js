@@ -20,7 +20,8 @@ const yurtlar = [
   { id: "sare-ana",        ad: "Sare Ana Yurdu",        tur: "kiz" }
 ];
 
-/* ================= KYK ORTAK KASIM 2026 MENÜSÜ =================
+/* NOT: Eski tarihli menüleri SİLME. Aynı menü tekrar çıkınca eski günlerin puan/beğenileri bu listelerden bulunup yeni güne eklenir.
+   ================= KYK ORTAK KASIM 2026 MENÜSÜ =================
    Tüm Elazığ KYK yurtlarında kahvaltı ve akşam ana menüleri aynıdır.
    Farklılık sadece İl Müdürlüğü notunda belirtilen yurt gruplarına göre
    özel menü (Lahmacun vb.) tarihlerindedir:

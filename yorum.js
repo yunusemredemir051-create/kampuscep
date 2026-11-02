@@ -46,6 +46,35 @@ function oyHavuzId(menuId) {
   return menuId;
 }
 
+/* Aynı menü (aynı yemek listesi) başka günlerde de çıktıysa, o günlerin puan ve beğenileri de bu menüye eklenir.
+   Oylar her zaman o günün kaydına yazılır; gösterilirken aynı menünün tüm günleri toplanır. */
+function menuImza(liste) {
+  return (Array.isArray(liste) ? liste : []).map(s => String(s).toLocaleLowerCase("tr-TR").replace(/\s+/g, " ").trim()).filter(Boolean).sort().join("|");
+}
+function menuListesi(oyId) {
+  const m = String(oyId || "").match(/^(kyk|unievi)_(\d{4}-\d{2}-\d{2})(?:_(kahvalti|aksam))?$/);
+  if (!m) return null;
+  try {
+    if (m[1] === "kyk" && typeof kykAnaMenu !== "undefined") { const g = kykAnaMenu[m[2]]; return g ? g[m[3] === "kahvalti" ? "kahvalti" : "aksam"] : null; }
+    if (m[1] === "unievi" && typeof uniEviMenuleri !== "undefined") return uniEviMenuleri[m[2]] || null;
+  } catch (e) {}
+  return null;
+}
+function ayniMenuGunleri(oyId) {
+  const m = String(oyId || "").match(/^(kyk|unievi)_(\d{4}-\d{2}-\d{2})(?:_(kahvalti|aksam))?$/);
+  const imza = menuImza(menuListesi(oyId));
+  if (!m || !imza) return [];
+  let tarihler = [];
+  try {
+    if (m[1] === "kyk" && typeof kykAnaMenu !== "undefined") tarihler = Object.keys(kykAnaMenu);
+    if (m[1] === "unievi" && typeof uniEviMenuleri !== "undefined") tarihler = Object.keys(uniEviMenuleri);
+  } catch (e) {}
+  const bugun = new Date().toISOString().slice(0, 10);
+  return tarihler.filter(t => /^\d{4}-\d{2}-\d{2}$/.test(t) && t !== m[2] && t <= bugun)
+    .map(t => m[1] + "_" + t + (m[3] ? "_" + m[3] : ""))
+    .filter(id => menuImza(menuListesi(id)) === imza);
+}
+
 // Yorumlar ise her yurdun kendi özel menüsünde kalır (birbirine karışmaz)
 function yorumHavuzId(menuId) {
   return menuId;
@@ -369,10 +398,36 @@ function oyDinleVeSay(el) {
   } catch (e) {}
 
   // Firestore'daki ortak havuz oylarını gerçek zamanlı dinle
+  // Aynı menünün geçmiş günlerdeki oyları (bir kez okunur, bugünkülerin üstüne eklenir)
+  d.gecmis = { starTop: 0, starSay: 0, iyi: 0, kotu: 0 };
+  const gecmisGunler = ayniMenuGunleri(d.oyId);
+  let sonSnap = null;
+  if (gecmisGunler.length) {
+    Promise.all(gecmisGunler.map(id => getDocs(collection(db, "menuler", id, "oylar")).catch(() => null))).then(liste => {
+      if (kutular.get(el) !== d) return;
+      const g = { starTop: 0, starSay: 0, iyi: 0, kotu: 0 };
+      liste.forEach(s => s && s.forEach(x => {
+        const v = x.data(), p = typeof v.puan === "number" ? v.puan : 0;
+        if (p >= 1 && p <= 5) { g.starTop += p; g.starSay++; }
+        const r = typeof v.reaksiyon === "number" ? v.reaksiyon : (v.d === 1 || v.d === -1 ? v.d : 0);
+        if (r === 1) g.iyi++; else if (r === -1) g.kotu++;
+      }));
+      d.gecmis = g;
+      if (sonSnap) sonSnap();
+    });
+  }
+
   const oylarRef = collection(db, "menuler", d.oyId, "oylar");
   d.dinleOy = onSnapshot(oylarRef, snapOylar => {
     if (kutular.get(el) !== d) return;
-    let starTop = 0, starSay = 0, iyiSay = 0, kotuSay = 0;
+    sonSnap = () => isle(snapOylar);
+    isle(snapOylar);
+  }, err => {
+    console.warn("Ortak oy havuzu dinleme hatası:", err);
+  });
+
+  function isle(snapOylar) {
+    let starTop = d.gecmis.starTop, starSay = d.gecmis.starSay, iyiSay = d.gecmis.iyi, kotuSay = d.gecmis.kotu;
     snapOylar.forEach(docSnap => {
       const data = docSnap.data();
       const p = typeof data.puan === "number" ? data.puan : 0;
@@ -401,9 +456,7 @@ function oyDinleVeSay(el) {
       }
     }
     barCiz(el);
-  }, err => {
-    console.warn("Ortak oy havuzu dinleme hatası:", err);
-  });
+  }
 }
 
 function barCiz(el) {
