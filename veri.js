@@ -20,13 +20,13 @@ const yurtlar = [
   { id: "sare-ana",        ad: "Sare Ana Yurdu",        tur: "kiz" }
 ];
 
-/* ================= KYK ORTAK EKİM 2026 MENÜSÜ =================
+/* ================= KYK ORTAK KASIM 2026 MENÜSÜ =================
    Tüm Elazığ KYK yurtlarında kahvaltı ve akşam ana menüleri aynıdır.
    Farklılık sadece İl Müdürlüğü notunda belirtilen yurt gruplarına göre
    özel menü (Lahmacun vb.) tarihlerindedir:
-   - 02.10 - 16.10: Ahmet Kabaklı
-   - 05.10 - 22.10: Sare Ana, Harput, İzzetpaşa
-   - 23.10 - 27.10: Ömer Bilginoğlu, Fethi Sekin, Fırat
+   - 08.11 - 20.11: Ahmet Kabaklı
+   - 02.11 - 17.11: Sare Ana, Harput, İzzetpaşa
+   - 11.11 - 27.11: Ömer Bilginoğlu, Fethi Sekin, Fırat
    ===================================================================== */
 const kykAnaMenu = {
   kahvaltiNotu: "Al götür kahvaltı her gün 10.30'a kadar verilir.",
@@ -57,19 +57,75 @@ const kykAnaMenu = {
   "2026-11-01": { kahvalti: ["Peynirli omlet", "Sosis kızartma", "Sade poğaça", "Labne", "Siyah / yeşil zeytin", "Çay"],
                   aksam: ["Mercimek çorbası / Şehriye çorbası", "Tavuk kavurma / İmam bayıldı / Çiftlik kebabı", "Soslu makarna", "Haydari"] },
   "2026-11-02": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Zeytinli / peynirli açma", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
-                  aksam: ["Tarhana çorbası / Düğün çorbası", "Etli kuru fasulye / Tavuk çöp şiş / Mevsim soslu karışık kızartma", "Şehriyeli bulgur pilavı", "Cevizli baklava"] }
+                  aksam: ["Tarhana çorbası / Düğün çorbası", "Etli kuru fasulye / Mevsim soslu karışık kızartma / Tavuk çöp şiş", "Şehriyeli bulgur pilavı", "Cevizli baklava"] },
+  "2026-11-03": { kahvalti: ["Kaşarlı omlet", "Patates kızartma", "Dere otlu poğaça", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Domates çorbası / Yayla çorbası", "Tavuk döner / Karışık sebze graten", "Sade pirinç pilavı", "Mevsim salata"] },
+  "2026-11-04": { kahvalti: ["Haşlanmış yumurta", "Sosis kızartma", "Peynirli / ıspanaklı börek", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Ezogelin çorbası / Tutmaç çorbası", "Hamburger köfte + patates / Tavuk burger / Yoğurtlu karnabahar", "Makarna salatası", "Sütlaç"] },
+  "2026-11-05": { kahvalti: ["Sucuklu omlet", "Karışık kızartma", "Simit", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Terbiyeli sebze çorbası / Domates çorbası", "Fırında sebzeli tavuk ızgara / Mevsim türlü / Etli dolma", "Sebzeli bulgur pilavı", "Mevsim salata"] },
+  "2026-11-06": { kahvalti: ["Haşlanmış yumurta", "Haşlanmış patates + domates-salatalık", "Karışık pizza", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası / Ayran aşı çorbası", "Orman kebabı / Ispanak yemeği / Şinitzel", "Nohutlu pirinç pilavı", "Cacık"] },
+  "2026-11-07": { kahvalti: ["Menemen", "Salçalı sosis", "Patatesli börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Şehriye çorbası / Yayla çorbası", "Tavuk fajita / Yoğurtlu mantı / Kilis tava", "Fırın makarna", "Brownie"] },
+  "2026-11-08": { kahvalti: ["Haşlanmış yumurta", "Patates kavurması", "Kek + sürülebilir çikolata", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Tarhana çorbası / Mısır çorbası", "Çiftlik köfte / Nugget / Taze fasulye", "Şehriyeli bulgur pilavı", "Havuç tarator"] },
+  "2026-11-09": { kahvalti: ["Sade omlet", "Patates kızartma", "Sade poğaça", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası / Yayla çorbası", "Kavurma / Bezelye yemeği / Tavuk çöp şiş", "Sade pirinç pilavı", "Mevsim salata"] },
+  "2026-11-10": { kahvalti: ["Haşlanmış yumurta", "Salçalı sosis", "Peynirli / ıspanaklı börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Terbiyeli sebze çorbası / Şehriye çorbası", "Tavuk tantuni / Taze fasulye / Karnıyarık", "Soslu makarna", "Haydari"] },
+  "2026-11-11": { kahvalti: ["Peynirli omlet", "Karışık kızartma", "Zeytinli / peynirli açma", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Tarhana çorbası / Domates çorbası", "Etli kuru fasulye / Mevsim türlü / Nugget", "Şehriyeli bulgur pilavı", "Yoğurt", "Şekerpare"] },
+  "2026-11-12": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Domates-salatalık", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası / Şehriye çorbası", "Fırında tavuk biftek / Mücver / Etli dolma", "Gökkuşağı pirinç pilavı", "Mevsim salata"] },
+  "2026-11-13": { kahvalti: ["Menemen", "Patates salatası", "Simit", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Ezogelin çorbası / Sebze çorbası", "Rosto köfte / Sulu patates / Şinitzel", "Soslu makarna", "Ayran veya meyve suyu"] },
+  "2026-11-14": { kahvalti: ["Haşlanmış yumurta", "Salçalı sosis", "Ispanaklı börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Düğün çorbası / Süzme çorbası", "Çıtır tavuk / Ispanak kavurma / Güveç", "Sebzeli bulgur pilavı", "Sütlaç"] },
+  "2026-11-15": { kahvalti: ["Sucuklu omlet", "Patates kızartma", "Dere otlu poğaça", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Yayla çorbası / Şehriye çorbası", "Kuşbaşılı patlıcan kebabı / Tavuk kavurma / Bezelye yemeği", "Şehriyeli pirinç pilavı", "Havuç tarator"] },
+  "2026-11-16": { kahvalti: ["Haşlanmış yumurta", "Patates kızartma", "Sade poğaça", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Tarhana çorbası / Düğün çorbası", "Soslu fırında tavuk / Mevsim türlü / Etli nohutlu mantı", "Soslu makarna", "Mevsim salata"] },
+  "2026-11-17": { kahvalti: ["Peynirli omlet", "Sosis kızartma", "Simit", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Ezogelin çorbası / Tutmaç çorbası", "Fırında Diana köfte / Çıtır tavuk + patates kızartması / Mücver", "Sade bulgur pilavı", "Revani"] },
+  "2026-11-18": { kahvalti: ["Haşlanmış yumurta", "Patates kavurması", "Karışık pizza", "Krem peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası", "İstavrit (balık) / Soslu karışık kızartma", "Mevsim salata", "Helva"] },
+  "2026-11-19": { kahvalti: ["Sade omlet", "Sosis kızartma + domates-salatalık", "Kek + reçel", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Ezogelin çorbası / Mısır çorbası", "Ekmek arası köfte / Tavuk sote / Yoğurtlu mantı", "Şehriyeli pirinç pilavı", "Ayran"] },
+  "2026-11-20": { kahvalti: ["Haşlanmış yumurta", "Karışık kızartma", "Zeytinli / peynirli açma", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Süzme çorbası / Yayla çorbası", "Etli kuru fasulye / Dolma / Tavuk çöp şiş", "Erişte pilavı", "Cevizli baklava"] },
+  "2026-11-21": { kahvalti: ["Kaşarlı omlet", "Patates salatası", "Peynirli börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Düğün çorbası / Ayran aşı çorbası", "Karnıyarık / Tavuk tantuni / Pırasa", "Sade pirinç pilavı", "Cacık"] },
+  "2026-11-22": { kahvalti: ["Haşlanmış yumurta", "Sosis kızartma", "Peynirli / ıspanaklı börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Sebze çorbası / Mercimek çorbası", "Patlıcan parmak kebabı / Yoğurtlu mantı / Tavuk baget kızartma", "Sebzeli bulgur pilavı", "Mevsim salata"] },
+  "2026-11-23": { kahvalti: ["Peynirli omlet", "Patates kızartma", "Dere otlu poğaça", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Ezogelin çorbası / Tutmaç çorbası", "Tavuk döner / Karışık sebze graten", "Sade pirinç pilavı", "Islak kek"] },
+  "2026-11-24": { kahvalti: ["Haşlanmış yumurta", "Salçalı sosis", "Simit", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Tarhana çorbası / Domates çorbası", "Çiftlik köfte / Tavuk kavurma / Soslu karışık kızartma", "Makarna salatası", "Ayran veya meyve suyu"] },
+  "2026-11-25": { kahvalti: ["Sucuklu omlet", "Karışık kızartma", "Mozaik kek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası / Ayran aşı çorbası", "Tas kebabı / Şinitzel / İmam bayıldı", "Şehriyeli bulgur pilavı", "Haydari"] },
+  "2026-11-26": { kahvalti: ["Haşlanmış yumurta", "Patates kavurması", "Zeytinli / peynirli açma", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Terbiyeli sebze çorbası / Şehriye çorbası", "Fırın tavuk baget / Sebze graten / Etli taze fasulye", "Soslu makarna", "Mevsim salata"] },
+  "2026-11-27": { kahvalti: ["Sade omlet", "Patates kızartma", "Kek + bal", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Tarhana çorbası / Yayla çorbası", "Etli nohut / Yoğurtlu mantı / Tavuk fajita", "Şehriyeli pirinç pilavı", "Mercimek köfte", "Puding"] },
+  "2026-11-28": { kahvalti: ["Haşlanmış yumurta + domates-salatalık", "Salçalı sosis", "Peynirli / ıspanaklı börek", "Labne peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Düğün çorbası / Domates çorbası", "Çiftlik kebabı / Nugget / Dolma", "Sebzeli bulgur pilavı", "Mevsim salata"] },
+  "2026-11-29": { kahvalti: ["Menemen", "Patates kızartma", "Peynirli börek", "Beyaz peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Mercimek çorbası", "Somon (balık) / Soslu karışık kızartma", "Mevsim salata", "Helva"] },
+  "2026-11-30": { kahvalti: ["Haşlanmış yumurta", "Patates salatası", "Sade poğaça", "Kaşar peynir", "Siyah / yeşil zeytin", "Çay"],
+                  aksam: ["Tarhana çorbası / Mısır çorbası", "Hamburger köfte + patates / Tavuk burger / Ispanak kavurma", "Şehriyeli pirinç pilavı", "Tulumba tatlısı"] }
 };
 
 /* İl Müdürlüğü notu: bazı yurt gruplarına belirli tarihlerde özel akşam menüsü verilir.
    Menü listesi DEĞİŞMEZ; yalnızca ilgili yurdun ilgili günlerinde kısa bir not gösterilir. */
 const kykOzelAralik = {
-  "ahmet-kabakli":   ["2026-10-02", "2026-10-16"],
-  "sare-ana":        ["2026-10-05", "2026-10-22"],
-  "harput":          ["2026-10-05", "2026-10-22"],
-  "izzetpasa":       ["2026-10-05", "2026-10-22"],
-  "omer-bilginoglu": ["2026-10-11", "2026-10-27"],
-  "fethi-sekin":     ["2026-10-11", "2026-10-27"],
-  "firat":           ["2026-10-11", "2026-10-27"]
+  "ahmet-kabakli":   ["2026-11-08", "2026-11-20"],
+  "sare-ana":        ["2026-11-02", "2026-11-17"],
+  "harput":          ["2026-11-02", "2026-11-17"],
+  "izzetpasa":       ["2026-11-02", "2026-11-17"],
+  "omer-bilginoglu": ["2026-11-11", "2026-11-27"],
+  "fethi-sekin":     ["2026-11-11", "2026-11-27"],
+  "firat":           ["2026-11-11", "2026-11-27"]
 };
 const kykOzelNot = (bas, bit) => {
   const g = t => t.slice(8, 10) + "." + t.slice(5, 7);
