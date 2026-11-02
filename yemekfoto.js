@@ -1552,10 +1552,7 @@
      ===================================================================== */
   let katalogModal = null;
   function tumYemeklerPaneliniAc() {
-    if (!window.KC_ADMIN || !window.KC_ADMIN.isAdmin || !window.KC_ADMIN.isAdmin()) {
-      alert("Bu paneli yalnızca yönetici açabilir.");
-      return;
-    }
+    return; // yönetici paneli siteden kaldırıldı
     if (katalogModal) katalogModal.remove();
 
     const d = document.createElement("div");

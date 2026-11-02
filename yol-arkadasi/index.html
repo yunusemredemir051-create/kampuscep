@@ -342,18 +342,10 @@ const db = getFirestore(app);
 let ben = null, profil = null, ilanlar = [], filtre = "hepsi", dinleyici = null;
 
 /* Sahte ilan önlemleri: önizleme bayrağı yukarıdaki küçük betikte (KC_YOL_YENI). */
-/* Yönetici e-postası kodda yazılı değil, yalnızca SHA-256 özeti var. Asıl yetki Firestore kurallarında. */
-const YONETICI_OZET = "fc4ccbafea7a3743ea7f576f940334fdae84a070d155303fb88b0d3f6f650e46";
-let yoneticiBen = false;
-async function yoneticiKontrol(u) {
-  yoneticiBen = false;
-  if (!u || !u.email || !u.emailVerified) return;
-  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(u.email.trim().toLowerCase()));
-  yoneticiBen = [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("") === YONETICI_OZET;
-}
+/* Sitede yönetici paneli yoktur; sahte ilan silme ve engelleme Firebase konsolundan yapılır. */
 const yeni = !!window.KC_YOL_YENI;
 let banli = false, sikayetler = {}, sikayetDinle = null;
-const yoneticiMi = () => yeni && !!ben && yoneticiBen;
+const yoneticiMi = () => false;
 /* SMS ile doğrulanmış numara (Firebase hesabına bağlı): "905xxxxxxxxx" ya da null */
 const dogruTel = () => (ben && ben.phoneNumber && /^\+905\d{9}$/.test(ben.phoneNumber)) ? ben.phoneNumber.slice(1) : null;
 const dogrulamaGerek = () => yeni && !dogruTel();
@@ -420,7 +412,6 @@ $("hesap-sil").onclick = async () => {
 };
 
 onAuthStateChanged(auth, async u => {
-  await yoneticiKontrol(u);
   ben = u;
   if (dinleyici) { dinleyici(); dinleyici = null; }
   if (sikayetDinle) { sikayetDinle(); sikayetDinle = null; sikayetler = {}; }

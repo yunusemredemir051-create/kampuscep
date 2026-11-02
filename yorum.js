@@ -1,9 +1,9 @@
-/* KampüsCepte — yemek menüsü değerlendirme, puanlama, yorumlar, admin paneli ve yemek fotoğrafları.
+/* KampüsCepte — yemek menüsü değerlendirme, puanlama ve yorumlar.
    Puanlama & Yıldızlar: Tüm KYK yurtları için tek ortak havuzda toplanır.
    Yorumlar: Her yurda özel olarak ayrılır.
    Yönetici: tek Google hesabı (e-posta kodda tutulmaz, yalnızca SHA-256 özeti) */
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut }
+import { getAuth, signInAnonymously, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, addDoc, onSnapshot, query, where,
          getCountFromServer, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -13,15 +13,7 @@ const auth = getAuth(app); auth.languageCode = "tr";
 const db = getFirestore(app);
 let ben = null;
 
-/* Yönetici e-postası kodda yazılı değildir; yalnızca SHA-256 özeti tutulur. Asıl yetki Firestore kurallarındadır. */
-const ADMIN_OZET = "fc4ccbafea7a3743ea7f576f940334fdae84a070d155303fb88b0d3f6f650e46";
-let adminMi = false;
-async function ozet(t) {
-  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(t || "").trim().toLowerCase()));
-  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
-}
-async function adminKontrol(u) { adminMi = !!(u && u.email && u.emailVerified !== false && (await ozet(u.email)) === ADMIN_OZET); return adminMi; }
-const isAdmin = () => !!ben && adminMi;
+/* Sitede yönetici paneli yoktur. Yorum silme ve ceza işlemleri yalnızca Firebase konsolundan yapılır. */
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
@@ -50,32 +42,6 @@ async function kimlik() {
   if (auth.currentUser) return true;
   try { await signInAnonymously(auth); return true; }
   catch (e) { console.error(e); toast("Bağlantı kurulamadı, tekrar dener misin?"); return false; }
-}
-
-async function adminGirisYap() {
-  try {
-    const provider = new GoogleAuthProvider();
-    const res = await signInWithPopup(auth, provider);
-    if (res.user && await adminKontrol(res.user)) {
-      toast("👑 Yönetici girişi başarılı!");
-    } else {
-      toast("Giriş yapıldı: " + (res.user ? res.user.email : ""));
-    }
-  } catch (e) {
-    if (e.code !== "auth/popup-closed-by-user") {
-      console.error(e); toast("Giriş yapılamadı: " + (e.message || e));
-    }
-  }
-}
-
-async function adminCikisYap() {
-  try {
-    await signOut(auth);
-    await signInAnonymously(auth);
-    toast("Yönetici oturumu kapatıldı.");
-  } catch (e) {
-    console.error(e);
-  }
 }
 
 const adOku = () => { try { return localStorage.getItem("kc-ad") || ""; } catch (e) { return ""; } };
@@ -169,8 +135,6 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
 .dg-y>.dg-yanit-form-alani{grid-column:1/-1}
 
 /* Admin Stilleri */
-.dg-admin-serit{flex-wrap:wrap;gap:6px;display:flex;align-items:center;justify-content:space-between;background:#fef3c7;border:1px solid #fde68a;border-radius:12px;padding:8px 12px;font-size:12.5px;color:#92400e;font-weight:700;margin-bottom:10px}
-.dg-admin-giris-serit{text-align:right;margin-bottom:8px}
 .dg-giris-link{border:0;background:none;color:var(--soluk,#8a90a8);font:600 11.5px var(--font,inherit);cursor:pointer;text-decoration:underline}
 .dg-giris-link:hover{color:var(--mavi,#3b5bfd)}
 .dg-tum-btn{border:0;background:#3b5bfd;color:#fff;border-radius:8px;padding:4px 10px;font:700 11.5px var(--font,inherit);cursor:pointer;margin-right:6px}
@@ -220,7 +184,7 @@ function zamanFarki(ts) {
 
 /* ---------- ban kontrolü ---------- */
 async function cezaKontrol(uid) {
-  if (!uid || isAdmin()) return { cezali: false };
+  if (!uid) return { cezali: false };
   try {
     const s = await getDoc(doc(db, "yorumCezalari", uid));
     if (s.exists()) {
@@ -528,24 +492,11 @@ function formHtml(yanit) {
 function panelCiz(el) {
   const d = kutular.get(el); if (!d) return;
   const p = el.querySelector(".dg-panel");
-  const adminSerit = isAdmin()
-    ? `<div class="dg-admin-serit">
-        <span>👑 Yönetici olarak giriş yapıldı</span>
-        <div style="display:flex;align-items:center">
-          <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
-        </div>
-       </div>`
-    : "";
-
-  p.innerHTML = adminSerit +
+  p.innerHTML =
     `<div class="dg-baslik">Yorumlar <span class="dg-say">${d.sayi.yorum}</span></div><div class="dg-yazar">${avatar(adOku() || "Anonim", benimAvatar())}<input class="dg-ad" maxlength="40" placeholder="Adın (isteğe bağlı)" value="${esc(adOku())}" aria-label="Adın, isteğe bağlı"></div>
      <div id="dg-ana-form-kutu">${formHtml(false)}</div>
      <ul class="dg-liste"></ul>`;
 
-  const btnGiris = p.querySelector("#dg-admin-giris");
-  if (btnGiris) btnGiris.onclick = adminGirisYap;
-  const btnCikis = p.querySelector("#dg-admin-cikis");
-  if (btnCikis) btnCikis.onclick = adminCikisYap;
   const btnTum = p.querySelector("#dg-tum-yemekler-btn");
   if (btnTum) btnTum.onclick = () => window.KC_YEMEK_PANEL && window.KC_YEMEK_PANEL.ac();
 
@@ -601,7 +552,6 @@ function listeCiz(el) {
     .forEach(y => { const l = yanitlar.get(y.ust) || []; l.push(y); yanitlar.set(y.ust, l); });
 
   const benUid = auth.currentUser ? auth.currentUser.uid : "";
-  const yoneticiMi = isAdmin();
 
   const kart = y => {
     const benim = y.uid && benUid && y.uid === benUid;
@@ -609,11 +559,7 @@ function listeCiz(el) {
     const benBegendim = benUid && begeniListesi.includes(benUid);
     const begeniSayi = begeniListesi.length;
 
-    const silBtn = (benim || yoneticiMi) ? `<button class="dg-sil-btn" data-sil="${esc(y.id)}">🗑️ Sil</button>` : "";
-    const banBtn = (yoneticiMi && y.uid && y.uid !== benUid)
-      ? `<button class="dg-ban-btn" data-ban-uid="${esc(y.uid)}" data-ban-ad="${esc(y.ad)}">🚫 Ceza Ver</button>`
-      : "";
-
+    const silBtn = benim ? `<button class="dg-sil-btn" data-sil="${esc(y.id)}">🗑️ Sil</button>` : "";
     return `<li class="dg-y" data-id="${esc(y.id)}">
       ${avatar(y.ad, benim ? benimAvatar() : "")}
       <div class="dg-y-govde">
@@ -623,7 +569,6 @@ function listeCiz(el) {
         <button class="dg-y-begen${benBegendim ? " secili" : ""}" data-yorum-begen="${esc(y.id)}" aria-label="Yorumu beğen">❤️ <span>${begeniSayi}</span></button>
         <button class="yanitla" data-yanit="${esc(y.id)}">Yanıtla</button>
         ${silBtn}
-        ${banBtn}
         <button data-bildir="${esc(y.id)}">Bildir</button>
       </div>
       </div>
@@ -680,55 +625,6 @@ function listeCiz(el) {
     }
   });
 
-  // Ceza Ver / Ban (3 gün, 7 gün, 30 gün)
-  ul.querySelectorAll("[data-ban-uid]").forEach(b => b.onclick = async () => {
-    if (!isAdmin()) return;
-    const hedefUid = b.dataset.banUid;
-    const hedefAd = b.dataset.banAd;
-
-    const secim = prompt(
-      `🚫 [YÖNETİCİ CEZA PANELİ]\n` +
-      `Kullanıcı: ${hedefAd}\n\n` +
-      `Ceza süresini seçin:\n` +
-      `1) 3 Gün Yorum Cezası\n` +
-      `2) 7 Gün Yorum Cezası\n` +
-      `3) 30 Gün Yorum Cezası\n` +
-      `4) Cezayı Kaldır (Affet)\n\n` +
-      `Seçiminiz (1, 2, 3 veya 4 yazın):`
-    );
-
-    if (!secim) return;
-
-    let gun = 0;
-    if (secim === "1") gun = 3;
-    else if (secim === "2") gun = 7;
-    else if (secim === "3") gun = 30;
-    else if (secim === "4") gun = -1;
-    else { alert("Geçersiz seçim yapıldı."); return; }
-
-    try {
-      const banRef = doc(db, "yorumCezalari", hedefUid);
-      if (gun === -1) {
-        await deleteDoc(banRef);
-        toast(`✅ ${hedefAd} kullanıcısının cezası kaldırıldı.`);
-      } else {
-        const bitisMs = Date.now() + (gun * 86400000);
-        await setDoc(banRef, {
-          uid: hedefUid,
-          ad: hedefAd,
-          gun: gun,
-          bitisMs: bitisMs,
-          tarih: serverTimestamp(),
-          admin: "yonetici"
-        });
-        toast(`⛔ ${hedefAd} kullanıcısına ${gun} gün yorum yapma cezası verildi.`);
-      }
-    } catch (err) {
-      console.error("Ceza işlemi hatası:", err);
-      toast("Ceza işlemi başarısız oldu: " + err.message);
-    }
-  });
-
   // Bildir
   ul.querySelectorAll("[data-bildir]").forEach(b => b.onclick = async () => {
     if (!(await kimlik())) return;
@@ -749,105 +645,6 @@ function listeCiz(el) {
 /* ---------- yemek fotoğrafları bulut senkronizasyonu ---------- */
 /* Elle yüklenen bulut fotoğrafları kaldırıldı; fotoğraflar yalnızca sitenin kendi dosyalarından gelir. */
 
-const asciiYapici = s => String(s || "").toLocaleLowerCase("tr-TR").trim()
-  .replace(/ş/g, "s").replace(/ı/g, "i").replace(/ğ/g, "g")
-  .replace(/ö/g, "o").replace(/ü/g, "u").replace(/ç/g, "c")
-  .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
-
-async function yukleYemekFoto(yemekAdi, base64Data, yer = "yurt") {
-  return false; // elle yükleme kapatıldı
-  if (!isAdmin()) {
-    alert("Yalnızca yönetici fotoğraf yükleyebilir.");
-    return false;
-  }
-  const yerPrefix = yer === "unievi" ? "unievi" : "yurt";
-  const slug = yerPrefix + "_" + asciiYapici(yemekAdi);
-  if (!slug) return false;
-
-  // Hemen yerelde göster
-  window.KC_BULUT_FOTOLAR[slug] = base64Data;
-  try {
-    localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
-  } catch (e) {}
-  window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
-
-  try {
-    const ref = doc(db, "yemekFotolari", slug);
-    await setDoc(ref, {
-      ad: yemekAdi,
-      yer: yerPrefix,
-      foto: base64Data,
-      ekleyen: "yonetici",
-      zaman: serverTimestamp()
-    });
-    const yerBaslik = yerPrefix === "unievi" ? "Üniversite Evi" : "KYK Yurdu";
-    toast(`📸 "${yemekAdi}" (${yerBaslik}) fotoğrafı kaydedildi!`);
-    return true;
-  } catch (err) {
-    console.error("Fotoğraf yükleme hatası:", err);
-    if (err.code === "permission-denied" || String(err).includes("permission")) {
-      alert(
-        "⚠️ Firebase Kural İzni Gerekli!\n\n" +
-        "Fotoğraf cihazınızda yerel olarak görüntülendi, ancak sunucuda yayınlanabilmesi için:\n\n" +
-        "Firebase Console -> Firestore Database -> Kurallar (Rules) sekmesinde yemekFotolari kuralını yayınlamanız gerekmektedir."
-      );
-    } else {
-      toast("Fotoğraf yüklenemedi: " + (err.message || err));
-    }
-    return false;
-  }
-}
-
-async function silYemekFoto(yemekAdi, yer = "yurt") {
-  if (!isAdmin()) return false;
-  const yerPrefix = yer === "unievi" ? "unievi" : "yurt";
-  const slug = yerPrefix + "_" + asciiYapici(yemekAdi);
-  if (!slug) return false;
-
-  delete window.KC_BULUT_FOTOLAR[slug];
-  delete window.KC_BULUT_FOTOLAR[asciiYapici(yemekAdi)];
-  try {
-    localStorage.setItem("kc-bulut-fotolar", JSON.stringify(window.KC_BULUT_FOTOLAR));
-  } catch (e) {}
-  window.dispatchEvent(new CustomEvent("kc-fotolar-guncellendi"));
-
-  try {
-    const ref = doc(db, "yemekFotolari", slug);
-    await deleteDoc(ref);
-    const yerBaslik = yerPrefix === "unievi" ? "Üniversite Evi" : "KYK Yurdu";
-    toast(`🗑️ "${yemekAdi}" (${yerBaslik}) fotoğrafı kaldırıldı.`);
-    return true;
-  } catch (err) {
-    console.error("Fotoğraf silme hatası:", err);
-    toast("Silinemedi: " + (err.message || err));
-    return false;
-  }
-}
-
-/* Eski fotoğraf kayıtlarındaki "ekleyen" alanında yazan e-postayı bir kez temizler (yalnızca yönetici girişinde çalışır). */
-async function fotoSahipTemizle() {
-  try {
-    if (localStorage.getItem("kc-foto-temiz") === "1") return;
-    const { getDocs, collection, updateDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
-    const s = await getDocs(collection(db, "yemekFotolari"));
-    const isler = [];
-    s.forEach(d => { if (d.data().ekleyen && d.data().ekleyen !== "yonetici") isler.push(updateDoc(d.ref, { ekleyen: "yonetici" })); });
-    await Promise.all(isler);
-    localStorage.setItem("kc-foto-temiz", "1");
-  } catch (e) { console.warn("Fotoğraf kaydı temizliği yapılamadı", e); }
-}
-
-/* ---------- global admin köprüsü ---------- */
-window.KC_ADMIN = {
-  isAdmin,
-  adminGirisYap,
-  adminCikisYap,
-  yukleYemekFoto,
-  silYemekFoto,
-  getDb: () => db,
-  getAuth: () => auth
-};
-
 /* ---------- başlat ---------- */
 function tara() { document.querySelectorAll(".degerlendir").forEach(kur); }
 new MutationObserver(ml => {
@@ -859,10 +656,8 @@ new MutationObserver(ml => {
 
 onAuthStateChanged(auth, async u => {
   ben = u;
-  await adminKontrol(u);
-  if (adminMi) fotoSahipTemizle();
   try { if (u && u.email) localStorage.setItem("kc-eposta", u.email); } catch (e) {}
-  window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: isAdmin() } }));
+  window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: false } }));
   kutular.forEach((d, el) => {
     oyDinleVeSay(el);
     if (d.acik) panelCiz(el);
@@ -870,41 +665,3 @@ onAuthStateChanged(auth, async u => {
 });
 
 tara();
-
-/* ---------- gizli yönetici erişimi (#admin, logoya 4 tık veya Ctrl+Shift+A) ---------- */
-function gizliAdminKontrol() {
-  const h = location.hash, q = location.search;
-  if (h === "#admin" || q.includes("admin=1") || q.includes("admin")) {
-    if (!isAdmin()) {
-      adminGirisYap();
-    }
-    if (h === "#admin") {
-      try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
-    }
-  }
-}
-window.addEventListener("hashchange", gizliAdminKontrol);
-setTimeout(gizliAdminKontrol, 300);
-
-window.addEventListener("keydown", e => {
-  if (e.ctrlKey && e.shiftKey && (e.key === "A" || e.key === "a")) {
-    e.preventDefault();
-    if (!isAdmin()) adminGirisYap();
-    else toast("Zaten yönetici girişi yapılmış durumda.");
-  }
-});
-
-let logoTikSayi = 0, logoZaman = 0;
-document.addEventListener("click", e => {
-  if (e.target && e.target.closest && e.target.closest(".logo, .logo-ikon, .logo-metin")) {
-    const simdi = Date.now();
-    if (simdi - logoZaman > 2500) logoTikSayi = 0;
-    logoZaman = simdi;
-    logoTikSayi++;
-    if (logoTikSayi >= 4) {
-      logoTikSayi = 0;
-      if (!isAdmin()) adminGirisYap();
-    }
-  }
-});
-
