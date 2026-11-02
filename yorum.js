@@ -1,7 +1,7 @@
 /* KampüsCepte — yemek menüsü değerlendirme, puanlama, yorumlar, admin paneli ve yemek fotoğrafları.
    Puanlama & Yıldızlar: Tüm KYK yurtları için tek ortak havuzda toplanır.
    Yorumlar: Her yurda özel olarak ayrılır.
-   Yönetici: yonetici@kampuscepte.invalid */
+   Yönetici: tek Google hesabı (e-posta kodda tutulmaz, yalnızca SHA-256 özeti) */
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -13,8 +13,15 @@ const auth = getAuth(app); auth.languageCode = "tr";
 const db = getFirestore(app);
 let ben = null;
 
-const ADMIN_EMAIL = "yonetici@kampuscepte.invalid";
-const isAdmin = () => ben && ben.email === ADMIN_EMAIL;
+/* Yönetici e-postası kodda yazılı değildir; yalnızca SHA-256 özeti tutulur. Asıl yetki Firestore kurallarındadır. */
+const ADMIN_OZET = "fc4ccbafea7a3743ea7f576f940334fdae84a070d155303fb88b0d3f6f650e46";
+let adminMi = false;
+async function ozet(t) {
+  const b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(t || "").trim().toLowerCase()));
+  return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, "0")).join("");
+}
+async function adminKontrol(u) { adminMi = !!(u && u.email && u.emailVerified !== false && (await ozet(u.email)) === ADMIN_OZET); return adminMi; }
+const isAdmin = () => !!ben && adminMi;
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
@@ -49,7 +56,7 @@ async function adminGirisYap() {
   try {
     const provider = new GoogleAuthProvider();
     const res = await signInWithPopup(auth, provider);
-    if (res.user && res.user.email === ADMIN_EMAIL) {
+    if (res.user && await adminKontrol(res.user)) {
       toast("👑 Yönetici girişi başarılı!");
     } else {
       toast("Giriş yapıldı: " + (res.user ? res.user.email : ""));
@@ -523,7 +530,7 @@ function panelCiz(el) {
   const p = el.querySelector(".dg-panel");
   const adminSerit = isAdmin()
     ? `<div class="dg-admin-serit">
-        <span>👑 Yönetici: <b>${esc(ADMIN_EMAIL)}</b></span>
+        <span>👑 Yönetici olarak giriş yapıldı</span>
         <div style="display:flex;align-items:center">
           <button type="button" class="dg-cikis-btn" id="dg-admin-cikis">Çıkış</button>
         </div>
@@ -712,7 +719,7 @@ function listeCiz(el) {
           gun: gun,
           bitisMs: bitisMs,
           tarih: serverTimestamp(),
-          admin: ADMIN_EMAIL
+          admin: "yonetici"
         });
         toast(`⛔ ${hedefAd} kullanıcısına ${gun} gün yorum yapma cezası verildi.`);
       }
@@ -750,7 +757,7 @@ const asciiYapici = s => String(s || "").toLocaleLowerCase("tr-TR").trim()
 async function yukleYemekFoto(yemekAdi, base64Data, yer = "yurt") {
   return false; // elle yükleme kapatıldı
   if (!isAdmin()) {
-    alert("Yalnızca yönetici (yonetici@kampuscepte.invalid) fotoğraf yükleyebilir.");
+    alert("Yalnızca yönetici fotoğraf yükleyebilir.");
     return false;
   }
   const yerPrefix = yer === "unievi" ? "unievi" : "yurt";
@@ -770,7 +777,7 @@ async function yukleYemekFoto(yemekAdi, base64Data, yer = "yurt") {
       ad: yemekAdi,
       yer: yerPrefix,
       foto: base64Data,
-      ekleyen: ADMIN_EMAIL,
+      ekleyen: "yonetici",
       zaman: serverTimestamp()
     });
     const yerBaslik = yerPrefix === "unievi" ? "Üniversite Evi" : "KYK Yurdu";
@@ -817,6 +824,19 @@ async function silYemekFoto(yemekAdi, yer = "yurt") {
   }
 }
 
+/* Eski fotoğraf kayıtlarındaki "ekleyen" alanında yazan e-postayı bir kez temizler (yalnızca yönetici girişinde çalışır). */
+async function fotoSahipTemizle() {
+  try {
+    if (localStorage.getItem("kc-foto-temiz") === "1") return;
+    const { getDocs, collection, updateDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+    const s = await getDocs(collection(db, "yemekFotolari"));
+    const isler = [];
+    s.forEach(d => { if (d.data().ekleyen && d.data().ekleyen !== "yonetici") isler.push(updateDoc(d.ref, { ekleyen: "yonetici" })); });
+    await Promise.all(isler);
+    localStorage.setItem("kc-foto-temiz", "1");
+  } catch (e) { console.warn("Fotoğraf kaydı temizliği yapılamadı", e); }
+}
+
 /* ---------- global admin köprüsü ---------- */
 window.KC_ADMIN = {
   isAdmin,
@@ -825,8 +845,7 @@ window.KC_ADMIN = {
   yukleYemekFoto,
   silYemekFoto,
   getDb: () => db,
-  getAuth: () => auth,
-  ADMIN_EMAIL
+  getAuth: () => auth
 };
 
 /* ---------- başlat ---------- */
@@ -838,8 +857,10 @@ new MutationObserver(ml => {
   }
 }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-menu"] });
 
-onAuthStateChanged(auth, u => {
+onAuthStateChanged(auth, async u => {
   ben = u;
+  await adminKontrol(u);
+  if (adminMi) fotoSahipTemizle();
   try { if (u && u.email) localStorage.setItem("kc-eposta", u.email); } catch (e) {}
   window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: isAdmin() } }));
   kutular.forEach((d, el) => {

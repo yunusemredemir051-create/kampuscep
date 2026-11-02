@@ -43,14 +43,9 @@ Dosyanın **History** kısmından son çalışan sürümü açıp geri yükleyeb
 
 ## Konu özeti sayfaları (Google ve AdSense için)
 
-Her ünitenin okunabilir özet sayfası `notlar/.../unite-N.html` dosyalarıdır. Bunlar elle düzenlenmez; kaynak metinler
-`_kaynak/ozetler/` klasöründeki `.md` dosyalarındadır. Özet değiştiğinde ya da yeni ders eklendiğinde:
-
-    python3 _kaynak/sayfa_olustur.py
-
-Bu komut ünite sayfalarını, `dersler.html`, `sitemap.xml` ve `robots.txt` dosyalarını yeniden üretir.
-Alan adı alındığında betikteki `SITE_URL` değeri değiştirilip komut yeniden çalıştırılır.
-`_kaynak` klasörü alt çizgiyle başladığı için sitede yayımlanmaz.
+Her ünitenin okunabilir özet sayfası `notlar/.../unite-N.html` dosyalarıdır. Kaynak metinler, üretim betikleri,
+kitap PDF'leri ve Firestore kuralları güvenlik nedeniyle bu (herkese açık) depoda tutulmaz; ayrı ve gizli saklanır.
+Depoda yalnızca otomatik güncelleme betikleri (`.github/scripts/`) bulunur.
 
 ## Reklam alanları
 
@@ -62,4 +57,4 @@ AdSense kodu kutuların içine yerleştirilir; kök dizine de Google'ın verdiğ
 Her yurdun kendi kısa sayfası var: `kampuscepte.com.tr/ahmet-kabakli/`, `/firat/`, `/omer-bilginoglu/`, `/fethi-sekin/`,
 `/harput/`, `/izzetpasa/`, `/sare-ana/`. Sayfa bugünün (ve yarının) kahvaltı, akşam ve Üniversite Evi menüsünü
 `veri.js`'den okur, yani menü güncellenince bu sayfalar da kendiliğinden güncellenir. WhatsApp'tan gelen biri geri tuşuna
-basınca ana sayfaya gider. Yeni yurt eklenince `python3 _kaynak/yurt_sayfalari.py` çalıştırılır.
+basınca ana sayfaya gider. Yeni yurt sayfaları gizli kaynak betikleriyle üretilir.

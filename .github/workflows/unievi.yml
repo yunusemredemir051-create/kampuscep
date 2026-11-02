@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v5
       - name: Menüyü oku ve veri.js'i güncelle
         id: oku
-        run: python3 _kaynak/unievi_guncelle.py
+        run: python3 .github/scripts/unievi_guncelle.py
       - name: Değiştiyse kaydet
         run: |
           if git diff --quiet veri.js; then echo "Menü değişmemiş."; exit 0; fi

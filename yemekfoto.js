@@ -1553,7 +1553,7 @@
   let katalogModal = null;
   function tumYemeklerPaneliniAc() {
     if (!window.KC_ADMIN || !window.KC_ADMIN.isAdmin || !window.KC_ADMIN.isAdmin()) {
-      alert("Bu paneli yalnızca yönetici (yonetici@kampuscepte.invalid) açabilir.");
+      alert("Bu paneli yalnızca yönetici açabilir.");
       return;
     }
     if (katalogModal) katalogModal.remove();
