@@ -1,7 +1,8 @@
 /* KampüsCepte — yemek menüsü değerlendirme, puanlama ve yorumlar.
    Puanlama & Yıldızlar: Tüm KYK yurtları için tek ortak havuzda toplanır.
    Yorumlar: Her yurda özel olarak ayrılır.
-   Yönetici: tek Google hesabı (e-posta kodda tutulmaz, yalnızca SHA-256 özeti) */
+   Sitede yönetici paneli yoktur; moderasyon Firebase konsolundan yapılır. */
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -9,6 +10,8 @@ import { getFirestore, collection, doc, setDoc, deleteDoc, addDoc, onSnapshot, q
          getCountFromServer, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const app = getApps().length ? getApps()[0] : initializeApp(window.FIREBASE_AYAR);
+/* App Check: istekler yalnızca sitenin kendisinden (reCAPTCHA doğrulamalı gerçek tarayıcıdan) kabul edilir. */
+if (!window.__kcAppCheck && window.KC_RECAPTCHA) { try { window.__kcAppCheck = initializeAppCheck(app, { provider: new ReCaptchaEnterpriseProvider(window.KC_RECAPTCHA), isTokenAutoRefreshEnabled: true }); } catch (e) { console.warn("App Check", e); } }
 const auth = getAuth(app); auth.languageCode = "tr";
 const db = getFirestore(app);
 let ben = null;

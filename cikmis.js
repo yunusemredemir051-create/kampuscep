@@ -1,11 +1,14 @@
 /* KampüsCepte — Çıkmış sorular: indirme sayacı ve 5 yıldızlı puanlama (Firestore: cikmisSorular).
    Her indirme ayrı sayılır (aynı kişi 5 kez indirirse 5). Puanda her kişinin tek oyu vardır, değiştirebilir. */
+import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, setDoc, getDocs, collection, onSnapshot, increment, serverTimestamp }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const app = getApps().length ? getApps()[0] : initializeApp(window.FIREBASE_AYAR);
+/* App Check: istekler yalnızca sitenin kendisinden (reCAPTCHA doğrulamalı gerçek tarayıcıdan) kabul edilir. */
+if (!window.__kcAppCheck && window.KC_RECAPTCHA) { try { window.__kcAppCheck = initializeAppCheck(app, { provider: new ReCaptchaEnterpriseProvider(window.KC_RECAPTCHA), isTokenAutoRefreshEnabled: true }); } catch (e) { console.warn("App Check", e); } }
 const auth = getAuth(app), db = getFirestore(app);
 const giris = async () => { if (!auth.currentUser) await signInAnonymously(auth); return auth.currentUser.uid; };
 const dinleyiciler = [];

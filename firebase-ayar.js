@@ -8,3 +8,5 @@ window.FIREBASE_AYAR = {
   messagingSenderId: "412379754608",
   appId: "1:412379754608:web:7374a60f81ab9369b404b5", measurementId: "G-EN48D4XWNB"
 };
+/* App Check (reCAPTCHA Enterprise) site anahtarı — gizli değildir, alan adına kilitlidir. */
+window.KC_RECAPTCHA = "6LdpTA0uAAAAAA_hKukyqMKbiB8xnl4oxo7ofs6t";
