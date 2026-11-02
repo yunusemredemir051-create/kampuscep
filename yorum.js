@@ -18,6 +18,16 @@ let ben = null;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
 
+/* 2 Kasım 2026 spam saldırısı: yorum yazma sunucuda kapatıldı; saldırı aralığındaki ve bilinen spam kalıplı yorumlar gösterilmez. */
+const YORUM_KAPALI = true;
+const SPAM_BAS = Date.UTC(2026, 10, 2, 16, 0), SPAM_BIT = Date.UTC(2026, 10, 2, 18, 0);
+const SPAM_RE = /bubiryorum|amc[ıi]k|orospu|porno|\bohhh\b|sik(ik|iş|tir)|piç|yarrak|göt(ü|veren)/i;
+function spamMi(y) {
+  const ms = y && y.zaman && y.zaman.toMillis ? y.zaman.toMillis() : 0;
+  if (ms >= SPAM_BAS && ms <= SPAM_BIT) return true;
+  return SPAM_RE.test(String((y && y.ad) || "") + " " + String((y && y.metin) || ""));
+}
+
 // KYK yurtları için ortak oy/puanlama havuzu (tüm 7 yurt birleşik oy verir)
 function oyHavuzId(menuId) {
   const m = String(menuId || "").match(/^([a-z0-9-]+)_(\d{4}-\d{2}-\d{2})(?:_(kahvalti|aksam))?$/);
@@ -342,9 +352,9 @@ function oyDinleVeSay(el) {
   if (d.dinleOy) { d.dinleOy(); d.dinleOy = null; }
 
   // Yorum sayısını al
-  getCountFromServer(collection(db, "menuler", d.yorumId, "yorumlar")).then(c => {
+  getDocs(collection(db, "menuler", d.yorumId, "yorumlar")).then(c => {
     if (kutular.get(el) === d) {
-      d.sayi.yorum = c.data().count;
+      d.sayi.yorum = c.docs.filter(x => !spamMi(x.data())).length;
       barCiz(el);
     }
   }).catch(() => {});
@@ -479,7 +489,7 @@ function panelAc(el, ac) {
   if (!ac) { if (d.dinle) { d.dinle(); d.dinle = null; } return; }
   panelCiz(el);
   d.dinle = onSnapshot(collection(db, "menuler", d.yorumId, "yorumlar"), s => {
-    d.yorumlar = s.docs.map(x => ({ id: x.id, ...x.data() }));
+    d.yorumlar = s.docs.map(x => ({ id: x.id, ...x.data() })).filter(y => !spamMi(y));
     d.sayi.yorum = d.yorumlar.length; barCiz(el);
     listeCiz(el);
   }, e => { console.error(e); p.querySelector(".dg-liste").innerHTML = '<li class="dg-bos">Yorumlar yüklenemedi.</li>'; });
@@ -494,14 +504,14 @@ function panelCiz(el) {
   const p = el.querySelector(".dg-panel");
   p.innerHTML =
     `<div class="dg-baslik">Yorumlar <span class="dg-say">${d.sayi.yorum}</span></div><div class="dg-yazar">${avatar(adOku() || "Anonim", benimAvatar())}<input class="dg-ad" maxlength="40" placeholder="Adın (isteğe bağlı)" value="${esc(adOku())}" aria-label="Adın, isteğe bağlı"></div>
-     <div id="dg-ana-form-kutu">${formHtml(false)}</div>
+     <div id="dg-ana-form-kutu">${YORUM_KAPALI ? '<div class="dg-bos" style="padding:12px 4px;font-size:13px;opacity:.8">Yorum yazma geçici olarak kapalı.</div>' : formHtml(false)}</div>
      <ul class="dg-liste"></ul>`;
 
   const btnTum = p.querySelector("#dg-tum-yemekler-btn");
   if (btnTum) btnTum.onclick = () => window.KC_YEMEK_PANEL && window.KC_YEMEK_PANEL.ac();
 
   p.querySelector(".dg-ad").oninput = e => adYaz(e.target.value.trim());
-  formBagla(el, p.querySelector(".dg-form"), null);
+  if (!YORUM_KAPALI) formBagla(el, p.querySelector(".dg-form"), null);
   listeCiz(el);
 }
 
@@ -567,7 +577,7 @@ function listeCiz(el) {
       <p>${esc(y.metin)}</p>
       <div class="eylem">
         <button class="dg-y-begen${benBegendim ? " secili" : ""}" data-yorum-begen="${esc(y.id)}" aria-label="Yorumu beğen">❤️ <span>${begeniSayi}</span></button>
-        <button class="yanitla" data-yanit="${esc(y.id)}">Yanıtla</button>
+        ${YORUM_KAPALI ? "" : `<button class="yanitla" data-yanit="${esc(y.id)}">Yanıtla</button>`}
         ${silBtn}
         <button data-bildir="${esc(y.id)}">Bildir</button>
       </div>
