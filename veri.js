@@ -103,7 +103,12 @@ const uniEviMenuleri = {
   "2026-10-26": ["Etli nohut", "Bulgur pilavı", "Yoğurt", "Tulumba tatlısı"],
   "2026-10-27": ["Et kavurma", "Pirinç pilavı", "Mercimek çorbası", "Ayran"],
   "2026-10-28": ["Tebiyeli köfte", "Makarna", "Domates çorbası", "Meyve"],
-  "2026-10-30": ["Etli bezelye", "Pirinç pilavı", "Mercimek çorbası", "Meyve"]
+  "2026-10-30": ["Etli bezelye", "Pirinç pilavı", "Mercimek çorbası", "Meyve"],
+  "2026-11-02": ["Etli patates", "Sebzeli şehriye pilavı", "Tarhana çorbası", "Tatlı"],
+  "2026-11-03": ["Fırında tavuk", "Bulgur pilavı", "Domates çorbası", "Yoğurt"],
+  "2026-11-04": ["Hamburger köfte", "Peynirli makarna", "Ezogelin çorbası", "Mevsim salata"],
+  "2026-11-05": ["Etli nohut", "Pirinç pilavı", "Turşu", "Tahin helva"],
+  "2026-11-06": ["Tas kebap", "Bulgur pilavı", "Mercimek çorbası", "Meyve"]
 };
 /* Üniversite Evi'nin kapalı olduğu özel günler */
 const uniEviKapali = { "2026-10-29": "29 Ekim Cumhuriyet Bayramı" };
