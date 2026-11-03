@@ -126,6 +126,45 @@ async function googleGiris() {
 async function sinirOku(uid) {
   try { const s = await getDoc(doc(db, "yorumSinir", uid)); return s.exists() ? s.data() : null; } catch (e) { return null; }
 }
+/* Takma ad: her Google hesabının tek, benzersiz ve sabit bir adı var (yorumcular/{uid} + takmaAdlar/{küçük harf ad}).
+   Sunucu, yorumdaki adın hesabın kayıtlı adıyla aynı olmasını zorunlu tutar; ad 7 günde bir değiştirilebilir. */
+let takmaAd = null, takmaAdZaman = null, takmaAdUid = null;
+const AD_RE = /^[\p{L}0-9][\p{L}0-9 ._-]{0,22}[\p{L}0-9.]$/u;
+const AD_YASAK = ["anonim", "admin", "yönetici", "yonetici", "kampuscepte", "kampüscepte", "moderatör", "moderator"];
+const AD_DEGISIM_GUN = 7;
+const adAnahtar = a => a.toLowerCase();   // sunucudaki lower() ile aynı sonucu vermeli
+async function takmaAdYukle() {
+  const u = auth.currentUser;
+  if (!u || u.isAnonymous) { takmaAd = null; takmaAdZaman = null; takmaAdUid = null; return; }
+  if (takmaAdUid === u.uid) return;
+  try {
+    const s = await getDoc(doc(db, "yorumcular", u.uid));
+    takmaAd = s.exists() ? s.data().ad : null;
+    takmaAdZaman = s.exists() && s.data().zaman && s.data().zaman.toDate ? s.data().zaman.toDate() : null;
+    takmaAdUid = u.uid;
+  } catch (e) { console.error(e); }
+}
+const adDegisebilir = () => !takmaAdZaman || Date.now() - takmaAdZaman.getTime() > AD_DEGISIM_GUN * 864e5;
+function adHata(a) {
+  if (a.length < 2) return "Ad en az 2 karakter olmalı.";
+  if (a.length > 24) return "Ad en fazla 24 karakter olabilir.";
+  if (!AD_RE.test(a)) return "Adda yalnızca harf, rakam, boşluk, nokta, - ve _ olabilir.";
+  if (AD_YASAK.includes(adAnahtar(a)) || SPAM_RE.test(a)) return "Bu adı kullanamazsın, başka bir ad seç.";
+  return "";
+}
+async function takmaAdKaydet(yeni) {
+  const uid = auth.currentUser.uid, an = adAnahtar(yeni);
+  const var_ = await getDoc(doc(db, "takmaAdlar", an));
+  if (var_.exists() && var_.data().uid !== uid) throw { kod: "alinmis" };
+  const b = writeBatch(db);
+  if (!var_.exists()) b.set(doc(db, "takmaAdlar", an), { uid });
+  b.set(doc(db, "yorumcular", uid), { ad: yeni, zaman: serverTimestamp() });
+  if (takmaAd && adAnahtar(takmaAd) !== an) b.delete(doc(db, "takmaAdlar", adAnahtar(takmaAd)));
+  await b.commit();
+  takmaAd = yeni; takmaAdZaman = new Date(); takmaAdUid = uid;
+  adYaz(yeni);
+}
+
 const ayniGun = (a, b) => a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth() && a.getUTCDate() === b.getUTCDate();
 
 const adOku = () => { try { return localStorage.getItem("kc-ad") || ""; } catch (e) { return ""; } };
@@ -179,6 +218,17 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
 .dg-av-img{background:var(--dg-yuzey2,#f5f7fd)!important;overflow:hidden}.dg-av-img img{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%}
 .dg-y{box-shadow:0 8px 22px -18px rgba(40,50,120,.5)}
 .dg-yazar{display:flex;align-items:center;gap:8px;margin:0 0 10px}
+.dg-ad-sabit{flex:1;min-width:0;font:700 13.5px var(--font,inherit);color:var(--dg-yazi);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dg-ad-degistir,.dg-ad-vazgec{flex:none;border:0;background:none;padding:4px 6px;font:600 12px var(--font,inherit);color:var(--dg-vurgu);cursor:pointer;border-radius:8px}
+.dg-ad-vazgec{color:var(--dg-soluk)}
+.dg-ad-sec{margin:0 0 12px;padding:12px;border-radius:16px;background:var(--dg-yuzey2);border:1px solid var(--dg-cizgi)}
+.dg-ad-sec label{display:block;font:700 13px var(--font,inherit);color:var(--dg-yazi);margin:0 0 8px}
+.dg-ad-satir{display:flex;gap:8px;align-items:center}
+.dg-ad-satir .dg-ad{flex:1;min-width:0;border:1.5px solid var(--dg-cizgi);border-radius:12px;padding:9px 12px;background:var(--dg-yuzey);font:600 14px var(--font,inherit);color:var(--dg-yazi);outline:none}
+.dg-ad-satir .dg-ad:focus{border-color:var(--dg-vurgu);box-shadow:0 0 0 4px var(--dg-vurgu-acik)}
+.dg-ad-kaydet{flex:none;border:0;border-radius:12px;padding:10px 16px;cursor:pointer;color:#fff;font:700 13.5px var(--font,inherit);background:linear-gradient(135deg,var(--dg-vurgu),#8b5cf6)}
+.dg-ad-kaydet:disabled{opacity:.6}
+.dg-ad-sec small{display:block;margin-top:8px;font:500 11.5px/1.4 var(--font,inherit);color:var(--dg-soluk)}
 .dg-yazar .dg-av{width:30px;height:30px;font-size:13px}
 .dg-ad{flex:1;min-width:0;display:block;border:0;border-bottom:1.5px solid var(--dg-cizgi);border-radius:0;padding:6px 2px;font:600 13.5px var(--font,inherit);
   color:var(--dg-yazi);background:transparent;box-sizing:border-box;outline:none;transition:border-color .15s}
@@ -628,21 +678,57 @@ function formHtml(yanit) {
   return `<div class="dg-form${yanit ? " dg-yanit-form" : ""}"><textarea maxlength="500" rows="1" placeholder="${yanit ? "Yanıtını yaz…" : "Bu menü hakkında ne düşünüyorsun?"}"></textarea><button type="button" aria-label="Gönder" title="Gönder">${GONDER_IKON}</button></div><div class="dg-ipucu" role="status" aria-live="polite"></div>`;
 }
 
+function yazarHtml() {
+  if (YORUM_KAPALI || !googleMu()) return "";
+  if (takmaAd && !yazarHtml.duzenle)
+    return `<div class="dg-yazar">${avatar(takmaAd, benimAvatar())}<b class="dg-ad-sabit">${esc(takmaAd)}</b>${adDegisebilir() ? '<button type="button" class="dg-ad-degistir">Adı değiştir</button>' : ""}</div>`;
+  return `<div class="dg-ad-sec"><label>${takmaAd ? "Yeni adını yaz" : "Yorumlarda görünecek adını seç"}</label>
+    <div class="dg-ad-satir"><input class="dg-ad" maxlength="24" placeholder="Örn. Elif K. veya kykli_ahmet" value="${esc(takmaAd || adOku())}" aria-label="Yorumlarda görünecek ad"><button type="button" class="dg-ad-kaydet">Kaydet</button>${takmaAd ? '<button type="button" class="dg-ad-vazgec">Vazgeç</button>' : ""}</div><div class="dg-ipucu" role="status" aria-live="polite"></div>
+    <small>Her hesabın tek bir adı olur, başkası aynı adı alamaz. Adını ${AD_DEGISIM_GUN} günde bir değiştirebilirsin.</small></div>`;
+}
+function yazarBagla(el, p) {
+  const dg = p.querySelector(".dg-ad-degistir");
+  if (dg) dg.onclick = () => { yazarHtml.duzenle = true; panelCiz(el); const i = el.querySelector(".dg-ad"); if (i) i.focus(); };
+  const vz = p.querySelector(".dg-ad-vazgec");
+  if (vz) vz.onclick = () => { yazarHtml.duzenle = false; panelCiz(el); };
+  const kb = p.querySelector(".dg-ad-kaydet"); if (!kb) return;
+  const inp = p.querySelector(".dg-ad"), satir = p.querySelector(".dg-ad-satir");
+  const kaydet = async () => {
+    const yeni = inp.value.trim().replace(/\s+/g, " ");
+    const h = adHata(yeni);
+    if (h) { ipucu(satir, h, "uyari"); salla(satir); inp.focus(); return; }
+    if (takmaAd === yeni) { yazarHtml.duzenle = false; panelCiz(el); return; }
+    kb.disabled = true;
+    try {
+      await takmaAdKaydet(yeni);
+      yazarHtml.duzenle = false;
+      kutular.forEach((d2, el2) => { if (d2.acik) panelCiz(el2); });
+      const nf = el.querySelector(".dg-panel .dg-form"); if (nf) { ipucu(nf, `Adın kaydedildi: ${yeni}`, "ok"); nf.querySelector("textarea").focus(); }
+    } catch (e) {
+      console.error(e);
+      ipucu(satir, e && e.kod === "alinmis" ? "Bu ad başka biri tarafından alınmış, başka bir ad dene." : "Ad kaydedilemedi, biraz sonra tekrar dener misin?", "uyari");
+      salla(satir); kb.disabled = false;
+    }
+  };
+  kb.onclick = kaydet;
+  inp.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); kaydet(); } };
+}
+
 function panelCiz(el) {
   const d = kutular.get(el); if (!d) return;
   const p = el.querySelector(".dg-panel");
   p.innerHTML =
-    `<div class="dg-baslik">Yorumlar <span class="dg-say">${d.sayi.yorum}</span></div><div class="dg-yazar">${avatar(adOku() || "Anonim", benimAvatar())}<input class="dg-ad" maxlength="40" placeholder="Adın (isteğe bağlı)" value="${esc(adOku())}" aria-label="Adın, isteğe bağlı"></div>
+    `<div class="dg-baslik">Yorumlar <span class="dg-say">${d.sayi.yorum}</span></div>${yazarHtml()}
      <div id="dg-ana-form-kutu">${YORUM_KAPALI ? '<div class="dg-bos" style="padding:12px 4px;font-size:13px;opacity:.8">Yorum yazma geçici olarak kapalı.</div>' : formHtml(false) + (googleMu() ? "" : `<button type="button" class="dg-google">${GOOGLE_IKON}<span>Yorum yazmak için Google ile giriş yap</span></button>`)}</div>
      <ul class="dg-liste"></ul>`;
 
   const btnTum = p.querySelector("#dg-tum-yemekler-btn");
   if (btnTum) btnTum.onclick = () => window.KC_YEMEK_PANEL && window.KC_YEMEK_PANEL.ac();
 
-  p.querySelector(".dg-ad").oninput = e => adYaz(e.target.value.trim());
+  yazarBagla(el, p);
   if (!YORUM_KAPALI) formBagla(el, p.querySelector(".dg-form"), null);
   const gBtn = p.querySelector(".dg-google");
-  if (gBtn) gBtn.onclick = async () => { gBtn.disabled = true; if (await googleGiris()) { panelCiz(el); const nf = el.querySelector(".dg-panel .dg-form"); if (nf) { ipucu(nf, "Giriş yapıldı, artık yorum yazabilirsin", "ok"); nf.querySelector("textarea").focus(); } } else gBtn.disabled = false; };
+  if (gBtn) gBtn.onclick = async () => { gBtn.disabled = true; if (await googleGiris()) { await takmaAdYukle(); panelCiz(el); const nf = el.querySelector(".dg-panel .dg-form"); if (nf) { ipucu(nf, "Giriş yapıldı, artık yorum yazabilirsin", "ok"); nf.querySelector("textarea").focus(); } } else gBtn.disabled = false; };
   listeCiz(el);
 }
 
@@ -717,10 +803,15 @@ function formBagla(el, f, ustId) {
     const ceza = await cezaKontrol(uid);
     if (ceza.cezali) { ipucu(f, `Yorum yazma cezan var. Yaklaşık ${ceza.kalanGun} gün sonra (${ceza.bitisStr}) tekrar yazabilirsin.`, "uyari"); return; }
 
-    const adInp = el.querySelector(".dg-ad");
-    const ad = (adInp ? adInp.value.trim() : "") || adOku() || "Anonim";
-    if (SPAM_RE.test(ad)) { ipucu(f, "Adında uygunsuz bir ifade var.", "uyari"); salla(f); return; }
-    adYaz(ad === "Anonim" ? "" : ad);
+    await takmaAdYukle();
+    if (!takmaAd || yazarHtml.duzenle) {
+      yazarHtml.duzenle = !takmaAd ? false : yazarHtml.duzenle;
+      if (!el.querySelector(".dg-ad-sec")) panelCiz(el);
+      const satir = el.querySelector(".dg-ad-satir");
+      if (satir) { ipucu(satir, "Önce yorumlarda görünecek adını seç.", "bilgi"); salla(satir); satir.querySelector("input").focus(); }
+      return;
+    }
+    const ad = takmaAd;
     btn.disabled = true; f.classList.add("dg-gonderiliyor");
     try {
       // Hız sınırı: yorum ve sınır kaydı birlikte yazılır; sunucu 30 sn / günlük 20 sınırını denetler
@@ -869,6 +960,7 @@ new MutationObserver(ml => {
 
 onAuthStateChanged(auth, async u => {
   ben = u;
+  await takmaAdYukle();
   try { if (u && u.email) localStorage.setItem("kc-eposta", u.email); } catch (e) {}
   window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: false } }));
   kutular.forEach((d, el) => {
