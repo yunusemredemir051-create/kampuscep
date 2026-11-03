@@ -4,10 +4,10 @@
    Sitede yönetici paneli yoktur; moderasyon Firebase konsolundan yapılır. */
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInAnonymously, onAuthStateChanged }
-  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signInWithCredential,
+         linkWithPopup, linkWithCredential } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, doc, setDoc, deleteDoc, addDoc, onSnapshot, query, where,
-         getCountFromServer, getDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+         getCountFromServer, getDoc, getDocs, serverTimestamp, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const app = getApps().length ? getApps()[0] : initializeApp(window.FIREBASE_AYAR);
 /* App Check: istekler yalnızca sitenin kendisinden (reCAPTCHA doğrulamalı gerçek tarayıcıdan) kabul edilir. */
@@ -21,8 +21,10 @@ let ben = null;
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
 
-/* 2 Kasım 2026 spam saldırısı: yorum yazma sunucuda kapatıldı; saldırı aralığındaki ve bilinen spam kalıplı yorumlar gösterilmez. */
-const YORUM_KAPALI = true;
+/* 2 Kasım 2026 spam saldırısı sonrası: yorum yazmak için Google hesabı şart; sunucu her hesaba 30 saniyede 1, günde en çok 20 yorum izni verir.
+   Saldırı aralığındaki ve bilinen spam kalıplı yorumlar gösterilmez. */
+const YORUM_KAPALI = false;
+const YORUM_ARA_SN = 30, YORUM_GUNLUK = 20;
 const SPAM_BAS = Date.UTC(2026, 10, 2, 16, 0), SPAM_BIT = Date.UTC(2026, 10, 2, 18, 0);
 const SPAM_RE = /bubiryorum|amc[ıi]k|orospu|porno|\bohhh\b|sik(ik|iş|tir)|piç|yarrak|göt(ü|veren)/i;
 function spamMi(y) {
@@ -86,6 +88,46 @@ async function kimlik() {
   catch (e) { console.error(e); toast("Bağlantı kurulamadı, tekrar dener misin?"); return false; }
 }
 
+/* Google girişi: anonim oturum varsa Google hesabına bağlanır (puan ve beğeniler korunur).
+   Android uygulamasında telefonun kendi hesap seçicisi, tarayıcıda Google penceresi kullanılır. */
+const googleMu = () => !!(auth.currentUser && !auth.currentUser.isAnonymous);
+const yerelUygulama = () => !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform() && window.Capacitor.Plugins && window.Capacitor.Plugins.FirebaseAuthentication);
+async function googleGiris() {
+  if (googleMu()) return true;
+  try {
+    let kimlikBelgesi = null;
+    if (yerelUygulama()) {
+      const r = await window.Capacitor.Plugins.FirebaseAuthentication.signInWithGoogle({ skipNativeAuth: true });
+      const t = r && r.credential && r.credential.idToken;
+      if (!t) throw { code: "auth/no-token" };
+      kimlikBelgesi = GoogleAuthProvider.credential(t);
+    }
+    const u = auth.currentUser;
+    try {
+      if (u && u.isAnonymous) { kimlikBelgesi ? await linkWithCredential(u, kimlikBelgesi) : await linkWithPopup(u, new GoogleAuthProvider()); }
+      else { kimlikBelgesi ? await signInWithCredential(auth, kimlikBelgesi) : await signInWithPopup(auth, new GoogleAuthProvider()); }
+    } catch (e) {
+      // Bu Google hesabı daha önce kullanıldıysa doğrudan o hesapla giriş yapılır
+      const c = (e && e.code === "auth/credential-already-in-use") ? (kimlikBelgesi || GoogleAuthProvider.credentialFromError(e)) : null;
+      if (!c) throw e;
+      await signInWithCredential(auth, c);
+    }
+    return googleMu();
+  } catch (e) {
+    const kod = (e && (e.code || e.message)) || "";
+    if (/popup-closed-by-user|cancelled-popup-request|cancel/i.test(kod)) return false;
+    if (/Instagram|FBAN|FBAV/i.test(navigator.userAgent || "") || /popup-blocked|operation-not-supported/.test(kod))
+      toast("Bu tarayıcı Google girişine izin vermiyor. Sayfayı Chrome veya Safari'de açıp tekrar dene.");
+    else { console.error(e); toast("Google ile giriş yapılamadı, tekrar dener misin?"); }
+    return false;
+  }
+}
+/* Sunucudaki sınır kaydı: { son: zaman, adet: o günkü yorum sayısı } */
+async function sinirOku(uid) {
+  try { const s = await getDoc(doc(db, "yorumSinir", uid)); return s.exists() ? s.data() : null; } catch (e) { return null; }
+}
+const ayniGun = (a, b) => a.getUTCFullYear() === b.getUTCFullYear() && a.getUTCMonth() === b.getUTCMonth() && a.getUTCDate() === b.getUTCDate();
+
 const adOku = () => { try { return localStorage.getItem("kc-ad") || ""; } catch (e) { return ""; } };
 const adYaz = a => { try { localStorage.setItem("kc-ad", a); } catch (e) {} };
 function toast(m) {
@@ -142,6 +184,10 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
   color:var(--dg-yazi);background:transparent;box-sizing:border-box;outline:none;transition:border-color .15s}
 .dg-ad::placeholder{color:var(--dg-soluk);font-weight:500}
 .dg-ad:focus{border-color:var(--dg-vurgu)}
+.dg-google{margin-top:8px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 14px;border-radius:14px;cursor:pointer;
+  border:1.5px solid var(--dg-cizgi);background:var(--dg-yuzey);color:var(--dg-yazi);font:700 13.5px var(--font,inherit);transition:transform .15s,border-color .15s,box-shadow .15s}
+.dg-google:hover{border-color:var(--dg-vurgu);box-shadow:0 0 0 4px var(--dg-vurgu-acik)}.dg-google:active{transform:scale(.98)}.dg-google:disabled{opacity:.6}
+.dg-google svg{width:18px;height:18px;flex:none}
 .dg-form{display:flex;gap:8px;align-items:flex-end;background:var(--dg-yuzey);border:1.5px solid var(--dg-cizgi);border-radius:20px;padding:6px 6px 6px 14px;transition:border-color .15s,box-shadow .15s}
 .dg-form:focus-within{border-color:var(--dg-vurgu);box-shadow:0 0 0 4px var(--dg-vurgu-acik)}
 .dg-form textarea{flex:1;min-width:0;min-height:36px;max-height:140px;resize:none;border:0;outline:none;background:transparent;padding:8px 0;
@@ -212,6 +258,7 @@ function avatar(ad, av) {
   const bas = [...t][0] || "A";
   return `<span class="dg-av" style="background:linear-gradient(135deg,hsl(${h},72%,56%),hsl(${(h + 40) % 360},70%,48%))">${esc(bas)}</span>`;
 }
+const GOOGLE_IKON = '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
 const GONDER_IKON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
 const BOS_IKON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.4A8 8 0 1 1 21 12z"/><path d="M8.5 11h7M8.5 14h4"/></svg>';
 
@@ -567,7 +614,7 @@ function panelCiz(el) {
   const p = el.querySelector(".dg-panel");
   p.innerHTML =
     `<div class="dg-baslik">Yorumlar <span class="dg-say">${d.sayi.yorum}</span></div><div class="dg-yazar">${avatar(adOku() || "Anonim", benimAvatar())}<input class="dg-ad" maxlength="40" placeholder="Adın (isteğe bağlı)" value="${esc(adOku())}" aria-label="Adın, isteğe bağlı"></div>
-     <div id="dg-ana-form-kutu">${YORUM_KAPALI ? '<div class="dg-bos" style="padding:12px 4px;font-size:13px;opacity:.8">Yorum yazma geçici olarak kapalı.</div>' : formHtml(false)}</div>
+     <div id="dg-ana-form-kutu">${YORUM_KAPALI ? '<div class="dg-bos" style="padding:12px 4px;font-size:13px;opacity:.8">Yorum yazma geçici olarak kapalı.</div>' : formHtml(false) + (googleMu() ? "" : `<button type="button" class="dg-google">${GOOGLE_IKON}<span>Yorum yazmak için Google ile giriş yap</span></button>`)}</div>
      <ul class="dg-liste"></ul>`;
 
   const btnTum = p.querySelector("#dg-tum-yemekler-btn");
@@ -575,6 +622,8 @@ function panelCiz(el) {
 
   p.querySelector(".dg-ad").oninput = e => adYaz(e.target.value.trim());
   if (!YORUM_KAPALI) formBagla(el, p.querySelector(".dg-form"), null);
+  const gBtn = p.querySelector(".dg-google");
+  if (gBtn) gBtn.onclick = async () => { gBtn.disabled = true; if (await googleGiris()) { toast("Giriş yapıldı, artık yorum yazabilirsin."); panelCiz(el); } else gBtn.disabled = false; };
   listeCiz(el);
 }
 
@@ -585,10 +634,13 @@ function formBagla(el, f, ustId) {
   btn.onclick = async () => {
     const metin = ta.value.trim();
     if (!metin) { ta.focus(); return; }
-    if (!(await kimlik())) return;
+    if (metin.length < 3) { toast("Yorum en az 3 karakter olmalı."); return; }
+    if (SPAM_RE.test(metin)) { toast("Yorumun uygunsuz ifade içeriyor."); return; }
+    if (!googleMu() && !(await googleGiris())) return;
+    const uid = auth.currentUser.uid;
 
     // Ban kontrolü
-    const ceza = await cezaKontrol(auth.currentUser.uid);
+    const ceza = await cezaKontrol(uid);
     if (ceza.cezali) {
       alert(`⛔ Yorum yapma cezanız bulunmaktadır!\nKalan süre: Yaklaşık ${ceza.kalanGun} gün (Bitiş: ${ceza.bitisStr})\nBu süre zarfında yorum veya yanıt yazamazsınız.`);
       return;
@@ -597,19 +649,30 @@ function formBagla(el, f, ustId) {
     const adInp = el.querySelector(".dg-ad");
     const ad = (adInp ? adInp.value.trim() : "") || adOku() || "Anonim";
     adYaz(ad === "Anonim" ? "" : ad);
+    if (SPAM_RE.test(ad)) { toast("Adın uygunsuz ifade içeriyor."); return; }
     btn.disabled = true;
     try {
-      await addDoc(collection(db, "menuler", d.yorumId, "yorumlar"), {
-        uid: auth.currentUser.uid,
-        ad, metin,
+      // Hız sınırı: yorum ve sınır kaydı birlikte yazılır; sunucu 30 sn / günlük 20 sınırını denetler
+      const sinir = await sinirOku(uid), simdi = new Date();
+      const onceki = sinir && sinir.son && sinir.son.toDate ? sinir.son.toDate() : null;
+      if (onceki && simdi - onceki < YORUM_ARA_SN * 1000) { toast(`Biraz yavaş 🙂 ${Math.ceil((YORUM_ARA_SN * 1000 - (simdi - onceki)) / 1000)} saniye sonra tekrar yazabilirsin.`); return; }
+      const adet = onceki && ayniGun(onceki, simdi) ? (sinir.adet || 0) + 1 : 1;
+      if (adet > YORUM_GUNLUK) { toast(`Bugünlük yorum hakkın doldu (${YORUM_GUNLUK}). Yarın tekrar yazabilirsin.`); return; }
+      const b = writeBatch(db);
+      const gunBasi = Date.UTC(simdi.getUTCFullYear(), simdi.getUTCMonth(), simdi.getUTCDate());
+      b.set(doc(db, "menuler", d.yorumId, "yorumlar", `${uid}_${gunBasi}_${adet}`), {
+        uid, ad, metin,
         ust: ustId || "",
         zaman: serverTimestamp(),
         begeniler: []
       });
+      b.set(doc(db, "yorumSinir", uid), { son: serverTimestamp(), adet });
+      await b.commit();
       ta.value = ""; ta.style.height = "auto";
       if (ustId) { d.yanit = null; listeCiz(el); }
     } catch (e) {
-      console.error(e); toast("Gönderilemedi, tekrar dener misin?");
+      console.error(e);
+      toast(e && e.code === "permission-denied" ? "Yorum gönderilemedi. Çok hızlı yazıyor olabilirsin, biraz bekleyip tekrar dene." : "Gönderilemedi, tekrar dener misin?");
     } finally { btn.disabled = false; }
   };
 }
