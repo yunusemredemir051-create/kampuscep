@@ -209,7 +209,7 @@ html[data-tema="koyu"] .dg-ipucu.uyari{color:#fb7185}html[data-tema="koyu"] .dg-
 .dg-google svg{width:18px;height:18px;flex:none}
 .dg-form{display:flex;gap:8px;align-items:flex-end;background:var(--dg-yuzey);border:1.5px solid var(--dg-cizgi);border-radius:20px;padding:6px 6px 6px 14px;transition:border-color .15s,box-shadow .15s}
 .dg-form:focus-within{border-color:var(--dg-vurgu);box-shadow:0 0 0 4px var(--dg-vurgu-acik)}
-.dg-form textarea{flex:1;min-width:0;min-height:36px;max-height:140px;resize:none;border:0;outline:none;background:transparent;padding:8px 0;
+.dg-form textarea{overflow-y:hidden;scrollbar-width:thin;flex:1;min-width:0;min-height:36px;max-height:140px;resize:none;border:0;outline:none;background:transparent;padding:8px 0;
   font:500 14.5px/1.4 var(--font,inherit);color:var(--dg-yazi)}
 .dg-form textarea::placeholder{color:var(--dg-soluk)}
 .dg-form button{flex:none;width:38px;height:38px;border:0;border-radius:50%;padding:0;display:grid;place-items:center;cursor:pointer;color:#fff;
@@ -699,6 +699,7 @@ function formBagla(el, f, ustId) {
   const ta = f.querySelector("textarea"), btn = f.querySelector("button");
   ta.oninput = () => {
     ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 140) + "px";
+    ta.style.overflowY = ta.scrollHeight > 140 ? "auto" : "hidden";
     f.classList.toggle("dg-hazir", ta.value.trim().length >= 3);
     const k = f.nextElementSibling;
     if (k && k.classList.contains("uyari") && ta.value.trim().length >= 3) ipucu(f, "");
