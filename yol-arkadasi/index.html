@@ -741,12 +741,13 @@ $("liste").addEventListener("click", async e => {
     } catch (err) { console.error(err); toast("Banlanamadı: " + (err.code || "")); }
   }
   if (b.dataset.sikayet) {
-    const neden = prompt("Bu ilanı neden şikâyet ediyorsun? (kısaca)");
-    if (!neden) return;
+    const neden = (prompt("Bu ilanı neden şikâyet ediyorsun? (kısaca)") || "").trim();
+    if (neden.length < 2) return;
     try {
-      await addDoc(collection(db, "sikayetler"), { ilan: b.dataset.sikayet, neden: neden.slice(0, 300), uid: ben.uid, zaman: serverTimestamp() });
+      // Her kişi bir ilanı bir kez şikâyet edebilir (belge kimliği sunucuda denetlenir)
+      await setDoc(doc(db, "sikayetler", ben.uid + "_" + b.dataset.sikayet), { ilan: b.dataset.sikayet, neden: neden.slice(0, 300), uid: ben.uid, zaman: serverTimestamp() });
       toast("Şikâyetin bize ulaştı, teşekkürler.");
-    } catch (err) { toast("Gönderilemedi, tekrar dene."); }
+    } catch (err) { toast(err && err.code === "permission-denied" ? "Bu ilanı zaten şikâyet etmiştin, teşekkürler." : "Gönderilemedi, tekrar dene."); }
   }
 });
 

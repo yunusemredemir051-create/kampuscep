@@ -1,9 +1,9 @@
 /* KampüsCepte — Çıkmış sorular: indirme sayacı ve 5 yıldızlı puanlama (Firestore: cikmisSorular).
-   Her indirme ayrı sayılır (aynı kişi 5 kez indirirse 5). Puanda her kişinin tek oyu vardır, değiştirebilir. */
+   Her indirme ayrı sayılır (aynı kişi 5 kez indirirse 5); sunucu kişi başına 10 saniyede en fazla 1 sayıma izin verir. Puanda her kişinin tek oyu vardır, değiştirebilir. */
 import { initializeAppCheck, ReCaptchaEnterpriseProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app-check.js";
 import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDocs, collection, onSnapshot, increment, serverTimestamp }
+import { getFirestore, doc, setDoc, getDocs, collection, onSnapshot, increment, serverTimestamp, writeBatch }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const app = getApps().length ? getApps()[0] : initializeApp(window.FIREBASE_AYAR);
@@ -37,7 +37,12 @@ window.Cikmis = {
         s => { say.textContent = ((s.exists() && s.data().indirme) || 0).toLocaleString("tr-TR"); },
         () => { say.textContent = "–"; }));
       kart.querySelector(".ck-indir").addEventListener("click", () => {
-        giris().then(() => setDoc(doc(db, "cikmisSorular", id), { indirme: increment(1) }, { merge: true })).catch(() => {});
+        giris().then(uid => {
+          const b = writeBatch(db);
+          b.set(doc(db, "cikmisSorular", id), { indirme: increment(1) }, { merge: true });
+          b.set(doc(db, "cikmisSorular", id, "indirenler", uid), { son: serverTimestamp() });
+          return b.commit();
+        }).catch(() => {});
       });
       kart.querySelectorAll(".ck-yildiz button").forEach((b, i) => b.addEventListener("click", async () => {
         try {

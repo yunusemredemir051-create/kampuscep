@@ -931,18 +931,15 @@ function listeCiz(el) {
 
   // Bildir
   ul.querySelectorAll("[data-bildir]").forEach(b => b.onclick = async () => {
-    if (!(await kimlik())) return;
-    const neden = prompt("Bu yorumu neden bildiriyorsun? (kısaca)");
-    if (!neden) return;
+    // Bildirim yalnızca Google hesabıyla; her kişi bir yorumu bir kez bildirebilir (sunucu denetler)
+    if (!googleMu() && !(await googleGiris())) return;
+    const neden = (prompt("Bu yorumu neden bildiriyorsun? (kısaca)") || "").trim();
+    if (neden.length < 2) return;
+    const ilan = "yorum:" + d.yorumId + "/" + b.dataset.bildir, uid = auth.currentUser.uid;
     try {
-      await addDoc(collection(db, "sikayetler"), {
-        ilan: "yorum:" + d.yorumId + "/" + b.dataset.bildir,
-        neden: neden.slice(0, 300),
-        uid: auth.currentUser.uid,
-        zaman: serverTimestamp()
-      });
+      await setDoc(doc(db, "sikayetler", uid + "_" + ilan.replace(/[:/]/g, "_")), { ilan, neden: neden.slice(0, 300), uid, zaman: serverTimestamp() });
       toast("Teşekkürler, inceleyeceğiz.");
-    } catch (e) { console.error(e); toast("Gönderilemedi, tekrar dener misin?"); }
+    } catch (e) { console.error(e); toast(e && e.code === "permission-denied" ? "Bu yorumu zaten bildirmiştin, teşekkürler." : "Gönderilemedi, tekrar dener misin?"); }
   });
 }
 
