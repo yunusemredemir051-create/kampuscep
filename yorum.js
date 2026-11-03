@@ -384,9 +384,14 @@ function oyDinleVeSay(el) {
   if (d.dinleOy) { d.dinleOy(); d.dinleOy = null; }
 
   // Yorum sayısını al
-  getDocs(collection(db, "menuler", d.yorumId, "yorumlar")).then(c => {
+  // Sayım sunucuda yapılır (1000 yoruma 1 okuma); saldırı aralığındaki spam yorumlar sayılmaz
+  const yRef = collection(db, "menuler", d.yorumId, "yorumlar");
+  Promise.all([
+    getCountFromServer(query(yRef, where("zaman", "<", new Date(SPAM_BAS)))),
+    getCountFromServer(query(yRef, where("zaman", ">", new Date(SPAM_BIT))))
+  ]).then(([a, b]) => {
     if (kutular.get(el) === d) {
-      d.sayi.yorum = c.docs.filter(x => !spamMi(x.data())).length;
+      d.sayi.yorum = a.data().count + b.data().count;
       barCiz(el);
     }
   }).catch(() => {});
@@ -544,7 +549,9 @@ function panelAc(el, ac) {
   barCiz(el);
   if (!ac) { if (d.dinle) { d.dinle(); d.dinle = null; } return; }
   panelCiz(el);
-  d.dinle = onSnapshot(collection(db, "menuler", d.yorumId, "yorumlar"), s => {
+  // Yorumlar kapalıyken saldırı öncesi yorumlar okunur; spam belgeleri hiç indirilmez (okuma kotası korunur)
+  const yKol = collection(db, "menuler", d.yorumId, "yorumlar");
+  d.dinle = onSnapshot(YORUM_KAPALI ? query(yKol, where("zaman", "<", new Date(SPAM_BAS))) : yKol, s => {
     d.yorumlar = s.docs.map(x => ({ id: x.id, ...x.data() })).filter(y => !spamMi(y));
     d.sayi.yorum = d.yorumlar.length; barCiz(el);
     listeCiz(el);
