@@ -184,6 +184,25 @@ html[data-tema="koyu"] .dg-star{color:#47507a}
   color:var(--dg-yazi);background:transparent;box-sizing:border-box;outline:none;transition:border-color .15s}
 .dg-ad::placeholder{color:var(--dg-soluk);font-weight:500}
 .dg-ad:focus{border-color:var(--dg-vurgu)}
+.dg-form button{transition:transform .15s,opacity .2s,background .2s}
+.dg-form:not(.dg-hazir):not(.dg-bekle) button{opacity:.55}
+.dg-form.dg-gonderiliyor button svg{animation:dgDon .8s linear infinite}
+@keyframes dgDon{to{transform:rotate(360deg)}}
+.dg-form.dg-bekle button{background:var(--dg-yuzey2)!important;color:var(--dg-vurgu);box-shadow:none!important;position:relative;opacity:1}
+.dg-form.dg-bekle button b{position:relative;font:800 12px/1 var(--font,inherit);font-variant-numeric:tabular-nums}
+.dg-halka{position:absolute;inset:2px;width:34px!important;height:34px!important;transform:rotate(-90deg)}
+.dg-halka circle{fill:none;stroke:var(--dg-cizgi);stroke-width:3}
+.dg-halka .dg-halka-dolu{stroke:var(--dg-vurgu);stroke-linecap:round;transition:stroke-dashoffset .2s linear}
+.dg-salla{animation:dgSalla .38s cubic-bezier(.36,.07,.19,.97)}
+@keyframes dgSalla{20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.dg-ipucu{display:flex;align-items:center;gap:7px;max-height:0;opacity:0;overflow:hidden;margin:0 6px;font:600 12.5px/1.35 var(--font,inherit);color:var(--dg-soluk);
+  transform:translateY(-4px);transition:max-height .25s ease,opacity .2s ease,transform .25s ease,margin .25s ease}
+.dg-ipucu.acik{max-height:60px;opacity:1;transform:none;margin:8px 6px 2px}
+.dg-ipucu svg{flex:none;width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dg-ipucu.uyari{color:#e11d48}.dg-ipucu.ok{color:#059669}.dg-ipucu.saat{color:var(--dg-vurgu)}
+.dg-ipucu.saat span{font-variant-numeric:tabular-nums}
+html[data-tema="koyu"] .dg-ipucu.uyari{color:#fb7185}html[data-tema="koyu"] .dg-ipucu.ok{color:#34d399}
+@media (prefers-reduced-motion:reduce){.dg-salla{animation:none}.dg-ipucu{transition:none}}
 .dg-google{margin-top:8px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:11px 14px;border-radius:14px;cursor:pointer;
   border:1.5px solid var(--dg-cizgi);background:var(--dg-yuzey);color:var(--dg-yazi);font:700 13.5px var(--font,inherit);transition:transform .15s,border-color .15s,box-shadow .15s}
 .dg-google:hover{border-color:var(--dg-vurgu);box-shadow:0 0 0 4px var(--dg-vurgu-acik)}.dg-google:active{transform:scale(.98)}.dg-google:disabled{opacity:.6}
@@ -606,7 +625,7 @@ function panelAc(el, ac) {
 }
 
 function formHtml(yanit) {
-  return `<div class="dg-form${yanit ? " dg-yanit-form" : ""}"><textarea maxlength="500" rows="1" placeholder="${yanit ? "Yanıtını yaz…" : "Bu menü hakkında ne düşünüyorsun?"}"></textarea><button type="button" aria-label="Gönder" title="Gönder">${GONDER_IKON}</button></div>`;
+  return `<div class="dg-form${yanit ? " dg-yanit-form" : ""}"><textarea maxlength="500" rows="1" placeholder="${yanit ? "Yanıtını yaz…" : "Bu menü hakkında ne düşünüyorsun?"}"></textarea><button type="button" aria-label="Gönder" title="Gönder">${GONDER_IKON}</button></div><div class="dg-ipucu" role="status" aria-live="polite"></div>`;
 }
 
 function panelCiz(el) {
@@ -623,41 +642,92 @@ function panelCiz(el) {
   p.querySelector(".dg-ad").oninput = e => adYaz(e.target.value.trim());
   if (!YORUM_KAPALI) formBagla(el, p.querySelector(".dg-form"), null);
   const gBtn = p.querySelector(".dg-google");
-  if (gBtn) gBtn.onclick = async () => { gBtn.disabled = true; if (await googleGiris()) { toast("Giriş yapıldı, artık yorum yazabilirsin."); panelCiz(el); } else gBtn.disabled = false; };
+  if (gBtn) gBtn.onclick = async () => { gBtn.disabled = true; if (await googleGiris()) { panelCiz(el); const nf = el.querySelector(".dg-panel .dg-form"); if (nf) { ipucu(nf, "Giriş yapıldı, artık yorum yazabilirsin", "ok"); nf.querySelector("textarea").focus(); } } else gBtn.disabled = false; };
   listeCiz(el);
+}
+
+/* ---------- yorum kutusu içi durum satırı (toast yerine, kutunun hemen altında) ---------- */
+let beklemeBitis = 0;            // bu cihazda bir sonraki yorumun yazılabileceği an (ms)
+const IP_IKON = {
+  bilgi: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  uyari: '<svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>',
+  ok: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg>',
+  saat: '<svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9.5 2.5h5"/></svg>'
+};
+function ipucu(f, metin, tur) {
+  const k = f.nextElementSibling && f.nextElementSibling.classList.contains("dg-ipucu") ? f.nextElementSibling : null;
+  if (!k) return;
+  clearTimeout(k._z);
+  if (!metin) { k.classList.remove("acik"); return; }
+  k.className = "dg-ipucu " + (tur || "bilgi");
+  k.innerHTML = IP_IKON[tur || "bilgi"] + "<span></span>";
+  k.querySelector("span").textContent = metin;
+  void k.offsetWidth; k.classList.add("acik");
+  if (tur !== "saat") k._z = setTimeout(() => k.classList.remove("acik"), tur === "ok" ? 2600 : 4200);
+}
+function salla(f) { f.classList.remove("dg-salla"); void f.offsetWidth; f.classList.add("dg-salla"); }
+const HALKA = 2 * Math.PI * 16;
+/* Bekleme süresi: gönder düğmesi geri sayan bir halkaya dönüşür, altında kalan süre yazar */
+function beklemeGoster(f) {
+  const btn = f.querySelector("button");
+  clearInterval(f._sayac);
+  const tik = () => {
+    const kalan = beklemeBitis - Date.now();
+    if (kalan <= 0) {
+      clearInterval(f._sayac); f.classList.remove("dg-bekle");
+      btn.innerHTML = GONDER_IKON; btn.setAttribute("aria-label", "Gönder"); btn.disabled = false;
+      ipucu(f, "");
+      return;
+    }
+    const sn = Math.ceil(kalan / 1000);
+    if (!f.classList.contains("dg-bekle")) {
+      f.classList.add("dg-bekle"); btn.disabled = true;
+      btn.innerHTML = `<svg class="dg-halka" viewBox="0 0 36 36"><circle cx="18" cy="18" r="16"/><circle class="dg-halka-dolu" cx="18" cy="18" r="16" stroke-dasharray="${HALKA}"/></svg><b></b>`;
+    }
+    btn.querySelector("b").textContent = sn;
+    btn.querySelector(".dg-halka-dolu").style.strokeDashoffset = HALKA * (1 - kalan / (YORUM_ARA_SN * 1000));
+    btn.setAttribute("aria-label", sn + " saniye bekle");
+    const k = f.nextElementSibling;
+    if (k && k.classList.contains("dg-ipucu") && k.classList.contains("saat") && k.classList.contains("acik")) k.querySelector("span").textContent = `Yeni yorum için ${sn} sn`;
+    else ipucu(f, `Yeni yorum için ${sn} sn`, "saat");
+  };
+  tik(); f._sayac = setInterval(tik, 200);
 }
 
 function formBagla(el, f, ustId) {
   const d = kutular.get(el);
   const ta = f.querySelector("textarea"), btn = f.querySelector("button");
-  ta.oninput = () => { ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 140) + "px"; };
+  ta.oninput = () => {
+    ta.style.height = "auto"; ta.style.height = Math.min(ta.scrollHeight, 140) + "px";
+    f.classList.toggle("dg-hazir", ta.value.trim().length >= 3);
+    const k = f.nextElementSibling;
+    if (k && k.classList.contains("uyari") && ta.value.trim().length >= 3) ipucu(f, "");
+  };
+  if (beklemeBitis > Date.now()) beklemeGoster(f);
   btn.onclick = async () => {
+    if (beklemeBitis > Date.now()) { beklemeGoster(f); salla(f); return; }
     const metin = ta.value.trim();
     if (!metin) { ta.focus(); return; }
-    if (metin.length < 3) { toast("Yorum en az 3 karakter olmalı."); return; }
-    if (SPAM_RE.test(metin)) { toast("Yorumun uygunsuz ifade içeriyor."); return; }
+    if (metin.length < 3) { ipucu(f, "Biraz daha yaz, en az 3 karakter.", "uyari"); salla(f); ta.focus(); return; }
+    if (SPAM_RE.test(metin)) { ipucu(f, "Yorumunda uygunsuz bir ifade var, düzeltip tekrar dene.", "uyari"); salla(f); return; }
     if (!googleMu() && !(await googleGiris())) return;
     const uid = auth.currentUser.uid;
 
-    // Ban kontrolü
     const ceza = await cezaKontrol(uid);
-    if (ceza.cezali) {
-      alert(`⛔ Yorum yapma cezanız bulunmaktadır!\nKalan süre: Yaklaşık ${ceza.kalanGun} gün (Bitiş: ${ceza.bitisStr})\nBu süre zarfında yorum veya yanıt yazamazsınız.`);
-      return;
-    }
+    if (ceza.cezali) { ipucu(f, `Yorum yazma cezan var. Yaklaşık ${ceza.kalanGun} gün sonra (${ceza.bitisStr}) tekrar yazabilirsin.`, "uyari"); return; }
 
     const adInp = el.querySelector(".dg-ad");
     const ad = (adInp ? adInp.value.trim() : "") || adOku() || "Anonim";
+    if (SPAM_RE.test(ad)) { ipucu(f, "Adında uygunsuz bir ifade var.", "uyari"); salla(f); return; }
     adYaz(ad === "Anonim" ? "" : ad);
-    if (SPAM_RE.test(ad)) { toast("Adın uygunsuz ifade içeriyor."); return; }
-    btn.disabled = true;
+    btn.disabled = true; f.classList.add("dg-gonderiliyor");
     try {
       // Hız sınırı: yorum ve sınır kaydı birlikte yazılır; sunucu 30 sn / günlük 20 sınırını denetler
       const sinir = await sinirOku(uid), simdi = new Date();
       const onceki = sinir && sinir.son && sinir.son.toDate ? sinir.son.toDate() : null;
-      if (onceki && simdi - onceki < YORUM_ARA_SN * 1000) { toast(`Biraz yavaş 🙂 ${Math.ceil((YORUM_ARA_SN * 1000 - (simdi - onceki)) / 1000)} saniye sonra tekrar yazabilirsin.`); return; }
+      if (onceki && simdi - onceki < YORUM_ARA_SN * 1000) { beklemeBitis = onceki.getTime() + YORUM_ARA_SN * 1000; f.classList.remove("dg-gonderiliyor"); beklemeGoster(f); return; }
       const adet = onceki && ayniGun(onceki, simdi) ? (sinir.adet || 0) + 1 : 1;
-      if (adet > YORUM_GUNLUK) { toast(`Bugünlük yorum hakkın doldu (${YORUM_GUNLUK}). Yarın tekrar yazabilirsin.`); return; }
+      if (adet > YORUM_GUNLUK) { ipucu(f, `Bugünlük ${YORUM_GUNLUK} yorum hakkını kullandın. Yarın yine yazabilirsin.`, "bilgi"); return; }
       const b = writeBatch(db);
       const gunBasi = Date.UTC(simdi.getUTCFullYear(), simdi.getUTCMonth(), simdi.getUTCDate());
       b.set(doc(db, "menuler", d.yorumId, "yorumlar", `${uid}_${gunBasi}_${adet}`), {
@@ -668,12 +738,18 @@ function formBagla(el, f, ustId) {
       });
       b.set(doc(db, "yorumSinir", uid), { son: serverTimestamp(), adet });
       await b.commit();
-      ta.value = ""; ta.style.height = "auto";
+      ta.value = ""; ta.style.height = "auto"; f.classList.remove("dg-hazir");
+      beklemeBitis = Date.now() + YORUM_ARA_SN * 1000;
+      const kalanHak = YORUM_GUNLUK - adet;
       if (ustId) { d.yanit = null; listeCiz(el); }
+      else {
+        ipucu(f, kalanHak <= 3 ? `Yorumun paylaşıldı · bugün ${kalanHak} hakkın kaldı` : "Yorumun paylaşıldı", "ok");
+        setTimeout(() => { if (f.isConnected) beklemeGoster(f); }, 2200);
+      }
     } catch (e) {
       console.error(e);
-      toast(e && e.code === "permission-denied" ? "Yorum gönderilemedi. Çok hızlı yazıyor olabilirsin, biraz bekleyip tekrar dene." : "Gönderilemedi, tekrar dener misin?");
-    } finally { btn.disabled = false; }
+      ipucu(f, e && e.code === "permission-denied" ? "Gönderilemedi. Biraz bekleyip tekrar dener misin?" : "Bağlantı sorunu oldu, tekrar dener misin?", "uyari");
+    } finally { f.classList.remove("dg-gonderiliyor"); if (!(beklemeBitis > Date.now())) btn.disabled = false; }
   };
 }
 
@@ -757,7 +833,7 @@ function listeCiz(el) {
       await deleteDoc(doc(db, "menuler", d.yorumId, "yorumlar", b.dataset.sil));
       toast("Yorum silindi.");
     } catch (e) {
-      console.error(e); toast("Silinemedi: " + (e.message || e));
+      console.error(e); toast("Yorum silinemedi, tekrar dener misin?");
     }
   });
 
