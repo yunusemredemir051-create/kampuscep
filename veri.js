@@ -232,7 +232,7 @@ const takvim = [
   { ad: "Muafiyet ve mazeretli kayıt son gün", bas: "2026-10-02", tur: "kayit" },
   { ad: "Geçici izin için son başvuru",        bas: "2026-10-09", tur: "kayit" },
   { ad: "Cumhuriyet Bayramı",                  bas: "2026-10-28", bit: "2026-10-29", tur: "tatil", yarim: true },
-  { ad: "Ara sınavlar (vizeler)",              bas: "2026-11-16", bit: "2026-11-29", tur: "sinav" },
+  { ad: "Ara sınavlar (vizeler)",              bas: "2026-11-09", bit: "2026-11-29", tur: "sinav" },
   { ad: "Mazeret sınavları",                   bas: "2026-12-14", bit: "2026-12-27", tur: "sinav", tahmini: true },
   { ad: "Güz dönemi derslerin sonu",           bas: "2026-12-31", tur: "donem" },
   { ad: "Yılbaşı",                             bas: "2027-01-01", tur: "tatil" },

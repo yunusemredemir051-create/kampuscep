@@ -5,6 +5,11 @@
    Hicri takvime bağlı günler (kandiller, Ramazan, bayramlar) her yıl elle güncellenmelidir. */
 (function () {
   "use strict";
+  /* Tıp'ın akademik takvimi ayrıdır: güz vizesi 9 Kasım'a alınması Tıp'ı etkilemez. */
+  function tipMi() {
+    try { return (localStorage.getItem("kc-birim") || (localStorage.getItem("kc-bolum") === "tip" ? "Tıp" : "")) === "Tıp"; }
+    catch (e) { return false; }
+  }
   const IMG = "/gorseller/ozel/";
   const RENK = {
     "cumhuriyet": ["#ab0327", "#8e011f"], "yilbasi": ["#15247a", "#5e40ea"], "ogretmenler": ["#365dfc", "#4c5efc"],
@@ -64,7 +69,7 @@
     { id: "30-agustos", ad: "30 Ağustos Zafer Bayramı", tur: "milli", gunler: ["08-30"], once: 1, oncelik: 5,
       onceBaslik: "Yarın 30 Ağustos!", baslik: "Zafer Bayramımız kutlu olsun!", alt: y => `Büyük Zafer'in ${y - 1922}. yıl dönümü kutlu olsun.` },
     /* sınav haftaları (en düşük öncelik) */
-    ...[["Vize haftası", "2026-11-16", "2026-11-29"], ["Final haftası", "2027-01-04", "2027-01-17"], ["Bütünleme haftası", "2027-01-25", "2027-01-31"],
+    ...[["Vize haftası", tipMi() ? "2026-11-16" : "2026-11-09", "2026-11-29"], ["Final haftası", "2027-01-04", "2027-01-17"], ["Bütünleme haftası", "2027-01-25", "2027-01-31"],
         ["Vize haftası", "2027-03-29", "2027-04-11"], ["Final haftası", "2027-05-31", "2027-06-13"], ["Bütünleme haftası", "2027-06-21", "2027-06-27"]]
       .map(([ad, b, s]) => ({ id: "sinav", ad, tur: "okul", gunler: [[b, s]], oncelik: 1, etiket: n => `${ad} · ${n}. gün`,
         baslik: "Sınavlarında başarılar!", alt: "Notlar ve testler KampüsCepte'de seni bekliyor. Kolay gelsin!" }))
