@@ -7,8 +7,9 @@
   var BITIS = new Date("2026-11-06T00:00:00+03:00");
   var GORSEL = "/gorseller/duyuru/guvenlik.webp";
 
-  if (new Date() >= BITIS) return;
-  try { if (localStorage.getItem(KIMLIK) === "kapali") return; } catch (e) {}
+  var ZORLA = /[?&]duyuru=goster/.test(location.search); // önizleme: kapatılmış olsa da göster
+  if (new Date() >= BITIS && !ZORLA) return;
+  try { if (!ZORLA && localStorage.getItem(KIMLIK) === "kapali") return; } catch (e) {}
 
   var css = "" +
     ".kd-perde{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:20px;" +
