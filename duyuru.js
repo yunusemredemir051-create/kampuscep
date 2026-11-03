@@ -18,9 +18,9 @@
     "background:linear-gradient(180deg,#ffffff 0%,#f7f9ff 100%);color:#141b34;box-shadow:0 30px 80px -20px rgba(20,27,52,.55),0 0 0 1px rgba(59,91,253,.08);" +
     "transform:translateY(18px) scale(.97);transition:transform .38s cubic-bezier(.2,.9,.25,1.15);font-family:inherit}" +
     ".kd-perde.acik .kd-kart{transform:none}" +
-    ".kd-ust{position:relative;height:190px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:28px 28px 0 0;" +
+    ".kd-ust{position:relative;height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:28px 28px 0 0;" +
     "background:radial-gradient(240px 160px at 20% 10%,rgba(139,92,246,.35),transparent 70%),radial-gradient(260px 180px at 85% 90%,rgba(59,91,253,.4),transparent 70%),linear-gradient(135deg,#eef2ff,#f5efff)}" +
-    ".kd-ust img{max-height:178px;max-width:86%;object-fit:contain;margin-top:6px}" +
+    ".kd-ust img{max-height:150px;max-width:86%;object-fit:contain;margin-top:6px}" +
     ".kd-ust svg{width:96px;height:96px;filter:drop-shadow(0 14px 22px rgba(59,91,253,.35))}" +
     ".kd-kapat{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:0;cursor:pointer;display:flex;align-items:center;justify-content:center;" +
     "background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#3a4260;box-shadow:0 4px 12px rgba(20,27,52,.12);transition:transform .15s}" +
@@ -29,7 +29,7 @@
     ".kd-rozet{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;letter-spacing:.3px;padding:5px 11px;border-radius:99px;" +
     "background:rgba(59,91,253,.1);color:#3b5bfd}" +
     ".kd-rozet i{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.18)}" +
-    ".kd-govde h2{margin:12px 0 10px;font-size:22px;line-height:1.2;letter-spacing:-.4px;font-weight:800}" +
+    ".kd-govde h2{margin:2px 0 8px;font-size:22px;line-height:1.2;letter-spacing:-.4px;font-weight:800}" +
     ".kd-govde p{margin:0 0 10px;font-size:14.5px;line-height:1.55;color:#4a5272}" +
     ".kd-liste{list-style:none;margin:14px 0 4px;padding:0;display:grid;gap:8px}" +
     ".kd-liste li{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.45;color:#3a4260;padding:10px 12px;border-radius:14px;background:rgba(59,91,253,.05)}" +
@@ -65,14 +65,8 @@
         '<div class="kd-ust"><span class="kd-gorsel">' + KALKAN + '</span>' +
           '<button type="button" class="kd-kapat" aria-label="Kapat">' + CARPI + '</button></div>' +
         '<div class="kd-govde">' +
-          '<span class="kd-rozet"><i></i>Güvenlik bilgilendirmesi · 2–3 Kasım</span>' +
           '<h2 id="kd-baslik">Bilgilendirme</h2>' +
-          '<p>2–3 Kasım tarihlerinde uygulamamıza yönelik spam saldırıları gerçekleşti. Saldırılara anında müdahale edildi ve ek güvenlik önlemleri devreye alındı.</p>' +
-          '<ul class="kd-liste">' +
-            '<li><span class="ik" style="background:#22c55e">✓</span><span><b>Ders notları, yemek menüleri ve Yol Arkadaşı</b> çalışmaya devam ediyor.</span></li>' +
-            '<li><span class="ik" style="background:#3b5bfd">✓</span><span><b>Kullanıcı bilgileriniz</b> bu durumdan etkilenmedi.</span></li>' +
-            '<li><span class="ik" style="background:#f59e0b">!</span><span><b>Menü yorumları</b> güvenlik çalışmaları tamamlanana kadar kısa bir süre kapalı.</span></li>' +
-          '</ul>' +
+          '<p>2–3 Kasım tarihlerinde uygulamamıza yönelik spam saldırıları gerçekleşti. Gerekli güvenlik önlemleri alınarak anında müdahale edildi. Ders notları, yemek menüleri ve Yol Arkadaşı hizmet vermeye devam ediyor.</p>' +
           '<p class="kd-tesekkur">KampüsCepte\'yi tercih ettiğiniz için teşekkür ederiz. 💙</p>' +
           '<button type="button" class="kd-btn">Anladım</button>' +
         '</div>' +
