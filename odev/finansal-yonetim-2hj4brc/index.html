@@ -10,7 +10,7 @@
 <meta name="description" content="Finansal Yönetim dersi ödevi: KAP'tan şirket seçimi, finansal tabloların hazırlanması, yatay, dikey ve trend analizi.">
 <meta property="og:title" content="Finansal Analiz Ödevi Rehberi">
 <meta property="og:description" content="Şirket seçiminden yatay, dikey ve trend analizine adım adım Finansal Yönetim ödevi.">
-<meta property="og:image" content="https://kampuscepte.com.tr/odev/finansal-yonetim-2hj4brc/paylasim.jpg">
+<meta property="og:image" content="https://kampuscepte.com.tr/odev/finansal-yonetim-2hj4brc/paylasim.jpg?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
@@ -26,7 +26,7 @@
   --gece:#101636;--gece2:#1a2250;--mavi:#3b5bfd;--mavi2:#6f86ff;--mor:#8b5cf6;--altin:#ffbe5c;--yesil:#16b67a;--kirmizi:#e5484d;
   --zemin:#f2f5ff;--kart:#fff;--yazi:#141b34;--soluk:#5f6784;--cizgi:#e4e8f5;--acik:#eef1ff;
   --golge:0 18px 44px -26px rgba(30,45,120,.38);--r:22px;
-  --font:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
+  --kz:#0b0f52;--font:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -37,15 +37,13 @@ button{font:inherit;color:inherit}
 .kap{max-width:880px;margin:0 auto;padding:0 16px}
 
 /* Üst alan */
-.ust{position:relative;background:radial-gradient(620px 420px at 92% -8%,rgba(139,92,246,.62),transparent 68%),radial-gradient(560px 420px at -12% 90%,rgba(59,91,253,.55),transparent 70%),var(--gece);color:#fff;padding:16px 0 96px;overflow:hidden}
-.ust::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(180deg,#000,transparent 92%);-webkit-mask-image:linear-gradient(180deg,#000,transparent 92%);pointer-events:none}
+.ust{position:relative;background:linear-gradient(90deg,var(--kz) 0,var(--kz) 22%,rgba(10,15,75,0) 62%),url(kapak.webp) right center/auto 100% no-repeat,var(--kz);color:#fff;padding:16px 0 118px;min-height:560px;overflow:hidden}
 .marka{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:16px;text-decoration:none}
 .marka img{width:32px;height:32px;border-radius:10px;display:block}
-.kahraman{position:relative;z-index:1;display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:center;margin-top:34px}
+.kahraman{position:relative;z-index:1;max-width:520px;margin-top:70px}
 .etiket{display:inline-block;color:var(--altin);font-weight:700;font-size:13.5px;letter-spacing:.2px}
 h1{font-size:clamp(35px,7vw,52px);line-height:1.06;letter-spacing:-1.5px;margin:8px 0 14px;font-weight:800;text-wrap:balance}
 .giris{color:rgba(255,255,255,.76);font-size:17px;margin:0;max-width:30em}
-.gorsel{width:100%;max-width:280px;justify-self:end;display:block;filter:drop-shadow(0 22px 34px rgba(0,0,0,.35))}
 
 /* Bilgi kartları */
 .bilgiler{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:-62px}
@@ -122,9 +120,8 @@ td.vurgu{color:var(--mavi);font-weight:800}
 footer{margin-top:44px;padding:0 0 34px;color:var(--soluk);font-size:13px;text-align:center}
 
 @media(max-width:700px){
-  .ust{padding-bottom:88px}
-  .kahraman{grid-template-columns:1fr;margin-top:26px}
-  .gorsel{display:none}
+  .ust{min-height:0;padding-bottom:88px;background:linear-gradient(180deg,rgba(11,15,82,0) 0,rgba(11,15,82,0) 150px,var(--kz) 262px),url(kapak.webp) 100% 0/190% auto no-repeat,var(--kz)}
+  .kahraman{margin-top:176px}
   .bilgiler{grid-template-columns:1fr 1fr}
   .uyarilar,.notlar{grid-template-columns:1fr}
   section{margin-top:38px}
@@ -146,13 +143,6 @@ footer{margin-top:44px;padding:0 0 34px;color:var(--soluk);font-size:13px;text-a
         <h1>Finansal Analiz Ödevi Rehberi</h1>
         <p class="giris">KAP'tan şirketi seç, son 5 yılın tablolarını hazırla, yatay, dikey ve trend analizini yap.</p>
       </div>
-      <svg class="gorsel" viewBox="0 0 280 220" aria-hidden="true">
-        <defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f9fff"/><stop offset="1" stop-color="#3b5bfd"/></linearGradient></defs>
-        <rect x="8" y="10" width="264" height="200" rx="26" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".22"/>
-        <g fill="url(#b)"><rect x="36" y="130" width="30" height="52" rx="8"/><rect x="80" y="110" width="30" height="72" rx="8"/><rect x="124" y="92" width="30" height="90" rx="8"/><rect x="168" y="72" width="30" height="110" rx="8"/><rect x="212" y="48" width="30" height="134" rx="8"/></g>
-        <path d="M51 112 95 92 139 76 183 52 227 28" fill="none" stroke="#ffbe5c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <g fill="#ffbe5c"><circle cx="51" cy="112" r="6"/><circle cx="95" cy="92" r="6"/><circle cx="139" cy="76" r="6"/><circle cx="183" cy="52" r="6"/><circle cx="227" cy="28" r="6"/></g>
-      </svg>
     </div>
   </div>
 </header>
