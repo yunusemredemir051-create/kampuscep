@@ -16,375 +16,313 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="KampüsCepte">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0f52">
+<meta name="theme-color" content="#08090f">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-:root{--zemin:#0b0f52;--ust:rgba(11,15,82,.88);--cam:rgba(255,255,255,.075);--kenar:rgba(255,255,255,.15);--soluk:rgba(255,255,255,.74);--altin:#ffbe5c;--mavi:#3b5bfd;--mor:#8b5cf6;--yesil:#25d366;--r:18px;--font:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif}
+@font-face{font-family:Manrope;font-style:normal;font-weight:200 800;font-display:swap;src:url(manrope-ext.woff2) format("woff2-variations");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Manrope;font-style:normal;font-weight:200 800;font-display:swap;src:url(manrope-latin.woff2) format("woff2-variations");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{--zemin:#08090f;--yazi:#f6f4ee;--soluk:#a9abb8;--kenar:rgba(255,255,255,.1);--altin:#e7c684;--altin2:#c99d57;--font:Manrope,system-ui,sans-serif}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100vh;min-height:100dvh;color:#fff;font:500 16.5px/1.6 var(--font);-webkit-font-smoothing:antialiased;background:radial-gradient(620px 460px at 100% 0,rgba(139,92,246,.4),transparent 70%),radial-gradient(620px 500px at 0 100%,rgba(59,91,253,.3),transparent 70%),var(--zemin);background-attachment:fixed}
+html,body{height:100%}
+body{margin:0;overflow:hidden;color:var(--yazi);font:500 16px/1.55 var(--font);-webkit-font-smoothing:antialiased;background:var(--zemin)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(70vmax 46vmax at 104% -8%,rgba(82,104,255,.3),transparent 62%),radial-gradient(56vmax 42vmax at -14% 108%,rgba(201,157,87,.17),transparent 66%),var(--zemin)}
+body::after{content:"";position:fixed;inset:0;z-index:-1;opacity:.055;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23g)'/%3E%3C/svg%3E")}
 a{color:inherit}
 button{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--altin);outline-offset:3px;border-radius:8px}
+:focus-visible{outline:2px solid var(--altin);outline-offset:3px;border-radius:8px}
 [hidden]{display:none!important}
-
-/* Üst gezinme */
-.ust{position:sticky;top:0;z-index:5;background:var(--ust);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09);padding-top:env(safe-area-inset-top)}
-.ust-ic{max-width:760px;margin:0 auto;padding:10px 16px 11px}
-.satir{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.marka{display:flex;align-items:center;gap:9px;min-width:0;text-decoration:none}
-.marka img{width:30px;height:30px;border-radius:9px;display:block;flex:none}
-.marka b{display:block;font-size:13.5px;line-height:1.25;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.marka small{display:block;font-size:11.5px;line-height:1.25;color:var(--soluk);font-weight:600}
-.menu-ac{flex:none;display:flex;align-items:center;gap:6px;min-height:38px;padding:0 11px;border-radius:11px;border:1px solid var(--kenar);background:var(--cam);font-size:13px;font-weight:700;cursor:pointer}
-.menu-ac svg{width:15px;height:15px}
-.cubuk{height:5px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:10px}
-.cubuk i{display:block;height:100%;width:10%;border-radius:9px;background:linear-gradient(90deg,var(--altin),#ff9f43);transition:width .3s ease}
-.adimcizgi{display:none;list-style:none;margin:13px 0 0;padding:0;justify-content:space-between;position:relative}
-.adimcizgi::before{content:"";position:absolute;left:14px;right:14px;top:13px;height:2px;background:rgba(255,255,255,.14)}
-.adimcizgi li{position:relative}
-.adimcizgi button{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.2);background:#141959;color:var(--soluk);font-size:12px;font-weight:800;padding:0;display:grid;place-items:center;cursor:default}
-.adimcizgi button.gecti{background:rgba(255,190,92,.2);border-color:var(--altin);color:var(--altin);cursor:pointer}
-.adimcizgi button.simdi{background:var(--altin);border-color:var(--altin);color:#2b1b00}
-.adim-menu{position:absolute;right:16px;top:calc(100% + 6px);width:min(320px,calc(100vw - 32px));max-height:min(70vh,520px);overflow:auto;background:#151a63;border:1px solid var(--kenar);border-radius:16px;padding:6px;box-shadow:0 26px 54px -18px rgba(0,0,0,.65)}
-.adim-menu button{display:flex;align-items:center;gap:11px;width:100%;min-height:44px;padding:7px 10px;border:0;border-radius:11px;background:none;text-align:left;font-size:14.5px;font-weight:600;cursor:pointer}
-.adim-menu button span{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:rgba(255,255,255,.1)}
-.adim-menu button:disabled{opacity:.42;cursor:not-allowed}
-.adim-menu button.simdi{background:rgba(255,190,92,.14)}
-.adim-menu button.simdi span{background:var(--altin);color:#2b1b00}
-.ust-ic{position:relative}
-
-/* Ekranlar */
-main{max-width:640px;margin:0 auto;padding:26px 16px 112px}
-.ekran{animation:gir .26s ease both}
-.ekran.geri{animation-name:cik}
-@keyframes gir{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
-@keyframes cik{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
-.etiket{display:block;color:var(--altin);font-size:13.5px;font-weight:700;margin-bottom:5px}
-h1{margin:0 0 10px;font-size:clamp(34px,8.5vw,48px);line-height:1.08;letter-spacing:-1.3px;font-weight:800}
-h2{margin:0 0 10px;font-size:clamp(28px,7vw,36px);line-height:1.14;letter-spacing:-.9px;font-weight:800;outline:0}
-h3{margin:0 0 4px;font-size:16.5px;line-height:1.35;font-weight:800}
+.ust{position:fixed;z-index:3;top:0;left:0;right:0;padding:calc(12px + env(safe-area-inset-top)) 18px 0;pointer-events:none}
+.ust-ic{max-width:520px;margin:0 auto}
+.seritler{display:flex;gap:4px}
+.seritler i{flex:1;height:3px;border-radius:9px;background:rgba(255,255,255,.15);transition:background .25s}
+.seritler i.dolu{background:var(--altin)}
+.ust-alt{display:flex;align-items:center;justify-content:space-between;margin-top:10px;font-size:13px;font-weight:600;color:var(--soluk)}
+.marka{display:inline-flex;align-items:center;gap:8px;color:var(--yazi);font-weight:700;text-decoration:none;pointer-events:auto}
+.marka img{width:24px;height:24px;border-radius:7px;display:block}
+.sayfalar{display:flex;height:100vh;height:100dvh;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.sayfalar::-webkit-scrollbar{display:none}
+.sayfa{flex:0 0 100%;min-width:0;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;padding:calc(62px + env(safe-area-inset-top)) 18px calc(84px + env(safe-area-inset-bottom));display:flex}
+.ic{width:100%;max-width:484px;margin:auto}
+.etiket{display:block;color:var(--altin);font-weight:700;font-size:13px;letter-spacing:.02em;margin-bottom:6px}
+h1,h2{margin:0 0 9px;font-weight:700;letter-spacing:-.025em;line-height:1.12}
+h1{font-size:clamp(34px,9.6vw,46px)}
+h2{font-size:clamp(28px,8vw,36px)}
 p{margin:0;color:var(--soluk)}
-.kapak{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:right center;border-radius:20px;margin-bottom:20px;background:#0b0f52}
-.simge{width:58px;height:58px;border-radius:17px;display:grid;place-items:center;margin-bottom:15px;background:linear-gradient(140deg,var(--mavi),var(--mor));box-shadow:0 14px 26px -12px rgba(59,91,253,.75)}
-.simge svg{width:28px;height:28px}
-.ikon{display:block;width:108px;height:108px;margin:0 0 10px -5px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.34))}
-.kart{margin-top:14px;background:var(--cam);border:1px solid var(--kenar);border-radius:var(--r);padding:15px 16px}
-.kart small{display:block;color:var(--altin);font-size:12.5px;font-weight:700;margin-bottom:3px}
-.kart p{font-size:15px}
-.formul{font-size:18px;line-height:1.4;font-weight:800;color:#fff}
-.liste{margin:0;padding:0;list-style:none}
-.liste li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.11);font-size:15px}
-.liste li:first-child{padding-top:0}.liste li:last-child{border-bottom:0;padding-bottom:0}
-.liste span{color:var(--soluk)}.liste b{font-weight:700;text-align:right}
-.maddeler{margin:0;padding:0;list-style:none}
-.maddeler li{position:relative;padding:0 0 10px 25px;font-size:15px;color:var(--soluk)}
+b{font-weight:700;color:var(--yazi)}
+.kapak{display:block;width:calc(100% + 36px);max-width:none;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:right center;margin:0 -18px 8px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 15%,#000 72%,transparent),linear-gradient(90deg,transparent,#000 24%,#000 90%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent,#000 15%,#000 72%,transparent),linear-gradient(90deg,transparent,#000 24%,#000 90%,transparent);mask-composite:intersect}
+.ikon{display:block;width:96px;height:96px;margin:0 0 10px -4px;filter:drop-shadow(0 14px 22px rgba(0,0,0,.55))}
+.kart{margin-top:12px;border:1px solid var(--kenar);border-radius:16px;padding:13px 15px;background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.022))}
+.kart small{display:block;color:var(--altin);font-size:12.5px;font-weight:700;margin-bottom:2px}
+.kart p{font-size:14.5px}
+.formul{font-size:16.5px;line-height:1.38;font-weight:700;color:var(--yazi)}
+.liste{margin:16px 0 0;padding:0;list-style:none}
+.liste li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--kenar);font-size:15px}
+.liste li:last-child{border-bottom:0}
+.liste span{color:var(--soluk)}.liste b{text-align:right}
+.maddeler{margin:14px 0 0;padding:0;list-style:none}
+.maddeler li{position:relative;padding:0 0 10px 20px;font-size:15px;color:var(--soluk)}
 .maddeler li:last-child{padding-bottom:0}
-.maddeler li::before{content:"";position:absolute;left:3px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--altin)}
-.maddeler b{color:#fff;font-weight:700}
-.tablo{overflow-x:auto;margin-top:2px}
-table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums}
-caption{text-align:left;color:var(--soluk);font-size:12.5px;font-weight:600;padding-bottom:7px}
-th,td{padding:8px 4px;text-align:right;border-bottom:1px solid rgba(255,255,255,.11)}
-th{color:var(--soluk);font-size:12px;font-weight:700}
-th:first-child,td:first-child{text-align:left;font-weight:700}
+.maddeler li::before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--altin)}
+table{border-collapse:collapse;width:100%;font-size:12.5px;font-variant-numeric:tabular-nums}
+caption{text-align:left;color:var(--soluk);font-size:12px;padding-bottom:6px}
+th,td{padding:7px 3px;text-align:right;border-bottom:1px solid var(--kenar)}
+th{color:var(--soluk);font-weight:600}
+th:first-child,td:first-child{text-align:left;font-weight:600}
 tbody tr:last-child td{border-bottom:0}
-.dugme{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:52px;margin-top:14px;padding:11px 15px;border:0;border-radius:14px;font-size:15.5px;font-weight:800;text-align:center;text-decoration:none;cursor:pointer}
+.dugme{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;min-height:52px;margin-top:14px;padding:10px 15px;border:0;border-radius:14px;font-size:15.5px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer}
 .dugme svg{width:21px;height:21px;flex:none}
-.altin{background:var(--altin);color:#2b1b00}
-.yesil{background:var(--yesil);color:#06361a}
-.cam{background:var(--cam);border:1px solid var(--kenar);color:#fff}
-.basla{min-height:56px;font-size:16.5px;margin-top:18px}
-.kod{margin:14px 0 0;background:#060a3a;border:1px solid var(--kenar);border-radius:var(--r);overflow:hidden}
-.kod-ust{display:flex;align-items:center;gap:6px;padding:10px 13px;border-bottom:1px solid rgba(255,255,255,.1);font-size:12.5px;font-weight:700;color:var(--soluk)}
-.kod-ust i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.2)}
-.kod-ust i:first-child{background:var(--altin)}
-.kod-ust span{margin-left:5px}
-.kod pre{white-space:pre-wrap;margin:0;padding:13px 14px;font:500 13.5px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#e8ebff;overflow-wrap:anywhere}
-.kontrol{display:flex;align-items:flex-start;gap:11px;padding:9px 0;font-size:15px;cursor:pointer}
-.kontrol input{flex:none;width:22px;height:22px;margin:1px 0 0;accent-color:var(--altin);cursor:pointer}
-.bitti{margin-top:14px;padding:14px 16px;border-radius:var(--r);background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.42);color:#fff;font-weight:700;font-size:15px}
-.yildizlar{display:flex;gap:5px;margin:8px 0 2px}
-.yildizlar button{width:46px;height:46px;padding:7px;border:0;background:none;color:rgba(255,255,255,.26);cursor:pointer;transition:transform .15s,color .15s}
-.yildizlar button:hover{transform:scale(1.08)}
+.altin{background:linear-gradient(180deg,var(--altin),var(--altin2));color:#1d1407}
+.yesil{background:#25d366;color:#06361a}
+.cam{background:rgba(255,255,255,.07);border:1px solid var(--kenar);color:var(--yazi)}
+.komut-on{position:relative;height:138px;overflow:hidden;margin-top:14px;padding:12px 14px;border:1px solid var(--kenar);border-radius:16px;background:rgba(0,0,0,.34);color:#d6d7df;font:500 12.5px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;-webkit-mask-image:linear-gradient(180deg,#000 58%,transparent);mask-image:linear-gradient(180deg,#000 58%,transparent)}
+.yildizlar{display:flex;justify-content:space-between;max-width:320px;margin:18px auto 4px}
+.yildizlar button{width:52px;height:52px;padding:7px;border:0;background:none;color:rgba(255,255,255,.2);cursor:pointer;transition:transform .15s,color .15s}
+.yildizlar button:hover{transform:scale(1.07)}
 .yildizlar button.dolu{color:var(--altin)}
 .yildizlar svg{width:100%;height:100%;fill:currentColor;display:block}
-.oy-ozet{font-size:14px;color:var(--soluk);min-height:22px}
-.oy-ozet b{color:#fff;font-weight:800}
-.reaksiyon{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px}
-.reaksiyon button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:13px;border:1px solid var(--kenar);background:var(--cam);font-weight:800;font-size:15px;cursor:pointer}
-.reaksiyon svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.reaksiyon button.secili[data-r="1"]{background:rgba(37,211,102,.2);border-color:var(--yesil)}
-.reaksiyon button.secili[data-r="-1"]{background:rgba(229,72,77,.22);border-color:#e5484d}
-.oy-durum{margin-top:9px;font-size:13.5px;color:var(--soluk);min-height:20px}
-
-/* Alt gezinme */
-.alt{position:fixed;z-index:4;left:0;right:0;bottom:0;padding:13px 16px calc(13px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(11,15,82,0),rgba(11,15,82,.96) 30%)}
-.alt-ic{max-width:608px;margin:0 auto;display:grid;grid-template-columns:1fr 1.7fr;gap:10px}
-.alt button{min-height:52px;border-radius:14px;font-size:15.5px;font-weight:800;cursor:pointer}
-#geri{background:rgba(23,29,105,.9);border:1px solid var(--kenar)}
-#ileri{border:0;background:#fff;color:#111650}
-.alt.tek .alt-ic{grid-template-columns:1fr}
-
-@media(min-width:760px){
-  .adimcizgi{display:flex}
-  .cubuk{display:none}
-  main{padding-top:38px}
+.oy-ozet{font-size:14.5px;color:var(--soluk);text-align:center;min-height:23px}
+.reaksiyon{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.reaksiyon button{display:flex;align-items:center;justify-content:center;gap:7px;min-height:52px;padding:0 6px;border-radius:14px;border:1px solid var(--kenar);background:rgba(255,255,255,.06);font-weight:700;font-size:14.5px;cursor:pointer}
+.reaksiyon svg{width:19px;height:19px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.reaksiyon button.secili[data-r="1"]{background:rgba(37,211,102,.18);border-color:#25d366}
+.reaksiyon button.secili[data-r="-1"]{background:rgba(229,72,77,.2);border-color:#e5484d}
+.oy-durum{margin-top:10px;font-size:13.5px;color:var(--soluk);text-align:center;min-height:21px}
+.gezinme{position:fixed;z-index:3;left:0;right:0;bottom:0;padding:12px 18px calc(14px + env(safe-area-inset-bottom))}
+.gezinme-ic{max-width:484px;margin:0 auto;display:grid;grid-template-columns:54px 1fr;gap:10px}
+.gezinme button{min-height:54px;border-radius:15px;border:0;cursor:pointer;font-weight:700;font-size:16px}
+#geri{display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid var(--kenar)}
+#geri svg{width:22px;height:22px}
+#geri:disabled{opacity:.3;cursor:default}
+#ileri{background:var(--yazi);color:#0d0e15}
+@media(max-height:700px){
+  .sayfa{padding-top:calc(54px + env(safe-area-inset-top));padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .gezinme{padding-top:8px;padding-bottom:calc(10px + env(safe-area-inset-bottom))}
+  .gezinme button{min-height:50px}
+  .ikon{width:66px;height:66px;margin-bottom:5px}
+  .kart{margin-top:8px;padding:10px 13px}
+  .kapak{aspect-ratio:16/10}
+  h1{font-size:32px}h2{font-size:26px;margin-bottom:6px}
+  .liste{margin-top:8px}.liste li{padding:9px 0}
+  .maddeler{margin-top:8px}.maddeler li{padding-bottom:7px;font-size:14px}
+  .dugme{min-height:48px;margin-top:10px}
+  .komut-on{height:104px;margin-top:9px}
+  .formul{font-size:15px}
+  body{font-size:15px}.kart p{font-size:13.5px}
+  .yildizlar{margin-top:10px}.reaksiyon{margin-top:10px}
 }
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-height:580px){.ikon{display:none}.kapak{aspect-ratio:2/1}th,td{padding:5px 3px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 <script src="../../firebase-ayar.js" defer></script>
 </head>
 <body>
 <header class="ust"><div class="ust-ic">
-  <div class="satir">
-    <a class="marka" href="../../index.html"><img src="../../ikonlar/logo-128.png" alt=""><span><b>Finansal Yönetim Ödevi</b><small id="yuzde">%10 tamamlandı</small></span></a>
-    <button class="menu-ac" id="menu-ac" type="button" aria-expanded="false" aria-controls="adim-menu"><span id="sayac">Adım 1 / 10</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-  </div>
-  <div class="cubuk" role="progressbar" aria-label="Ödev ilerlemesi" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10"><i id="dolgu"></i></div>
-  <ol class="adimcizgi" id="adimcizgi" aria-label="Adımlar"></ol>
-  <div class="adim-menu" id="adim-menu" hidden></div>
+  <div class="seritler" id="seritler" aria-hidden="true"></div>
+  <div class="ust-alt"><a class="marka" href="../../index.html"><img src="../../ikonlar/logo-128.png" alt="">KampüsCepte</a><span id="sayac" aria-live="polite">1 / 11</span></div>
 </div></header>
 
-<main id="ana">
-  <section class="ekran" data-ad="Ödeve giriş">
+<main class="sayfalar" id="sayfalar">
+  <section class="sayfa"><div class="ic">
     <img class="kapak" src="kapak.webp" alt="" width="1600" height="900">
-    <span class="etiket">YBS 2. sınıf · YBS2101</span>
-    <h1 tabindex="-1">Finansal Yönetim Ödevi</h1>
-    <p>Borsa İstanbul'da işlem gören bir şirketin son 5 yıllık finansal tablolarını hazırlayıp yatay, dikey ve trend analizi yapacaksın.</p>
-    <div class="kart"><ul class="liste">
-      <li><span>Son teslim</span><b>Sınavdan 1 gün önce</b></li>
-      <li><span>Teslim şekli</span><b>E-posta veya WhatsApp</b></li>
-      <li><span>Not etkisi</span><b>Vizeye ek puan</b></li>
-      <li><span>Yapay zekâ</span><b>Kullanılabilir</b></li>
-    </ul></div>
-    <div class="kart"><small>Önemli bilgi</small><p>Ödevi yapmak notuna olumlu yansır, yapmamak olumsuz etkilemez.</p></div>
-    <button class="dugme altin basla" id="basla" type="button">Ödeve başla</button>
-  </section>
+    <span class="etiket">YBS 2. sınıf</span>
+    <h1>Finansal Yönetim Ödevi</h1>
+    <p>Ödevi adım adım birlikte tamamlayalım.</p>
+  </div></section>
 
-  <section class="ekran" data-ad="Şirketini seç" hidden>
-    <div class="simge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V6l8-3v18M12 9l8 3v9M2 21h20M7.500 9h1M7.500 13h1M7.500 17h1M15.500 14h1M15.500 18h1"/></svg></div>
-    <span class="etiket">Şirket seçimi</span>
-    <h2 tabindex="-1">Şirketini seç</h2>
+  <section class="sayfa"><div class="ic">
+    <span class="etiket">Önce bunları bil</span>
+    <h2>Ödev bilgileri</h2>
+    <ul class="liste">
+      <li><span>Son teslim</span><b>Sınavdan 1 gün önce</b></li>
+      <li><span>Teslim</span><b>E-posta veya WhatsApp</b></li>
+      <li><span>Puan</span><b>Vizeye ek puan</b></li>
+      <li><span>Yapay zekâ</span><b>Kullanılabilir</b></li>
+    </ul>
+    <div class="kart"><p>Ödevi yapmak notuna olumlu yansır, yapmamak olumsuz etkilemez.</p></div>
+  </div></section>
+
+  <section class="sayfa"><div class="ic">
+    <span class="etiket">1. adım</span>
+    <h2>Şirketini seç</h2>
     <p>kap.org.tr sitesine gir ve Borsa İstanbul'da işlem gören bir şirket seç.</p>
     <a class="dugme altin" href="https://www.kap.org.tr" target="_blank" rel="noopener noreferrer">KAP'ı aç</a>
-    <div class="kart"><h3>KAP'ta nasıl aranır?</h3><p>Sitenin arama kısmına şirketin adını veya borsa kodunu yaz, sonra şirketin sayfasını aç.</p></div>
-    <div class="kart"><h3>Seçerken dikkat et</h3><ul class="maddeler">
-      <li>Son 5 yılın finansal tabloları yayımlanmış olsun.</li>
-      <li>İşini anladığın bir sektörden seçmek yorumu kolaylaştırır.</li>
-      <li>Banka ve sigorta şirketlerinin tabloları farklı olduğu için analizi daha zor olabilir.</li>
-    </ul></div>
-  </section>
+    <div class="kart"><small>İpucu</small><p>Banka ve sigorta şirketlerinin tabloları farklı olduğu için analizi daha zor olabilir.</p></div>
+  </div></section>
 
-  <section class="ekran" data-ad="Tabloları indir" hidden>
-    <div class="simge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M4 20h16"/></svg></div>
-    <span class="etiket">Finansal tablolar</span>
-    <h2 tabindex="-1">Tabloları indir</h2>
-    <p>Seçtiğin şirketin son 5 yıllık finansal tablolarını indir.</p>
-    <div class="kart"><h3>Neleri bul?</h3><ul class="maddeler">
-      <li>Şirketin KAP'taki bildirimlerinden <b>finansal raporlarını</b> aç.</li>
-      <li>Her raporda <b>bilanço</b> ve <b>gelir tablosunu</b> bul.</li>
-      <li>Karşılaştırma için her yılda <b>yıllık (12 aylık)</b> raporu kullan.</li>
-    </ul></div>
-    <div class="kart"><small>Örnek</small><p>Son tamamlanan yıl 2025 ise beş yıllık dönem 2021, 2022, 2023, 2024 ve 2025 olur.</p></div>
-  </section>
+  <section class="sayfa"><div class="ic">
+    <span class="etiket">2. adım</span>
+    <h2>Tabloları indir</h2>
+    <p>Şirketin son 5 yıllık finansal tablolarını indir.</p>
+    <ul class="maddeler">
+      <li>Bilanço ve gelir tablosunu bul.</li>
+      <li>Her yıl için <b>yıllık (12 aylık)</b> raporu kullan.</li>
+      <li>Her yıl aynı rapor türünde kal.</li>
+      <li>2023 sonrası rakamlar enflasyona göre düzeltilmiş olabilir.</li>
+    </ul>
+  </div></section>
 
-  <section class="ekran" data-ad="Tabloları temizle" hidden>
-    <div class="simge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div>
-    <span class="etiket">Veri hazırlığı</span>
-    <h2 tabindex="-1">Tabloları temizle</h2>
-    <p>Rakamları tek tabloda topla ve analize uygun hâle getir.</p>
-    <div class="kart"><ul class="maddeler">
-      <li>Her kalem bir satırda, her yıl bir sütunda olsun.</li>
-      <li>Yıllar soldan sağa eskiden yeniye sıralansın.</li>
-      <li>Rakamları sayı olarak kaydet, gereksiz satır ve sütunları kaldır.</li>
-    </ul></div>
-    <div class="kart"><div class="tablo"><table>
-      <caption>Örnek tablo (kurgusal, milyon TL)</caption>
+  <section class="sayfa"><div class="ic">
+    <span class="etiket">3. adım</span>
+    <h2>Tabloları temizle</h2>
+    <p>Kalemler satırlarda, yıllar sütunlarda ve eskiden yeniye sıralı olsun.</p>
+    <div class="kart"><table>
+      <caption>Örnek (kurgusal, milyon TL)</caption>
       <thead><tr><th scope="col">Kalem</th><th scope="col">2021</th><th scope="col">2022</th><th scope="col">2023</th><th scope="col">2024</th><th scope="col">2025</th></tr></thead>
       <tbody>
         <tr><td>Net satışlar</td><td>100</td><td>125</td><td>150</td><td>180</td><td>210</td></tr>
         <tr><td>Satışların maliyeti</td><td>70</td><td>85</td><td>105</td><td>130</td><td>143</td></tr>
         <tr><td>Brüt kâr</td><td>30</td><td>40</td><td>45</td><td>50</td><td>67</td></tr>
       </tbody>
-    </table></div></div>
-  </section>
+    </table></div>
+  </div></section>
 
-  <section class="ekran" data-ad="Yatay analiz" hidden>
-    <img class="ikon" src="ikon-yatay.webp" alt="" width="108" height="108">
-    <span class="etiket">Analiz 1</span>
-    <h2 tabindex="-1">Yatay analiz</h2>
-    <p>Bir kalemin önceki yıla göre yüzde kaç değiştiğini gösterir.</p>
+  <section class="sayfa"><div class="ic">
+    <img class="ikon" src="ikon-yatay.webp" alt="" width="96" height="96">
+    <span class="etiket">4. adım</span>
+    <h2>Yatay analiz</h2>
+    <p>Kalemin önceki yıla göre yüzde kaç değiştiğini bul.</p>
     <div class="kart"><small>Formül</small><div class="formul">(Cari yıl − Önceki yıl) ÷ Önceki yıl × 100</div></div>
-    <div class="kart"><small>Örnek</small><p>Net satışlar 2024'te 180, 2025'te 210 ise: (210 − 180) ÷ 180 × 100 = <b style="color:#fff">%16,7</b></p></div>
-    <div class="kart"><small>Nasıl yorumlanır?</small><p>Net satışlar bir yılda %16,7 artmış. Pozitif sonuç artışı, negatif sonuç azalışı gösterir.</p></div>
-  </section>
+    <div class="kart"><small>Örnek</small><p>(210 − 180) ÷ 180 × 100 = <b>%16,7</b> artış</p></div>
+  </div></section>
 
-  <section class="ekran" data-ad="Dikey analiz" hidden>
-    <img class="ikon" src="ikon-dikey.webp" alt="" width="108" height="108">
-    <span class="etiket">Analiz 2</span>
-    <h2 tabindex="-1">Dikey analiz</h2>
-    <p>Bir kalemin aynı yıl içindeki payını gösterir. Bilançoda toplam varlıkları, gelir tablosunda net satışları temel al.</p>
+  <section class="sayfa"><div class="ic">
+    <img class="ikon" src="ikon-dikey.webp" alt="" width="96" height="96">
+    <span class="etiket">5. adım</span>
+    <h2>Dikey analiz</h2>
+    <p>Kalemin aynı yıl içindeki payını bul. Bilançoda toplam varlıkları, gelir tablosunda net satışları temel al.</p>
     <div class="kart"><small>Formül</small><div class="formul">Kalem ÷ Temel alınan toplam × 100</div></div>
-    <div class="kart"><small>Örnek</small><p>2025'te net satışlar 210, brüt kâr 67 ise: 67 ÷ 210 × 100 = <b style="color:#fff">%31,9</b></p></div>
-    <div class="kart"><small>Nasıl yorumlanır?</small><p>Şirket her 100 TL net satıştan yaklaşık 31,9 TL brüt kâr elde etmiş.</p></div>
-  </section>
+    <div class="kart"><small>Örnek</small><p>Brüt kâr 67, net satışlar 210: 67 ÷ 210 × 100 = <b>%31,9</b></p></div>
+  </div></section>
 
-  <section class="ekran" data-ad="Trend analizi" hidden>
-    <img class="ikon" src="ikon-trend.webp" alt="" width="108" height="108">
-    <span class="etiket">Analiz 3</span>
-    <h2 tabindex="-1">Trend analizi</h2>
-    <p>Her yılı ilk yıla göre karşılaştırır. İlk yıl baz yıl olarak alınır ve 100 kabul edilir.</p>
+  <section class="sayfa"><div class="ic">
+    <img class="ikon" src="ikon-trend.webp" alt="" width="96" height="96">
+    <span class="etiket">6. adım</span>
+    <h2>Trend analizi</h2>
+    <p>İlk yılı baz yıl al ve 100 kabul et. Diğer yılları buna göre hesapla.</p>
     <div class="kart"><small>Formül</small><div class="formul">Cari yıl ÷ Baz yıl × 100</div></div>
-    <div class="kart"><small>Örnek</small><p>Baz yıl 2021'de net satışlar 100, 2025'te 210 ise: 210 ÷ 100 × 100 = <b style="color:#fff">210</b></p></div>
-    <div class="kart"><small>Nasıl yorumlanır?</small><p>Net satışlar 2021'in 2,1 katına çıkmış. Değer 100'ün üzerindeyse baz yıla göre artış, altındaysa azalış vardır.</p></div>
-  </section>
+    <div class="kart"><small>Örnek</small><p>Baz yılda 100, 2025'te 210: 210 ÷ 100 × 100 = <b>210</b></p></div>
+  </div></section>
 
-  <section class="ekran" data-ad="Dikkat edilecekler" hidden>
-    <div class="simge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20zM12 9v5M12 17.500v.5"/></svg></div>
-    <span class="etiket">İşine yarayacak notlar</span>
-    <h2 tabindex="-1">Dikkat edilecekler</h2>
-    <div class="kart"><h3>Rapor dönemi</h3><p>Yıllık raporlarla ilerle ve her yıl aynı rapor türünü kullan. Konsolide raporla başladıysan konsolide devam et.</p></div>
-    <div class="kart"><h3>Enflasyon düzeltmesi</h3><p>2023 sonrası tablolar enflasyona göre düzeltilmiş olabilir. Eski yıllarla karşılaştırırken raporun açıklamasına bak.</p></div>
-    <div class="kart"><h3>Sık yapılan hatalar</h3><ul class="maddeler">
-      <li>Yılları karışık sırayla yazmak.</li>
-      <li>Dikey analizde yanlış toplamı temel almak.</li>
-      <li>Trend analizinde baz yılı değiştirmek.</li>
-      <li>Önceki yıl sıfır veya negatifse çıkan yüzdeyi kontrol etmeden yorumlamak.</li>
-    </ul></div>
-  </section>
-
-  <section class="ekran" data-ad="Yapay zekâ komutu" hidden>
-    <div class="simge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2zM19 15l.8 2.200L22 18l-2.200.8L19 21l-.8-2.200L16 18l2.200-.8z"/></svg></div>
+  <section class="sayfa"><div class="ic">
     <span class="etiket">Yapay zekâ kullanılabilir</span>
-    <h2 tabindex="-1">Hazır komut</h2>
-    <p>Komutu kopyala, şirket adını yaz ve tablolarınla birlikte yapay zekâ aracına gönder.</p>
-    <div class="kod"><div class="kod-ust"><i></i><i></i><i></i><span>Komut</span></div><pre id="komut">Ekteki finansal tablolar [ŞİRKET ADI] şirketinin son 5 yılına ait. Bir Finansal Yönetim ödevi için şunları yap:
-
-1. Bilanço ve gelir tablosunu temizle. Rakamların hiçbirini değiştirme.
-2. Yatay analiz yap: Her kalemin önceki yıla göre yüzde değişimini hesapla.
-3. Dikey analiz yap: Bilançoda toplam varlıkları, gelir tablosunda net satışları 100 kabul et.
-4. Trend analizi yap: İlk yılı baz yıl (100) kabul et.
-5. Sonuçları formülleri görünecek şekilde Excel'de hazırla.
-
-Emin olmadığın rakam varsa tahmin etme, bana sor.</pre></div>
+    <h2>Hazır komut</h2>
+    <p>Kopyala, şirket adını yaz ve tablolarınla birlikte gönder. Sonuçları mutlaka kontrol et.</p>
+    <div class="komut-on" aria-hidden="true" id="komut-on"></div>
     <button class="dugme altin" id="kopya" type="button">Komutu kopyala</button>
-    <div class="kart"><small>Mutlaka kontrol et</small><p>Rakamları KAP'taki orijinal tablolarla karşılaştır ve birkaç sonucu kendin hesapla.</p></div>
-  </section>
+  </div></section>
 
-  <section class="ekran" data-ad="Teslim ve puan" hidden>
-    <div class="simge"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></div>
+  <section class="sayfa"><div class="ic">
     <span class="etiket">Son adım</span>
-    <h2 tabindex="-1">Ödevini teslim et</h2>
-    <p>Ödevini sınavdan en geç 1 gün önce e-posta veya WhatsApp ile gönder.</p>
-    <div class="kart" id="kontrol-liste">
-      <h3>Son kontrol</h3>
-      <label class="kontrol"><input type="checkbox">Son 5 yıllık tabloları indirdim ve temizledim.</label>
-      <label class="kontrol"><input type="checkbox">Yatay analizi yaptım.</label>
-      <label class="kontrol"><input type="checkbox">Dikey analizi yaptım.</label>
-      <label class="kontrol"><input type="checkbox">Trend analizini ilk yılı baz alarak yaptım.</label>
-      <label class="kontrol"><input type="checkbox">Rakamları orijinal tablolarla karşılaştırdım.</label>
-    </div>
-    <div class="bitti" id="bitti" hidden>Harika, ödevin teslime hazır. Kolay gelsin!</div>
+    <h2>Ödevini teslim et</h2>
+    <p>Sınavdan en geç 1 gün önce e-posta veya WhatsApp ile gönder.</p>
     <a class="dugme yesil" id="wp" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.600 15L2 22l5.100-1.300A10 10 0 1 0 12 2zm5.500 14.100c-.2.600-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.900s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 1.900c.1.200.1.400 0 .5l-.3.5-.4.400c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.400 2.400 1.500.3.100.5.100.6-.1l.8-1c.2-.2.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.100.1.600-.1 1.200z"/></svg>Hocanın WhatsApp'ı</a>
-    <div class="kart"><p>E-posta ile göndermek istersen hocanın duyurduğu adresi kullan.</p></div>
     <a class="dugme cam" href="../../ders.html?d=ybs/2/finansal-yonetim">Finansal Yönetim notlarına git</a>
+  </div></section>
 
-    <div class="kart" id="puanlama">
-      <h3>Bu rehberi nasıl buldun?</h3>
-      <div class="yildizlar" id="yildizlar" role="group" aria-label="5 üzerinden puan ver"></div>
-      <div class="oy-ozet" id="oy-ozet" aria-live="polite">Puanlar yükleniyor</div>
-      <div class="reaksiyon">
-        <button type="button" data-r="1" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11v9H4v-9zM7 11l4-8a2.500 2.500 0 0 1 2.500 2.500V9h5.300a2 2 0 0 1 2 2.300l-1.100 7A2 2 0 0 1 17.700 20H7"/></svg>Beğendim <span id="iyi">0</span></button>
-        <button type="button" data-r="-1" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 13V4h3v9zM17 13l-4 8a2.500 2.500 0 0 1-2.500-2.500V15H5.200a2 2 0 0 1-2-2.300l1.100-7A2 2 0 0 1 6.300 4H17"/></svg>Beğenmedim <span id="kotu">0</span></button>
-      </div>
-      <div class="oy-durum" id="oy-durum" aria-live="polite"></div>
+  <section class="sayfa"><div class="ic">
+    <span class="etiket">Son bir şey</span>
+    <h2>Rehberi nasıl buldun?</h2>
+    <p>Puanını ver, bir sonraki rehberi daha iyi yapalım.</p>
+    <div class="yildizlar" id="yildizlar" role="group" aria-label="5 üzerinden puan ver"></div>
+    <div class="oy-ozet" id="oy-ozet" aria-live="polite"></div>
+    <div class="reaksiyon">
+      <button type="button" data-r="1" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11v9H4v-9zM7 11l4-8a2.500 2.500 0 0 1 2.500 2.500V9h5.300a2 2 0 0 1 2 2.300l-1.100 7A2 2 0 0 1 17.700 20H7"/></svg>Beğendim <span id="iyi">0</span></button>
+      <button type="button" data-r="-1" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 13V4h3v9zM17 13l-4 8a2.500 2.500 0 0 1-2.500-2.500V15H5.200a2 2 0 0 1-2-2.300l1.100-7A2 2 0 0 1 6.300 4H17"/></svg>Beğenmedim <span id="kotu">0</span></button>
     </div>
-  </section>
+    <div class="oy-durum" id="oy-durum" aria-live="polite"></div>
+  </div></section>
 </main>
 
-<nav class="alt" id="alt" aria-label="Adımlar arasında geçiş"><div class="alt-ic">
-  <button id="geri" type="button">Geri</button>
-  <button id="ileri" type="button">Devam</button>
+<nav class="gezinme" aria-label="Sayfalar arasında geçiş"><div class="gezinme-ic">
+  <button id="geri" type="button" aria-label="Önceki sayfa" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button id="ileri" type="button">Başla</button>
 </div></nav>
+
+<script id="komut-metni" type="text/plain">Rol: Finansal tablo analizi konusunda uzman bir finans akademisyeni ve Excel uzmanı gibi çalış.
+
+Görev: Ekte [ŞİRKET ADI] ([BIST KODU]) şirketinin KAP'tan alınan son 5 yıllık finansal raporları var. Bu raporlarla Finansal Yönetim dersi için yatay, dikey ve trend analizi hazırla.
+
+Veri kuralları:
+- Yalnızca ekteki raporlardaki rakamları kullan. Rakam tahmin etme, yuvarlama veya değiştirme.
+- Okuyamadığın ya da eksik olan rakamı açıkça belirt ve bana sor.
+- Bütün yıllarda aynı rapor türünü (konsolide veya konsolide olmayan) ve yıllık (12 aylık) dönemi kullan.
+- Rakamların para birimini ve birimini (TL, bin TL gibi) yaz.
+- Kendi başına enflasyon düzeltmesi yapma. Raporlardaki enflasyon uygulaması (TMS 29) veya yeniden düzenlenmiş rakamlar yıllar arası karşılaştırmayı etkiliyorsa bunu not et.
+
+Yapılacaklar:
+1. Bilanço ve gelir tablosunu temizle. Kalemler satırlarda, yıllar sütunlarda olsun ve yıllar eskiden yeniye sıralansın. Dipnot sütunlarını ve boş satırları kaldır.
+2. Yatay analiz: (Cari yıl − Önceki yıl) ÷ Önceki yıl × 100. Önceki yıl sıfır veya negatifse sonucu "anlamlı değil" olarak işaretle.
+3. Dikey analiz: Kalem ÷ Temel alınan toplam × 100. Bilançoda toplam varlıkları, gelir tablosunda net satışları (hasılatı) temel al.
+4. Trend analizi: Cari yıl ÷ Baz yıl × 100. İlk yılı baz yıl (100) al. Baz yıl sıfır veya negatifse sonucu "anlamlı değil" olarak işaretle.
+
+Kontroller:
+- Toplam varlıklar ile toplam kaynaklar her yıl birbirine eşit mi?
+- Dikey analizde temel alınan kalem her yıl %100 mü?
+- Trend analizinde baz yıl değerleri 100 mü?
+- Birkaç sonucu formülle yeniden hesaplayarak doğrula. Tutarsızlık varsa bana bildir.
+
+Çıktı:
+- Excel dosyası hazırla ve şu sayfaları ekle: Temiz Bilanço, Temiz Gelir Tablosu, Yatay Analiz, Dikey Analiz, Trend Analizi, Kontroller.
+- Analiz hücrelerinde hazır sayı yerine çalışan Excel formülleri kullan.
+- Yüzdeleri bir ondalık basamakla göster.
+- Excel dosyası oluşturamıyorsan aynı içeriği kopyalanabilir tablolar ve Excel formülleriyle ver.
+
+Yorum: Sonuçlardaki en önemli gelişmeleri sade Türkçe ile 5-8 maddede yorumla. Her yorumda ilgili yılı ve rakamı belirt. Rakamların göstermediği bir neden uydurma, olası nedenleri "olabilir" diye ifade et.</script>
 
 <script>
 (function(){
-  var ekranlar=[].slice.call(document.querySelectorAll(".ekran")),TOPLAM=ekranlar.length;
   var el=function(i){return document.getElementById(i)};
+  var kap=el("sayfalar"),sayfalar=[].slice.call(kap.children),son=sayfalar.length-1,aktif=0,seritler=el("seritler");
   function oku(a,v){try{var x=localStorage.getItem(a);return x===null?v:JSON.parse(x)}catch(e){return v}}
   function yaz(a,v){try{localStorage.setItem(a,JSON.stringify(v))}catch(e){}}
-  var KOK="kc-fy-odev-",enUzak=Math.min(TOPLAM,Math.max(1,+oku(KOK+"en-uzak",1)||1)),aktif=0;
-
-  // Gezinme
-  var cizgi=el("adimcizgi"),menu=el("adim-menu");
-  cizgi.innerHTML=ekranlar.map(function(s,i){return '<li><button type="button" data-a="'+(i+1)+'" aria-label="'+(i+1)+'. adım: '+s.dataset.ad+'">'+(i+1)+'</button></li>'}).join("");
-  menu.innerHTML=ekranlar.map(function(s,i){return '<button type="button" data-a="'+(i+1)+'"><span>'+(i+1)+'</span>'+s.dataset.ad+'</button>'}).join("");
+  var KOK="kc-fy-odev-";
+  seritler.innerHTML=sayfalar.map(function(){return "<i></i>"}).join("");
+  var parca=[].slice.call(seritler.children);
   function ciz(){
-    var yuzde=Math.round(aktif/TOPLAM*100);
-    el("sayac").textContent="Adım "+aktif+" / "+TOPLAM;
-    el("yuzde").textContent="%"+yuzde+" tamamlandı";
-    el("dolgu").style.width=yuzde+"%";
-    document.querySelector(".cubuk").setAttribute("aria-valuenow",yuzde);
-    [].forEach.call(cizgi.querySelectorAll("button"),function(b){var n=+b.dataset.a;b.classList.toggle("simdi",n===aktif);b.classList.toggle("gecti",n<=enUzak&&n!==aktif);b.disabled=n>enUzak});
-    [].forEach.call(menu.querySelectorAll("button"),function(b){var n=+b.dataset.a;b.classList.toggle("simdi",n===aktif);b.disabled=n>enUzak});
-    el("geri").hidden=aktif===1;el("ileri").hidden=aktif===TOPLAM||aktif===1;
-    el("alt").classList.toggle("tek",aktif===TOPLAM);el("alt").hidden=aktif===1;
-    el("ileri").textContent="Devam";
+    parca.forEach(function(s,i){s.classList.toggle("dolu",i<=aktif)});
+    el("sayac").textContent=(aktif+1)+" / "+(son+1);
+    el("geri").disabled=aktif===0;
+    el("ileri").textContent=aktif===0?"Başla":aktif===son?"Başa dön":"Devam";
+    if(aktif===son)puanBaslat();
   }
-  function goster(n,odak){
-    if(n===aktif)return;
-    var geriYon=n<aktif;
-    if(n>enUzak){enUzak=n;yaz(KOK+"en-uzak",n)}
-    ekranlar.forEach(function(s,i){var a=i+1===n;s.hidden=!a;if(a){s.classList.remove("geri");if(geriYon)s.classList.add("geri");s.style.animation="none";void s.offsetWidth;s.style.animation=""}});
-    aktif=n;yaz(KOK+"son",n);ciz();
-    window.scrollTo(0,0);
-    if(odak){var h=ekranlar[n-1].querySelector("h1,h2");if(h)h.focus({preventScroll:true})}
-    if(n===TOPLAM)puanBaslat();
+  function git(i,hemen){
+    var azal=window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches;
+    kap.scrollTo({left:i*kap.clientWidth,behavior:(hemen||azal)?"auto":"smooth"});
   }
-  function git(n){menuKapat();n=Math.max(1,Math.min(TOPLAM,n));if(n===aktif)return;location.hash="adim-"+n}
-  function hashOku(){var m=location.hash.match(/^#adim-(\d+)$/);return m?+m[1]:0}
-  window.addEventListener("hashchange",function(){var n=hashOku();if(n>=1&&n<=TOPLAM)goster(n,true);else goster(1,true)});
-  el("basla").addEventListener("click",function(){git(2)});
+  kap.addEventListener("scroll",function(){
+    var i=Math.max(0,Math.min(son,Math.round(kap.scrollLeft/kap.clientWidth)));
+    if(i!==aktif){aktif=i;yaz(KOK+"sayfa",i);ciz()}
+  },{passive:true});
   el("geri").addEventListener("click",function(){git(aktif-1)});
-  el("ileri").addEventListener("click",function(){git(aktif+1)});
-  cizgi.addEventListener("click",function(e){var b=e.target.closest("button");if(b&&!b.disabled)git(+b.dataset.a)});
-  function menuKapat(){menu.hidden=true;el("menu-ac").setAttribute("aria-expanded","false")}
-  el("menu-ac").addEventListener("click",function(e){e.stopPropagation();var a=menu.hidden;menu.hidden=!a;el("menu-ac").setAttribute("aria-expanded",a?"true":"false")});
-  menu.addEventListener("click",function(e){var b=e.target.closest("button");if(b&&!b.disabled)git(+b.dataset.a)});
-  document.addEventListener("click",function(e){if(!menu.hidden&&!menu.contains(e.target))menuKapat()});
-  document.addEventListener("keydown",function(e){if(e.key==="Escape")menuKapat()});
-
-  // Son kontrol
-  var kutular=[].slice.call(document.querySelectorAll("#kontrol-liste input")),isaret=oku(KOK+"kontrol",[]);
-  function kontrolCiz(){el("bitti").hidden=!kutular.every(function(k){return k.checked})}
-  kutular.forEach(function(k,i){k.checked=!!isaret[i];k.addEventListener("change",function(){isaret[i]=k.checked;yaz(KOK+"kontrol",isaret);kontrolCiz()})});
-  kontrolCiz();
+  el("ileri").addEventListener("click",function(){git(aktif===son?0:aktif+1)});
+  document.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"&&aktif<son)git(aktif+1);
+    if(e.key==="ArrowLeft"&&aktif>0)git(aktif-1);
+  });
+  window.addEventListener("resize",function(){git(aktif,true)});
 
   // Hoca iletişimi: numara kaynak metinde düz yazı olarak durmasın diye parçalı tutulur.
   var p=["90","542","496","91","19"];
   el("wp").href="https://wa.me/"+p.join("")+"?text="+encodeURIComponent("Merhaba hocam, Finansal Yönetim ödevimi gönderiyorum.\nAd Soyad: \nÖğrenci No: ");
 
-  // Kopyalama
-  var k=el("kopya"),m=el("komut").textContent;
-  function bitti(o){k.textContent=o?"Kopyalandı":"Metni seçip kopyala";setTimeout(function(){k.textContent="Komutu kopyala"},2000)}
+  // Komut
+  var m=el("komut-metni").textContent,k=el("kopya");
+  el("komut-on").textContent=m;
+  function bitti(o){k.textContent=o?"Kopyalandı":"Kopyalanamadı, tekrar dene";setTimeout(function(){k.textContent="Komutu kopyala"},2000)}
   function yedek(){var a=document.createElement("textarea");a.value=m;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var o=false;try{o=document.execCommand("copy")}catch(e){}document.body.removeChild(a);bitti(o)}
   k.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(m).then(function(){bitti(true)},yedek)}else{yedek()}});
 
   // Puanlama: 5 yıldız ve beğeni. Her cihazın/hesabın tek oyu olur, değiştirilebilir.
-  var OY_ID="finansal-yonetim",benim={puan:+oku(KOK+"puan",0)||0,reaksiyon:+oku(KOK+"reaksiyon",0)||0},fb=null,fbSoz=null,basladi=false,genel={ort:0,n:0,iyi:0,kotu:0};
+  var OY_ID="finansal-yonetim",benim={puan:+oku(KOK+"puan",0)||0,reaksiyon:+oku(KOK+"reaksiyon",0)||0},fbSoz=null,basladi=false,genel={ort:0,n:0,iyi:0,kotu:0};
   var yildiz=el("yildizlar");
   for(var i=1;i<=5;i++)yildiz.insertAdjacentHTML("beforeend",'<button type="button" data-p="'+i+'" aria-label="'+i+' yıldız" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2.800 2.900 5.900 6.500.9-4.700 4.600 1.100 6.500-5.800-3.100-5.800 3.100 1.100-6.500-4.700-4.600 6.500-.9z"/></svg></button>');
-  function sayiYaz(x){return x.toFixed(1).replace(".",",")}
   function oyCiz(){
     [].forEach.call(yildiz.children,function(b,i){b.classList.toggle("dolu",i<benim.puan);b.setAttribute("aria-pressed",i+1===benim.puan?"true":"false")});
     [].forEach.call(document.querySelectorAll(".reaksiyon button"),function(b){var s=+b.dataset.r===benim.reaksiyon;b.classList.toggle("secili",s);b.setAttribute("aria-pressed",s?"true":"false")});
     el("iyi").textContent=genel.iyi;el("kotu").textContent=genel.kotu;
   }
-  function ozetCiz(){el("oy-ozet").innerHTML=genel.n?"<b>"+sayiYaz(genel.ort)+"</b> / 5 · "+genel.n+" oy":"Henüz puan verilmedi. İlk puanı sen ver."}
+  function ozetCiz(){el("oy-ozet").innerHTML=genel.n?"<b>"+genel.ort.toFixed(1).replace(".",",")+"</b> / 5 · "+genel.n+" oy":"İlk puanı sen ver."}
   function fbYukle(){
     if(fbSoz)return fbSoz;
     var v="https://www.gstatic.com/firebasejs/10.12.2/firebase-";
@@ -392,8 +330,7 @@ Emin olmadığın rakam varsa tahmin etme, bana sor.</pre></div>
       var uyg=r[0].getApps().length?r[0].getApps()[0]:r[0].initializeApp(window.FIREBASE_AYAR);
       if(window.KC_RECAPTCHA){try{r[1].initializeAppCheck(uyg,{provider:new r[1].ReCaptchaEnterpriseProvider(window.KC_RECAPTCHA),isTokenAutoRefreshEnabled:true})}catch(e){}}
       var auth=r[2].getAuth(uyg);
-      return (auth.currentUser?Promise.resolve():r[2].signInAnonymously(auth)).then(function(){
-        fb={fs:r[3],db:r[3].getFirestore(uyg),auth:auth};return fb});
+      return (auth.currentUser?Promise.resolve():r[2].signInAnonymously(auth)).then(function(){return {fs:r[3],db:r[3].getFirestore(uyg),auth:auth}});
     });
     return fbSoz;
   }
@@ -417,11 +354,10 @@ Emin olmadığın rakam varsa tahmin etme, bana sor.</pre></div>
   yildiz.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;benim.puan=+b.dataset.p;yaz(KOK+"puan",benim.puan);oyCiz();oyGonder("puan",benim.puan)});
   document.querySelector(".reaksiyon").addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var r=+b.dataset.r;benim.reaksiyon=benim.reaksiyon===r?0:r;yaz(KOK+"reaksiyon",benim.reaksiyon);oyCiz();oyGonder("reaksiyon",benim.reaksiyon)});
 
-  // Açılış: bağlantıdaki adım, yoksa kalınan yer
-  var bas=hashOku()||Math.min(TOPLAM,Math.max(1,+oku(KOK+"son",1)||1));
-  if(bas>enUzak&&bas<=TOPLAM){enUzak=bas;yaz(KOK+"en-uzak",bas)}
-  aktif=1;ciz();
-  if(bas!==1){history.replaceState(null,"","#adim-"+bas);goster(bas,false)}
+  // Kaldığı sayfadan devam
+  var bas=Math.max(0,Math.min(son,+oku(KOK+"sayfa",0)||0));
+  ciz();oyCiz();
+  if(bas){git(bas,true)}
 })();
 </script>
 </body>
