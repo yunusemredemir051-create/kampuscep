@@ -3,326 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Finansal Analiz Ödevi Rehberi | KampüsCepte</title>
+<title>Finansal Yönetim Ödevi | KampüsCepte</title>
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="googlebot" content="noindex,nofollow,noarchive">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="Finansal Yönetim dersi ödevi: KAP'tan şirket seçimi, finansal tabloların hazırlanması, yatay, dikey ve trend analizi.">
-<meta property="og:title" content="Finansal Analiz Ödevi Rehberi">
-<meta property="og:description" content="Şirket seçiminden yatay, dikey ve trend analizine adım adım Finansal Yönetim ödevi.">
-<meta property="og:image" content="https://kampuscepte.com.tr/odev/finansal-yonetim-2hj4brc/paylasim.jpg?v=2">
+<meta name="description" content="Finansal Yönetim dersi ödevi: KAP'tan şirket seçimi, yatay, dikey ve trend analizi.">
+<meta property="og:title" content="Finansal Yönetim Ödevi">
+<meta property="og:description" content="Ödevde ne yapılacağı, analizlerin nasıl hesaplanacağı ve teslim bilgileri.">
+<meta property="og:image" content="https://kampuscepte.com.tr/odev/finansal-yonetim-2hj4brc/paylasim.jpg?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="KampüsCepte">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#101636">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{
-  --gece:#101636;--gece2:#1a2250;--mavi:#3b5bfd;--mavi2:#6f86ff;--mor:#8b5cf6;--altin:#ffbe5c;--yesil:#16b67a;--kirmizi:#e5484d;
-  --zemin:#f2f5ff;--kart:#fff;--yazi:#141b34;--soluk:#5f6784;--cizgi:#e4e8f5;--acik:#eef1ff;
-  --golge:0 18px 44px -26px rgba(30,45,120,.38);--r:22px;
-  --kz:#0b0f52;--font:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif;
-}
+:root{--yazi:#141b34;--soluk:#5f6784;--cizgi:#e7eaf3;--mavi:#3b5bfd;--acik:#f4f6fc;--font:"Plus Jakarta Sans","Segoe UI",system-ui,sans-serif}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--zemin);color:var(--yazi);font:500 16px/1.65 var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{margin:0;background:#fff;color:var(--yazi);font:500 16px/1.65 var(--font);-webkit-font-smoothing:antialiased}
 a{color:inherit}
-button{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--altin);outline-offset:3px;border-radius:8px}
-.kap{max-width:880px;margin:0 auto;padding:0 16px}
-
-/* Üst alan */
-.ust{position:relative;background:linear-gradient(90deg,var(--kz) 0,var(--kz) 22%,rgba(10,15,75,0) 62%),url(kapak.webp) right center/auto 100% no-repeat,var(--kz);color:#fff;padding:16px 0 118px;min-height:560px;overflow:hidden}
-.marka{position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:16px;text-decoration:none}
-.marka img{width:32px;height:32px;border-radius:10px;display:block}
-.kahraman{position:relative;z-index:1;max-width:520px;margin-top:70px}
-.etiket{display:inline-block;color:var(--altin);font-weight:700;font-size:13.5px;letter-spacing:.2px}
-h1{font-size:clamp(35px,7vw,52px);line-height:1.06;letter-spacing:-1.5px;margin:8px 0 14px;font-weight:800;text-wrap:balance}
-.giris{color:rgba(255,255,255,.76);font-size:17px;margin:0;max-width:30em}
-
-/* Bilgi kartları */
-.bilgiler{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:-62px}
-.bilgi{background:var(--kart);border-radius:18px;padding:15px;box-shadow:var(--golge);min-width:0}
-.bilgi svg{width:24px;height:24px;display:block;margin-bottom:9px;color:var(--mavi)}
-.bilgi small{display:block;color:var(--soluk);font-size:12.5px;font-weight:600}
-.bilgi b{display:block;font-size:15px;line-height:1.3;margin-top:2px;font-weight:800}
-
-section{margin-top:46px}
-h2{font-size:clamp(24px,5vw,31px);letter-spacing:-.7px;line-height:1.18;margin:0 0 6px;font-weight:800;text-wrap:balance}
-.alt{color:var(--soluk);margin:0 0 18px;font-size:15.5px}
-
-/* İlerleme ve adımlar */
-.ilerleme{display:flex;align-items:center;gap:12px;background:var(--kart);border-radius:16px;padding:12px 15px;box-shadow:var(--golge);margin-bottom:12px;font-weight:700;font-size:14px}
-.cubuk{flex:1;height:8px;background:var(--acik);border-radius:99px;overflow:hidden}
-.cubuk i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--mavi),var(--mor));border-radius:99px;transition:width .35s ease}
-.adimlar{display:grid;gap:10px}
-.adim{display:grid;grid-template-columns:44px 1fr;gap:13px;background:var(--kart);border-radius:var(--r);padding:17px;box-shadow:var(--golge);border:1.5px solid transparent;transition:border-color .2s}
-.adim.tamam{border-color:rgba(22,182,122,.5)}
-.tik{width:44px;height:44px;border-radius:14px;border:0;background:var(--acik);color:var(--mavi);font-weight:800;font-size:17px;cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
-.tik svg{width:21px;height:21px;display:none}
-.adim.tamam .tik{background:var(--yesil);color:#fff}
-.adim.tamam .tik span{display:none}.adim.tamam .tik svg{display:block}
-.adim h3{margin:0 0 3px;font-size:17.5px;line-height:1.3;letter-spacing:-.25px;font-weight:800}
-.adim p{margin:0;color:var(--soluk);font-size:15px}
-.adim ul{margin:7px 0 0;padding-left:19px;color:var(--soluk);font-size:15px}
-.adim li{margin-bottom:3px}
-.adim li b,.adim p b{color:var(--yazi);font-weight:700}
-.dis{display:inline-flex;align-items:center;gap:7px;margin-top:10px;background:var(--mavi);color:#fff;font-weight:700;font-size:14px;text-decoration:none;border-radius:12px;padding:9px 13px}
-.dis svg{width:15px;height:15px}
-
-/* Analiz tablosu */
-.analiz{background:var(--kart);border-radius:var(--r);box-shadow:var(--golge);padding:17px;overflow:hidden}
-.sekmeler{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--acik);padding:4px;border-radius:14px}
-.sekme{border:0;background:transparent;border-radius:11px;padding:9px 3px;font-weight:700;font-size:14px;color:var(--soluk);cursor:pointer;transition:background .2s,color .2s}
-.sekme[aria-selected=true]{background:var(--gece);color:#fff}
-.tablo{overflow-x:auto;margin:14px -17px 0;padding:0 17px;-webkit-overflow-scrolling:touch}
-table{border-collapse:collapse;width:100%;min-width:490px;font-size:14.5px;font-variant-numeric:tabular-nums}
-caption{text-align:left;color:var(--soluk);font-size:13px;font-weight:600;padding-bottom:8px}
-th,td{padding:10px 8px;text-align:right;border-bottom:1px solid var(--cizgi);white-space:nowrap}
-th{font-size:12.5px;color:var(--soluk);font-weight:700}
-th:first-child,td:first-child{text-align:left;font-weight:700;position:sticky;left:-17px;background:var(--kart);padding-left:0}
-tbody tr:last-child td{border-bottom:0}
-td.vurgu{color:var(--mavi);font-weight:800}
-.aciklama{margin-top:14px;background:var(--acik);border-radius:16px;padding:14px 15px}
-.aciklama b.ad{display:block;font-weight:800;font-size:16px}
-.aciklama p{margin:3px 0 0;font-size:14.5px;color:var(--soluk)}
-.formul{display:block;margin:10px 0 0;background:var(--gece);color:#fff;border-radius:12px;padding:10px 12px;font:700 13.5px/1.5 var(--font);overflow-wrap:anywhere}
-.excel{display:block;margin-top:6px;font:600 13px/1.5 ui-monospace,Menlo,Consolas,monospace;color:var(--mavi);overflow-wrap:anywhere}
-
-/* Analiz kartları */
-.turler{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.tur{display:flex;align-items:center;gap:13px;text-align:left;background:var(--kart);border:1.5px solid transparent;border-radius:20px;padding:12px 15px 12px 10px;box-shadow:var(--golge);cursor:pointer;transition:border-color .2s,transform .18s}
-.tur:hover{transform:translateY(-2px)}
-.tur.secili{border-color:var(--mavi)}
-.tur img{flex:none;width:76px;height:76px;display:block}
-.tur b{display:block;font-size:16.5px;font-weight:800;letter-spacing:-.2px;line-height:1.25}
-.tur small{display:block;color:var(--soluk);font-size:13.5px;line-height:1.35;margin-top:2px}
-
-/* Teslim */
-.teslim{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#0c3b2c;color:#fff;border-radius:var(--r);padding:20px;box-shadow:var(--golge)}
-.teslim h2{color:#fff;margin:0 0 4px}
-.teslim p{margin:0;color:rgba(255,255,255,.78);font-size:15px}
-.wp{flex:none;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;background:#25d366;color:#06361a;border-radius:14px;padding:12px 18px;font-weight:800;font-size:15.5px;text-decoration:none;text-align:center}
-.wp svg{width:21px;height:21px}
-@media(max-width:700px){.teslim{display:block}.wp{display:flex;width:100%;margin-top:14px}}
-
-/* Dikkat */
-.uyarilar{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.uyari{background:var(--kart);border-radius:18px;padding:16px;box-shadow:var(--golge)}
-.uyari b{display:block;font-size:15.5px;font-weight:800;margin-bottom:2px}
-.uyari p{margin:0;font-size:14.5px;color:var(--soluk)}
-.not{font-size:13.5px;color:var(--soluk);margin:12px 2px 0}
-
-/* Yapay zekâ */
-.zeka{background:radial-gradient(420px 260px at 100% 0,rgba(139,92,246,.52),transparent 70%),var(--gece);color:#fff;border-radius:var(--r);padding:20px;box-shadow:var(--golge)}
-.zeka h2{color:#fff}
-.zeka .alt{color:rgba(255,255,255,.72)}
-.komut{white-space:pre-wrap;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:14px;font:500 14px/1.6 var(--font);margin:0;max-height:270px;overflow:auto}
-.kopya{margin-top:11px;width:100%;min-height:48px;border:0;background:var(--altin);color:#2b1b00;font-weight:800;font-size:15px;border-radius:13px;cursor:pointer}
-.zeka small{display:block;margin-top:10px;color:rgba(255,255,255,.66);font-size:13px}
-
-/* Notlar */
-.notlar{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.notkart{display:flex;align-items:center;gap:13px;background:var(--kart);border-radius:18px;padding:15px;text-decoration:none;box-shadow:var(--golge);transition:transform .18s}
-.notkart:hover{transform:translateY(-2px)}
-.notkart>span:first-child{flex:none;width:44px;height:44px;border-radius:13px;background:linear-gradient(140deg,var(--mavi),var(--mor));color:#fff;display:grid;place-items:center}
-.notkart svg{width:22px;height:22px}
-.notkart b{display:block;font-size:15.5px;line-height:1.3;font-weight:800}
-.notkart small{display:block;color:var(--soluk);font-size:13px;line-height:1.35;margin-top:2px}
-footer{margin-top:44px;padding:0 0 34px;color:var(--soluk);font-size:13px;text-align:center}
-
-@media(max-width:700px){
-  .ust{min-height:0;padding-bottom:88px;background:linear-gradient(180deg,rgba(11,15,82,0) 0,rgba(11,15,82,0) 222px,var(--kz) 274px),url(kapak.webp) 100% 0/125% auto no-repeat,var(--kz)}
-  .kahraman{margin-top:200px}
-  .turler{grid-template-columns:1fr!important}
-  .bilgiler{grid-template-columns:1fr 1fr}
-  .uyarilar,.notlar{grid-template-columns:1fr}
-  section{margin-top:38px}
-  table{min-width:0;font-size:13px}
-  th,td{padding:9px 3px}
-  th{font-size:12px}
-  th:first-child,td:first-child{white-space:normal;position:static;max-width:82px;line-height:1.3}
-}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+:focus-visible{outline:3px solid var(--mavi);outline-offset:3px;border-radius:6px}
+.kap{max-width:640px;margin:0 auto;padding:0 16px}
+.marka{display:flex;align-items:center;gap:9px;padding:16px 0;font-weight:800;font-size:15px;text-decoration:none}
+.marka img{width:28px;height:28px;border-radius:8px;display:block}
+.kapak{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:right center;border-radius:18px;background:#0b0f52}
+h1{font-size:clamp(32px,8vw,42px);line-height:1.1;letter-spacing:-1.2px;margin:22px 0 6px;font-weight:800}
+.alt{color:var(--soluk);margin:0;font-size:16px}
+.ozet{margin:20px 0 0;padding:0;list-style:none;border-top:1px solid var(--cizgi)}
+.ozet li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--cizgi);font-size:15px}
+.ozet span{color:var(--soluk)}
+.ozet b{font-weight:700;text-align:right}
+section{margin-top:44px}
+h2{font-size:24px;line-height:1.2;letter-spacing:-.5px;margin:0 0 14px;font-weight:800}
+.adimlar{margin:0;padding:0;list-style:none;counter-reset:a}
+.adimlar li{counter-increment:a;position:relative;padding:0 0 18px 42px}
+.adimlar li:last-child{padding-bottom:0}
+.adimlar li::before{content:counter(a);position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--yazi);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+.adimlar b{display:block;font-weight:700;line-height:1.75}
+.adimlar p{margin:0;color:var(--soluk);font-size:15px}
+.adimlar a{color:var(--mavi);font-weight:700}
+.analiz{display:grid;grid-template-columns:64px 1fr;gap:14px;padding:18px 0;border-top:1px solid var(--cizgi)}
+.analiz img{width:64px;height:64px;display:block}
+h3{margin:0;font-size:18px;font-weight:800;letter-spacing:-.2px;line-height:1.3}
+.analiz p{margin:2px 0 8px;color:var(--soluk);font-size:15px}
+.hesap{background:var(--acik);border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600;line-height:1.55}
+.hesap small{display:block;color:var(--soluk);font-size:13px;font-weight:500}
+.notlar{margin:0;padding-left:20px;color:var(--soluk);font-size:15px}
+.notlar li{margin-bottom:7px}
+.dugme{display:flex;align-items:center;justify-content:center;gap:9px;min-height:52px;border-radius:14px;padding:12px 16px;font-weight:700;font-size:15.5px;text-decoration:none;text-align:center;margin-top:12px}
+.wp{background:#25d366;color:#06361a}
+.wp svg{width:21px;height:21px;flex:none}
+.ikincil{background:var(--acik);color:var(--yazi)}
+details{border:1px solid var(--cizgi);border-radius:14px;padding:13px 15px;margin-top:12px}
+summary{font-weight:700;cursor:pointer}
+.komut{white-space:pre-wrap;font:500 14px/1.6 var(--font);margin:12px 0 0;color:var(--soluk)}
+.kopya{width:100%;min-height:46px;margin-top:12px;border:0;border-radius:12px;background:var(--yazi);color:#fff;font:700 15px var(--font);cursor:pointer}
+footer{margin:40px auto 0;padding-bottom:30px;color:var(--soluk);font-size:13px}
 </style>
 </head>
 <body>
-<header class="ust">
-  <div class="kap">
-    <a class="marka" href="../../index.html"><img src="../../ikonlar/logo-128.png" alt="">KampüsCepte</a>
-    <div class="kahraman">
-      <div>
-        <span class="etiket">YBS 2. sınıf · Finansal Yönetim</span>
-        <h1>Finansal Analiz Ödevi Rehberi</h1>
-        <p class="giris">KAP'tan şirketi seç, son 5 yılın tablolarını hazırla, yatay, dikey ve trend analizini yap.</p>
-      </div>
-    </div>
-  </div>
-</header>
+<div class="kap">
+  <a class="marka" href="../../index.html"><img src="../../ikonlar/logo-128.png" alt="">KampüsCepte</a>
+  <img class="kapak" src="kapak.webp" alt="" width="1600" height="900">
 
-<main class="kap">
-  <div class="bilgiler">
-    <div class="bilgi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><small>Son teslim</small><b>Sınavdan 1 gün önce</b></div>
-    <div class="bilgi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4zM4 7l8 6 8-6"/></svg><small>Teslim şekli</small><b>E-posta veya WhatsApp</b></div>
-    <div class="bilgi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 3 1-6.1-4.4-4.3 6.1-.9z"/></svg><small>Katkısı</small><b>Vizeye ek puan</b></div>
-    <div class="bilgi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="5"/></svg><small>Yapay zekâ</small><b>Kullanılabilir</b></div>
-  </div>
-  <p class="not">Ödevi yapmak notunuza olumlu yansır, yapmamak ise olumsuz etkilemez.</p>
+  <h1>Finansal Yönetim Ödevi</h1>
+  <p class="alt">Bir şirketin son 5 yıllık finansal tablolarını inceleyip yatay, dikey ve trend analizi yapacaksınız.</p>
+  <ul class="ozet">
+    <li><span>Son teslim</span><b>Sınavdan 1 gün önce</b></li>
+    <li><span>Teslim</span><b>E-posta veya WhatsApp</b></li>
+    <li><span>Puan</span><b>Vizeye ek puan</b></li>
+    <li><span>Yapay zekâ</span><b>Kullanılabilir</b></li>
+  </ul>
+  <p class="alt" style="font-size:14px;margin-top:10px">Ödevi yapmak notunuza olumlu yansır, yapmamak olumsuz etkilemez.</p>
 
-  <section id="adimlar">
-    <h2>Adım adım ödev</h2>
-    <p class="alt">Bitirdiğin adımın numarasına dokun, ilerlemen bu cihazda kalsın.</p>
-    <div class="ilerleme"><span id="sayac">0/6</span><div class="cubuk" role="progressbar" aria-label="Ödev ilerlemesi" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><i id="dolgu"></i></div></div>
-    <div class="adimlar" id="liste">
-      <article class="adim"><button class="tik" type="button" aria-pressed="false" aria-label="1. adımı tamamlandı olarak işaretle"><span>1</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button><div><h3>KAP'tan şirketini seç</h3><p>kap.org.tr sitesine gir ve Borsa İstanbul'da işlem gören bir şirket seç. Şirketi adıyla veya borsa koduyla aratabilirsin.</p><a class="dis" href="https://www.kap.org.tr" target="_blank" rel="noopener noreferrer">KAP'ı aç <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></div></article>
-      <article class="adim"><button class="tik" type="button" aria-pressed="false" aria-label="2. adımı tamamlandı olarak işaretle"><span>2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button><div><h3>Son 5 yılın tablolarını indir</h3><p>Şirketin KAP'taki bildirimlerinden finansal raporlarını bul ve son 5 yıla ait finansal tabloları indir.</p><ul><li>Karşılaştırma için hep <b>yıllık (12 aylık)</b> raporları kullan.</li><li>Raporlarda genellikle önceki yılın rakamları da yer alır.</li></ul></div></article>
-      <article class="adim"><button class="tik" type="button" aria-pressed="false" aria-label="3. adımı tamamlandı olarak işaretle"><span>3</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button><div><h3>Tabloları temizle</h3><p>Rakamları tek tabloda topla ve analize uygun hâle getir.</p><ul><li>Her kalem bir satırda, her yıl bir sütunda olsun.</li><li>Yıllar soldan sağa eskiden yeniye sıralansın.</li><li>Rakamları metin değil, sayı olarak kaydet.</li><li>Dipnot sütunları ve analizde kullanmayacağın boş satırlar kalksın.</li></ul></div></article>
-      <article class="adim"><button class="tik" type="button" aria-pressed="false" aria-label="4. adımı tamamlandı olarak işaretle"><span>4</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button><div><h3>Yatay analizi yap</h3><p>Her kalemin bir önceki yıla göre yüzde kaç değiştiğini hesapla.</p></div></article>
-      <article class="adim"><button class="tik" type="button" aria-pressed="false" aria-label="5. adımı tamamlandı olarak işaretle"><span>5</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button><div><h3>Dikey analizi yap</h3><p>Her kalemin aynı yıl içindeki payını hesapla. Bilançoda toplam varlıkları, gelir tablosunda net satışları temel al.</p></div></article>
-      <article class="adim"><button class="tik" type="button" aria-pressed="false" aria-label="6. adımı tamamlandı olarak işaretle"><span>6</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></button><div><h3>Trend analizini yap ve teslim et</h3><p><b>İlk yılı baz yıl</b> al ve her yılı buna göre endeksle. Bitince ödevini sınavdan en geç 1 gün önce e-posta veya WhatsApp ile gönder.</p></div></article>
-    </div>
+  <section>
+    <h2>Ne yapılacak?</h2>
+    <ol class="adimlar">
+      <li><b>Şirket seçin</b><p><a href="https://www.kap.org.tr" target="_blank" rel="noopener noreferrer">kap.org.tr</a> sitesine girip Borsa İstanbul'da işlem gören bir şirket seçin.</p></li>
+      <li><b>Tabloları indirin</b><p>Şirketin son 5 yıllık finansal tablolarını indirin.</p></li>
+      <li><b>Tabloları temizleyin</b><p>Rakamları tek tabloda toplayın ve analize uygun hâle getirin.</p></li>
+      <li><b>Analizleri yapın</b><p>Tablolara yatay, dikey ve trend analizi uygulayın.</p></li>
+      <li><b>Teslim edin</b><p>Ödevinizi sınavdan en geç 1 gün önce gönderin.</p></li>
+    </ol>
   </section>
 
-  <section id="analiz">
-    <h2>Üç analizi örnekle gör</h2>
-    <p class="alt">Rakamlar kurgusal bir şirkete ait. Sekmelere dokunup aynı tablonun nasıl değiştiğini incele.</p>
-    <div class="turler">
-      <button class="tur" type="button" data-t="yatay"><img src="ikon-yatay.webp" alt="" width="76" height="76"><span><b>Yatay analiz</b><small>Yıldan yıla değişim</small></span></button>
-      <button class="tur" type="button" data-t="dikey"><img src="ikon-dikey.webp" alt="" width="76" height="76"><span><b>Dikey analiz</b><small>Kalemin yıl içindeki payı</small></span></button>
-      <button class="tur" type="button" data-t="trend"><img src="ikon-trend.webp" alt="" width="76" height="76"><span><b>Trend analizi</b><small>Baz yıla göre gelişim</small></span></button>
+  <section>
+    <h2>Analizler nasıl yapılır?</h2>
+    <div class="analiz">
+      <img src="ikon-yatay.webp" alt="" width="64" height="64">
+      <div><h3>Yatay analiz</h3><p>Bir kalemin önceki yıla göre yüzde kaç değiştiğini gösterir.</p>
+      <div class="hesap">(Cari yıl − Önceki yıl) ÷ Önceki yıl × 100<small>Örnek: Satışlar 180'den 210'a çıktıysa artış %16,7'dir.</small></div></div>
     </div>
     <div class="analiz">
-      <div class="sekmeler" role="tablist" aria-label="Analiz türü">
-        <button class="sekme" role="tab" type="button" data-t="ham" aria-selected="true">Tablo</button>
-        <button class="sekme" role="tab" type="button" data-t="yatay" aria-selected="false">Yatay</button>
-        <button class="sekme" role="tab" type="button" data-t="dikey" aria-selected="false">Dikey</button>
-        <button class="sekme" role="tab" type="button" data-t="trend" aria-selected="false">Trend</button>
-      </div>
-      <div class="tablo" tabindex="0" role="region" aria-label="Örnek analiz tablosu"><table id="tablo"></table></div>
-      <div class="aciklama" id="aciklama" aria-live="polite"></div>
+      <img src="ikon-dikey.webp" alt="" width="64" height="64">
+      <div><h3>Dikey analiz</h3><p>Bir kalemin aynı yıl içindeki payını gösterir. Bilançoda toplam varlıklar, gelir tablosunda net satışlar temel alınır.</p>
+      <div class="hesap">Kalem ÷ Temel alınan toplam × 100<small>Örnek: Satışlar 210, brüt kâr 67 ise pay %31,9'dur.</small></div></div>
+    </div>
+    <div class="analiz">
+      <img src="ikon-trend.webp" alt="" width="64" height="64">
+      <div><h3>Trend analizi</h3><p>Her yılı ilk yıla göre karşılaştırır. İlk yıl baz yıl olarak alınır ve 100 kabul edilir.</p>
+      <div class="hesap">Cari yıl ÷ Baz yıl × 100<small>Örnek: Baz yılda 100 olan satışlar 210 olduysa trend değeri 210'dur.</small></div></div>
     </div>
   </section>
 
-  <section id="dikkat">
-    <h2>Takılmamak için</h2>
-    <p class="alt">Bunlar hocanın ek şartı değil, ödevi hazırlarken işine yarayacak notlar.</p>
-    <div class="uyarilar">
-      <div class="uyari"><b>Şirketi akıllıca seç</b><p>Banka ve sigorta şirketlerinin tabloları farklıdır. Sanayi veya perakende gibi bir şirket işini kolaylaştırır.</p></div>
-      <div class="uyari"><b>Aynı rapor türünde kal</b><p>Konsolide raporla başladıysan her yılda konsolide kullan. Türleri karıştırmak karşılaştırmayı bozar.</p></div>
-      <div class="uyari"><b>Enflasyon düzeltmesine bak</b><p>2023 yıl sonundan itibaren birçok şirket tablolarını enflasyona göre düzeltilmiş yayımlıyor. Eski yıllarla karşılaştırırken raporun açıklamasını kontrol et.</p></div>
-      <div class="uyari"><b>Eksi ve sıfır değerlere dikkat</b><p>Önceki yıl kalem sıfır veya negatifse yatay analizdeki yüzde yanıltabilir. Sonucu yorumlamadan önce rakama tekrar bak.</p></div>
-    </div>
-  </section>
-
-  <section id="yapay-zeka">
-    <div class="zeka">
-      <h2>Yapay zekâya hazır komut</h2>
-      <p class="alt">Hoca bu ödevde yapay zekâ kullanmaya izin verdi. Tablolarını ekleyip aşağıdaki komutu gönderebilirsin.</p>
+  <section>
+    <h2>İşinize yarayacak notlar</h2>
+    <ul class="notlar">
+      <li>Her yıl için aynı türde, yıllık (12 aylık) raporları kullanın.</li>
+      <li>Banka ve sigorta şirketlerinin tabloları farklı olduğu için analiz daha zor olabilir.</li>
+      <li>2023 sonrası tablolar enflasyona göre düzeltilmiş olabilir. Eski yıllarla karşılaştırırken raporun açıklamasına bakın.</li>
+    </ul>
+    <details>
+      <summary>Yapay zekâ için hazır komut</summary>
       <pre class="komut" id="komut">Ekteki finansal tablolar [ŞİRKET ADI] şirketinin son 5 yılına ait. Bir Finansal Yönetim ödevi için şunları yap:
 
-1. Bilanço ve gelir tablosunu temizle. Her kalem bir satırda, her yıl bir sütunda olsun. Yıllar eskiden yeniye sıralansın. Rakamların hiçbirini değiştirme.
-2. Yatay analiz yap: Her kalemin bir önceki yıla göre yüzde değişimini hesapla.
+1. Bilanço ve gelir tablosunu temizle. Rakamların hiçbirini değiştirme.
+2. Yatay analiz yap: Her kalemin önceki yıla göre yüzde değişimini hesapla.
 3. Dikey analiz yap: Bilançoda toplam varlıkları, gelir tablosunda net satışları 100 kabul et.
 4. Trend analizi yap: İlk yılı baz yıl (100) kabul et.
-5. Sonuçları Excel'de formülleri görünecek şekilde hazırla.
-6. Dikkat çeken önemli değişimleri kısa ve sade bir dille yorumla.
+5. Sonuçları formülleri görünecek şekilde Excel'de hazırla.
 
-Okuyamadığın veya emin olmadığın rakam varsa tahmin etme, bana sor.</pre>
+Emin olmadığın rakam varsa tahmin etme, bana sor.</pre>
       <button class="kopya" id="kopya" type="button">Komutu kopyala</button>
-      <small>Sonuçları göndermeden önce rakamları KAP'taki orijinal tablolarla ve birkaç formülü kendin hesaplayarak karşılaştır.</small>
-    </div>
+    </details>
   </section>
 
-  <section id="teslim">
-    <div class="teslim">
-      <div><h2>Ödevin hazır mı?</h2><p>Sınavdan en geç 1 gün önce hocaya e-posta veya WhatsApp ile gönder. Dosyanı sohbete eklemeyi unutma.</p></div>
-      <a class="wp" id="wp" href="#teslim" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.100-1 .200-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.900s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .600.500l.8 1.900c.1.200.1.400 0 .5l-.3.5-.4.400c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.400 2.400 1.500.3.100.5.100.6-.1l.8-1c.2-.2.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.100.1.600-.1 1.200z"/></svg><span id="wp-yazi">Hocaya WhatsApp'tan yaz</span></a>
-    </div>
+  <section>
+    <h2>Teslim ve çalışma</h2>
+    <a class="dugme wp" id="wp" href="#" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.600 15L2 22l5.100-1.300A10 10 0 1 0 12 2zm5.500 14.100c-.2.600-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.900s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 1.900c.1.200.1.400 0 .5l-.3.5-.4.400c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.400 2.400 1.500.3.100.5.100.6-.1l.8-1c.2-.2.400-.2.600-.1l1.800.9c.3.100.4.200.5.300.1.100.1.600-.1 1.200z"/></svg><span id="wp-yazi">Hocaya WhatsApp'tan gönder</span></a>
+    <a class="dugme ikincil" href="../../ders.html?d=ybs/2/finansal-yonetim">Finansal Yönetim notlarına git</a>
   </section>
 
-  <section id="notlar">
-    <h2>Derse de çalışmak ister misin?</h2>
-    <p class="alt">Finansal Yönetim notları KampüsCepte'de hazır.</p>
-    <div class="notlar">
-      <a class="notkart" href="../../ders.html?d=ybs/2/finansal-yonetim"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v18H6a2 2 0 0 1-2-2zM4 17a2 2 0 0 1 2-2h13"/></svg></span><span><b>Finansal Yönetim notları</b><small>Tüm üniteler ve çalışma materyalleri</small></span></a>
-      <a class="notkart" href="../../notlar/ybs/2/finansal-yonetim/unite-2.html"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M21 20H3"/></svg></span><span><b>Ünite 2: Finansal Tablolar</b><small>Bilanço ve gelir tablosunu hatırla</small></span></a>
-    </div>
-  </section>
-</main>
-<footer class="kap">Bu rehber öğrenciler için hazırlanmıştır. Ödevle ilgili güncel bilgi için dersin hocasının duyurusu esas alınır.</footer>
-
+  <footer>Güncel bilgi için dersin hocasının duyurusu esas alınır.</footer>
+</div>
 <script>
 (function(){
-  var ANAHTAR="kc-fy-odev-adimlar";
-  var adimlar=[].slice.call(document.querySelectorAll(".adim"));
-  function oku(){try{return JSON.parse(localStorage.getItem(ANAHTAR))||[]}catch(e){return []}}
-  function yaz(v){try{localStorage.setItem(ANAHTAR,JSON.stringify(v))}catch(e){}}
-  var durum=oku();
-  function ciz(){
-    var n=0;
-    adimlar.forEach(function(a,i){
-      var t=!!durum[i];if(t)n++;
-      a.classList.toggle("tamam",t);
-      var b=a.querySelector(".tik");
-      b.setAttribute("aria-pressed",t?"true":"false");
-      b.setAttribute("aria-label",(i+1)+". adımı "+(t?"tamamlanmadı":"tamamlandı")+" olarak işaretle");
-    });
-    document.getElementById("sayac").textContent=n+"/"+adimlar.length;
-    document.getElementById("dolgu").style.width=(n/adimlar.length*100)+"%";
-    document.querySelector(".cubuk").setAttribute("aria-valuenow",n);
-  }
-  adimlar.forEach(function(a,i){a.querySelector(".tik").addEventListener("click",function(){durum[i]=!durum[i];yaz(durum);ciz()})});
-  ciz();
-
-  var yillar=[2021,2022,2023,2024,2025];
-  var veri=[["Net satışlar",[100,125,150,180,210]],["Satışların maliyeti",[70,85,105,130,143]],["Brüt kâr",[30,40,45,50,67]]];
-  var tf=new Intl.NumberFormat("tr-TR",{maximumFractionDigits:1,minimumFractionDigits:1});
-  var yuzde=function(x){return "%"+tf.format(x)};
-  var isaret=function(x){return (x>0?"+":"")+yuzde(x).replace("%-","-%")};
-  var turler={
-    ham:{bas:"Örnek tablo (milyon TL)",h:function(s){return s.map(String)},
-      ad:"Başlangıç tablosu",m:"Temizlenmiş tablo böyle görünmeli: Satırlarda kalemler, sütunlarda eskiden yeniye yıllar var.",f:"Analizlerin tamamı bu tablodaki rakamlardan hesaplanır.",e:""},
-    yatay:{bas:"Önceki yıla göre değişim",h:function(s){return s.map(function(x,i){return i?isaret((x-s[i-1])/s[i-1]*100):"–"})},
-      ad:"Yatay analiz",m:"2025'te net satışlar %16,7 artmış. İlk yılın öncesi olmadığı için değer yazılmaz.",f:"Değişim = (Cari yıl − Önceki yıl) ÷ Önceki yıl × 100",e:"Excel: =(C2-B2)/B2*100"},
-    dikey:{bas:"Net satışlara oranı",h:function(s,i){return s.map(function(x,y){return yuzde(x/veri[0][1][y]*100)})},
-      ad:"Dikey analiz",m:"2025'te brüt kâr, net satışların %31,9'u. Kalemin yıl içindeki ağırlığını gösterir.",f:"Pay = Kalem ÷ Toplam kalem × 100",e:"Excel (2. satır net satışlar): =B3/B$2*100"},
-    trend:{bas:"Baz yıl 2021 = 100",h:function(s){return s.map(function(x){return tf.format(x/s[0]*100)})},
-      ad:"Trend analizi",m:"Net satışlar 2025'te 210 endeksine ulaşmış, yani 2021'in 2,1 katı olmuş.",f:"Trend = Cari yıl ÷ Baz yıl × 100",e:"Excel: =C2/$B2*100"}
-  };
-  var tablo=document.getElementById("tablo"),acik=document.getElementById("aciklama");
-  function kacis(x){return String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-  function goster(t){
-    var d=turler[t];
-    var h="<caption>"+kacis(d.bas)+"</caption><thead><tr><th scope=\"col\">Kalem</th>"+yillar.map(function(y){return "<th scope=\"col\">"+y+"</th>"}).join("")+"</tr></thead><tbody>";
-    veri.forEach(function(s,i){
-      var v=d.h(s[1],i);
-      h+="<tr><td>"+s[0]+"</td>"+v.map(function(x,j){
-        var vur=(t==="yatay"&&i===0&&j===4)||(t==="dikey"&&i===2&&j===4)||(t==="trend"&&i===0&&j===4);
-        return "<td"+(vur?" class=\"vurgu\"":"")+">"+x+"</td>"}).join("")+"</tr>";
-    });
-    tablo.innerHTML=h+"</tbody>";
-    acik.innerHTML="<b class=\"ad\">"+d.ad+"</b><p>"+d.m+"</p><span class=\"formul\">"+d.f+"</span>"+(d.e?"<code class=\"excel\">"+kacis(d.e)+"</code>":"");
-    [].forEach.call(document.querySelectorAll(".sekme"),function(b){b.setAttribute("aria-selected",b.dataset.t===t?"true":"false")});
-    [].forEach.call(document.querySelectorAll(".tur"),function(b){b.classList.toggle("secili",b.dataset.t===t);b.setAttribute("aria-pressed",b.dataset.t===t?"true":"false")});
-  }
-  [].forEach.call(document.querySelectorAll(".sekme"),function(b){b.addEventListener("click",function(){goster(b.dataset.t)})});
-  [].forEach.call(document.querySelectorAll(".tur"),function(b){b.addEventListener("click",function(){goster(b.dataset.t);tablo.parentNode.scrollIntoView({block:"nearest"})})});
-  goster("ham");
-
   // Numara, kaynak metinde düz yazı olarak durmasın diye parçalı tutulur.
-  var p=["90","542","496","91","19"],wa=document.getElementById("wp");
-  wa.href="https://wa.me/"+p.join("")+"?text="+encodeURIComponent("Merhaba hocam, Finansal Yönetim ödevimi gönderiyorum.\nAd Soyad: \nÖğrenci No: ");
+  var p=["90","542","496","91","19"];
+  document.getElementById("wp").href="https://wa.me/"+p.join("")+"?text="+encodeURIComponent("Merhaba hocam, Finansal Yönetim ödevimi gönderiyorum.\nAd Soyad: \nÖğrenci No: ");
   document.getElementById("wp-yazi").textContent="WhatsApp: 0"+p.slice(1,3).join(" ")+" "+p[3]+" "+p[4];
-
-  var kopya=document.getElementById("kopya"),metin=document.getElementById("komut").textContent;
-  function bitti(ok){kopya.textContent=ok?"Kopyalandı":"Metni seçip kopyala";setTimeout(function(){kopya.textContent="Komutu kopyala"},2000)}
-  function yedek(){var a=document.createElement("textarea");a.value=metin;a.setAttribute("readonly","");a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(a);bitti(ok)}
-  kopya.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(metin).then(function(){bitti(true)},yedek)}else{yedek()}});
+  var k=document.getElementById("kopya"),m=document.getElementById("komut").textContent;
+  function son(o){k.textContent=o?"Kopyalandı":"Metni seçip kopyalayın";setTimeout(function(){k.textContent="Komutu kopyala"},2000)}
+  function yedek(){var a=document.createElement("textarea");a.value=m;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();var o=false;try{o=document.execCommand("copy")}catch(e){}document.body.removeChild(a);son(o)}
+  k.addEventListener("click",function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(m).then(function(){son(true)},yedek)}else{yedek()}});
 })();
 </script>
 </body>
