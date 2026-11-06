@@ -724,7 +724,14 @@
       "sucuklu yumurta": "yurt-sucuklu-yumurta",
       "sucuklu omlet": "yurt-sucuklu-yumurta",
       "bal": "yurt-bal",
-      "mozaik kek": "yurt-mozaik-kek"
+      "mozaik kek": "yurt-mozaik-kek",
+      "karışık pizza": "yurt-karisik-pizza",
+      "pizza": "yurt-karisik-pizza",
+      "haşlanmış patates": "yurt-haslanmis-patates",
+      "domates-salatalık": "yurt-domates-salatalik",
+      "domates salatalık": "yurt-domates-salatalik",
+      "haşlanmış patates + domates-salatalık": ["yurt-haslanmis-patates", "yurt-domates-salatalik"],
+      "haşlanmış patates + domates salatalık": ["yurt-haslanmis-patates", "yurt-domates-salatalik"]
     }
   };
 
