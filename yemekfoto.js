@@ -657,7 +657,12 @@
       "tahin helva": "unievi-tahin-helvasi",
       "tahin helvası": "unievi-tahin-helvasi",
       "nohutlu pirinç pilavı": "unievi-nohutlu-pirinc-pilavi",
-      "et kavurma": "unievi-et-kavurma"
+      "et kavurma": "unievi-et-kavurma",
+      "tas kebabı": "unievi-tas-kebabi",
+      "tas kebap": "unievi-tas-kebabi",
+      "yayla çorbası": "unievi-yayla-corbasi",
+      "yayla çorba": "unievi-yayla-corbasi",
+      "elma": "unievi-elma"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
     "yurt": {
@@ -791,6 +796,55 @@
     flex: 1;
     min-width: 0;
   }
+  .yf-besin-etiket {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    opacity: .5;
+    margin-bottom: 1px;
+  }
+  .yf-besin {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 10px;
+    margin-top: 5px;
+    font-size: 11.5px;
+    font-weight: 500;
+    opacity: .78;
+    white-space: nowrap;
+  }
+  .yf-besin b { font-weight: 700; }
+  ul.yemekler li .yf-kcal small { font-size: 10px; font-weight: 600; opacity: .8; }
+  html body ul.yemekler li.fotolu:has(.yf-kcal) { flex-wrap: nowrap !important; }
+  ul.yemekler li .yf-kcal {
+    flex: none;
+    margin-left: auto;
+    align-self: center;
+    font-weight: 800;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 99px;
+    background: var(--mavi-acik, #e6ebff);
+    color: var(--mavi, #3b5bfd);
+    opacity: 1;
+  }
+  [data-tema="koyu"] ul.yemekler li .yf-kcal { color: #a5b4ff; background: rgba(99, 120, 255, .18); }
+  .yf-besin-toplam {
+    margin: 10px 0 6px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: linear-gradient(140deg, var(--mavi, #3b5bfd), var(--mor, #8b5cf6));
+    color: #fff;
+    box-shadow: 0 10px 24px -12px rgba(59, 91, 253, .75);
+  }
+  .yf-bt-ust { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 14px; }
+  .yf-bt-ust small { font-weight: 500; opacity: .85; font-size: 11.5px; }
+  .yf-bt-ust b { font-size: 20px; letter-spacing: -.01em; }
+  .yf-bt-ust b small { font-size: 12px; }
+  .yf-bt-alt { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 12px; opacity: .95; }
   .yf-ek {
     display: flex;
     flex-wrap: wrap;
@@ -1744,7 +1798,12 @@
     // (Eski sabit "Tüm Yemekler" düğmesi kaldırıldı; panel Ayarlar > Yönetici bölümünden ve yorum panelinden açılır.)
     const eskiFab = document.getElementById("yf-admin-fab-btn"); if (eskiFab) eskiFab.remove();
 
+    const besin = yer === "unievi" && typeof uniEviBesin !== "undefined" ? uniEviBesin[tarih] : null;
+    const eskiToplam = ul.parentNode.querySelector(".yf-besin-toplam"); if (eskiToplam) eskiToplam.remove();
+    let sira = -1;
     ul.querySelectorAll("li").forEach(li => {
+      if (!(li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos"))) sira++;
+      const bv = besin && besin.y ? besin.y[sira] : null;
       if (li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos")) return;
 
       if (!li.dataset.yemek) {
@@ -1795,6 +1854,22 @@
         altAlta(li, yazi);
       }
 
+      if (bv) {
+        const hedef = li.querySelector(".yf-metin") || li;
+        const ETIKET = ["Ana yemek", "Yardımcı yemek", "Eşlikçi", "Tamamlayıcı"];
+        if (ETIKET[sira]) {
+          const et = document.createElement("small"); et.className = "yf-besin-etiket"; et.textContent = ETIKET[sira];
+          hedef.prepend(et);
+        }
+        const sat = document.createElement("small"); sat.className = "yf-besin";
+        const m = [["Protein", bv[1]], ["Karb.", bv[2]], ["Yağ", bv[3]]].filter(x => x[1] != null)
+          .map(([e, v]) => `<span>${e} <b>${String(v).replace(".", ",")} g</b></span>`).join("");
+        sat.innerHTML = m;
+        if (m) hedef.appendChild(sat);
+        const kc = document.createElement("span"); kc.className = "yf-kcal"; kc.innerHTML = `${bv[0]}<small> kcal</small>`;
+        li.appendChild(kc);
+      }
+
       if (yoneticiMi) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -1816,6 +1891,14 @@
       }
     });
 
+    if (besin && besin.t && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
+      const t = besin.t, f = v => String(v).replace(".", ",");
+      const kutu = document.createElement("div"); kutu.className = "yf-besin-toplam";
+      kutu.innerHTML = `<div class="yf-bt-ust"><span>Toplam enerji <small>(bir öğün)</small></span><b>${t[0]} <small>kcal</small></b></div>
+        <div class="yf-bt-alt"><span>Protein <b>${f(t[1])} g</b></span><span>Karbonhidrat <b>${f(t[2])} g</b></span><span>Yağ <b>${f(t[3])} g</b></span></div>`;
+      ul.after(kutu);
+    }
+
     const ek = YANINDA[yer === "unievi" ? "unievi" : "yurt"];
     if (ek && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
       const d = document.createElement("div"); d.className = "yf-ek";
@@ -1826,7 +1909,8 @@
         b.onclick = () => buyut(dosyaAd, adLabel);
         d.appendChild(b);
       });
-      ul.after(d);
+      const tp = ul.nextElementSibling;
+      (tp && tp.classList.contains("yf-besin-toplam") ? tp : ul).after(d);
     }
   }
 

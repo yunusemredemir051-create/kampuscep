@@ -161,11 +161,21 @@ const uniEviMenuleri = {
   "2026-10-27": ["Et kavurma", "Pirinç pilavı", "Mercimek çorbası", "Ayran"],
   "2026-10-28": ["Tebiyeli köfte", "Makarna", "Domates çorbası", "Meyve"],
   "2026-10-30": ["Etli bezelye", "Pirinç pilavı", "Mercimek çorbası", "Meyve"],
-  "2026-11-02": ["Etli patates", "Sebzeli şehriye pilavı", "Tarhana çorbası", "Tatlı"],
-  "2026-11-03": ["Fırında tavuk", "Bulgur pilavı", "Domates çorbası", "Yoğurt"],
+  "2026-11-02": ["Etli patates", "Sebzeli şehriye pilavı", "Tarhana çorbası", "Kadayıf"],
+  "2026-11-03": ["Antep tava", "Bulgur pilavı", "Domates çorbası", "Tahin helva"],
   "2026-11-04": ["Hamburger köfte", "Peynirli makarna", "Ezogelin çorbası", "Mevsim salata"],
   "2026-11-05": ["Etli nohut", "Pirinç pilavı", "Turşu", "Tahin helva"],
-  "2026-11-06": ["Tas kebap", "Bulgur pilavı", "Mercimek çorbası", "Meyve"]
+  "2026-11-06": ["Tas kebabı", "Bulgur pilavı", "Yayla çorbası", "Elma"]
+};
+
+/* Üniversite Evi besin değerleri (unievi.firat.edu.tr'deki tablodan).
+   Her yemek: [kcal, protein g, karbonhidrat g, yağ g] — sıra menüdeki yemek sırasıyla aynı.
+   null = sitede yazmıyor. t = günün toplamı (bir öğün). */
+const uniEviBesin = {
+  "2026-11-02": { y: [[250, 10.1, 26.5, 11.5], [336, 4.7, 51, 12.6], [183, 7.9, 22.8, 6.7], [246, 3, 27, 14]], t: [1015, 25.7, 127.3, 44.8] },
+  "2026-11-04": { y: [[309, 15.4, 15.5, 20.6], [354, 10.7, 47.4, 13.5], [115, 1.8, 12.8, 6.3], [123, 1.3, 6.3, 10.3]], t: [901, 29.2, 82, 50.7] },
+  "2026-11-05": { y: [[350, 17.4, 38.2, 14.2], [326, 4.1, 49.1, 12.6], [22, 1.3, 2, 1], [212, 3.4, 17, 14.5]], t: [910, 26.2, 106.3, 42.3] },
+  "2026-11-06": { y: [[348, 16.9, 18.1, 23.1], [291, 6.5, 37.2, 12.9], [115, 3.3, 12.4, 5.8], [60, null, 15, null]], t: [814, 26.7, 82.7, 41.8] }
 };
 /* Üniversite Evi'nin kapalı olduğu özel günler */
 const uniEviKapali = { "2026-10-29": "29 Ekim Cumhuriyet Bayramı" };
