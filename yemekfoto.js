@@ -1795,6 +1795,7 @@
   function guncelle(ul) {
     const kimlik = menuKimligi(ul);
     const eskiEk = ul.parentNode.querySelector(".yf-ek"); if (eskiEk) eskiEk.remove();
+    const eskiToplam = ul.parentNode.querySelector(".yf-besin-toplam"); if (eskiToplam) eskiToplam.remove();
     if (!kimlik) return;
     const [yer, tarih] = kimlik.split("_");
     const genel = yer === "unievi" ? "unievi" : "yurt";
@@ -1805,7 +1806,6 @@
     const eskiFab = document.getElementById("yf-admin-fab-btn"); if (eskiFab) eskiFab.remove();
 
     const besin = yer === "unievi" && typeof uniEviBesin !== "undefined" ? uniEviBesin[tarih] : null;
-    const eskiToplam = ul.parentNode.querySelector(".yf-besin-toplam"); if (eskiToplam) eskiToplam.remove();
     let sira = -1;
     ul.querySelectorAll("li").forEach(li => {
       if (!(li.classList.contains("bos-menu") || li.classList.contains("not") || li.classList.contains("bos"))) sira++;
