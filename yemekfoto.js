@@ -681,6 +681,7 @@
       "sade omlet": "yurt-sade-omlet",
       "omlet": "yurt-sade-omlet",
       "kaşarlı omlet": "yurt-sade-omlet",
+      "peynirli omlet": "yurt-sade-omlet",
       "patates salatası": "yurt-patates-salatasi",
       "çikolatalı kek": "yurt-cikolatali-kek",
       "kek": ["yurt-cikolatali-kek", "yurt-susamli-kek"],
