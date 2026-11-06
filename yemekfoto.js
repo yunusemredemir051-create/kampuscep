@@ -850,6 +850,52 @@
   .yf-bt-ust small { font-weight: 500; opacity: .85; font-size: 11.5px; }
   .yf-bt-ust b { font-size: 20px; letter-spacing: -.01em; }
   .yf-bt-ust b small { font-size: 12px; }
+  ul.yemekler li .yf-fiyat {
+    flex: none;
+    margin-left: auto;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.15;
+    padding-left: 6px;
+  }
+  ul.yemekler li .yf-fiyat b {
+    font-size: 13px;
+    font-weight: 800;
+    color: #047857;
+    background: rgba(16, 185, 129, .12);
+    padding: 3px 9px;
+    border-radius: 99px;
+    white-space: nowrap;
+  }
+  ul.yemekler li .yf-fiyat small { font-size: 10.5px; font-weight: 600; opacity: .55; margin-top: 3px; white-space: nowrap; }
+  [data-tema="koyu"] ul.yemekler li .yf-fiyat b { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
+  html body ul.yemekler li.fotolu:has(.yf-fiyat) { flex-wrap: nowrap !important; }
+  .yf-sec-fiyat {
+    display: inline-block;
+    margin-left: 7px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #047857;
+    background: rgba(16, 185, 129, .12);
+    padding: 1px 7px;
+    border-radius: 99px;
+    vertical-align: 1px;
+    white-space: nowrap;
+  }
+  [data-tema="koyu"] .yf-sec-fiyat { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
+  .yf-fiyat-toplam {
+    margin: 10px 0 6px;
+    padding: 11px 14px;
+    border-radius: 16px;
+    background: rgba(16, 185, 129, .09);
+    border: 1px solid rgba(16, 185, 129, .22);
+  }
+  .yf-fiyat-toplam div { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 13.5px; }
+  .yf-fiyat-toplam b { font-size: 18px; color: #047857; letter-spacing: -.01em; }
+  [data-tema="koyu"] .yf-fiyat-toplam b { color: #6ee7b7; }
+  .yf-fiyat-toplam small { display: block; margin-top: 3px; font-size: 10.5px; opacity: .6; }
   .yf-bt-alt { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 12px; opacity: .95; }
   .yf-ek {
     display: flex;
@@ -1792,12 +1838,72 @@
   /* =====================================================================
      MENÜ GÜNCELLEME (Yurt ve Üniversite Evi Kendi Görsellerini Alır)
      ===================================================================== */
+
+  /* KYK yurt yemek fiyatları — Elazığ Gençlik ve Spor İl Müdürlüğü 2026-2027 Yemek Gramaj ve Fiyat Listesi.
+     [tl, gramaj] ; kurallar sırayla denenir, ilk eşleşen kazanır. */
+  const KYK_KAHVALTI = [
+    [/kaşarlı tost/, 65, "Yarım ekmek"], [/sucuklu tost/, 55, "Yarım ekmek"], [/karışık tost|tost/, 65, "Yarım ekmek"],
+    [/salamlı.*sandviç/, 65, "Sandviç ekmeği"], [/sandviç/, 65, "Sandviç ekmeği"],
+    [/pizza|kumpir/, 50, "150 g"], [/sosisli patates/, 32, "150 g"], [/sosis/, 28, "100 g"],
+    [/gözleme/, 65, "1 adet"], [/börek/, 35, "120 g"],
+    [/haşlanmış patates|patates haşlama/, 10, "150 g"], [/kroket/, 8, "1 adet"],
+    [/patates/, 37, "150 g"], [/karışık kızartma/, 40, "150 g"], [/menemen/, 41, "150 g"],
+    [/sucuklu (omlet|yumurta)/, 28, "1 yumurta + 25 g sucuk"], [/kaşarlı omlet/, 31, "1 yumurta + 25 g kaşar"],
+    [/(peynirli|sebzeli) omlet/, 25, "1 yumurta + 30 g peynir"], [/omlet/, 21, "1 yumurta"],
+    [/yumurtalı ekmek/, 11, "1 dilim"], [/haşlanmış yumurta|^yumurta/, 13, "1 adet"],
+    [/kahvaltı keki|tuzlu kek/, 30, "100 g"], [/kek/, 17, "50 g"], [/krep|pankek/, 7, "1 adet"],
+    [/gevrek/, 12, "40 g"], [/pişi/, 7, "60 g"], [/açma/, 20, "1 adet"], [/simit/, 20, "1 adet"], [/poğaça/, 20, "1 adet"],
+    [/krem peynir/, 10, "20 g"], [/üçgen peynir/, 8, "12,5 g"], [/labne/, 10, "20 g"],
+    [/tulum|örgü|çeçil|hellim|otlu peynir/, 20, "40 g"], [/kaşar/, 20, "40 g"], [/peynir/, 15, "40 g"],
+    [/zeytin/, 11, "30 g"], [/salam/, 11, "35 g"], [/çikolata|fındık kreması/, 9, "20 g"],
+    [/pekmez/, 9, "20 g"], [/bal\b/, 10, "20 g"], [/reçel/, 6, "20 g"], [/tereyağ/, 10, "10 g"], [/helva/, 11, "40 g"]
+  ];
+  const ETLI = /etli|kıymalı|kuşbaşılı|karnıyarık|musakka/;
+  const KYK_AKSAM = [
+    [/çorba/, 33, "250 g"],
+    [/fırın makarna/, 38, "150 g"], [/mantı/, 45, "250 g"],
+    [/pirinç pilavı|pilav(?!.*bulgur)(?=.*pirinç)/, 38, "150 g"], [/bulgur/, 38, "200 g"], [/pilav/, 38, "150 g"],
+    [/makarna(?! salata)|erişte|spagetti/, 38, "200 g"], [/börek/, 35, "120 g"],
+    [/fıstıklı (baklava|kadayıf)/, 50, "100 g"], [/ekmek kadayıfı|şekerpare|revani|lokma|tulumba|kalburabastı/, 38, "100 g"],
+    [/baklava|kadayıf|şöbiyet/, 46, "100 g"], [/aşure/, 40, "150 g"],
+    [/muhallebi|sütlaç|trileçe|güllaç|puding|kazandibi|keşkül/, 38, "150 g"],
+    [/helva/, 38, "100 g"], [/yaş pasta|pasta/, 40, "120 g"], [/ayva tatlısı|kabak tatlısı/, 41, "150 g"],
+    [/komposto|hoşaf/, 19, "200 g"], [/kek|brownie|browni/, 17, "50 g"],
+    [/baget|tavuk but|pirzola/, 93, "250 g"],
+    [/tavuk.*(şiş|köfte|döner|şinitzel|şnitzel|ızgara|kızartma|tantuni|burger)|çıtır tavuk|nugget|şinitzel|şnitzel|tantuni/, 93, "200 g"],
+    [/tavuk|piliç/, 93, "250 g"],
+    [/izmir köfte|çiftlik köfte|terbiyeli köfte|tebiyeli köfte|sulu köfte|rosto köfte|sebzeli köfte/, 93, "250 g"],
+    [/patates salatası|patates köftesi|yumurtalı patates|patates kızartması|patates kavurması/, 37, "150 g"],
+    [/mercimek köfte|kısır|çiğ köfte|rus salatası|tarator|haydari|lebeniye|şakşuka|mücver|ezme|fava|börülce|humus|piyaz/, 24, "100 g"],
+    [/köfte/, 110, "200 g"],
+    [/ıspanak/, "D", "200 g"],
+    [/kebap|kebabı|tava\b|döner|kavurma|sote|haşlama|kapama|güveç|rosto|et yemeği|tas kebab/, 125, "250 g"],
+    [/dolma|sarma/, "D", "200 g"],
+    [/kuru fasulye|nohut|barbunya|yeşil mercimek/, "D", "200 g"],
+    [/fasulye|türlü|bamya|bezelye|kabak|patates|patlıcan|mantar|ıspanak|pırasa|imam bayıldı|karnıyarık|graten|kızartma|sebze|lahana|karnabahar/, "D", "200 g"],
+    [/çoban|gavurdağ|kaşık salata|ege salata/, 24, "150 g"],
+    [/kıvırcık|roka|tere|aysberg|yeşil salata/, 18, "50 g"], [/salata/, 21, "100 g"],
+    [/turşu/, 13, "80 g"], [/cacık/, 18, "150 g"], [/yoğurt/, 17, "120 g"]
+  ];
+  function kykFiyat(ad, ogun) {
+    const a = String(ad).toLocaleLowerCase("tr-TR");
+    const kural = (ogun === "kahvalti" ? KYK_KAHVALTI : KYK_AKSAM).find(k => k[0].test(a));
+    if (!kural) return null;
+    let tl = kural[1];
+    if (tl === "D") tl = ETLI.test(a) ? 93 : 60;
+    return { tl, g: kural[2] };
+  }
+  function tlYaz(v) { return (Number.isInteger(v) ? String(v) : v.toFixed(2).replace(".", ",")) + " ₺"; }
+
   function guncelle(ul) {
     const kimlik = menuKimligi(ul);
     const eskiEk = ul.parentNode.querySelector(".yf-ek"); if (eskiEk) eskiEk.remove();
     const eskiToplam = ul.parentNode.querySelector(".yf-besin-toplam"); if (eskiToplam) eskiToplam.remove();
+    const eskiFt = ul.parentNode.querySelector(".yf-fiyat-toplam"); if (eskiFt) eskiFt.remove();
     if (!kimlik) return;
-    const [yer, tarih] = kimlik.split("_");
+    const [yer, tarih, ogun] = kimlik.split("_");
+    const fiyatli = yer !== "unievi" && (ogun === "kahvalti" || ogun === "aksam");
+    let fMin = 0, fMax = 0, fSay = 0;
     const genel = yer === "unievi" ? "unievi" : "yurt";
 
     const yoneticiMi = false; // elle fotoğraf ekleme kaldırıldı
@@ -1876,6 +1982,32 @@
         li.appendChild(kc);
       }
 
+      const eskiF = li.querySelector(".yf-fiyat"); if (eskiF) eskiF.remove();
+      li.querySelectorAll(".yf-sec-fiyat").forEach(x => x.remove());
+      if (fiyatli) {
+        const pr = seceneklereAyir(li.dataset.yemek);
+        const son = pr.length > 1 ? pr[pr.length - 1].trim().split(/\s+/).pop() : "";
+        const fs = pr.map(x => /^\S+(lı|li|lu|lü)$/i.test(x.trim()) && son ? x + " " + son : x).map(x => kykFiyat(x, ogun)).filter(Boolean);
+        if (fs.length) {
+          const lo = Math.min(...fs.map(x => x.tl)), hi = Math.max(...fs.map(x => x.tl));
+          fMin += lo; fMax += hi; fSay++;
+          const gr = [...new Set(fs.map(x => x.g))];
+          const metin = li.querySelector(".yf-metin") || li;
+          const secSpan = metin.querySelector(":scope > span[style*='flex'] > span, :scope > span > span[style*='display: block']");
+          const secler = secSpan ? [...secSpan.parentNode.children] : [];
+          if (lo !== hi && pr.length > 1 && secler.length === pr.length && fs.length === pr.length) {
+            secler.forEach((sp, i) => {
+              const t = document.createElement("small"); t.className = "yf-sec-fiyat";
+              t.textContent = `${tlYaz(fs[i].tl)} · ${fs[i].g}`; sp.appendChild(t);
+            });
+            return;
+          }
+          const fe = document.createElement("span"); fe.className = "yf-fiyat";
+          fe.innerHTML = `<b>${lo === hi ? tlYaz(lo) : lo + "–" + tlYaz(hi)}</b><small>${gr.length === 1 ? gr[0] : "porsiyon"}</small>`;
+          li.appendChild(fe);
+        }
+      }
+
       if (yoneticiMi) {
         const btn = document.createElement("button");
         btn.type = "button";
@@ -1897,6 +2029,12 @@
       }
     });
 
+    if (fiyatli && fSay >= 2) {
+      const kutu = document.createElement("div"); kutu.className = "yf-fiyat-toplam";
+      kutu.innerHTML = `<div><span>Bu öğünün değeri</span><b>${fMin === fMax ? tlYaz(fMin) : tlYaz(fMin).replace(" ₺", "") + "–" + tlYaz(fMax)}</b></div>
+        <small>GSB Elazığ İl Müdürlüğü 2026-2027 yemek gramaj ve fiyat listesine göre${fMin !== fMax ? " · seçimine göre değişir" : ""}</small>`;
+      ul.after(kutu);
+    }
     if (besin && besin.t && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
       const t = besin.t, f = v => String(v).replace(".", ",");
       const kutu = document.createElement("div"); kutu.className = "yf-besin-toplam";
@@ -1916,7 +2054,7 @@
         d.appendChild(b);
       });
       const tp = ul.nextElementSibling;
-      (tp && tp.classList.contains("yf-besin-toplam") ? tp : ul).after(d);
+      (tp && (tp.classList.contains("yf-besin-toplam") || tp.classList.contains("yf-fiyat-toplam")) ? tp : ul).after(d);
     }
   }
 
