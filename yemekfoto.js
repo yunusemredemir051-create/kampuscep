@@ -662,7 +662,13 @@
       "tas kebap": "unievi-tas-kebabi",
       "yayla çorbası": "unievi-yayla-corbasi",
       "yayla çorba": "unievi-yayla-corbasi",
-      "elma": "unievi-elma"
+      "elma": "unievi-elma",
+      "etli patates": "unievi-etli-patates",
+      "etli patates yemeği": "unievi-etli-patates",
+      "tarhana çorbası": "unievi-tarhana-corbasi",
+      "tarhana çorba": "unievi-tarhana-corbasi",
+      "kadayıf": "unievi-kadayif",
+      "tel kadayıf": "unievi-kadayif"
     },
     "unievi_2026-10-21": { "tatlı": "unievi-baklava" },
     "yurt": {
