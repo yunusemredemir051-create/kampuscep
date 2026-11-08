@@ -199,7 +199,7 @@ const ybsDersleri = {
     { kod: "YBS1105", ad: "Bilişim Sistemleri ve Teknolojilerine Giriş", gun: "Salı", saat: "13:15–17:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2", link: "ders.html?d=ybs/1/bilisim-sistemleri" },
     { kod: "", ad: "Veri Tabanına Giriş", donem: 2, gun: "", saat: "", hoca: "", yer: "", link: "ders.html?d=ybs/1/veri-tabanina-giris" },
     { kod: "", ad: "Nesne Tabanlı Programlama I", donem: 2, gun: "", saat: "", hoca: "", yer: "", link: "ders.html?d=ybs/1/nesne-tabanli-programlama-1" },
-    { kod: "YBS1107", ad: "Algoritma", gun: "Pazartesi", saat: "08:15–12:00", hoca: "Doç. Dr. Mesut Toğaçar", yer: "ENF LAB 2", link: "ders.html?d=ybs/1/algoritma" },
+    { kod: "YBS1107", ad: "Algoritma ve Programlamaya Giriş", gun: "Pazartesi", saat: "08:15–12:00", hoca: "Doç. Dr. Mesut Toğaçar", yer: "ENF LAB 2", link: "ders.html?d=ybs/1/algoritma" },
     { kod: "YBS1111", ad: "Muhasebe I", gun: "Pazartesi", saat: "13:15–16:00", hoca: "Doç. Dr. Meltem Gül", yer: "Çevre Amfi 3", link: "" },
     { kod: "YBS1103", ad: "İşletme Yönetimi", gun: "Perşembe", saat: "09:15–12:00", hoca: "Doç. Dr. Cem Ayden", yer: "Kimya Amfi 4", link: "" },
     { kod: "İKT1101", ad: "Mikro İktisat", gun: "Perşembe", saat: "13:15–16:00", hoca: "Doç. Dr. Yunus Gülcü", yer: "Kimya Amfi 4", link: "" },

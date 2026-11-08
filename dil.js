@@ -285,7 +285,7 @@
     ["2026–2027 Güz", "2026–2027 Fall", "Payîza 2026–2027", "خريف 2026–2027"],
     ["Seminer Salonu", "Seminar Hall", "Salona Semînerê", "قاعة الندوات"],
     /* ders adları */
-    ["Algoritma", "Algorithms", "Algorîtma", "الخوارزميات"],
+    ["Algoritma ve Programlamaya Giriş", "Introduction to Algorithms and Programming", "Destpêka Algorîtma û Bernamekirinê", "مدخل إلى الخوارزميات والبرمجة"],
     ["Atatürk İlkeleri ve İnkılap Tarihi I", "Atatürk's Principles and History of the Turkish Revolution I", "Prensîbên Atatürk û Dîroka Şoreşê I", "مبادئ أتاتورك وتاريخ الثورة التركية I"],
     ["Bilgi Sistemleri Güvenliği ve Risk Yönetimi", "Information Systems Security and Risk Management", "Ewlehiya Pergalên Agahdariyê û Rêveberiya Rîskê", "أمن نظم المعلومات وإدارة المخاطر"],
     ["Bilişim Hukuku", "IT Law", "Hiqûqa Agahdariyê", "قانون المعلوماتية"],
