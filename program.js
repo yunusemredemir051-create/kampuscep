@@ -128,6 +128,7 @@
   function kartEkle() {
     var ana = document.getElementById("ana-durum"); if (!ana || document.getElementById("kc-program")) return;
     var k = document.createElement("div"); k.id = "kc-program"; k.className = "kc-prog cam"; k.hidden = true; ana.insertAdjacentElement("afterend", k);
+    var v = document.createElement("div"); v.id = "kc-vize"; v.hidden = true; k.insertAdjacentElement("afterend", v);
   }
 
   function ayarEkle() {
@@ -189,9 +190,15 @@
   function yenile() {
     akademikUygula(); hafta = null; ayarCiz();
     if (typeof durumCiz === "function") { durumCiz("ana-durum", true); durumCiz("takvim-durum", false); sayaclarCiz(); tatillerCiz(); zamanCiz(); }
-    not(); ciz();
+    not(); ciz(); vizeCiz();
   }
-  function basla() { kartEkle(); ayarEkle(); not(); ciz(); }
+  /* Vize programı kartı: yalnızca seçili bölüm + sınıf için eklenmiş program varsa görünür (vize.js) */
+  function vizeCiz() {
+    var k = document.getElementById("kc-vize"); if (!k) return;
+    var h = window.KC_VIZE ? KC_VIZE.kart(profil()) : "";
+    k.innerHTML = h; k.hidden = !h;
+  }
+  function basla() { kartEkle(); ayarEkle(); not(); ciz(); vizeCiz(); setInterval(vizeCiz, 60000); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", basla); else basla();
   if (document.getElementById("ayar-form") === null) setTimeout(ayarEkle, 800);
   window.kcProgramYenile = yenile;

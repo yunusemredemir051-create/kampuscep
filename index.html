@@ -1045,7 +1045,6 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
           <button data-donem="1">1. Dönem<small>Güz</small></button>
           <button data-donem="2">2. Dönem<small>Bahar</small></button>
         </div>
-        <div id="vize-kart"></div>
         <div class="liste" id="ders-liste"></div>
         <div class="vitrin" data-boyut="banner">Sponsorlu alan</div>
       </div>
@@ -1283,7 +1282,6 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
 </div>
 
 <script src="veri.js?v=26"></script>
-<script src="/vize.js?v=1"></script>
 <script>
 /* =====================================================================
    TARİH YARDIMCILARI
@@ -1835,8 +1833,6 @@ function sinifSec(s) {
   document.querySelectorAll("#donem-sekme button").forEach(b => b.classList.toggle("aktif", b.dataset.donem === donem));
   document.querySelectorAll("#sinif-sekme button").forEach(b => b.classList.toggle("aktif", b.dataset.sinif === s));
   const dersler = ybsDersleri[s].filter(d => String(d.donem || 1) === donem);
-  const vk = document.getElementById("vize-kart");
-  if (vk) vk.innerHTML = window.KC_VIZE && donem === "1" ? KC_VIZE.kart(s) : "";
   const renkler = ["m", "t", "y", "p", "r"];
   document.getElementById("ders-liste").innerHTML = dersler.length
     ? dersler.map((d, i) => {
@@ -1844,7 +1840,7 @@ function sinifSec(s) {
       return `
       <a class="satir-kart cam ${d.link ? "" : "soluk-kart"}" ${d.link ? `href="${d.link}"${/\.pdf$/i.test(d.link) ? ' target="_blank" rel="noopener"' : ""}` : ""}>
         <span class="ik ${renkler[i % renkler.length]}">${d.ad.charAt(0)}</span>
-        <div class="orta"><b>${d.ad}</b><small>${program || (d.kod ? d.kod : s + ". sınıf")}</small>${window.KC_VIZE && donem === "1" ? KC_VIZE.mini(KC_VIZE.kod(d.kod) || (d.link && KC_VIZE.bul(d.link.replace("ders.html?d=", "")))) : ""}</div>
+        <div class="orta"><b>${d.ad}</b><small>${program || (d.kod ? d.kod : s + ". sınıf")}</small></div>
         <span class="rozet ${d.link ? "acik" : "yakinda"}">${d.link ? "Notlar" : "Yakında"}</span>
       </a>`; }).join("")
     : `<div class="cam bos-kutu">${s}. sınıf ${donem}. dönem dersleri yakında eklenecek.</div>`;
@@ -1931,7 +1927,8 @@ function geriSay() {
 <script src="/ayarlar.js?v=13"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=3"></script>
-<script src="/program.js?v=6"></script>
+<script src="/vize.js?v=2"></script>
+<script src="/program.js?v=7"></script>
 <script src="/vitrin.js?v=12"></script>
 <!-- Aylık Menü Modalı -->
 <div class="modal-perde" id="aylik-modal" onclick="if(event.target===this)aylikMenuKapat()">

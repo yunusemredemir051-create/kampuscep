@@ -6,17 +6,16 @@
    { t: "GG.AA", s: "SS:DD–SS:DD", kod: "", ad: "", hoca: "", link: "ders.html?d=..." }
    link: o dersin not sayfası varsa yaz, yoksa "" bırak.
 
-   Kullanım:
-     KC_VIZE.kart(sinif)      → sınıfın vize programı kartı (HTML)
-     KC_VIZE.sekmeli()        → 1-4. sınıf sekmeli kart (dersler.html)
-     KC_VIZE.bul(dersYolu)    → ders sayfası için o dersin vizesi
-     KC_VIZE.kod(kod)         → ders kodundan vize
+   Ana sayfada, Ayarlar'daki bölüm ve sınıfa göre gösterilir (program.js).
+   Yeni bölüm: VIZE'ye { anahtar: { 1: [...], 2: [...] } } ekle (anahtar = profil bölüm kodu, ör. "adli").
+   Bölüm/sınıf için program yoksa ana sayfada hiçbir şey görünmez.
    ===================================================================== */
 (function () {
   var YIL = 2026;
   var SALON = "Çevre Derslik 3 / Sosyal Hizmetler Amfi 2";
   var BITIS = "2026-11-30";                    /* bu tarihten sonra kart gizlenir */
   var VIZE = {
+   ybs: {
     1: [
       { t: "14.11", s: "10:00–11:00", kod: "YBS1107", ad: "Algoritma ve Programlamaya Giriş", hoca: "Doç. Dr. Mesut Toğaçar", link: "ders.html?d=ybs/1/algoritma" },
       { t: "15.11", s: "14:15–15:15", kod: "YBS1111", ad: "Muhasebe I", hoca: "Doç. Dr. Meltem Gül", link: "" },
@@ -57,6 +56,7 @@
       { t: "24.11", s: "16:00–17:00", kod: "YBS415", ad: "Bilgi Sistemleri Güvenliği ve Risk Yönetimi", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "" },
       { t: "25.11", s: "16:00–17:00", kod: "YBS403", ad: "Müşteri İlişkileri Yönetimi", hoca: "Prof. Dr. Atilla Yücel", link: "" }
     ]
+   }
   };
 
   var AY = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
@@ -70,8 +70,10 @@
     return new Date(YIL, +g[1] - 1, +g[0], +m[0], +m[1]);
   }
   /* Her kaydı zenginleştir: başlangıç/bitiş tarihleri, sınıf */
-  Object.keys(VIZE).forEach(function (s) {
-    VIZE[s].forEach(function (v) { v.sinif = +s; v.bas = zaman(v, "bas"); v.bit = zaman(v, "bit"); });
+  Object.keys(VIZE).forEach(function (b) {
+    Object.keys(VIZE[b]).forEach(function (s) {
+      VIZE[b][s].forEach(function (v) { v.sinif = +s; v.bas = zaman(v, "bas"); v.bit = zaman(v, "bit"); });
+    });
   });
 
   function gunFarki(a, b) {
@@ -100,7 +102,7 @@
   /* ---------------------------- Görünüm ---------------------------- */
   var st = document.createElement("style");
   st.textContent =
-    ".vz{position:relative;overflow:hidden;border-radius:26px;padding:20px 18px 14px;margin:0 0 16px;isolation:isolate}" +
+    ".vz{position:relative;overflow:hidden;border-radius:26px;padding:20px 18px 14px;margin:14px 0 0;isolation:isolate}" +
     ".vz::before{content:'';position:absolute;right:-80px;top:-100px;width:260px;height:260px;border-radius:50%;background:radial-gradient(closest-side,rgba(242,85,127,.16),transparent);z-index:-1;pointer-events:none}" +
     ".vz::after{content:'';position:absolute;left:-60px;bottom:-110px;width:240px;height:240px;border-radius:50%;background:radial-gradient(closest-side,rgba(139,92,246,.12),transparent);z-index:-1;pointer-events:none}" +
     ".vz-et{display:inline-flex;align-items:center;gap:6px;padding:5px 11px 5px 8px;border-radius:99px;background:var(--pembe-acik,#ffe8ee);color:var(--pembe,#f2557f);font-size:11.5px;font-weight:800;letter-spacing:.2px}.vz-et svg{width:14px;height:14px}" +
@@ -122,13 +124,7 @@
     ".vz-satir.bugun .vz-tarih,.vz-satir.simdi .vz-tarih{background:linear-gradient(145deg,var(--pembe,#f2557f),var(--mor,#8b5cf6));color:#fff}" +
     "a.vz-satir:active{transform:scale(.99)}" +
     ".vz-salon{display:flex;gap:9px;align-items:flex-start;margin-top:8px;padding:11px 13px;border-radius:16px;background:rgba(20,27,52,.04);font-size:12.5px;font-weight:600;color:var(--soluk,#6b7390);line-height:1.45}.vz-salon svg{flex:none;width:16px;height:16px;margin-top:1px;color:var(--mavi,#3b5bfd)}.vz-salon b{color:var(--yazi,#141b34)}" +
-    ".vz-sek{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 4px;padding:5px;border-radius:17px;background:rgba(20,27,52,.05)}" +
-    ".vz-sek button{all:unset;cursor:pointer;text-align:center;padding:9px 0;border-radius:13px;font-size:13px;font-weight:800;color:var(--soluk,#6b7390)}.vz-sek button.aktif{background:#fff;color:var(--yazi,#141b34);box-shadow:0 6px 14px -8px rgba(20,27,52,.35)}" +
-    ".vz-hero{display:flex;align-items:center;gap:12px;margin-top:14px;padding:11px 13px;border-radius:17px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.26);backdrop-filter:blur(8px);color:#fff}" +
-    ".vz-hero .vz-tarih{background:#fff;color:var(--pembe,#f2557f);width:50px}.vz-hero>div:last-child{min-width:0;font-size:12.5px;font-weight:600;line-height:1.4;color:rgba(255,255,255,.88)}.vz-hero strong{display:block;font-size:14.5px;color:#fff;letter-spacing:-.2px}" +
-    ".vz-hero.bitti{opacity:.7}" +
-    ".vz-mini{display:block;margin-top:4px;font-size:11.5px;font-weight:800;color:var(--pembe,#f2557f)}.vz-mini.bitti{color:var(--soluk,#6b7390);font-weight:700}" +
-    "html[data-tema=koyu] .vz-satir{border-color:rgba(255,255,255,.08)}html[data-tema=koyu] .vz-cip{background:rgba(255,255,255,.08)}html[data-tema=koyu] .vz-salon,html[data-tema=koyu] .vz-sek{background:rgba(255,255,255,.06)}html[data-tema=koyu] .vz-sek button.aktif{background:rgba(255,255,255,.14);color:#fff}html[data-tema=koyu] .vz-satir.bitti .vz-tarih{background:rgba(255,255,255,.07)}";
+    "html[data-tema=koyu] .vz-satir{border-color:rgba(255,255,255,.08)}html[data-tema=koyu] .vz-cip{background:rgba(255,255,255,.08)}html[data-tema=koyu] .vz-salon{background:rgba(255,255,255,.06)}html[data-tema=koyu] .vz-satir.bitti .vz-tarih{background:rgba(255,255,255,.07)}";
   document.head.appendChild(st);
 
   var IK_TAKVIM = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M8.5 14l2 2 4-4"/></svg>';
@@ -145,8 +141,8 @@
     return v.link ? '<a class="vz-satir ' + d.k + '" href="' + v.link + '">' + ic + "</a>" : '<div class="vz-satir ' + d.k + '">' + ic + "</div>";
   }
 
-  function govde(sinif) {
-    var liste = VIZE[sinif] || [], simdi = new Date();
+  function govde(liste) {
+    var simdi = new Date();
     var sira = liste.filter(function (v) { return simdi < v.bit; })[0];
     var h = "";
     if (sira) {
@@ -159,56 +155,28 @@
     h += '<div class="vz-salon">' + IK_KONUM + "<div>Tüm sınavlar <b>" + SALON + "</b> salonlarında. Gözetmen ve salon değişikliklerini bölüm panosundan da kontrol et.</div></div>";
     return h;
   }
-  function baslik(sinif) {
-    var liste = VIZE[sinif] || [], kalan = liste.filter(function (v) { return new Date() < v.bit; }).length;
+  function baslik(liste, ad) {
+    var kalan = liste.filter(function (v) { return new Date() < v.bit; }).length;
     return '<span class="vz-et">' + IK_TAKVIM + "Güz 2026 · Vize programı</span>" +
-      "<h2>" + (sinif ? sinif + ". sınıf vizeleri" : "Vize programı") + "</h2>" +
+      "<h2>" + ad + " vizeleri</h2>" +
       '<div class="vz-alt">' + (kalan ? liste.length + " sınav · " + (kalan === liste.length ? liste[0].bas.getDate() + "–" + liste[liste.length - 1].bas.getDate() + " Kasım" : kalan + " sınav kaldı") : "Bu sınıfın tüm vizeleri tamamlandı, kolay gelsin") + "</div>";
   }
 
+  /* Bölüm ve sınıfa göre liste; eklenmemişse null */
+  function listeBul(p) {
+    if (!p || !VIZE[p.bolum]) return null;
+    var l = VIZE[p.bolum][String(p.sinif)];
+    return l && l.length ? l : null;
+  }
+  var BOLUM_AD = { ybs: "YBS" };
+
   window.KC_VIZE = {
-    veri: VIZE, salon: SALON, gorunsunMu: gorunsunMu, durum: durum, tarihYazi: tarihYazi,
-    kart: function (sinif) {
-      if (!gorunsunMu() || !VIZE[sinif]) return "";
-      return '<section class="vz cam" id="vize-programi">' + baslik(sinif) + govde(sinif) + "</section>";
-    },
-    sekmeli: function (kutu, ilk) {
-      if (!kutu) return;
-      if (!gorunsunMu()) { kutu.innerHTML = ""; return; }
-      var s = ilk || 1;
-      try { s = +localStorage.getItem("kc-vize-sinif") || s; } catch (e) {}
-      function ciz() {
-        kutu.innerHTML = '<section class="vz cam" id="vize-programi">' + baslik(s) +
-          '<div class="vz-sek" role="tablist">' + [1, 2, 3, 4].map(function (i) { return '<button role="tab" data-vz="' + i + '" class="' + (i === s ? "aktif" : "") + '">' + i + ". sınıf</button>"; }).join("") + "</div>" +
-          govde(s) + "</section>";
-        kutu.querySelectorAll("[data-vz]").forEach(function (b) {
-          b.onclick = function () { s = +b.dataset.vz; try { localStorage.setItem("kc-vize-sinif", s); } catch (e) {} ciz(); };
-        });
-      }
-      ciz();
-    },
-    bul: function (dersYolu) {
-      var hedef = "ders.html?d=" + dersYolu, out = null;
-      Object.keys(VIZE).forEach(function (s) { VIZE[s].forEach(function (v) { if (!out && v.link === hedef) out = v; }); });
-      return out;
-    },
-    kod: function (kod) {
-      var out = null; if (!kod) return null;
-      Object.keys(VIZE).forEach(function (s) { VIZE[s].forEach(function (v) { if (!out && v.kod === kod) out = v; }); });
-      return out;
-    },
-    /* Ders sayfasının mor başlığına eklenen vize şeridi */
-    hero: function (v) {
-      if (!v || !gorunsunMu()) return "";
-      var d = durum(v);
-      return '<div class="vz-hero ' + d.k + '"><div class="vz-tarih"><b>' + v.bas.getDate() + "</b><small>" + AY[v.bas.getMonth()] + "</small></div>" +
-        "<div><strong>" + (/ortak\//.test(v.link) ? "YBS " + v.sinif + ". sınıf vizesi" : "Vize") + " · " + tarihYazi(v, true) + "</strong>" + v.s + " · " + d.y + "<br>" + SALON + "</div></div>";
-    },
-    /* Ders listesindeki satır için kısa satır */
-    mini: function (v) {
-      if (!v || !gorunsunMu()) return "";
-      var d = durum(v);
-      return '<span class="vz-mini ' + d.k + '">Vize · ' + (d.k === "bitti" ? "tamamlandı" : tarihYazi(v) + " " + v.s.split("–")[0] + (d.k === "simdi" ? " · şu an sürüyor" : d.k === "yarin" ? " · yarın" : d.k === "bugun" ? " · bugün" : "")) + "</span>";
+    veri: VIZE,
+    /* p: akademikProfil() → { bolum: "ybs", sinif: "2" }. Program yoksa "" döner, hiçbir şey görünmez. */
+    kart: function (p) {
+      var liste = listeBul(p);
+      if (!liste || !gorunsunMu()) return "";
+      return '<section class="vz cam">' + baslik(liste, (BOLUM_AD[p.bolum] || "") + " " + p.sinif + ". sınıf") + govde(liste) + "</section>";
     }
   };
 })();
