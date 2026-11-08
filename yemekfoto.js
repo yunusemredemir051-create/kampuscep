@@ -651,6 +651,7 @@
       "fırında tavuk": "unievi-firinda-tavuk",
       "bulgur pilavı": "unievi-bulgur-pilavi",
       "mercimek çorbası": "unievi-mercimek-corbasi",
+      "mercimek çorba": "unievi-mercimek-corbasi",
       "yoğurt": "unievi-yogurt",
       "baklava": "unievi-baklava",
       "ayran": "unievi-ayran",
