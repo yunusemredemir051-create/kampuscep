@@ -3,7 +3,7 @@
    Görseller, PDF'ler ve yazı tipleri önce önbellekten gelir. */
 const SURUM = "kc-v179";
 const TEMEL = ["./", "index.html", "veri.js", "cerez.js", "tema.js", "favicon.svg", "manifest.webmanifest",
-               "ikonlar/ikon-192.png", "ikonlar/ikon-512.png", "masaustu.css", "uygulama.css", "kodatolye.js", "dersler.html", "gizlilik.html", "hakkimizda.html", "404.html"];
+               "ikonlar/ikon-192.png", "ikonlar/ikon-512.png", "masaustu.css", "uygulama.css", "kodatolye.js", "vize.js", "dersler.html", "gizlilik.html", "hakkimizda.html", "404.html"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(SURUM).then(c => c.addAll(TEMEL)).then(() => self.skipWaiting()));

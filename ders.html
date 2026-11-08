@@ -338,6 +338,7 @@ body { overflow-x: hidden; }
   </footer>
 </div>
 
+<script src="/vize.js?v=1"></script>
 <script src="kodatolye.js?v=2"></script>
 <script>
 /* =====================================================================
@@ -415,6 +416,7 @@ function listeCiz() {
       <span class="dh-etiket">${ikonOzet}${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</span>
       <h1>${ders.ad}</h1>
       <p class="dh-yazar">Hazırlayan · <b>${ders.yazarlar}</b></p>
+      ${window.KC_VIZE ? KC_VIZE.hero(KC_VIZE.bul(dersYolu)) : ""}
       ${ders.uniteler.length ? `<div class="dh-istat"><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div><div><b>${pv + dn}</b>sınav</div></div>` : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
       ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
