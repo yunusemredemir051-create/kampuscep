@@ -873,18 +873,23 @@
   [data-tema="koyu"] ul.yemekler li .yf-fiyat b { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
   html body ul.yemekler li.fotolu:has(.yf-fiyat) { flex-wrap: nowrap !important; }
   .yf-sec-fiyat {
-    display: inline-block;
-    margin-left: 7px;
-    font-size: 10.5px;
-    font-weight: 700;
-    color: #047857;
-    background: rgba(16, 185, 129, .12);
-    padding: 1px 7px;
-    border-radius: 99px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 8px;
     vertical-align: 1px;
     white-space: nowrap;
   }
-  [data-tema="koyu"] .yf-sec-fiyat { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
+  .yf-sec-fiyat b {
+    font-size: 11px;
+    font-weight: 800;
+    color: #047857;
+    background: rgba(16, 185, 129, .12);
+    padding: 2px 8px;
+    border-radius: 99px;
+  }
+  .yf-sec-fiyat em { font-style: normal; font-size: 10.5px; font-weight: 600; opacity: .55; }
+  [data-tema="koyu"] .yf-sec-fiyat b { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
   .yf-fiyat-toplam {
     margin: 10px 0 6px;
     padding: 11px 14px;
@@ -1998,7 +2003,7 @@
           if (lo !== hi && pr.length > 1 && secler.length === pr.length && fs.length === pr.length) {
             secler.forEach((sp, i) => {
               const t = document.createElement("small"); t.className = "yf-sec-fiyat";
-              t.textContent = `${tlYaz(fs[i].tl)} · ${fs[i].g}`; sp.appendChild(t);
+              t.innerHTML = `<b>${tlYaz(fs[i].tl)}</b><em>${fs[i].g}</em>`; sp.appendChild(t);
             });
             return;
           }
