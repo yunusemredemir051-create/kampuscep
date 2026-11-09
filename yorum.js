@@ -495,6 +495,31 @@ function gorunumBaslat(el) {
   d.gorGoz.observe(el);
 }
 
+/* Geçmiş günlerin oy toplamları: aynı sayfada bir kez, telefonda 6 saat saklanır (her açılışta tekrar tekrar okunmaz) */
+const GECMIS_SURE = 6 * 3600 * 1000;
+const gecmisBellek = new Map();
+function gecmisGunOy(id) {
+  if (gecmisBellek.has(id)) return gecmisBellek.get(id);
+  const anahtar = "kc-gecmis-" + id;
+  try {
+    const k = JSON.parse(localStorage.getItem(anahtar) || "null");
+    if (k && k.t && Date.now() - k.t < GECMIS_SURE && k.g) { const p = Promise.resolve(k.g); gecmisBellek.set(id, p); return p; }
+  } catch (e) {}
+  const p = getDocs(collection(db, "menuler", id, "oylar")).then(s => {
+    const g = { starTop: 0, starSay: 0, iyi: 0, kotu: 0 };
+    s.forEach(x => {
+      const v = x.data(), pu = typeof v.puan === "number" ? v.puan : 0;
+      if (pu >= 1 && pu <= 5) { g.starTop += pu; g.starSay++; }
+      const r = typeof v.reaksiyon === "number" ? v.reaksiyon : (v.d === 1 || v.d === -1 ? v.d : 0);
+      if (r === 1) g.iyi++; else if (r === -1) g.kotu++;
+    });
+    try { localStorage.setItem(anahtar, JSON.stringify({ t: Date.now(), g })); } catch (e) {}
+    return g;
+  }).catch(() => { gecmisBellek.delete(id); return null; });
+  gecmisBellek.set(id, p);
+  return p;
+}
+
 function oyDinleVeSay(el) {
   const d = kutular.get(el); if (!d) return;
   if (d.dinleOy) { d.dinleOy(); d.dinleOy = null; }
@@ -524,26 +549,24 @@ function oyDinleVeSay(el) {
   const gecmisGunler = ayniMenuGunleri(d.oyId);
   let sonSnap = null;
   if (gecmisGunler.length) {
-    Promise.all(gecmisGunler.map(id => getDocs(collection(db, "menuler", id, "oylar")).catch(() => null))).then(liste => {
+    Promise.all(gecmisGunler.map(gecmisGunOy)).then(liste => {
       if (kutular.get(el) !== d) return;
       const g = { starTop: 0, starSay: 0, iyi: 0, kotu: 0 };
-      liste.forEach(s => s && s.forEach(x => {
-        const v = x.data(), p = typeof v.puan === "number" ? v.puan : 0;
-        if (p >= 1 && p <= 5) { g.starTop += p; g.starSay++; }
-        const r = typeof v.reaksiyon === "number" ? v.reaksiyon : (v.d === 1 || v.d === -1 ? v.d : 0);
-        if (r === 1) g.iyi++; else if (r === -1) g.kotu++;
-      }));
+      liste.forEach(t => { if (t) { g.starTop += t.starTop; g.starSay += t.starSay; g.iyi += t.iyi; g.kotu += t.kotu; } });
       d.gecmis = g;
       if (sonSnap) sonSnap();
     });
   }
 
+  d.isleSon = () => { if (sonSnap) sonSnap(); };
   const oylarRef = collection(db, "menuler", d.oyId, "oylar");
   d.dinleOy = onSnapshot(oylarRef, snapOylar => {
     if (kutular.get(el) !== d) return;
+    d.oyHata = false;
     sonSnap = () => isle(snapOylar);
     isle(snapOylar);
   }, err => {
+    d.oyHata = true;
     console.warn("Ortak oy havuzu dinleme hatası:", err);
   });
 
@@ -947,21 +970,32 @@ function listeCiz(el) {
 /* Elle yüklenen bulut fotoğrafları kaldırıldı; fotoğraflar yalnızca sitenin kendi dosyalarından gelir. */
 
 /* ---------- başlat ---------- */
-function tara() { document.querySelectorAll(".degerlendir").forEach(kur); }
+/* Kutular ekrana yaklaşınca kurulur: açılmamış sekmelerdeki menüler için boşuna sorgu atılmaz */
+const kurGoz = "IntersectionObserver" in window ? new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { kurGoz.unobserve(e.target); kur(e.target); }
+}), { rootMargin: "1200px 0px" }) : null;
+function kurGec(el) {
+  if (!kurGoz || kutular.has(el)) { kur(el); return; }
+  kurGoz.unobserve(el); kurGoz.observe(el);
+}
+function tara() { document.querySelectorAll(".degerlendir").forEach(kurGec); }
 new MutationObserver(ml => {
   for (const m of ml) {
-    if (m.type === "attributes" && m.target.classList.contains("degerlendir")) kur(m.target);
-    else if (m.type === "childList") m.addedNodes.forEach(n => { if (n.nodeType === 1) { if (n.classList.contains("degerlendir")) kur(n); else n.querySelectorAll && n.querySelectorAll(".degerlendir").forEach(kur); } });
+    if (m.type === "attributes" && m.target.classList.contains("degerlendir")) kurGec(m.target);
+    else if (m.type === "childList") m.addedNodes.forEach(n => { if (n.nodeType === 1) { if (n.classList.contains("degerlendir")) kurGec(n); else n.querySelectorAll && n.querySelectorAll(".degerlendir").forEach(kurGec); } });
   }
 }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-menu"] });
 
+let ilkAuth = true;
 onAuthStateChanged(auth, async u => {
+  const ilk = ilkAuth; ilkAuth = false;
   ben = u;
   await takmaAdYukle();
   try { if (u && u.email) localStorage.setItem("kc-eposta", u.email); } catch (e) {}
   window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: false } }));
   kutular.forEach((d, el) => {
-    oyDinleVeSay(el);
+    if (ilk && !d.oyHata && d.isleSon) d.isleSon();
+    else oyDinleVeSay(el);
     if (d.acik) panelCiz(el);
   });
 });
