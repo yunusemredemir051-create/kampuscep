@@ -7,9 +7,15 @@
       if (!kutu || typeof siradaki !== "function" || typeof kalanYazi !== "function") return;
       var eski = kutu.querySelector(".afis-chips"); if (eski) eski.remove();
       var s = siradaki("sinav"), t = siradaki("tatil"), h = [];
-      var yaz = function (k, ad, ek, simdi) { return k.sayi === "Şu an" ? "Şu an " + simdi : k.sayi === "Yarın" ? ad + " yarın" : ek + " " + k.sayi + " " + k.ek; };
-      if (s) h.push(yaz(kalanYazi(s), "Sınav", "Sınava", "sınavda"));
-      if (t) h.push(yaz(kalanYazi(t), "Tatil", "Tatile", "tatilde"));
+      /* Sadece başlamasına 7 gün veya daha az kalan olaylar yazılır; sürerken veya uzaksa hiçbir şey gösterilmez */
+      var yaz = function (o, ad, ek) {
+        if (!o) return;
+        var k = kalanYazi(o);
+        if (k.sayi === "Yarın") h.push(ad + " yarın");
+        else if (typeof k.sayi === "number" && k.sayi <= 7) h.push(ek + " " + k.sayi + " gün");
+      };
+      yaz(s, "Sınav", "Sınava");
+      yaz(t, "Tatil", "Tatile");
       if (!h.length) return;
       var d = document.createElement("div"); d.className = "afis-chips";
       d.innerHTML = h.map(function (x) { return "<span>" + x + "</span>"; }).join("");
