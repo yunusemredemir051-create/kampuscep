@@ -17,6 +17,9 @@
   if (!D || !KOK) return;
   var ANAHTAR = "kc-koc:" + D.id, DAK = 6e4, GUN = 864e5;
   var TUR_AD = { mc: "Çoktan seçmeli", dy: "Doğru / yanlış", bosluk: "Boşluk doldurma", kod: "Kod tamamlama", cikti: "Kod çıktısı", sira: "Sıralama", hata: "Hatalı satırı bul", akis: "Akış şeması", klasik: "Klasik / yazma" };
+  var AKTIF_SINAV = ["vize"];           /* final açılınca: ["vize", "final"] */
+  D.konular = D.konular.filter(function (k) { return AKTIF_SINAV.indexOf(k.sinav) >= 0; });
+  D.sorular = D.sorular.filter(function (q) { return D.konular.some(function (k) { return k.no === q.k; }); });
   var KONU = {}; D.konular.forEach(function (k) { KONU[k.no] = k; });
   var SORU = {}; D.sorular.forEach(function (q) { SORU[q.id] = q; });
   var KAPSAM = { vize: D.konular.filter(function (k) { return k.sinav === "vize"; }).map(function (k) { return k.no; }), final: D.konular.map(function (k) { return k.no; }) };
@@ -323,10 +326,11 @@
       return { yaz: k.ad + " · konu sınavı", alt: c.hizli ? "Seviye tespitinde iyiydin; doğrudan sınavla kanıtla" : "Geçersen sonraki konu açılır", git: "#sinav/" + k.no, ikon: I.bayrak };
     }
     if (vg.length) return { yaz: "Tekrar · " + vg.length + " soru", alt: "Unutmamak için kısa bir tekrar", git: "#tekrar", ikon: I.yenile };
-    return { yaz: "Final denemesi", alt: "Tüm konuları öğrendin; gerçek sınav formatında kendini dene", git: "#deneme/final", ikon: I.bayrak };
+    var sonT = AKTIF_SINAV[AKTIF_SINAV.length - 1];
+    return { yaz: DENEME[sonT].ad, alt: "Tüm konuları öğrendin; gerçek sınav formatında kendini dene", git: "#deneme/" + sonT, ikon: I.bayrak };
   }
   function panel() {
-    var tur = KAPSAM.vize.every(function (n) { return K(n).gecti; }) && S.den.some(function (d) { return d.tur === "vize" && d.puan >= 70; }) ? "final" : "vize";
+    var tur = AKTIF_SINAV.length < 2 ? "vize" : KAPSAM.vize.every(function (n) { return K(n).gecti; }) && S.den.some(function (d) { return d.tur === "vize" && d.puan >= 70; }) ? "final" : "vize";
     var hz = hazirlik(tur), sv = genelSeviye(), adim = sonrakiAdim();
     var top = S.cev.filter(function (c) { return c.m !== "seviye"; }), dog = top.filter(function (c) { return c.ok; }).length;
     var ogr = D.konular.filter(function (k) { return K(k.no).gecti; }).length;
@@ -353,7 +357,7 @@
         (zb.length ? '<small class="ke-bas">En çok zorlandığın beceriler</small><ul class="ke-l">' + zb.slice(0, 5).map(function (b) { var x = S.bec[b]; return "<li><span>" + esc(becAd(b)) + '</span><b>' + x.y + " yanlış / " + (x.d + x.y) + "</b></li>"; }).join("") + "</ul>" : "") + "</div>";
     }
     /* sınava hazırlık */
-    h += '<h2 class="k-bolum">Sınava hazırlık</h2><div class="k-sinavlar">' + ["vize", "final"].map(function (t) {
+    h += '<h2 class="k-bolum">Sınava hazırlık</h2><div class="k-sinavlar">' + AKTIF_SINAV.map(function (t) {
       var x = hazirlik(t), denler = S.den.filter(function (d) { return d.tur === t; });
       return '<div class="ks-kart cam"><div class="ks-ust"><div><b>' + DENEME[t].ad + "</b><small>20 soru · " + DENEME[t].sure + " dk · " + x.top + ' konu</small></div><span class="ks-p ' + (x.hazir ? "hazir" : "") + '">%' + x.puan + "</span></div>" + cubuk(x.puan, x.hazir ? "iyi" : x.puan >= 50 ? "orta" : "zayif") +
         (x.eksikler.length ? '<ul class="ks-eksik">' + x.eksikler.map(function (e) { return "<li>" + esc(e) + "</li>"; }).join("") + "</ul>" : '<p class="ks-tamam">' + I.tik + " Tüm ölçütleri karşılıyorsun.</p>") +
@@ -724,7 +728,7 @@
       case "alistir": return alistirBasla(+p[1]);
       case "tekrar": return tekrarBasla();
       case "sinav": return sinavHazirla(+p[1]);
-      case "deneme": return denemeHazirla(p[1] === "final" ? "final" : "vize");
+      case "deneme": return denemeHazirla(p[1] === "final" && AKTIF_SINAV.indexOf("final") >= 0 ? "final" : "vize");
       default: return panel();
     }
   }
