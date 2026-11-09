@@ -32,8 +32,8 @@ window.SPONSORLAR = [
 ];
 
 (function () {
-  var kutu = document.getElementById("sponsorlar-alani");
-  if (!kutu || !window.SPONSORLAR.length) return;
+  var kutular = document.querySelectorAll("#sponsorlar-alani, .sponsorlar-alani");
+  if (!kutular.length || !window.SPONSORLAR.length) return;
   var st = document.createElement("style");
   st.textContent =
     ".sp-alan{margin-top:26px}" +
@@ -66,7 +66,7 @@ window.SPONSORLAR = [
   document.head.appendChild(st);
   var ok = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   var tek = window.SPONSORLAR.length === 1;
-  kutu.innerHTML = '<section class="sp-alan"><div class="sp-bas"><div><small>Öğrencilere özel</small><h2>Sponsorlarımız</h2></div><a href="/sponsor/">Sponsor ol</a></div><div class="sp-serit">' +
+  var html = '<section class="sp-alan"><div class="sp-bas"><div><small>Öğrencilere özel</small><h2>Sponsorlarımız</h2></div><a href="/magaza.html">Tümü</a></div><div class="sp-serit">' +
     window.SPONSORLAR.map(function (s) {
       var u = [].concat.apply([], s.kategoriler.map(function (k) { return k.urunler; }));
       return '<a class="sp-kart" style="--sp1:' + s.renk[0] + ";--sp2:" + s.renk[1] + (tek ? ";flex-basis:84%" : "") + '" href="/magaza.html?s=' + s.id + '">' +
@@ -76,4 +76,5 @@ window.SPONSORLAR = [
     }).join("") +
     (tek ? '<a class="sp-bos" href="/sponsor/"><b>İşletmeni burada gör</b><span>Öğrencilerin her gün baktığı menü sayfasında yerini al.</span><em>Bilgi al ›</em></a>' : "") +
     "</div></section>";
+  kutular.forEach(function (k) { k.innerHTML = html; });
 })();
