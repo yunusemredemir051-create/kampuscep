@@ -36,7 +36,7 @@
       { t: "23.11", s: "17:00–17:30", kod: "YBS2113", ad: "Sosyal Medya Analizi", hoca: "Doç. Dr. Seda Özer Şanal", link: "" },
       { t: "24.11", s: "12:40–13:10", kod: "AİT101", ad: "Atatürk İlkeleri ve İnkılap Tarihi I", hoca: "", link: "ders.html?d=ortak/inkilap-tarihi-1" },
       { t: "25.11", s: "17:00–18:00", kod: "YBS2103", ad: "İstatistik", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "ders.html?d=ybs/2/istatistik" },
-      { t: "26.11", s: "18:00–18:30", kod: "YBS2107", ad: "Pazarlama İlkeleri", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "" }
+      { t: "26.11", s: "18:00–18:30", kod: "YBS2107", ad: "Pazarlama İlkeleri", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "ders.html?d=ybs/2/pazarlama-ilkeleri" }
     ],
     3: [
       { t: "14.11", s: "13:00–14:00", kod: "YBS309", ad: "Yöneylem Araştırması", hoca: "Doç. Dr. Ahmed İhsan Şimşek", link: "" },
