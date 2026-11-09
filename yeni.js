@@ -42,6 +42,7 @@
       '<button type="button" data-git="takvim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Takvim</button>' +
       '<button type="button" data-yol="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l1.5-6h9L18 17M8 11l1-4h6l1 4"/><circle cx="8" cy="19" r="1.5"/><circle cx="16" cy="19" r="1.5"/></svg>Yol arkadaşı</button>' +
       '<button type="button" data-git="araclar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 12h2M14 12h2M8 16h2M14 16h2"/></svg>Araçlar</button>' +
+      '<button type="button" data-href="magaza.html" class="kc-sheet-sp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 13v8h14v-8"/></svg>Sponsorlarımız</button>' +
       '</div></div>';
     document.body.appendChild(perde);
     function ac() { perde.hidden = false; requestAnimationFrame(function () { perde.classList.add("acik"); }); }
@@ -51,7 +52,8 @@
       if (e.target === perde) return kapat();
       var b = e.target.closest("button"); if (!b) return;
       kapat();
-      if (b.dataset.yol) location.href = "yol-arkadasi/";
+      if (b.dataset.href) location.href = b.dataset.href;
+      else if (b.dataset.yol) location.href = "yol-arkadasi/";
       else if (window.sayfaAc) sayfaAc(b.dataset.git);
     });
     function isaret(id) { orta.classList.toggle("aktif", id === "takvim" || id === "araclar"); }

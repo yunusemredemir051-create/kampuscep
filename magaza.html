@@ -69,7 +69,30 @@ a { color: inherit; }
 .bilgi-kart div { display: flex; gap: 12px; align-items: center; padding: 13px 0; border-top: 1px solid var(--cizgi); font-size: 14px; font-weight: 600; }
 .bilgi-kart div:first-child { border-top: 0; } .bilgi-kart svg { width: 20px; height: 20px; color: var(--sp1); flex: none; } .bilgi-kart a { text-decoration: none; }
 .not { color: var(--soluk); font-size: 12.5px; text-align: center; margin: 18px 10px 0; line-height: 1.5; }
-.liste { display: grid; gap: 12px; }
+.lst-bas { margin: 6px 2px 18px; } .lst-bas h1 { margin: 10px 0 6px; font-size: 30px; letter-spacing: -.9px; } .lst-bas p { margin: 0; color: var(--soluk); font-size: 14.5px; line-height: 1.55; max-width: 520px; }
+.lst-et { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; letter-spacing: .4px; text-transform: uppercase; color: var(--mavi); background: var(--mavi-acik); padding: 5px 10px; border-radius: 99px; }
+.lst-et svg { width: 13px; height: 13px; }
+.lst { display: grid; gap: 14px; }
+.lst-kart { position: relative; overflow: hidden; isolation: isolate; display: block; border-radius: 26px; text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--sp1), var(--sp2)); box-shadow: 0 22px 40px -24px var(--sp1); transition: transform .15s; }
+.lst-kart:active { transform: scale(.985); }
+.lst-kart::after { content: ""; position: absolute; right: -60px; top: -80px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.22), transparent); z-index: -1; }
+.lst-ust { display: flex; gap: 14px; align-items: center; padding: 18px 18px 14px; }
+.lst-logo { width: 64px; height: 64px; border-radius: 19px; object-fit: cover; border: 2.5px solid rgba(255,255,255,.55); flex: none; }
+.lst-r { display: inline-block; font-size: 10.5px; font-weight: 800; letter-spacing: .6px; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: rgba(255,255,255,.2); }
+.lst-ust b { display: block; font-size: 22px; letter-spacing: -.5px; margin-top: 4px; } .lst-ust small { font-size: 13px; opacity: .88; font-weight: 600; }
+.lst-urun { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 18px; }
+.lst-urun img { width: 100%; aspect-ratio: 1; border-radius: 16px; object-fit: cover; border: 1.5px solid rgba(255,255,255,.3); }
+.lst-alt { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 16px 18px 18px; }
+.lst-alt span { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; font-weight: 700; opacity: .9; min-width: 0; } .lst-alt span svg { width: 15px; height: 15px; flex: none; }
+.lst-alt em { flex: none; display: inline-flex; align-items: center; gap: 6px; font-style: normal; padding: 11px 15px; border-radius: 14px; background: #fff; color: var(--sp1); font-weight: 800; font-size: 14px; }
+.lst-alt em svg { width: 16px; height: 16px; }
+.lst-bos { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 22px; text-decoration: none; border: 1.5px dashed rgba(20,27,52,.16); background: rgba(255,255,255,.5); }
+.lst-bos > span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 15px; background: var(--mavi-acik); color: var(--mavi); flex: none; } .lst-bos > span svg { width: 24px; height: 24px; }
+.lst-bos div { flex: 1; } .lst-bos b { display: block; font-size: 15px; } .lst-bos small { color: var(--soluk); font-size: 12.5px; }
+.lst-bos em { font-style: normal; font-weight: 800; font-size: 13px; color: var(--mavi); white-space: nowrap; }
+html[data-tema="koyu"] .lst-bos { background: rgba(255,255,255,.03); border-color: rgba(255,255,255,.14); }
+@media (min-width: 820px) { .lst { grid-template-columns: 1fr 1fr; } .lst-bos { grid-column: 1 / -1; } .lst-kart:hover { transform: translateY(-3px); } }
+
 .alt-bilgi { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin-top: 36px; font-size: 13px; color: var(--soluk); }
 @media (min-width: 640px) { .izgara { grid-template-columns: repeat(3, 1fr); } .hero { padding: 30px 30px 28px; } .hero h1 { font-size: 34px; } .hero-kolaj { grid-template-columns: repeat(3, 110px); } .hero-kolaj img { width: 110px; height: 110px; } }
 @media (min-width: 980px) { .kap { max-width: 1040px; padding: 24px 32px 80px; } .urun:hover .urun-resim img { transform: scale(1.05); } .btn:hover { filter: brightness(1.05); } }
@@ -87,7 +110,7 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: #141b34; }
 <div class="isik"></div>
 <div class="kap">
   <header class="ust cam">
-    <a class="ust-geri" href="index.html#yurtlar" aria-label="Geri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <a class="ust-geri" href="index.html" onclick="if(history.length>1&&document.referrer.indexOf(location.host)>-1){history.back();return false}" aria-label="Geri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
     <a class="logo" href="index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="32" height="32"><span>KampüsCepte<small>Sponsorlarımız</small></span></a>
   </header>
   <main id="magaza"></main>
@@ -107,10 +130,16 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: #141b34; }
   function harita(x) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(x.harita || x.ad + " Elazığ"); }
   if (!s) {
     document.title = "Sponsorlarımız – KampüsCepte";
-    M.innerHTML = '<h1 style="font-size:28px;letter-spacing:-.8px;margin:6px 2px 14px">Sponsorlarımız</h1><div class="liste">' + L.map(function (x) {
-      return '<a class="urun" style="flex-direction:row;align-items:center;gap:12px;padding:12px;text-decoration:none;--sp1:' + x.renk[0] + '"><img src="' + x.logo + '" style="width:64px;height:64px;border-radius:16px" alt=""><div style="flex:1"><b>' + x.ad + "</b><small style=\"margin:2px 0 0\">" + x.tur + "</small></div></a>";
-    }).join("") + "</div>";
-    M.querySelectorAll(".urun").forEach(function (a, i) { a.href = "magaza.html?s=" + L[i].id; });
+    var ok = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+    M.innerHTML = '<section class="lst-bas"><span class="lst-et">' + I.yildiz + 'Öğrencilere yakın işletmeler</span><h1>Sponsorlarımız</h1><p>KampüsCepte\'yi ücretsiz tutmamıza destek olan işletmeler. Menülerini, fiyatlarını gez; tek dokunuşla ara.</p></section>' +
+      '<div class="lst">' + L.map(function (x) {
+        var u = [].concat.apply([], x.kategoriler.map(function (k) { return k.urunler; }));
+        return '<a class="lst-kart" style="--sp1:' + x.renk[0] + ';--sp2:' + x.renk[1] + '" href="magaza.html?s=' + x.id + '">' +
+          '<div class="lst-ust"><img class="lst-logo" src="' + x.logo + '" alt=""><div><span class="lst-r">Sponsor</span><b>' + x.ad + '</b><small>' + x.tur + '</small></div></div>' +
+          '<div class="lst-urun">' + u.slice(0, 4).map(function (y) { return '<img src="' + y.resim + '" alt="" loading="lazy">'; }).join("") + '</div>' +
+          '<div class="lst-alt"><span>' + I.konum + x.konum.split(",")[0] + '</span><em>Mağazayı gez' + ok + '</em></div></a>';
+      }).join("") +
+      '<a class="lst-bos" href="/sponsor/"><span>' + I.dukkan + '</span><div><b>İşletmeni burada gör</b><small>Öğrencilerin her gün baktığı uygulamada yerini al.</small></div><em>Bilgi al ›</em></a></div>';
     return;
   }
   document.title = s.ad + " – KampüsCepte Sponsoru";
