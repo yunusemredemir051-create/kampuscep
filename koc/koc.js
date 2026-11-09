@@ -336,35 +336,36 @@
     var ogr = D.konular.filter(function (k) { return K(k.no).gecti; }).length;
     var eksik = D.konular.filter(function (k) { return durum(k.no) === "eksik"; });
     var vg = vadesiGelen();
-    var h = '<section class="k-hero"><div class="kh-sol"><span class="k-marka">SINAV KOÇUM</span><h1>' + esc(D.ad) + '</h1><p>Akıllı öğrenme ve sınav hazırlık sistemi</p>' +
+    var h = '<div class="p-izgara"><div class="p-sol"><section class="k-hero p-hero"><div class="kh-sol"><span class="k-marka">KİŞİSEL SINAV KOÇUN</span><h1>' + esc(D.ad) + '</h1><p>Akıllı öğrenme ve sınav hazırlık sistemi</p>' +
       '<div class="kh-durum ' + (hz.hazir ? "hazir" : "") + '">' + (hz.hazir ? I.tik + " " + DENEME[tur].ad.replace(" denemesi", "") + " sınavına hazırsın" : DENEME[tur].ad.replace(" denemesi", "") + " sınavına hazırlanıyorsun") + "</div></div>" +
       '<div class="kh-sag">' + halka(hz.puan, 118, "url(#hg)") + "</div></section>";
     h += '<svg width="0" height="0" style="position:absolute"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs></svg>';
-    h += '<a class="k-adim" href="' + adim.git + '"><span class="ka-ikon">' + adim.ikon + '</span><div><small>Sıradaki adımın</small><b>' + esc(adim.yaz) + "</b><span>" + esc(adim.alt) + '</span></div><i>' + I.ok + "</i></a>";
-    h += '<div class="k-istat"><div><b>' + sv[0] + "</b><small>Genel seviye</small>" + cubuk(yuzde(sv[1]), mRenk(sv[1])) + "</div><div><b>" + ogr + "/" + D.konular.length + "</b><small>Öğrenilen konu</small>" + cubuk(ogr / D.konular.length * 100, "iyi") + "</div>" +
+    h += '<a class="k-adim p-adim" href="' + adim.git + '"><span class="ka-ikon">' + adim.ikon + '</span><div><small>Sıradaki adımın</small><b>' + esc(adim.yaz) + "</b><span>" + esc(adim.alt) + '</span></div><i>' + I.ok + "</i></a>";
+    h += '<div class="k-istat p-istat"><div><b>' + sv[0] + "</b><small>Genel seviye</small>" + cubuk(yuzde(sv[1]), mRenk(sv[1])) + "</div><div><b>" + ogr + "/" + D.konular.length + "</b><small>Öğrenilen konu</small>" + cubuk(ogr / D.konular.length * 100, "iyi") + "</div>" +
       "<div><b>" + top.length + "</b><small>Çözülen soru</small></div><div><b>" + (top.length ? "%" + yuzde(dog / top.length) : "—") + "</b><small>Doğru oranı" + (top.length ? " · yanlış %" + (100 - yuzde(dog / top.length)) : "") + "</small></div>" +
       "<div><b>" + sureYaz(S.sure) + "</b><small>Çalışma süresi</small></div><div><b>" + S.den.length + "</b><small>Deneme sınavı</small></div></div>";
-    if (vg.length) h += '<a class="k-tekrar cam" href="#tekrar"><span>' + I.yenile + "</span><div><b>" + vg.length + ' soru tekrar bekliyor</b><small>Yanlış yaptığın sorular unutmaman için belirli aralıklarla geri gelir</small></div><i>' + I.ok + "</i></a>";
+    if (vg.length) h += '<a class="k-tekrar cam p-tekrar" href="#tekrar"><span>' + I.yenile + "</span><div><b>" + vg.length + ' soru tekrar bekliyor</b><small>Yanlış yaptığın sorular unutmaman için belirli aralıklarla geri gelir</small></div><i>' + I.ok + "</i></a>";
     /* konu yolu */
-    h += '<h2 class="k-bolum">Öğrenme yolun</h2><div class="k-yol cam">' + D.konular.map(function (k) {
+    var yolH = '<h2 class="k-bolum p-yol">Öğrenme yolun</h2><div class="k-yol cam p-yol">' + D.konular.map(function (k) {
       var d = durum(k.no), c = K(k.no);
       return '<a class="yol-satir d-' + d + '" href="' + (d === "kilitli" ? "javascript:void 0" : "#konu/" + k.no) + '"><span class="yol-no">' + (d === "ogrenildi" ? I.tik : d === "kilitli" ? I.kilit : k.no) + '</span><div class="yol-orta"><b>' + esc(k.ad) + '</b><div class="yol-alt"><span class="durum-c ' + d + '">' + DURUM_AD[d] + "</span>" + (k.sinav === "final" ? '<span class="durum-c final">Final konusu</span>' : "") + (d !== "kilitli" && (c.m > 0 || d === "ogrenildi") ? "<small>Yeterlilik %" + yuzde(c.m) + "</small>" : d === "kilitli" && c.hizli ? "<small>Tespitte iyiydin · hızlı geçiş</small>" : "") + "</div>" + (d !== "kilitli" ? cubuk(yuzde(c.m), mRenk(c.m)) : "") + "</div></a>";
     }).join("") + "</div>";
+    var eksikH = "";
     /* eksikler */
     var zb = zayifBeceriler();
     if (eksik.length || zb.length) {
-      h += '<h2 class="k-bolum">Eksiklerin</h2><div class="k-eksik cam">' + (eksik.length ? '<div class="ke-konular">' + eksik.map(function (k) { return '<a href="#konu/' + k.no + '" class="ke-c">' + esc(k.kisa) + " · %" + yuzde(K(k.no).m) + "</a>"; }).join("") + "</div>" : "") +
+      eksikH += '<h2 class="k-bolum p-eksik">Eksiklerin</h2><div class="k-eksik cam p-eksik">' + (eksik.length ? '<div class="ke-konular">' + eksik.map(function (k) { return '<a href="#konu/' + k.no + '" class="ke-c">' + esc(k.kisa) + " · %" + yuzde(K(k.no).m) + "</a>"; }).join("") + "</div>" : "") +
         (zb.length ? '<small class="ke-bas">En çok zorlandığın beceriler</small><ul class="ke-l">' + zb.slice(0, 5).map(function (b) { var x = S.bec[b]; return "<li><span>" + esc(becAd(b)) + '</span><b>' + x.y + " yanlış / " + (x.d + x.y) + "</b></li>"; }).join("") + "</ul>" : "") + "</div>";
     }
     /* sınava hazırlık */
-    h += '<h2 class="k-bolum">Sınava hazırlık</h2><div class="k-sinavlar">' + AKTIF_SINAV.map(function (t) {
+    h += '<h2 class="k-bolum p-sinav">Sınava hazırlık</h2><div class="k-sinavlar p-sinav">' + AKTIF_SINAV.map(function (t) {
       var x = hazirlik(t), denler = S.den.filter(function (d) { return d.tur === t; });
       return '<div class="ks-kart cam"><div class="ks-ust"><div><b>' + DENEME[t].ad + "</b><small>20 soru · " + DENEME[t].sure + " dk · " + x.top + ' konu</small></div><span class="ks-p ' + (x.hazir ? "hazir" : "") + '">%' + x.puan + "</span></div>" + cubuk(x.puan, x.hazir ? "iyi" : x.puan >= 50 ? "orta" : "zayif") +
         (x.eksikler.length ? '<ul class="ks-eksik">' + x.eksikler.map(function (e) { return "<li>" + esc(e) + "</li>"; }).join("") + "</ul>" : '<p class="ks-tamam">' + I.tik + " Tüm ölçütleri karşılıyorsun.</p>") +
         (denler.length ? '<div class="ks-gecmis">' + denler.slice(-8).map(function (d) { return '<div title="' + new Date(d.t).toLocaleDateString("tr") + '"><i style="height:' + Math.max(6, d.puan) + '%" class="' + (d.puan >= 70 ? "iyi" : d.puan >= 50 ? "orta" : "zayif") + '"></i><small>' + d.puan + "</small></div>"; }).join("") + "</div>" : "") +
         (x.acik ? '<a class="k-btn ' + (x.hazir ? "" : "ana") + '" href="#deneme/' + t + '">' + I.bayrak + (denler.length ? "Yeni deneme başlat" : "Denemeyi başlat") + "</a>" : '<div class="k-btn kilitli">' + I.kilit + "Konuların hepsini öğrenince açılır</div>") + "</div>";
     }).join("") + "</div>";
-    h += '<div class="k-alt-l"><a href="#seviye">' + (S.seviye ? "Seviye tespitini yeniden yap" : "Seviye tespiti") + '</a><button data-sifirla>İlerlememi sıfırla</button></div>';
+    h += '<div class="k-alt-l p-alt"><a href="#seviye">' + (S.seviye ? "Seviye tespitini yeniden yap" : "Seviye tespiti") + '</a><button data-sifirla>İlerlememi sıfırla</button></div></div><div class="p-sag">' + yolH + eksikH + "</div></div>";
     ciz(h);
     var sf = KOK.querySelector("[data-sifirla]");
     sf.onclick = function () { if (sf.dataset.onay) { S = bos(); kaydet(true); panel(); } else { sf.dataset.onay = 1; sf.textContent = "Emin misin? Tekrar dokun"; } };
