@@ -297,6 +297,15 @@ body { overflow-x: hidden; }
 .unite .butonlar .btn { border-radius: 15px; padding: 13px 14px; }
 .unite .butonlar .btn.ana { flex: 1 0 100%; background: linear-gradient(135deg, var(--mavi), var(--mor)); border-color: transparent; box-shadow: 0 14px 22px -14px var(--mavi); font-size: 15px; }
 .pv-kart { position: relative; } .pv-kart-link { transition: transform .15s; } .pv-kart-link:active { transform: scale(.985); }
+.koc-kart { display: flex; align-items: center; gap: 14px; margin: 0 0 16px; padding: 16px; border-radius: 22px; text-decoration: none; color: #fff; position: relative; overflow: hidden; isolation: isolate;
+  background: linear-gradient(120deg, #0f1630, #3b5bfd 62%, #8b5cf6); box-shadow: 0 20px 36px -22px #3b5bfd; }
+.koc-kart::after { content: ""; position: absolute; right: -50px; top: -70px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.22), transparent); z-index: -1; }
+.koc-ikon { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 16px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); flex: none; }
+.koc-ikon svg { width: 26px; height: 26px; }
+.koc-kart > div { flex: 1; min-width: 0; } .koc-kart small { font-size: 11px; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: #ffd27a; }
+.koc-kart b { display: block; font-size: 18px; letter-spacing: .6px; margin: 2px 0 3px; } .koc-kart span { font-size: 13px; line-height: 1.45; opacity: .9; font-weight: 600; }
+.koc-ok { font-size: 26px !important; font-weight: 700; opacity: .8 !important; }
+.koc-cubuk { display: block; height: 6px; border-radius: 99px; background: rgba(255,255,255,.2); margin-top: 8px; overflow: hidden; } .koc-cubuk em { display: block; height: 100%; background: #ffd27a; border-radius: inherit; }
 .pv-kart-link { display: block; position: relative; text-decoration: none; color: inherit; }
 .pv-kart-link::after { content: "›"; position: absolute; right: 2px; top: 50%; transform: translateY(-50%); font-size: 24px; font-weight: 700; color: var(--soluk); }
 .pv-pdf { margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -423,6 +432,7 @@ function listeCiz() {
       ${ders.uniteler.length ? `<div class="dh-istat"${pv + dn ? "" : ' style="grid-template-columns:repeat(2,1fr)"'}><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div>${pv + dn ? `<div><b>${pv + dn}</b>sınav</div>` : ""}</div>` : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
       ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
+    ${ders.koc ? kocKart() : ""}
     ${sek.length > 1 || !ders.uniteler.length ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
   if (listeSekme === "atolye") h += KodAtolye.listeHtml();
   else if (listeSekme === "prova") h += pvProvaHtml();
@@ -434,6 +444,14 @@ function listeCiz() {
   if (listeSekme === "atolye") KodAtolye.listeBagla(ICERIK, listeCiz);
   if (listeSekme === "cikmis" || ICERIK.querySelector(".unite[data-ck]")) cikmisBagla();
   ICERIK.querySelectorAll("[data-ls]").forEach(b => b.onclick = () => { listeSekme = b.dataset.ls; try { sessionStorage.setItem("kc-ls:" + dersYolu, listeSekme); } catch (e) {} listeCiz(); });
+}
+/* SINAV KOÇUM giriş kartı (ders.json: "koc": "koc.html") */
+function kocKart() {
+  let st = null; try { st = JSON.parse(localStorage.getItem("kc-koc:algoritma")); } catch (e) {}
+  const ogr = st && st.konu ? Object.values(st.konu).filter(k => k.gecti).length : 0;
+  const alt = !st || !st.seviye ? "Seviye tespitiyle başla · sana özel plan, anlatım, alıştırma ve gerçek sınav simülasyonu" : ogr + " / 11 konu öğrenildi · kaldığın yerden devam et";
+  return `<a class="koc-kart" href="${ders.koc}"><span class="koc-ikon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>
+    <div><small>Yeni · Kişisel sınav koçun</small><b>SINAV KOÇUM</b><span>${alt}</span>${st && st.seviye ? `<i class="koc-cubuk"><em style="width:${Math.round(ogr / 11 * 100)}%"></em></i>` : ""}</div><span class="koc-ok">›</span></a>`;
 }
 function cikmisHtml() {
   const indir = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>';
