@@ -420,7 +420,7 @@ function listeCiz() {
       <span class="dh-etiket">${ikonOzet}${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</span>
       <h1>${ders.ad}</h1>
       <p class="dh-yazar">Hazırlayan · <b>${ders.yazarlar}</b></p>
-      ${ders.uniteler.length ? `<div class="dh-istat"><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div><div><b>${pv + dn}</b>sınav</div></div>` : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
+      ${ders.uniteler.length ? `<div class="dh-istat"${pv + dn ? "" : ' style="grid-template-columns:repeat(2,1fr)"'}><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div>${pv + dn ? `<div><b>${pv + dn}</b>sınav</div>` : ""}</div>` : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
       ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
     ${sek.length > 1 || !ders.uniteler.length ? `<div class="sekmeler ls-sekme" role="tablist">${sek.map(([k, ad, n]) => `<button role="tab" data-ls="${k}" class="${listeSekme === k ? "aktif" : ""}"><span>${ad}</span><i>${n}</i></button>`).join("")}</div>` : ""}`;
