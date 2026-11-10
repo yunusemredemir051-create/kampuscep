@@ -19,7 +19,7 @@
   const css = `
   .vitrin.ck-var{display:block!important;contain:inline-size;border:0;background:none;min-height:0;padding:0;margin-top:18px}
   .ck{width:100%;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:10px;border-radius:var(--r-3);text-decoration:none;color:inherit;
-      background:rgba(255,255,255,.78);border:1px solid color-mix(in srgb,var(--yazi) 7%,transparent);box-shadow:var(--golge)}
+      background:var(--kart);border:1px solid color-mix(in srgb,var(--yazi) 7%,transparent);box-shadow:var(--golge)}
   .ck-resim{width:84px;height:84px;flex:none;border-radius:var(--r-2);overflow:hidden;background:#3a1d17}
   .ck-resim img,.ck-resim svg{width:100%;height:100%;object-fit:cover;display:block}
   .ck-orta{flex:1;min-width:0;overflow:hidden}
@@ -57,7 +57,7 @@
   .ckd .ckb-baslik{font-size:22px}
   .ckd .ckb-yazi{padding-top:70px}
   .ckd .ckb-btn{display:block;margin-top:10px;background:#e53935;color:#fff;text-align:center;border-radius:var(--r-2);padding:10px;font-weight:700;font-size:14px}
-  .ckm{display:flex;width:100%;box-sizing:border-box;align-items:center;gap:10px;padding:7px 12px;border-radius:var(--r-hap);background:rgba(255,255,255,.78);border:1px solid color-mix(in srgb,var(--yazi) 7%,transparent);text-decoration:none;color:var(--yazi)}
+  .ckm{display:flex;width:100%;box-sizing:border-box;align-items:center;gap:10px;padding:7px 12px;border-radius:var(--r-hap);background:var(--kart);border:1px solid color-mix(in srgb,var(--yazi) 7%,transparent);text-decoration:none;color:var(--yazi)}
   .ckm img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
   .ckm b{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ckm i{font-style:normal;font-size:11px;font-weight:700;color:#c62828}
