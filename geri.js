@@ -13,26 +13,26 @@
     /* mobil başlık: logonun solundaki yuvarlak düğme */
     ".kc-geri-sar{display:inline-flex;align-items:center;min-width:0}",
     ".kc-geri-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;margin-right:10px;padding:0;",
-    "border-radius:var(--r-2);border:1px solid var(--cizgi,#e6e9f4);background:var(--cam-guclu,rgba(255,255,255,.92));color:var(--yazi,#141b34);cursor:pointer;",
+    "border-radius:var(--r-2);border:1px solid var(--cizgi);background:var(--cam-guclu);color:var(--yazi);cursor:pointer;",
     "box-shadow:var(--golge);font:inherit;-webkit-tap-highlight-color:transparent;",
     "transition:width .28s cubic-bezier(.2,.8,.2,1),margin .28s cubic-bezier(.2,.8,.2,1),opacity .2s ease,transform .28s cubic-bezier(.2,.8,.2,1),background .2s,color .2s,border-color .2s}",
     ".kc-geri-btn svg{transition:transform .2s ease}",
-    ".kc-geri-btn:hover{background:var(--mavi-acik,#e6ebff);color:var(--mavi,#3b5bfd);border-color:var(--mavi,#3b5bfd)}",
+    ".kc-geri-btn:hover{background:var(--mavi-acik);color:var(--mavi);border-color:var(--mavi)}",
     ".kc-geri-btn:hover svg{transform:translateX(-2px)}",
     ".kc-geri-btn:active{transform:scale(.9)}",
-    ".kc-geri-btn:focus-visible,.kc-geri-masa:focus-visible{outline:2px solid var(--mavi,#3b5bfd);outline-offset:2px}",
+    ".kc-geri-btn:focus-visible,.kc-geri-masa:focus-visible{outline:2px solid var(--mavi);outline-offset:2px}",
     ".kc-geri-sar.kc-dar .logo,.kc-geri-sar.kc-dar .marka{font-size:0!important;gap:0!important}",
     ".kc-geri-btn.gizli{width:0;margin-right:0;opacity:0;transform:translateX(-10px) scale(.6);border-width:0;pointer-events:none;box-shadow:none}",
     /* masaüstü: içerik üstünde hap */
     ".kc-geri-masa{display:none;align-items:center;gap:6px;height:36px;padding:0 16px 0 10px;margin:0 0 16px;border-radius:var(--r-hap);",
-    "border:1px solid var(--cizgi,#e6e9f4);background:var(--cam-guclu,rgba(255,255,255,.92));color:var(--yazi,#141b34);",
-    "font:600 13.5px/1 var(--font,inherit);cursor:pointer;box-shadow:var(--golge);",
+    "border:1px solid var(--cizgi);background:var(--cam-guclu);color:var(--yazi);",
+    "font:600 13.5px/1 var(--font);cursor:pointer;box-shadow:var(--golge);",
     "transition:background .2s,color .2s,border-color .2s,transform .15s}",
     ".kc-geri-masa svg{width:18px;height:18px;transition:transform .2s ease}",
-    ".kc-geri-masa:hover{background:var(--mavi-acik,#e6ebff);color:var(--mavi,#3b5bfd);border-color:var(--mavi,#3b5bfd)}",
+    ".kc-geri-masa:hover{background:var(--mavi-acik);color:var(--mavi);border-color:var(--mavi)}",
     ".kc-geri-masa:hover svg{transform:translateX(-3px)}",
     ".kc-geri-masa:active{transform:scale(.96)}",
-    ".kc-geri-masa small{font:500 12px/1 var(--font,inherit);color:var(--soluk,#6b7390);margin-right:2px}",
+    ".kc-geri-masa small{font:500 12px/1 var(--font);color:var(--soluk);margin-right:2px}",
     "@media (min-width:821px){html.kc-geri-var .kc-geri-masa{display:inline-flex;animation:kcGeriBel .28s cubic-bezier(.2,.8,.2,1)}}",
     "@keyframes kcGeriBel{from{opacity:0;transform:translateX(-10px)}}",
     /* geri dönüşte sayfa soldan gelir */
@@ -40,11 +40,11 @@
     "@keyframes kcGeriGir{from{opacity:0;transform:translateX(-22px)}to{opacity:1;transform:none}}",
     /* Android: çıkış uyarısı */
     ".kc-geri-tost{position:fixed;left:50%;bottom:calc(112px + env(safe-area-inset-bottom,0px));z-index:9999;transform:translate(-50%,12px);opacity:0;",
-    "padding:11px 18px;border-radius:var(--r-hap);background:rgba(20,27,52,.92);color:#fff;font:600 13.5px/1.2 var(--font,sans-serif);white-space:nowrap;",
+    "padding:11px 18px;border-radius:var(--r-hap);background:color-mix(in srgb,var(--yazi) 92%,transparent);color:#fff;font:600 13.5px/1.2 var(--font,sans-serif);white-space:nowrap;",
     "box-shadow:var(--golge);pointer-events:none;transition:opacity .2s ease,transform .25s cubic-bezier(.2,.8,.2,1)}",
     ".kc-geri-tost.acik{opacity:1;transform:translate(-50%,0)}",
     "html[data-tema=koyu] .kc-geri-btn,html[data-tema=koyu] .kc-geri-masa{background:rgba(30,37,62,.9);border-color:#2b3350;color:#f0f3fe}",
-    "html[data-tema=koyu] .kc-geri-tost{background:rgba(240,243,254,.95);color:#141b34}",
+    "html[data-tema=koyu] .kc-geri-tost{background:rgba(240,243,254,.95);color:var(--yazi)}",
     "@media (prefers-reduced-motion:reduce){.kc-geri-btn,.kc-geri-masa,.kc-geri-tost{transition:none!important;animation:none!important}html.kc-geri-anim .sayfa.aktif{animation:none!important}}"
   ].join("");
   var st = d.createElement("style"); st.textContent = css; d.head.appendChild(st);

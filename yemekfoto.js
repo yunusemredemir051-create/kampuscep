@@ -784,15 +784,11 @@
     height: 48px;
     border-radius: var(--r-2);
     overflow: hidden;
-    background: #fff;
+    background: var(--kart-2);
     cursor: zoom-in;
     padding: 0;
     border: 0;
-    box-shadow: 0 0 0 2px #fff, var(--golge);
-    transition: transform .12s;
-  }
-  .yf:hover {
-    transform: scale(1.06);
+    box-shadow: 0 0 0 2px var(--kart);
   }
   .yf img {
     width: 100%;
@@ -806,11 +802,9 @@
   }
   .yf-besin-etiket {
     display: block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    opacity: .5;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--soluk);
     margin-bottom: 1px;
   }
   .yf-besin {
@@ -834,19 +828,19 @@
     font-weight: 700;
     font-size: 13px;
     padding: 4px 10px;
-    border-radius: var(--r-hap);
-    background: var(--mavi-acik, #e6ebff);
-    color: var(--mavi, #3b5bfd);
+    border-radius: var(--r-1);
+    background: var(--kart-2);
+    color: var(--yazi);
+    font-family: var(--font-b);
     opacity: 1;
   }
-  [data-tema="koyu"] ul.yemekler li .yf-kcal { color: #a5b4ff; background: rgba(99, 120, 255, .18); }
   .yf-besin-toplam {
     margin: 10px 0 6px;
     padding: 12px 14px;
     border-radius: var(--r-2);
-    background: linear-gradient(140deg, var(--mavi, #3b5bfd), var(--mor, #8b5cf6));
-    color: #fff;
-    box-shadow: var(--golge);
+    background: var(--yazi);
+    color: var(--kart);
+    box-shadow: none;
   }
   .yf-bt-ust { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 14px; }
   .yf-bt-ust small { font-weight: 500; opacity: .85; font-size: 11.5px; }
@@ -865,14 +859,13 @@
   ul.yemekler li .yf-fiyat b {
     font-size: 13px;
     font-weight: 700;
-    color: #047857;
-    background: rgba(16, 185, 129, .12);
+    color: var(--yesil);
+    background: var(--yesil-acik);
     padding: 3px 9px;
     border-radius: var(--r-hap);
     white-space: nowrap;
   }
   ul.yemekler li .yf-fiyat small { font-size: 10.5px; font-weight: 600; opacity: .55; margin-top: 3px; white-space: nowrap; }
-  [data-tema="koyu"] ul.yemekler li .yf-fiyat b { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
   html body ul.yemekler li.fotolu:has(.yf-fiyat) { flex-wrap: nowrap !important; }
   .yf-sec-fiyat {
     display: inline-flex;
@@ -885,23 +878,21 @@
   .yf-sec-fiyat b {
     font-size: 11px;
     font-weight: 700;
-    color: #047857;
-    background: rgba(16, 185, 129, .12);
+    color: var(--yesil);
+    background: var(--yesil-acik);
     padding: 2px 8px;
     border-radius: var(--r-hap);
   }
   .yf-sec-fiyat em { font-style: normal; font-size: 10.5px; font-weight: 600; opacity: .55; }
-  [data-tema="koyu"] .yf-sec-fiyat b { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
   .yf-fiyat-toplam {
     margin: 10px 0 6px;
     padding: 11px 14px;
     border-radius: var(--r-2);
-    background: rgba(16, 185, 129, .09);
-    border: 1px solid rgba(16, 185, 129, .22);
+    background: var(--yesil-acik);
+    border: 0;
   }
   .yf-fiyat-toplam div { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 13.5px; }
-  .yf-fiyat-toplam b { font-size: 18px; color: #047857; letter-spacing: -.01em; }
-  [data-tema="koyu"] .yf-fiyat-toplam b { color: #6ee7b7; }
+  .yf-fiyat-toplam b { font-family: var(--font-b); font-size: 19px; color: var(--yesil); letter-spacing: -.01em; }
   .yf-fiyat-toplam small { display: block; margin-top: 3px; font-size: 10.5px; opacity: .6; }
   .yf-bt-alt { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 12px; opacity: .95; }
   .yf-ek {
@@ -912,18 +903,18 @@
     margin: 8px 0 4px;
     font-size: 12.5px;
     font-weight: 700;
-    color: var(--soluk, #6b7390);
+    color: var(--soluk);
   }
   .yf-ek button {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    border: 1px solid var(--cizgi, #e6e9f2);
-    background: #fff;
-    border-radius: var(--r-hap);
+    border: 1px solid var(--cam-kenar);
+    background: var(--kart);
+    border-radius: var(--r-1);
     padding: 3px 10px 3px 3px;
-    font: 700 12.5px var(--font, inherit);
-    color: var(--yazi, #141b34);
+    font: 600 12.5px var(--font);
+    color: var(--yazi);
     cursor: zoom-in;
   }
   .yf-ek img {
@@ -959,18 +950,18 @@
     border-radius: var(--r-2);
   }
   .yf-buyuk figcaption {
-    font: 700 15px var(--font, system-ui);
-    color: #141b34;
+    font: 700 15px var(--font);
+    color: var(--yazi);
     margin-top: 8px;
   }
 
   /* Admin Butonları */
   .yf-admin-btn {
     margin-left: auto;
-    border: 1px dashed #3b5bfd;
-    background: rgba(59, 91, 253, .08);
-    color: #3b5bfd;
-    font: 700 11.5px var(--font, inherit);
+    border: 1px dashed var(--mavi);
+    background: color-mix(in srgb,var(--mavi) 8%,transparent);
+    color: var(--mavi);
+    font: 700 11.5px var(--font);
     padding: 4px 9px;
     border-radius: var(--r-1);
     cursor: pointer;
@@ -978,7 +969,7 @@
     flex: none;
   }
   .yf-admin-btn:hover {
-    background: #3b5bfd;
+    background: var(--mavi);
     color: #fff;
   }
 
@@ -988,12 +979,12 @@
     bottom: 24px;
     right: 20px;
     z-index: 9990;
-    background: linear-gradient(135deg, #1e3a8a, #3b5bfd);
+    background: var(--yazi);
     color: #fff;
     border: 0;
     border-radius: var(--r-hap);
     padding: 11px 18px;
-    font: 700 13px var(--font, inherit);
+    font: 700 13px var(--font);
     box-shadow: var(--golge);
     cursor: pointer;
     display: flex;
@@ -1023,18 +1014,18 @@
     padding: 22px 20px 18px;
     width: min(420px, 100%);
     box-shadow: var(--golge);
-    font-family: var(--font, system-ui);
+    font-family: var(--font);
   }
   .yf-modal-kutu h3 {
     margin: 0 0 6px;
     font-size: 16.5px;
     font-weight: 700;
-    color: #141b34;
+    color: var(--yazi);
   }
   .yf-modal-kutu p {
     margin: 0 0 16px;
     font-size: 13px;
-    color: #6b7390;
+    color: var(--soluk);
     line-height: 1.45;
   }
   .yf-secenekler-liste {
@@ -1059,9 +1050,9 @@
     transition: all .15s;
   }
   .yf-secim-btn:hover {
-    background: #f4f5f7;
-    border-color: #3b5bfd;
-    color: #3b5bfd;
+    background: var(--zemin);
+    border-color: var(--mavi);
+    color: var(--mavi);
     transform: translateY(-1px);
   }
   .yf-secim-btn b {
@@ -1082,7 +1073,7 @@
     border: 0;
     background: #f1f5f9;
     color: #64748b;
-    font: 700 13px var(--font, inherit);
+    font: 700 13px var(--font);
     padding: 11px;
     border-radius: var(--r-2);
     cursor: pointer;
@@ -1112,7 +1103,7 @@
     display: flex;
     flex-direction: column;
     box-shadow: var(--golge);
-    font-family: var(--font, system-ui);
+    font-family: var(--font);
     overflow: hidden;
   }
   .yf-katalog-ust {
@@ -1127,7 +1118,7 @@
     margin: 0;
     font-size: 18px;
     font-weight: 700;
-    color: #141b34;
+    color: var(--yazi);
     display: flex;
     align-items: center;
     gap: 8px;
@@ -1135,7 +1126,7 @@
   .yf-katalog-ust p {
     margin: 2px 0 0;
     font-size: 12.5px;
-    color: #6b7390;
+    color: var(--soluk);
   }
   .yf-katalog-kapat {
     border: 0;
@@ -1174,7 +1165,7 @@
     background: #fff;
     border-radius: var(--r-2);
     padding: 9px 14px;
-    font: 600 13.5px var(--font, inherit);
+    font: 600 13.5px var(--font);
     color: #1e293b;
   }
   .yf-katalog-filtreler {
@@ -1188,7 +1179,7 @@
     color: #475569;
     padding: 6px 13px;
     border-radius: var(--r-hap);
-    font: 700 12px var(--font, inherit);
+    font: 700 12px var(--font);
     cursor: pointer;
     transition: all .15s;
   }
@@ -1196,7 +1187,7 @@
     background: #cbd5e1;
   }
   .yf-kat-sekme.aktif {
-    background: #3b5bfd;
+    background: var(--mavi);
     color: #fff;
   }
   .yf-yeni-yemek-bar {
@@ -1209,7 +1200,7 @@
     background: #fff;
     border-radius: var(--r-1);
     padding: 6px 10px;
-    font: 700 12px var(--font, inherit);
+    font: 700 12px var(--font);
     color: #1e293b;
   }
   .yf-yeni-yemek-inp {
@@ -1218,7 +1209,7 @@
     background: #fff;
     border-radius: var(--r-1);
     padding: 7px 12px;
-    font: 500 12.5px var(--font, inherit);
+    font: 500 12.5px var(--font);
   }
   .yf-yeni-yemek-btn {
     border: 0;
@@ -1226,7 +1217,7 @@
     color: #fff;
     border-radius: var(--r-1);
     padding: 7px 14px;
-    font: 700 12px var(--font, inherit);
+    font: 700 12px var(--font);
     cursor: pointer;
   }
   .yf-katalog-liste {
@@ -1326,11 +1317,11 @@
   }
   .yf-btn-yukle {
     border: 0;
-    background: #3b5bfd;
+    background: var(--mavi);
     color: #fff;
     border-radius: var(--r-1);
     padding: 6px 11px;
-    font: 700 12px var(--font, inherit);
+    font: 700 12px var(--font);
     cursor: pointer;
     transition: background .15s;
   }
@@ -1338,12 +1329,12 @@
     background: #2546e5;
   }
   .yf-btn-degistir {
-    border: 1px solid #3b5bfd;
-    background: #f4f5f7;
-    color: #3b5bfd;
+    border: 1px solid var(--mavi);
+    background: var(--zemin);
+    color: var(--mavi);
     border-radius: var(--r-1);
     padding: 5px 10px;
-    font: 700 11.5px var(--font, inherit);
+    font: 700 11.5px var(--font);
     cursor: pointer;
   }
   .yf-btn-sil {
@@ -1352,7 +1343,7 @@
     color: #dc2626;
     border-radius: var(--r-1);
     padding: 5px 9px;
-    font: 700 11.5px var(--font, inherit);
+    font: 700 11.5px var(--font);
     cursor: pointer;
   }
   `;

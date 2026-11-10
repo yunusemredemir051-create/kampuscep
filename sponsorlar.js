@@ -38,18 +38,18 @@ window.SPONSORLAR = [
   st.textContent =
     ".sp-alan{margin-top:26px}" +
     ".sp-bas{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:0 2px 12px}" +
-    ".sp-bas small{display:block;font-size:11.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--soluk,#6b7390)}" +
+    ".sp-bas small{display:block;font-size:11.5px;font-weight:700;color:var(--soluk)}" +
     ".sp-bas h2{margin:2px 0 0;font-size:21px;letter-spacing:-.5px}" +
-    ".sp-bas a{font-size:13px;font-weight:700;color:var(--mavi,#3b5bfd);text-decoration:none;white-space:nowrap}" +
+    ".sp-bas a{font-size:13px;font-weight:700;color:var(--mavi);text-decoration:none;white-space:nowrap}" +
     ".sp-serit{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;margin:0 -2px;scrollbar-width:none}" +
     ".sp-serit::-webkit-scrollbar{display:none}" +
     ".sp-kart{position:relative;flex:0 0 100%;max-width:420px;scroll-snap-align:start;display:block;border-radius:var(--r-3);overflow:hidden;text-decoration:none;color:#fff;isolation:isolate;" +
-    "background:linear-gradient(135deg,var(--sp1),var(--sp2));box-shadow:var(--golge);transition:transform .15s}" +
+    "background:var(--sp1);box-shadow:var(--golge);transition:transform .15s}" +
     ".sp-kart:active{transform:scale(.985)}" +
-    ".sp-kart::after{content:'';position:absolute;right:-60px;top:-80px;width:220px;height:220px;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.22),transparent);z-index:-1}" +
+    ".sp-kart::after{content:'';position:absolute;right:-60px;top:-80px;width:220px;height:220px;border-radius:50%;background:none;z-index:-1}" +
     ".sp-ust{display:flex;gap:14px;align-items:center;padding:16px 16px 12px}" +
     ".sp-logo{width:56px;height:56px;border-radius:var(--r-3);object-fit:cover;flex:none;border:2px solid rgba(255,255,255,.5);box-shadow:var(--golge)}" +
-    ".sp-ust div{min-width:0}.sp-rozet{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-hap);background:rgba(255,255,255,.2)}" +
+    ".sp-ust div{min-width:0}.sp-rozet{display:inline-block;font-size:10.5px;font-weight:700;padding:3px 8px;border-radius:var(--r-hap);background:rgba(255,255,255,.2)}" +
     ".sp-ust b{display:block;font-size:19px;letter-spacing:-.4px;margin-top:4px}.sp-ust span.t{font-size:12.5px;opacity:.85;font-weight:600}" +
     ".sp-urunler{display:flex;gap:8px;padding:0 16px}" +
     ".sp-urunler img{width:64px;height:64px;border-radius:var(--r-2);object-fit:cover;flex:none;border:1.5px solid rgba(255,255,255,.35)}" +
@@ -58,9 +58,9 @@ window.SPONSORLAR = [
     ".sp-alt small{font-size:12px;font-weight:600;opacity:.85;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}" +
     ".sp-gez{flex:none;display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:var(--r-2);background:#fff;color:var(--sp1);font-weight:700;font-size:13.5px}" +
     ".sp-gez svg{width:16px;height:16px}" +
-    ".sp-bos{flex:0 0 78%;max-width:300px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:18px;border-radius:var(--r-3);text-decoration:none;color:var(--yazi,#141b34);" +
-    "border:1.5px dashed rgba(20,27,52,.16);background:rgba(255,255,255,.45)}" +
-    ".sp-bos b{font-size:15px}.sp-bos span{font-size:12.5px;color:var(--soluk,#6b7390);line-height:1.45}.sp-bos em{font-style:normal;font-size:13px;font-weight:700;color:var(--mavi,#3b5bfd);margin-top:4px}" +
+    ".sp-bos{flex:0 0 78%;max-width:300px;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:18px;border-radius:var(--r-3);text-decoration:none;color:var(--yazi);" +
+    "border:1.5px dashed color-mix(in srgb,var(--yazi) 16%,transparent);background:rgba(255,255,255,.45)}" +
+    ".sp-bos b{font-size:15px}.sp-bos span{font-size:12.5px;color:var(--soluk);line-height:1.45}.sp-bos em{font-style:normal;font-size:13px;font-weight:700;color:var(--mavi);margin-top:4px}" +
     "html[data-tema=koyu] .sp-bos{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.14)}" +
     "@media (min-width:821px){.sp-kart{flex-basis:420px}}";
   document.head.appendChild(st);

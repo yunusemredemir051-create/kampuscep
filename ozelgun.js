@@ -124,7 +124,7 @@
   const adaylar = bul(tarih);
   if (onizleme) {
     const n = document.createElement("div");
-    n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:var(--r-hap);opacity:.9;white-space:nowrap";
+    n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:var(--yazi);color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:var(--r-hap);opacity:.9;white-space:nowrap";
     n.innerHTML = `Önizleme: ${yaz(tarih)}${adaylar[0] ? " · " + adaylar[0].t.ad : " · özel gün yok"} <a href="?tarih=kapat" style="color:#9fb3ff;margin-left:6px">kapat</a>`;
     document.body.appendChild(n);
   }
@@ -227,8 +227,8 @@
     html.rz body{background-color:#f5f0e4}
     .rz .afis .ust-bilgi h1{font-size:24px}
     .rz-kutu{margin-top:10px;color:#fff}
-    .rz-kutu .rz-et{font-size:13px;font-weight:700;color:#f6d77e;letter-spacing:.2px}
-    .rz-kutu .rz-sayac{font:700 40px/1.05 var(--font,inherit);letter-spacing:1px;color:#ffe08a;text-shadow:0 2px 18px rgba(246,196,83,.45);font-variant-numeric:tabular-nums}
+    .rz-kutu .rz-et{font-size:13px;font-weight:700;color:#f6d77e;}
+    .rz-kutu .rz-sayac{font:700 40px/1.05 var(--font);color:#ffe08a;text-shadow:0 2px 18px rgba(246,196,83,.45);font-variant-numeric:tabular-nums}
     .rz-ust{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
     .rz-hap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
     .rz-hap span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:var(--r-1);padding:5px 9px;font-size:12.5px;font-weight:700;color:#fff}
@@ -236,7 +236,7 @@
     .rz-alt{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
     .rz-cubuk{flex:1;max-width:220px;height:5px;border-radius:var(--r-1);background:rgba(255,255,255,.2);overflow:hidden}
     .rz-cubuk i{display:block;height:100%;border-radius:var(--r-1);background:linear-gradient(90deg,#f6c453,#ffe08a)}
-    .rz-imsakiye{flex:none;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font,inherit);padding:6px 12px;border-radius:var(--r-hap);cursor:pointer}
+    .rz-imsakiye{flex:none;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font);padding:6px 12px;border-radius:var(--r-hap);cursor:pointer}
     .rz-not{font-size:11px;color:rgba(255,255,255,.6);margin-top:6px}.rz-not:empty{display:none}
     .rz-dlg{border:0;border-radius:var(--r-3);padding:0;max-width:440px;width:calc(100% - 32px);box-shadow:var(--golge)}
     .rz-dlg::backdrop{background:rgba(14,18,60,.55)}

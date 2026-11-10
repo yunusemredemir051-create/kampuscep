@@ -23,7 +23,7 @@ a { color: inherit; }
 .ust .tema-sag { display: contents; } .ust .tema-dugme { grid-column: 3; }
 .ust .logo { grid-column: 2; justify-self: center; display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .ust .logo span { display: flex; flex-direction: column; font-weight: 700; font-size: 16.5px; letter-spacing: -.3px; line-height: 1.1; }
-.ust .logo small { font-size: 10.5px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--mavi); margin-top: 2px; }
+.ust .logo small { font-size: 10.5px; font-weight: 700; color: var(--mavi); margin-top: 2px; }
 .logo-ikon { width: 32px; height: 32px; border-radius: var(--r-1); }
 
 .hero { position: relative; overflow: hidden; border-radius: var(--r-3); color: #fff; isolation: isolate; padding: 22px 20px 20px;
@@ -31,7 +31,7 @@ a { color: inherit; }
 .hero-kolaj { position: absolute; right: -24px; top: -18px; display: grid; grid-template-columns: repeat(2, 92px); gap: 10px; transform: rotate(10deg); opacity: .5; z-index: -1; }
 .hero-kolaj img { width: 92px; height: 92px; border-radius: var(--r-3); object-fit: cover; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--sp2) 30%, transparent 85%); opacity: .9; z-index: -1; }
-.h-rozet { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 5px 10px; border-radius: var(--r-hap); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); }
+.h-rozet { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: var(--r-hap); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.25); }
 .h-rozet svg { width: 13px; height: 13px; }
 .h-ust { display: flex; gap: 14px; align-items: center; margin-top: 14px; }
 .h-logo { width: 68px; height: 68px; border-radius: var(--r-3); object-fit: cover; border: 2.5px solid rgba(255,255,255,.6); box-shadow: var(--golge); flex: none; }
@@ -65,7 +65,7 @@ a { color: inherit; }
 .bilgi-kart div:first-child { border-top: 0; } .bilgi-kart svg { width: 20px; height: 20px; color: var(--sp1); flex: none; } .bilgi-kart a { text-decoration: none; }
 .not { color: var(--soluk); font-size: 12.5px; text-align: center; margin: 18px 10px 0; line-height: 1.5; }
 .lst-bas { margin: 6px 2px 18px; } .lst-bas h1 { margin: 10px 0 6px; font-size: 30px; letter-spacing: -.9px; } .lst-bas p { margin: 0; color: var(--soluk); font-size: 14.5px; line-height: 1.55; max-width: 520px; }
-.lst-et { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--mavi); background: var(--mavi-acik); padding: 5px 10px; border-radius: var(--r-hap); }
+.lst-et { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; color: var(--mavi); background: var(--mavi-acik); padding: 5px 10px; border-radius: var(--r-hap); }
 .lst-et svg { width: 13px; height: 13px; }
 .lst { display: grid; gap: 14px; }
 .lst-kart { position: relative; overflow: hidden; isolation: isolate; display: block; border-radius: var(--r-3); text-decoration: none; color: #fff; background: linear-gradient(135deg, var(--sp1), var(--sp2)); box-shadow: var(--golge); transition: transform .15s; }
@@ -73,7 +73,7 @@ a { color: inherit; }
 .lst-kart::after { content: ""; position: absolute; right: -60px; top: -80px; width: 230px; height: 230px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.22), transparent); z-index: -1; }
 .lst-ust { display: flex; gap: 14px; align-items: center; padding: 18px 18px 14px; }
 .lst-logo { width: 64px; height: 64px; border-radius: var(--r-3); object-fit: cover; border: 2.5px solid rgba(255,255,255,.55); flex: none; }
-.lst-r { display: inline-block; font-size: 10.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; padding: 3px 8px; border-radius: var(--r-hap); background: rgba(255,255,255,.2); }
+.lst-r { display: inline-block; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: var(--r-hap); background: rgba(255,255,255,.2); }
 .lst-ust b { display: block; font-size: 22px; letter-spacing: -.5px; margin-top: 4px; } .lst-ust small { font-size: 13px; opacity: .88; font-weight: 600; }
 .lst-urun { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 18px; }
 .lst-urun img { width: 100%; aspect-ratio: 1; border-radius: var(--r-2); object-fit: cover; border: 1.5px solid rgba(255,255,255,.3); }
@@ -81,7 +81,7 @@ a { color: inherit; }
 .lst-alt span { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; font-weight: 700; opacity: .9; min-width: 0; } .lst-alt span svg { width: 15px; height: 15px; flex: none; }
 .lst-alt em { flex: none; display: inline-flex; align-items: center; gap: 6px; font-style: normal; padding: 11px 15px; border-radius: var(--r-2); background: #fff; color: var(--sp1); font-weight: 700; font-size: 14px; }
 .lst-alt em svg { width: 16px; height: 16px; }
-.lst-bos { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--r-3); text-decoration: none; border: 1.5px dashed rgba(20,27,52,.16); background: rgba(255,255,255,.5); }
+.lst-bos { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--r-3); text-decoration: none; border: 1.5px dashed color-mix(in srgb,var(--yazi) 16%,transparent); background: rgba(255,255,255,.5); }
 .lst-bos > span { display: grid; place-items: center; width: 48px; height: 48px; border-radius: var(--r-2); background: var(--mavi-acik); color: var(--mavi); flex: none; } .lst-bos > span svg { width: 24px; height: 24px; }
 .lst-bos div { flex: 1; } .lst-bos b { display: block; font-size: 15px; } .lst-bos small { color: var(--soluk); font-size: 12.5px; }
 .lst-bos em { font-style: normal; font-weight: 700; font-size: 13px; color: var(--mavi); white-space: nowrap; }
@@ -92,7 +92,7 @@ html[data-tema="koyu"] .lst-bos { background: rgba(255,255,255,.03); border-colo
 @media (min-width: 640px) { .izgara { grid-template-columns: repeat(3, 1fr); } .hero { padding: 30px 30px 28px; } .hero h1 { font-size: 34px; } .hero-kolaj { grid-template-columns: repeat(3, 110px); } .hero-kolaj img { width: 110px; height: 110px; } }
 @media (min-width: 980px) { .kap { max-width: 1040px; padding: 24px 32px 80px; } .urun:hover .urun-resim img { transform: scale(1.05); } .btn:hover { filter: brightness(1.05); } }
 html[data-tema="koyu"] { --kart: #1a2034; }
-html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: #141b34; }
+html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: var(--yazi); }
 </style>
 <link rel="manifest" href="manifest.webmanifest">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>

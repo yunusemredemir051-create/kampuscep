@@ -19,14 +19,14 @@
   const css = `
   .vitrin.ck-var{display:block!important;contain:inline-size;border:0;background:none;min-height:0;padding:0;margin-top:18px}
   .ck{width:100%;box-sizing:border-box;display:flex;align-items:center;gap:12px;padding:10px;border-radius:var(--r-3);text-decoration:none;color:inherit;
-      background:rgba(255,255,255,.78);border:1px solid rgba(20,27,52,.07);box-shadow:var(--golge)}
+      background:rgba(255,255,255,.78);border:1px solid color-mix(in srgb,var(--yazi) 7%,transparent);box-shadow:var(--golge)}
   .ck-resim{width:84px;height:84px;flex:none;border-radius:var(--r-2);overflow:hidden;background:#3a1d17}
   .ck-resim img,.ck-resim svg{width:100%;height:100%;object-fit:cover;display:block}
   .ck-orta{flex:1;min-width:0;overflow:hidden}
   .ck-ust{font-size:11px;font-weight:700;color:#8a90a8;display:flex;gap:6px;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ck-ust b{color:#c62828;font-weight:700}
-  .ck-baslik{font-weight:700;font-size:15px;color:#141b34;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .ck-icerik{font-size:12px;color:#6b7390;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ck-baslik{font-weight:700;font-size:15px;color:var(--yazi);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ck-icerik{font-size:12px;color:var(--soluk);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ck-alt{display:flex;align-items:center;gap:8px;margin-top:4px;min-width:0}
   .ck-yer{font-size:11px;font-weight:700;color:#8a90a8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ck-fiyat{flex:none;display:inline-block;font-size:12.5px;font-weight:700;color:#fff;background:#e53935;border-radius:var(--r-1);padding:2px 8px}
@@ -57,11 +57,11 @@
   .ckd .ckb-baslik{font-size:22px}
   .ckd .ckb-yazi{padding-top:70px}
   .ckd .ckb-btn{display:block;margin-top:10px;background:#e53935;color:#fff;text-align:center;border-radius:var(--r-2);padding:10px;font-weight:700;font-size:14px}
-  .ckm{display:flex;width:100%;box-sizing:border-box;align-items:center;gap:10px;padding:7px 12px;border-radius:var(--r-hap);background:rgba(255,255,255,.78);border:1px solid rgba(20,27,52,.07);text-decoration:none;color:#141b34}
+  .ckm{display:flex;width:100%;box-sizing:border-box;align-items:center;gap:10px;padding:7px 12px;border-radius:var(--r-hap);background:rgba(255,255,255,.78);border:1px solid color-mix(in srgb,var(--yazi) 7%,transparent);text-decoration:none;color:var(--yazi)}
   .ckm img{width:34px;height:34px;border-radius:50%;object-fit:cover;flex:none}
   .ckm b{flex:1;min-width:0;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .ckm i{font-style:normal;font-size:11px;font-weight:700;color:#c62828}
-  .ck-onizleme{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:999;background:#141b34;color:#fff;font:700 12px/1 system-ui,sans-serif;padding:8px 12px;border-radius:var(--r-hap);opacity:.85}
+  .ck-onizleme{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:999;background:var(--yazi);color:#fff;font:700 12px/1 system-ui,sans-serif;padding:8px 12px;border-radius:var(--r-hap);opacity:.85}
   .ck-onizleme a{color:#9fb3ff;margin-left:8px}`;
   const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
 
@@ -73,7 +73,7 @@
       kutu.innerHTML = `<a class="ck ck-rv" href="https://wa.me/905437813895?text=${mesaj}">
         <div class="ck-resim rv"><img src="${R}reklam-ver.webp" alt="" onerror="this.remove()"></div>
         <div class="ck-orta">
-          <div class="ck-ust"><b style="color:#3b5bfd">Sponsorlu alan</b></div>
+          <div class="ck-ust"><b style="color:var(--mavi)">Sponsorlu alan</b></div>
           <div class="ck-baslik">Bu alana reklam verebilirsiniz</div>
           <div class="ck-icerik">İşletmenizi Elazığ'daki öğrencilere tanıtın</div>
           <div class="ck-alt"><span class="ck-fiyat" style="background:#25d366">WhatsApp'tan yaz</span><span class="ck-yer">0543 781 38 95</span></div>
