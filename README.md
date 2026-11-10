@@ -58,3 +58,11 @@ Her yurdun kendi kısa sayfası var: `kampuscepte.com.tr/ahmet-kabakli/`, `/fira
 `/harput/`, `/izzetpasa/`, `/sare-ana/`. Sayfa bugünün (ve yarının) kahvaltı, akşam ve Üniversite Evi menüsünü
 `veri.js`'den okur, yani menü güncellenince bu sayfalar da kendiliğinden güncellenir. WhatsApp'tan gelen biri geri tuşuna
 basınca ana sayfaya gider. Yeni yurt sayfaları gizli kaynak betikleriyle üretilir.
+
+## Tasarım sistemi
+
+Bütün sayfalar önce `kc.css` dosyasını yükler. Renkler, yazı tipleri (`yazitipi/` klasöründen sunulur), köşe ve gölge
+değerleri yalnızca bu dosyadaki belirteçlerle (`--mavi`, `--kart`, `--r-2` …) verilir; yeni bir bileşen yazarken sabit renk
+ya da köşe değeri yerine bu belirteçler kullanılır. Ana sayfanın stilleri `ana.css` dosyasındadır. Koyu mod ve takım
+renkleri `tema.js` içinde aynı belirteçleri değiştirir. `kc.css` ya da `ana.css` değişince sayfalardaki `?v=` numarası ve
+`sw.js` içindeki `SURUM` artırılır.
