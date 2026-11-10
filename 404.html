@@ -6,13 +6,14 @@
 <script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
 <meta name="robots" content="noindex">
 <title>Sayfa bulunamadı – KampüsCepte</title>
+<link rel="stylesheet" href="/kc.css?v=2">
 <style>
-  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #eef3ff; color: #141b34; font-family: "Plus Jakarta Sans", "Segoe UI", sans-serif; text-align: center; padding: 24px; }
-  .kart { background: #fff; border-radius: 22px; padding: 32px 26px; max-width: 420px; box-shadow: 0 10px 30px -12px rgba(40,60,140,.18); }
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: var(--zemin); color: var(--yazi); font-family: var(--font); text-align: center; padding: 24px; }
+  .kart { background: var(--kart); border-radius: var(--r-3); padding: 32px 26px; max-width: 420px; box-shadow: var(--golge); }
   h1 { margin: 0 0 8px; font-size: 24px; }
-  p { color: #6b7390; margin: 0 0 20px; line-height: 1.6; }
-  a { display: inline-block; margin: 4px; padding: 12px 16px; border-radius: 14px; background: #3b5bfd; color: #fff; font-weight: 700; text-decoration: none; }
-  a.ikincil { background: #e6ebff; color: #3b5bfd; }
+  p { color: var(--soluk); margin: 0 0 20px; line-height: 1.6; }
+  a { display: inline-block; margin: 4px; padding: 12px 16px; border-radius: var(--r-2); background: var(--mavi); color: #fff; font-weight: 700; text-decoration: none; }
+  a.ikincil { background: var(--mavi-acik); color: var(--mavi); }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="manifest.webmanifest">
@@ -24,9 +25,9 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=19"></script>
-<script src="/duyuru.js?v=4" defer></script>
-<script defer src="/ozelgun.js?v=8"></script>
+<script src="/tema.js?v=20"></script>
+<script src="/duyuru.js?v=5" defer></script>
+<script defer src="/ozelgun.js?v=9"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
 <!-- /PWA -->
 </head>
@@ -43,6 +44,6 @@
     document.getElementById("ana").href = kok;
     document.getElementById("notlar").href = kok + "dersler.html";
   </script>
-<script defer src="/geri.js?v=1"></script>
+<script defer src="/geri.js?v=2"></script>
 </body>
 </html>

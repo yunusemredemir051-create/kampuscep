@@ -161,8 +161,8 @@
       izg.onclick = ev => { const b = ev.target.closest(".ayar-avatar-btn"); if (!b) return; secili = b.dataset.avatar; avatarGrid.dataset.secili = secili; ciz(); try { navigator.vibrate && navigator.vibrate(8); } catch (x) {} };
       buy.onclick = () => {
         const o = document.createElement("div");
-        o.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(10,14,30,.82);display:grid;place-items:center;backdrop-filter:blur(6px)";
-        o.innerHTML = `<div style="width:min(78vw,320px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:#eef1fb;box-shadow:0 0 0 6px #fff,0 30px 60px -10px rgba(0,0,0,.6)">${avatarHtml(secili).replace("<img ", '<img style="width:100%;height:100%;object-fit:cover" ')}</div>`;
+        o.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(10,14,30,.82);display:grid;place-items:center;";
+        o.innerHTML = `<div style="width:min(78vw,320px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:#eef1fb;box-shadow:0 0 0 6px #fff, var(--golge)">${avatarHtml(secili).replace("<img ", '<img style="width:100%;height:100%;object-fit:cover" ')}</div>`;
         o.onclick = () => o.remove();
         document.body.appendChild(o);
       };

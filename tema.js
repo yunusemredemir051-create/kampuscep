@@ -90,7 +90,7 @@
     });
     /* seçici düğmeleri (iki renkli yuvarlak) */
     css += ".renk-sec{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:8px 6px}" +
-      ".renk-dugme{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:7px 2px;border-radius:14px;font:700 11px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);text-align:center}" +
+      ".renk-dugme{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:5px;padding:7px 2px;border-radius:var(--r-2);font:700 11px/1.2 var(--font,system-ui);color:var(--soluk,#6b7390);text-align:center}" +
       ".renk-dugme i{display:block;width:34px;height:34px;border-radius:50%;border:2px solid var(--cam-guclu,#fff);box-shadow:0 0 0 1px var(--cizgi,#e6e9f4)}" +
       ".renk-dugme.aktif{background:var(--mavi-acik);color:var(--yazi,#141b34)}.renk-dugme.aktif i{box-shadow:0 0 0 2.5px var(--mavi)}" +
       ".renk-dugme i.renk-img{border:0;box-shadow:none;border-radius:0;background:none;width:46px;height:46px}.renk-img img{width:100%;height:100%;object-fit:contain;display:block}" +
@@ -111,7 +111,7 @@
     var m = document.querySelector('meta[name="theme-color"]');
     if (m && kok.getAttribute("data-tema") !== "koyu") {
       var cur = RENKLER.filter(function (x) { return x.id === r; })[0];
-      m.setAttribute("content", r && cur ? cur.a : "#eef3ff");
+      m.setAttribute("content", r && cur ? cur.a : "#f4f5f7");
     }
   }
   function renkSecicileriKur() {
@@ -135,10 +135,11 @@
   var K = 'html[data-tema="koyu"]';
   var kurallar = [
     /* renk değişkenleri */
-    ["", "color-scheme:dark;--zemin:#0e1220!important;--cam:rgba(30,36,60,.72);--cam-guclu:rgba(38,45,74,.94);--cam-kenar:rgba(255,255,255,.07);" +
-      "--golge:0 10px 30px -12px rgba(0,0,0,.6);--kart:#1a2034;--kart-2:#2a3352;--mavi:#6b84ff;" +
-      "--mavi-acik:color-mix(in srgb,var(--mavi) 22%,#141a2c)!important;--turuncu-acik:rgba(255,138,61,.16);--yesil-acik:rgba(22,182,122,.16);" +
-      "--pembe-acik:rgba(242,85,127,.16);--mor-acik:rgba(139,92,246,.2);--yazi:#e7eaf6;--soluk:#98a0bd;--cizgi:rgba(255,255,255,.09)"],
+    ["", "color-scheme:dark;--zemin:#0d111a!important;--kart:#161b27;--kart-2:#212838;--cam-guclu:#1b2130;--cam-kenar:#2b3345;--cizgi:#252d3d;" +
+      "--golge:0 1px 2px rgba(0,0,0,.4);--golge-ust:0 18px 44px -12px rgba(0,0,0,.75),0 0 0 1px #2b3345;--mavi:#7d95ff;--vurgu-yazi:#0d111a;" +
+      "--mavi-acik:color-mix(in srgb,var(--mavi) 20%,#161b27)!important;--turuncu:#ff8f52;--yesil:#3fcf97;--pembe:#ff7aa2;--mor:#a996ff;" +
+      "--turuncu-acik:rgba(255,143,82,.15);--yesil-acik:rgba(63,207,151,.14);--pembe-acik:rgba(255,122,162,.15);--mor-acik:rgba(169,150,255,.18);" +
+      "--yazi:#e9ecf3;--soluk:#99a2b6"],
     [" body", "background-color:var(--zemin)!important;color:var(--yazi)"],
     [" .isik", "background:radial-gradient(520px 380px at 90% 0%,rgba(255,138,61,.13),transparent 70%)," +
       "radial-gradient(600px 460px at -5% 25%,rgba(90,110,255,.2),transparent 70%)," +
@@ -151,14 +152,14 @@
       K + " .sik:not(.dogru):not(.yanlis)," + K + " .kucuk-btn," + K + " .site-btn," + K + " .kisayol a," + K + " .kart:not(.cam)," +
       K + " .dg-btn," + K + " .dg-ad," + K + " .dg-form textarea," + K + " .yf-ek button",
       "background:var(--kart)"],
-    [" .kart:not(.cam)", "box-shadow:0 10px 30px -12px rgba(0,0,0,.6)"],
+    [" .kart:not(.cam)", "box-shadow:var(--golge)"],
     [" .secici button.aktif," + K + " .sekmeler button.aktif," + K + " .gun-sec button.aktif," + K + " .secim button.aktif",
       "background:var(--kart-2);box-shadow:none"],
     [" .secici," + K + " .sekmeler," + K + " .gun-sec," + K + " .secim," + K + " .tatil-bilgi div," + K + " .kopru.notr," +
       K + " .sonuc .satirlar div," + K + " .ilan-bilgi span:not(.yesil):not(.dolu)," + K + " .sik .harf," + K + " .btn.soluk," +
       K + " .ozet span," + K + " .rozet.yakinda," + K + " .sekme:hover", "background:rgba(255,255,255,.06)"],
     [" .cubuk," + K + " .ilerleme", "background:rgba(255,255,255,.08)"],
-    [" .yan," + K + " .alt-menu", "background:rgba(22,27,46,.92)"],
+    [" .yan," + K + " .alt-menu", "background:var(--kart)"],
     [" .filtre button.aktif", "background:var(--mavi);border-color:var(--mavi);color:#fff"],
     [" .toast", "background:#2a3150"],
     [" .vitrin", "border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)"],
@@ -185,7 +186,7 @@
     [" .dg-btn.secili.iyi", "background:rgba(22,182,122,.16);color:#4fd8a4;border-color:rgba(22,182,122,.35)"],
     [" .dg-btn.secili.kotu", "background:rgba(242,85,127,.16);color:#ff8fae;border-color:rgba(242,85,127,.35)"],
     [" .dg-y", "background:rgba(255,255,255,.04)"],
-    [" .yf", "box-shadow:0 0 0 2px rgba(255,255,255,.08),0 4px 12px -4px rgba(0,0,0,.5)"],
+    [" .yf", "box-shadow:0 0 0 2px rgba(255,255,255,.08), var(--golge)"],
     [" .ck", "background:var(--cam);border-color:var(--cam-kenar)"],
     [" .ck-baslik", "color:var(--yazi)"],
     [" .ck-icerik", "color:var(--soluk)"],
@@ -199,19 +200,19 @@
   stil(kurallar.map(function (k) { return K + k[0] + "{" + k[1] + "}"; }).join("\n") +
     /* tema seçici ve ana sayfadaki hızlı düğme */
     "\n.secici.uc{grid-template-columns:repeat(3,1fr)}" +
-    "\n.tema-dugme{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;color:var(--yazi,#141b34);background:var(--kart,#fff);border:1px solid var(--cizgi,#e6e9f4);box-shadow:0 2px 8px rgba(20,27,52,.08)}" +
+    "\n.tema-dugme{flex:none;width:36px;height:36px;border-radius:var(--r-2);display:grid;place-items:center;cursor:pointer;padding:0;color:var(--yazi,#141b34);background:var(--kart,#fff);border:1px solid var(--cam-kenar,#dfe3ea);box-shadow:none}" +
     "\n.tema-sag{display:flex;align-items:center;gap:10px}" +
     "\n.tema-dugme svg{width:20px;height:20px}" +
     "\n.tema-dugme .tema-gunes," + K + " .tema-dugme .tema-ay{display:none}" + K + " .tema-dugme .tema-gunes{display:block}" +
     "\n.yan .tema-dugme{width:32px;height:32px}.yan .tema-dugme svg{width:17px;height:17px}" +
     "\n.tema-onizleme{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;" +
-    "font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap;box-shadow:0 6px 18px -6px rgba(0,0,0,.4)}" +
+    "font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:var(--r-hap);opacity:.9;white-space:nowrap;box-shadow:var(--golge)}" +
     "\n.tema-onizleme a{all:unset;cursor:pointer;color:#9fb3ff;margin-left:6px;text-decoration:underline}" +
     "\n" + K + " .tema-onizleme{background:#e7eaf6;color:#141b34}" + K + " .tema-onizleme a{color:#3b5bfd}");
 
   var mq = window.matchMedia ? matchMedia("(prefers-color-scheme: dark)") : null;
   var meta = document.querySelector('meta[name="theme-color"]');
-  var ilkRenk = meta ? meta.getAttribute("content") : "#eef3ff";
+  var ilkRenk = meta ? meta.getAttribute("content") : "#f4f5f7";
 
   function tercih() { var t = oku("kc-tema"); return t === "acik" || t === "koyu" ? t : "sistem"; }
   function dugmeler() {
@@ -225,10 +226,10 @@
   function uygula() {
     var t = tercih(), koyu = t === "koyu" || (t === "sistem" && !!(mq && mq.matches));
     kok.setAttribute("data-tema", koyu ? "koyu" : "acik");
-    if (meta) meta.setAttribute("content", koyu ? "#0e1220" : (renkOku() ? (RENKLER.filter(function (x) { return x.id === renkOku(); })[0] || {}).a || ilkRenk : ilkRenk));
+    if (meta) meta.setAttribute("content", koyu ? "#0d111a" : (renkOku() ? (RENKLER.filter(function (x) { return x.id === renkOku(); })[0] || {}).a || ilkRenk : ilkRenk));
     try {   // Android uygulamasında durum çubuğu
       var SB = window.Capacitor && Capacitor.Plugins && Capacitor.Plugins.StatusBar;
-      if (SB) { SB.setStyle({ style: koyu ? "DARK" : "LIGHT" }); SB.setBackgroundColor({ color: koyu ? "#0e1220" : "#eef3ff" }); }
+      if (SB) { SB.setStyle({ style: koyu ? "DARK" : "LIGHT" }); SB.setBackgroundColor({ color: koyu ? "#0d111a" : "#f4f5f7" }); }
     } catch (e) {}
     dugmeler();
   }

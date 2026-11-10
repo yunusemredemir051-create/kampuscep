@@ -3,13 +3,13 @@
   var st = document.createElement("style");
   st.textContent =
     "#kc-bildirim{position:fixed;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 12px);z-index:10001;display:flex;justify-content:center;padding:0 14px;pointer-events:none}" +
-    ".kcb{display:flex;align-items:center;gap:11px;max-width:420px;width:auto;padding:11px 16px 11px 12px;border-radius:18px;background:rgba(255,255,255,.92);color:#141b34;-webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);border:1px solid rgba(20,27,52,.08);box-shadow:0 18px 40px -14px rgba(20,27,52,.45),0 2px 6px rgba(20,27,52,.08);font:700 14px/1.3 var(--font,system-ui,sans-serif);opacity:0;transform:translateY(-22px) scale(.96);transition:opacity .22s ease,transform .32s cubic-bezier(.16,1,.3,1)}" +
+    ".kcb{display:flex;align-items:center;gap:11px;max-width:420px;width:auto;padding:11px 16px 11px 12px;border-radius:var(--r-3);background:var(--kart);color:var(--yazi);border:1px solid var(--cam-kenar);box-shadow:var(--golge-ust);font:700 14px/1.3 var(--font);opacity:0;transform:translateY(-22px) scale(.96);transition:opacity .22s ease,transform .32s cubic-bezier(.16,1,.3,1)}" +
     ".kcb.goster{opacity:1;transform:none}" +
-    ".kcb i{flex:none;width:30px;height:30px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--kcb,#3b5bfd)}" +
+    ".kcb i{flex:none;width:30px;height:30px;border-radius:var(--r-1);display:grid;place-items:center;color:#fff;background:var(--kcb,var(--mavi))}" +
     ".kcb i svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}" +
-    ".kcb.ok{--kcb:linear-gradient(145deg,#34d399,#10b981)}.kcb.hata{--kcb:linear-gradient(145deg,#fb7185,#e11d48)}.kcb.bilgi{--kcb:linear-gradient(145deg,#60a5fa,#3b5bfd)}" +
+    ".kcb.ok{--kcb:var(--yesil)}.kcb.hata{--kcb:var(--pembe)}.kcb.bilgi{--kcb:var(--mavi)}" +
     ".kcb span{min-width:0;overflow-wrap:anywhere}" +
-    "html[data-tema=koyu] .kcb{background:rgba(30,36,58,.92);color:#f0f3fe;border-color:rgba(255,255,255,.1)}" +
+    "" +
     "#dg-toast,.kc-toast{display:none!important}";
   document.head.appendChild(st);
   var IK = {

@@ -1,10 +1,6 @@
 /* ===== MASAÜSTÜ (yalnızca web, geniş ekran) =====
    Masaüstü görünümüyle ilgili her değişiklik BURAYA yazılır.
    Her kural `html.web` ile başlar; uygulamada (html.uyg) hiç çalışmaz. */
-@media (min-width: 821px) {
-  html.web .afis { min-height: 240px; background: var(--afis-bg-masaustu, linear-gradient(180deg, #3765fe, #5b61fc)); }
-  html.web .afis img { left: auto; width: auto; object-fit: contain; -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%); mask-image: linear-gradient(90deg, transparent, #000 18%); }
-}
 
 /* ----- Ders sayfası (ders.html): telefon düzeni geniş ekranda tek sütuna yayılmasın ----- */
 @media (min-width: 821px) {
@@ -13,7 +9,7 @@
   html.web .uniteler, html.web .ck-liste, html.web .pv-kartlar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; align-items: stretch; }
   html.web .unite { display: flex; flex-direction: column; padding: 22px 22px 20px; }
   html.web .unite .butonlar { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
-  html.web .unite .butonlar .btn { flex: 1 1 0; min-width: 0; padding: 11px 10px; font-size: 14px; border-radius: 13px; }
+  html.web .unite .butonlar .btn { flex: 1 1 0; min-width: 0; padding: 11px 10px; font-size: 14px; border-radius: var(--r-2); }
   html.web .unite .butonlar .btn.ana { flex: 1 0 100%; order: 9; padding: 13px; font-size: 15px; }
   html.web .unite .butonlar .btn:not(.ana):hover { border-color: var(--mavi); color: var(--mavi); transform: translateY(-1px); }
   html.web .unite .butonlar .btn { transition: transform .15s, border-color .15s, color .15s; }
