@@ -734,6 +734,7 @@
       "haşlanmış yumurta": "yurt-haslanmis-yumurta",
       "dere otlu poğaça": "yurt-dere-otlu-pogaca",
       "sosis kızartma": "yurt-sosis-kizartma",
+      "salçalı sosis": "yurt-sosis-kizartma",
       "sucuklu yumurta": "yurt-sucuklu-yumurta",
       "sucuklu omlet": "yurt-sucuklu-yumurta",
       "bal": "yurt-bal",
