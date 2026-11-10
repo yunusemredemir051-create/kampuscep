@@ -70,8 +70,8 @@ svg { flex: none; }
 
 /* panel */
 .k-hero { position: relative; overflow: hidden; display: flex; align-items: center; gap: 14px; border-radius: var(--r-3); padding: 22px 18px 22px 22px; color: #fff; isolation: isolate;
-  background: linear-gradient(135deg, var(--mavi), var(--mor) 62%, var(--pembe)); box-shadow: var(--golge); }
-.k-hero::before { content: ""; position: absolute; right: -70px; top: -90px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.26), transparent); z-index: -1; }
+  background: var(--mavi); box-shadow: var(--golge); }
+.k-hero::before { content: ""; position: absolute; right: -70px; top: -90px; width: 240px; height: 240px; border-radius: 50%; background: none; z-index: -1; }
 .kh-sol { flex: 1; min-width: 0; }
 .k-marka { display: inline-block; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: var(--r-hap); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.28); }
 .k-hero h1 { margin: 10px 0 2px; font-size: 22px; line-height: 1.2; letter-spacing: -.6px; }
@@ -145,7 +145,7 @@ svg { flex: none; }
 .d-p { font-size: 16px; line-height: 1.72; margin: 0 0 16px; }
 .d-p code, .d-kontrol code, .soru-s code, .geri code { font-family: var(--mono); font-size: .9em; background: var(--mavi-acik); color: var(--mavi); padding: 2px 6px; border-radius: 6px; }
 .d-h { font-size: 15.5px; margin: 22px 0 10px; letter-spacing: -.2px; }
-.d-hayat { display: flex; gap: 12px; padding: 14px; border-radius: var(--r-3); background: linear-gradient(135deg, var(--turuncu-acik), var(--pembe-acik)); margin: 0 0 16px; }
+.d-hayat { display: flex; gap: 12px; padding: 14px; border-radius: var(--r-3); background: var(--pembe-acik); margin: 0 0 16px; }
 .d-hayat > span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: var(--r-2); background: #fff; color: var(--turuncu); flex: none; } .d-hayat svg { width: 21px; }
 .d-hayat b { font-size: 14px; } .d-hayat p { margin: 4px 0 0; font-size: 14.5px; line-height: 1.62; }
 .d-tablo { overflow-x: auto; margin: 0 0 16px; border-radius: var(--r-2); border: 1px solid var(--cizgi); background: var(--kart); }
@@ -321,9 +321,9 @@ html[data-tema="koyu"] .k-alt-l { background: none; }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}</style>
-<script src="/tema.js?v=19"></script>
+<script src="/tema.js?v=20"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}));</script>
-<link rel="stylesheet" href="/masaustu.css?v=2">
+<link rel="stylesheet" href="/masaustu.css?v=3">
 <link rel="stylesheet" href="/uygulama.css?v=1">
 </head>
 <body>
@@ -345,6 +345,6 @@ html[data-tema="koyu"] .k-alt-l { background: none; }
 <script src="koc/algoritma-2.js?v=1"></script>
 <script src="koc/algoritma-3.js?v=1"></script>
 <script src="koc/koc.js?v=4"></script>
-<script defer src="/geri.js?v=1"></script>
+<script defer src="/geri.js?v=2"></script>
 </body>
 </html>

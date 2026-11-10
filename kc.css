@@ -92,3 +92,26 @@ button, input, select, textarea { font-family: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ==========================================================================
+   Ortak bileşenler (alt sayfalar)
+   ========================================================================== */
+.logo { font-family: var(--font-b); font-weight: 700; letter-spacing: -.02em; }
+.logo-ikon { box-shadow: none !important; }
+
+/* Üst çubuk: yüzen kart değil, sayfanın üst kenarı */
+body .ust.cam { background: none; border: 0; border-bottom: 1px solid var(--cizgi); border-radius: 0; box-shadow: none; padding: 4px 0 12px; }
+body .ust-geri, body .tema-dugme, body .site-btn { border-radius: var(--r-2); box-shadow: none; }
+
+/* Alt menü (yol arkadaşı): ana sayfadaki çubukla aynı */
+body nav.alt-menu.cam { left: 0; right: 0; bottom: 0; transform: none; width: 100%; max-width: none; margin: 0 !important;
+  padding: 0 6px max(6px, env(safe-area-inset-bottom, 0px), var(--safe-area-inset-bottom, 0px));
+  background: var(--kart); border: 0; border-top: 1px solid var(--cam-kenar); border-radius: 0; box-shadow: none; }
+body .alt-menu a { position: relative; border-radius: 0; padding: 9px 2px 5px; font: 600 11px/1.2 var(--font); color: var(--soluk); background: none; }
+body .alt-menu a svg { width: 22px; height: 22px; }
+body .alt-menu a.aktif { color: var(--yazi); background: none; }
+body .alt-menu a.aktif svg { color: var(--mavi); }
+body .alt-menu a.aktif::before { content: ""; position: absolute; top: -1px; left: 50%; width: 28px; height: 2px; margin-left: -14px; background: var(--mavi); }
+
+/* Düz yazı sayfaları (gizlilik, hakkımızda, konu özetleri) */
+.kart:not(.cam) { border: 1px solid var(--cam-kenar); }
