@@ -1299,6 +1299,7 @@ if(document.readyState==="complete")f();else{addEventListener("load",f);addEvent
 <script src="/ayarlar.js?v=13"></script>
 <script defer src="/skor.js?v=7"></script>
 <script defer src="/yeni.js?v=5"></script>
+<script defer src="/geri.js?v=1"></script>
 <script src="/vize.js?v=3"></script>
 <script src="/program.js?v=7"></script>
 <script src="/vitrin.js?v=12"></script>
@@ -1326,28 +1327,52 @@ if(document.readyState==="complete")f();else{addEventListener("load",f);addEvent
   </div>
 </div>
 <script>
-/* Geri tuşu: önce açık katmanları/alt ekranları kapatır, sonra ana sayfaya döner; ana sayfadayken uygulamadan çıkar */
+/* Geri sistemi (ana sayfa uygulaması)
+   - Önce açık katmanları ve alt ekranları kapatır, sonra bir önceki sekmeye döner (gerçek geçmiş yığını), en son ana sayfa.
+   - KC_GERI.dene(): geri gidilecek bir şey var mı (hiçbir şeyi değiştirmeden).  KC_GERI.geri(): bir adım geri.
+   - Görünür geri düğmesi, Android donanım tuşu ve klavye /geri.js içinde; burası tarayıcı geri tuşunu yakalar. */
 (function () {
   var gorunur = function (el) { return el && el.offsetParent !== null; };
-  function geriIslem() {
-    var b = document.querySelector(".yf-buyuk");
-    if (b) { b.remove(); return true; }
-    var sh = document.getElementById("bolum-sheet");
-    if (sh && !sh.hidden) { document.getElementById("bolum-sheet-kapat").click(); return true; }
-    var am = document.getElementById("aylik-modal");
-    if (am && am.classList.contains("aktif")) { aylikMenuKapat(); return true; }
-    var aa = document.getElementById("ayar-alt");
-    if (aa && !aa.hidden && document.getElementById("ayarlar").classList.contains("aktif")) { document.getElementById("ayar-geri").click(); return true; }
-    var yd = document.getElementById("yurt-detay");
-    if (yd && yd.style.display === "block" && gorunur(yd)) { yurtListeyeDon(); window.scrollTo({ top: 0 }); return true; }
-    var sg = document.getElementById("sinif-gorunum");
-    if (sg && sg.style.display === "block" && gorunur(sg)) { bolumKapat(); return true; }
-    var og = document.getElementById("ortak-gorunum");
-    if (og && og.style.display === "block" && gorunur(og)) { bolumKapat(); return true; }
-    var aktif = document.querySelector(".sayfa.aktif");
-    if (aktif && aktif.id !== "ana") { sayfaAc("ana"); return true; }
-    return false;
+  var ADLAR = { ana: "Ana sayfa", yurtlar: "Yurtlar", notlar: "Notlar", takvim: "Takvim", araclar: "Araçlar", ayarlar: "Ayarlar" };
+  var yigin = [], geriyeGidiyor = false;
+  var eskiAc = window.sayfaAc;
+  window.sayfaAc = function (id) {
+    id = id || "ana";
+    var simdi = (document.querySelector(".sayfa.aktif") || {}).id;
+    if (!geriyeGidiyor && simdi && simdi !== id) {
+      if (id === "ana") yigin = [];
+      else { yigin = yigin.filter(function (x) { return x !== id; }); yigin.push(simdi); if (yigin.length > 12) yigin.shift(); }
+    }
+    return eskiAc.apply(this, arguments);
+  };
+  function aktifId() { return (document.querySelector(".sayfa.aktif") || {}).id; }
+  /* Her adım: [koşul, işlem, hedef etiketi] — ilk tutan uygulanır */
+  function adimlar() {
+    return [
+      [function () { return document.querySelector(".yf-buyuk"); }, function () { document.querySelector(".yf-buyuk").remove(); }, "Kapat"],
+      [function () { return document.querySelector(".yf-modal-perde"); }, function () { document.querySelector(".yf-modal-perde").remove(); }, "Kapat"],
+      [function () { var p = document.querySelector(".kc-sheet-perde.acik"); return p && !p.hidden; }, function () { document.querySelector(".kc-sheet-perde.acik").click(); }, "Kapat"],
+      [function () { var sh = document.getElementById("bolum-sheet"); return sh && !sh.hidden; }, function () { document.getElementById("bolum-sheet-kapat").click(); }, "Kapat"],
+      [function () { var am = document.getElementById("aylik-modal"); return am && am.classList.contains("aktif"); }, function () { aylikMenuKapat(); }, "Kapat"],
+      [function () { var aa = document.getElementById("ayar-alt"); return aa && !aa.hidden && aktifId() === "ayarlar"; }, function () { document.getElementById("ayar-geri").click(); }, "Ayarlar"],
+      [function () { var yd = document.getElementById("yurt-detay"); return yd && yd.style.display === "block" && gorunur(yd); }, function () { yurtListeyeDon(); window.scrollTo({ top: 0 }); }, "Yurtlar"],
+      [function () { var sg = document.getElementById("sinif-gorunum"); return sg && sg.style.display === "block" && gorunur(sg); }, function () { bolumKapat(); }, "Notlar"],
+      [function () { var og = document.getElementById("ortak-gorunum"); return og && og.style.display === "block" && gorunur(og); }, function () { bolumKapat(); }, "Notlar"],
+      [function () { var a = aktifId(); return a && a !== "ana"; }, function () {
+        var hedef = "ana";
+        while (yigin.length) { var x = yigin.pop(); if (x !== aktifId() && document.getElementById(x)) { hedef = x; break; } }
+        geriyeGidiyor = true; try { sayfaAc(hedef); } finally { geriyeGidiyor = false; }
+      }, null]
+    ];
   }
+  function bul() { var l = adimlar(); for (var i = 0; i < l.length; i++) { try { if (l[i][0]()) return l[i]; } catch (e) {} } return null; }
+  function onceki() { for (var i = yigin.length - 1; i >= 0; i--) if (yigin[i] !== aktifId()) return yigin[i]; return "ana"; }
+  function geriIslem() { var a = bul(); if (!a) return false; a[1](); document.dispatchEvent(new CustomEvent("kc-geri")); return true; }
+  window.KC_GERI_UYG = {
+    dene: function () { return !!bul(); },
+    hedef: function () { var a = bul(); if (!a) return ""; return a[2] || ADLAR[onceki()] || "Geri"; },
+    geri: geriIslem
+  };
   function tuzak() { try { history.pushState({ kc: 1 }, "", location.href); } catch (e) {} }
   var geriZamani = 0;
   removeEventListener("hashchange", adresiAc);
