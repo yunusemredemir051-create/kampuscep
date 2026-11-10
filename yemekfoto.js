@@ -782,13 +782,13 @@
     flex: none;
     width: 48px;
     height: 48px;
-    border-radius: 13px;
+    border-radius: var(--r-2);
     overflow: hidden;
     background: #fff;
     cursor: zoom-in;
     padding: 0;
     border: 0;
-    box-shadow: 0 0 0 2px #fff, 0 4px 12px -4px rgba(40, 60, 140, .35);
+    box-shadow: 0 0 0 2px #fff, var(--golge);
     transition: transform .12s;
   }
   .yf:hover {
@@ -831,10 +831,10 @@
     flex: none;
     margin-left: auto;
     align-self: center;
-    font-weight: 800;
+    font-weight: 700;
     font-size: 13px;
     padding: 4px 10px;
-    border-radius: 99px;
+    border-radius: var(--r-hap);
     background: var(--mavi-acik, #e6ebff);
     color: var(--mavi, #3b5bfd);
     opacity: 1;
@@ -843,10 +843,10 @@
   .yf-besin-toplam {
     margin: 10px 0 6px;
     padding: 12px 14px;
-    border-radius: 16px;
+    border-radius: var(--r-2);
     background: linear-gradient(140deg, var(--mavi, #3b5bfd), var(--mor, #8b5cf6));
     color: #fff;
-    box-shadow: 0 10px 24px -12px rgba(59, 91, 253, .75);
+    box-shadow: var(--golge);
   }
   .yf-bt-ust { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 14px; }
   .yf-bt-ust small { font-weight: 500; opacity: .85; font-size: 11.5px; }
@@ -864,11 +864,11 @@
   }
   ul.yemekler li .yf-fiyat b {
     font-size: 13px;
-    font-weight: 800;
+    font-weight: 700;
     color: #047857;
     background: rgba(16, 185, 129, .12);
     padding: 3px 9px;
-    border-radius: 99px;
+    border-radius: var(--r-hap);
     white-space: nowrap;
   }
   ul.yemekler li .yf-fiyat small { font-size: 10.5px; font-weight: 600; opacity: .55; margin-top: 3px; white-space: nowrap; }
@@ -884,18 +884,18 @@
   }
   .yf-sec-fiyat b {
     font-size: 11px;
-    font-weight: 800;
+    font-weight: 700;
     color: #047857;
     background: rgba(16, 185, 129, .12);
     padding: 2px 8px;
-    border-radius: 99px;
+    border-radius: var(--r-hap);
   }
   .yf-sec-fiyat em { font-style: normal; font-size: 10.5px; font-weight: 600; opacity: .55; }
   [data-tema="koyu"] .yf-sec-fiyat b { color: #6ee7b7; background: rgba(110, 231, 183, .14); }
   .yf-fiyat-toplam {
     margin: 10px 0 6px;
     padding: 11px 14px;
-    border-radius: 16px;
+    border-radius: var(--r-2);
     background: rgba(16, 185, 129, .09);
     border: 1px solid rgba(16, 185, 129, .22);
   }
@@ -920,7 +920,7 @@
     gap: 7px;
     border: 1px solid var(--cizgi, #e6e9f2);
     background: #fff;
-    border-radius: 99px;
+    border-radius: var(--r-hap);
     padding: 3px 10px 3px 3px;
     font: 700 12.5px var(--font, inherit);
     color: var(--yazi, #141b34);
@@ -946,20 +946,20 @@
   .yf-buyuk figure {
     margin: 0;
     background: #fff;
-    border-radius: 24px;
+    border-radius: var(--r-3);
     padding: 12px 12px 10px;
     text-align: center;
     width: min(420px, 100%);
-    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .45);
+    box-shadow: var(--golge);
   }
   .yf-buyuk img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 16px;
+    border-radius: var(--r-2);
   }
   .yf-buyuk figcaption {
-    font: 800 15px var(--font, system-ui);
+    font: 700 15px var(--font, system-ui);
     color: #141b34;
     margin-top: 8px;
   }
@@ -972,7 +972,7 @@
     color: #3b5bfd;
     font: 700 11.5px var(--font, inherit);
     padding: 4px 9px;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     cursor: pointer;
     transition: all .15s;
     flex: none;
@@ -991,10 +991,10 @@
     background: linear-gradient(135deg, #1e3a8a, #3b5bfd);
     color: #fff;
     border: 0;
-    border-radius: 999px;
+    border-radius: var(--r-hap);
     padding: 11px 18px;
-    font: 800 13px var(--font, inherit);
-    box-shadow: 0 10px 25px -5px rgba(59, 91, 253, .5);
+    font: 700 13px var(--font, inherit);
+    box-shadow: var(--golge);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -1003,7 +1003,7 @@
   }
   .yf-admin-fab:hover {
     transform: translateY(-2px);
-    box-shadow: 0 14px 28px -4px rgba(59, 91, 253, .65);
+    box-shadow: var(--golge);
   }
 
   /* Seçenek Modal */
@@ -1015,22 +1015,20 @@
     place-items: center;
     background: rgba(14, 18, 40, .68);
     padding: 18px;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     animation: gir .2s ease;
   }
   .yf-modal-kutu {
     background: #fff;
-    border-radius: 22px;
+    border-radius: var(--r-3);
     padding: 22px 20px 18px;
     width: min(420px, 100%);
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, .35);
+    box-shadow: var(--golge);
     font-family: var(--font, system-ui);
   }
   .yf-modal-kutu h3 {
     margin: 0 0 6px;
     font-size: 16.5px;
-    font-weight: 800;
+    font-weight: 700;
     color: #141b34;
   }
   .yf-modal-kutu p {
@@ -1053,7 +1051,7 @@
     background: #f8faff;
     border: 1.5px solid #e2e8f0;
     padding: 12px 14px;
-    border-radius: 14px;
+    border-radius: var(--r-2);
     cursor: pointer;
     font-size: 14px;
     font-family: inherit;
@@ -1061,7 +1059,7 @@
     transition: all .15s;
   }
   .yf-secim-btn:hover {
-    background: #eef3ff;
+    background: #f4f5f7;
     border-color: #3b5bfd;
     color: #3b5bfd;
     transform: translateY(-1px);
@@ -1086,7 +1084,7 @@
     color: #64748b;
     font: 700 13px var(--font, inherit);
     padding: 11px;
-    border-radius: 12px;
+    border-radius: var(--r-2);
     cursor: pointer;
     transition: background .15s;
   }
@@ -1104,18 +1102,16 @@
     place-items: center;
     background: rgba(14, 18, 40, .75);
     padding: 16px;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     animation: gir .2s ease;
   }
   .yf-katalog-kutu {
     background: #fff;
-    border-radius: 24px;
+    border-radius: var(--r-3);
     width: min(700px, 100%);
     max-height: 88vh;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 35px 70px -20px rgba(0, 0, 0, .45);
+    box-shadow: var(--golge);
     font-family: var(--font, system-ui);
     overflow: hidden;
   }
@@ -1130,7 +1126,7 @@
   .yf-katalog-ust h2 {
     margin: 0;
     font-size: 18px;
-    font-weight: 800;
+    font-weight: 700;
     color: #141b34;
     display: flex;
     align-items: center;
@@ -1147,7 +1143,7 @@
     color: #64748b;
     width: 34px;
     height: 34px;
-    border-radius: 10px;
+    border-radius: var(--r-1);
     font-size: 20px;
     cursor: pointer;
     display: grid;
@@ -1176,7 +1172,7 @@
     flex: 1;
     border: 1.5px solid #e2e8f0;
     background: #fff;
-    border-radius: 12px;
+    border-radius: var(--r-2);
     padding: 9px 14px;
     font: 600 13.5px var(--font, inherit);
     color: #1e293b;
@@ -1191,7 +1187,7 @@
     background: #e2e8f0;
     color: #475569;
     padding: 6px 13px;
-    border-radius: 99px;
+    border-radius: var(--r-hap);
     font: 700 12px var(--font, inherit);
     cursor: pointer;
     transition: all .15s;
@@ -1211,7 +1207,7 @@
   .yf-yeni-yer-sec {
     border: 1.5px solid #cbd5e1;
     background: #fff;
-    border-radius: 10px;
+    border-radius: var(--r-1);
     padding: 6px 10px;
     font: 700 12px var(--font, inherit);
     color: #1e293b;
@@ -1220,7 +1216,7 @@
     flex: 1;
     border: 1.5px dashed #cbd5e1;
     background: #fff;
-    border-radius: 10px;
+    border-radius: var(--r-1);
     padding: 7px 12px;
     font: 500 12.5px var(--font, inherit);
   }
@@ -1228,7 +1224,7 @@
     border: 0;
     background: #16a34a;
     color: #fff;
-    border-radius: 10px;
+    border-radius: var(--r-1);
     padding: 7px 14px;
     font: 700 12px var(--font, inherit);
     cursor: pointer;
@@ -1247,7 +1243,7 @@
     padding: 9px 12px;
     background: #fff;
     border: 1px solid #eef2f6;
-    border-radius: 14px;
+    border-radius: var(--r-2);
     transition: background .12s;
   }
   .yf-katalog-satir:hover {
@@ -1256,14 +1252,14 @@
   .yf-satir-resim {
     width: 46px;
     height: 46px;
-    border-radius: 11px;
+    border-radius: var(--r-2);
     overflow: hidden;
     background: #f1f5f9;
     display: grid;
     place-items: center;
     flex: none;
     cursor: zoom-in;
-    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    box-shadow: var(--golge);
   }
   .yf-satir-resim img {
     width: 100%;
@@ -1332,7 +1328,7 @@
     border: 0;
     background: #3b5bfd;
     color: #fff;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     padding: 6px 11px;
     font: 700 12px var(--font, inherit);
     cursor: pointer;
@@ -1343,9 +1339,9 @@
   }
   .yf-btn-degistir {
     border: 1px solid #3b5bfd;
-    background: #eef3ff;
+    background: #f4f5f7;
     color: #3b5bfd;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     padding: 5px 10px;
     font: 700 11.5px var(--font, inherit);
     cursor: pointer;
@@ -1354,7 +1350,7 @@
     border: 0;
     background: #fee2e2;
     color: #dc2626;
-    border-radius: 8px;
+    border-radius: var(--r-1);
     padding: 5px 9px;
     font: 700 11.5px var(--font, inherit);
     cursor: pointer;

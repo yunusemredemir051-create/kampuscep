@@ -1,0 +1,94 @@
+/* ==========================================================================
+   KampüsCepte tasarım sistemi
+   Bütün sayfalar önce bu dosyayı yükler. Renk, yazı, köşe, gölge ve boşluk
+   kararları yalnızca burada verilir; sayfalar bu belirteçleri kullanır.
+   Koyu mod ve takım renkleri tema.js içinde aynı belirteçleri değiştirir.
+   ========================================================================== */
+
+/* ---- Yazı tipleri (siteden sunulur, dış bağlantı yok) ---- */
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 300 900; font-display: swap;
+  src: url("/yazitipi/figtree-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 300 900; font-display: swap;
+  src: url("/yazitipi/figtree-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap;
+  src: url("/yazitipi/bricolage-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap;
+  src: url("/yazitipi/bricolage-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
+/* ---- Belirteçler ---- */
+:root {
+  /* Yüzeyler: düz, opak. Cam/bulanıklık yok. */
+  --zemin: #f4f5f7;
+  --kart: #ffffff;
+  --kart-2: #eef0f4;            /* gömük alan: seçici zemini, pasif kutu */
+  --cam: var(--kart);           /* eski ad; kart yüzeyi */
+  --cam-guclu: #fafbfc;         /* üzerine gelince */
+  --cam-kenar: #dfe3ea;         /* kart kenarı */
+  --cizgi: #e4e7ed;             /* iç ayırıcı çizgi */
+
+  /* Yazı */
+  --yazi: #0f1728;
+  --soluk: #5a6478;
+
+  /* Vurgu (takım temaları --mavi ve --mavi-acik'ı değiştirir) */
+  --mavi: #2a4de0;
+  --vurgu-yazi: #ffffff;        /* vurgu zemini üstündeki yazı */
+  --mavi-acik: #e8edff;
+  --mor: #5b3fd6;
+  --mor-acik: #eeeaff;
+
+  /* Anlam renkleri */
+  --turuncu: #e2560b;  --turuncu-acik: #fff0e4;   /* yemek */
+  --yesil: #0a8a5c;    --yesil-acik: #e2f5ec;     /* tatil, olumlu */
+  --pembe: #d42a62;    --pembe-acik: #fde7ee;     /* sınav, uyarı */
+  --wp: #1fae54;
+
+  /* Köşeler: üç basamak. Hap biçimi yok. */
+  --r-1: 6px;      /* etiket, küçük düğme */
+  --r-2: 10px;     /* düğme, giriş alanı, liste satırı */
+  --r-3: 14px;     /* kart, pencere */
+  --r-hap: 8px;    /* eski "hap" biçimli öğeler */
+
+  /* Gölge: kartlar kenarla ayrılır; gölge yalnızca üstte duran katmanlarda */
+  --golge: 0 1px 2px rgba(15, 23, 40, .05);
+  --golge-ust: 0 16px 40px -12px rgba(15, 23, 40, .28), 0 2px 6px rgba(15, 23, 40, .06);
+
+  --font: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-b: "Bricolage Grotesque", "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ---- Temel ---- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh;
+  font-family: var(--font); color: var(--yazi); background: var(--zemin);
+  font-feature-settings: "tnum" 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+h1, h2, h3 { font-family: var(--font-b); font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
+h1 { font-variation-settings: "opsz" 48; }
+button, input, select, textarea { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--mavi); outline-offset: 2px; }
+::selection { background: color-mix(in srgb, var(--mavi) 22%, transparent); }
+
+/* Eski arka plan ışıması kaldırıldı (öğe HTML'de durabilir) */
+.isik { display: none !important; }
+
+/* Kart yüzeyi */
+.cam {
+  background: var(--kart);
+  border: 1px solid var(--cam-kenar);
+  border-radius: var(--r-3);
+  box-shadow: var(--golge);
+}
+
+/* Rakamlar: sayaç, fiyat, kalori gibi yerlerde hizalı rakam */
+.sayi, .buyuk-sayi, .kb-no, [data-rakam] { font-family: var(--font-b); font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}

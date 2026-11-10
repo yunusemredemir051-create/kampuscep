@@ -33,7 +33,7 @@
     var ic = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="2"/></svg>';
     var orta = document.createElement("button");
     orta.id = "kc-orta"; orta.type = "button"; orta.className = "kc-orta"; orta.setAttribute("aria-label", "Menü");
-    orta.innerHTML = ic;
+    orta.innerHTML = ic + "<span>Menü</span>";
     yan.appendChild(orta);
 
     var perde = document.createElement("div");

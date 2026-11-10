@@ -124,7 +124,7 @@
   const adaylar = bul(tarih);
   if (onizleme) {
     const n = document.createElement("div");
-    n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:99px;opacity:.9;white-space:nowrap";
+    n.style.cssText = "position:fixed;left:50%;bottom:96px;transform:translateX(-50%);z-index:9999;background:#141b34;color:#fff;font:700 12px/1.2 system-ui,sans-serif;padding:8px 12px;border-radius:var(--r-hap);opacity:.9;white-space:nowrap";
     n.innerHTML = `Önizleme: ${yaz(tarih)}${adaylar[0] ? " · " + adaylar[0].t.ad : " · özel gün yok"} <a href="?tarih=kapat" style="color:#9fb3ff;margin-left:6px">kapat</a>`;
     document.body.appendChild(n);
   }
@@ -155,19 +155,19 @@
   .ozel .afis{background:linear-gradient(180deg,${r[0]},${r[1]})!important}
   .ozel .afis .ust-bilgi{z-index:2;text-shadow:0 2px 12px rgba(0,0,0,.28)}
   .ozel .afis .ozel-iller{display:block;margin-top:10px;font-size:11.5px;line-height:1.55;color:rgba(255,255,255,.85);font-weight:600}
-  .ozel-anma .afis{box-shadow:0 18px 40px -22px rgba(0,0,0,.6)}
+  .ozel-anma .afis{box-shadow:var(--golge)}
   html.ozel-anma *,html.ozel-anma *::before,html.ozel-anma *::after{animation:none!important;transition:none!important}
   .ozel-serit{position:relative;z-index:5;padding:9px 16px;text-align:center;color:#fff;font:700 13px/1.4 inherit;background:linear-gradient(90deg,${r[0]},${r[1]})}
   .ozel-serit span{font-weight:500;opacity:.9;margin-left:6px}
   .ozel-sus{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
   .ozel-sus i{position:absolute;display:block}
   .ozel-kar i{top:-10px;width:6px;height:6px;border-radius:50%;background:#fff;opacity:.85;animation:oz-kar linear infinite}
-  .ozel-yildiz i{width:3px;height:3px;border-radius:50%;background:#ffe6a3;box-shadow:0 0 6px 2px rgba(255,214,120,.6);animation:oz-parla ease-in-out infinite}
+  .ozel-yildiz i{width:3px;height:3px;border-radius:50%;background:#ffe6a3;box-shadow:var(--golge);animation:oz-parla ease-in-out infinite}
   .ozel-yagmur{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:9998}
   .ozel-yagmur i{position:absolute;top:-20px;display:block;animation:oz-dus linear forwards}
   .ozel-yagmur.kalp i{top:auto;bottom:-30px;font-style:normal;animation-name:oz-yuksel}
   .ozel-sayfa-kar{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:40}
-  .ozel-sayfa-kar i{position:absolute;top:-12px;display:block;border-radius:50%;background:#fff;box-shadow:0 0 4px rgba(120,140,220,.6);animation:oz-kar-sayfa linear infinite}
+  .ozel-sayfa-kar i{position:absolute;top:-12px;display:block;border-radius:50%;background:#fff;box-shadow:var(--golge);animation:oz-kar-sayfa linear infinite}
   @keyframes oz-kar-sayfa{to{transform:translate(30px,105vh)}}
   @keyframes oz-kar{to{transform:translate(20px,300px)}}
   @keyframes oz-parla{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:1;transform:scale(1.2)}}
@@ -228,17 +228,17 @@
     .rz .afis .ust-bilgi h1{font-size:24px}
     .rz-kutu{margin-top:10px;color:#fff}
     .rz-kutu .rz-et{font-size:13px;font-weight:700;color:#f6d77e;letter-spacing:.2px}
-    .rz-kutu .rz-sayac{font:800 40px/1.05 var(--font,inherit);letter-spacing:1px;color:#ffe08a;text-shadow:0 2px 18px rgba(246,196,83,.45);font-variant-numeric:tabular-nums}
+    .rz-kutu .rz-sayac{font:700 40px/1.05 var(--font,inherit);letter-spacing:1px;color:#ffe08a;text-shadow:0 2px 18px rgba(246,196,83,.45);font-variant-numeric:tabular-nums}
     .rz-ust{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap}
     .rz-hap{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:4px}
-    .rz-hap span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:5px 9px;font-size:12.5px;font-weight:700;color:#fff}
+    .rz-hap span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18);border-radius:var(--r-1);padding:5px 9px;font-size:12.5px;font-weight:700;color:#fff}
     .rz-hap span b{color:#ffe08a;margin-left:4px}
     .rz-alt{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85)}
-    .rz-cubuk{flex:1;max-width:220px;height:5px;border-radius:9px;background:rgba(255,255,255,.2);overflow:hidden}
-    .rz-cubuk i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#f6c453,#ffe08a)}
-    .rz-imsakiye{flex:none;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font,inherit);padding:6px 12px;border-radius:99px;cursor:pointer}
+    .rz-cubuk{flex:1;max-width:220px;height:5px;border-radius:var(--r-1);background:rgba(255,255,255,.2);overflow:hidden}
+    .rz-cubuk i{display:block;height:100%;border-radius:var(--r-1);background:linear-gradient(90deg,#f6c453,#ffe08a)}
+    .rz-imsakiye{flex:none;border:1px solid rgba(255,224,138,.55);background:rgba(0,0,0,.18);color:#ffe08a;font:700 12.5px var(--font,inherit);padding:6px 12px;border-radius:var(--r-hap);cursor:pointer}
     .rz-not{font-size:11px;color:rgba(255,255,255,.6);margin-top:6px}.rz-not:empty{display:none}
-    .rz-dlg{border:0;border-radius:22px;padding:0;max-width:440px;width:calc(100% - 32px);box-shadow:0 30px 60px -20px rgba(20,24,90,.5)}
+    .rz-dlg{border:0;border-radius:var(--r-3);padding:0;max-width:440px;width:calc(100% - 32px);box-shadow:var(--golge)}
     .rz-dlg::backdrop{background:rgba(14,18,60,.55)}
     .rz-dlg header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(120deg,#1a1f5c,#3a2a8c);color:#fff}
     .rz-dlg header b{font-size:17px}.rz-dlg header small{display:block;color:#f6d77e;font-weight:600;font-size:12px}
@@ -247,7 +247,7 @@
     .rz-dlg table{width:100%;border-collapse:collapse;font-size:14px}
     .rz-dlg th,.rz-dlg td{padding:9px 14px;text-align:left;border-bottom:1px solid #eee7d6}
     .rz-dlg th{position:sticky;top:0;background:#faf6ec;font-size:12px;color:#8a7a52}
-    .rz-dlg tr.bugun td{background:#fff3cf;font-weight:800}
+    .rz-dlg tr.bugun td{background:#fff3cf;font-weight:700}
     .rz-sus{position:absolute;top:0;left:0;right:0;height:110px;pointer-events:none;z-index:1;overflow:hidden}
     .rz-sus .s{position:absolute;top:0;transform-origin:50% 0;animation:rz-salla 4s ease-in-out infinite}
     .rz-sus .s::before{content:"";position:absolute;left:50%;top:0;width:1px;height:var(--ip);background:linear-gradient(#c8941c,#e9c766)}

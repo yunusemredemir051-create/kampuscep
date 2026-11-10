@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
-<meta name="theme-color" content="#eef3ff">
+<meta name="theme-color" content="#f4f5f7">
 <link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <title>Değişkenlik Ölçüleri – İstatistik konu özeti | KampüsCepte</title>
 <meta name="description" content="Standart sapma ve varyans; frekans ve gruplandırılmış seride adım adım hesaplama, iki çözümlü örnek.">
 <link rel="canonical" href="https://kampuscepte.com.tr/notlar/ybs/2/istatistik/unite-3.html">
@@ -19,15 +16,8 @@
 <meta property="og:url" content="https://kampuscepte.com.tr/notlar/ybs/2/istatistik/unite-3.html">
 <meta property="og:locale" content="tr_TR">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 3: Değişkenlik Ölçüleri", "description": "Standart sapma ve varyans; frekans ve gruplandırılmış seride adım adım hesaplama, iki çözümlü örnek.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCepte"}, "mainEntityOfPage": "https://kampuscepte.com.tr/notlar/ybs/2/istatistik/unite-3.html", "isPartOf": {"@type": "Course", "name": "İstatistik", "provider": {"@type": "Organization", "name": "KampüsCepte"}}, "dateModified": "2026-10-29"}</script>
-<style>
-:root {
-  --zemin: #eef3ff; --cam: rgba(255,255,255,.78); --cam-kenar: rgba(255,255,255,.9);
-  --golge: 0 10px 30px -12px rgba(40,60,140,.18);
-  --mavi: #3b5bfd; --mavi-acik: #e6ebff; --yesil: #16b67a; --yesil-acik: #e2f8ee;
-  --turuncu: #ff8a3d; --turuncu-acik: #fff0e5;
-  --yazi: #141b34; --soluk: #6b7390; --cizgi: #e6e9f4;
-  --font: "Plus Jakarta Sans", "Segoe UI", sans-serif;
-}
+<link rel="stylesheet" href="/kc.css?v=1">
+<style> 
 * { box-sizing: border-box; }
 body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
 .isik { position: fixed; inset: 0; z-index: -1; pointer-events: none;
@@ -35,20 +25,20 @@ body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(
               radial-gradient(600px 460px at -5% 25%, rgba(120,150,255,.35), transparent 70%), var(--zemin); }
 a { color: var(--mavi); }
 :focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
-.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: 22px; box-shadow: var(--golge);
-  backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); }
+.cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: var(--r-3); box-shadow: var(--golge);
+  }
 .kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 60px; }
 .ust { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; margin-bottom: 18px; }
-.logo { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 17px; text-decoration: none; color: var(--yazi); }
-.logo-ikon { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
+.logo { display: flex; align-items: center; gap: 9px; font-weight: 700; font-size: 17px; text-decoration: none; color: var(--yazi); }
+.logo-ikon { width: 30px; height: 30px; border-radius: var(--r-1); display: grid; place-items: center; background: linear-gradient(140deg, var(--mavi), #8b5cf6); color: #fff; font-size: 15px; }
 .yol { font-size: 13px; font-weight: 600; color: var(--soluk); margin: 0 4px 10px; }
 .yol a { color: var(--soluk); text-decoration: none; } .yol a:hover { color: var(--mavi); }
 .baslik-alani { padding: 0 4px; }
-.baslik-alani small { color: var(--mavi); font-weight: 800; font-size: 13px; }
+.baslik-alani small { color: var(--mavi); font-weight: 700; font-size: 13px; }
 h1 { margin: 4px 0 8px; font-size: 30px; line-height: 1.2; letter-spacing: -.8px; }
 .giris { color: var(--soluk); font-size: 15px; margin: 0 0 16px; }
 .butonlar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px; }
-.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: 14px; font: 700 14px var(--font);
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 16px; border-radius: var(--r-2); font: 700 14px var(--font);
   border: 1px solid var(--cizgi); background: #fff; color: var(--yazi); text-decoration: none; }
 .btn.ana { background: var(--mavi); color: #fff; border-color: var(--mavi); }
 .btn svg { width: 18px; height: 18px; }
@@ -58,7 +48,7 @@ article.metin h2:first-child { margin-top: 0; }
 article.metin p { margin: 0 0 12px; }
 article.metin ul, article.metin ol { margin: 0 0 14px; padding-left: 22px; }
 article.metin li { margin-bottom: 6px; }
-article.metin strong { font-weight: 800; }
+article.metin strong { font-weight: 700; }
 .ust-cizgi { text-decoration: overline; text-decoration-thickness: 1.5px; }
 sub, sup { font-size: .72em; }
 .gecis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
