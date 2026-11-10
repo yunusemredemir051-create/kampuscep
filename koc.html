@@ -8,7 +8,7 @@
 <title>Sınav Koçum · Algoritma – KampüsCepte</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="description" content="Sınav Koçum: seviye tespiti, adım adım konu anlatımı, anında geri bildirimli alıştırmalar, eksik tespiti, aralıklı tekrar ve gerçek sınav simülasyonu.">
-<link rel="stylesheet" href="/kc.css?v=1">
+<link rel="stylesheet" href="/kc.css?v=2">
 <style> 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body { margin: 0; min-height: 100vh; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; }
@@ -19,15 +19,15 @@ button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--mavi); outline-offset: 3px; }
 .cam { background: var(--cam); border: 1px solid var(--cam-kenar); border-radius: var(--r-3); box-shadow: var(--golge); }
 .kap { max-width: 760px; margin: 0 auto; padding: 16px 16px 70px; }
-.ust { display: grid; grid-template-columns: 42px 1fr 42px; align-items: center; gap: 10px; padding: 8px; margin-bottom: 18px; border-radius: var(--r-3); }
-.ust-geri, .ust .tema-dugme { width: 42px !important; height: 42px !important; border-radius: var(--r-2)!important; display: grid; place-items: center; color: var(--yazi) !important;
-  background: var(--kart) !important; border: 1px solid var(--cizgi) !important; box-shadow: var(--golge)!important; text-decoration: none; cursor: pointer; transition: transform .12s; }
+.ust { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.ust-geri, .ust .tema-dugme { width: 40px !important; height: 40px !important; flex: none; border-radius: var(--r-2)!important; display: grid; place-items: center; color: var(--yazi) !important;
+  background: var(--kart) !important; border: 1px solid var(--cam-kenar) !important; box-shadow: none !important; text-decoration: none; cursor: pointer; transition: transform .12s; }
 .ust-geri:active, .ust .tema-dugme:active { transform: scale(.94); }
 .ust-geri svg { width: 20px; height: 20px; } .ust .tema-dugme svg { width: 19px !important; height: 19px !important; }
 .ust .tema-sag { display: contents; }
-.ust .logo { grid-column: 2; justify-self: center; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.ust .logo span { display: flex; flex-direction: column; font-weight: 700; font-size: 16.5px; letter-spacing: -.3px; line-height: 1.1; }
-.ust .logo small { font-size: 10.5px; font-weight: 700; color: var(--mavi); margin-top: 2px; }
+.ust .logo { display: flex; align-items: center; gap: 10px; min-width: 0; margin-right: auto; text-decoration: none; color: var(--yazi); }
+.ust .logo span { display: flex; flex-direction: column; min-width: 0; font-size: 18px; line-height: 1.15; }
+.ust .logo small { font-family: var(--font); font-size: 12.5px; font-weight: 600; letter-spacing: 0; color: var(--soluk); margin-top: 1px; }
 .ust .tema-dugme { grid-column: 3; }
 .logo-ikon { width: 32px; height: 32px; border-radius: var(--r-1); }
 svg { flex: none; }

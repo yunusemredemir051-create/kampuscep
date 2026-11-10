@@ -115,3 +115,7 @@ body .alt-menu a.aktif::before { content: ""; position: absolute; top: -1px; lef
 
 /* Düz yazı sayfaları (gizlilik, hakkımızda, konu özetleri) */
 .kart:not(.cam) { border: 1px solid var(--cam-kenar); }
+
+/* Sayfanın kendi geri düğmesi varsa geri.js'in eklediği ikinci düğme gösterilmez */
+.ust:has(.ust-geri) .kc-geri-btn { display: none !important; }
+.ust .kc-geri-sar { min-width: 0; margin-right: auto; }
