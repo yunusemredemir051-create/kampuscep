@@ -690,6 +690,7 @@
       "fırında sebzeli tavuk ızgara": "yurt-firinda-sebzeli-tavuk",
       "fırında sebzeli tavuk": "yurt-firinda-sebzeli-tavuk",
       "etli dolma": "yurt-etli-dolma",
+      "dolma": "yurt-etli-dolma",
       "mevsim türlü": "yurt-mevsim-turlu",
       "türlü": "yurt-mevsim-turlu",
       "soslu makarna": "yurt-soslu-makarna",
