@@ -28,6 +28,51 @@ window.SPONSORLAR = [
         { ad: "Aile Menüsü 3", icerik: "5 tavuk dürüm · patates · 1 L içecek", fiyat: "750 TL", resim: "/gorseller/vitrin/caddekatik-aile3.webp", one: "Arkadaşlarınla en avantajlı" }
       ] }
     ]
+  },
+  {
+    id: "ustam",
+    ad: "Ustam Pide ve Lahmacun",
+    tur: "Pide · Lahmacun · Pizza",
+    slogan: "Sıcak pide, lahmacun ve pizza · Paket servis var, toplu sipariş alınır · Evden gelen lahmacun-pide yapılır",
+    konum: "Ataşehir Mah. Kuvayi Milliye Cad. 2099. Sk. No: 2, Elazığ",
+    harita: "Ustam Pide ve Lahmacun Pizza Ataşehir Elazığ",
+    tel: "+905062487723",
+    telYaz: "0506 248 77 23",
+    renk: ["#d62828", "#6b1010"],
+    logo: "/gorseller/vitrin/ustam-logo.webp",
+    kategoriler: [
+      { ad: "Lahmacun", urunler: [
+        { ad: "Lahmacun", icerik: "İnce hamur, bol harç", fiyat: "85 TL", resim: "/gorseller/vitrin/ustam-lahmacun.webp", one: "En uygun fiyatlı lezzet" },
+        { ad: "Soğansız Lahmacun", icerik: "Soğansız iç harç", fiyat: "100 TL", resim: "/gorseller/vitrin/ustam-sogansiz-lahmacun.webp" },
+        { ad: "Malatya Lahmacun", icerik: "Malatya usulü", fiyat: "150 TL", resim: "/gorseller/vitrin/ustam-malatya-lahmacun.webp" },
+        { ad: "Konya Etli Ekmek", icerik: "Konya usulü etli ekmek", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-konya-etli-ekmek.webp" }
+      ] },
+      { ad: "Pideler", urunler: [
+        { ad: "Kaşarlı Pide", icerik: "Bol kaşar", fiyat: "220 TL", resim: "/gorseller/vitrin/ustam-kasarli-pide.webp" },
+        { ad: "Kıymalı Pide", icerik: "Kıymalı", fiyat: "220 TL", resim: "/gorseller/vitrin/ustam-kiymali-pide.webp" },
+        { ad: "Kıymalı Kaşarlı", icerik: "Kıyma ve kaşar", fiyat: "230 TL", resim: "/gorseller/vitrin/ustam-kiymali-kasarli.webp" },
+        { ad: "Tavuklu Kaşarlı", icerik: "Tavuk ve kaşar", fiyat: "170 TL", resim: "/gorseller/vitrin/ustam-tavuklu-kasarli.webp" },
+        { ad: "Kuşbaşılı Pide", icerik: "Kuşbaşı et", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-kusbasili-pide.webp" },
+        { ad: "Kuşbaşı Kaşarlı Pide", icerik: "Kuşbaşı et ve kaşar", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-kusbasi-kasarli-pide.webp" },
+        { ad: "Kavurma Kaşarlı Pide", icerik: "Kavurma ve kaşar", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-kavurma-kasarli-pide.webp" },
+        { ad: "Sucuklu Kaşarlı Pide", icerik: "Sucuk ve kaşar", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-sucuklu-kasarli-pide.webp" },
+        { ad: "Karışık Pide", icerik: "Karışık malzemeli", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-karisik-pide.webp" },
+        { ad: "Ustam Special", icerik: "Ustanın özel pidesi", fiyat: "300 TL", resim: "/gorseller/vitrin/ustam-ustam-special.webp", one: "Ustanın imzası" },
+        { ad: "Bafra Pidesi", icerik: "Kapalı Bafra usulü", fiyat: "230 TL", resim: "/gorseller/vitrin/ustam-bafra-pidesi.webp" },
+        { ad: "Şekerli Peynirli Pide", icerik: "Tatlı peynirli", fiyat: "100 TL", resim: "/gorseller/vitrin/ustam-sekerli-peynirli-pide.webp" },
+        { ad: "Palu Patlısı", icerik: "Yöresel Palu lezzeti", fiyat: "150 TL", resim: "/gorseller/vitrin/ustam-palu-patlisi.webp" }
+      ] },
+      { ad: "Pizzalar", urunler: [
+        { ad: "Vejeteryan Pizza", icerik: "Sebzeli", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-vejeteryan-pizza.webp" },
+        { ad: "Sucuklu Pizza", icerik: "Sucuk ve kaşar", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-sucuklu-pizza.webp" },
+        { ad: "Kavurmalı Pizza", icerik: "Kavurma ve kaşar", fiyat: "300 TL", resim: "/gorseller/vitrin/ustam-kavurmali-pizza.webp" },
+        { ad: "Ton Balıklı Pizza", icerik: "Ton balığı ve kaşar", fiyat: "350 TL", resim: "/gorseller/vitrin/ustam-ton-balikli-pizza.webp" }
+      ] },
+      { ad: "Dürüm ve çorba", urunler: [
+        { ad: "Kavurmalı Kaşarlı Dürüm", icerik: "Kavurma ve kaşar", fiyat: "230 TL", resim: "/gorseller/vitrin/ustam-kavurmali-kasarli-durum.webp" },
+        { ad: "Çorba", icerik: "Sıcak çorba", fiyat: "100 TL", resim: "/gorseller/vitrin/ustam-corba.webp" }
+      ] }
+    ]
   }
 ];
 
