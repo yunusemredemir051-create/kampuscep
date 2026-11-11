@@ -31,6 +31,7 @@ window.SPONSORLAR = [
   },
   {
     id: "ustam",
+    gizli: true, // anlaşma yapılmadı: listelerde görünmez, yalnızca /magaza.html?s=ustam bağlantısıyla açılır
     ad: "Ustam Pide ve Lahmacun",
     tur: "Pide · Lahmacun · Pizza",
     slogan: "Sıcak pide, lahmacun ve pizza · Paket servis var, toplu sipariş alınır · Evden gelen lahmacun-pide yapılır",
@@ -78,7 +79,8 @@ window.SPONSORLAR = [
 
 (function () {
   var kutular = document.querySelectorAll("#sponsorlar-alani, .sponsorlar-alani");
-  if (!kutular.length || !window.SPONSORLAR.length) return;
+  var GORUNEN = window.SPONSORLAR.filter(function (s) { return !s.gizli; });
+  if (!kutular.length || !GORUNEN.length) return;
   var st = document.createElement("style");
   st.textContent =
     ".sp-alan{margin-top:26px}" +
@@ -110,9 +112,9 @@ window.SPONSORLAR = [
     "@media (min-width:821px){.sp-kart{flex-basis:420px}}";
   document.head.appendChild(st);
   var ok = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-  var tek = window.SPONSORLAR.length === 1;
+  var tek = GORUNEN.length === 1;
   var html = '<section class="sp-alan"><div class="sp-bas"><div><small>Öğrencilere özel</small><h2>Sponsorlarımız</h2></div><a href="/magaza.html">Tümü</a></div><div class="sp-serit">' +
-    window.SPONSORLAR.map(function (s) {
+    GORUNEN.map(function (s) {
       var u = [].concat.apply([], s.kategoriler.map(function (k) { return k.urunler; }));
       return '<a class="sp-kart" style="--sp1:' + s.renk[0] + ";--sp2:" + s.renk[1] + (tek ? ";flex-basis:84%" : "") + '" href="/magaza.html?s=' + s.id + '">' +
         '<div class="sp-ust"><img class="sp-logo" src="' + s.logo + '" alt="" width="56" height="56" loading="lazy"><div><span class="sp-rozet">Sponsor</span><b>' + s.ad + '</b><span class="t">' + s.tur + "</span></div></div>" +

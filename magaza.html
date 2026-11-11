@@ -111,7 +111,7 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: var(--yazi);
   <main id="magaza"></main>
   <footer class="alt-bilgi"><a href="index.html">Ana sayfa</a><a href="/sponsor/">Sponsor ol</a><a href="gizlilik.html">Gizlilik</a></footer>
 </div>
-<script src="/sponsorlar.js?v=3"></script>
+<script src="/sponsorlar.js?v=4"></script>
 <script>
 (function () {
   var M = document.getElementById("magaza"), L = window.SPONSORLAR || [];
@@ -122,12 +122,13 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: var(--yazi);
     dukkan: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-5h15L21 9M3 9h18v2a3 3 0 0 1-6 0 3 3 0 0 1-6 0 3 3 0 0 1-6 0zM5 13v8h14v-8"/></svg>'
   };
   var id = new URLSearchParams(location.search).get("s"), s = L.filter(function (x) { return x.id === id; })[0];
+  if (s && s.gizli) { var rb = document.createElement("meta"); rb.name = "robots"; rb.content = "noindex"; document.head.appendChild(rb); }
   function harita(x) { return "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(x.harita || x.ad + " Elazığ"); }
   if (!s) {
     document.title = "Sponsorlarımız – KampüsCepte";
     var ok = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
     M.innerHTML = '<section class="lst-bas"><span class="lst-et">' + I.yildiz + 'Öğrencilere yakın işletmeler</span><h1>Sponsorlarımız</h1><p>KampüsCepte\'yi ücretsiz tutmamıza destek olan işletmeler. Menülerini, fiyatlarını gez; tek dokunuşla ara.</p></section>' +
-      '<div class="lst">' + L.map(function (x) {
+      '<div class="lst">' + L.filter(function (x) { return !x.gizli; }).map(function (x) {
         var u = [].concat.apply([], x.kategoriler.map(function (k) { return k.urunler; }));
         return '<a class="lst-kart" style="--sp1:' + x.renk[0] + ';--sp2:' + x.renk[1] + '" href="magaza.html?s=' + x.id + '">' +
           '<div class="lst-ust"><img class="lst-logo" src="' + x.logo + '" alt=""><div><span class="lst-r">Sponsor</span><b>' + x.ad + '</b><small>' + x.tur + '</small></div></div>' +

@@ -4,7 +4,7 @@
    - Sürüm numaralı (?v=) JS ve CSS: önbellekten anında, arkada yenisi iner. Dosyayı değiştirince ?v= numarasını artır.
    - Sürüm numarasız JS: önce internetten, olmazsa önbellekten.
    - Görseller, PDF'ler ve yazı tipleri: önce önbellekten. */
-const SURUM = "kc-v206";
+const SURUM = "kc-v207";
 const TEMEL = ["./", "index.html", "veri.js", "cerez.js", "tema.js", "favicon.svg", "manifest.webmanifest",
                "ikonlar/ikon-192.png", "ikonlar/ikon-512.png", "kc.css", "ana.css", "masaustu.css", "uygulama.css", "yazitipi/figtree-latin.woff2", "yazitipi/figtree-latin-ext.woff2", "yazitipi/bricolage-latin.woff2", "yazitipi/bricolage-latin-ext.woff2", "kodatolye.js", "vize.js", "dersler.html", "gizlilik.html", "hakkimizda.html", "404.html"];
 const SAYFA_BEKLE = 3000;
