@@ -901,6 +901,32 @@
   .yf-fiyat-toplam div { display: flex; justify-content: space-between; align-items: baseline; font-weight: 700; font-size: 13.5px; }
   .yf-fiyat-toplam b { font-family: var(--font-b); font-size: 19px; color: var(--yesil); letter-spacing: -.01em; }
   .yf-fiyat-toplam small { display: block; margin-top: 3px; font-size: 10.5px; opacity: .6; }
+  .yf-algotur { margin-top: 10px; border-radius: 16px; border: 1px solid var(--cizgi, #e6e9f4); background: var(--cam-guclu, rgba(255,255,255,.9)); overflow: hidden; }
+  .yf-ag-dugme { all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 11px; width: 100%; padding: 11px 13px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .yf-ag-dugme:focus-visible { outline: 2px solid var(--mavi, #3b5bfd); outline-offset: -2px; border-radius: 16px; }
+  .yf-ag-ikon { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px; background: linear-gradient(135deg, #ffb347, #ff7a3d); color: #fff; box-shadow: 0 6px 14px -8px rgba(255,122,61,.9); }
+  .yf-ag-yazi { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .yf-ag-yazi b { font-size: 14px; font-weight: 700; color: var(--yazi, #141b34); }
+  .yf-ag-yazi small { font-size: 11.5px; color: var(--soluk, #6b7390); }
+  .yf-ag-ok { flex: none; color: var(--soluk, #6b7390); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+  .yf-algotur.acik .yf-ag-ok { transform: rotate(180deg); }
+  .yf-ag-govde { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1); }
+  .yf-algotur.acik .yf-ag-govde { grid-template-rows: 1fr; }
+  .yf-ag-ic { min-height: 0; overflow: hidden; }
+  .yf-ag-urunler { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; padding: 2px 13px 0; }
+  .yf-ag-urun { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px; padding: 8px; border-radius: 13px; background: var(--zemin-2, rgba(240,243,252,.7)); border: 1px solid var(--cizgi, #e6e9f4); cursor: zoom-in; transition: transform .15s ease; }
+  .yf-ag-urun:active { transform: scale(.97); }
+  .yf-ag-urun:focus-visible { outline: 2px solid var(--mavi, #3b5bfd); outline-offset: 2px; }
+  .yf-ag-foto { position: relative; display: block; aspect-ratio: 1; border-radius: 10px; overflow: hidden; background: #fff; }
+  .yf-ag-foto img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .yf-ag-foto i { position: absolute; top: 6px; right: 6px; font-style: normal; font: 800 12px/1 var(--font-b, inherit); padding: 5px 7px; border-radius: 999px; background: #141b34; color: #fff; }
+  .yf-ag-ad { display: flex; flex-direction: column; gap: 1px; padding: 0 2px 1px; }
+  .yf-ag-ad b { font-size: 13px; font-weight: 700; color: var(--yazi, #141b34); }
+  .yf-ag-ad small { font-size: 11px; color: var(--soluk, #6b7390); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yf-ag-not { margin: 9px 13px 12px; font-size: 11.5px; line-height: 1.45; color: var(--soluk, #6b7390); }
+  html[data-tema=koyu] .yf-ag-urun { background: rgba(255,255,255,.04); }
+  html[data-tema=koyu] .yf-ag-foto i { background: #f0f3fe; color: #141b34; }
+  @media (prefers-reduced-motion: reduce) { .yf-ag-govde, .yf-ag-ok { transition: none; } }
   .yf-bt-alt { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; font-size: 12px; opacity: .95; }
   .yf-ek {
     display: flex;
@@ -1901,6 +1927,7 @@
     const eskiEk = ul.parentNode.querySelector(".yf-ek"); if (eskiEk) eskiEk.remove();
     const eskiToplam = ul.parentNode.querySelector(".yf-besin-toplam"); if (eskiToplam) eskiToplam.remove();
     const eskiFt = ul.parentNode.querySelector(".yf-fiyat-toplam"); if (eskiFt) eskiFt.remove();
+    const eskiAg = ul.parentNode.querySelector(".yf-algotur"); if (eskiAg) eskiAg.remove();
     if (!kimlik) return;
     const [yer, tarih, ogun] = kimlik.split("_");
     const fiyatli = yer !== "unievi" && (ogun === "kahvalti" || ogun === "aksam");
@@ -2056,6 +2083,43 @@
       });
       const tp = ul.nextElementSibling;
       (tp && (tp.classList.contains("yf-besin-toplam") || tp.classList.contains("yf-fiyat-toplam")) ? tp : ul).after(d);
+    }
+
+    /* Yurt kahvaltısı: menüyü istemeyen 2 kek + 1 meyve suyu alabiliyor (al götür) */
+    if (yer !== "unievi" && ogun === "kahvalti" && ul.querySelector("li:not(.bos-menu):not(.bos):not(.not)")) {
+      const ag = document.createElement("div"); ag.className = "yf-algotur";
+      const acik = (() => { try { return localStorage.getItem("kc_algotur") === "1"; } catch (e) { return false; } })();
+      if (acik) ag.classList.add("acik");
+      const id = "yf-ag-" + kimlik;
+      ag.innerHTML = `<button type="button" class="yf-ag-dugme" aria-expanded="${acik}" aria-controls="${id}">
+          <span class="yf-ag-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
+          <span class="yf-ag-yazi"><b>Al götür kahvaltı</b><small>Menü yerine 2 kek + 1 meyve suyu</small></span>
+          <svg class="yf-ag-ok" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="yf-ag-govde" id="${id}"><div class="yf-ag-ic">
+          <div class="yf-ag-urunler"></div>
+          <p class="yf-ag-not">Tabldot yerine bu paketi alıp götürebilirsin · her gün 10.30’a kadar.</p>
+        </div></div>`;
+      const urunler = [["yurt-algotur-kek", "Meyveli kek", "Torku Favorimo", "2 adet"], ["yurt-algotur-meyve-suyu", "Meyve suyu", "Lavi Fruitmix · 200 ml", "1 adet"]];
+      const kap = ag.querySelector(".yf-ag-urunler");
+      urunler.forEach(([g, ad, alt, adet]) => {
+        const b = document.createElement("button"); b.type = "button"; b.className = "yf-ag-urun";
+        b.setAttribute("aria-label", adet + " " + ad + " fotoğrafı");
+        b.innerHTML = `<span class="yf-ag-foto"><img src="${resimSrc(g)}" alt="" loading="lazy"><i>${adet.replace(" adet", "×")}</i></span><span class="yf-ag-ad"><b>${ad}</b><small>${alt}</small></span>`;
+        b.onclick = (e) => { e.stopPropagation(); buyut(g, adet + " " + ad + " (" + alt + ")"); };
+        kap.appendChild(b);
+      });
+      const dg = ag.querySelector(".yf-ag-dugme");
+      dg.onclick = (e) => {
+        e.stopPropagation();
+        const ac = !ag.classList.contains("acik");
+        ag.classList.toggle("acik", ac); dg.setAttribute("aria-expanded", ac);
+        try { localStorage.setItem("kc_algotur", ac ? "1" : "0"); } catch (er) {}
+        try { if (window.KC_SES && KC_SES.titret) KC_SES.titret(8); } catch (er) {}
+      };
+      let son = ul;
+      while (son.nextElementSibling && /\byf-(besin-toplam|fiyat-toplam|ek)\b/.test(son.nextElementSibling.className)) son = son.nextElementSibling;
+      son.after(ag);
     }
   }
 
