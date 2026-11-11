@@ -122,6 +122,20 @@ function durumCiz(elId, kisaltilmis) {
     </div>`;
   }
   document.getElementById(elId).innerHTML = html;
+  if (elId === "ana-durum") selamSinavCiz();
+}
+
+/* Tıp seçiliyse selamın altında sıradaki sınava kalan gün: "Sınava 16 gün kaldı" */
+function selamSinavCiz() {
+  const h = document.getElementById("selam"); if (!h) return;
+  let el = document.getElementById("selam-sinav");
+  const tip = typeof akademikProfil === "function" && akademikProfil().bolum === "tip";
+  const s = tip ? siradaki("sinav") : null;
+  if (!s) { if (el) el.remove(); return; }
+  if (!el) { el = document.createElement("div"); el.id = "selam-sinav"; h.after(el); }
+  const b = T(s.bas), g = fark(bugun, b);
+  const yazi = bugun >= b ? "Bugün sınav günü, başarılar" : g === 1 ? "Sınav yarın, başarılar" : `Sınava ${g} gün kaldı`;
+  el.innerHTML = `<b>${yazi}</b><span>${s.ad} · ${kisa(b)}</span>`;
 }
 
 /* Sayaç kartları (takvim sayfası) */

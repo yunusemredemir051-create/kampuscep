@@ -297,6 +297,9 @@ html[data-renk] .afis img { content: url("gorseller/afis-seffaf.webp"); }
 .afis .ust-bilgi { position: relative; margin: 0; max-width: 48%; }
 .afis .ust-bilgi small { color: rgba(255,255,255,.85); }
 .afis .ust-bilgi h1 { color: #fff; font-size: 32px; line-height: 1.15; }
+#selam-sinav { display: inline-flex; flex-direction: column; gap: 1px; margin: 8px 0 2px; padding: 7px 13px 7px 12px; border-radius: 14px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.32); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; }
+#selam-sinav b { font-size: 15px; font-weight: 800; letter-spacing: -.2px; }
+#selam-sinav span { font-size: 11.5px; font-weight: 600; opacity: .88; }
 .afis .ust-bilgi p { color: rgba(255,255,255,.9); margin: 8px 0 0; font-size: 14px; font-weight: 600; }
 .gorselli { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .gorselli img { width: 150px; height: auto; flex: none; margin: -14px 0 -10px; filter: drop-shadow(0 10px 18px rgba(40,60,140,.12)); }
