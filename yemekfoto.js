@@ -713,6 +713,10 @@
       "şehriye çorbası": "yurt-sehriye-corbasi",
       "tavuk çöp şiş": "yurt-tavuk-cop-sis",
       "bulgur pilavı": "yurt-bulgur-pilavi",
+      "kaşar peynir": "yurt-kasar-peynir",
+      "kaşar peyniri": "yurt-kasar-peynir",
+      "kaşar": "yurt-kasar-peynir",
+      "ekmek arası köfte": "yurt-ekmek-arasi-kofte",
       "şehriyeli bulgur pilavı": "yurt-sehriyeli-bulgur-pilavi",
       "domates çorbası": "yurt-domates-corbasi",
       "yoğurt": "yurt-yogurt",
@@ -2071,7 +2075,10 @@
       ul.after(kutu);
     }
 
-    const ek = YANINDA[yer === "unievi" ? "unievi" : "yurt"];
+    let ek = YANINDA[yer === "unievi" ? "unievi" : "yurt"];
+    /* Ekmek arası köfte ve hamburger olan menülerde ketçap + mayonez de verilir */
+    const menuMetni = [...ul.querySelectorAll("li")].map(li => li.dataset.yemek || li.textContent).join(" ").toLocaleLowerCase("tr-TR");
+    if (ek && /ekmek arası|burger/.test(menuMetni)) ek = ek.concat([["Ketçap", "sos-ketcap"], ["Mayonez", "sos-mayonez"]]);
     if (ek && ul.querySelector("li:not(.bos-menu):not(.bos)")) {
       const d = document.createElement("div"); d.className = "yf-ek";
       d.innerHTML = "<span>Menüyle verilir:</span>";
