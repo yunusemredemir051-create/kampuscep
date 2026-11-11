@@ -1141,7 +1141,7 @@ html body .yf-grup .yf + .yf { margin-left: -24px; }
 .tatil.cam + .tatil.cam { border-top: 1px solid var(--cizgi); }
 .tatil-ust { grid-column: 1; margin: 0; }
 .tatil-bilgi { grid-column: 2; grid-row: 1; margin: 0; gap: 16px; }
-.tatil-bilgi div { background: none; padding: 0; border-radius: 0; }
+.tatil-bilgi div { background: none !important; padding: 0; border-radius: 0; }
 .tatil-bilgi b { font-size: 17px; }
 .tatil .kopru { grid-column: 1 / -1; margin: 2px 0 0; padding: 0; background: none !important; color: var(--soluk); font-weight: 500; font-size: 13.5px; }
 .tatil .kopru:not(.notr) { color: var(--yesil); }
