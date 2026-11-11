@@ -22,7 +22,7 @@
 /* ---- Belirteçler ---- */
 :root {
   /* Yüzeyler: düz, opak. Cam/bulanıklık yok. */
-  --zemin: #f4f5f7;
+  --zemin: #f5f6f8;
   --kart: #ffffff;
   --kart-2: #eef0f4;            /* gömük alan: seçici zemini, pasif kutu */
   --cam: var(--kart);           /* eski ad; kart yüzeyi */
@@ -31,11 +31,15 @@
   --cizgi: #e4e7ed;             /* iç ayırıcı çizgi */
 
   /* Yazı */
-  --yazi: #0f1728;
+  --yazi: #0e1730;
+  --murekkep: #0e1730;          /* üst çubuk ve kenar menüsü: marka zemini (her temada koyu) */
+  --murekkep-yazi: #ffffff;
+  --fosfor: #ffdf3d;            /* fosforlu kalem: "şu an / bugün / buradasın" işareti */
+  --fosfor-yazi: #0e1730;
   --soluk: #5a6478;
 
   /* Vurgu (takım temaları --mavi ve --mavi-acik'ı değiştirir) */
-  --mavi: #2a4de0;
+  --mavi: #2447e6;
   --vurgu-yazi: #ffffff;        /* vurgu zemini üstündeki yazı */
   --mavi-acik: #e8edff;
   --mor: #5b3fd6;
@@ -119,3 +123,51 @@ body .alt-menu a.aktif::before { content: ""; position: absolute; top: -1px; lef
 /* Sayfanın kendi geri düğmesi varsa geri.js'in eklediği ikinci düğme gösterilmez */
 .ust:has(.ust-geri) .kc-geri-btn { display: none !important; }
 .ust .kc-geri-sar { min-width: 0; margin-right: auto; }
+
+/* ==========================================================================
+   Marka çubuğu: bütün sayfalarda üstte mürekkep rengi, tam genişlik
+   ========================================================================== */
+body .ust.cam, body div.ust, body header.ust {
+  position: relative; background: var(--murekkep); color: var(--murekkep-yazi);
+  border: 0; border-radius: 0; padding: 10px 0; margin-bottom: 18px;
+  box-shadow: 0 0 0 100vmax var(--murekkep); clip-path: inset(-20px -100vmax 0);
+}
+body .ust .logo, body .ust .logo span, body .ust a.logo { color: var(--murekkep-yazi) !important; }
+body .ust .logo small { color: rgba(255,255,255,.66) !important; }
+body .ust .ust-geri, body .ust .tema-dugme, body .ust .kc-geri-btn, body .ust .site-btn, body .ust .geri {
+  background: transparent !important; color: var(--murekkep-yazi) !important; border: 1px solid rgba(255,255,255,.2) !important; box-shadow: none !important;
+}
+body .ust .ust-geri:hover, body .ust .tema-dugme:hover, body .ust .kc-geri-btn:hover, body .ust .site-btn:hover, body .ust .geri:hover { background: rgba(255,255,255,.1) !important; }
+body .ust a:not(.logo):not(.ust-geri):not(.site-btn):not(.geri) { color: var(--murekkep-yazi); }
+body .ust :focus-visible { outline-color: var(--fosfor); }
+
+/* Bölüm başlığı: yazı + sayfa genişliğinde ince çizgi */
+.bolum-baslik, .baslik { display: flex; align-items: center; gap: 12px; }
+.bolum-baslik::after, .baslik::after { content: ""; flex: 1; height: 1px; background: var(--cizgi); order: 1; }
+.baslik > button, .baslik > a { order: 2; }
+
+/* Reklam alanları: düzeni bozamaz, yatay kaydırma oluşturamaz */
+ins.adsbygoogle, .google-auto-placed { display: block; max-width: 100% !important; overflow: hidden; }
+.google-auto-placed { margin: 20px auto !important; clear: both; }
+ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }
+html, body { overflow-x: clip; }
+img, video, iframe { max-width: 100%; }
+
+/* Üniteler / ders arşivi: tek yüzey, çizgiyle ayrılmış kayıtlar */
+body .uniteler { gap: 0; background: var(--kart); border: 1px solid var(--cam-kenar); border-radius: var(--r-3); overflow: hidden; }
+body .uniteler > .unite { border: 0; border-radius: 0; box-shadow: none; background: none; padding: 16px; }
+body .uniteler > .unite + .unite { border-top: 1px solid var(--cizgi); }
+body .unite::before { content: none; }
+body .unite .no, body .unite .no.c0, body .unite .no.c1, body .unite .no.c2, body .unite .no.c3, body .unite .no.c4 {
+  width: 46px; height: 46px; border-radius: var(--r-2); background: var(--kart-2); color: var(--soluk) !important; box-shadow: none; font-weight: 600; }
+body .unite .no b { font-family: var(--font-b); font-size: 20px; color: var(--yazi); }
+body .unite .meta span { border-radius: var(--r-1); font-weight: 600; background: none; padding: 0; }
+body .unite .meta span + span::before { content: "·"; margin-right: 6px; }
+body .unite .butonlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+body .unite .butonlar .btn { min-width: 0; padding: 10px 6px; font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body .unite .butonlar .btn.ana { grid-column: 1 / -1; box-shadow: none; font-size: 15px; padding: 12px; }
+@media (min-width: 720px) {
+  body .unite .butonlar { grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 1.4fr); }
+  body .unite .butonlar .btn.ana { grid-column: auto; }
+}
+body .ders-hero { background: var(--murekkep) !important; box-shadow: none; }

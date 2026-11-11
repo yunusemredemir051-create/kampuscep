@@ -139,7 +139,7 @@
       "--golge:0 1px 2px rgba(0,0,0,.4);--golge-ust:0 18px 44px -12px rgba(0,0,0,.75),0 0 0 1px #2b3345;--mavi:#7d95ff;--vurgu-yazi:#0d111a;" +
       "--mavi-acik:color-mix(in srgb,var(--mavi) 20%,#161b27)!important;--turuncu:#ff8f52;--yesil:#3fcf97;--pembe:#ff7aa2;--mor:#a996ff;" +
       "--turuncu-acik:rgba(255,143,82,.15);--yesil-acik:rgba(63,207,151,.14);--pembe-acik:rgba(255,122,162,.15);--mor-acik:rgba(169,150,255,.18);" +
-      "--yazi:#e9ecf3;--soluk:#99a2b6"],
+      "--yazi:#e9ecf3;--soluk:#99a2b6;--murekkep:#080b12;--fosfor:#ffdf3d;--fosfor-yazi:#0e1730"],
     [" body", "background-color:var(--zemin)!important;color:var(--yazi)"],
     [" .isik", "background:radial-gradient(520px 380px at 90% 0%,rgba(255,138,61,.13),transparent 70%)," +
       "radial-gradient(600px 460px at -5% 25%,rgba(90,110,255,.2),transparent 70%)," +
@@ -159,7 +159,7 @@
       K + " .sonuc .satirlar div," + K + " .ilan-bilgi span:not(.yesil):not(.dolu)," + K + " .sik .harf," + K + " .btn.soluk," +
       K + " .ozet span," + K + " .rozet.yakinda," + K + " .sekme:hover", "background:rgba(255,255,255,.06)"],
     [" .cubuk," + K + " .ilerleme", "background:rgba(255,255,255,.08)"],
-    [" .yan," + K + " .alt-menu", "background:var(--kart)"],
+    [" .alt-menu", "background:var(--kart)"],
     [" .filtre button.aktif", "background:var(--mavi);border-color:var(--mavi);color:#fff"],
     [" .toast", "background:#2a3150"],
     [" .vitrin", "border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)"],
