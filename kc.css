@@ -159,3 +159,11 @@ ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Kendi geri düğmesi olan sayfalarda (Sponsorlarımız, Sınav Koçum) geri.js'in "dar" kipi logo aralığını sıfırlamasın */
+.ust:has(.ust-geri) .kc-geri-sar.kc-dar .logo { gap: 12px !important; font-size: 19px !important; }
+.ust:has(.ust-geri) .logo { gap: 12px; }
+.ust:has(.ust-geri) .logo-ikon { width: 38px; height: 38px; flex: none; }
+.ust:has(.ust-geri) .logo span { font-size: 19px; line-height: 1.15; gap: 1px; }
+.ust:has(.ust-geri) .logo small { font-size: 13px; }
+body .ust:has(.ust-geri) { gap: 14px; padding: 12px 0; margin-bottom: 28px; }
