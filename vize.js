@@ -33,7 +33,7 @@
       { t: "17.11", s: "18:15–19:00", kod: "YBS2115", ad: "Grafik Tasarımı ve Animasyon", hoca: "Dr. Öğr. Üyesi Abdullah Şener", link: "" },
       { t: "18.11", s: "17:00–18:00", kod: "SSD2101", ad: "Fotoğrafçılık", hoca: "Doç. Dr. Cem Ayden", link: "", not: "Seçmeli" },
       { t: "20.11", s: "17:15–18:15", kod: "YBS2101", ad: "Finansal Yönetim I", hoca: "Dr. Öğr. Üyesi Emre Bulut", link: "ders.html?d=ybs/2/finansal-yonetim" },
-      { t: "23.11", s: "17:00–17:30", kod: "YBS2113", ad: "Sosyal Medya Analizi", hoca: "Doç. Dr. Seda Özer Şanal", link: "" },
+      { t: "23.11", s: "17:00–17:30", kod: "YBS2113", ad: "Sosyal Medya Analizi", hoca: "Doç. Dr. Seda Özer Şanal", link: "ders.html?d=ybs/2/sosyal-medya-analizi" },
       { t: "24.11", s: "12:40–13:10", kod: "AİT101", ad: "Atatürk İlkeleri ve İnkılap Tarihi I", hoca: "", link: "ders.html?d=ortak/inkilap-tarihi-1" },
       { t: "25.11", s: "17:00–18:00", kod: "YBS2103", ad: "İstatistik", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "ders.html?d=ybs/2/istatistik" },
       { t: "26.11", s: "18:00–18:30", kod: "YBS2107", ad: "Pazarlama İlkeleri", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "ders.html?d=ybs/2/pazarlama-ilkeleri" }
