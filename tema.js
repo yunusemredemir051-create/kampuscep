@@ -135,11 +135,11 @@
   var K = 'html[data-tema="koyu"]';
   var kurallar = [
     /* renk değişkenleri */
-    ["", "color-scheme:dark;--zemin:#0d111a!important;--kart:#161b27;--kart-2:#212838;--cam-guclu:#1b2130;--cam-kenar:#2b3345;--cizgi:#252d3d;" +
-      "--golge:0 1px 2px rgba(0,0,0,.4);--golge-ust:0 18px 44px -12px rgba(0,0,0,.75),0 0 0 1px #2b3345;--mavi:#7d95ff;--vurgu-yazi:#0d111a;" +
-      "--mavi-acik:color-mix(in srgb,var(--mavi) 20%,#161b27)!important;--turuncu:#ff8f52;--yesil:#3fcf97;--pembe:#ff7aa2;--mor:#a996ff;" +
-      "--turuncu-acik:rgba(255,143,82,.15);--yesil-acik:rgba(63,207,151,.14);--pembe-acik:rgba(255,122,162,.15);--mor-acik:rgba(169,150,255,.18);" +
-      "--yazi:#e9ecf3;--soluk:#99a2b6"],
+    ["", "color-scheme:dark;--zemin:#11121c!important;--kart:#1b1d2c;--kart-2:#262a3d;--cam-guclu:#20233a;--cam-kenar:rgba(140,130,255,.16);--cizgi:#2a2e42;" +
+      "--golge:0 14px 30px -16px rgba(0,0,0,.7);--golge-kucuk:0 6px 16px -8px rgba(0,0,0,.6);--golge-ust:0 30px 60px -18px rgba(0,0,0,.85);--mavi:#8f84ff;--vurgu-yazi:#12121e;" +
+      "--mavi-acik:color-mix(in srgb,var(--mavi) 20%,#1b1d2c)!important;--ikincil:#ff9a4d;--ikincil-acik:rgba(255,154,77,.16);--turuncu:#ff9a4d;--yesil:#3fcf97;--pembe:#ff7aa2;--mor:#b79cff;" +
+      "--turuncu-acik:rgba(255,154,77,.16);--yesil-acik:rgba(63,207,151,.14);--pembe-acik:rgba(255,122,162,.15);--mor-acik:rgba(183,156,255,.18);" +
+      "--yazi:#eceef7;--soluk:#a2a8bd"],
     [" body", "background-color:var(--zemin)!important;color:var(--yazi)"],
     [" .isik", "background:radial-gradient(520px 380px at 90% 0%,rgba(255,138,61,.13),transparent 70%)," +
       "radial-gradient(600px 460px at -5% 25%,rgba(90,110,255,.2),transparent 70%)," +
@@ -154,12 +154,12 @@
       "background:var(--kart)"],
     [" .kart:not(.cam)", "box-shadow:var(--golge)"],
     [" .secici button.aktif," + K + " .sekmeler button.aktif," + K + " .gun-sec button.aktif," + K + " .secim button.aktif",
-      "background:var(--kart-2);box-shadow:none"],
+      "background:var(--mavi);color:var(--vurgu-yazi);box-shadow:none"],
     [" .secici," + K + " .sekmeler," + K + " .gun-sec," + K + " .secim," + K + " .tatil-bilgi div," + K + " .kopru.notr," +
       K + " .sonuc .satirlar div," + K + " .ilan-bilgi span:not(.yesil):not(.dolu)," + K + " .sik .harf," + K + " .btn.soluk," +
       K + " .ozet span," + K + " .rozet.yakinda," + K + " .sekme:hover", "background:rgba(255,255,255,.06)"],
     [" .cubuk," + K + " .ilerleme", "background:rgba(255,255,255,.08)"],
-    [" .yan," + K + " .alt-menu", "background:var(--kart)"],
+    [" .alt-menu", "background:var(--kart)"],
     [" .filtre button.aktif", "background:var(--mavi);border-color:var(--mavi);color:#fff"],
     [" .toast", "background:#2a3150"],
     [" .vitrin", "border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.03)"],
@@ -200,7 +200,7 @@
   stil(kurallar.map(function (k) { return K + k[0] + "{" + k[1] + "}"; }).join("\n") +
     /* tema seçici ve ana sayfadaki hızlı düğme */
     "\n.secici.uc{grid-template-columns:repeat(3,1fr)}" +
-    "\n.tema-dugme{flex:none;width:36px;height:36px;border-radius:var(--r-2);display:grid;place-items:center;cursor:pointer;padding:0;color:var(--yazi,#141b34);background:var(--kart,#fff);border:1px solid var(--cam-kenar,#dfe3ea);box-shadow:none}" +
+    "\n.tema-dugme{flex:none;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;cursor:pointer;padding:0;color:var(--yazi,#141b34);background:var(--kart,#fff);border:1px solid var(--cam-kenar,#dfe3ea);box-shadow:none}" +
     "\n.tema-sag{display:flex;align-items:center;gap:10px}" +
     "\n.tema-dugme svg{width:20px;height:20px}" +
     "\n.tema-dugme .tema-gunes," + K + " .tema-dugme .tema-ay{display:none}" + K + " .tema-dugme .tema-gunes{display:block}" +

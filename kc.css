@@ -1,121 +1,161 @@
 /* ==========================================================================
    KampüsCepte tasarım sistemi
-   Bütün sayfalar önce bu dosyayı yükler. Renk, yazı, köşe, gölge ve boşluk
-   kararları yalnızca burada verilir; sayfalar bu belirteçleri kullanır.
+   Bütün sayfalar önce bu dosyayı yükler. Renk, yazı, köşe ve gölge kararları
+   yalnızca burada verilir; sayfalar bu belirteçleri kullanır.
    Koyu mod ve takım renkleri tema.js içinde aynı belirteçleri değiştirir.
+
+   Dil: yuvarlak hatlı yazı, beyaz zemin üstünde yumuşak gölgeli kartlar,
+   hap biçimli dolu düğmeler, iki marka rengi (logodaki mor-mavi ve turuncu).
    ========================================================================== */
 
-/* ---- Yazı tipleri (siteden sunulur, dış bağlantı yok) ---- */
-@font-face { font-family: "Figtree"; font-style: normal; font-weight: 300 900; font-display: swap;
-  src: url("/yazitipi/figtree-latin-ext.woff2") format("woff2");
+/* ---- Yazı tipi (siteden sunulur) ---- */
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url("/yazitipi/nunito-latin-ext.woff2") format("woff2");
   unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: "Figtree"; font-style: normal; font-weight: 300 900; font-display: swap;
-  src: url("/yazitipi/figtree-latin.woff2") format("woff2");
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
-@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap;
-  src: url("/yazitipi/bricolage-latin-ext.woff2") format("woff2");
-  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF; }
-@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap;
-  src: url("/yazitipi/bricolage-latin.woff2") format("woff2");
+@font-face { font-family: "Nunito"; font-style: normal; font-weight: 200 1000; font-display: swap;
+  src: url("/yazitipi/nunito-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
 
 /* ---- Belirteçler ---- */
 :root {
-  /* Yüzeyler: düz, opak. Cam/bulanıklık yok. */
-  --zemin: #f4f5f7;
+  /* Yüzeyler */
+  --zemin: #f6f8fc;
   --kart: #ffffff;
-  --kart-2: #eef0f4;            /* gömük alan: seçici zemini, pasif kutu */
-  --cam: var(--kart);           /* eski ad; kart yüzeyi */
-  --cam-guclu: #fafbfc;         /* üzerine gelince */
-  --cam-kenar: #dfe3ea;         /* kart kenarı */
-  --cizgi: #e4e7ed;             /* iç ayırıcı çizgi */
+  --kart-2: #f1f3f9;            /* gömük alan: seçici zemini, pasif kutu */
+  --cam: var(--kart);
+  --cam-guclu: #fafbff;
+  --cam-kenar: rgba(91, 76, 245, .10);   /* kartın çevresindeki çok hafif marka halkası */
+  --cizgi: #ebeef5;
 
   /* Yazı */
-  --yazi: #0f1728;
-  --soluk: #5a6478;
+  --yazi: #1a1a2e;
+  --soluk: #5f6477;
 
-  /* Vurgu (takım temaları --mavi ve --mavi-acik'ı değiştirir) */
-  --mavi: #2a4de0;
-  --vurgu-yazi: #ffffff;        /* vurgu zemini üstündeki yazı */
-  --mavi-acik: #e8edff;
-  --mor: #5b3fd6;
-  --mor-acik: #eeeaff;
+  /* Marka: logodaki mor-mavi (takım temaları --mavi'yi değiştirir) ve püskül turuncusu */
+  --mavi: #5b4cf5;
+  --mavi-acik: #eeecff;
+  --vurgu-yazi: #ffffff;
+  --ikincil: #ff7a1a;
+  --ikincil-acik: #fff1e3;
+  --mor: #7a3cf0;
+  --mor-acik: #f1eaff;
 
   /* Anlam renkleri */
-  --turuncu: #e2560b;  --turuncu-acik: #fff0e4;   /* yemek */
-  --yesil: #0a8a5c;    --yesil-acik: #e2f5ec;     /* tatil, olumlu */
-  --pembe: #d42a62;    --pembe-acik: #fde7ee;     /* sınav, uyarı */
+  --turuncu: #ff7a1a;  --turuncu-acik: #fff1e3;
+  --yesil: #0d9f6e;    --yesil-acik: #e1f7ee;
+  --pembe: #e5246b;    --pembe-acik: #ffe6ef;
   --wp: #1fae54;
 
-  /* Köşeler: üç basamak. Hap biçimi yok. */
-  --r-1: 6px;      /* etiket, küçük düğme */
-  --r-2: 10px;     /* düğme, giriş alanı, liste satırı */
-  --r-3: 14px;     /* kart, pencere */
-  --r-hap: 8px;    /* eski "hap" biçimli öğeler */
+  /* Eski adlar (önceki kuşaktan kalan kurallar için) */
+  --murekkep: var(--kart); --murekkep-yazi: var(--yazi);
+  --fosfor: var(--mavi-acik); --fosfor-yazi: var(--mavi);
 
-  /* Gölge: kartlar kenarla ayrılır; gölge yalnızca üstte duran katmanlarda */
-  --golge: 0 1px 2px rgba(15, 23, 40, .05);
-  --golge-ust: 0 16px 40px -12px rgba(15, 23, 40, .28), 0 2px 6px rgba(15, 23, 40, .06);
+  /* Köşeler */
+  --r-1: 10px;     /* etiket, küçük kutu */
+  --r-2: 14px;     /* giriş alanı, liste satırı */
+  --r-3: 20px;     /* kart */
+  --r-4: 28px;     /* karşılama alanı, büyük pencere */
+  --r-hap: 999px;  /* düğme, sekme, rozet */
 
-  --font: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-b: "Bricolage Grotesque", "Figtree", "Segoe UI", system-ui, sans-serif;
+  /* Gölgeler: kartlar kenarla değil yumuşak gölgeyle ayrılır */
+  --golge: 0 12px 32px -14px rgba(40, 38, 100, .18), 0 2px 6px -2px rgba(40, 38, 100, .06);
+  --golge-kucuk: 0 4px 14px -6px rgba(40, 38, 100, .16);
+  --golge-ust: 0 30px 60px -18px rgba(30, 28, 80, .35), 0 6px 16px -6px rgba(30, 28, 80, .12);
+  --golge-vurgu: 0 10px 22px -8px color-mix(in srgb, var(--mavi) 60%, transparent);
+
+  --font: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-b: var(--font);
 }
 
 /* ---- Temel ---- */
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: clip; }
 body {
   margin: 0; min-height: 100vh;
-  font-family: var(--font); color: var(--yazi); background: var(--zemin);
-  font-feature-settings: "tnum" 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+  font-family: var(--font); font-weight: 500; color: var(--yazi); background: var(--zemin);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
 }
-h1, h2, h3 { font-family: var(--font-b); font-weight: 700; letter-spacing: -.02em; text-wrap: balance; }
-h1 { font-variation-settings: "opsz" 48; }
+h1, h2, h3 { font-family: var(--font); font-weight: 900; letter-spacing: -.015em; text-wrap: balance; }
 button, input, select, textarea { font-family: inherit; }
-:focus-visible { outline: 2px solid var(--mavi); outline-offset: 2px; }
+img, video, iframe { max-width: 100%; }
+:focus-visible { outline: 3px solid color-mix(in srgb, var(--mavi) 55%, transparent); outline-offset: 2px; }
 ::selection { background: color-mix(in srgb, var(--mavi) 22%, transparent); }
 
-/* Eski arka plan ışıması kaldırıldı (öğe HTML'de durabilir) */
 .isik { display: none !important; }
 
-/* Kart yüzeyi */
+/* Kart */
 .cam {
   background: var(--kart);
   border: 1px solid var(--cam-kenar);
   border-radius: var(--r-3);
   box-shadow: var(--golge);
 }
+.kart:not(.cam) { border: 1px solid var(--cam-kenar); box-shadow: var(--golge); }
 
-/* Rakamlar: sayaç, fiyat, kalori gibi yerlerde hizalı rakam */
-.sayi, .buyuk-sayi, .kb-no, [data-rakam] { font-family: var(--font-b); font-variant-numeric: tabular-nums; }
+.sayi, .buyuk-sayi, .kb-no, [data-rakam] { font-variant-numeric: tabular-nums; }
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
-}
+/* Bölüm başlığı: kalın başlık + altında kısa marka çizgisi */
+.baslik, .bolum-baslik { position: relative; display: flex; align-items: center; gap: 12px; padding-bottom: 10px; }
+.baslik::before, .bolum-baslik::before { content: ""; position: absolute; left: 0; bottom: 0; width: 36px; height: 4px; border-radius: 2px; background: var(--ikincil); }
 
 /* ==========================================================================
    Ortak bileşenler (alt sayfalar)
    ========================================================================== */
-.logo { font-family: var(--font-b); font-weight: 700; letter-spacing: -.02em; }
+.logo { font-family: var(--font); font-weight: 900; letter-spacing: -.02em; }
 .logo-ikon { box-shadow: none !important; }
 
-/* Üst çubuk: yüzen kart değil, sayfanın üst kenarı */
-body .ust.cam { background: none; border: 0; border-bottom: 1px solid var(--cizgi); border-radius: 0; box-shadow: none; padding: 4px 0 12px; }
-body .ust-geri, body .tema-dugme, body .site-btn { border-radius: var(--r-2); box-shadow: none; }
-
-/* Alt menü (yol arkadaşı): ana sayfadaki çubukla aynı */
-body nav.alt-menu.cam { left: 0; right: 0; bottom: 0; transform: none; width: 100%; max-width: none; margin: 0 !important;
-  padding: 0 6px max(6px, env(safe-area-inset-bottom, 0px), var(--safe-area-inset-bottom, 0px));
-  background: var(--kart); border: 0; border-top: 1px solid var(--cam-kenar); border-radius: 0; box-shadow: none; }
-body .alt-menu a { position: relative; border-radius: 0; padding: 9px 2px 5px; font: 600 11px/1.2 var(--font); color: var(--soluk); background: none; }
-body .alt-menu a svg { width: 22px; height: 22px; }
-body .alt-menu a.aktif { color: var(--yazi); background: none; }
-body .alt-menu a.aktif svg { color: var(--mavi); }
-body .alt-menu a.aktif::before { content: ""; position: absolute; top: -1px; left: 50%; width: 28px; height: 2px; margin-left: -14px; background: var(--mavi); }
-
-/* Düz yazı sayfaları (gizlilik, hakkımızda, konu özetleri) */
-.kart:not(.cam) { border: 1px solid var(--cam-kenar); }
+/* Üst çubuk: beyaz, tam genişlik, altında yumuşak gölge */
+body .ust.cam, body div.ust, body header.ust {
+  position: relative; isolation: isolate; background: none; color: var(--yazi);
+  border: 0; border-radius: 0; padding: 10px 0; margin-bottom: 22px; box-shadow: none;
+}
+body .ust.cam::before, body div.ust::before, body header.ust::before {
+  content: ""; position: absolute; z-index: -1; top: -24px; bottom: 0; left: calc(50% - 50vw); width: 100vw; background: var(--kart);
+  box-shadow: 0 14px 26px -20px rgba(40, 38, 100, .45);
+}
+body .ust .logo, body .ust .logo span, body .ust a.logo { color: var(--yazi) !important; }
+body .ust .logo small { color: var(--mavi) !important; font-weight: 800; }
+body .ust .ust-geri, body .ust .tema-dugme, body .ust .kc-geri-btn, body .ust .geri {
+  background: var(--mavi-acik) !important; color: var(--mavi) !important; border: 0 !important; border-radius: var(--r-hap) !important; box-shadow: none !important;
+}
+body .ust .tema-dugme { background: var(--ikincil-acik) !important; color: var(--ikincil) !important; }
+body .ust .site-btn { background: var(--kart) !important; color: var(--mavi) !important; border: 1.5px solid var(--mavi) !important; border-radius: var(--r-hap) !important; box-shadow: none !important; font-weight: 800; }
+body .ust a:not(.logo):not(.ust-geri):not(.site-btn):not(.geri) { color: var(--mavi); font-weight: 800; }
 
 /* Sayfanın kendi geri düğmesi varsa geri.js'in eklediği ikinci düğme gösterilmez */
 .ust:has(.ust-geri) .kc-geri-btn { display: none !important; }
 .ust .kc-geri-sar { min-width: 0; margin-right: auto; }
+
+/* Alt menü (yol arkadaşı): ana sayfadaki çubukla aynı */
+body nav.alt-menu.cam { left: 0; right: 0; bottom: 0; transform: none; width: 100%; max-width: none; margin: 0 !important;
+  padding: 6px 6px max(8px, env(safe-area-inset-bottom, 0px), var(--safe-area-inset-bottom, 0px));
+  background: var(--kart); border: 0; border-radius: 22px 22px 0 0; box-shadow: 0 -10px 30px -16px rgba(40, 38, 100, .3); }
+body .alt-menu a { position: relative; border-radius: var(--r-2); padding: 7px 2px 5px; font: 800 10.5px/1.2 var(--font); color: var(--soluk); background: none; }
+body .alt-menu a svg { width: 22px; height: 22px; }
+body .alt-menu a.aktif { color: var(--mavi); background: var(--mavi-acik); }
+
+/* Üniteler: her ünite ayrı, yumuşak gölgeli kart */
+body .uniteler { gap: 14px; }
+body .unite { border: 1px solid var(--cam-kenar); border-radius: var(--r-3); box-shadow: var(--golge); background: var(--kart); padding: 18px; }
+body .unite::before { content: none; }
+body .unite .no, body .unite .no.c0, body .unite .no.c1, body .unite .no.c2, body .unite .no.c3, body .unite .no.c4 {
+  width: 52px; height: 52px; border-radius: 16px; background: var(--mavi-acik); color: var(--mavi) !important; box-shadow: none; font-weight: 800; }
+body .unite .no b { font-size: 21px; font-weight: 900; color: var(--mavi); }
+body .unite:nth-child(even) .no { background: var(--ikincil-acik); color: var(--ikincil) !important; }
+body .unite:nth-child(even) .no b { color: var(--ikincil); }
+body .unite h2 { font-weight: 800; }
+body .unite .meta span { border-radius: var(--r-hap); font-weight: 700; }
+body .unite .butonlar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+body .unite .butonlar .btn { min-width: 0; padding: 10px 6px; font-size: 13.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-radius: var(--r-hap); border: 1.5px solid var(--mavi-acik); background: var(--kart); color: var(--mavi); box-shadow: none; }
+body .unite .butonlar .btn.ana { grid-column: 1 / -1; background: var(--mavi); border-color: var(--mavi); color: var(--vurgu-yazi); font-size: 15px; padding: 13px; box-shadow: var(--golge-vurgu); }
+body .ders-hero { background: var(--mavi) !important; border-radius: var(--r-4); box-shadow: var(--golge-vurgu); }
+
+/* Reklam alanları: düzeni bozamaz, yatay kaydırma oluşturamaz */
+ins.adsbygoogle, .google-auto-placed { display: block; max-width: 100% !important; overflow: hidden; }
+.google-auto-placed { margin: 20px auto !important; clear: both; }
+ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
