@@ -321,7 +321,7 @@ function benimAvatar() {
   try { const a = localStorage.getItem("kc-avatar") || ""; return /^img:[a-z0-9]+$/.test(a) ? a : ""; } catch (e) { return ""; }
 }
 function avatar(ad, av) {
-  if (av && /^img:[a-z0-9]+$/.test(av)) return `<span class="dg-av dg-av-img"><img src="/gorseller/avatar/${av.slice(4)}.webp" alt="" loading="lazy"></span>`;
+  if (av && /^img:[a-z0-9]+$/.test(av)) return `<span class="dg-av dg-av-img"><img src="gorseller/avatar/${av.slice(4)}.webp" alt="" loading="lazy"></span>`;
   const t = String(ad || "Anonim").trim() || "Anonim";
   let h = 0; for (const c of t) h = (h * 31 + c.codePointAt(0)) % 360;
   const bas = [...t][0] || "A";

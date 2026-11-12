@@ -5,7 +5,7 @@
   const CADDE_KATIK_AKTIF = true;
 
   const TEL = "+904245022323";
-  const R = "/gorseller/vitrin/";
+  const R = "gorseller/vitrin/";
   const reklamlar = [
     { baslik: "Menü 1", icerik: "Tavuk dürüm · patates · ayran", fiyat: "200 TL", resim: "caddekatik-menu1.webp" },
     { baslik: "Menü 1 Plus", icerik: "Tavuk dürüm · patates · kola", fiyat: "220 TL", resim: "caddekatik-menu1plus.webp" },

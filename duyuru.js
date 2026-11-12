@@ -5,7 +5,7 @@
 (function () {
   var KIMLIK = "kc-duyuru-guvenlik-2026-11";
   var BITIS = new Date("2026-11-06T00:00:00+03:00");
-  var GORSEL = "/gorseller/duyuru/guvenlik.webp";
+  var GORSEL = "gorseller/duyuru/guvenlik.webp";
 
   var ZORLA = /[?&]duyuru=goster/.test(location.search); // önizleme: kapatılmış olsa da göster
   if (new Date() >= BITIS && !ZORLA) return;

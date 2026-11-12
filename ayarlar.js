@@ -11,7 +11,7 @@
   const AVATAR_DOSYALAR = Object.keys(AVATAR_BILGI);
   const avatarAd = a => (AVATAR_BILGI[String(a).slice(4)] || ["Avatar"])[0];
   const AVATARLAR = AVATAR_DOSYALAR.length ? AVATAR_DOSYALAR.map(d => "img:" + d) : ["🎓", "⚡", "🚀", "💻", "🩺", "⚖️", "🎨", "🌟", "📚", "🦁"];
-  const avatarHtml = a => String(a).startsWith("img:") ? `<img src="/gorseller/avatar/${String(a).slice(4)}.webp" alt="" loading="lazy">` : a;
+  const avatarHtml = a => String(a).startsWith("img:") ? `<img src="gorseller/avatar/${String(a).slice(4)}.webp" alt="" loading="lazy">` : a;
   const DIL_ADLARI = { tr: "Türkçe", en: "English", ku: "Kurdî", ar: "العربية" };
   const GORUNUMLER = { profil: "Profil", gorunum: "Görünüm", dil: "Dil", sss: "Sıkça Sorulan Sorular", iletisim: "İletişim" };
 

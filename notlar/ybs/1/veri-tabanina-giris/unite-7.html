@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<base href="https://raw.githack.com/yunusemredemir051-create/kampuscep/onizleme/">
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
 <meta name="theme-color" content="#f4f5f7">
-<link rel="icon" href="../../../../favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>Uygulamalar – Veri Tabanına Giriş konu özeti | KampüsCepte</title>
 <meta name="description" content="Fakülte veri tabanında tablo ilişkileri ve çözümlü SQL soruları, Gelecek Sepeti e-ticaret uygulamasında JOIN, GROUP BY ve HAVING, SATIŞ veri tabanının SQL Server&#x27;da kurulması.">
 <link rel="canonical" href="https://kampuscepte.com.tr/notlar/ybs/1/veri-tabanina-giris/unite-7.html">
@@ -16,7 +18,7 @@
 <meta property="og:url" content="https://kampuscepte.com.tr/notlar/ybs/1/veri-tabanina-giris/unite-7.html">
 <meta property="og:locale" content="tr_TR">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "Ünite 7: Uygulamalar", "description": "Fakülte veri tabanında tablo ilişkileri ve çözümlü SQL soruları, Gelecek Sepeti e-ticaret uygulamasında JOIN, GROUP BY ve HAVING, SATIŞ veri tabanının SQL Server'da kurulması.", "inLanguage": "tr", "author": [{"@type": "Person", "name": "Yeşim Ülgen Sönmez"}, {"@type": "Person", "name": "Yunus Emre Demir"}], "publisher": {"@type": "Organization", "name": "KampüsCepte"}, "mainEntityOfPage": "https://kampuscepte.com.tr/notlar/ybs/1/veri-tabanina-giris/unite-7.html", "isPartOf": {"@type": "Course", "name": "Veri Tabanına Giriş", "provider": {"@type": "Organization", "name": "KampüsCepte"}}, "dateModified": "2026-10-29"}</script>
-<link rel="stylesheet" href="/kc.css?v=4">
+<link rel="stylesheet" href="kc.css?v=4">
 <style> 
 * { box-sizing: border-box; }
 body { margin: 0; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; line-height: 1.7; }
@@ -68,8 +70,8 @@ sub, sup { font-size: .72em; }
 @media (max-width: 600px) { h1 { font-size: 24px; } article.metin { padding: 18px 16px; font-size: 15.5px; } .gecis { grid-template-columns: 1fr; } .gecis .sonraki { grid-column: 1; } }
 </style>
 <!-- PWA -->
-<link rel="manifest" href="../../../../manifest.webmanifest">
-<link rel="apple-touch-icon" href="../../../../ikonlar/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="ikonlar/apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="KampüsCepte">
 <meta name="google-adsense-account" content="ca-pub-5083598455747122">
@@ -77,9 +79,9 @@ sub, sup { font-size: .72em; }
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
-<script src="/tema.js?v=21"></script>
-<script src="/duyuru.js?v=5" defer></script>
-<script defer src="/ozelgun.js?v=9"></script>
+<script src="tema.js?v=21"></script>
+<script src="duyuru.js?v=5" defer></script>
+<script defer src="ozelgun.js?v=9"></script>
 <script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("../../../../sw.js",{scope:"../../../../"}).catch(()=>{}));</script>
 <!-- /PWA -->
 </head>
@@ -87,10 +89,10 @@ sub, sup { font-size: .72em; }
 <div class="isik"></div>
 <div class="kap">
   <header class="ust cam">
-    <a class="logo" href="../../../../index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
-    <a href="../../../../dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
+    <a class="logo" href="index.html"><img class="logo-ikon" src="ikonlar/logo-128.png" alt="" width="34" height="34">KampüsCepte</a>
+    <a href="dersler.html" style="font-weight:700;font-size:14px;text-decoration:none">Tüm dersler</a>
   </header>
-  <nav class="yol" aria-label="Konum"><a href="../../../../index.html">Ana sayfa</a> › <a href="../../../../dersler.html">Ders notları</a> › <a href="../../../../ders.html?d=ybs/1/veri-tabanina-giris">Veri Tabanına Giriş</a> › Ünite 7</nav>
+  <nav class="yol" aria-label="Konum"><a href="index.html">Ana sayfa</a> › <a href="dersler.html">Ders notları</a> › <a href="ders.html?d=ybs/1/veri-tabanina-giris">Veri Tabanına Giriş</a> › Ünite 7</nav>
   <main>
     <div class="baslik-alani">
       <small>YBS 1. sınıf · Veri Tabanına Giriş · Ünite 7</small>
@@ -99,7 +101,7 @@ sub, sup { font-size: .72em; }
     </div>
     <div class="butonlar">
       <a class="btn" href="unite-7.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M9 14h6M9 17h4"/></svg>Notun tamamı (PDF, 11 sayfa)</a>
-      <a class="btn ana" href="../../../../ders.html?d=ybs/1/veri-tabanina-giris#test-7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
+      <a class="btn ana" href="ders.html?d=ybs/1/veri-tabanina-giris#test-7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg>Kendini test et</a>
     </div>
     <article class="metin cam">
 <p>Bu ünite önceki ünitelerde öğrenilenleri üç uygulama üzerinde bir araya getirir: tasarımı incelemek, tabloları kurmak ve gerçek sorulara SQL ile cevap aramak.</p>
@@ -134,14 +136,14 @@ sub, sup { font-size: .72em; }
     <p class="not">Bu sayfa, Yeşim Ülgen Sönmez · Yunus Emre Demir tarafından hazırlanan ders notunun özetidir. Şekiller, tablolar ve çözümlü örneklerin tamamı için ünitenin PDF notuna bak.</p>
   </main>
   <footer class="alt-bilgi">
-    <a href="../../../../index.html">Ana sayfa</a>
-    <a href="../../../../dersler.html">Ders notları</a>
-    <a href="../../../../hakkimizda.html">Hakkımızda ve iletişim</a>
-    <a href="../../../../gizlilik.html">Gizlilik ve çerezler</a>
+    <a href="index.html">Ana sayfa</a>
+    <a href="dersler.html">Ders notları</a>
+    <a href="hakkimizda.html">Hakkımızda ve iletişim</a>
+    <a href="gizlilik.html">Gizlilik ve çerezler</a>
     <span>© 2026 KampüsCepte</span>
   </footer>
 </div>
-<script src="../../../../cerez.js" defer></script>
-<script defer src="/geri.js?v=2"></script>
+<script src="cerez.js" defer></script>
+<script defer src="geri.js?v=2"></script>
 </body>
 </html>

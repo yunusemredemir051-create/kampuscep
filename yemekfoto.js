@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  const Y = "/gorseller/yemek/";
+  const Y = "gorseller/yemek/";
   const TUM_KATALOG = [
   {
     "ad": "Ayran",

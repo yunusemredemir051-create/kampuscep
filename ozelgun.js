@@ -10,7 +10,7 @@
     try { return (localStorage.getItem("kc-birim") || (localStorage.getItem("kc-bolum") === "tip" ? "Tıp" : "")) === "Tıp"; }
     catch (e) { return false; }
   }
-  const IMG = "/gorseller/ozel/";
+  const IMG = "gorseller/ozel/";
   const RENK = {
     "cumhuriyet": ["#ab0327", "#8e011f"], "yilbasi": ["#15247a", "#5e40ea"], "ogretmenler": ["#365dfc", "#4c5efc"],
     "sinav": ["#314cfc", "#4052fc"], "ramazan-bayrami": ["#694bf0", "#8555db"], "ramazan": ["#0e195a", "#4a2cc1"],
@@ -349,7 +349,7 @@
       if (d.showModal) d.showModal(); else d.setAttribute("open", "");
       const b = d.querySelector("tr.bugun"); if (b) b.scrollIntoView({ block: "center" });
     }
-    fetch("/vakitler.json", { cache: "no-cache" }).then(r => r.json()).then(j => { V = j.gunler || null; }).catch(() => {})
+    fetch("vakitler.json", { cache: "no-cache" }).then(r => r.json()).then(j => { V = j.gunler || null; }).catch(() => {})
       .finally(() => { guncelle(); setInterval(guncelle, 1000); });
   }
 

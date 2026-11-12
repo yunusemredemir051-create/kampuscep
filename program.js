@@ -91,7 +91,7 @@
     }
     if (tip) {
       var v = tipVeri[p.sinif];
-      if (!v) { kutu.innerHTML = '<div class="kc-bos">Program yükleniyor…</div>'; fetch("/tip/sinif" + p.sinif + ".json").then(function (r) { return r.json(); }).then(function (j) { tipVeri[p.sinif] = j; ciz(); }).catch(function () { kutu.innerHTML = '<div class="kc-bos">Program şu an yüklenemedi.</div>'; }); return; }
+      if (!v) { kutu.innerHTML = '<div class="kc-bos">Program yükleniyor…</div>'; fetch("tip/sinif" + p.sinif + ".json").then(function (r) { return r.json(); }).then(function (j) { tipVeri[p.sinif] = j; ciz(); }).catch(function () { kutu.innerHTML = '<div class="kc-bos">Program şu an yüklenemedi.</div>'; }); return; }
       var w = haftaBul(v, hafta);
       if (w) { w.gunler.forEach(function (g, i) { if (i < 5) dersler[i] = w.p[i] || []; }); }
       else bilgi = "Bu hafta için ders programı yok (tatil ya da sınav haftası olabilir).";

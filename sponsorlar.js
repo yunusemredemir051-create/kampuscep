@@ -16,16 +16,16 @@ window.SPONSORLAR = [
     tel: "+904245022323",
     telYaz: "0424 502 23 23",
     renk: ["#e53935", "#7a1d14"],
-    logo: "/gorseller/vitrin/caddekatik-menu1.webp",
+    logo: "gorseller/vitrin/caddekatik-menu1.webp",
     kategoriler: [
       { ad: "Menüler", urunler: [
-        { ad: "Menü 1", icerik: "Tavuk dürüm · patates · ayran", fiyat: "200 TL", resim: "/gorseller/vitrin/caddekatik-menu1.webp" },
-        { ad: "Menü 1 Plus", icerik: "Tavuk dürüm · patates · kola", fiyat: "220 TL", resim: "/gorseller/vitrin/caddekatik-menu1plus.webp" }
+        { ad: "Menü 1", icerik: "Tavuk dürüm · patates · ayran", fiyat: "200 TL", resim: "gorseller/vitrin/caddekatik-menu1.webp" },
+        { ad: "Menü 1 Plus", icerik: "Tavuk dürüm · patates · kola", fiyat: "220 TL", resim: "gorseller/vitrin/caddekatik-menu1plus.webp" }
       ] },
       { ad: "Aile menüleri", urunler: [
-        { ad: "Aile Menüsü 1", icerik: "3 tavuk dürüm · patates · 1 L içecek", fiyat: "550 TL", resim: "/gorseller/vitrin/caddekatik-aile1.webp" },
-        { ad: "Aile Menüsü 2", icerik: "4 tavuk dürüm · patates · 1 L içecek", fiyat: "650 TL", resim: "/gorseller/vitrin/caddekatik-aile2.webp" },
-        { ad: "Aile Menüsü 3", icerik: "5 tavuk dürüm · patates · 1 L içecek", fiyat: "750 TL", resim: "/gorseller/vitrin/caddekatik-aile3.webp", one: "Arkadaşlarınla en avantajlı" }
+        { ad: "Aile Menüsü 1", icerik: "3 tavuk dürüm · patates · 1 L içecek", fiyat: "550 TL", resim: "gorseller/vitrin/caddekatik-aile1.webp" },
+        { ad: "Aile Menüsü 2", icerik: "4 tavuk dürüm · patates · 1 L içecek", fiyat: "650 TL", resim: "gorseller/vitrin/caddekatik-aile2.webp" },
+        { ad: "Aile Menüsü 3", icerik: "5 tavuk dürüm · patates · 1 L içecek", fiyat: "750 TL", resim: "gorseller/vitrin/caddekatik-aile3.webp", one: "Arkadaşlarınla en avantajlı" }
       ] }
     ]
   },
@@ -40,38 +40,38 @@ window.SPONSORLAR = [
     tel: "+905062487723",
     telYaz: "0506 248 77 23",
     renk: ["#d62828", "#6b1010"],
-    logo: "/gorseller/vitrin/ustam-logo.webp",
+    logo: "gorseller/vitrin/ustam-logo.webp",
     kategoriler: [
       { ad: "Lahmacun", urunler: [
-        { ad: "Lahmacun", icerik: "İnce hamur, bol harç", fiyat: "85 TL", resim: "/gorseller/vitrin/ustam-lahmacun.webp", one: "En uygun fiyatlı lezzet" },
-        { ad: "Soğansız Lahmacun", icerik: "Soğansız iç harç", fiyat: "100 TL", resim: "/gorseller/vitrin/ustam-sogansiz-lahmacun.webp" },
-        { ad: "Malatya Lahmacun", icerik: "Malatya usulü", fiyat: "150 TL", resim: "/gorseller/vitrin/ustam-malatya-lahmacun.webp" },
-        { ad: "Konya Etli Ekmek", icerik: "Konya usulü etli ekmek", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-konya-etli-ekmek.webp" }
+        { ad: "Lahmacun", icerik: "İnce hamur, bol harç", fiyat: "85 TL", resim: "gorseller/vitrin/ustam-lahmacun.webp", one: "En uygun fiyatlı lezzet" },
+        { ad: "Soğansız Lahmacun", icerik: "Soğansız iç harç", fiyat: "100 TL", resim: "gorseller/vitrin/ustam-sogansiz-lahmacun.webp" },
+        { ad: "Malatya Lahmacun", icerik: "Malatya usulü", fiyat: "150 TL", resim: "gorseller/vitrin/ustam-malatya-lahmacun.webp" },
+        { ad: "Konya Etli Ekmek", icerik: "Konya usulü etli ekmek", fiyat: "250 TL", resim: "gorseller/vitrin/ustam-konya-etli-ekmek.webp" }
       ] },
       { ad: "Pideler", urunler: [
-        { ad: "Kaşarlı Pide", icerik: "Bol kaşar", fiyat: "220 TL", resim: "/gorseller/vitrin/ustam-kasarli-pide.webp" },
-        { ad: "Kıymalı Pide", icerik: "Kıymalı", fiyat: "220 TL", resim: "/gorseller/vitrin/ustam-kiymali-pide.webp" },
-        { ad: "Kıymalı Kaşarlı", icerik: "Kıyma ve kaşar", fiyat: "230 TL", resim: "/gorseller/vitrin/ustam-kiymali-kasarli.webp" },
-        { ad: "Tavuklu Kaşarlı", icerik: "Tavuk ve kaşar", fiyat: "170 TL", resim: "/gorseller/vitrin/ustam-tavuklu-kasarli.webp" },
-        { ad: "Kuşbaşılı Pide", icerik: "Kuşbaşı et", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-kusbasili-pide.webp" },
-        { ad: "Kuşbaşı Kaşarlı Pide", icerik: "Kuşbaşı et ve kaşar", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-kusbasi-kasarli-pide.webp" },
-        { ad: "Kavurma Kaşarlı Pide", icerik: "Kavurma ve kaşar", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-kavurma-kasarli-pide.webp" },
-        { ad: "Sucuklu Kaşarlı Pide", icerik: "Sucuk ve kaşar", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-sucuklu-kasarli-pide.webp" },
-        { ad: "Karışık Pide", icerik: "Karışık malzemeli", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-karisik-pide.webp" },
-        { ad: "Ustam Special", icerik: "Ustanın özel pidesi", fiyat: "300 TL", resim: "/gorseller/vitrin/ustam-ustam-special.webp", one: "Ustanın imzası" },
-        { ad: "Bafra Pidesi", icerik: "Kapalı Bafra usulü", fiyat: "230 TL", resim: "/gorseller/vitrin/ustam-bafra-pidesi.webp" },
-        { ad: "Şekerli Peynirli Pide", icerik: "Tatlı peynirli", fiyat: "100 TL", resim: "/gorseller/vitrin/ustam-sekerli-peynirli-pide.webp" },
-        { ad: "Palu Patlısı", icerik: "Yöresel Palu lezzeti", fiyat: "150 TL", resim: "/gorseller/vitrin/ustam-palu-patlisi.webp" }
+        { ad: "Kaşarlı Pide", icerik: "Bol kaşar", fiyat: "220 TL", resim: "gorseller/vitrin/ustam-kasarli-pide.webp" },
+        { ad: "Kıymalı Pide", icerik: "Kıymalı", fiyat: "220 TL", resim: "gorseller/vitrin/ustam-kiymali-pide.webp" },
+        { ad: "Kıymalı Kaşarlı", icerik: "Kıyma ve kaşar", fiyat: "230 TL", resim: "gorseller/vitrin/ustam-kiymali-kasarli.webp" },
+        { ad: "Tavuklu Kaşarlı", icerik: "Tavuk ve kaşar", fiyat: "170 TL", resim: "gorseller/vitrin/ustam-tavuklu-kasarli.webp" },
+        { ad: "Kuşbaşılı Pide", icerik: "Kuşbaşı et", fiyat: "250 TL", resim: "gorseller/vitrin/ustam-kusbasili-pide.webp" },
+        { ad: "Kuşbaşı Kaşarlı Pide", icerik: "Kuşbaşı et ve kaşar", fiyat: "250 TL", resim: "gorseller/vitrin/ustam-kusbasi-kasarli-pide.webp" },
+        { ad: "Kavurma Kaşarlı Pide", icerik: "Kavurma ve kaşar", fiyat: "270 TL", resim: "gorseller/vitrin/ustam-kavurma-kasarli-pide.webp" },
+        { ad: "Sucuklu Kaşarlı Pide", icerik: "Sucuk ve kaşar", fiyat: "270 TL", resim: "gorseller/vitrin/ustam-sucuklu-kasarli-pide.webp" },
+        { ad: "Karışık Pide", icerik: "Karışık malzemeli", fiyat: "270 TL", resim: "gorseller/vitrin/ustam-karisik-pide.webp" },
+        { ad: "Ustam Special", icerik: "Ustanın özel pidesi", fiyat: "300 TL", resim: "gorseller/vitrin/ustam-ustam-special.webp", one: "Ustanın imzası" },
+        { ad: "Bafra Pidesi", icerik: "Kapalı Bafra usulü", fiyat: "230 TL", resim: "gorseller/vitrin/ustam-bafra-pidesi.webp" },
+        { ad: "Şekerli Peynirli Pide", icerik: "Tatlı peynirli", fiyat: "100 TL", resim: "gorseller/vitrin/ustam-sekerli-peynirli-pide.webp" },
+        { ad: "Palu Patlısı", icerik: "Yöresel Palu lezzeti", fiyat: "150 TL", resim: "gorseller/vitrin/ustam-palu-patlisi.webp" }
       ] },
       { ad: "Pizzalar", urunler: [
-        { ad: "Vejeteryan Pizza", icerik: "Sebzeli", fiyat: "250 TL", resim: "/gorseller/vitrin/ustam-vejeteryan-pizza.webp" },
-        { ad: "Sucuklu Pizza", icerik: "Sucuk ve kaşar", fiyat: "270 TL", resim: "/gorseller/vitrin/ustam-sucuklu-pizza.webp" },
-        { ad: "Kavurmalı Pizza", icerik: "Kavurma ve kaşar", fiyat: "300 TL", resim: "/gorseller/vitrin/ustam-kavurmali-pizza.webp" },
-        { ad: "Ton Balıklı Pizza", icerik: "Ton balığı ve kaşar", fiyat: "350 TL", resim: "/gorseller/vitrin/ustam-ton-balikli-pizza.webp" }
+        { ad: "Vejeteryan Pizza", icerik: "Sebzeli", fiyat: "250 TL", resim: "gorseller/vitrin/ustam-vejeteryan-pizza.webp" },
+        { ad: "Sucuklu Pizza", icerik: "Sucuk ve kaşar", fiyat: "270 TL", resim: "gorseller/vitrin/ustam-sucuklu-pizza.webp" },
+        { ad: "Kavurmalı Pizza", icerik: "Kavurma ve kaşar", fiyat: "300 TL", resim: "gorseller/vitrin/ustam-kavurmali-pizza.webp" },
+        { ad: "Ton Balıklı Pizza", icerik: "Ton balığı ve kaşar", fiyat: "350 TL", resim: "gorseller/vitrin/ustam-ton-balikli-pizza.webp" }
       ] },
       { ad: "Dürüm ve çorba", urunler: [
-        { ad: "Kavurmalı Kaşarlı Dürüm", icerik: "Kavurma ve kaşar", fiyat: "230 TL", resim: "/gorseller/vitrin/ustam-kavurmali-kasarli-durum.webp" },
-        { ad: "Çorba", icerik: "Sıcak çorba", fiyat: "100 TL", resim: "/gorseller/vitrin/ustam-corba.webp" }
+        { ad: "Kavurmalı Kaşarlı Dürüm", icerik: "Kavurma ve kaşar", fiyat: "230 TL", resim: "gorseller/vitrin/ustam-kavurmali-kasarli-durum.webp" },
+        { ad: "Çorba", icerik: "Sıcak çorba", fiyat: "100 TL", resim: "gorseller/vitrin/ustam-corba.webp" }
       ] }
     ]
   }
@@ -113,15 +113,15 @@ window.SPONSORLAR = [
   document.head.appendChild(st);
   var ok = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   var tek = GORUNEN.length === 1;
-  var html = '<section class="sp-alan"><div class="sp-bas"><div><small>Öğrencilere özel</small><h2>Sponsorlarımız</h2></div><a href="/magaza.html">Tümü</a></div><div class="sp-serit">' +
+  var html = '<section class="sp-alan"><div class="sp-bas"><div><small>Öğrencilere özel</small><h2>Sponsorlarımız</h2></div><a href="magaza.html">Tümü</a></div><div class="sp-serit">' +
     GORUNEN.map(function (s) {
       var u = [].concat.apply([], s.kategoriler.map(function (k) { return k.urunler; }));
-      return '<a class="sp-kart" style="--sp1:' + s.renk[0] + ";--sp2:" + s.renk[1] + (tek ? ";flex-basis:84%" : "") + '" href="/magaza.html?s=' + s.id + '">' +
+      return '<a class="sp-kart" style="--sp1:' + s.renk[0] + ";--sp2:" + s.renk[1] + (tek ? ";flex-basis:84%" : "") + '" href="magaza.html?s=' + s.id + '">' +
         '<div class="sp-ust"><img class="sp-logo" src="' + s.logo + '" alt="" width="56" height="56" loading="lazy"><div><span class="sp-rozet">Sponsor</span><b>' + s.ad + '</b><span class="t">' + s.tur + "</span></div></div>" +
         '<div class="sp-urunler">' + u.slice(0, 3).map(function (x) { return '<img src="' + x.resim + '" alt="" width="64" height="64" loading="lazy">'; }).join("") + (u.length > 3 ? "<i>+" + (u.length - 3) + "</i>" : "") + "</div>" +
         '<div class="sp-alt"><small>📍 ' + s.konum.split(",")[0] + '</small><span class="sp-gez">Mağazayı gez' + ok + "</span></div></a>";
     }).join("") +
-    (tek ? '<a class="sp-bos" href="/sponsor/"><b>İşletmeni burada gör</b><span>Öğrencilerin her gün baktığı menü sayfasında yerini al.</span><em>Bilgi al ›</em></a>' : "") +
+    (tek ? '<a class="sp-bos" href="sponsor/index.html"><b>İşletmeni burada gör</b><span>Öğrencilerin her gün baktığı menü sayfasında yerini al.</span><em>Bilgi al ›</em></a>' : "") +
     "</div></section>";
   kutular.forEach(function (k) { k.innerHTML = html; });
 })();

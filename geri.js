@@ -159,7 +159,7 @@
           return;
         }
         /* not, yurt vb. sayfalar: geçmişte geri, yoksa ana sayfaya */
-        if (ev && ev.canGoBack) history.back(); else location.href = "/";
+        if (ev && ev.canGoBack) history.back(); else location.href = "index.html";
       });
     } catch (e) {}
   }

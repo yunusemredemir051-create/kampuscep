@@ -53,7 +53,7 @@
       var b = e.target.closest("button"); if (!b) return;
       kapat();
       if (b.dataset.href) location.href = b.dataset.href;
-      else if (b.dataset.yol) location.href = "yol-arkadasi/";
+      else if (b.dataset.yol) location.href = "yol-arkadasi/index.html";
       else if (window.sayfaAc) sayfaAc(b.dataset.git);
     });
     function isaret(id) { orta.classList.toggle("aktif", id === "takvim" || id === "araclar"); }

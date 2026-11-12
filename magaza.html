@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+<base href="https://raw.githack.com/yunusemredemir051-create/kampuscep/onizleme/">
+<meta name="robots" content="noindex">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
@@ -8,7 +10,7 @@
 <title>Sponsorlarımız – KampüsCepte</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <meta name="description" content="KampüsCepte sponsorları: öğrencilere yakın işletmelerin menüleri, fiyatları ve iletişim bilgileri.">
-<link rel="stylesheet" href="/kc.css?v=4">
+<link rel="stylesheet" href="kc.css?v=4">
 <style> 
 * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 body { margin: 0; min-height: 100vh; font-family: var(--font); color: var(--yazi); background: var(--zemin); -webkit-font-smoothing: antialiased; }
@@ -98,20 +100,20 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: var(--yazi);
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-EN48D4XWNB");</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}</style>
-<script src="/tema.js?v=22"></script>
-<link rel="stylesheet" href="/uygulama.css?v=1">
+<script src="tema.js?v=22"></script>
+<link rel="stylesheet" href="uygulama.css?v=1">
 </head>
 <body>
 <div class="isik"></div>
 <div class="kap">
   <header class="ust cam">
     <a class="ust-geri" href="index.html" onclick="if(history.length>1&&document.referrer.indexOf(location.host)>-1){history.back();return false}" aria-label="Geri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
-    <a class="logo" href="index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="32" height="32"><span>KampüsCepte<small>Sponsorlarımız</small></span></a>
+    <a class="logo" href="index.html"><img class="logo-ikon" src="ikonlar/logo-128.png" alt="" width="32" height="32"><span>KampüsCepte<small>Sponsorlarımız</small></span></a>
   </header>
   <main id="magaza"></main>
-  <footer class="alt-bilgi"><a href="index.html">Ana sayfa</a><a href="/sponsor/">Sponsor ol</a><a href="gizlilik.html">Gizlilik</a></footer>
+  <footer class="alt-bilgi"><a href="index.html">Ana sayfa</a><a href="sponsor/index.html">Sponsor ol</a><a href="gizlilik.html">Gizlilik</a></footer>
 </div>
-<script src="/sponsorlar.js?v=4"></script>
+<script src="sponsorlar.js?v=4"></script>
 <script>
 (function () {
   var M = document.getElementById("magaza"), L = window.SPONSORLAR || [];
@@ -135,7 +137,7 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: var(--yazi);
           '<div class="lst-urun">' + u.slice(0, 4).map(function (y) { return '<img src="' + y.resim + '" alt="" loading="lazy">'; }).join("") + '</div>' +
           '<div class="lst-alt"><span>' + I.konum + x.konum.split(",")[0] + '</span><em>Mağazayı gez' + ok + '</em></div></a>';
       }).join("") +
-      '<a class="lst-bos" href="/sponsor/"><span>' + I.dukkan + '</span><div><b>İşletmeni burada gör</b><small>Öğrencilerin her gün baktığı uygulamada yerini al.</small></div><em>Bilgi al ›</em></a></div>';
+      '<a class="lst-bos" href="sponsor/index.html"><span>' + I.dukkan + '</span><div><b>İşletmeni burada gör</b><small>Öğrencilerin her gün baktığı uygulamada yerini al.</small></div><em>Bilgi al ›</em></a></div>';
     return;
   }
   document.title = s.ad + " – KampüsCepte Sponsoru";
@@ -166,6 +168,6 @@ html[data-tema="koyu"] .sekme a.aktif { background: #e7eaf6; color: var(--yazi);
   try { gtag("event", "sponsor_magaza", { sponsor: s.id }); } catch (e) {}
 })();
 </script>
-<script defer src="/geri.js?v=2"></script>
+<script defer src="geri.js?v=2"></script>
 </body>
 </html>

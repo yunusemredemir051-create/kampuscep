@@ -66,7 +66,7 @@ self.addEventListener("fetch", e => {
 
   const yol = u.pathname;
   const kod = /\.(js|css)$/.test(yol);
-  const veri = yol.endsWith("/veri.js") || /\.(json|webmanifest|html)$/.test(yol) || yol.endsWith("/");
+  const veri = yol.endsWith("veri.js") || /\.(json|webmanifest|html)$/.test(yol) || yol.endsWith("/");
 
   // Menü verisi, JSON ve sürüm numarasız JS: her zaman önce internet, olmazsa önbellek
   if (veri || (kod && !u.searchParams.has("v"))) {
