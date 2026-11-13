@@ -26,7 +26,9 @@ const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
 const YORUM_KAPALI = false;
 const YORUM_ARA_SN = 30, YORUM_GUNLUK = 20;
 const SPAM_BAS = Date.UTC(2026, 10, 2, 16, 0), SPAM_BIT = Date.UTC(2026, 10, 2, 18, 0);
-const SPAM_RE = /bubiryorum|amc[ıi]k|orospu|porno|\bohhh\b|sik(ik|iş|tir)|piç|yarrak|göt(ü|veren)/i;
+/* Küfür/spam süzgeci. Kelime sınırları Türkçe harflere göre: "götür", "kapiçi" gibi masum kelimeler takılmaz.
+   Kökü belirsiz olanlar (göt, piç) yalnızca tam kelime ya da belirli eklerle; diğerleri kelime başında yakalanır. */
+const SPAM_RE = /(?:^|[^a-zçğıöşüâîû0-9])(?:(?:bubiryorum|amc[ıi]k|orospu|porno|yarrak|sik(?:ik|iş|tir))[a-zçğıöşüâîû]*|ohhh|piç(?:ler|in|i|lik)?|göt(?:ü|ün|veren|lek)?)(?![a-zçğıöşüâîû0-9])/i;
 function spamMi(y) {
   const ms = y && y.zaman && y.zaman.toMillis ? y.zaman.toMillis() : 0;
   if (ms >= SPAM_BAS && ms <= SPAM_BIT) return true;
