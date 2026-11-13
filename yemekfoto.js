@@ -683,6 +683,8 @@
       "tavuk tantuni": "yurt-tavuk-tantuni",
       "tantuni": "yurt-tavuk-tantuni",
       "ayran": "yurt-ayran",
+      "ayran veya meyve suyu": ["yurt-ayran", "yurt-algotur-meyve-suyu"],
+      "meyve suyu": "yurt-algotur-meyve-suyu",
       "mercimek çorbası": "yurt-mercimek-corbasi",
       "süzme mercimek çorbası": "yurt-mercimek-corbasi",
       "sebze çorbası": "yurt-sebze-corbasi",
