@@ -714,6 +714,7 @@
       "şehriye çorbası": "yurt-sehriye-corbasi",
       "tavuk çöp şiş": "yurt-tavuk-cop-sis",
       "bulgur pilavı": "yurt-bulgur-pilavi",
+      "menemen": "yurt-menemen",
       "kaşar peynir": "yurt-kasar-peynir",
       "kaşar peyniri": "yurt-kasar-peynir",
       "kaşar": "yurt-kasar-peynir",
