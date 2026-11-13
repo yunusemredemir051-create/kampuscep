@@ -30,7 +30,7 @@
       { t: "14.11", s: "09:15–09:45", kod: "YBS2111", ad: "Bilgisayar Donanımı ve Sistem Yazılımı", hoca: "Doç. Dr. Mesut Toğaçar", link: "", not: "YBS207 / YBS2111" },
       { t: "14.11", s: "11:15–12:15", kod: "YBS2105", ad: "Web Tabanlı Uygulama Geliştirme", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", link: "ders.html?d=ybs/2/web-tabanli-uygulamalar" },
       { t: "15.11", s: "13:00–14:00", kod: "YBS2109", ad: "Nesne Tabanlı Programlama II", hoca: "Doç. Dr. Mesut Toğaçar", link: "ders.html?d=ybs/2/nesne-tabanli-programlama-2" },
-      { t: "17.11", s: "18:15–19:00", kod: "YBS2115", ad: "Grafik Tasarımı ve Animasyon", hoca: "Dr. Öğr. Üyesi Abdullah Şener", link: "" },
+      { t: "17.11", s: "18:15–19:00", kod: "YBS2115", ad: "Grafik Tasarımı ve Animasyon", hoca: "Dr. Öğr. Üyesi Abdullah Şener", link: "ders.html?d=ybs/2/grafik-tasarimi-ve-animasyon" },
       { t: "18.11", s: "17:00–18:00", kod: "SSD2101", ad: "Fotoğrafçılık", hoca: "Doç. Dr. Cem Ayden", link: "", not: "Seçmeli" },
       { t: "20.11", s: "17:15–18:15", kod: "YBS2101", ad: "Finansal Yönetim I", hoca: "Dr. Öğr. Üyesi Emre Bulut", link: "ders.html?d=ybs/2/finansal-yonetim" },
       { t: "23.11", s: "17:00–17:30", kod: "YBS2113", ad: "Sosyal Medya Analizi", hoca: "Doç. Dr. Seda Özer Şanal", link: "ders.html?d=ybs/2/sosyal-medya-analizi" },
