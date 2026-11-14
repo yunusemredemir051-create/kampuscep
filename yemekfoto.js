@@ -921,7 +921,7 @@
   .yf-ag-govde { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .32s cubic-bezier(.2,.8,.2,1); }
   .yf-algotur.acik .yf-ag-govde { grid-template-rows: 1fr; }
   .yf-ag-ic { min-height: 0; overflow: hidden; }
-  .yf-ag-urunler { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; padding: 2px 13px 0; }
+  .yf-ag-urunler { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 7px; gap: 9px; padding: 2px 13px 0; }
   .yf-ag-urun { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px; padding: 8px; border-radius: 13px; background: var(--zemin-2, rgba(240,243,252,.7)); border: 1px solid var(--cizgi, #e6e9f4); cursor: zoom-in; transition: transform .15s ease; }
   .yf-ag-urun:active { transform: scale(.97); }
   .yf-ag-urun:focus-visible { outline: 2px solid var(--mavi, #3b5bfd); outline-offset: 2px; }
@@ -929,8 +929,8 @@
   .yf-ag-foto img { width: 100%; height: 100%; object-fit: contain; display: block; }
   .yf-ag-foto i { position: absolute; top: 6px; right: 6px; font-style: normal; font: 800 12px/1 var(--font-b, inherit); padding: 5px 7px; border-radius: 999px; background: #141b34; color: #fff; }
   .yf-ag-ad { display: flex; flex-direction: column; gap: 1px; padding: 0 2px 1px; }
-  .yf-ag-ad b { font-size: 13px; font-weight: 700; color: var(--yazi, #141b34); }
-  .yf-ag-ad small { font-size: 11px; color: var(--soluk, #6b7390); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .yf-ag-ad b { font-size: 12.5px; font-weight: 700; color: var(--yazi, #141b34); }
+  .yf-ag-ad small { font-size: 10.5px; line-height: 1.3; color: var(--soluk, #6b7390); }
   .yf-ag-not { margin: 9px 13px 12px; font-size: 11.5px; line-height: 1.45; color: var(--soluk, #6b7390); }
   html[data-tema=koyu] .yf-ag-urun { background: rgba(255,255,255,.04); }
   html[data-tema=koyu] .yf-ag-foto i { background: #f0f3fe; color: #141b34; }
@@ -2104,14 +2104,14 @@
       const id = "yf-ag-" + kimlik;
       ag.innerHTML = `<button type="button" class="yf-ag-dugme" aria-expanded="${acik}" aria-controls="${id}">
           <span class="yf-ag-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
-          <span class="yf-ag-yazi"><b>Al götür kahvaltı</b><small>Menü yerine 2 kek + 1 meyve suyu</small></span>
+          <span class="yf-ag-yazi"><b>Al götür kahvaltı</b><small>Menü yerine sandviç, 2 kek + meyve suyu</small></span>
           <svg class="yf-ag-ok" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="yf-ag-govde" id="${id}"><div class="yf-ag-ic">
           <div class="yf-ag-urunler"></div>
           <p class="yf-ag-not">Tabldot yerine bu paketi alıp götürebilirsin · her gün 10.30’a kadar.</p>
         </div></div>`;
-      const urunler = [["yurt-algotur-kek", "Meyveli kek", "Torku Favorimo", "2 adet"], ["yurt-algotur-meyve-suyu", "Meyve suyu", "Lavi Fruitmix · 200 ml", "1 adet"]];
+      const urunler = [["yurt-algotur-sandvic", "Sandviç", "Peynirli, sebzeli", "1 adet"], ["yurt-algotur-kek", "Meyveli kek", "Torku Favorimo", "2 adet"], ["yurt-algotur-meyve-suyu", "Meyve suyu", "Lavi Fruitmix · 200 ml", "1 adet"]];
       const kap = ag.querySelector(".yf-ag-urunler");
       urunler.forEach(([g, ad, alt, adet]) => {
         const b = document.createElement("button"); b.type = "button"; b.className = "yf-ag-urun";
