@@ -19,7 +19,7 @@
     1: [
       { t: "14.11", s: "10:00–11:00", kod: "YBS1107", ad: "Algoritma ve Programlamaya Giriş", hoca: "Doç. Dr. Mesut Toğaçar", link: "ders.html?d=ybs/1/algoritma" },
       { t: "15.11", s: "14:15–15:15", kod: "YBS1111", ad: "Muhasebe I", hoca: "Doç. Dr. Meltem Gül", link: "" },
-      { t: "16.11", s: "17:15–18:15", kod: "İKT1101", ad: "Mikro İktisat", hoca: "Doç. Dr. Yunus Gülcü", link: "" },
+      { t: "16.11", s: "17:15–18:15", kod: "İKT1101", ad: "Mikro İktisat", hoca: "Doç. Dr. Yunus Gülcü", link: "ders.html?d=ybs/1/mikro-iktisat" },
       { t: "17.11", s: "12:00–12:30", kod: "YDİ107", ad: "İngilizce I", hoca: "", link: "ders.html?d=ortak/ingilizce-1" },
       { t: "18.11", s: "16:00–16:30", kod: "YBS1109", ad: "İşletme Matematiği", hoca: "Öğr. Gör. Tuba Şekerci", link: "" },
       { t: "19.11", s: "16:00–16:45", kod: "YBS1105", ad: "Bilişim Sistemleri ve Teknolojilerine Giriş", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", link: "ders.html?d=ybs/1/bilisim-sistemleri" },
