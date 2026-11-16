@@ -25,7 +25,7 @@
     ".kc-alt .ka-alt a{color:#fff;font-weight:700;text-decoration:none;margin-left:16px}" +
     ".kc-alt .ka-alt a:hover{color:#c9c2ff}" +
     "@media (max-width:980px){.kc-alt .ka-izgara{grid-template-columns:1fr 1fr}.kc-alt .ka-marka{grid-column:1/-1}}" +
-    "@media (max-width:520px){footer.kc-alt{margin-top:44px;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}.kc-alt .ka-izgara{gap:24px 16px}.kc-alt .ka-alt{flex-direction:column}.kc-alt .ka-alt a{margin:0 14px 0 0}}";
+    "@media (max-width:820px){footer.kc-alt{display:none!important}}";
   document.head.appendChild(css);
   f.className = "kc-alt";
   f.innerHTML =
