@@ -150,11 +150,9 @@ Bulut ortamı yalnızca tarayıcı ve ağ gerektirmeyen işler için (kod temizl
 4. Güvenlik testleri için: Node.js LTS, Java 21+, `npm i -g firebase-tools`; emulator yalnızca demo proje kimliğiyle
    çalıştırılır (`firebase emulators:start --project demo-kampuscepte`), gerçek projeye bağlanmaz.
 
-**Yerel çalışmada güvenlik:**
-- Bu bilgisayarda site sahibinin Firebase, Google Cloud, Cloudflare ya da GitHub hesaplarıyla oturum açılmaz;
-  `firebase login` ve `wrangler login` yapılmaz. Yayına alma (kuralları yayınlama, Worker güncelleme, Firebase ayarı)
-  yalnızca site sahibi tarafından yapılır.
+**Yerel çalışmada dikkat edilecekler:**
+- Canlı ortama yayına alma (Firebase kurallarını yayınlama, Cloudflare Worker'ı güncelleme, Firebase ayarları) ajanın
+  işi değildir; PR'da tam metin ve adımlar verilir, yayına alma site sahibiyle birlikte yapılır.
 - Ajan, komut çalıştırmadan ve depo dışındaki dosyalara erişmeden önce onay ister (onaylı mod açık kalır).
 - Gizli anahtar, `.env` ya da kişisel dosya depoya eklenmez; `git add -A` öncesi `git status` kontrol edilir.
-- `localhost` adresi Firebase'in izinli alan adlarında olduğundan giriş ve yorum yerelde denenebilir; bu denemelerde
-  gerçek kullanıcıların verisi değiştirilmez, silinmez.
+- `localhost` adresinde giriş ve yorum denenebilir; bu denemelerde gerçek kullanıcıların verisi değiştirilmez, silinmez.
