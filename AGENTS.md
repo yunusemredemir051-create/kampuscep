@@ -45,7 +45,8 @@ akademik takvim, ders/vize programı, Yol Arkadaşı (taksi paylaşımı), spons
 | `yol-arkadasi/` | Taksi paylaşımı (Firebase girişli) |
 | `ahmet-kabakli/`, `firat/`, `harput/` … | Yurtlara özel kısa menü sayfaları (WhatsApp grupları için) |
 | `notlar/**/unite-N.html` | Ünite özet sayfaları (SEO / AdSense) |
-| `yorum.js`, `skor.js` | Yorumlar, menü puanları ve beğeniler (Firestore) |
+| `yorum.js` | Yorumlar, menü puanları ve beğeniler (Firestore) |
+| `skor.js`, `workers/kc-skor.js` | Ana sayfadaki maç skorları. `skor.js` sayfada gösterir; `workers/kc-skor.js` Cloudflare Worker'ın kopyasıdır (API-Football'dan veri çeker, anahtar Cloudflare gizli değişkeninde). Worker depodan otomatik yüklenmez, Cloudflare panelinden elle yayınlanır |
 | `ayarlar.js`, `program.js`, `vize.js` | Ayarlar (bölüm/sınıf), ders ve vize programı |
 | `ses.js`, `bildirim.js`, `duyuru.js` | Ses efektleri, bildirimler, duyurular |
 | `sw.js` | Service worker (önbellek). `SURUM` sabiti var |

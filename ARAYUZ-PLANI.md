@@ -439,7 +439,10 @@ Ek 3'ten (yönetici paneli) **önce** yapılması önerilir: panel temiz ve dene
      notlar. Yetki kararları e-posta karşılaştırmasına dayanmaz.
    - **XSS:** kullanıcı girdisinin (yorum, takma ad, ilan metni) sayfaya basıldığı her yer; `innerHTML` kullanımları tek tek
      gözden geçirilir, kaçışlama (escaping) eksiksiz olmalı.
-   - **Cloudflare Worker'lar** (örn. `kc-skor`): kimlik doğrulama, istek sınırı, girdi doğrulama, CORS ayarı.
+   - **Cloudflare Worker'lar** (`workers/kc-skor.js`): yalnızca okuma yapan maç skoru vekili; anahtar gizli değişkende.
+     Kontrol edilecekler: CORS yalnızca tarayıcıyı sınırlar, doğrudan istekleri değil — API-Football günlük kotasının
+     dışarıdan tüketilip tüketilemeyeceği (önbellek her veri merkezinde ayrı), hata mesajlarında sağlayıcı ayrıntısının
+     dışarı sızması, istek sınırı gereksinimi.
    - **Spam ve kötüye kullanım:** App Check kapsamı, istek sınırları, ban'ın atlatılabildiği yollar.
    - **Depo hijyeni:** herkese açık depoda ve dallarında gizli bilgi kalmış mı (anahtar, keystore, yapılandırma);
      eski ve gereksiz dallar (`_kaynak/...`, eski tasarım dalları); GitHub Actions izinleri en az yetki ilkesine uygun mu.
