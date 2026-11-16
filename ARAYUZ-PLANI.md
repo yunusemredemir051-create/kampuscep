@@ -292,8 +292,9 @@ ajan adımları ve kodu hazırlar.
 **Önkoşul:** Ek 3'ün 2. aşaması (yönetici yetkisi ve güvenlik kuralları) birleştirilmiş olmalı.
 
 **Amaç:** KampüsCepte içeriği üzerinde çalışan, Türkçe sorulara kaynak göstererek doğru cevap veren, araştırma
-kalitesinde bir RAG (Retrieval-Augmented Generation) asistanı. Bu asistan site sahibinin bir araştırma projesinin
-konusudur; bu yüzden **ölçülebilir, belgelenmiş ve tekrar üretilebilir** olmalı. Hızlı bir demo değil, eksiksiz bir sistem.
+kalitesinde bir RAG (Retrieval-Augmented Generation) asistanı. **Ölçülebilir, belgelenmiş ve tekrar üretilebilir**
+olmalı. Hızlı bir demo değil, eksiksiz bir sistem. Asistanın adı site sahibi tarafından seçilir; seçilene kadar kodda
+ve arayüzde yer tutucu ad kullanılır (`ASISTAN_ADI` gibi tek bir ayardan değişebilir olmalı).
 
 ### Mutlak kural: kamuya açılmaz
 
@@ -314,6 +315,36 @@ konusudur; bu yüzden **ölçülebilir, belgelenmiş ve tekrar üretilebilir** o
 - Depoda olmayan özel kaynak metinler (kitap PDF'leri vb.) site sahibi verirse eklenir; verilmezse yalnızca açık içerik kullanılır.
 - Yeni içerik eklendiğinde (panelden not/menü) dizin otomatik güncellenir.
 
+### Site sahibinin vereceği dosyalar (`asistan/` klasörü)
+
+Model yeniden eğitilmez (fine-tuning yapılmaz); asistanın bilgisi ve kişiliği aşağıdaki dosyalardan gelir. Ajan bu
+klasörü ve her dosya için kısa bir Türkçe şablonu (ne yazılacağına dair örnekle) oluşturur; site sahibi doldurur.
+Dosyalar değişince asistan yeniden dizinlenir/güncellenir, kod değişikliği gerekmez.
+
+- `asistan/bilgi/*.md` — ek bilgi dosyaları: SSS, yurtlar ve kampüs hakkında bilgiler, ulaşım, sık sorulan öğrenci
+  soruları, site kullanım rehberi vb. RAG dizinine girer.
+- `asistan/karakter.md` — asistanın kişiliği ve üslubu: nasıl hitap eder, ne kadar samimi, hangi kelimeleri kullanır/kullanmaz,
+  cevap uzunluğu. Sistem talimatına girer.
+- `asistan/ornek-sohbetler.md` — iyi ve kötü cevap örnekleri (soru → beklenen cevap). Üslup için örnek olarak ve
+  test setine kaynak olarak kullanılır.
+- `asistan/argo-sozlugu.md` — öğrenci argosu, kısaltmalar, yerel ifadeler ve bunların anlamı (örn. "yemekhane" yerine
+  kullanılan adlar, ders kısaltmaları). Sorgu anlamlandırmada kullanılır.
+
+### Sohbet ve üslup
+
+- **Doğal sohbet:** önceki mesajları hatırlayarak konuşur ("peki yarın?" sorusunu önceki soruya bağlar), selamlaşma ve
+  kısa sohbete doğal karşılık verir, sonra konuyu nazikçe yardım edebileceği alana getirir. Robot gibi kalıp cümleler
+  ("Size nasıl yardımcı olabilirim?") tekrar tekrar kullanılmaz.
+- **Küfür ve argo:** asistan küfürlü ve argo mesajları **anlar** ve niyete göre cevap verir; kendisi küfür etmez.
+  - Sinirli ama soru soran kullanıcı ("bu menü ne ya, yine mi bu yemek amk") → küfrü büyütmeden, sakin ve hafif esprili
+    bir dille asıl soruyu cevaplar.
+  - Asistana ya da başkalarına yönelik hakaret → sakin bir sınır koyar, tartışmaya girmez, yardım teklifini açık tutar.
+  - Nefret söylemi, taciz, başkasını hedef alma → kibarca reddeder.
+  - Bu davranışlar test setinde ayrı bir kategori olarak ölçülür.
+- **Hassas durumlar:** kullanıcı kendine zarar verme, intihar düşüncesi, şiddet ya da acil durum belirtirse asistan
+  konuyu geçiştirmez; şefkatli kısa bir cevapla 112 Acil Çağrı'yı ve üniversitenin psikolojik danışmanlık birimine
+  başvurmayı önerir. Bu davranış test setinde ayrı kategori olarak ölçülür ve site sahibine sunulur.
+
 ### Kalite gereksinimleri
 
 1. **Türkçeye özgü işleme:** Türkçe karakterler ve büyük/küçük harf (İ/ı) doğru; çekim ekleri nedeniyle anahtar kelime
@@ -333,7 +364,8 @@ konusudur; bu yüzden **ölçülebilir, belgelenmiş ve tekrar üretilebilir** o
 ### Değerlendirme (araştırma için zorunlu)
 
 - En az 150 soruluk Türkçe **test seti**: ders içeriği, menü/tarih, site kullanımı, kapsam dışı ve cevabı olmayan sorular;
-  her biri için beklenen cevap ve beklenen kaynak. Sorular gerçekçi öğrenci diliyle (yazım hatası, kısaltma dahil).
+  her biri için beklenen cevap ve beklenen kaynak. Sorular gerçekçi öğrenci diliyle (yazım hatası, kısaltma, argo ve
+  küfür dahil); ayrıca çok turlu sohbet örnekleri ve hassas durum örnekleri.
   Test seti depoda ayrı bir dosyada, sürümlü.
 - Ölçütler: erişim için recall@k ve MRR; cevap için doğruluk, kaynağa sadakat (faithfulness), atıf doğruluğu,
   doğru reddetme oranı; ayrıca ortalama yanıt süresi ve soru başına maliyet.
