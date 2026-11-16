@@ -3,7 +3,7 @@
      aç:     herhangi bir sayfaya  ?koyu=onizleme
      kapat:  ?koyu=kapat
    Onaydan sonra HERKESE_ACIK = true yap (ve sayfalardaki tema.js?v= numarasını artır).
-   Tercih localStorage "kc-tema" içinde: "acik" | "koyu" | "sistem" (varsayılan: sistem = telefonun ayarı).
+   Tercih localStorage "kc-tema" içinde: "acik" | "koyu" | "sistem" (varsayılan: açık; "sistem" yalnızca kullanıcı seçerse).
    Bu dosya <head> içinde defer OLMADAN yüklenir; böylece sayfa açılırken beyaz parlama olmaz. */
 (function () {
   var HERKESE_ACIK = true;
@@ -214,7 +214,7 @@
   var meta = document.querySelector('meta[name="theme-color"]');
   var ilkRenk = meta ? meta.getAttribute("content") : "#f4f5f7";
 
-  function tercih() { var t = oku("kc-tema"); return t === "acik" || t === "koyu" ? t : "sistem"; }
+  function tercih() { var t = oku("kc-tema"); return t === "koyu" || t === "sistem" ? t : "acik"; }
   function dugmeler() {
     var t = tercih();
     var b = document.querySelectorAll("[data-tema-sec]");
