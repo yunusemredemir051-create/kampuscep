@@ -7,6 +7,9 @@ bölümünü ve ilgili adımı** okur ve yalnızca o adımı yapar.
 Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki adımlar bu dili kullanır.
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
+Arayüz adımlarından bağımsız iki ek görev var: **Ek 1 (temiz adresler)** ve **Ek 2 (Üniversite Evi menüsünün otomatik
+çekilmesi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+
 ---
 
 ## Her adımda (ortak protokol)
@@ -158,3 +161,63 @@ değiştir; içerik metinlerine dokunma.
 Bütün sayfaları sırayla gez. Aynı bileşenin farklı yerlerde farklı görünüp görünmediğini, kullanılmayan CSS'i,
 belirteç dışı sabit renkleri (`grep -n "#[0-9a-fA-F]\{3,6\}"`), koyu mod ve takım temalarındaki bozuklukları tespit edip
 düzelt. PR'a bütün sayfaların 390 px ve 1440 px ekran görüntülerini koy.
+
+---
+
+## Ek 1 — Temiz adresler (adres çubuğunda `.html` görünmesin)
+
+**Sorun:** Adres çubuğunda `kampuscepte.com.tr/index.html`, `/ders.html?d=…`, `/notlar/…/unite-3.html` gibi adresler
+görünüyor. Bu, sitenin amatör durmasına yol açıyor.
+
+**Hedef:** `kampuscepte.com.tr/`, `/dersler`, `/ders?d=…`, `/koc`, `/magaza`, `/gizlilik`, `/hakkimizda`,
+`/notlar/ybs/1/bilisim-sistemleri/unite-3` biçiminde adresler.
+
+**Yapılacaklar:**
+1. Barındırmanın (GitHub Pages / Cloudflare Pages) uzantısız adresi `.html` dosyasına çözdüğünü yerelde değil canlıda
+   doğrula (örn. `/dersler` açılıyor mu). Açılmıyorsa uygun klasör yapısını (`dersler/index.html`) PR'da öner, sormadan taşıma.
+2. Sitedeki bütün iç bağlantıları (`href`, `location.href`, `window.open`, JS içinde üretilen linkler, `sitemap.xml`,
+   `<link rel="canonical">`, Open Graph `og:url`) uzantısız biçime çevir. `index.html` linkleri `/` olur.
+3. Eski `.html` adresleri **çalışmaya devam etmeli** (WhatsApp gruplarında ve Google'da duruyorlar). Her sayfanın başına,
+   adres `.html` ile bitiyorsa `history.replaceState` ile adres çubuğunu uzantısız hâle getiren küçük bir betik ekle
+   (sorgu dizesi ve `#` korunur). Ortak bir dosyada olsun, her sayfaya kopyalanmasın.
+4. Service worker (`sw.js`) önbellek listesi ve yönlendirmeleri yeni adreslerle de çalışmalı. Android uygulaması
+   (`?kaynak=uygulama`) bozulmamalı.
+5. Ünite sayfaları betikle üretildiyse, betiğe değil üretilmiş HTML'e uygula ve bunu PR'da belirt.
+
+Bu görev `AGENTS.md` 4. bölümdeki "URL'ler değiştirilmez" kuralının tek istisnasıdır: yeni adresler eklenir,
+eskiler kaldırılmaz.
+
+**Not:** Sitenin "HTML ile yazılmış" olması sorun değildir; her web sitesi tarayıcıya HTML olarak gelir. Görünen sorun
+yalnızca adres biçimidir. Siteyi bir framework ile sıfırdan yazmak gerekmez ve yapılmaz.
+
+## Ek 2 — Üniversite Evi menüsünün otomatik çekilmesi
+
+**Durum:** `.github/workflows/unievi.yml` ve `.github/scripts/unievi_guncelle.py` menüyü https://unievi.firat.edu.tr/
+adresinden okuyup `veri.js` içindeki `uniEviMenuleri` bloğuna yazmak için zaten var. Ancak **10 Kasım 2026'dan beri her
+çalışma başarısız**: kayıtlarda (`unievi-kayit` dalı, `unievi.log`) üç denemenin de `TimeoutError` ile bittiği görülüyor.
+Site Türkiye'den açılıyor; GitHub Actions sunucuları yurt dışında. En olası neden üniversite sitesinin yurt dışı
+IP'lerini engellemesi.
+
+**Menünün yayımlanma düzeni:** Haftalık menü cumartesi, pazar ya da pazartesi günlerinden birinde siteye girilir.
+
+**Yapılacaklar:**
+1. Önce nedeni kanıtla: GitHub Actions içinden `curl -v` ile bağlantının nerede takıldığını (DNS, TCP, TLS) kayda yaz.
+2. Yurt dışından erişim engelliyse, çekme işinin **Türkiye'deki bir IP'den** çalışmasını sağlayacak çözümleri karşılaştırıp
+   PR'da site sahibine sun (maliyet, bakım, güvenilirlik):
+   - Türkiye'de bir makinede çalışan **self-hosted GitHub Actions runner** (ör. küçük bir Türkiye VPS'i),
+   - Türkiye'de barındırılan küçük bir sunucuda zamanlanmış görev (cron) — çıktıyı GitHub API ile depoya yazar,
+   - başka bir uygun yol.
+   Ücretli hizmet açmayı, hesap oluşturmayı ve gizli anahtar eklemeyi site sahibi yapar; ajan yalnızca adımları ve kodu hazırlar.
+3. Zamanlamayı yayımlanma düzenine göre ayarla: **cumartesi, pazar ve pazartesi** günleri gün boyunca birkaç saatte bir
+   (ör. 08:00–22:00 arası 2 saatte bir) dene; o haftanın menüsü bulunduktan sonra aynı hafta için tekrar denemeyi bırak.
+   Diğer günlerde günde bir kontrol yeterli (sonradan yapılan düzeltmeler için).
+4. Ayrıştırıcıyı sağlamlaştır: sayfa yapısı değişirse ya da menü eksik gelirse `veri.js`'e **hiçbir şey yazma**; mevcut
+   menüleri silme ya da boşaltma. Yalnızca yeni ve eksiksiz günleri ekle, var olan günleri ancak sitede gerçekten
+   değiştiyse güncelle.
+5. unievi.firat.edu.tr'deki **kalori, protein, karbonhidrat, yağ** değerlerini de oku ve menüyle birlikte kaydet
+   (veri biçimini eski kayıtları bozmadan genişlet; sitede gösterim arayüz adımlarında yapılır).
+6. **Yemek fotoğraflarına zarar gelmesin:** yemek adları `yemekfoto.js` eşleşmeleriyle aynı biçimde yazılmalı
+   (`guzel()` normalizasyonu korunur). Yeni çekilen bir yemek adı mevcut bir fotoğrafla eşleşmiyorsa fotoğraf dosyasına
+   dokunma; eşleşmeyen adları kayda ve PR'a liste olarak yaz, site sahibi fotoğrafı sonra ekler.
+7. Menü puanları ve beğeniler (Firestore) menü güncellenince kaybolmamalı; anahtar yapısına dokunma.
+8. Başarısız olursa sessizce geçme: iş akışı kırmızı bitsin ve kayıt `unievi-kayit` dalına yazılsın (mevcut davranış).

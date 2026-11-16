@@ -61,6 +61,9 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
   - **İstisna:** Arayüzdeki küçük çizgi ikonlar (menü, ayarlar listesi, düğmeler, sekmeler içindeki satır içi `<svg>` ikonlar)
     yeniden tasarlanabilir. Bunlar tek bir tutarlı set olarak elle yazılmış SVG olur (aynı çizgi kalınlığı, aynı ızgara, `currentColor`).
     İkon kütüphanesi (Font Awesome vb.) ve emoji kullanılmaz.
+- **Yemek fotoğrafları:** `gorseller/yemek/` içindeki dosyalar ve `yemekfoto.js`'deki yemek adı → fotoğraf eşleşmeleri.
+  Fotoğraf silinmez, yeniden adlandırılmaz, sıkıştırılmaz, kırpılmaz, üzerine filtre uygulanmaz. Görünüm değişebilir
+  (boyut, oran, yerleşim) ama dosyaların kendisi ve eşleşmeler aynen kalır. Menü verisi değişince eşleşme bozulmamalı.
 - JavaScript'in kullandığı `id` ve `class` adları. HTML yapısını değiştirmeden önce adı tüm `.js` dosyalarında ara (`grep -rn`).
 - `.reklam` kutuları (AdSense alanları) ve `ads.txt`.
 - `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml`.
