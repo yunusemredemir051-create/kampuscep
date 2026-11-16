@@ -74,14 +74,23 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
 - Yapay zekâ asistanı (Ek 5) **yalnızca yönetici panelinde** bulunur. Herkese açık sayfalarda, Android uygulamasında
   ya da sitemap'te ona giden hiçbir giriş noktası olmaz; site sahibi açıkça istemeden kamuya açılmaz.
 
-## 5. İçerik kuralları
+## 5. Güvenlik kuralları
+
+- Yetki (yönetici, moderatör, ban) yalnızca **sunucu tarafında** verilir ve denetlenir: Firestore/Storage güvenlik kuralları,
+  sunucu fonksiyonları, Firebase custom claim. Sayfadaki JavaScript'in yetki kontrolü yalnızca görünüm içindir.
+- İstemcinin yazabildiği hiçbir alan (profil belgesi, ayar, liste) yetki kararını etkilemez.
+- Herkese açık koda e-posta adresi, şifre, API anahtarı, token, keystore ya da yönetici kimliği yazılmaz.
+- Kullanıcı girdisi sayfaya her zaman kaçışlanarak (escape) basılır.
+- Güvenlik açığı bulursan düzeltmeden önce site sahibine bildir; istismar ayrıntısını herkese açık yere yazma.
+
+## 6. İçerik kuralları
 
 - Örnek/placeholder olarak site sahibinin adı kullanılmaz. Gerçekçi ama kurgusal içerik kullan.
 - Çıkmış sorularda üniversite adı geçmez.
 - Anlaşması olmayan işletme sponsorlar arasında gösterilmez.
 - Arayüz metinleri Türkçe, sade ve öğrenci diline yakın. "Hoş geldiniz!", "Keşfedin", "Yolculuğunuz başlasın" gibi kalıp pazarlama cümleleri yok.
 
-## 6. Tasarım çıtası — "yapay zekâ şablonu gibi durmasın"
+## 7. Tasarım çıtası — "yapay zekâ şablonu gibi durmasın"
 
 Site sahibi iki tasarım turunu "hâlâ yapay zekâ yapmış gibi duruyor" diyerek reddetti. Hedef: profesyonel bir ürün ekibinin
 elinden çıkmış gibi duran, kendine ait karakteri olan, sayfa düzeni güçlü bir site.
@@ -110,7 +119,7 @@ Sayfa sayfa yenileme planı ve her adımın görev tanımı: `ARAYUZ-PLANI.md`.
 - Erişilebilirlik: metin kontrastı en az WCAG AA, dokunma hedefi en az 44 px, `:focus-visible` görünür.
 - Performans: yeni yazı tipi, kütüphane ya da büyük görsel ekleme. Görseller `webp`, tembel yükleme.
 
-## 7. Teknik kurallar
+## 8. Teknik kurallar
 
 - `kc.css`, `ana.css` ya da başka bir CSS/JS dosyası değişince o dosyayı yükleyen **bütün sayfalardaki** `?v=` numarasını artır
   ve `sw.js` içindeki `SURUM` değerini bir artır. Yoksa kullanıcılar eski dosyayı görmeye devam eder.

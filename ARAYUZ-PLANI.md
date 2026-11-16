@@ -8,7 +8,7 @@ Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki ad
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** ve **Ek 5 (yalnızca yöneticiye açık RAG asistanı)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** ve **Ek 6 (kod temizliği ve güvenlik denetimi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -407,3 +407,49 @@ kararın tarihli kaydı (karar günlüğü). Site sahibi bu belgeyle sistemi anl
 5. **Değerlendirme:** tam test seti, değerlendirme betiği, yapılandırma karşılaştırma raporu.
 6. **Yönetici paneli ekranları:** sohbet, kaynak görünümü, geri bildirim, değerlendirme özeti. Arayüz AGENTS.md
    tasarım çıtasına uyar.
+
+## Ek 6 — Kod temizliği ve güvenlik denetimi
+
+**Arka plan:** Daha önce bir kullanıcı, site sahibinin e-posta adresini görüp kendini yönetici paneline eklemeyi başardı.
+Bu, yetki kontrolünün yanlış yerde yapıldığını gösterir. Bu tür açıkların **hiçbiri** kalmamalı. Ayrıca kod yıllar içinde
+farklı yapay zekâ oturumlarıyla büyüdüğü için dağınık; temiz, sade ve anlaşılır hâle gelmeli.
+Ek 3'ten (yönetici paneli) **önce** yapılması önerilir: panel temiz ve denetlenmiş bir zemine kurulmalı.
+
+### A. Güvenlik denetimi (önce rapor, sonra düzeltme)
+
+1. **Rapor PR'ı (kod değişikliği yok):** `GUVENLIK-RAPORU.md` — bulunan her açık için: ne, nerede, nasıl istismar edilir,
+   önem derecesi (kritik/yüksek/orta/düşük), önerilen düzeltme. Rapor herkese açık depoya **istismar ayrıntısı yazılmadan**
+   konur; ayrıntılar site sahibine PR açıklamasında değil, özel olarak iletilmek üzere ayrı tutulur.
+2. Denetlenecekler en az şunlar:
+   - **Yetki yükseltme:** bir kullanıcının kendine yönetici, moderatör ya da başka bir kullanıcının yetkisini verebildiği her yol.
+     Yetki yalnızca sunucu tarafında (güvenlik kuralları, sunucu fonksiyonu, custom claim) verilir ve denetlenir;
+     istemci tarafında yazılabilir bir "yönetici listesi" ya da "rol" alanı olmaz. Kullanıcının kendi profil belgesinde
+     rol/yetki alanını değiştirmesi kurallarla engellenir.
+   - **Firestore/Storage kuralları:** her koleksiyon için kim okur, kim yazar, hangi alanlar değişebilir, alan türü ve
+     uzunluk sınırı. Kurallar depoda değilse site sahibinden istenir. Emulator testleriyle kanıtlanır.
+   - **Herkese açık kodda kişisel/özel bilgi:** e-posta adresleri, hesap adları, iç adresler, yorum satırlarında kalmış
+     notlar. Yetki kararları e-posta karşılaştırmasına dayanmaz.
+   - **XSS:** kullanıcı girdisinin (yorum, takma ad, ilan metni) sayfaya basıldığı her yer; `innerHTML` kullanımları tek tek
+     gözden geçirilir, kaçışlama (escaping) eksiksiz olmalı.
+   - **Cloudflare Worker'lar** (örn. `kc-skor`): kimlik doğrulama, istek sınırı, girdi doğrulama, CORS ayarı.
+   - **Spam ve kötüye kullanım:** App Check kapsamı, istek sınırları, ban'ın atlatılabildiği yollar.
+   - **Depo hijyeni:** herkese açık depoda ve dallarında gizli bilgi kalmış mı (anahtar, keystore, yapılandırma);
+     eski ve gereksiz dallar (`_kaynak/...`, eski tasarım dalları); GitHub Actions izinleri en az yetki ilkesine uygun mu.
+   - **Güvenlik başlıkları:** Content-Security-Policy, Referrer-Policy vb. barındırmanın izin verdiği ölçüde.
+3. **Düzeltme PR'ları:** önem sırasına göre, her açık ya da açık grubu ayrı PR. Her düzeltmeye, açığın artık
+   çalışmadığını gösteren test ya da adım eklenir. Kural değişiklikleri mevcut kullanıcıların normal işlerini bozmamalı.
+
+### B. Kod temizliği
+
+1. **Envanter:** kullanılmayan dosyaları, fonksiyonları, CSS kurallarını, eski "önceki kuşak" belirteç adlarını,
+   kopyalanmış kod bloklarını ve `index.html` içindeki satır içi betikleri listele. Silmeden önce `grep -rn` ile hiçbir
+   yerde kullanılmadığını doğrula; şüpheliyse silme, PR'da sor.
+2. **Düzen:** satır içi betikleri anlamlı adlı dosyalara taşı; ortak yardımcı işlevleri (kaçışlama, tarih biçimleme,
+   Firebase başlatma) tek yerde topla; dosya ve işlev adları tutarlı Türkçe; her dosyanın başında ne işe yaradığını
+   anlatan kısa yorum.
+3. **Sadelik:** gereksiz soyutlama, ölü kod, yorum satırına alınmış eski kod, `console.log` artıkları kalmaz. Yeni
+   kütüphane ya da derleme adımı eklenmez (AGENTS.md).
+4. **Davranış değişmez:** temizlik PR'ları görünümü ve işlevi değiştirmez. Her PR'da ana sayfa, ders sayfası, yorumlar,
+   puanlama, giriş, Yol Arkadaşı ve mağaza elle denenir; denenenler PR'da listelenir.
+5. **Sonuç:** `MIMARI.md` — sitenin dosya yapısı, veri akışı, Firebase'in hangi işler için kullanıldığı, otomatik işler.
+  Site sahibinin bir yazılımcıya siteyi anlatabileceği açıklıkta.
