@@ -1341,3 +1341,13 @@ html[data-tema="koyu"] .yan .tema-sekme .tema-gunes { display: block; } html[dat
 html.yurtsuz .yurt-kart, html.yurtsuz .yurt-ogesi, html.yurtsuz .kutu[data-git="yurtlar"], html.yurtsuz .sekme[data-sayfa="yurtlar"] { display: none !important; }
 html.yurtsuz .menu-grid { grid-template-columns: 1fr !important; }
 html.yurtsuz .kutular { grid-template-columns: repeat(3, 1fr) !important; }
+
+/* Mobil üst çubuk sadeleştirme: avatar zaten profil/ayarlara gidiyor, çark düğmesi gizli; düğmeler küçük, logo yazısı taşmaz */
+@media (max-width: 820px) {
+  .mobil-ust .ayar-dugme { display: none !important; }
+  .mobil-ust .logo { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; flex: 1 1 auto; }
+  .mobil-ust > div { flex: none; gap: 8px !important; }
+  .mobil-ust .tema-dugme { width: 38px !important; height: 38px !important; }
+  .mobil-ust .kc-geri-btn:not(.gizli) { width: 38px !important; height: 38px !important; }
+  .mobil-ust .pd-mobil { width: 38px; height: 38px; }
+}
