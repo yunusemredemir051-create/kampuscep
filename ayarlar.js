@@ -58,23 +58,18 @@
 
   /* ---- Ana sayfa profil paneli ---- */
   function profilPanel() {
-    const p = document.getElementById("ana-profil"); if (!p) return;
+    const ds = document.querySelectorAll(".profil-dugme"); if (!ds.length) return;
     const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const ad = (localStorage.getItem("kc-ad") || "").trim();
     const av = gecerliAv(localStorage.getItem("kc-avatar") || "");
     const bolum = localStorage.getItem("kc-birim") || "", sinif = localStorage.getItem("kc-sinif") || "";
-    const yurtDeger = localStorage.getItem("kc-yurt") || "", ys = document.getElementById("ayar-yurt");
-    let yurtAd = ""; if (yurtDeger && ys) { const o = [...ys.options].find(x => x.value === yurtDeger); yurtAd = o ? o.textContent : ""; }
-    const bos = !ad && !av && !bolum;
-    p.classList.toggle("bos", bos);
-    const etiket = [bolum && sinif ? `${bolum} · ${sinif}. sınıf` : bolum, yurtAd].filter(Boolean);
-    p.innerHTML = `<span class="ap-av">${av ? avatarHtml(av) : ad ? `<span class="av-harf">${esc(ad.charAt(0).toLocaleUpperCase("tr"))}</span>` : BOS_AV}</span>
-      <span class="ap-metin"><b>${bos ? "Profilini oluştur" : ad ? "Merhaba, " + esc(ad) + "!" : "Profilin"}</b>
-      <small>${bos ? "Bölümünü ve sınıfını seç; ders programın, vize takvimin ve notların sana göre gelsin." : etiket.length ? "" : "Bölümünü ve yurdunu ekle"}</small>
-      ${etiket.length ? `<span class="ap-etiket">${etiket.map(t => `<span>${esc(t)}</span>`).join("")}</span>` : ""}</span>
-      <span class="ap-btn">${bos ? "Oluştur" : "Düzenle"}</span>`;
-    p.hidden = false;
-    p.onclick = () => { if (window.sayfaAc) sayfaAc("ayarlar"); setTimeout(() => altGoster("profil"), 30); };
+    const ic = av ? avatarHtml(av) : ad ? `<span class="av-harf">${esc(ad.charAt(0).toLocaleUpperCase("tr"))}</span>` : BOS_AV;
+    const baslik = ad ? ad + (bolum ? " · " + bolum + (sinif ? " " + sinif + ". sınıf" : "") : "") + " — profili düzenle" : "Profilini oluştur";
+    ds.forEach(d => {
+      d.innerHTML = ic; d.title = baslik; d.setAttribute("aria-label", baslik);
+      d.classList.toggle("bos", !av && !ad);
+      d.onclick = () => { if (window.sayfaAc) sayfaAc("ayarlar"); setTimeout(() => altGoster("profil"), 30); };
+    });
   }
   window.kcProfilPanel = profilPanel;
 
