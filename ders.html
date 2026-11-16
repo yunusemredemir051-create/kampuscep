@@ -47,15 +47,6 @@ a { color: inherit; }
 /* Ünite kartları */
 .baslik { font-size: 17px; font-weight: 700; margin: 26px 0 12px; }
 .uniteler { display: grid; gap: 12px; }
-.sinav-grup { display: flex; align-items: center; gap: 12px; margin: 14px 2px 0; padding: 12px 14px; border-radius: 18px; background: linear-gradient(120deg, rgba(91,91,245,.12), rgba(139,92,246,.06)); border: 1px solid rgba(91,91,245,.18); }
-.sinav-grup:first-child { margin-top: 4px; }
-.sinav-grup b { display: block; font-size: 17px; letter-spacing: -.2px; }
-.sinav-grup small { display: block; font-size: 12.5px; opacity: .72; margin-top: 1px; }
-.sg-rozet { flex: none; font-size: 11.5px; font-weight: 800; letter-spacing: .8px; color: #fff; padding: 6px 10px; border-radius: 10px; background: linear-gradient(135deg, #5b5bf5, #8b5cf6); box-shadow: 0 6px 14px -6px rgba(91,91,245,.6); }
-.sg-final { background: linear-gradient(120deg, rgba(242,85,127,.12), rgba(255,145,77,.06)); border-color: rgba(242,85,127,.2); }
-.sg-final .sg-rozet { background: linear-gradient(135deg, #f2557f, #ff914d); box-shadow: 0 6px 14px -6px rgba(242,85,127,.6); }
-.sg-ek { background: rgba(127,127,140,.08); border-color: rgba(127,127,140,.18); }
-.sg-ek .sg-rozet { background: #7a8199; box-shadow: none; }
 .unite { padding: 16px; }
 .unite-ust { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; }
 .no { width: 46px; height: 46px; border-radius: var(--r-2); flex: none; display: grid; place-items: center; font-weight: 700; font-size: 13px; line-height: 1.1; text-align: center; }
@@ -493,14 +484,15 @@ const ikonIndir = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const ikonYildiz = '<svg viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4L2.8 9.5l6.4-.8z"/></svg>';
 function unitelerHtml() {
   const grup = ders.uniteler.some(u => u.sinav);
-  const GA = { vize: ["Vize konuları", "Ara sınavda sorumlu olduğun üniteler"], final: ["Final konuları", "Vizeden sonraki üniteler · finalde bütün dönemden de soru gelebilir"], ek: ["Ek · hızlı tekrar", "Dönem planı ve sınav öncesi özet"] };
-  let h = grup ? `<div class="uniteler">` : `<div class="baslik">Üniteler</div><div class="uniteler">`;
+  const GA = { vize: "Vize konuları", final: "Final konuları", ek: "Ek · hızlı tekrar" };
+  let h = grup ? "" : `<div class="baslik">Üniteler</div><div class="uniteler">`;
   let sonGrup = null;
   ders.uniteler.forEach((u, i) => {
     if (grup && u.sinav !== sonGrup) {
-      sonGrup = u.sinav; const g = GA[u.sinav] || [u.sinav, ""];
+      if (sonGrup !== null) h += `</div>`;
+      sonGrup = u.sinav;
       const n = ders.uniteler.filter(x => x.sinav === u.sinav).length;
-      h += `<div class="sinav-grup sg-${u.sinav}"><span class="sg-rozet">${u.sinav === "vize" ? "VİZE" : u.sinav === "final" ? "FİNAL" : "EK"}</span><div><b>${g[0]}</b><small>${n} ünite · ${g[1]}</small></div></div>`;
+      h += `<div class="baslik">${GA[u.sinav] || u.sinav} <span style="color:var(--soluk);font-weight:700">· ${n}</span></div><div class="uniteler">`;
     }
     const t = soruSayisi(u);
     const s = oku(anahtar(u.no));
