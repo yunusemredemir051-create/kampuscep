@@ -340,7 +340,7 @@ konusudur; bu yüzden **ölçülebilir, belgelenmiş ve tekrar üretilebilir** o
 - Tek komutla çalışan değerlendirme betiği; sonuçları tarihli rapor olarak kaydeder. Farklı yapılandırmalar
   (yalnız vektör / hibrit / yeniden sıralamalı; farklı parça boyutları; farklı modeller) karşılaştırma tablosuyla raporlanır.
 - Yönetici panelinde: asistanla sohbet ekranı, her cevabın altında kullanılan kaynak parçalar ve skorları,
-  cevaba 👍/👎 ve not ekleme (geri bildirim kaydı), değerlendirme sonuçlarının özet ekranı.
+  cevaba doğru/yanlış işaretleme ve not ekleme (geri bildirim kaydı), değerlendirme sonuçlarının özet ekranı.
 - İleride öğrencilerle yapılacak kullanıcı çalışması için hazırlık: anket soruları taslağı ve KVKK'ya uygun bilgilendirme/onam
   metni taslağı (çalışma bu görev kapsamında **başlatılmaz**).
 
