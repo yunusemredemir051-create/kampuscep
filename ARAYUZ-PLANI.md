@@ -425,8 +425,16 @@ Ek 3'ten (yönetici paneli) **önce** yapılması önerilir: panel temiz ve dene
      Yetki yalnızca sunucu tarafında (güvenlik kuralları, sunucu fonksiyonu, custom claim) verilir ve denetlenir;
      istemci tarafında yazılabilir bir "yönetici listesi" ya da "rol" alanı olmaz. Kullanıcının kendi profil belgesinde
      rol/yetki alanını değiştirmesi kurallarla engellenir.
-   - **Firestore/Storage kuralları:** her koleksiyon için kim okur, kim yazar, hangi alanlar değişebilir, alan türü ve
-     uzunluk sınırı. Kurallar depoda değilse site sahibinden istenir. Emulator testleriyle kanıtlanır.
+   - **Firestore/Storage kuralları** (`firebase/firestore.rules`): her koleksiyon için kim okur, kim yazar, hangi alanlar
+     değişebilir, alan türü ve uzunluk sınırı. Emulator testleriyle kanıtlanır. Storage kuralları ve `kc-skor` Worker kodu
+     depoda yoksa site sahibinden istenir. İlk incelemede öne çıkan konular (ayrıntılı doğrulanmalı):
+     - Yönetici yetkisi e-posta karşılaştırmasıyla veriliyor → custom claim'e taşınmalı.
+     - Puan, beğeni, indirme sayacı ve çıkmış soru puanları anonim oturumla da yazılabiliyor → sınırsız yeni kimlikle
+       oy şişirme riski; Google girişi şartı ya da başka bir önlem değerlendirilmeli (mevcut kullanıcı deneyimini bozmadan).
+     - Çıkmış soru puanlarında zaman/hız sınırı yok.
+     - Yol Arkadaşı'nda yurt ve kız/erkek türü kullanıcının kendi beyanı ve sonradan değiştirilebiliyor → değişiklik sıklığı
+       sınırı ya da başka bir önlem değerlendirilmeli; seçenekler site sahibine sunulur.
+     - İlan güncellemede `zaman` ve `ucret` alanları oluşturmadaki sınırlarla yeniden denetlenmiyor.
    - **Herkese açık kodda kişisel/özel bilgi:** e-posta adresleri, hesap adları, iç adresler, yorum satırlarında kalmış
      notlar. Yetki kararları e-posta karşılaştırmasına dayanmaz.
    - **XSS:** kullanıcı girdisinin (yorum, takma ad, ilan metni) sayfaya basıldığı her yer; `innerHTML` kullanımları tek tek

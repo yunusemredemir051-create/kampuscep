@@ -1,0 +1,274 @@
+rules_version = '2';
+// KampüsCepte — Firestore güvenlik kuralları (v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function girisli()  { return request.auth != null; }
+    // Google hesabıyla giriş (anonim oturum yetmez)
+    function googleli() { return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    function benimTurum() {
+      return get(/databases/$(db)/documents/kullanicilar/$(request.auth.uid)).data.tur;
+    }
+    function kizYurtlari()   { return ['fethi-sekin', 'harput', 'izzetpasa', 'sare-ana']; }
+    function erkekYurtlari() { return ['ahmet-kabakli', 'firat', 'omer-bilginoglu']; }
+    function yurtTuruUyar(d) {
+      return (d.yurtTur == 'kiz'   && d.yurt in kizYurtlari())
+          || (d.yurtTur == 'erkek' && d.yurt in erkekYurtlari());
+    }
+    function metin(s, en) { return s is string && s.size() <= en; }
+    function enAz(s, n)   { return s is string && s.size() >= n; }
+    // Site yöneticisi: doğrulanmış Google hesabı
+    function yonetici() {
+      return googleli() && request.auth.token.email == 'yunusemredemir051@gmail.com' && request.auth.token.email_verified == true;
+    }
+    // Küfür / spam kalıpları (yorum metni ve adında)
+    function kufurlu(s) {
+      return s.lower().matches('(?s).*(bubiryorum|amc[ıi]k|orospu|porno|yarrak|siktir|sikik|sikiş|piç|götveren).*');
+    }
+    // Takma ad: 2-24 karakter, harf/rakam/boşluk/._- ; küfür ve ayrılmış adlar yasak
+    function adGecerli(a) {
+      return a is string && a.matches('^[\\p{L}0-9][\\p{L}0-9 ._-]{0,22}[\\p{L}0-9.]$') && !kufurlu(a)
+        && !(a.lower() in ['anonim', 'admin', 'yönetici', 'yonetici', 'kampuscepte', 'kampüscepte', 'moderatör', 'moderator']);
+    }
+    function sikayetHedefVar(i) {
+      return i is string && (
+        (i.matches('^yorum:[a-z0-9-]+_[0-9]{4}-[0-9]{2}-[0-9]{2}(_(kahvalti|aksam))?/[A-Za-z0-9_]{1,80}$')
+          && exists(/databases/$(db)/documents/menuler/$(i.split(':')[1].split('/')[0])/yorumlar/$(i.split('/')[1])))
+        || (i.matches('^[A-Za-z0-9]{10,40}$') && exists(/databases/$(db)/documents/yolculuklar/$(i))));
+    }
+    function banli()          { return exists(/databases/$(db)/documents/engelliler/$(request.auth.uid)); }
+    function numaraBanli(tel) { return exists(/databases/$(db)/documents/engelliTel/$(tel)); }
+
+    match /kullanicilar/{uid} {
+      allow read:   if googleli() && request.auth.uid == uid;
+      allow write:  if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['yurt', 'tur'])
+        && yurtTuruUyar({ 'yurt': request.resource.data.yurt, 'yurtTur': request.resource.data.tur });
+      allow delete: if googleli() && request.auth.uid == uid;
+    }
+
+    match /yolculuklar/{id} {
+      function sahip() { return googleli() && request.auth.uid == resource.data.sahipUid; }
+      allow read: if true;
+
+      allow create: if googleli() && !banli()
+        && request.resource.data.sahipUid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['sahipUid','yurt','yurtTur','yon','yer','zaman','aranan','ucret','not','katilanlar','olusturma'])
+        && yurtTuruUyar(request.resource.data)
+        && request.resource.data.yurtTur == benimTurum()
+        && request.resource.data.yon in ['gidis', 'donus']
+        && request.resource.data.yer in ['otogar', 'havaalani', 'miniterminal']
+        && request.resource.data.zaman is timestamp
+        && request.resource.data.zaman > request.time - duration.value(1, 'h')
+        && request.resource.data.zaman < request.time + duration.value(31, 'd')
+        && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
+        && request.resource.data.ucret is int   && request.resource.data.ucret >= 0 && request.resource.data.ucret <= 5000
+        && metin(request.resource.data.not, 120)
+        && request.resource.data.katilanlar == [];
+
+      allow update: if sahip()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['aranan','not','zaman','ucret'])
+          && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
+          && metin(request.resource.data.not, 120)
+        || googleli() && !banli() && resource.data.yurtTur == benimTurum()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
+          && !(request.auth.uid in resource.data.katilanlar)
+          && request.auth.uid != resource.data.sahipUid
+          && request.resource.data.katilanlar == resource.data.katilanlar.concat([request.auth.uid])
+          && request.resource.data.katilanlar.size() <= resource.data.aranan
+        || googleli()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
+          && request.auth.uid in resource.data.katilanlar
+          && request.resource.data.katilanlar.toSet() == resource.data.katilanlar.toSet().difference([request.auth.uid].toSet())
+          && request.resource.data.katilanlar.size() == resource.data.katilanlar.size() - 1;
+
+      allow delete: if sahip() || yonetici();
+
+      match /iletisim/{uid} {
+        function ilan() { return get(/databases/$(db)/documents/yolculuklar/$(id)).data; }
+        function grupta() {
+          return googleli() && (request.auth.uid == ilan().sahipUid || request.auth.uid in ilan().katilanlar);
+        }
+        allow read:   if grupta() || yonetici();
+        allow write:  if grupta() && request.auth.uid == uid && !banli()
+          && request.resource.data.keys().hasOnly(['ad','tel'])
+          && metin(request.resource.data.ad, 40)
+          && request.resource.data.tel is string && request.resource.data.tel.matches('^90[0-9]{10}$')
+          && !numaraBanli(request.resource.data.tel);
+        allow delete: if googleli() && (request.auth.uid == uid || request.auth.uid == ilan().sahipUid) || yonetici();
+      }
+    }
+
+    // Yemek menüsü: puan, beğeni, görüntüleyen sayısı ve yorumlar
+    match /menuler/{menu} {
+      function menuGecerli() { return menu.matches('^[a-z0-9-]+_[0-9]{4}-[0-9]{2}-[0-9]{2}(_(kahvalti|aksam))?$'); }
+      function yorumCezali() {
+        return exists(/databases/$(db)/documents/yorumCezalari/$(request.auth.uid))
+          && get(/databases/$(db)/documents/yorumCezalari/$(request.auth.uid)).data.bitisMs > request.time.toMillis();
+      }
+      // Menü tarihi bugünden en fazla 60 gün önce / 45 gün sonra olabilir (sahte menü kaydı açılmasın)
+      function tarihYakin() {
+        let p = menu.split('_')[1].split('-');
+        let t = timestamp.date(int(p[0]), int(p[1]), int(p[2]));
+        return t > request.time - duration.value(60, 'd') && t < request.time + duration.value(45, 'd');
+      }
+      function sinirSonra() { return getAfter(/databases/$(db)/documents/yorumSinir/$(request.auth.uid)).data; }
+
+      match /oylar/{uid} {
+        allow read: if true;
+        allow create, update: if girisli() && request.auth.uid == uid && menuGecerli() && tarihYakin() && !banli()
+          && request.resource.data.keys().hasOnly(['d', 'puan', 'reaksiyon', 'zaman'])
+          && request.resource.data.zaman == request.time
+          && (resource == null || !('zaman' in resource.data) || request.time > resource.data.zaman + duration.value(1, 's'))
+          && (!('puan' in request.resource.data) || (request.resource.data.puan is int && request.resource.data.puan >= 0 && request.resource.data.puan <= 5))
+          && (!('reaksiyon' in request.resource.data) || request.resource.data.reaksiyon in [-1, 0, 1])
+          && (!('d' in request.resource.data) || request.resource.data.d in [-1, 0, 1]);
+        allow delete: if girisli() && request.auth.uid == uid;
+      }
+
+      // "Kaç kişi baktı": her kimlik bir menü için yalnızca bir kez kayıt açabilir
+      match /gorenler/{uid} {
+        allow read: if true;
+        allow create: if girisli() && request.auth.uid == uid && menuGecerli() && tarihYakin()
+          && request.resource.data.keys().hasOnly(['zaman'])
+          && request.resource.data.zaman == request.time;
+        allow update, delete: if false;
+      }
+
+      // Yorumlar: yalnızca Google hesabıyla, ceza/ban yoksa; küfür içeremez.
+      // Her yorum, yazanın sınır kaydıyla (yorumSinir) aynı anda yazılmak zorunda (30 sn / günde 20).
+      // Yorum kimliği = uid_günBaşıMs_sıra olduğu için bir sınır kaydıyla yalnızca tek yorum yazılabilir.
+      match /yorumlar/{id} {
+        allow read: if true;
+        allow create: if googleli() && menuGecerli() && tarihYakin() && !banli() && !yorumCezali()
+          && request.resource.data.uid == request.auth.uid
+          && request.resource.data.keys().hasOnly(['uid','ad','metin','ust','zaman','begeniler'])
+          && request.resource.data.ad == getAfter(/databases/$(db)/documents/yorumcular/$(request.auth.uid)).data.ad
+          && metin(request.resource.data.metin, 500) && enAz(request.resource.data.metin, 3)
+          && metin(request.resource.data.ust, 40)
+          && !kufurlu(request.resource.data.metin) && !kufurlu(request.resource.data.ad)
+          && request.resource.data.begeniler == []
+          && request.resource.data.zaman == request.time
+          && sinirSonra().son == request.time
+          && id == request.auth.uid + '_' + string(request.time.date().toMillis()) + '_' + string(sinirSonra().adet);
+        // Beğeni: kişi listeye yalnızca kendi kimliğini ekleyip çıkarabilir
+        allow update: if girisli()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['begeniler'])
+          && request.resource.data.begeniler is list
+          && request.resource.data.begeniler.toSet().difference(resource.data.get('begeniler', []).toSet()).hasOnly([request.auth.uid])
+          && resource.data.get('begeniler', []).toSet().difference(request.resource.data.begeniler.toSet()).hasOnly([request.auth.uid]);
+        allow delete: if girisli() && (resource.data.uid == request.auth.uid || yonetici());
+      }
+    }
+
+    // Yorum hız sınırı: kişi başı 30 saniyede 1, UTC gününe göre günde en çok 20 yorum. Silinemez (sıfırlanamaz).
+    match /yorumSinir/{uid} {
+      allow read: if googleli() && request.auth.uid == uid;
+      allow create: if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['son', 'adet'])
+        && request.resource.data.son == request.time
+        && request.resource.data.adet == 1;
+      allow update: if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['son', 'adet'])
+        && request.resource.data.son == request.time
+        && request.time > resource.data.son + duration.value(30, 's')
+        && ( (request.time.date() == resource.data.son.date()
+               && request.resource.data.adet == resource.data.adet + 1
+               && request.resource.data.adet <= 20)
+          || (request.time.date() != resource.data.son.date()
+               && request.resource.data.adet == 1) );
+      allow delete: if false;
+    }
+
+    // Takma adlar: her Google hesabının tek adı (yorumcular/{uid}); adın sahibi takmaAdlar/{küçük harf ad} ile tutulur,
+    // böylece aynı adı ikinci bir hesap alamaz. Ad 7 günde bir değiştirilebilir.
+    match /yorumcular/{uid} {
+      allow read: if true;
+      allow create, update: if googleli() && request.auth.uid == uid && !banli()
+        && request.resource.data.keys().hasOnly(['ad', 'zaman'])
+        && request.resource.data.zaman == request.time
+        && adGecerli(request.resource.data.ad)
+        && getAfter(/databases/$(db)/documents/takmaAdlar/$(request.resource.data.ad.lower())).data.uid == uid
+        && (resource == null || request.time > resource.data.zaman + duration.value(7, 'd'));
+      allow delete: if false;
+    }
+    match /takmaAdlar/{anahtar} {
+      allow read: if true;
+      allow create: if googleli() && request.resource.data.keys().hasOnly(['uid'])
+        && request.resource.data.uid == request.auth.uid
+        && getAfter(/databases/$(db)/documents/yorumcular/$(request.auth.uid)).data.ad.lower() == anahtar;
+      allow delete: if googleli() && resource.data.uid == request.auth.uid
+        && getAfter(/databases/$(db)/documents/yorumcular/$(request.auth.uid)).data.ad.lower() != anahtar;
+      allow update: if false;
+    }
+
+    // Yorum cezaları: yalnızca yönetici yazar; kişi yalnızca kendi kaydını okur
+    match /yorumCezalari/{uid} {
+      allow read:  if girisli() && request.auth.uid == uid || yonetici();
+      allow write: if yonetici();
+    }
+    // Banlananlar: kişi yalnızca kendi kaydını görür
+    match /engelliler/{uid} {
+      allow read:  if girisli() && request.auth.uid == uid || yonetici();
+      allow write: if yonetici();
+    }
+    match /yemekFotolari/{id} {
+      allow read:  if true;
+      allow write, delete: if yonetici();
+    }
+    match /engelliTel/{tel} {
+      allow read, write: if yonetici();
+    }
+    match /sikayetler/{id} {
+      allow read, delete: if yonetici();
+      // Şikâyet: yalnızca Google hesabıyla, gerçekten var olan bir yorum ya da ilan için, kişi başı bir kez
+      allow create: if googleli() && !banli()
+        && request.resource.data.keys().hasOnly(['ilan','neden','uid','zaman'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.zaman == request.time
+        && metin(request.resource.data.neden, 300) && enAz(request.resource.data.neden, 2)
+        && sikayetHedefVar(request.resource.data.ilan)
+        && id == request.auth.uid + '_' + request.resource.data.ilan.replace('[:/]', '_');
+    }
+
+    // Çıkmış sorular ve ders notları: indirme sayacı (+1) ve 1–5 yıldız puan (kişi başı tek oy)
+    match /cikmisSorular/{id} {
+      allow read: if true;
+      // Her sayım, indirenin kendi kaydıyla (indirenler/{uid}) birlikte yazılır: kişi başı 10 saniyede en fazla 1 sayım
+      function indirmeKaydi() { return getAfter(/databases/$(db)/documents/cikmisSorular/$(id)/indirenler/$(request.auth.uid)).data.son == request.time; }
+      allow create: if girisli() && id.matches('^[a-z0-9-]{3,60}$')
+        && request.resource.data.keys().hasOnly(['indirme']) && request.resource.data.indirme == 1
+        && indirmeKaydi();
+      allow update: if girisli()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['indirme'])
+        && request.resource.data.indirme == resource.data.indirme + 1
+        && indirmeKaydi();
+      match /indirenler/{uid} {
+        allow read: if false;
+        allow create, update: if girisli() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['son'])
+          && request.resource.data.son == request.time
+          && (resource == null || request.time > resource.data.son + duration.value(10, 's'));
+        allow delete: if false;
+      }
+      match /puanlar/{uid} {
+        allow read: if true;
+        allow create, update: if girisli() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['puan', 'zaman'])
+          && request.resource.data.puan is int && request.resource.data.puan >= 1 && request.resource.data.puan <= 5;
+      }
+    }
+
+    // Ödev rehberleri: 1–5 yıldız puan ve beğeni/beğenmeme (kişi başı tek oy, değiştirilebilir; 1 saniyede en fazla 1 yazma)
+    match /odevPuanlari/{odev}/oylar/{uid} {
+      allow read: if true;
+      allow create, update: if girisli() && request.auth.uid == uid && !banli()
+        && odev.matches('^[a-z0-9-]{3,60}$')
+        && request.resource.data.keys().hasOnly(['puan', 'reaksiyon', 'zaman'])
+        && request.resource.data.zaman == request.time
+        && (resource == null || !('zaman' in resource.data) || request.time > resource.data.zaman + duration.value(1, 's'))
+        && (!('puan' in request.resource.data) || (request.resource.data.puan is int && request.resource.data.puan >= 1 && request.resource.data.puan <= 5))
+        && (!('reaksiyon' in request.resource.data) || request.resource.data.reaksiyon in [-1, 0, 1]);
+    }
+  }
+}

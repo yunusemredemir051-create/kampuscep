@@ -49,6 +49,7 @@ akademik takvim, ders/vize programı, Yol Arkadaşı (taksi paylaşımı), spons
 | `ayarlar.js`, `program.js`, `vize.js` | Ayarlar (bölüm/sınıf), ders ve vize programı |
 | `ses.js`, `bildirim.js`, `duyuru.js` | Ses efektleri, bildirimler, duyurular |
 | `sw.js` | Service worker (önbellek). `SURUM` sabiti var |
+| `firebase/firestore.rules` | Firestore güvenlik kuralları (16 Kasım 2026'da Firebase konsolundaki yayındaki sürümden kopyalandı). Depodaki dosya Firebase'e **otomatik yüklenmez**; değişiklikler site sahibi tarafından konsoldan yayınlanır. Kuralı değiştiren PR, konsola yapıştırılacak tam metni ve neyin değiştiğini açıkça yazar |
 | `gorseller/`, `ikonlar/`, `favicon.svg` | Logo, ikon, avatar, yemek fotoğrafları |
 | `.github/` | Otomatik menü/vakit güncelleme ve Android derleme iş akışları |
 
