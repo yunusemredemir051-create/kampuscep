@@ -129,3 +129,32 @@ Sayfa sayfa yenileme planı ve her adımın görev tanımı: `ARAYUZ-PLANI.md`.
 - Konsolda hata bırakma. Değişiklikten sonra ana sayfa, ders sayfası, bir yurt sayfası, Yol Arkadaşı ve mağaza sayfasını açıp dene.
 - Yerelde denemek için kök dizinde `python3 -m http.server 8000` yeterli.
 - Kod yorumları ve commit mesajları Türkçe.
+
+## 9. Çalışma ortamı
+
+Bu depoda tercih edilen ortam, **geliştiricinin bilgisayarında VS Code + Codex eklentisi** (yerel çalışma).
+Bulut ortamı yalnızca tarayıcı ve ağ gerektirmeyen işler için (kod temizliği, belge) kullanılabilir.
+
+**Yerelde yapılması zorunlu işler:**
+- Arayüz adımları (ARAYUZ-PLANI.md Adım 0–13): site yerelde açılır, gerçek tarayıcıda 390 px ve 1440 px genişlikte
+  bakılır, ekran görüntüleri buradan alınır.
+- Ek 2 (Üniversite Evi menüsü): unievi.firat.edu.tr erişimi Türkiye'deki bu bilgisayardan test edilir ve yurt dışı
+  (GitHub Actions) erişimiyle karşılaştırılır.
+- Ek 3, Ek 5, Ek 6'daki güvenlik kuralı testleri: Firebase Emulator Suite ile yerelde yapılır; canlı Firebase projesine
+  test verisi yazılmaz.
+
+**Kurulum (bir kez):**
+1. Git, VS Code ve VS Code için Codex eklentisi.
+2. Depoyu klonla: `git clone https://github.com/yunusemredemir051-create/kampuscep.git`
+3. Siteyi aç: depo kökünde `python3 -m http.server 8000` (Windows'ta `py -m http.server 8000`) → `http://localhost:8000`
+4. Güvenlik testleri için: Node.js LTS, Java 21+, `npm i -g firebase-tools`; emulator yalnızca demo proje kimliğiyle
+   çalıştırılır (`firebase emulators:start --project demo-kampuscepte`), gerçek projeye bağlanmaz.
+
+**Yerel çalışmada güvenlik:**
+- Bu bilgisayarda site sahibinin Firebase, Google Cloud, Cloudflare ya da GitHub hesaplarıyla oturum açılmaz;
+  `firebase login` ve `wrangler login` yapılmaz. Yayına alma (kuralları yayınlama, Worker güncelleme, Firebase ayarı)
+  yalnızca site sahibi tarafından yapılır.
+- Ajan, komut çalıştırmadan ve depo dışındaki dosyalara erişmeden önce onay ister (onaylı mod açık kalır).
+- Gizli anahtar, `.env` ya da kişisel dosya depoya eklenmez; `git add -A` öncesi `git status` kontrol edilir.
+- `localhost` adresi Firebase'in izinli alan adlarında olduğundan giriş ve yorum yerelde denenebilir; bu denemelerde
+  gerçek kullanıcıların verisi değiştirilmez, silinmez.
