@@ -5,6 +5,12 @@
    Hicri takvime bağlı günler (kandiller, Ramazan, bayramlar) her yıl elle güncellenmelidir. */
 (function () {
   "use strict";
+  /* index.html afişi tema uygulanana kadar gizler (eski afişin bir an görünmesini önler) */
+  setTimeout(function () {
+    var ac = function () { document.documentElement.classList.remove("og-bekle"); };
+    var im = document.querySelector(".afis img");
+    if (im && !im.complete) { im.addEventListener("load", ac, { once: true }); im.addEventListener("error", ac, { once: true }); } else ac();
+  }, 0);
   /* Tıp'ın akademik takvimi ayrıdır: güz vizesi 9 Kasım'a alınması Tıp'ı etkilemez. */
   function tipMi() {
     try { return (localStorage.getItem("kc-birim") || (localStorage.getItem("kc-bolum") === "tip" ? "Tıp" : "")) === "Tıp"; }
