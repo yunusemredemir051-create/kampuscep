@@ -7,25 +7,25 @@
   var yil = new Date().getFullYear();
   var css = document.createElement("style");
   css.textContent =
-    "footer.kc-alt{all:unset;display:block;margin:64px 0 0;padding:34px 0 calc(26px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--cizgi,#e6e9f2);font-family:var(--font,inherit);color:var(--soluk,#6b7390)}" +
+    "footer.kc-alt{all:unset;display:block;position:relative;isolation:isolate;margin:72px 0 0;padding:44px 0 calc(28px + env(safe-area-inset-bottom,0px));font-family:var(--font,inherit);color:rgba(255,255,255,.66)}" +
+    "footer.kc-alt::before{content:'';position:absolute;z-index:-1;top:0;bottom:0;left:50%;width:100vw;transform:translateX(-50%);background:linear-gradient(180deg,#221d55,#16133b);box-shadow:0 400px 0 0 #16133b}" +
     ".kc-alt .ka-izgara{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1.2fr;gap:28px}" +
-    ".kc-alt .ka-marka a.ka-logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--yazi,#141b34);font-weight:900;font-size:20px;letter-spacing:-.02em}" +
+    ".kc-alt .ka-marka a.ka-logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:900;font-size:20px;letter-spacing:-.02em}" +
     ".kc-alt .ka-marka img{width:38px;height:38px;border-radius:10px}" +
-    ".kc-alt .ka-slogan{margin:8px 0 6px;font-weight:800;color:var(--yazi,#141b34);font-size:14px}" +
+    ".kc-alt .ka-slogan{margin:10px 0 6px;font-weight:800;color:#fff;font-size:14px}" +
     ".kc-alt .ka-marka p{margin:0;font-size:13.5px;line-height:1.6;max-width:300px}" +
-    ".kc-alt .ka-rozet{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 11px;border-radius:999px;background:var(--mavi-acik,#eef0ff);color:var(--mavi,#5b5bf5);font-size:12px;font-weight:800}" +
-    ".kc-alt h4{margin:0 0 12px;font-size:14.5px;font-weight:900;color:var(--mavi,#5b5bf5);letter-spacing:-.01em}" +
-    ".kc-alt ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}" +
-    ".kc-alt li a,.kc-alt .ka-ilet a{color:var(--yazi,#141b34);opacity:.78;text-decoration:none;font-size:13.8px;font-weight:600}" +
-    ".kc-alt li a:hover,.kc-alt .ka-ilet a:hover{opacity:1;color:var(--mavi,#5b5bf5)}" +
-    ".kc-alt .ka-iki{grid-template-columns:1fr 1fr;column-gap:14px}" +
-    ".kc-alt .ka-ilet{display:grid;gap:9px;font-size:13.8px}" +
-    ".kc-alt .ka-ilet span{display:block;font-size:12px;opacity:.8}" +
-    ".kc-alt .ka-alt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:30px;padding-top:18px;border-top:1px solid var(--cizgi,#e6e9f2);font-size:12.8px}" +
-    ".kc-alt .ka-alt a{color:inherit;font-weight:700;text-decoration:none;margin-left:16px}" +
-    ".kc-alt .ka-alt a:hover{color:var(--mavi,#5b5bf5)}" +
+    ".kc-alt .ka-rozet{display:inline-flex;align-items:center;gap:6px;margin-top:14px;padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);color:#c9c2ff;font-size:12px;font-weight:800}" +
+    ".kc-alt h4{margin:0 0 14px;font-size:14.5px;font-weight:900;color:#a99cff;letter-spacing:-.01em}" +
+    ".kc-alt ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}" +
+    ".kc-alt li a,.kc-alt .ka-ilet a{color:#fff;opacity:.82;text-decoration:none;font-size:13.8px;font-weight:600}" +
+    ".kc-alt li a:hover,.kc-alt .ka-ilet a:hover{opacity:1;color:#c9c2ff}" +
+    ".kc-alt .ka-ilet{display:grid;gap:10px;font-size:13.8px}" +
+    ".kc-alt .ka-ilet span{display:block;font-size:12px;color:rgba(255,255,255,.55)}" +
+    ".kc-alt .ka-alt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:12.8px}" +
+    ".kc-alt .ka-alt a{color:#fff;font-weight:700;text-decoration:none;margin-left:16px}" +
+    ".kc-alt .ka-alt a:hover{color:#c9c2ff}" +
     "@media (max-width:980px){.kc-alt .ka-izgara{grid-template-columns:1fr 1fr}.kc-alt .ka-marka{grid-column:1/-1}}" +
-    "@media (max-width:520px){footer.kc-alt{margin-top:40px;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}.kc-alt .ka-izgara{gap:24px 16px}.kc-alt .ka-alt{flex-direction:column}.kc-alt .ka-alt a{margin:0 14px 0 0}}";
+    "@media (max-width:520px){footer.kc-alt{margin-top:44px;padding-bottom:calc(110px + env(safe-area-inset-bottom,0px))}.kc-alt .ka-izgara{gap:24px 16px}.kc-alt .ka-alt{flex-direction:column}.kc-alt .ka-alt a{margin:0 14px 0 0}}";
   document.head.appendChild(css);
   f.className = "kc-alt";
   f.innerHTML =
