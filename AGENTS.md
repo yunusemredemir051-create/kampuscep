@@ -162,3 +162,21 @@ Bulut ortamı yalnızca tarayıcı ve ağ gerektirmeyen işler için (kod temizl
 - Ajan, komut çalıştırmadan ve depo dışındaki dosyalara erişmeden önce onay ister (onaylı mod açık kalır).
 - Gizli anahtar, `.env` ya da kişisel dosya depoya eklenmez; `git add -A` öncesi `git status` kontrol edilir.
 - `localhost` adresinde giriş ve yorum denenebilir; bu denemelerde gerçek kullanıcıların verisi değiştirilmez, silinmez.
+
+## 10. "Sıradaki adımı yap" komutu
+
+Site sahibi ve Hocam her seferinde yalnızca şunu yazabilir: **"Sıradaki adımı yap."** Bu durumda:
+
+1. `ILERLEME.md`'yi oku. `[~]` (devam ediyor) bir madde varsa önce onun durumunu sor: PR birleştirildi mi, düzeltme mi
+   istendi? Birleştirildiyse `[x]` yap; düzeltme istendiyse aynı PR üzerinde düzeltmeye devam et.
+2. `[~]` yoksa, ilk `[ ]` maddeyi al. Başlamadan önce kısa bir Türkçe özet ver: hangi madde, ne yapacaksın, ne kadar
+   sürebilir, işin sonunda hangi kararı ya da kontrolü isteyeceksin. Onay gelince başla.
+3. Maddeyi ARAYUZ-PLANI.md'deki tanımına ve (varsa) `istekler/` dosyasına göre yap; PR aç. PR açarken aynı PR'da
+   `ILERLEME.md`'de maddeyi `[~]` yap ve PR bağlantısını maddenin sonuna yaz.
+4. Bitirdiğinde site sahibine sade bir dille söyle: neyi kontrol etmeleri gerektiği (hangi sayfa, telefonda/bilgisayarda),
+   hangi kararı vermeleri gerektiği (seçenekler ve önerinle).
+5. Karar gerektiren maddelerde karar verilmeden sonraki maddeye geçme; maddeyi `[!]` yap. Verilen kararı
+   `ILERLEME.md`'nin "Kararlar günlüğü" bölümüne tarihiyle yaz.
+6. **Aynı anda tek madde.** Kendi kendine birden fazla maddeyi art arda yapma; PR'ı kendin birleştirme.
+7. Site sahibi sırayı değiştirmek isterse (örn. "önce Ek 9'u yapalım") `ILERLEME.md`'deki sırayı buna göre güncelle.
+8. "Neredeyiz?" diye sorulursa `ILERLEME.md`'ye göre tamamlananları, açık olanı ve sıradaki 3 maddeyi özetle.
