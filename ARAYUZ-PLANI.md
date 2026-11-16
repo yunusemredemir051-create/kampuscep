@@ -193,7 +193,7 @@ yalnızca adres biçimidir. Siteyi bir framework ile sıfırdan yazmak gerekmez 
 ## Ek 2 — Üniversite Evi menüsünün otomatik çekilmesi
 
 **Durum:** `.github/workflows/unievi.yml` ve `.github/scripts/unievi_guncelle.py` menüyü https://unievi.firat.edu.tr/
-adresinden okuyup `veri.js` içindeki `uniEviMenuleri` bloğuna yazmak için zaten var. Ancak **10 Kasım 2026'dan beri her
+adresinden okuyup `veri.js` içindeki `uniEviMenuleri` bloğuna yazmak için zaten var. Ancak **en az 9 Kasım 2026'dan beri her
 çalışma başarısız**: kayıtlarda (`unievi-kayit` dalı, `unievi.log`) üç denemenin de `TimeoutError` ile bittiği görülüyor.
 Site Türkiye'den açılıyor; GitHub Actions sunucuları yurt dışında. En olası neden üniversite sitesinin yurt dışı
 IP'lerini engellemesi.
