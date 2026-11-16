@@ -4,13 +4,15 @@
   /* Avatar görselleri: /gorseller/avatar/ klasörüne konan dosya adları (uzantısız) buraya eklenir.
      Liste boşken geçici olarak emoji avatarlar kullanılır. */
   const AVATAR_BILGI = {
-    a01:["Başörtülü Öğrenci","k"],a02:["Başörtülü Doktor","k"],a03:["Kulaklıklı Genç","e"],a04:["Takkeli Genç","e"],a05:["Gözlüklü Öğrenci","e"],a06:["Mezun Kız","k"],a07:["Sırt Çantalı Genç","e"],a08:["Sarıklı Genç","e"],a09:["Hintli Öğrenci","k"],a10:["Keşiş","e"],a11:["Kapüşonlu Kız","k"],a12:["Kıvırcık Saçlı Kız","k"],a13:["Baretli Usta","e"],a14:["Uzun Saçlı Kız","k"],a15:["Ressam Kız","k"],a16:["Laboratuvarcı","e"],a17:["Kitap Kurdu","k"],a18:["Profesör","e"],a19:["Mimar Adayı","e"],a20:["Renkli Saçlı Kız","k"],a21:["Yayıncı","e"],a22:["Gözlüklü Abi","e"],a23:["Siyah Başörtülü","k"],a24:["Doktor Kız","k"],a25:["Mavi Sarıklı","e"],a26:["Bilge Hanım","k"],
+    a01:["Başörtülü Öğrenci","k"],a02:["Başörtülü Doktor","k"],a03:["Kulaklıklı Genç","e"],a04:["Takkeli Genç","e"],a05:["Gözlüklü Öğrenci","e"],a06:["Mezun Kız","k"],a07:["Sırt Çantalı Genç","e"],a08:["Sarıklı Genç","e"],a09:["Hintli Öğrenci","k"],a10:["Keşiş","e"],a12:["Kıvırcık Saçlı Kız","k"],a13:["Baretli Usta","e"],a14:["Uzun Saçlı Kız","k"],a15:["Ressam Kız","k"],a16:["Laboratuvarcı","e"],a17:["Kitap Kurdu","k"],a18:["Profesör","e"],a19:["Mimar Adayı","e"],a20:["Renkli Saçlı Kız","k"],a21:["Yayıncı","e"],a22:["Gözlüklü Abi","e"],a23:["Siyah Başörtülü","k"],a24:["Doktor Kız","k"],a25:["Mavi Sarıklı","e"],a26:["Bilge Hanım","k"],
     b01:["Yöresel Kız","k"],b02:["Zeybek","e"],b03:["Kot Ceketli Genç","e"],b04:["Kemençeci","e"],b05:["Kemençeci Kız","k"],b06:["Mezun","e"],b07:["Laborant","e"],b08:["Örgülü Kız","k"],b09:["Öğretmen Kız","k"],b10:["Hemşire (Erkek)","e"],b11:["Hemşire","k"],b12:["Öğretmen","e"],b13:["Pilot Kız","k"],b14:["Pilot","e"],b15:["Mühendis Kız","k"],b16:["Avukat","e"],b17:["Baklavacı Kız","k"],b18:["Aşçı","e"],b19:["Yazılımcı","e"],b20:["Avukat Kız","k"],b21:["Mimar Kız","k"],b22:["Bağlamacı","e"],b23:["Veteriner Kız","k"],b24:["Altınlı Yöresel Kız","k"],b25:["Yöresel Genç","e"],b26:["İtfaiyeci","e"],b27:["Kasketli Genç","e"],b28:["Çiftçi","e"],b29:["Bağlamacı Kız","k"],b30:["Antrenör Kız","k"],
-    a27:["Gülümseyen Kız","k"],a28:["Neşeli Genç","e"],a29:["Cihazlı Genç","e"],a30:["Tekerlekli Sandalyeli Kız","k"]
+    a27:["Gülümseyen Kız","k"]
   };
   const AVATAR_DOSYALAR = Object.keys(AVATAR_BILGI);
   const avatarAd = a => (AVATAR_BILGI[String(a).slice(4)] || ["Avatar"])[0];
   const AVATARLAR = AVATAR_DOSYALAR.length ? AVATAR_DOSYALAR.map(d => "img:" + d) : ["🎓", "⚡", "🚀", "💻", "🩺", "⚖️", "🎨", "🌟", "📚", "🦁"];
+  const BOS_AV = '<span class="av-bos" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span>';
+  const gecerliAv = a => AVATARLAR.includes(a) ? a : "";
   const avatarHtml = a => String(a).startsWith("img:") ? `<img src="/gorseller/avatar/${String(a).slice(4)}.webp" alt="" loading="lazy">` : a;
   const DIL_ADLARI = { tr: "Türkçe", en: "English", ku: "Kurdî", ar: "العربية" };
   const GORUNUMLER = { profil: "Profil", gorunum: "Görünüm", dil: "Dil", sss: "Sıkça Sorulan Sorular", iletisim: "İletişim" };
@@ -33,13 +35,13 @@
     const ad = localStorage.getItem("kc-ad") || "";
     const yurtDeger = localStorage.getItem("kc-yurt") || "";
     const bolum = localStorage.getItem("kc-birim") || "";
-    const av = localStorage.getItem("kc-avatar") || AVATARLAR[0];
+    const av = gecerliAv(localStorage.getItem("kc-avatar") || "");
     const yurtSel = document.getElementById("ayar-yurt");
     let yurtAd = "";
     if (yurtDeger && yurtSel) { const o = [...yurtSel.options].find(x => x.value === yurtDeger); yurtAd = o ? o.textContent : ""; }
     const parca = [yurtAd, bolum].filter(Boolean).join(" · ");
     const kAv = document.getElementById("ayar-kart-avatar"), kAd = document.getElementById("ayar-kart-ad"), kAlt = document.getElementById("ayar-kart-alt");
-    if (kAv) kAv.innerHTML = String(av).startsWith("img:") ? avatarHtml(av) : `<span class="av-harf">${(ad || "K").trim().charAt(0).toLocaleUpperCase("tr")}</span>`;
+    if (kAv) kAv.innerHTML = av ? avatarHtml(av) : (ad ? `<span class="av-harf">${ad.trim().charAt(0).toLocaleUpperCase("tr")}</span>` : BOS_AV);
     if (kAd) kAd.textContent = ad || "Profilini oluştur";
     if (kAlt) kAlt.textContent = ad ? (yurtAd || "Yurt seçilmedi") : "Adını, yurdunu ve avatarını seç";
     const et = document.getElementById("ayar-kart-etiketler");
@@ -53,6 +55,28 @@
     if (dilAlt) dilAlt.textContent = DIL_ADLARI[dil] || "Türkçe";
   }
 
+
+  /* ---- Ana sayfa profil paneli ---- */
+  function profilPanel() {
+    const p = document.getElementById("ana-profil"); if (!p) return;
+    const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const ad = (localStorage.getItem("kc-ad") || "").trim();
+    const av = gecerliAv(localStorage.getItem("kc-avatar") || "");
+    const bolum = localStorage.getItem("kc-birim") || "", sinif = localStorage.getItem("kc-sinif") || "";
+    const yurtDeger = localStorage.getItem("kc-yurt") || "", ys = document.getElementById("ayar-yurt");
+    let yurtAd = ""; if (yurtDeger && ys) { const o = [...ys.options].find(x => x.value === yurtDeger); yurtAd = o ? o.textContent : ""; }
+    const bos = !ad && !av && !bolum;
+    p.classList.toggle("bos", bos);
+    const etiket = [bolum && sinif ? `${bolum} · ${sinif}. sınıf` : bolum, yurtAd].filter(Boolean);
+    p.innerHTML = `<span class="ap-av">${av ? avatarHtml(av) : ad ? `<span class="av-harf">${esc(ad.charAt(0).toLocaleUpperCase("tr"))}</span>` : BOS_AV}</span>
+      <span class="ap-metin"><b>${bos ? "Profilini oluştur" : ad ? "Merhaba, " + esc(ad) + "!" : "Profilin"}</b>
+      <small>${bos ? "Bölümünü ve sınıfını seç; ders programın, vize takvimin ve notların sana göre gelsin." : etiket.length ? "" : "Bölümünü ve yurdunu ekle"}</small>
+      ${etiket.length ? `<span class="ap-etiket">${etiket.map(t => `<span>${esc(t)}</span>`).join("")}</span>` : ""}</span>
+      <span class="ap-btn">${bos ? "Oluştur" : "Düzenle"}</span>`;
+    p.hidden = false;
+    p.onclick = () => { if (window.sayfaAc) sayfaAc("ayarlar"); setTimeout(() => altGoster("profil"), 30); };
+  }
+  window.kcProfilPanel = profilPanel;
 
   /* ---- Bölüm seçici ---- */
   const bolumListesi = () => window.KC_BOLUM_LISTESI || [];
@@ -128,7 +152,7 @@
     const kayitliAd = localStorage.getItem("kc-ad") || "";
     const kayitliYurt = localStorage.getItem("kc-yurt") || "";
     const kayitliBolum = localStorage.getItem("kc-birim") || (localStorage.getItem("kc-bolum") === "tip" ? "Tıp" : "");
-    const kayitliAvatar = localStorage.getItem("kc-avatar") || AVATARLAR[0];
+    const kayitliAvatar = gecerliAv(localStorage.getItem("kc-avatar") || "");
 
     if (adInput) adInput.value = kayitliAd;
     if (yurtSelect) yurtSelect.value = kayitliYurt;
@@ -141,25 +165,27 @@
 
     // Avatar listesi (cinsiyete göre gruplu)
     if (avatarGrid) {
-      const GRUP = { k: "Kadın", e: "Erkek" };
+      const GRUP = { e: "Erkek", k: "Kadın" };
       const grupOf = a => (AVATAR_BILGI[String(a).slice(4)] || ["", "e"])[1];
-      let secili = AVATARLAR.includes(kayitliAvatar) ? kayitliAvatar : AVATARLAR[0];
-      let grup = grupOf(secili);
+      let secili = kayitliAvatar;
+      let grup = secili ? grupOf(secili) : "e";
       avatarGrid.dataset.secili = secili;
       avatarGrid.className = "av-kutu";
       avatarGrid.innerHTML = `
         <div class="av-onizleme"><button type="button" class="av-buyuk" id="av-buyuk" aria-label="Büyüt"></button>
-          <div class="av-yazi"><b id="av-ad"></b><small>Seçtiğin avatar · büyütmek için dokun</small></div></div>
+          <div class="av-yazi"><b id="av-ad"></b><small id="av-alt"></small></div></div>
         <div class="av-segment" role="tablist"></div><div class="av-izgara"></div>`;
       const seg = avatarGrid.querySelector(".av-segment"), izg = avatarGrid.querySelector(".av-izgara"), buy = avatarGrid.querySelector("#av-buyuk");
       const ciz = () => {
-        buy.innerHTML = avatarHtml(secili); avatarGrid.querySelector("#av-ad").textContent = avatarAd(secili);
-        seg.innerHTML = Object.keys(GRUP).filter(g => AVATARLAR.some(a => grupOf(a) === g)).map(g => `<button type="button" data-g="${g}" class="${g === grup ? "aktif" : ""}">${GRUP[g]}</button>`).join("");
+        buy.innerHTML = secili ? avatarHtml(secili) : BOS_AV; avatarGrid.querySelector("#av-ad").textContent = secili ? avatarAd(secili) : "Avatar seçilmedi";
+        avatarGrid.querySelector("#av-alt").textContent = secili ? "Seçtiğin avatar · büyütmek için dokun" : "Aşağıdan bir avatar seç (isteğe bağlı)";
+        seg.innerHTML = Object.keys(GRUP).filter(g => AVATARLAR.some(a => grupOf(a) === g)).map(g => `<button type="button" data-g="${g}" class="${g === grup ? "aktif" : ""}">${GRUP[g]} <i>${AVATARLAR.filter(a => grupOf(a) === g).length}</i></button>`).join("");
         izg.innerHTML = AVATARLAR.filter(a => grupOf(a) === grup).map(a => `<button type="button" class="ayar-avatar-btn ${a === secili ? "secili" : ""}" data-avatar="${a}" aria-label="${avatarAd(a)}"><span class="av-daire">${avatarHtml(a)}</span><span class="av-ad">${avatarAd(a)}</span></button>`).join("");
       };
       seg.onclick = ev => { const b = ev.target.closest("button[data-g]"); if (b) { grup = b.dataset.g; ciz(); } };
-      izg.onclick = ev => { const b = ev.target.closest(".ayar-avatar-btn"); if (!b) return; secili = b.dataset.avatar; avatarGrid.dataset.secili = secili; ciz(); try { navigator.vibrate && navigator.vibrate(8); } catch (x) {} };
+      izg.onclick = ev => { const b = ev.target.closest(".ayar-avatar-btn"); if (!b) return; secili = secili === b.dataset.avatar ? "" : b.dataset.avatar; avatarGrid.dataset.secili = secili; ciz(); try { navigator.vibrate && navigator.vibrate(8); } catch (x) {} };
       buy.onclick = () => {
+        if (!secili) return;
         const o = document.createElement("div");
         o.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(10,14,30,.82);display:grid;place-items:center;";
         o.innerHTML = `<div style="width:min(78vw,320px);aspect-ratio:1;border-radius:50%;overflow:hidden;background:#eef1fb;box-shadow:0 0 0 6px #fff, var(--golge)">${avatarHtml(secili).replace("<img ", '<img style="width:100%;height:100%;object-fit:cover" ')}</div>`;
@@ -197,7 +223,7 @@
     const yeniAd = (adInput ? adInput.value : "").trim();
     const yeniYurt = yurtSelect ? yurtSelect.value : "";
     const yeniBolum = (bolumInput ? bolumInput.value : "").trim();
-    const yeniAvatar = (seciliAv && seciliAv.secili) || AVATARLAR[0];
+    const yeniAvatar = gecerliAv((seciliAv && seciliAv.secili) || "");
 
     if (yeniAd) localStorage.setItem("kc-ad", yeniAd);
     else localStorage.removeItem("kc-ad");
@@ -221,7 +247,8 @@
     localStorage.setItem("kc-sinif", yeniSinif || "1");
     const og = (document.getElementById("ayar-ogretim") || {}).value, sb = (document.getElementById("ayar-sube") || {}).value;
     localStorage.setItem("kc-ogretim", og === "2" ? "2" : "1"); localStorage.setItem("kc-sube", sb === "1" || sb === "2" ? sb : "0");
-    localStorage.setItem("kc-avatar", yeniAvatar);
+    if (yeniAvatar) localStorage.setItem("kc-avatar", yeniAvatar); else localStorage.removeItem("kc-avatar");
+    if (window.kcProfilPanel) window.kcProfilPanel();
 
     // Bildirim göster
     if (window.kcProgramYenile) window.kcProgramYenile();
@@ -267,6 +294,7 @@
       }
     };
     window.addEventListener("kc-auth-degisti", yoneticiGoster);
+    profilPanel(); setTimeout(profilPanel, 800);
   }
 
   window.AYARLAR = {
