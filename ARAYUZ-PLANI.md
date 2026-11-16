@@ -8,7 +8,7 @@ Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki ad
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** ve **Ek 3 (güvenli yönetici paneli)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** ve **Ek 4 (altyapı sağlamlığı)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -266,3 +266,23 @@ tasarım belgesi site sahibine sunulur ve onay beklenir.**
 5. **Görselden menü aktarma:** görsel yükle → yapay zekâ okur → gün gün düzenlenebilir tablo → kontrol → kaydet.
    Yemek adları `yemekfoto.js` eşleşmeleriyle aynı biçimde normalize edilir; eşleşmeyen yemekler tabloda işaretlenir.
    Okunamayan ya da emin olunamayan hücreler boş ve işaretli bırakılır, uydurulmaz.
+
+## Ek 4 — Altyapı sağlamlığı
+
+Her madde ayrı PR olabilir. Ücretli hizmet açma, hesap oluşturma ve gizli anahtar girme işlerini site sahibi yapar;
+ajan adımları ve kodu hazırlar.
+
+1. **Hata bildirimi:** `.github/workflows/` altındaki zamanlanmış işler (Üniversite Evi menüsü, vakitler, Android derleme)
+   başarısız olduğunda site sahibine bildirim gitmeli (GitHub'ın e-posta bildirimi yeterli değilse iş akışının kendisi
+   bir bildirim göndersin — yöntem PR'da önerilir). Aynı iş art arda başarısız oluyorsa her seferinde değil, durum
+   değiştiğinde bildir. Ayrıca sitenin çalışıp çalışmadığını dışarıdan izleyen ücretsiz bir çalışma süresi (uptime)
+   izleme hizmeti öner ve kurulum adımlarını yaz.
+2. **Veritabanı yedeği:** Firestore'daki yorumlar, puanlar, beğeniler, ilanlar ve (Ek 3'ten sonra) menüler/notlar için
+   düzenli otomatik yedek. Seçenekleri (Firestore zamanlanmış yedekleme, dışa aktarma işi vb.) maliyetiyle PR'da sun.
+   Yedekten geri yüklemenin nasıl yapılacağını adım adım yaz ve bir kez dene.
+3. **Önizlemede giriş:** PR önizleme adreslerinde Google ile giriş çalışmalı. Hangi alan adının Firebase konsolunda
+   "Authorized domains" listesine (ve App Check / reCAPTCHA alan adlarına) eklenmesi gerektiğini site sahibine yaz.
+4. **Hız turu (arayüz adımları bittikten sonra):** Lighthouse ile mobil ölçüm yap (önce/sonra puanlarını PR'a koy).
+   Ana sayfada yüklenen dosya sayısını ve boyutunu azalt: kullanılmayan CSS/JS'i temizle, kritik olmayan betikleri
+   `defer` et, görselleri doğru boyutta ve tembel yükle. Derleme adımı ekleme (AGENTS.md). Yemek fotoğraflarına
+   dokunma kuralı burada da geçerli.

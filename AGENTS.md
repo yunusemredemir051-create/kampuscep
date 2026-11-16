@@ -22,7 +22,10 @@ akademik takvim, ders/vize programı, Yol Arkadaşı (taksi paylaşımı), spons
 2. Bir PR = bir konu. Bütün siteyi tek PR'da değiştirme; sayfa sayfa ya da bileşen bileşen ilerle.
 3. PR açıklamasına telefon (390 px) ve masaüstü (1440 px) genişliğinde **önce/sonra ekran görüntüsü** koy.
 4. Site sahibi önizleme linkinden bakıp onaylamadan PR birleştirilmez.
-5. Başka bir ajan da bu depoda çalışıyor olabilir. PR açmadan önce `main`'i çek, çakışmayı sen çöz;
+5. Her PR açıklamasının sonuna **"Sade anlatım"** başlığıyla, yazılım bilmeyen site sahibinin anlayacağı Türkçe ile
+   şunları yaz: bu değişiklik ne yaptı, neden bu yol seçildi, hangi dosyalar neyle ilgili, ileride bir yazılımcıyla
+   konuşurken işine yarayacak terimler (kısa tanımlarıyla). Site sahibi siteyi bu açıklamalardan öğreniyor.
+6. Başka bir ajan da bu depoda çalışıyor olabilir. PR açmadan önce `main`'i çek, çakışmayı sen çöz;
    açık PR'larda değiştirilen dosyalara mümkünse dokunma.
 
 ## 3. Dosya haritası
