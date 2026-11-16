@@ -24,6 +24,7 @@
     ".kc-alt .ka-alt{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-top:34px;padding-top:20px;border-top:1px solid rgba(255,255,255,.12);font-size:12.8px}" +
     ".kc-alt .ka-alt a{color:#fff;font-weight:700;text-decoration:none;margin-left:16px}" +
     ".kc-alt .ka-alt a:hover{color:#c9c2ff}" +
+    "html.yurtsuz .kc-alt .ka-yurt{display:none}" +
     "@media (max-width:980px){.kc-alt .ka-izgara{grid-template-columns:1fr 1fr}.kc-alt .ka-marka{grid-column:1/-1}}" +
     "@media (max-width:820px){footer.kc-alt{display:none!important}}";
   document.head.appendChild(css);
@@ -34,7 +35,7 @@
         '<div class="ka-slogan">Kampüs hayatın cebinde.</div>' +
         '<p>Elazığ\'daki üniversite öğrencileri için yurt yemek menüleri, ders notları, testler, vize provaları, akademik takvim ve yol arkadaşı tek yerde.</p>' +
         '<span class="ka-rozet">✓ Öğrenciler için ücretsiz</span></div>' +
-      '<div><h4>Yurtlar</h4><ul>' +
+      '<div class="ka-yurt"><h4>Yurtlar</h4><ul>' +
         "<li>" + Y("ahmet-kabakli/", "Ahmet Kabaklı") + "</li><li>" + Y("fethi-sekin/", "Fethi Sekin") + "</li><li>" + Y("sare-ana/", "Sare Ana") + "</li><li>" + Y("izzetpasa/", "İzzetpaşa") + "</li><li>" + Y("harput/", "Harput") + "</li><li>" + Y("omer-bilginoglu/", "Ömer Bilginoğlu") + "</li><li>" + Y("firat/", "Elazığ Fırat") + "</li>" +
       "</ul></div>" +
       '<div><h4>Ders notları</h4><ul>' +

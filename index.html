@@ -22,7 +22,7 @@
 
 
 <link rel="stylesheet" href="/kc.css?v=5">
-<link rel="stylesheet" href="/ana.css?v=7">
+<link rel="stylesheet" href="/ana.css?v=9">
 <link rel="stylesheet" href="/masaustu.css?v=3">
 <link rel="stylesheet" href="/uygulama.css?v=1">
 <!-- PWA -->
@@ -35,6 +35,7 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
 <style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
+<script>try{if(localStorage.getItem("kc-yurt")==="ev")document.documentElement.classList.add("yurtsuz")}catch(e){}</script>
 <script src="/tema.js?v=23"></script>
 <script src="/duyuru.js?v=5" defer></script>
 <script>document.documentElement.classList.add("og-bekle");setTimeout(function(){document.documentElement.classList.remove("og-bekle")},1500)</script><style>.og-bekle .afis{visibility:hidden}</style>
@@ -109,7 +110,7 @@
           <h1 id="selam"></h1>
           <p data-i18n="afis_alt">Menü, not, takvim ve yol arkadaşı cebinde.</p>
           <div class="afis-cta">
-            <button type="button" class="btn ana" onclick="sayfaAc('yurtlar')">Yemek menüleri</button>
+            <button type="button" class="btn ana yurt-ogesi" onclick="sayfaAc('yurtlar')">Yemek menüleri</button>
             <button type="button" class="btn" onclick="sayfaAc('notlar')">Ders notları</button>
           </div>
         </div>
@@ -119,7 +120,7 @@
       <div class="durum cam" id="ana-durum"></div>
 
       <div class="menu-grid">
-        <div class="menu-kart cam">
+        <div class="menu-kart cam yurt-kart">
           <div class="menu-ust">
             <div><h2 data-i18n="yurt_menusu">Yurt menüsü</h2><p data-i18n="yurt_sec_aciklama">Yurdunu seç, bir dahaki sefere hatırlanır</p></div>
             <span class="etiket mavi">KYK</span>
@@ -541,7 +542,7 @@
 </div>
 
 <script src="veri.js?v=34"></script>
-<script src="/ana.js?v=2"></script>
+<script src="/ana.js?v=3"></script>
 <script src="/takvim-izgara.js?v=1"></script>
 <script src="cerez.js?v=2" defer></script>
 <script src="/yemekfoto.js?v=59"></script>
@@ -552,7 +553,7 @@
 (function(){var y=false;function f(){if(y)return;y=true;var s=document.createElement("script");s.type="module";s.src="/yorum.js?v=30";document.body.appendChild(s)}
 if(document.readyState==="complete")f();else{addEventListener("load",f);addEventListener("DOMContentLoaded",function(){setTimeout(f,2000)})}})();</script>
 <script src="/dil.js?v=8"></script>
-<script src="/ayarlar.js?v=16"></script>
+<script src="/ayarlar.js?v=18"></script>
 <script defer src="/skor.js?v=8"></script>
 <script defer src="/yeni.js?v=7"></script>
 <script defer src="/geri.js?v=2"></script>
@@ -661,6 +662,6 @@ if(document.readyState==="complete")f();else{addEventListener("load",f);addEvent
   guncelle();
 })();
 </script>
-<script src="/altbilgi.js?v=4" defer></script>
+<script src="/altbilgi.js?v=5" defer></script>
 </body>
 </html>

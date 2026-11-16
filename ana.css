@@ -1336,3 +1336,8 @@ html[data-tema="koyu"] .yan .tema-sekme .tema-gunes { display: block; } html[dat
 .pd-mobil { width: 36px; height: 36px; }
 .yan .pd-masa { margin-left: 10px; }
 @media (max-width: 820px) { .pd-masa { display: none !important; } }
+
+/* Yurtta kalmayan (evde kalan) öğrenci: yurt menüsü ve Yurtlar bölümü gizli; Üniversite Evi kalır */
+html.yurtsuz .yurt-kart, html.yurtsuz .yurt-ogesi, html.yurtsuz .kutu[data-git="yurtlar"], html.yurtsuz .sekme[data-sayfa="yurtlar"] { display: none !important; }
+html.yurtsuz .menu-grid { grid-template-columns: 1fr !important; }
+html.yurtsuz .kutular { grid-template-columns: repeat(3, 1fr) !important; }

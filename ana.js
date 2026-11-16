@@ -26,6 +26,7 @@ const bugun = new Date(); bugun.setHours(0, 0, 0, 0);
    ===================================================================== */
 function sayfaAc(id) {
   if (!id) id = "ana";
+  if (id === "yurtlar" && document.documentElement.classList.contains("yurtsuz")) id = "ana";
   document.querySelectorAll(".sayfa").forEach(s => s.classList.toggle("aktif", s.id === id));
   document.querySelectorAll(".sekme").forEach(b => b.classList.toggle("aktif", b.dataset.sayfa === id));
   if (id === "yurtlar") yurtListeyeDon();

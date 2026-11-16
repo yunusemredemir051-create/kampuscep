@@ -244,6 +244,7 @@
     localStorage.setItem("kc-ogretim", og === "2" ? "2" : "1"); localStorage.setItem("kc-sube", sb === "1" || sb === "2" ? sb : "0");
     if (yeniAvatar) localStorage.setItem("kc-avatar", yeniAvatar); else localStorage.removeItem("kc-avatar");
     if (window.kcProfilPanel) window.kcProfilPanel();
+    document.documentElement.classList.toggle("yurtsuz", yeniYurt === "ev");
 
     // Bildirim göster
     if (window.kcProgramYenile) window.kcProgramYenile();
