@@ -317,20 +317,35 @@ ve arayüzde yer tutucu ad kullanılır (`ASISTAN_ADI` gibi tek bir ayardan değ
 
 ### Site sahibinin vereceği dosyalar (`asistan/` klasörü)
 
-Model yeniden eğitilmez (fine-tuning yapılmaz); asistanın bilgisi ve kişiliği aşağıdaki dosyalardan gelir. Ajan bu
-klasörü ve her dosya için kısa bir Türkçe şablonu (ne yazılacağına dair örnekle) oluşturur; site sahibi doldurur.
+Model yeniden eğitilmez (fine-tuning yapılmaz); asistanın bilgisi ve kişiliği aşağıdaki dosyalardan gelir.
+**Bu dosyaları ajan doldurur**, site sahibi sıfırdan yazmaz: ajan sitedeki mevcut içerikten (veri.js, ders.json, ünite
+sayfaları, SSS, hakkımızda, yurt sayfaları, sponsor sayfaları) ve aşağıdaki kurallardan eksiksiz ilk sürümleri hazırlar.
+Site sahibi yalnızca okur, düzeltir ve eksik gördüğü bilgiyi ekler. Ajanın emin olmadığı ya da sitede bulamadığı bilgiler
+dosyada `<!-- KONTROL: ... -->` notuyla işaretlenir ve PR'da liste olarak verilir; uydurulmaz.
 Dosyalar değişince asistan yeniden dizinlenir/güncellenir, kod değişikliği gerekmez.
 
-- `asistan/bilgi/*.md` — ek bilgi dosyaları: SSS, yurtlar ve kampüs hakkında bilgiler, ulaşım, sık sorulan öğrenci
-  soruları, site kullanım rehberi vb. RAG dizinine girer.
-- `asistan/karakter.md` — asistanın kişiliği ve üslubu: nasıl hitap eder, ne kadar samimi, hangi kelimeleri kullanır/kullanmaz,
-  cevap uzunluğu. Sistem talimatına girer.
-- `asistan/ornek-sohbetler.md` — iyi ve kötü cevap örnekleri (soru → beklenen cevap). Üslup için örnek olarak ve
-  test setine kaynak olarak kullanılır.
-- `asistan/argo-sozlugu.md` — öğrenci argosu, kısaltmalar, yerel ifadeler ve bunların anlamı (örn. "yemekhane" yerine
-  kullanılan adlar, ders kısaltmaları). Sorgu anlamlandırmada kullanılır.
+- `asistan/bilgi/*.md` — bilgi dosyaları: SSS, yurtlar ve kampüs bilgileri, ulaşım, sık sorulan öğrenci soruları,
+  site kullanım rehberi vb. RAG dizinine girer.
+- `asistan/karakter.md` — asistanın kişiliği ve üslubu: nasıl hitap eder, ne kadar samimi, cevap uzunluğu, kullanmayacağı
+  kelimeler. Sistem talimatına girer.
+- `asistan/ornek-sohbetler.md` — en az 40 iyi/kötü cevap örneği (soru → beklenen cevap); üslup örneği ve test setine kaynak.
+- `asistan/argo-sozlugu.md` — öğrenci argosu, kısaltmalar, ders kısaltmaları ve kampüse özgü yer/kurum adları; yalnızca
+  **anlamak** için kullanılır.
 
 ### Sohbet ve üslup
+
+- **Dil:** asistan her zaman standart, düzgün ve samimi Türkçe ile konuşur. **Yöresel şive taklidi yapmaz** (Elazığ ya da
+  başka bir yörenin ağzıyla, harf değiştirerek ya da "yöresel espri" amaçlı konuşmaz). Kullanıcı şiveyle yazsa da asistan
+  standart Türkçe cevap verir.
+- **Hatalı yazımı anlama:** kullanıcı yazım hatası yapsa, Türkçe karakter kullanmasa ya da ağız özelliğiyle yazsa da
+  asistan ne demek istediğini anlar ve bunu düzeltme yapmadan, alay etmeden cevaplar. Örnekler:
+  - Türkçe karakter eksik: "canim sikiliyor" → "canım sıkılıyor"; "yarin unievide ne var" → "yarın Üniversite Evi'nde ne var".
+    Türkçe karakter eksikliğinden doğan ve kaba bir kelimeye benzeyen yazımlar **küfür sanılmaz**; bağlamdan anlam çıkarılır.
+  - Harf hatası / ağız etkisi: "bügün bıze geleçek musun" → "bugün bize gelecek misin"; "vize ne zman" → "vize ne zaman".
+  - Bitişik/ayrı yazım, noktalama yokluğu, kısaltmalar ("slm", "nbr", "tşk", "yms", "ybs 2 sınıf istatistik vize ne zmn").
+  Arama ve RAG erişimi için sorgu önce normalize edilir (Türkçe karakter geri kazanımı, yazım düzeltme, kısaltma açma);
+  normalize edilmiş sorgu kayıtlarda görülebilir. Bu davranış test setinde ayrı kategori olarak ölçülür
+  (en az 30 hatalı yazımlı soru).
 
 - **Doğal sohbet:** önceki mesajları hatırlayarak konuşur ("peki yarın?" sorusunu önceki soruya bağlar), selamlaşma ve
   kısa sohbete doğal karşılık verir, sonra konuyu nazikçe yardım edebileceği alana getirir. Robot gibi kalıp cümleler
