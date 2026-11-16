@@ -426,8 +426,9 @@ Ek 3'ten (yönetici paneli) **önce** yapılması önerilir: panel temiz ve dene
      istemci tarafında yazılabilir bir "yönetici listesi" ya da "rol" alanı olmaz. Kullanıcının kendi profil belgesinde
      rol/yetki alanını değiştirmesi kurallarla engellenir.
    - **Firestore/Storage kuralları** (`firebase/firestore.rules`): her koleksiyon için kim okur, kim yazar, hangi alanlar
-     değişebilir, alan türü ve uzunluk sınırı. Emulator testleriyle kanıtlanır. Storage kuralları ve `kc-skor` Worker kodu
-     depoda yoksa site sahibinden istenir. İlk incelemede öne çıkan konular (ayrıntılı doğrulanmalı):
+     değişebilir, alan türü ve uzunluk sınırı. Emulator testleriyle kanıtlanır. Firebase Storage **kullanılmıyor** ve proje ücretsiz
+     Spark planında (16 Kasım 2026); Storage ya da Cloud Functions gerektiren her öneri Blaze planına geçiş ve maliyet
+     bilgisiyle site sahibine sunulur. İlk incelemede öne çıkan konular (ayrıntılı doğrulanmalı):
      - Yönetici yetkisi e-posta karşılaştırmasıyla veriliyor → custom claim'e taşınmalı.
      - Puan, beğeni, indirme sayacı ve çıkmış soru puanları anonim oturumla da yazılabiliyor → sınırsız yeni kimlikle
        oy şişirme riski; Google girişi şartı ya da başka bir önlem değerlendirilmeli (mevcut kullanıcı deneyimini bozmadan).
