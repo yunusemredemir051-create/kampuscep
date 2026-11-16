@@ -157,7 +157,7 @@
   const r = RENK[t.id] || ["#3765fe", "#5b61fc"];
 
   /* tüm sitenin arka plan görseli (temaya özel; gorseller/arka/<id>.webp) */
-  const ARKA = { "sinav": "/gorseller/arka/sinav.webp?v=1" };
+  const ARKA = { "sinav": "/gorseller/arka/sinav.webp?v=2" };
   if (ARKA[t.id]) {
     const st = document.createElement("style");
     st.textContent = `html.ozel-arkali{background:var(--zemin)}html.ozel-arkali body{background:transparent!important}
