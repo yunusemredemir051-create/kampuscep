@@ -156,6 +156,19 @@
   if (T.mavi) { kok.classList.add("ozel-renkli"); if (window.kcRenk && kcRenk.yenile) kcRenk.yenile(); kok.style.setProperty("--mavi", T.mavi); kok.style.setProperty("--mor", T.mor); kok.style.setProperty("--mavi-acik", T.acik); }
   const r = RENK[t.id] || ["#3765fe", "#5b61fc"];
 
+  /* tüm sitenin arka plan görseli (temaya özel; gorseller/arka/<id>.webp) */
+  const ARKA = { "sinav": "/gorseller/arka/sinav.webp?v=1" };
+  if (ARKA[t.id]) {
+    const st = document.createElement("style");
+    st.textContent = `html.ozel-arkali{background:var(--zemin)}html.ozel-arkali body{background:transparent!important}
+    .ozel-arka{position:fixed;inset:0;z-index:-1;pointer-events:none;background:url("${ARKA[t.id]}") center/cover no-repeat}
+    @media (max-width:700px){.ozel-arka{background-size:auto 100%}}
+    html[data-tema="koyu"] .ozel-arka{opacity:.14;filter:saturate(1.4)}`;
+    document.head.appendChild(st);
+    const a = document.createElement("div"); a.className = "ozel-arka"; a.setAttribute("aria-hidden", "true");
+    document.body.prepend(a); kok.classList.add("ozel-arkali");
+  }
+
   const css = document.createElement("style");
   css.textContent = `
   .ozel .afis{background:linear-gradient(180deg,${r[0]},${r[1]})!important}
