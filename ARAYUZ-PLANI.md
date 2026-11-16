@@ -8,7 +8,7 @@ Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki ad
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** ve **Ek 6 (kod temizliği ve güvenlik denetimi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** ve **Ek 7 (gerçek Android uygulaması deneyimi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -465,3 +465,60 @@ Ek 3'ten (yönetici paneli) **önce** yapılması önerilir: panel temiz ve dene
    puanlama, giriş, Yol Arkadaşı ve mağaza elle denenir; denenenler PR'da listelenir.
 5. **Sonuç:** `MIMARI.md` — sitenin dosya yapısı, veri akışı, Firebase'in hangi işler için kullanıldığı, otomatik işler.
   Site sahibinin bir yazılımcıya siteyi anlatabileceği açıklıkta.
+
+## Ek 7 — Gerçek Android uygulaması deneyimi (mobil öncelikli)
+
+**Site sahibinin isteği kelimesi kelimesine:** `istekler/mobil-uygulama.md`. Bu görev o dosyadaki her maddeyi kapsar;
+önce o dosyayı oku. Öncelik sırası oradaki gibidir: (1) gerçek Android deneyimi ve teknik altyapı, (2) mobil arayüz,
+(3) ders notları ve soru çözme, (4) tema ve kişiselleştirme, (5) ses, animasyon, dokunsal geri bildirim,
+(6) performans. **Mobil uygulama, masaüstü sitesinden daha önemlidir**; masaüstü tasarımı bozulmaz ama mobil ayrı bir
+ürün gibi ele alınır.
+
+**Bugünkü durum ve "Chrome'da site gibi" hissinin nedeni:** `_uygulama/` bir Capacitor kabuğu ve
+`capacitor.config.json`'daki `server.url` ile **canlı siteyi internetten açıyor**. Uygulamada hiçbir sayfa cihazda
+yerel değil; her açılışta ve her sayfa geçişinde ağdan yükleniyor, internet yokken `hata.html` görünüyor, sayfalar
+arası geçişler tarayıcı sayfa yüklemesi gibi. Kullanılan eklentiler: App, SplashScreen, StatusBar, Firebase Authentication.
+
+**Not:** Google Play, yalnızca bir web sitesini saran ve ek değer sunmayan uygulamaları "asgari işlevsellik" gerekçesiyle
+reddedebilir. Bu görev Play yayını için de önemlidir.
+
+### Aşamalar (her biri ayrı PR; 1. aşama kod yazmadan onaylanır)
+
+1. **Mimari karşılaştırma (belge, kod yok):** en az şu seçenekler artı/eksi, iş yükü ve risk ile karşılaştırılır:
+   - (a) Mevcut uzak site (server.url) + yerel cilalar,
+   - (b) Capacitor ile **site dosyalarının uygulama içine paketlenmesi**, verinin (menü, notlar, yorumlar) ağdan
+     çekilmesi ve önbelleğe alınması; içerik güncellemelerinin uygulama güncellemesi gerektirmeden gelmesi için yöntem,
+   - (c) TWA / PWA,
+   - (d) tamamen yerel (Kotlin/Jetpack Compose) ya da çapraz platform (Flutter / React Native) yeniden yazım.
+   Değerlendirmede: yerel his, çevrimdışı çalışma, açılış hızı, güncelleme kolaylığı, Firebase girişi, Play politikası,
+   ileride App Store, bakım yükü (site sahibi yazılımcı değil), web sitesiyle kod paylaşımı. Önerilen seçenek ve
+   gerekçesi yazılır. **Site sahibi seçmeden uygulanmaz.**
+2. **Android altyapısı:** seçilen mimariye göre: yerel açılış ekranı (Android 12+ SplashScreen API), kenardan kenara
+   görünüm, durum çubuğu ve gezinme çubuğu renklerinin temaya uyumu, güvenli alanlar (çentik), **geri tuşu**
+   (önce açık sayfa/panel kapanır, sonra önceki sekme, ana sayfada iki kez basınca çıkış), çekip yenileme ve aşırı
+   kaydırma davranışı, metin seçme/uzun basma menülerinin kapatılması, harici linklerin uygulama içinde değil tarayıcıda
+   açılması, **çevrimdışı ve yavaş bağlantı** durumları (son görülen menü/notların önbellekten gösterilmesi, sade bir
+   bağlantı uyarısı — toast değil), klavye açılınca düzenin bozulmaması, uygulama sürüm bilgisi.
+3. **Mobil arayüz:** Adım 0–13 bu aşamayla birlikte, **mobil önce** tasarlanır: alt sekme çubuğu, uygulama tipi geçişler,
+   başlık çubukları, büyük dokunma alanları, tek elle kullanım. `istekler/mobil-uygulama.md` 2. ve 5. bölümlerdeki
+   ekranlar (ana sayfa, dersler, konu anlatımı, soru çözme, testler, profil/ayarlar, ilerleme ekranları) eksiksiz ele alınır.
+   **İlerleme ve başarı ekranı** yoksa tasarlanıp eklenir (tamamlanan konular, çözülen testler; veri cihazda ya da giriş
+   yapılmışsa Firestore'da — güvenlik kurallarıyla).
+4. **Tema ve kişiselleştirme:** açık/koyu/sistem teması, takım temaları (`tema.js`) ile uyum, tercih hatırlanır,
+   geçiş titremesiz ve yumuşak; durum çubuğu da temaya uyar.
+5. **Ses, animasyon ve dokunsal geri bildirim:** `@capacitor/haptics` ile hafif titreşimler (dokunma, seçim, doğru/yanlış
+   cevap, tamamlama), web'de destekleniyorsa `navigator.vibrate`. Sesler (`ses.js`) birbiriyle uyumlu, kısa, yumuşak ve
+   premium; atari sesi gibi değil. Ayarlarda ses ve titreşim **ayrı ayrı** kapatılabilir; sistem sessiz modundayken ses
+   çalınmaz. Animasyonlar 150–300 ms, `prefers-reduced-motion`'a uyar.
+6. **Performans ve test:** düşük ve orta segment cihaz profillerinde (emülatörde düşük RAM/CPU profili ve mümkünse gerçek
+   bir ucuz cihazda) açılış süresi, kaydırma akıcılığı ve bellek ölçülür; önce/sonra değerleri PR'a yazılır.
+   Farklı ekran boyutları (küçük telefon, büyük telefon, tablet) ekran görüntüleriyle kontrol edilir.
+
+### Kurallar
+
+- Logo, uygulama ikonu ve açılış görselleri (`_uygulama/assets/`) site sahibinindir; değiştirilmez.
+- Paket adı `tr.com.kampuscepte.app` ve imzalama ayarları değiştirilmez; Play Console işlemleri site sahibiyle birlikte yapılır.
+- Masaüstü web görünümü bozulmaz (`html.web` kuralları); uygulamaya özel her şey `html.uyg` / `uygulama.css` ya da
+  `_uygulama/` altında.
+- Her aşamada APK derlenip gerçek bir Android telefonda denenir; denenen senaryolar PR'da listelenir.
+- Yerel çalışma için Android Studio ve bir Android emülatörü gerekir (AGENTS.md 9. bölüm).

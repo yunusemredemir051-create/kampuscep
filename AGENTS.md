@@ -71,7 +71,7 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
   (boyut, oran, yerleşim) ama dosyaların kendisi ve eşleşmeler aynen kalır. Menü verisi değişince eşleşme bozulmamalı.
 - JavaScript'in kullandığı `id` ve `class` adları. HTML yapısını değiştirmeden önce adı tüm `.js` dosyalarında ara (`grep -rn`).
 - `.reklam` kutuları (AdSense alanları) ve `ads.txt`.
-- `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml`.
+- `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml` (`_uygulama/` yalnızca Ek 7 kapsamında değişir).
 - Çalışan hiçbir özellik kaldırılmaz ya da gizlenmez.
 - Yapay zekâ asistanı (Ek 5) **yalnızca yönetici panelinde** bulunur. Herkese açık sayfalarda, Android uygulamasında
   ya da sitemap'te ona giden hiçbir giriş noktası olmaz; site sahibi açıkça istemeden kamuya açılmaz.
@@ -98,6 +98,8 @@ Site sahibi iki tasarım turunu "hâlâ yapay zekâ yapmış gibi duruyor" diyer
 elinden çıkmış gibi duran, kendine ait karakteri olan, sayfa düzeni güçlü bir site.
 derslig.com bir referanstır, kopyalanacak bir şablon değil; ondan daha iyi bir düzen önerilebilir.
 Masaüstü ve mobil düzen farklı olabilir; mobil bir uygulama gibi, masaüstü bir web sitesi gibi hissettirmeli.
+**Mobil önceliklidir:** site sahibi için Android uygulaması masaüstünden daha önemli; mobil, masaüstünün küçültülmüş
+hâli değil, ayrı bir ürün gibi tasarlanır (bkz. `istekler/mobil-uygulama.md`, ARAYUZ-PLANI.md Ek 7).
 Sayfa sayfa yenileme planı ve her adımın görev tanımı: `ARAYUZ-PLANI.md`.
 
 **Yapma:**
@@ -147,7 +149,8 @@ Bulut ortamı yalnızca tarayıcı ve ağ gerektirmeyen işler için (kod temizl
 1. Git, VS Code ve VS Code için Codex eklentisi.
 2. Depoyu klonla: `git clone https://github.com/yunusemredemir051-create/kampuscep.git`
 3. Siteyi aç: depo kökünde `python3 -m http.server 8000` (Windows'ta `py -m http.server 8000`) → `http://localhost:8000`
-4. Güvenlik testleri için: Node.js LTS, Java 21+, `npm i -g firebase-tools`; emulator yalnızca demo proje kimliğiyle
+4. Android uygulaması için (Ek 7): Android Studio, bir Android emülatörü ve USB hata ayıklaması açık bir telefon.
+5. Güvenlik testleri için: Node.js LTS, Java 21+, `npm i -g firebase-tools`; emulator yalnızca demo proje kimliğiyle
    çalıştırılır (`firebase emulators:start --project demo-kampuscepte`), gerçek projeye bağlanmaz.
 
 **Yerel çalışmada dikkat edilecekler:**
