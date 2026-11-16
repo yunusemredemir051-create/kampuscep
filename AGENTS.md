@@ -49,6 +49,8 @@ akademik takvim, ders/vize programı, Yol Arkadaşı (taksi paylaşımı), spons
 | `skor.js`, `workers/kc-skor.js` | Ana sayfadaki maç skorları. `skor.js` sayfada gösterir; `workers/kc-skor.js` Cloudflare Worker'ın kopyasıdır (API-Football'dan veri çeker, anahtar Cloudflare gizli değişkeninde). Worker depodan otomatik yüklenmez, Cloudflare panelinden elle yayınlanır |
 | `ayarlar.js`, `program.js`, `vize.js` | Ayarlar (bölüm/sınıf), ders ve vize programı |
 | `ses.js`, `bildirim.js`, `duyuru.js` | Ses efektleri, bildirimler, duyurular |
+| `ozelgun.js`, `gorseller/ozel/`, `vakitler.json` | Özel gün temaları (`?tarih=YYYY-AA-GG` önizleme, `?tarih=kapat` çıkış), özel gün görselleri, Ramazan sayaçları için namaz vakitleri. Bkz. ARAYUZ-PLANI.md Ek 8 |
+| `istekler/` | Site sahibinin isteklerinin kendi yazdığı tam metinleri. İlgili göreve başlamadan önce okunur |
 | `sw.js` | Service worker (önbellek). `SURUM` sabiti var |
 | `firebase/firestore.rules` | Firestore güvenlik kuralları (16 Kasım 2026'da Firebase konsolundaki yayındaki sürümden kopyalandı). Depodaki dosya Firebase'e **otomatik yüklenmez**; değişiklikler site sahibi tarafından konsoldan yayınlanır. Kuralı değiştiren PR, konsola yapıştırılacak tam metni ve neyin değiştiğini açıkça yazar |
 | `gorseller/`, `ikonlar/`, `favicon.svg` | Logo, ikon, avatar, yemek fotoğrafları |
@@ -72,7 +74,7 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
 - JavaScript'in kullandığı `id` ve `class` adları. HTML yapısını değiştirmeden önce adı tüm `.js` dosyalarında ara (`grep -rn`).
 - `.reklam` kutuları (AdSense alanları) ve `ads.txt`.
 - `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml` (`_uygulama/` yalnızca Ek 7 kapsamında değişir).
-- Çalışan hiçbir özellik kaldırılmaz ya da gizlenmez.
+- Çalışan hiçbir özellik kaldırılmaz ya da gizlenmez. **Özel gün temaları ve önizleme sistemi** (`?tarih=…`) her değişiklikten sonra çalışır durumda kalmalı.
 - Yapay zekâ asistanı (Ek 5) **yalnızca yönetici panelinde** bulunur. Herkese açık sayfalarda, Android uygulamasında
   ya da sitemap'te ona giden hiçbir giriş noktası olmaz; site sahibi açıkça istemeden kamuya açılmaz.
 

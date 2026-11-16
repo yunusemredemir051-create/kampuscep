@@ -8,7 +8,7 @@ Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki ad
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** ve **Ek 7 (gerçek Android uygulaması deneyimi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** **Ek 7 (gerçek Android uygulaması deneyimi)** ve **Ek 8 (özel günler, Ramazan ve mevsimsel temalar)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -37,6 +37,8 @@ Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek
 - [ ] Koyu mod ve en az iki takım temasında (örn. Galatasaray, Beşiktaş) okunaklı mı?
 - [ ] Logo, avatarlar ve `gorseller/` çizimleri aynen duruyor mu?
 - [ ] Bütün düğmeler, linkler, giriş, yorum, puanlama eskisi gibi çalışıyor mu? Konsolda hata yok mu?
+- [ ] Özel gün temaları yeni tasarımda bozulmadı mı? En az şu önizlemelerle kontrol et: `?tarih=2026-11-24` (Öğretmenler Günü),
+      `?tarih=2027-02-15` (Ramazan), `?tarih=2027-11-10` (10 Kasım); sonra `?tarih=kapat`.
 - [ ] Önceki adımlarda kurulan bileşenler (başlık, liste satırı, düğme, sekme) yeniden kullanıldı mı, yenisi icat edilmedi mi?
 
 ---
@@ -522,3 +524,55 @@ reddedebilir. Bu görev Play yayını için de önemlidir.
   `_uygulama/` altında.
 - Her aşamada APK derlenip gerçek bir Android telefonda denenir; denenen senaryolar PR'da listelenir.
 - Yerel çalışma için Android Studio ve bir Android emülatörü gerekir (AGENTS.md 9. bölüm).
+
+## Ek 8 — Özel günler, Ramazan ve mevsimsel temalar
+
+**Site sahibinin isteği kelimesi kelimesine:** `istekler/ozel-gunler.md` (önizleme bağlantılarının tam listesi orada).
+Önce o dosyayı oku. Site sahibi bu özelliği "çok önemli" olarak işaretledi: kullanıcı uygulamayı açtığında hangi özel
+gündeyse bunu hissetmeli — Ramazan'da Ramazan atmosferini, 29 Ekim'de bayram coşkusunu, 10 Kasım'da anma gününün ciddiyetini.
+
+**Bugünkü sistem:** `ozelgun.js` — tarihe göre ana sayfa afişini, renkleri ve süslemeleri değiştirir; `?tarih=YYYY-AA-GG`
+ile önizleme (yalnızca o sekmede), `?tarih=kapat` ile çıkış. Görseller `gorseller/ozel/` altında (21 gün). Ramazan sayaçları
+ve imsakiye `vakitler.json`'dan beslenir; bu dosyayı `.github/scripts/vakit_guncelle.py` her gün Diyanet verisinden
+(yalnızca Elazığ merkez, yaklaşık 30 gün ileri) günceller ve bu iş şu an sorunsuz çalışıyor. Hicri takvime bağlı tarihler
+`ozelgun.js` içinde elle güncelleniyor.
+
+### Aşamalar (her biri ayrı PR)
+
+1. **İnceleme raporu (kod yok):** `istekler/ozel-gunler.md`'deki her önizleme bağlantısını **telefon (390 px), Android
+   uygulaması ve masaüstünde** aç; her gün için arka plan, renk, görsel, tipografi, animasyon, sayfa atmosferi, mobil
+   görünüm ve sunulan içeriği değerlendir; ekran görüntüleriyle birlikte "eksik / hatalı / uyumsuz / geliştirilebilir"
+   listesi çıkar. Ayrıca istekte olup sistemde **olmayan** günleri listele (örn. Dünya Kadınlar Günü, Sevgililer Günü,
+   bahar finalleri; Kurban Bayramı arifesi). Hicri tarihleri Diyanet İşleri Başkanlığı'nın yayımladığı dinî günler takvimiyle
+   karşılaştır ve farkları yaz.
+2. **Altyapı:** özel gün tanımlarını kod içinden ayrı, okunaklı bir veri dosyasına taşı (gün adı, başlangıç–bitiş tarih/saati,
+   tür: dinî/millî/anma/sosyal/akademik, tema, görsel, içerikler). Hicri tarihler yıllık olarak bu dosyadan güncellenebilsin;
+   ileride yönetici panelinden (Ek 3) düzenlenebilecek yapıda olsun. Tüm hesaplar Europe/Istanbul saatine göre.
+   Önizleme sistemi (`?tarih=…`, `?tarih=kapat`, sekmeye özel kalma) **aynen korunur** ve Android uygulamasında da çalışır;
+   önizleme hiçbir zaman gerçek kullanıcıyı etkilemez. Ek olarak önizlemede saat de seçilebilsin (örn. `?tarih=2027-02-15T18:30`)
+   ki iftar/sahur sayaçları test edilebilsin. Gün bitince tema kendiliğinden normale döner.
+3. **Ramazan:** genel atmosferi değiştiren Ramazan teması; ana ekranda imsak ve iftar vakitleri, **sahura kalan** ve
+   **iftara kalan** süre için canlı geri sayım (saniye hassasiyetinde, cihaz saati değil Türkiye saati esas); günlük vakitler
+   ve **tam ay imsakiyesi** ekranı. **Şehir seçimi:** kullanıcı şehrini ayarlardan seçer (varsayılan Elazığ; konum izni
+   istenmez); `vakit_guncelle.py` seçilebilecek şehirler için genişletilir ve Ramazan öncesinde tam ay verisi hazır olur.
+   Ramazan'a giriş, Kadir Gecesi, arife ve bayram geçişleri otomatik.
+4. **Gün gün tasarım:** her gün kendine özgü tasarlanır; birbirinin kopyası olmaz.
+   - **Anma günleri (10 Kasım, 6 Şubat):** son derece sade, saygılı, ölçülü; eğlenceli animasyon, konfeti, parlak renk,
+     ses efekti **yok**. 15 Temmuz da ağırbaşlı tutulur.
+   - **Millî bayramlar (23 Nisan, 19 Mayıs, 30 Ağustos, 29 Ekim):** günün ruhuna uygun, coşkulu ama kaliteli ve ölçülü.
+   - **Kandiller (Regaip, Miraç, Berat, Kadir, Mevlid):** her biri farklı, sade ve anlamına uygun.
+   - **Bayramlar (Ramazan, Kurban):** ayrı temalar ve kutlama ekranı.
+   - **Diğerleri (Öğretmenler, Anneler, Babalar, Kadınlar, Sevgililer Günü, yılbaşı öncesi, yılbaşı, final ve sınav haftaları):**
+     dengeli, abartısız.
+   - Yeni tasarım dili (Adım 0) ile bütünleşir; durum çubuğu ve gezinme çubuğu temaya uyar (Ek 7); mobil ekranlara özel
+     görsel yerleşimi; küçük ve büyük ekranlarda görsel bozulmaz; sayaçlar ve metinler rahat okunur; animasyonlar
+     düşük segment telefonda akıcıdır ve `prefers-reduced-motion`'a uyar.
+5. **Test:** her gün için 390 px, Android uygulaması ve 1440 px ekran görüntüleri PR'a eklenir; sayaçlar önizleme saatleriyle
+   (iftardan 1 dakika önce, iftar anı, sahur bitişi, gece yarısı geçişi) denenir.
+
+### Görseller
+
+`gorseller/ozel/` içindeki görseller site sahibinindir; **sormadan değiştirilmez**. Yeni ya da daha kaliteli görsel
+gereken günler için ajan, her gün için ölçü (mobil ve masaüstü), konu ve üslup tarifini (ChatGPT ile üretilebilecek
+kopyalanabilir istem metni dahil) bir liste olarak site sahibine sunar; görseller gelince yerleştirilir. Görsel gelene kadar
+CSS/SVG ile yapılan sade atmosfer öğeleri (desen, renk, çerçeve) kullanılabilir.
