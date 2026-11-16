@@ -63,6 +63,7 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
 - `firebase-ayar.js`, Firebase/App Check başlatma kodu, Firestore koleksiyon ve alan adları, giriş akışı.
 - `veri.js` içindeki verinin **biçimi** (alan adları, yapı). Görünüm değişir, veri yapısı değişmez.
 - URL'ler ve dosya yolları (yurt sayfaları, `ders.html?d=…`, `/sponsor`, `/reklam`, ünite sayfaları). WhatsApp gruplarında ve Google'da bu linkler var.
+  (Ek 9'da `/reklam/` yalnızca `/sponsor/`'a yönlendirilir; adres yine çalışır.)
 - **Logo, uygulama ikonu (`ikonlar/`, `favicon.svg`), avatarlar ve `gorseller/` içindeki çizim/görseller.** Bunları site sahibi
   kendisi çiziyor. Yenisini çizme, rengini/biçimini değiştirme.
   - **İstisna:** Arayüzdeki küçük çizgi ikonlar (menü, ayarlar listesi, düğmeler, sekmeler içindeki satır içi `<svg>` ikonlar)

@@ -8,7 +8,7 @@ Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki ad
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** **Ek 7 (gerçek Android uygulaması deneyimi)** ve **Ek 8 (özel günler, Ramazan ve mevsimsel temalar)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** **Ek 7 (gerçek Android uygulaması deneyimi)** **Ek 8 (özel günler, Ramazan ve mevsimsel temalar)** ve **Ek 9 (Sponsorluk ve Reklam Merkezi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -576,3 +576,57 @@ ve imsakiye `vakitler.json`'dan beslenir; bu dosyayı `.github/scripts/vakit_gun
 gereken günler için ajan, her gün için ölçü (mobil ve masaüstü), konu ve üslup tarifini (ChatGPT ile üretilebilecek
 kopyalanabilir istem metni dahil) bir liste olarak site sahibine sunar; görseller gelince yerleştirilir. Görsel gelene kadar
 CSS/SVG ile yapılan sade atmosfer öğeleri (desen, renk, çerçeve) kullanılabilir.
+
+## Ek 9 — Sponsorluk ve Reklam Merkezi
+
+**Site sahibinin isteği kelimesi kelimesine:** `istekler/sponsorluk-reklam.md`. Önce o dosyayı oku. Bu sayfa sitenin
+gelirini doğrudan etkiler; diğer sayfalardan daha fazla tasarım ve dönüşüm (ziyaretçinin başvuruya geçmesi) özeni ister.
+Hedef izlenim: profesyonel yönetilen, öğrencilere ulaşmak için anlamlı, iş birliği kolay ve güvenilir bir platform.
+Büyük markaların medya kitleri kalitesinde; hazır şablon görünümü yok. Arayüz Adım 0 (tasarım dili) ve Adım 1 (gezinme)
+bittikten sonra yapılır.
+
+**Bugünkü durum:** iki ayrı sayfa var:
+- `sponsor/` — genel sponsorluk teklifi (işletme türleri, sponsorluk alanları, site gezintisi, WhatsApp ile iletişim).
+- `reklam/` — Cadde Katık'a özel hazırlanmış reklam sayfası (aynı istatistikler + "neden KampüsCepte", yurt yakınlığı vurgusu).
+Her ikisindeki istatistikler **Google Analytics'ten elle alınmış, 20 Ekim – 11 Kasım 2026 dönemine ait sabit sayılardır**
+(44.509 etkileşim, 2.369 aktif kullanıcı, 1.050 son 7 gün aktif, 23.250 sayfa görüntüleme, 10.222 oturum, %94 doğrudan giriş,
+%97 Türkiye, tek yurt menü sayfası 6.629 görüntüleme) ve "dönem sonu hedefi 5.000+ öğrenci — tahmindir, garanti değildir"
+notu var. `magaza.html` ve `sponsorlar.js` "İşletmeni burada gör" bağlantılarıyla `/sponsor/`'a yönlendiriyor.
+
+### Yapılacaklar
+
+1. **Tek sayfa, adres korunur:** iki sayfanın bütün değerli içeriği tek bir **"Sponsorluk ve Reklam Merkezi"** sayfasında
+   birleşir. Ana adres `/sponsor/` olarak kalır (işletmelere ve sitenin içinde bu link dağıtıldı); `/reklam/` bu sayfaya
+   yönlendirir — **eski linkler çalışmaya devam eder**. Belirli bir işletmeye gönderilen link için isteğe bağlı kişiselleştirme
+   (örn. `/sponsor/?isletme=cadde-katik` ile işletme adının ve yakınındaki yurdun girişte anılması) önerilir; Cadde Katık'a
+   özel içerik bu yolla korunur.
+2. **Bölümler** (istekteki A–H): güçlü karşılama alanı ve değer önerisi; istatistikler; sponsorluk/reklam modelleri (ana sayfa
+   sponsorluğu, banner alanları, ders ve içerik sayfaları, özel gün/dönem sponsorlukları, öğrenci kampanyaları, marka iş
+   birlikleri); sponsorluk paketleri; reklamların sitede gerçek görünümleri; iletişim ve başvuru alanı. Sıralama ve metinler
+   dönüşüm için kurgulanır: ilk ekranda değer önerisi ve başvuru düğmesi, sayfa boyunca erişilebilir başvuru çağrısı.
+3. **İstatistikler — yalnızca gerçek veri:** uydurma, yuvarlanmış ya da "tahmini" gösterilen sayı yok; her sayının kaynağı
+   (Google Analytics / Firestore) ve tarih aralığı yazılır. Hedefler "hedef" olarak açıkça etiketlenir. **Otomatik güncelleme**
+   için öneri: günde bir çalışan bir GitHub Actions işi, Google Analytics Data API'den yalnızca toplu sayıları çekip
+   `istatistik.json` dosyasına yazar; sayfa bu dosyadan okur. Bunun için Google Analytics'te salt okuma yetkili bir hizmet hesabı
+   ve GitHub'da gizli anahtar gerekir — kurulum adımlarını yaz, kurulumu site sahibiyle birlikte yap. Kurulana kadar mevcut
+   gerçek sayılar tarih aralığıyla gösterilir. Uygunsa Firestore'dan toplu sayılar da (menü görüntüleme, yorum sayısı) eklenebilir.
+   Grafikler sade, okunaklı, mobilde taşmaz.
+4. **Paketler ve fiyatlar:** mevcut iş modelinde olmayan hizmet kesinleşmiş gibi sunulmaz. Önerilen paket yapısını (adlar,
+   içerikler, süre) site sahibine sun; **fiyat ve içerikler onun onayıyla** yazılır; onaylanmamış bir şey yayına girmez.
+5. **Başvuru formu:** firma adı, yetkili kişi, e-posta, telefon, iş birliği türü, mesaj. Statik site olduğu için gönderimin
+   nereye gideceği seçenekleriyle önerilir (örn. Firestore'da yalnızca **oluşturulabilen**, kimsenin okuyamadığı bir
+   `sponsorBasvurulari` koleksiyonu — alan türü/uzunluk denetimli, App Check ve hız sınırlı; başvurular Firebase konsolundan ve
+   Ek 3 sonrası yönetici panelinden görülür. Yeni başvuru bildirimi için e-posta seçeneği varsa maliyetiyle). Spam önlemi
+   (bal küpü alanı, hız sınırı). **KVKK aydınlatma metni** ve onay kutusu. Gönderim sonrası sayfa içinde sade bir başarı
+   ekranı (toast değil). Formun yanında WhatsApp, telefon ve e-posta (`iletisim@kampuscepte.com.tr`) ile doğrudan iletişim.
+6. **Menüye ekleme:** masaüstü menüsünde ve mobil gezinmede **"Reklam & Sponsorluk"** öğesi; gerektiğinde ana sayfadan ve
+   altbilgiden erişim. Mevcut "Sponsorlarımız" bölümüyle (sponsorların mağazaları) karıştırılmaz; ikisi ayrı amaçlıdır.
+7. **Mobil:** sponsorların sayfayı telefondan açacağı varsayılır; kartlar, grafikler, paketler ve form telefonda kusursuz;
+   yatay taşma yok.
+8. **Ölçüm:** başvuru düğmesi tıklamaları ve form gönderimleri Google Analytics'te olay olarak izlenir (kişisel veri gönderilmez).
+
+### Kurallar
+
+- Anlaşması olmayan işletme sponsor ya da referans olarak gösterilmez; mevcut sponsor (Cadde Katık) yalnızca izin verdiği
+  ölçüde referans olarak anılır — PR'da sor.
+- Sitenin logosu ve görselleri değiştirilmez; yeni görsel gerekiyorsa tarifini site sahibine sun.
