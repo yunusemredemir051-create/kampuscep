@@ -71,6 +71,8 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
 - `.reklam` kutuları (AdSense alanları) ve `ads.txt`.
 - `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml`.
 - Çalışan hiçbir özellik kaldırılmaz ya da gizlenmez.
+- Yapay zekâ asistanı (Ek 5) **yalnızca yönetici panelinde** bulunur. Herkese açık sayfalarda, Android uygulamasında
+  ya da sitemap'te ona giden hiçbir giriş noktası olmaz; site sahibi açıkça istemeden kamuya açılmaz.
 
 ## 5. İçerik kuralları
 

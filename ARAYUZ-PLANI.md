@@ -8,7 +8,7 @@ Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki ad
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** **Ek 3 (güvenli yönetici paneli)** ve **Ek 4 (altyapı sağlamlığı)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** ve **Ek 5 (yalnızca yöneticiye açık RAG asistanı)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -286,3 +286,77 @@ ajan adımları ve kodu hazırlar.
    Ana sayfada yüklenen dosya sayısını ve boyutunu azalt: kullanılmayan CSS/JS'i temizle, kritik olmayan betikleri
    `defer` et, görselleri doğru boyutta ve tembel yükle. Derleme adımı ekleme (AGENTS.md). Yemek fotoğraflarına
    dokunma kuralı burada da geçerli.
+
+## Ek 5 — RAG tabanlı Türkçe bilgi asistanı (yalnızca yönetici panelinde)
+
+**Önkoşul:** Ek 3'ün 2. aşaması (yönetici yetkisi ve güvenlik kuralları) birleştirilmiş olmalı.
+
+**Amaç:** KampüsCepte içeriği üzerinde çalışan, Türkçe sorulara kaynak göstererek doğru cevap veren, araştırma
+kalitesinde bir RAG (Retrieval-Augmented Generation) asistanı. Bu asistan site sahibinin bir araştırma projesinin
+konusudur; bu yüzden **ölçülebilir, belgelenmiş ve tekrar üretilebilir** olmalı. Hızlı bir demo değil, eksiksiz bir sistem.
+
+### Mutlak kural: kamuya açılmaz
+
+- Asistan **yalnızca yönetici panelinde** görünür ve çalışır. Sitenin hiçbir herkese açık sayfasında, menüsünde,
+  Android uygulamasında, sitemap'te, duyuruda ya da kaynak kodunda görünen bir giriş noktası (düğme, sohbet balonu,
+  link, "yakında" rozeti) olmaz.
+- Asistan uç noktası (API) her istekte yönetici yetkisini **sunucu tarafında** doğrular; yönetici olmayan her isteği reddeder.
+  App Check zorunlu.
+- Herkese açık hâle getirmek yalnızca site sahibinin açık talimatıyla, ayrı bir PR'da yapılır.
+
+### Bilgi kaynakları
+
+- **Durağan içerik (RAG ile):** ünite özet sayfaları (`notlar/**/unite-N.html`), `ders.json` dosyaları (ünite adları, test
+  soruları), SSS, hakkımızda/gizlilik, yurt bilgileri, Yol Arkadaşı kuralları, akademik takvim açıklamaları.
+- **Değişken veri (RAG ile değil, yapılandırılmış sorgu/araç çağrısı ile):** bugünün ve haftanın menüleri, ders ve vize
+  programı, sınav tarihleri, sayaçlar. "Bugün Üniversite Evi'nde ne var?" sorusu güncel veriden cevaplanır, eski bir
+  metin parçasından değil. Tarih/saat Europe/Istanbul'a göre.
+- Depoda olmayan özel kaynak metinler (kitap PDF'leri vb.) site sahibi verirse eklenir; verilmezse yalnızca açık içerik kullanılır.
+- Yeni içerik eklendiğinde (panelden not/menü) dizin otomatik güncellenir.
+
+### Kalite gereksinimleri
+
+1. **Türkçeye özgü işleme:** Türkçe karakterler ve büyük/küçük harf (İ/ı) doğru; çekim ekleri nedeniyle anahtar kelime
+   aramasında kök/normalizasyon. Parçalama (chunking) başlık ve paragraf sınırlarına saygılı, parça başına kaynak
+   sayfa ve başlık bilgisi saklanır.
+2. **Hibrit erişim:** anlamsal (embedding, çok dilli/Türkçe destekli model) + anahtar kelime (BM25) araması, ardından
+   yeniden sıralama (reranking). Seçimler PR'da gerekçelendirilir ve değerlendirmeyle karşılaştırılır.
+3. **Kaynak gösterme:** her cevap, dayandığı sayfalara tıklanabilir atıf verir. Kaynaklarda olmayan bilgi uydurulmaz;
+   bulunamayan soruya "Bu konuda sitede bilgi bulamadım" denir. Ders konularında yanlış bilgi vermemek, cevap vermekten önemlidir.
+4. **Kapsam dışı ve kötüye kullanım:** kapsam dışı soruları kibarca reddeder; istem enjeksiyonuna (prompt injection)
+   karşı sistem talimatı ile kaynak metin ayrılır, kaynak metindeki talimatlar uygulanmaz.
+5. **Kişisel veri:** yorumlar, kullanıcı adları, e-postalar, ilan sahipleri gibi kişisel veriler dizine **girmez** ve
+   dil modeline gönderilmez. Kayıtlarda kullanıcı kimliği tutulmaz (yalnızca yönetici kullanıyor olsa da).
+6. **Maliyet ve güvenlik sınırı:** günlük istek ve harcama tavanı (sunucu tarafında), aşılınca durur. API anahtarları
+   yalnızca sunucu gizli değişkenlerinde.
+
+### Değerlendirme (araştırma için zorunlu)
+
+- En az 150 soruluk Türkçe **test seti**: ders içeriği, menü/tarih, site kullanımı, kapsam dışı ve cevabı olmayan sorular;
+  her biri için beklenen cevap ve beklenen kaynak. Sorular gerçekçi öğrenci diliyle (yazım hatası, kısaltma dahil).
+  Test seti depoda ayrı bir dosyada, sürümlü.
+- Ölçütler: erişim için recall@k ve MRR; cevap için doğruluk, kaynağa sadakat (faithfulness), atıf doğruluğu,
+  doğru reddetme oranı; ayrıca ortalama yanıt süresi ve soru başına maliyet.
+- Tek komutla çalışan değerlendirme betiği; sonuçları tarihli rapor olarak kaydeder. Farklı yapılandırmalar
+  (yalnız vektör / hibrit / yeniden sıralamalı; farklı parça boyutları; farklı modeller) karşılaştırma tablosuyla raporlanır.
+- Yönetici panelinde: asistanla sohbet ekranı, her cevabın altında kullanılan kaynak parçalar ve skorları,
+  cevaba 👍/👎 ve not ekleme (geri bildirim kaydı), değerlendirme sonuçlarının özet ekranı.
+- İleride öğrencilerle yapılacak kullanıcı çalışması için hazırlık: anket soruları taslağı ve KVKK'ya uygun bilgilendirme/onam
+  metni taslağı (çalışma bu görev kapsamında **başlatılmaz**).
+
+### Belgeleme
+
+`asistan/BELGE.md` (Türkçe): mimari şeması, veri akışı, her teknik seçimin gerekçesi ve alternatifleri, değerlendirme
+yöntemi ve sonuçları, bilinen sınırlılıklar, maliyet tablosu, kurulum ve yeniden dizinleme adımları. Ayrıca her önemli
+kararın tarihli kaydı (karar günlüğü). Site sahibi bu belgeyle sistemi anlatabilmeli ve savunabilmeli.
+
+### Aşamalar (her biri ayrı PR, kod yazmadan önce 1. aşama onaylanır)
+
+1. **Tasarım belgesi:** mimari, model ve vektör deposu seçenekleri (en az iki seçenek, maliyetiyle), Firebase planı
+   gereksinimi, aylık tahmini maliyet, test seti taslağının ilk 30 sorusu.
+2. **Dizinleme:** içerik toplama, temizleme, parçalama, embedding, dizin; otomatik güncelleme.
+3. **Erişim:** hibrit arama + yeniden sıralama, erişim değerlendirmesi (recall@k, MRR) raporu.
+4. **Cevap üretimi:** kaynak gösteren, uydurmayan, değişken veriyi araçla çeken cevap katmanı; güvenlik sınırları.
+5. **Değerlendirme:** tam test seti, değerlendirme betiği, yapılandırma karşılaştırma raporu.
+6. **Yönetici paneli ekranları:** sohbet, kaynak görünümü, geri bildirim, değerlendirme özeti. Arayüz AGENTS.md
+   tasarım çıtasına uyar.
