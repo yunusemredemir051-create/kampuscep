@@ -7,11 +7,10 @@ bölümünü ve ilgili adımı** okur ve yalnızca o adımı yapar.
 Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki adımlar bu dili kullanır.
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
-**Uygulama sırası:** Ek 2 → Ek 6 → Ek 7 (1–2) → Ek 1 → Adım 0–1 → Ek 9 → Adım 2–13 (Ek 7 3. aşama kurallarıyla) →
-Ek 7 (4–6) → Ek 8 → Ek 3 → Ek 5 → Ek 4. Durum ve sıra `ILERLEME.md` dosyasında tutulur; "Sıradaki adımı yap" komutu bu dosyaya göre yürür (AGENTS.md 10. bölüm).
+**Uygulama sırası ve durum:** `ILERLEME.md` ("Sıradaki adımı yap" komutu bu dosyaya göre yürür; AGENTS.md 10. bölüm).
 
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** **Ek 7 (gerçek Android uygulaması deneyimi)** **Ek 8 (özel günler, Ramazan ve mevsimsel temalar)** ve **Ek 9 (Sponsorluk ve Reklam Merkezi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** **Ek 7 (gerçek Android uygulaması deneyimi)** **Ek 8 (özel günler, Ramazan ve mevsimsel temalar)** **Ek 9 (Sponsorluk ve Reklam Merkezi)**, **Ek 10 (site içi reklam alanları)** ve **Ek 11 (arka planlar ve tema atmosferleri)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -633,3 +632,66 @@ notu var. `magaza.html` ve `sponsorlar.js` "İşletmeni burada gör" bağlantıl
 - Anlaşması olmayan işletme sponsor ya da referans olarak gösterilmez; mevcut sponsor (Cadde Katık) yalnızca izin verdiği
   ölçüde referans olarak anılır — PR'da sor.
 - Sitenin logosu ve görselleri değiştirilmez; yeni görsel gerekiyorsa tarifini site sahibine sun.
+
+## Ek 10 — Site içi reklam alanları ve sponsor yerleşimleri
+
+**Site sahibinin isteği kelimesi kelimesine:** `istekler/reklam-alanlari-ve-temalar.md` (10. bölüm). Önce oku.
+Reklam alanları sonradan eklenmiş kutular gibi değil, tasarımın baştan parçası olarak kurulur. Sponsor etkili görünür,
+kullanıcı rahatsız olmaz; **ders çalışma, soru çözme ve okuma asla zorlaşmaz.**
+
+**Bugünkü durum:** `.reklam` kutuları (AdSense alanları) CSS ile gizli; `sponsorlar.js` ve `magaza.html` sponsor
+mağazalarını ve "Sponsorlarımız" bölümünü gösteriyor; Cadde Katık reklamı yayında. AdSense ileride açılacak.
+
+### Aşamalar
+
+1. **Yerleşim planı (kod yok; arayüz Adım 2'den önce):** bütün sayfalar için reklam/sponsor alanlarının yeri, boyutu,
+   mobil ve masaüstü biçimi, sayfa başına en fazla alan sayısı ve gerekçesi. Ana sayfada prestijli **ana sponsor alanı**
+   (logo, kısa tanıtım, yönlendirme düğmesi). Soru çözme ve ders notu okuma ekranlarında yalnızca içerikle yarışmayan,
+   akışı bölmeyen yerler (örn. test sonuç ekranı, ünite sonu). Özel gün sponsorluğu alanı (Ek 8 ile). Sponsorluk
+   seviyeleri (ana, öne çıkan, bölüm, banner, özel gün, kampanya) ile alanların eşleşmesi — Ek 9'daki paketlerle
+   tutarlı. AdSense yerleşimleriyle sponsor alanlarının birbirini ezmemesi ve AdSense politikalarına uyum (yanlışlıkla
+   tıklamaya yol açan yerleşim yok). Site sahibi onaylamadan uygulanmaz.
+2. **Reklam bileşenleri ve veri yapısı:** onaylanan alanlar için ortak, tasarım diliyle uyumlu bileşenler (farklı boyutlar,
+   mobilde kompakt kart, masaüstünde geniş banner); her reklamda açık **"Sponsorlu"** etiketi; reklam yoksa ya da görsel
+   yüklenemezse alan **tamamen gizlenir** (boşluk kalmaz); mobilde ekranı kaplamaz; tembel yükleme. Reklamlar koddan ayrı
+   bir veri dosyasında tanımlanır: sponsor, alan, görsel/logo, başlık, açıklama, bağlantı, başlangıç–bitiş tarihi,
+   seviye. Tarihi geçen reklam kendiliğinden kalkar. Arayüz adımları bu bileşenleri kullanır.
+3. **Yönetim ve ölçüm (Ek 3'ten sonra):** yönetici panelinden reklam ekleme/düzenleme (görsel/logo yükleme, başlık,
+   açıklama, bağlantı, alan, tarih aralığı, sponsor bazında liste). **Gösterim ve tıklama** ölçümü (Google Analytics
+   olayları ve/veya güvenlik kurallarıyla korunan, hız sınırlı toplu sayaçlar — sahte gösterimle şişirilemeyecek yöntem
+   önerilir); sponsor bazında tarih aralıklı **rapor** ekranı ve sponsora gönderilebilir rapor çıktısı.
+
+## Ek 11 — Arka planlar, temalar ve görsel atmosfer (tüm site)
+
+**Site sahibinin isteği kelimesi kelimesine:** `istekler/reklam-alanlari-ve-temalar.md` (11. bölüm). Önce oku.
+Her tema yalnızca renk değil, kendine özgü bir **atmosfer**: arka plan dokusu, görsel detaylar, ışık ve derinlik.
+Klasik, Türk, Fenerbahçe (ve diğer takım temaları), Ramazan birbirinden gerçekten farklı hissettirmeli; hiçbiri
+diğerinden özensiz olmamalı. Arka plan içeriğin önüne geçmez, uzun kullanımda gözü yormaz.
+
+**Bugünkü durum:** `tema.js` — tercih `localStorage "kc-renk"`: klasik, turk, gs, fb, bjk, ts, amed, erzincan, elazig, antep;
+koyu mod; `ana.css`'te tüm temalarda ortak `.isik` radial-gradient arka planı.
+
+### Aşamalar
+
+1. **Merkezi tema sistemi (Adım 0 ile birlikte):** bütün temalar tek bir yapıdan yönetilir: her tema için renk
+   belirteçleri **ve** arka plan katmanları (doku, desen, ışık), durum çubuğu rengi (Ek 7), animasyon yoğunluğu.
+   Yeni tema eklemek tek bir tanım eklemek kadar kolay olmalı. **Öncelik sırası:** anma günleri (10 Kasım, 6 Şubat)
+   her şeyin önündedir → diğer özel gün temaları → kullanıcının elle seçtiği tema → varsayılan. Kullanıcı özel gün
+   temasını kapatabilir (anma günleri hariç; bunu site sahibine sor). Tercih hatırlanır. Tema geçişi yumuşak:
+   arka plan ve bileşenler birlikte değişir, titreme yok, `prefers-reduced-motion`'a uyar, düşük segment telefonda akıcı.
+2. **Tema atmosferleri (Ek 7 4. aşama ile birlikte):**
+   - **Klasik:** çok hafif doku, yumuşak renk geçişleri, derinlik veren ölçülü ışık, kartlarla uyumlu katmanlar.
+   - **Türk:** kırmızı–beyaz uyumu, çok hafif ay-yıldız detayı, zarif ve modern Türk motifleri; her yere bayrak/sembol yok.
+   - **Takım temaları (Fenerbahçe ve diğerleri):** takımın renklerini hissettiren özel dokular, hafif ışık geçişleri;
+     kartlar ve düğmelerle bütünleşik. Her takım için ayrı atmosfer.
+   - Koyu modda her temanın koyu karşılığı.
+3. **Özel gün arka planları:** Ek 8 4. aşamada, istekteki tarife göre (Ramazan geometrik desen ve sıcak ışık; Ramazan
+   Bayramı ferah; Kurban Bayramı sade ve huzurlu; 29 Ekim kırmızı–beyaz; 30 Ağustos güçlü ama dengeli; 23 Nisan canlı;
+   10 Kasım gri tonlu ve ağırbaşlı; 6 Şubat minimal; yılbaşı zarif ışıklar ve kış; her kandil kendine uygun).
+
+### Kurallar
+
+- Arka planlar **KampüsCepte'ye özel** tasarlanır: hazır stok görsel ya da rastgele desen yok. Mümkün olduğunca CSS/SVG
+  ile (hafif, her ekran boyutuna uyar, kırpılma/tekrar sorunu yok); görsel gerekiyorsa tarifini site sahibine sun.
+- Mobilde arka plan görselleri kırpılmaz, kötü tekrarlanmaz, ekranı gereksiz kaplamaz; metin kontrastı her temada WCAG AA.
+- Takım amblemleri ve site sahibinin görselleri değiştirilmez.

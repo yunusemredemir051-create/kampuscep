@@ -73,7 +73,7 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
   Fotoğraf silinmez, yeniden adlandırılmaz, sıkıştırılmaz, kırpılmaz, üzerine filtre uygulanmaz. Görünüm değişebilir
   (boyut, oran, yerleşim) ama dosyaların kendisi ve eşleşmeler aynen kalır. Menü verisi değişince eşleşme bozulmamalı.
 - JavaScript'in kullandığı `id` ve `class` adları. HTML yapısını değiştirmeden önce adı tüm `.js` dosyalarında ara (`grep -rn`).
-- `.reklam` kutuları (AdSense alanları) ve `ads.txt`.
+- `.reklam` kutuları (AdSense alanları) ve `ads.txt` (reklam yerleşimi yalnızca Ek 10 kapsamında değişir).
 - `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml` (`_uygulama/` yalnızca Ek 7 kapsamında değişir).
 - Çalışan hiçbir özellik kaldırılmaz ya da gizlenmez. **Özel gün temaları ve önizleme sistemi** (`?tarih=…`) her değişiklikten sonra çalışır durumda kalmalı.
 - Yapay zekâ asistanı (Ek 5) **yalnızca yönetici panelinde** bulunur. Herkese açık sayfalarda, Android uygulamasında
@@ -106,7 +106,9 @@ hâli değil, ayrı bir ürün gibi tasarlanır (bkz. `istekler/mobil-uygulama.m
 Sayfa sayfa yenileme planı ve her adımın görev tanımı: `ARAYUZ-PLANI.md`.
 
 **Yapma:**
-- Arka planda bulanık renk lekeleri / radial gradient "ışık" efektleri, mor-mavi geçişli gradient düğmeler ve başlıklar.
+- Rastgele, her sitede görülen şablon tipi bulanık renk lekeleri; mor-mavi geçişli gradient düğmeler ve başlıklar.
+  (Arka plan dokusu, ışık ve derinlik **yasak değildir**: her tema için bilinçli tasarlanmış, ölçülü atmosfer Ek 11'in
+  merkezi tema sistemiyle yapılır.)
 - Cam (glassmorphism) efektleri, gereksiz `backdrop-filter`.
 - Her şeye aynı büyük köşe yarıçapı. Her şeyin aynı beyaz kart + gölge olduğu, birbirinin kopyası kart ızgaraları.
 - Emoji ikonlar, ikon kutusu + başlık + iki satır açıklama kalıbının her yerde tekrarı.
