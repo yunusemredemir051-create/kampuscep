@@ -7,8 +7,8 @@ bölümünü ve ilgili adımı** okur ve yalnızca o adımı yapar.
 Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki adımlar bu dili kullanır.
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
-Arayüz adımlarından bağımsız iki ek görev var: **Ek 1 (temiz adresler)** ve **Ek 2 (Üniversite Evi menüsünün otomatik
-çekilmesi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
+Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
+çekilmesi)** ve **Ek 3 (güvenli yönetici paneli)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
 ---
 
@@ -221,3 +221,48 @@ IP'lerini engellemesi.
    dokunma; eşleşmeyen adları kayda ve PR'a liste olarak yaz, site sahibi fotoğrafı sonra ekler.
 7. Menü puanları ve beğeniler (Firestore) menü güncellenince kaybolmamalı; anahtar yapısına dokunma.
 8. Başarısız olursa sessizce geçme: iş akışı kırmızı bitsin ve kayıt `unievi-kayit` dalına yazılsın (mevcut davranış).
+
+## Ek 3 — Güvenli yönetici paneli
+
+**Arka plan:** Sitede daha önce bir yönetici paneli vardı; güvenlik kaygısıyla tamamen kaldırıldı ve moderasyon Firebase
+konsoluna taşındı. Site sahibi şimdi pratik ama **güvenlik açığı yaratmayan** yeni bir panel istiyor.
+Bu görev arayüz adımlarından büyüktür; tek PR'da değil, aşağıdaki aşamalarla yapılır. **Kod yazmadan önce 1. aşamadaki
+tasarım belgesi site sahibine sunulur ve onay beklenir.**
+
+**Panelde yapılabilecekler:**
+- **Not ekleme:** derse PDF/ünite ekleme, not linklerini düzenleme.
+- **Yorum moderasyonu:** yorum silme/gizleme, kullanıcı banlama (Yol Arkadaşı'ndaki süresiz ban dahil).
+- **Menü ekleme:** yurt ve Üniversite Evi menülerini elle girme ve düzeltme.
+- **Görselden menü aktarma:** site sahibi menü görselini (örn. KYK aylık menü fotoğrafı) yükler; yapay zekâ görseldeki
+  tarihleri ve yemekleri okuyup ilgili günlere dağıtılmış bir tablo hazırlar; site sahibi tabloyu ekranda kontrol edip
+  düzeltir ve **"Kaydet"e bastığında** yayına girer. Yapay zekâ çıktısı onaysız asla yayına girmez.
+- Duyuru ekleme/kaldırma.
+
+**Güvenlik kuralları (pazarlık konusu değil):**
+1. Yetki **sunucu tarafında** denetlenir. Yalnızca Google ile giriş yapmış ve yönetici listesindeki hesap
+   (başlangıçta tek hesap: site sahibinin yönetici Google hesabı) yazabilir. Denetim Firestore/Storage güvenlik kurallarında
+   ve sunucu fonksiyonunda yapılır; sayfadaki JavaScript'in "bu kişi yönetici mi" kontrolü yalnızca görünüm içindir.
+   Tercihen Firebase **custom claim** (`admin: true`) ya da UID listesi kullanılır, e-posta metni tek başına yeterli sayılmaz.
+2. Depoya, sayfaya ya da tarayıcıya **hiçbir gizli anahtar** (GitHub token, yapay zekâ API anahtarı, servis hesabı) konmaz.
+   Bunlar yalnızca sunucu tarafındaki gizli ortam değişkenlerinde durur ve site sahibi tarafından girilir.
+3. Panel sayfası gizlilik için `noindex` olur ve sitemap'e eklenmez; ama güvenlik adresin gizli olmasına dayanmaz.
+4. Yüklenen dosyalarda tür ve boyut sınırı (PDF ≤ 25 MB, görsel ≤ 10 MB), App Check zorunlu.
+5. Her yönetici işlemi bir denetim kaydına yazılır (kim, ne zaman, ne değişti) ve geri alınabilir olmalıdır.
+6. Firestore kurallarındaki değişiklikler PR'da ayrı başlık altında, satır satır açıklanır; mevcut kullanıcıların
+   yorum/puan/ilan yetkileri daralmaz ya da genişlemez.
+
+**Aşamalar:**
+1. **Tasarım belgesi (kod yok):** İçeriğin nerede tutulacağı (bugün `veri.js`'de; panelden düzenlenebilmesi için
+   Firestore'a taşınması ve sitenin Firestore'dan okuması, okunamazsa `veri.js` yedeğine düşmesi önerilir), dosyaların
+   nereye yükleneceği, yapay zekâ çağrısının nerede çalışacağı (Firebase Cloud Functions / Cloudflare Worker vb.),
+   hangi yapay zekâ modelinin kullanılacağı ve **aylık tahmini maliyet** (Firebase Blaze planı gerekip gerekmediği dahil).
+   En az iki seçenek, artı/eksileriyle. Site sahibi seçer.
+2. **Yetki ve kurallar:** yönetici yetkisi, güvenlik kuralları, denetim kaydı. Kuralları Firebase Emulator ile test et
+   (yönetici yazabiliyor, normal kullanıcı ve girişsiz kişi yazamıyor) ve test çıktısını PR'a koy.
+3. **İçeriğin Firestore'a taşınması:** menüler, not linkleri, duyurular. Site görünüşü ve adresleri değişmez;
+   `veri.js` yedek olarak kalır. Ek 2'deki otomatik Üniversite Evi çekme işi de buraya yazacak şekilde uyarlanır.
+4. **Panel ekranları:** menü, not, yorum, duyuru. Telefonda tek elle kullanılabilecek kadar pratik: az dokunuş,
+   büyük düğmeler, anlık önizleme. Arayüz `AGENTS.md` tasarım çıtasına uyar.
+5. **Görselden menü aktarma:** görsel yükle → yapay zekâ okur → gün gün düzenlenebilir tablo → kontrol → kaydet.
+   Yemek adları `yemekfoto.js` eşleşmeleriyle aynı biçimde normalize edilir; eşleşmeyen yemekler tabloda işaretlenir.
+   Okunamayan ya da emin olunamayan hücreler boş ve işaretli bırakılır, uydurulmaz.
