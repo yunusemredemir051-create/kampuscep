@@ -7,6 +7,9 @@ bölümünü ve ilgili adımı** okur ve yalnızca o adımı yapar.
 Sıra önemlidir: Adım 0 ve 1 bütün sitenin tasarım dilini kurar, sonraki adımlar bu dili kullanır.
 Bir adım site sahibi tarafından onaylanıp `main`'e birleştirilmeden sonraki adıma geçilmez.
 
+**Uygulama sırası:** Ek 2 → Ek 6 → Ek 7 (1–2) → Ek 1 → Adım 0–1 → Ek 9 → Adım 2–13 (Ek 7 3. aşama kurallarıyla) →
+Ek 7 (4–6) → Ek 8 → Ek 3 → Ek 5 → Ek 4. Her adımın hazır komutu site sahibinin geliştirme rehberinde (Word) yer alır.
+
 Arayüz adımlarından bağımsız ek görevler: **Ek 1 (temiz adresler)**, **Ek 2 (Üniversite Evi menüsünün otomatik
 çekilmesi)** **Ek 3 (güvenli yönetici paneli)** **Ek 4 (altyapı sağlamlığı)** **Ek 5 (yalnızca yöneticiye açık RAG asistanı)** **Ek 6 (kod temizliği ve güvenlik denetimi)** **Ek 7 (gerçek Android uygulaması deneyimi)** **Ek 8 (özel günler, Ramazan ve mevsimsel temalar)** ve **Ek 9 (Sponsorluk ve Reklam Merkezi)**. Bunlar dosyanın sonundadır ve arayüz adımlarından önce ya da arada yapılabilir.
 
