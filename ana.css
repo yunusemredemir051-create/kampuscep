@@ -1048,7 +1048,11 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
   .yan .sekme[data-sayfa="ayarlar"].aktif, .yan .sekme[data-sayfa="ayarlar"]:hover { background: var(--mavi); color: var(--vurgu-yazi); }
   .yan .tema-sekme { margin: 0 0 0 8px; padding: 8px 10px; gap: 8px; font-size: 0; }
   .yan .tema-sekme::before { content: none; }
-  .yan .tema-sekme > svg { display: block; width: 18px; height: 18px; color: var(--ikincil); }
+  .yan .tema-sekme { width: 40px; height: 40px; padding: 0; justify-content: center; border-radius: 50%; background: var(--ikincil-acik, #fff1e6); }
+  .yan .tema-sekme:hover { background: var(--ikincil-acik, #fff1e6); filter: brightness(.96); }
+  .yan .tema-sekme > svg { display: block; width: 19px; height: 19px; color: var(--ikincil); }
+  .yan .tema-sekme > .ts-gunes, html[data-tema="koyu"] .yan .tema-sekme > .ts-ay, .yan .tema-sekme .ts-anahtar { display: none; }
+  html[data-tema="koyu"] .yan .tema-sekme > .ts-gunes { display: block; }
   .uygulama > main { width: 100%; max-width: 1200px; margin: 0 auto; padding: 32px 24px 0; }
   .sekme .uzun { display: inline; } .sekme .kisa { display: none; }
   main > .sayfa > .geri, main > .sayfa > button.geri { display: none; }
