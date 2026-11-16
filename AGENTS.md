@@ -56,8 +56,11 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
 - `firebase-ayar.js`, Firebase/App Check başlatma kodu, Firestore koleksiyon ve alan adları, giriş akışı.
 - `veri.js` içindeki verinin **biçimi** (alan adları, yapı). Görünüm değişir, veri yapısı değişmez.
 - URL'ler ve dosya yolları (yurt sayfaları, `ders.html?d=…`, `/sponsor`, `/reklam`, ünite sayfaları). WhatsApp gruplarında ve Google'da bu linkler var.
-- **Logo, uygulama ikonu, ikonlar, avatarlar ve `gorseller/` içindeki çizimler.** Bunları site sahibi kendisi çiziyor.
-  Yenisini çizme, yerine emoji ya da başka ikon koyma, rengini/biçimini değiştirme.
+- **Logo, uygulama ikonu (`ikonlar/`, `favicon.svg`), avatarlar ve `gorseller/` içindeki çizim/görseller.** Bunları site sahibi
+  kendisi çiziyor. Yenisini çizme, rengini/biçimini değiştirme.
+  - **İstisna:** Arayüzdeki küçük çizgi ikonlar (menü, ayarlar listesi, düğmeler, sekmeler içindeki satır içi `<svg>` ikonlar)
+    yeniden tasarlanabilir. Bunlar tek bir tutarlı set olarak elle yazılmış SVG olur (aynı çizgi kalınlığı, aynı ızgara, `currentColor`).
+    İkon kütüphanesi (Font Awesome vb.) ve emoji kullanılmaz.
 - JavaScript'in kullandığı `id` ve `class` adları. HTML yapısını değiştirmeden önce adı tüm `.js` dosyalarında ara (`grep -rn`).
 - `.reklam` kutuları (AdSense alanları) ve `ads.txt`.
 - `.github/workflows/`, `_uygulama/`, `CNAME`, `robots.txt`, `sitemap.xml`.
@@ -72,9 +75,11 @@ Arayüz işinde aşağıdakiler **değiştirilmez**. Gerekirse PR'da gerekçesiy
 
 ## 6. Tasarım çıtası — "yapay zekâ şablonu gibi durmasın"
 
-Site sahibi iki tasarım turunu "hâlâ yapay zekâ yapmış gibi duruyor" diyerek reddetti.
-Onaylanan yön **derslig.com çizgisi**: net, dolu, eğitim sitesi ciddiyetinde, okunaklı.
+Site sahibi iki tasarım turunu "hâlâ yapay zekâ yapmış gibi duruyor" diyerek reddetti. Hedef: profesyonel bir ürün ekibinin
+elinden çıkmış gibi duran, kendine ait karakteri olan, sayfa düzeni güçlü bir site.
+derslig.com bir referanstır, kopyalanacak bir şablon değil; ondan daha iyi bir düzen önerilebilir.
 Masaüstü ve mobil düzen farklı olabilir; mobil bir uygulama gibi, masaüstü bir web sitesi gibi hissettirmeli.
+Sayfa sayfa yenileme planı ve her adımın görev tanımı: `ARAYUZ-PLANI.md`.
 
 **Yapma:**
 - Arka planda bulanık renk lekeleri / radial gradient "ışık" efektleri, mor-mavi geçişli gradient düğmeler ve başlıklar.
