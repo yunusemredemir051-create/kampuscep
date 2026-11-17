@@ -6,7 +6,7 @@ bu dosyaya göre yürür (kurallar: AGENTS.md 10. bölüm). Site sahibinin istek
 Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı (PR birleştirildi) · `[!]` karar bekliyor
 
 ## 1. Üniversite Evi menüsü (Ek 2)
-- [~] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir
+- [~] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1)
 
 ## 2. Güvenlik ve kod temizliği (Ek 6)
 - [ ] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok)
