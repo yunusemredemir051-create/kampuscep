@@ -2,7 +2,8 @@
 
 Ne yapar:
   1. Sayfayı indirir: önce doğrudan, tanımlıysa UNIEVI_VEKIL_URL'deki aracı üzerinden.
-     Üniversite sitesi yurt dışı IP'lerini engelliyor; bu yüzden betik Türkiye'deki bir makinede çalışmalı (ARAYUZ-PLANI.md Ek 2).
+     Üniversite sitesi yurt dışı IP'lerini engelliyor; bu yüzden betik site sahibinin Türkiye'deki bilgisayarında,
+     GitHub'ın "self-hosted runner" programıyla çalışır (ARAYUZ-PLANI.md Ek 2, ILERLEME.md Kararlar günlüğü).
   2. "Haftalık Menü" bölümündeki her günü okur: yemek adları + kalori, protein, karbonhidrat, yağ.
   3. veri.js'teki iki bloğu günceller:
        uniEviMenuleri  →  "2026-11-17": ["Kuru köfte", "Pirinç pilavı", ...]
@@ -28,7 +29,7 @@ import argparse, html, json, os, re, ssl, sys, tempfile, urllib.request
 from datetime import date, timedelta
 
 URL = "https://unievi.firat.edu.tr/"
-GECICI = tempfile.gettempdir()
+GECICI = os.environ.get("KAYIT_DIZINI") or tempfile.gettempdir()   # iş akışı RUNNER_TEMP verir
 LOG = open(os.path.join(GECICI, "unievi.log"), "w", encoding="utf-8")
 
 

@@ -1,7 +1,10 @@
 # Üniversite Evi haftalık menüsünü unievi.firat.edu.tr'den okuyup veri.js'e yazar (bkz. ARAYUZ-PLANI.md Ek 2).
-# Üniversite sitesi yurt dışından gelen bağlantılara cevap vermiyor (GitHub sunucuları ve Cloudflare dahil, 17 Kasım 2026'da
-# denendi). Bu iş Türkiye'deki bir makinede çalışmalı: karar ILERLEME.md "Kararlar günlüğü"nde. İstenirse depo ayarlarındaki
-# UNIEVI_VEKIL_URL değişkenine Türkiye'deki bir aracı adresi yazılabilir.
+#
+# NEREDE ÇALIŞIR: Üniversite sitesi yurt dışından gelen bağlantılara cevap vermiyor (GitHub sunucuları ve Cloudflare
+# 17 Kasım 2026'da denendi). Bu yüzden iş, site sahibinin Türkiye'deki Windows bilgisayarına kurulu
+# "self-hosted runner" üzerinde çalışır (etiket: turkiye). Bilgisayar kapalıysa iş sırada bekler; bilgisayar
+# açılınca (24 saat içinde) kendiliğinden çalışır. Kurulum ve güvenlik ayarı: PR #1 açıklaması.
+# Bu iş akışı yalnızca zamanlayıcı ve elle çalıştırma ile tetiklenir; pull request ile ASLA tetiklenmemeli.
 name: Üniversite Evi menüsü
 
 on:
@@ -16,35 +19,57 @@ on:
 permissions:
   contents: write
 
-concurrency: unievi
+concurrency: unievi   # aynı anda tek iş; bilgisayar kapalıyken birikenlerden yalnızca en yenisi bekler
 
 jobs:
   guncelle:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Windows, turkiye]
+    timeout-minutes: 15
+    defaults:
+      run:
+        shell: powershell
+    env:
+      KAYIT_DIZINI: ${{ runner.temp }}
+      PYTHONUTF8: "1"
     steps:
       - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - name: Okuyucunun testleri
-        run: python3 -m unittest discover -s .github/scripts/test
+        run: python -m unittest discover -s .github/scripts/test
       - name: Menüyü oku ve veri.js'i güncelle
         env:
           UNIEVI_VEKIL_URL: ${{ vars.UNIEVI_VEKIL_URL }}
           UNIEVI_MOD: ${{ github.event.schedule == '23 5-19/2 * * 6,0,1' && 'haftasonu' || 'gunluk' }}
-        run: python3 .github/scripts/unievi_guncelle.py
+        run: python .github/scripts/unievi_guncelle.py
       - name: Değiştiyse kaydet
         run: |
-          if git diff --quiet veri.js; then echo "Menü değişmemiş."; exit 0; fi
+          git diff --quiet veri.js
+          if ($LASTEXITCODE -eq 0) { "Menü değişmemiş."; exit 0 }
           git config user.name "kampuscepte-bot"
           git config user.email "github-actions@users.noreply.github.com"
           git add veri.js
-          git commit -m "Üniversite Evi menüsü güncellendi (otomatik)"
-          git pull --rebase -q && git push
+          git commit -q -m "Üniversite Evi menüsü güncellendi (otomatik)"
+          git pull -q --rebase
+          git push -q
+          if ($LASTEXITCODE -ne 0) { exit 1 }
       - name: Kaydı "unievi-kayit" dalına koy
         if: always()
         run: |
-          mkdir -p /tmp/kayit && cp -f /tmp/unievi.html /tmp/unievi.log /tmp/kayit/ 2>/dev/null || true
-          cd /tmp/kayit
+          $k = Join-Path $env:RUNNER_TEMP "kayit"
+          if (Test-Path $k) { Remove-Item -Recurse -Force $k }
+          New-Item -ItemType Directory -Path $k | Out-Null
+          foreach ($f in "unievi.html", "unievi.log") {
+            $y = Join-Path $env:RUNNER_TEMP $f
+            if (Test-Path $y) { Copy-Item $y $k }
+          }
+          Set-Location $k
           git init -q -b unievi-kayit
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
-          git add -A && git commit -qm "kayıt ${{ github.run_number }}" || exit 0
-          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" unievi-kayit
+          git add -A
+          git commit -q -m "kayıt ${{ github.run_number }}"
+          if ($LASTEXITCODE -ne 0) { exit 0 }
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" unievi-kayit
+          exit 0
