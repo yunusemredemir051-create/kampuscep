@@ -82,4 +82,4 @@ Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı 
 Verilen kararlar buraya tarihiyle yazılır (örn. "2026-11-20 · Ek 2: Türkiye VPS'i seçildi").
 
 - 2026-11-17 · Ek 2: Neden kanıtlandı (yurt dışından zaman aşımı, Türkiye'den 2,8 sn'de açılıyor; ayrıca site tasarımı değiştiği için eski okuyucu bozuktu). Site sahibi önerilen sırayı seçti: önce ücretsiz Cloudflare Worker aracısı (A) denenecek, olmazsa küçük bir Türkiye VPS'i (B).
-- 2026-11-17 · Ek 2: (A) denendi, çalışmadı. Cloudflare Worker GitHub'dan çağrılınca 502, Türkiye'den çağrılınca bile istek Frankfurt'tan (FRA) çıktığı için 522 verdi. Worker silindi. Karar bekliyor: (B) Türkiye VPS'i + self-hosted runner ya da (C) site sahibinin bilgisayarı.
+- 2026-11-17 · Ek 2: (A) denendi, çalışmadı. Cloudflare Worker GitHub'dan çağrılınca 502, Türkiye'den çağrılınca bile istek Frankfurt'tan (FRA) çıktığı için 522 verdi. Worker artık kullanılmıyor (Cloudflare panelinde kc-unievi olarak duruyor, silinebilir). Karar bekliyor: (B) Türkiye VPS'i + self-hosted runner ya da (C) site sahibinin bilgisayarı.
