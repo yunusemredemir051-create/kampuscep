@@ -6,7 +6,7 @@ bu dosyaya göre yürür (kurallar: AGENTS.md 10. bölüm). Site sahibinin istek
 Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı (PR birleştirildi) · `[!]` karar bekliyor
 
 ## 1. Üniversite Evi menüsü (Ek 2)
-- [~] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1)
+- [!] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1)
 
 ## 2. Güvenlik ve kod temizliği (Ek 6)
 - [ ] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok)
@@ -82,3 +82,4 @@ Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı 
 Verilen kararlar buraya tarihiyle yazılır (örn. "2026-11-20 · Ek 2: Türkiye VPS'i seçildi").
 
 - 2026-11-17 · Ek 2: Neden kanıtlandı (yurt dışından zaman aşımı, Türkiye'den 2,8 sn'de açılıyor; ayrıca site tasarımı değiştiği için eski okuyucu bozuktu). Site sahibi önerilen sırayı seçti: önce ücretsiz Cloudflare Worker aracısı (A) denenecek, olmazsa küçük bir Türkiye VPS'i (B).
+- 2026-11-17 · Ek 2: (A) denendi, çalışmadı. Cloudflare Worker GitHub'dan çağrılınca 502, Türkiye'den çağrılınca bile istek Frankfurt'tan (FRA) çıktığı için 522 verdi. Worker silindi. Karar bekliyor: (B) Türkiye VPS'i + self-hosted runner ya da (C) site sahibinin bilgisayarı.

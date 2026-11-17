@@ -1,8 +1,8 @@
 """Üniversite Evi haftalık menüsünü unievi.firat.edu.tr'den okuyup veri.js'e yazar.
 
 Ne yapar:
-  1. Sayfayı indirir: önce doğrudan, olmazsa Türkiye'den bağlanabilen aracı (UNIEVI_VEKIL_URL, Cloudflare Worker) üzerinden.
-     Üniversite sitesi yurt dışı IP'lerini engelliyor; GitHub Actions sunucuları yurt dışında (bkz. ARAYUZ-PLANI.md Ek 2).
+  1. Sayfayı indirir: önce doğrudan, tanımlıysa UNIEVI_VEKIL_URL'deki aracı üzerinden.
+     Üniversite sitesi yurt dışı IP'lerini engelliyor; bu yüzden betik Türkiye'deki bir makinede çalışmalı (ARAYUZ-PLANI.md Ek 2).
   2. "Haftalık Menü" bölümündeki her günü okur: yemek adları + kalori, protein, karbonhidrat, yağ.
   3. veri.js'teki iki bloğu günceller:
        uniEviMenuleri  →  "2026-11-17": ["Kuru köfte", "Pirinç pilavı", ...]
@@ -21,7 +21,7 @@ Kullanım:
   python3 .github/scripts/unievi_guncelle.py                  # GitHub Actions'taki normal çalışma
   python3 .github/scripts/unievi_guncelle.py --dosya sayfa.html --bugun 2026-11-17 --kuru   # deneme
 Ortam değişkenleri:
-  UNIEVI_VEKIL_URL   Cloudflare Worker adresi (yoksa yalnızca doğrudan denenir)
+  UNIEVI_VEKIL_URL   Türkiye'deki bir aracının adresi (yoksa yalnızca doğrudan denenir)
   UNIEVI_MOD         "haftasonu": o haftanın menüsü zaten tamsa siteye hiç gitmeden çıkar
 """
 import argparse, html, json, os, re, ssl, sys, tempfile, urllib.request
@@ -94,7 +94,7 @@ def indir():
     yollar = [("doğrudan", URL, 20, 1)]
     vekil = os.environ.get("UNIEVI_VEKIL_URL", "").strip()
     if vekil:
-        yollar.append(("aracı (Cloudflare Worker)", vekil, 45, 2))
+        yollar.append(("aracı", vekil, 45, 2))
     else:
         log("Not: UNIEVI_VEKIL_URL tanımlı değil, yalnızca doğrudan bağlantı denenecek.")
     for ad, url, sure, deneme in yollar:
