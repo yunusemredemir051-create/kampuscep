@@ -1,11 +1,16 @@
-# Üniversite Evi haftalık menüsünü unievi.firat.edu.tr'den okuyup veri.js'e yazar.
+# Üniversite Evi haftalık menüsünü unievi.firat.edu.tr'den okuyup veri.js'e yazar (bkz. ARAYUZ-PLANI.md Ek 2).
+# Üniversite sitesi yurt dışından gelen bağlantılara cevap vermiyor; bu yüzden sayfa, depo ayarlarındaki
+# UNIEVI_VEKIL_URL değişkeninde yazan Cloudflare Worker (workers/kc-unievi.js) üzerinden de denenir.
 name: Üniversite Evi menüsü
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 4 * * *"   # her gün 07:17 (TR)
-    - cron: "47 8 * * 1"   # pazartesi 11:47 (TR) — menü geç yayımlanırsa
+    # Menü cumartesi, pazar ya da pazartesi açıklanıyor: bu günlerde 08:23–22:23 (TR) arası 2 saatte bir.
+    # O haftanın menüsü tamamlanınca betik siteye hiç gitmeden çıkar.
+    - cron: "23 5-19/2 * * 6,0,1"
+    # Salı–cuma günde bir kez (07:17 TR): sitede sonradan yapılan düzeltmeleri yakalar.
+    - cron: "17 4 * * 2-5"
 
 permissions:
   contents: write
@@ -17,8 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      - name: Okuyucunun testleri
+        run: python3 -m unittest discover -s .github/scripts/test
       - name: Menüyü oku ve veri.js'i güncelle
-        id: oku
+        env:
+          UNIEVI_VEKIL_URL: ${{ vars.UNIEVI_VEKIL_URL }}
+          UNIEVI_MOD: ${{ github.event.schedule == '23 5-19/2 * * 6,0,1' && 'haftasonu' || 'gunluk' }}
         run: python3 .github/scripts/unievi_guncelle.py
       - name: Değiştiyse kaydet
         run: |
@@ -27,7 +36,7 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           git add veri.js
           git commit -m "Üniversite Evi menüsü güncellendi (otomatik)"
-          git push
+          git pull --rebase -q && git push
       - name: Kaydı "unievi-kayit" dalına koy
         if: always()
         run: |
