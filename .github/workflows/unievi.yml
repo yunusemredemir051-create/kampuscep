@@ -29,7 +29,6 @@ jobs:
       run:
         shell: powershell
     env:
-      KAYIT_DIZINI: ${{ runner.temp }}
       PYTHONUTF8: "1"
     steps:
       - uses: actions/checkout@v5
@@ -40,6 +39,7 @@ jobs:
         run: python -m unittest discover -s .github/scripts/test
       - name: Menüyü oku ve veri.js'i güncelle
         env:
+          KAYIT_DIZINI: ${{ runner.temp }}   # runner bağlamı iş (job) düzeyinde kullanılamaz, adım düzeyinde verilir
           UNIEVI_VEKIL_URL: ${{ vars.UNIEVI_VEKIL_URL }}
           UNIEVI_MOD: ${{ github.event.schedule == '23 5-19/2 * * 6,0,1' && 'haftasonu' || 'gunluk' }}
         run: python .github/scripts/unievi_guncelle.py
