@@ -51,5 +51,5 @@
       "</div></div>" +
     "</div>" +
     '<div class="ka-alt"><span>© ' + yil + " KampüsCepte · Elazığ · Notlar ücretsizdir, para ile satılamaz.</span>" +
-      "<span>" + Y("hakkimizda.html", "Hakkımızda") + Y("gizlilik.html", "Gizlilik ve çerezler") + "</span></div>";
+      "<span>" + Y("hakkimizda.html", "Hakkımızda") + Y("iletisim.html", "İletişim") + Y("gizlilik.html", "Gizlilik ve çerezler") + Y("kullanim-kosullari.html", "Kullanım koşulları") + "</span></div>";
 })();
