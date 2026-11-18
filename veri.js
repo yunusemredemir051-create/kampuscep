@@ -231,7 +231,7 @@ const ybsDersleri = {
     { kod: "YBS311", ad: "Proje Yönetimi", gun: "Pazartesi", saat: "13:15–16:00", hoca: "Doç. Dr. Seda Özer Şanal", yer: "Çevre Derslik 3", link: "" },
     { kod: "YBS309", ad: "Yöneylem Araştırması", gun: "Çarşamba", saat: "09:15–12:00", hoca: "Doç. Dr. Ahmed İhsan Şimşek", yer: "Kimya Amfi 4", link: "" },
     { kod: "YBS307", ad: "Bilişim Hukuku", gun: "Çarşamba", saat: "13:15–16:00", hoca: "Öğr. Gör. Murat Bal", yer: "Kimya Amfi 4", link: "" },
-    { kod: "YBS305", ad: "Veri Tabanı Sistemleri", gun: "Perşembe", saat: "08:15–12:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2", link: "ders.html?d=ybs/3/veri-tabani-sistemleri" },
+    { kod: "YBS305", ad: "Veri Tabanı Sistemleri", gun: "Perşembe", saat: "08:15–12:00", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", yer: "ENF LAB 2" },
     { kod: "YBS303", ad: "Veri Madenciliği", gun: "Perşembe", saat: "13:15–17:00", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", yer: "ENF LAB 2", link: "" }
   ],
   4: [
