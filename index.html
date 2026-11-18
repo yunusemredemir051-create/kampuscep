@@ -224,6 +224,11 @@
             <div class="orta"><b>Ortak dersler</b><small>Tüm bölümler · Türk Dili I–II, İngilizce I–II, İnkılap Tarihi I–II</small></div>
             <span class="rozet acik">Açık</span>
           </button>
+          <button class="satir-kart cam" onclick="secmeliAc()">
+            <span class="ik t">SEÇ</span>
+            <div class="orta"><b>Seçmeli dersler</b><small>Tüm bölümler · Çevre Sorunları</small></div>
+            <span class="rozet acik">Yeni</span>
+          </button>
           <button class="satir-kart cam" onclick="bolumAc()">
             <span class="ik m">YBS</span>
             <div class="orta"><b>Yönetim Bilişim Sistemleri</b><small>1, 2, 3 ve 4. sınıf · ders programı ve notlar</small></div>
@@ -284,6 +289,18 @@
           <a class="satir-kart cam" href="ders.html?d=ortak/inkilap-tarihi-2">
             <span class="ik m">A</span>
             <div class="orta"><b>Atatürk İlkeleri ve İnkılap Tarihi II</b><small>3 çıkmış final · cevaplı</small></div>
+            <span class="rozet acik">Notlar</span>
+          </a>
+        </div>
+      </div>
+
+      <div id="secmeli-gorunum" style="display:none">
+        <button class="geri" onclick="bolumKapat()">‹ Tüm bölümler</button>
+        <div class="ust-bilgi"><div><small>Bütün bölümlerin alabildiği dersler</small><h1>Seçmeli dersler</h1></div></div>
+        <div class="liste">
+          <a class="satir-kart cam" href="ders.html?d=secmeli/cevre-sorunlari">
+            <span class="ik y">Ç</span>
+            <div class="orta"><b>Çevre Sorunları</b><small>5 ünite · vize notları, klasik sorular ve vize provası</small></div>
             <span class="rozet acik">Notlar</span>
           </a>
         </div>
@@ -542,7 +559,7 @@
 </div>
 
 <script src="veri.js?v=35"></script>
-<script src="/ana.js?v=3"></script>
+<script src="/ana.js?v=4"></script>
 <script src="/takvim-izgara.js?v=1"></script>
 <script src="cerez.js?v=2" defer></script>
 <script src="/yemekfoto.js?v=59"></script>

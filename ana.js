@@ -547,8 +547,14 @@ function ortakAc() {
   document.getElementById("ortak-gorunum").style.display = "block";
   window.scrollTo({ top: 0 });
 }
+function secmeliAc() {
+  document.getElementById("bolum-gorunum").style.display = "none";
+  document.getElementById("secmeli-gorunum").style.display = "block";
+  window.scrollTo({ top: 0 });
+}
 function bolumAc() {
   document.getElementById("ortak-gorunum").style.display = "none";
+  document.getElementById("secmeli-gorunum").style.display = "none";
   document.getElementById("bolum-gorunum").style.display = "none";
   document.getElementById("sinif-gorunum").style.display = "block";
   sinifSec(hafizaOku("secilenSinif") || "1");
@@ -558,6 +564,7 @@ function bolumKapat() {
   document.getElementById("bolum-gorunum").style.display = "block";
   document.getElementById("sinif-gorunum").style.display = "none";
   document.getElementById("ortak-gorunum").style.display = "none";
+  document.getElementById("secmeli-gorunum").style.display = "none";
 }
 function sinifSec(s) {
   hafizaYaz("secilenSinif", s);
@@ -586,6 +593,7 @@ function adresiAc() {
   if (h === "admin") return; // Yönetici girişi kontrolü, sekmeyi değiştirme
 
   if (h === "ortak") { sayfaAc("notlar"); ortakAc(); return; }
+  if (h === "secmeli") { sayfaAc("notlar"); secmeliAc(); return; }
   const m = h.match(/^ybs-([1-4])$/);
   if (m) {
     sayfaAc("notlar");

@@ -415,7 +415,7 @@ function listeCiz() {
       <span class="dh-etiket">${ikonOzet}${ders.bolum}${ders.sinif ? " · " + ders.sinif + ". sınıf" : ""}</span>
       <h1>${ders.ad}</h1>
       <p class="dh-yazar">Hazırlayan · <b>${ders.yazarlar}</b></p>
-      ${ders.uniteler.length ? `<div class="dh-istat"${pv + dn ? "" : ' style="grid-template-columns:repeat(2,1fr)"'}><div><b>${ders.uniteler.length}</b>ünite</div><div><b>${toplam}</b>soru</div>${pv + dn ? `<div><b>${pv + dn}</b>sınav</div>` : ""}</div>` : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
+      ${ders.uniteler.length ? (() => { const k = [[ders.uniteler.length, "ünite"], toplam ? [toplam, "soru"] : [ders.uniteler.reduce((a, u) => a + (+u.sayfa || 0), 0), "sayfa not"]]; if (pv + dn) k.push([pv + dn, "sınav"]); return `<div class="dh-istat" style="grid-template-columns:repeat(${k.length},1fr)">${k.map(([n, a]) => `<div><b>${n}</b>${a}</div>`).join("")}</div>`; })() : `<div class="dh-istat"><div><b>${(ders.cikmis || []).length}</b>çıkmış sınav</div></div>`}
       ${cozulen ? `<div class="dh-ilerle"><small><span>Çözülen sorular</span><span>${cozulen} / ${toplam}</span></small><i><b style="width:${Math.round(cozulen / toplam * 100)}%"></b></i></div>` : ""}
     </section>
     ${ders.koc ? kocKart() : ""}
