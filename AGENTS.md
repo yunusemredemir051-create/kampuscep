@@ -50,6 +50,7 @@ akademik takvim, ders/vize programı, Yol Arkadaşı (taksi paylaşımı), spons
 | `ayarlar.js`, `program.js`, `vize.js` | Ayarlar (bölüm/sınıf), ders ve vize programı |
 | `ses.js`, `bildirim.js`, `duyuru.js` | Ses efektleri, bildirimler, duyurular |
 | `ozelgun.js`, `gorseller/ozel/`, `vakitler.json` | Özel gün temaları (`?tarih=YYYY-AA-GG` önizleme, `?tarih=kapat` çıkış), özel gün görselleri, Ramazan sayaçları için namaz vakitleri. Bkz. ARAYUZ-PLANI.md Ek 8 |
+| `.github/scripts/unievi_guncelle.py`, `.github/workflows/unievi.yml` | Üniversite Evi menüsünü otomatik okuma. unievi.firat.edu.tr yurt dışını engellediği için site sahibinin bilgisayarındaki self-hosted runner'da (`runs-on: [self-hosted, Windows, turkiye]`) çalışır. **Başka hiçbir iş akışı self-hosted runner kullanmaz; `pull_request` ile tetiklenen iş akışlarında asla kullanılmaz** (depo herkese açık). Testleri `.github/scripts/test/` |
 | `istekler/` | Site sahibinin isteklerinin kendi yazdığı tam metinleri. İlgili göreve başlamadan önce okunur |
 | `sw.js` | Service worker (önbellek). `SURUM` sabiti var |
 | `firebase/firestore.rules` | Firestore güvenlik kuralları (16 Kasım 2026'da Firebase konsolundaki yayındaki sürümden kopyalandı). Depodaki dosya Firebase'e **otomatik yüklenmez**; değişiklikler site sahibi tarafından konsoldan yayınlanır. Kuralı değiştiren PR, konsola yapıştırılacak tam metni ve neyin değiştiğini açıkça yazar |
