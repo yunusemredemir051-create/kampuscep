@@ -359,6 +359,8 @@ const duz = s => String(s).replace(/<[^>]+>/g, "").replace(/&gt;/g, ">").replace
 const TURLER = [["test", "Çoktan seçmeli", "Test"], ["dy", "Doğru – Yanlış", "D / Y"], ["bosluk", "Boşluk doldurma", "Boşluk"]];
 
 async function yukle() {
+  /* 3. sınıf Veri Tabanı Sistemleri notları 1. sınıf Veri Tabanına Giriş ile aynıydı; notlar yalnızca 1. sınıfta tutuluyor, eski adres oraya gider */
+  if (dersYolu === "ybs/3/veri-tabani-sistemleri") { location.replace("ders.html?d=ybs/1/veri-tabanina-giris" + location.hash); return; }
   if (!/^[a-z0-9\-\/]+$/.test(dersYolu)) { ICERIK.innerHTML = '<div class="cam hata">Ders bulunamadı.</div>'; return; }
   klasor = "notlar/" + dersYolu + "/";
   try {

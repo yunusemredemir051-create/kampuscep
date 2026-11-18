@@ -42,7 +42,7 @@
       { t: "14.11", s: "13:00–14:00", kod: "YBS309", ad: "Yöneylem Araştırması", hoca: "Doç. Dr. Ahmed İhsan Şimşek", link: "" },
       { t: "15.11", s: "11:15–12:00", kod: "YBS301", ad: "Sistem Analizi ve Tasarımı", hoca: "Dr. Öğr. Üyesi Abdullah Şener", link: "" },
       { t: "17.11", s: "16:00–16:45", kod: "YBS307", ad: "Bilişim Hukuku", hoca: "Öğr. Gör. Murat Bal", link: "" },
-      { t: "19.11", s: "17:00–18:00", kod: "YBS305", ad: "Veri Tabanı Sistemleri", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez", link: "ders.html?d=ybs/3/veri-tabani-sistemleri" },
+      { t: "19.11", s: "17:00–18:00", kod: "YBS305", ad: "Veri Tabanı Sistemleri", hoca: "Dr. Öğr. Üyesi Yeşim Ülgen Sönmez" },
       { t: "23.11", s: "18:00–19:00", kod: "YBS303", ad: "Veri Madenciliği", hoca: "Dr. Öğr. Üyesi Yunus Emre Gür", link: "" },
       { t: "26.11", s: "17:00–17:45", kod: "YBS311", ad: "Proje Yönetimi", hoca: "Doç. Dr. Seda Özer Şanal", link: "" }
     ],
