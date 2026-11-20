@@ -143,6 +143,9 @@ svg { flex: none; }
 .ders-ilerle .cubuk { height: 6px; background: color-mix(in srgb,var(--yazi) 8%,transparent); }
 .ders { padding: 20px 18px; }
 .d-p { font-size: 16px; line-height: 1.72; margin: 0 0 16px; }
+.d-formul { margin: 0 0 16px; padding: 12px 15px; border-left: 4px solid var(--mavi); background: var(--mavi-acik); border-radius: 0 var(--r-2) var(--r-2) 0; font-size: 15.5px; line-height: 1.7; font-weight: 600; overflow-x: auto; }
+.d-formul small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--mavi); margin-bottom: 2px; }
+.d-formul sup { font-size: .72em; }
 .d-p code, .d-kontrol code, .soru-s code, .geri code { font-family: var(--mono); font-size: .9em; background: var(--mavi-acik); color: var(--mavi); padding: 2px 6px; border-radius: 6px; }
 .d-h { font-size: 15.5px; margin: 22px 0 10px; letter-spacing: -.2px; }
 .d-hayat { display: flex; gap: 12px; padding: 14px; border-radius: var(--r-3); background: var(--pembe-acik); margin: 0 0 16px; }
@@ -330,21 +333,33 @@ html[data-tema="koyu"] .k-alt-l { background: none; }
 <div class="isik"></div>
 <div class="kap">
   <header class="ust cam">
-    <a class="ust-geri" href="ders.html?d=ybs/1/algoritma" aria-label="Ders notlarına dön"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
+    <a class="ust-geri" id="koc-geri" href="ders.html?d=ybs/1/algoritma" aria-label="Ders notlarına dön"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></a>
     <a class="logo" href="index.html"><img class="logo-ikon" src="/ikonlar/logo-128.png" alt="" width="32" height="32"><span>KampüsCepte<small>Sınav Koçum</small></span></a>
   </header>
   <main id="koc"><div class="k-bos cam"><p>Sınav Koçun hazırlanıyor…</p></div></main>
   <footer class="alt-bilgi">
     <a href="index.html">Ana sayfa</a>
-    <a href="ders.html?d=ybs/1/algoritma">Algoritma notları</a>
+    <a id="koc-notlar" href="ders.html?d=ybs/1/algoritma">Algoritma notları</a>
     <a href="gizlilik.html">Gizlilik</a>
     <span>İlerlemen bu cihazda saklanır</span>
   </footer>
 </div>
-<script src="koc/algoritma-1.js?v=1"></script>
-<script src="koc/algoritma-2.js?v=1"></script>
-<script src="koc/algoritma-3.js?v=1"></script>
-<script src="koc/koc.js?v=4"></script>
+<script>
+/* Sınav Koçum hangi dersin? koc.html?d=<ders yolu>. Parametre yoksa Algoritma (eski bağlantılar çalışmaya devam eder). */
+(function () {
+  var DERSLER = {
+    "ybs/1/algoritma": { ad: "Algoritma", js: ["koc/algoritma-1.js?v=1", "koc/algoritma-2.js?v=1", "koc/algoritma-3.js?v=1"] },
+    "ybs/2/finansal-yonetim": { ad: "Finansal Yönetim", js: ["koc/finansal-1.js?v=1", "koc/finansal-2.js?v=1"] }
+  };
+  var m = location.search.match(/[?&]d=([^&#]+)/), yol = m ? decodeURIComponent(m[1]) : "";
+  if (!DERSLER[yol]) yol = "ybs/1/algoritma";
+  var x = DERSLER[yol], link = "ders.html?d=" + yol;
+  document.title = "Sınav Koçum · " + x.ad + " – KampüsCepte";
+  document.getElementById("koc-geri").href = link;
+  var n = document.getElementById("koc-notlar"); n.href = link; n.textContent = x.ad + " notları";
+  x.js.concat(["koc/koc.js?v=5"]).forEach(function (s) { document.write('<script src="' + s + '"><\/script>'); });
+})();
+</script>
 <script defer src="/geri.js?v=2"></script>
 <script>try{if(localStorage.getItem("kc-yurt")==="ev")document.documentElement.classList.add("yurtsuz")}catch(e){}</script>
 <script src="/altbilgi.js?v=6" defer></script>

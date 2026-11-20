@@ -79,7 +79,7 @@
       .sort(function (a, b) { return S.bec[b].y - S.bec[a].y; });
   }
   var BEC_AD = { "tanim": "Algoritmanın tanımı", "ozellik": "Algoritmanın özellikleri", "girdi-cikti": "Girdi / işlem / çıktı", "terim": "Temel terimler", "siralama": "Adım sırası", "analiz": "Problem analizi", "atama": "Atama (S = S + x)", "iz": "Algoritma izleme", "sozde-kod": "Sözde kod", "karar": "Karar adımı", "takas": "Değer takası", "dongu-adim": "Tekrar adımı", "algoritma-yazma": "Algoritma yazma", "sembol": "Akış şeması sembolleri", "akis-izleme": "Akış şeması izleme", "akis-dongu": "Döngülü akış şeması", "akis-cizme": "Akış şeması çizme", "veri-tipi": "Veri tipleri", "degisken-adi": "Değişken adı kuralları", "buyuk-kucuk": "Büyük-küçük harf duyarlılığı", "tanimlama": "Değişken tanımlama", "bicim": "Biçim belirteçleri", "anahtar-kelime": "Anahtar kelimeler", "mod": "% (mod) operatörü", "tamsayi-bolme": "Tamsayı bölmesi", "oncelik": "İşlem önceliği", "matematik-ceviri": "Matematiği koda çevirme", "kisaltma": "+=, ++ kısaltmaları", "mantiksal": "&&, || operatörleri", "esittir": "= ve == farkı", "iskelet": "Program iskeleti", "kacis": "Kaçış karakterleri (\\n, \\t)", "scanf": "scanf ve &", "gets": "gets / puts", "program-yazma": "Program yazma", "if-temel": "if - else", "else-if": "else if zinciri", "suslu-parantez": "Süslü parantez kapsamı", "noktali-virgul": "if sonrası ;", "if-ic-ice": "İç içe if", "tur-sayisi": "Döngü tur sayısı", "dongu-cikti": "Döngü çıktısı", "carpim": "Çarpım değişkeni", "do-while": "do-while", "sonsuz-dongu": "Sonsuz döngü", "for-yapi": "for yapısı", "ic-ice-tur": "İç içe tur sayısı", "desen": "Desen çıktıları", "ic-ice-sira": "İç içe çalışma sırası", "ic-ice-cikti": "İç içe döngü çıktısı", "indeks": "Dizi indeksi", "dizi-dongu": "Diziyi döngüyle dolaşma", "dizi-sinir": "Dizi sınırı", "en-buyuk": "En büyüğü bulma", "char-dizi": "Karakter dizisi", "faktoriyel": "Faktöriyel", "basamak": "Basamak ayırma", "asal": "Asal sayı (bayrak)", "kalip": "Problem kalıpları" };
-  function becAd(b) { return BEC_AD[b] || b; }
+  function becAd(b) { return (D.becAd && D.becAd[b]) || BEC_AD[b] || b; }
 
   function durum(no) {
     var c = K(no);
@@ -205,6 +205,7 @@
   function blok(b, i) {
     switch (b.t) {
       case "p": return '<p class="d-p">' + b.h + "</p>";
+      case "formul": return '<div class="d-formul">' + (b.baslik ? "<small>" + esc(b.baslik) + "</small>" : "") + b.h + "</div>";
       case "hayat": return '<div class="d-hayat"><span>' + I.ampul + "</span><div><b>" + esc(b.baslik) + "</b><p>" + b.h + "</p></div></div>";
       case "tablo": return (b.baslik ? '<h3 class="d-h">' + esc(b.baslik) + "</h3>" : "") + '<div class="d-tablo"><table><thead><tr>' + b.b.map(function (x) { return "<th>" + esc(x) + "</th>"; }).join("") + "</tr></thead><tbody>" + b.r.map(function (r) { return "<tr>" + r.map(function (x) { return "<td>" + esc(x) + "</td>"; }).join("") + "</tr>"; }).join("") + "</tbody></table></div>";
       case "terim": return '<h3 class="d-h">' + esc(b.baslik) + '</h3><dl class="d-terim">' + b.l.map(function (x) { return "<div><dt>" + esc(x[0]) + "</dt><dd>" + esc(x[1]) + "</dd></div>"; }).join("") + "</dl>";
@@ -236,7 +237,7 @@
       h += '<div class="sira-hedef">' + (secilen.length ? secilen.map(function (j, n) { return '<button class="sira-ogesi dolu" data-geri="' + n + '"><i>' + (n + 1) + "</i>" + esc(q.o[j]) + "</button>"; }).join("") : '<div class="sira-bos">Aşağıdan doğru sırayla dokun</div>') + "</div>" +
         '<div class="sira-havuz">' + dizi.filter(function (j) { return secilen.indexOf(j) < 0; }).map(function (j) { return '<button class="sira-ogesi" data-s="' + j + '">' + esc(q.o[j]) + "</button>"; }).join("") + "</div>";
     }
-    else if (q.tip === "klasik") h += '<label class="k-etiket">Cevabın</label><textarea class="k-girdi mono" data-girdi rows="7" placeholder="Algoritmanı ya da kodunu buraya yaz" autocapitalize="off" spellcheck="false">' + esc(sec || "") + "</textarea>";
+    else if (q.tip === "klasik") h += '<label class="k-etiket">Cevabın</label><textarea class="k-girdi mono" data-girdi rows="7" placeholder="' + esc(D.klasikYer || "Algoritmanı ya da kodunu buraya yaz") + '" autocapitalize="off" spellcheck="false">' + esc(sec || "") + "</textarea>";
     return h + "</div>";
   }
   function norm(s) { return kucuk(String(s).replace(/\r/g, "")).replace(/[ \t]+/g, " ").split("\n").map(function (x) { return x.trim(); }).join("\n").replace(/\n+$/, "").trim(); }
