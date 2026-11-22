@@ -79,6 +79,11 @@ footer a { color: inherit; }
 
 .etiket.yesil{background:rgba(34,160,90,.13);color:#1f8a4c}
 .etiket.mor{background:rgba(139,92,246,.13);color:#7c4ddb}
+.secici{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--kart-2);border-radius:var(--r-hap);padding:4px;margin:12px 0 10px}
+.secici button{border:0;background:transparent;color:var(--soluk);border-radius:var(--r-hap);font:800 13.5px var(--font);padding:11px 2px;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s,box-shadow .2s}
+.secici button.aktif{background:var(--mavi);color:var(--vurgu-yazi);box-shadow:var(--golge-vurgu)}
+@media (max-width:360px){.secici button{font-size:12.5px}}
+.ara-ek:empty{display:none}
 .ara-ek{color:var(--soluk);font-size:12.5px;font-weight:600;margin:8px 0 0}
 /* Yorumlar kapalı: yalnızca yıldız, beğeni ve bakan kişi sayısı */
 .degerlendir .dg-btn.yorum,.degerlendir .dg-panel{display:none!important}
@@ -147,33 +152,18 @@ footer a { color: inherit; }
     <button data-g="1">Yarın</button>
   </div>
 
-  <section class="kart cam" style="--renk:#f59e0b">
-    <div class="kart-ust"><h2>Kahvaltı</h2><span class="etiket turuncu">Sabah</span></div>
-    <ul class="yemekler" id="sabah"></ul>
-    <p class="ara-ek" id="sabah-ek"></p>
-    <div class="degerlendir" id="dg-sabah" data-menu=""></div>
-    <button class="aylik-btn" type="button" data-ac="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
-  </section>
-
   <section class="kart cam">
-    <div class="kart-ust"><h2>Öğle yemeği</h2><span class="etiket mavi">Öğle</span></div>
-    <ul class="yemekler" id="ogle"></ul>
-    <div class="degerlendir" id="dg-ogle" data-menu=""></div>
-    <button class="aylik-btn" type="button" data-ac="1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
-  </section>
-
-  <section class="kart cam">
-    <div class="kart-ust"><h2>Ara öğün</h2><span class="etiket mor">Ara öğün</span></div>
-    <ul class="yemekler" id="ara"></ul>
-    <div class="degerlendir" id="dg-ara" data-menu=""></div>
-    <button class="aylik-btn" type="button" data-ac="2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
-  </section>
-
-  <section class="kart cam">
-    <div class="kart-ust"><h2>Akşam yemeği</h2><span class="etiket yesil">Akşam</span></div>
-    <ul class="yemekler" id="aksam"></ul>
-    <div class="degerlendir" id="dg-aksam" data-menu=""></div>
-    <button class="aylik-btn" type="button" data-ac="3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
+    <div class="kart-ust"><h2>Günün menüsü</h2><span class="etiket mavi">Askerî öğrenci</span></div>
+    <div class="secici" id="secici" role="tablist" aria-label="Öğün seç">
+      <button type="button" data-o="0">Kahvaltı</button>
+      <button type="button" data-o="1">Öğle</button>
+      <button type="button" data-o="2">Ara öğün</button>
+      <button type="button" data-o="3">Akşam</button>
+    </div>
+    <ul class="yemekler" id="liste"></ul>
+    <p class="ara-ek" id="liste-ek"></p>
+    <div class="degerlendir" id="dg" data-menu=""></div>
+    <button class="aylik-btn" type="button" id="aylik-ac"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
   </section>
 
   <footer>Bu sayfa yalnızca bağlantıya sahip olanlara açıktır. Menüde değişiklik olabilir.</footer>
@@ -210,17 +200,19 @@ const menu = d => (d.getFullYear() === YIL && d.getMonth() === AY) ? AY_VERI[d.g
   addEventListener("popstate", e => { if (e.state && e.state.kc === "ana") location.replace(ana); });
 })();
 
+let secGun = 0, secOgun = (() => { const h = new Date().getHours(); return h < 11 ? 0 : h < 15 ? 1 : h < 17 ? 2 : 3; })();
 function goster(ekGun) {
-  const d = ekle(bugun, ekGun), m = menu(d), k = anahtar(d);
-  document.querySelectorAll(".gun-sec button").forEach(b => b.classList.toggle("aktif", +b.dataset.g === ekGun));
+  if (ekGun != null) secGun = ekGun;
+  const d = ekle(bugun, secGun), m = menu(d), k = anahtar(d), o = OGUN[secOgun][0];
+  document.querySelectorAll(".gun-sec button").forEach(b => b.classList.toggle("aktif", +b.dataset.g === secGun));
+  document.querySelectorAll("#secici button").forEach(b => { const on = +b.dataset.o === secOgun; b.classList.toggle("aktif", on); b.setAttribute("aria-selected", on); });
   document.getElementById("tarih").textContent = d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" }) + " menüsü";
-  OGUN.forEach(([o], i) => {
-    document.getElementById(o).innerHTML = m ? m[i].map(y => `<li>${esc(y)}</li>`).join("") : `<li class="bos">Bu günün menüsü henüz eklenmedi.</li>`;
-    /* Yıldız, beğeni ve bakan sayısı her öğün için ayrı tutulur: askeri-<öğün>_<tarih> */
-    document.getElementById("dg-" + o).dataset.menu = m ? `askeri-${o}_${k}` : "";
-  });
-  document.getElementById("sabah-ek").textContent = m ? "Sabah ara öğünü: Mevsim meyvesi" : "";
+  document.getElementById("liste").innerHTML = m ? m[secOgun].map(y => `<li>${esc(y)}</li>`).join("") : `<li class="bos">Bu günün menüsü henüz eklenmedi.</li>`;
+  document.getElementById("liste-ek").textContent = m && secOgun === 0 ? "Sabah ara öğünü: Mevsim meyvesi" : "";
+  /* Yıldız, beğeni ve bakan sayısı her öğün için ayrı tutulur: askeri-<öğün>_<tarih> */
+  document.getElementById("dg").dataset.menu = m ? `askeri-${o}_${k}` : "";
 }
+document.querySelectorAll("#secici button").forEach(b => b.onclick = () => { secOgun = +b.dataset.o; goster(); });
 
 /* Gelecek günler: ana sayfadaki gibi kaydırmalı gün kartları, öğün sekmeli */
 function kitapKur(el, sayfalar, ilk, sekme) {
@@ -271,7 +263,7 @@ function aylikAc(ogun, ilk) {
   document.body.style.overflow = "hidden";
 }
 function aylikKapat() { document.getElementById("aylik-modal").classList.remove("aktif"); document.body.style.overflow = ""; }
-document.querySelectorAll("[data-ac]").forEach(b => b.onclick = () => aylikAc(+b.dataset.ac, 0));
+document.getElementById("aylik-ac").onclick = () => aylikAc(secOgun, 0);
 document.getElementById("aylik-kapat").onclick = aylikKapat;
 document.getElementById("aylik-modal").onclick = e => { if (e.target.id === "aylik-modal") aylikKapat(); };
 addEventListener("keydown", e => { if (e.key === "Escape") aylikKapat(); });
