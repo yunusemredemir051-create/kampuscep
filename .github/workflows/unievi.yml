@@ -62,7 +62,7 @@ jobs:
           git config user.name "kampuscepte-bot"
           git config user.email "github-actions@users.noreply.github.com"
           git add veri.js
-          git commit -q -m "Üniversite Evi menüsü güncellendi (otomatik)"
+          git commit -q -F .github/scripts/unievi-commit-mesaji.txt   # Türkçe mesaj UTF-8 dosyadan (PowerShell 5.1 -m ile bozuyor)
           git pull -q --rebase
           git push -q
           if ($LASTEXITCODE -ne 0) { exit 1 }
