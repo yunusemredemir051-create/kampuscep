@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
+<title>Hesap ve Veri Silme – KampüsCepte</title>
+<meta name="description" content="KampüsCepte uygulamasında hesabını ve verilerini nasıl silebileceğin.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/kc.css?v=5">
+<style>
+  body { margin: 0; background: var(--zemin); color: var(--yazi); font-family: var(--font); line-height: 1.7; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px 18px 60px; }
+  .kart { background: var(--kart); border-radius: var(--r-3); padding: 28px; box-shadow: var(--golge); }
+  a { color: var(--mavi); font-weight: 600; }
+  h1 { font-size: 28px; margin: 8px 0 4px; letter-spacing: -.5px; }
+  h2 { font-size: 18px; margin: 26px 0 6px; }
+  .soluk { color: var(--soluk); font-size: 14px; }
+</style>
+<!-- PWA -->
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/ikonlar/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KampüsCepte">
+<meta name="google-adsense-account" content="ca-pub-5083598455747122">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5083598455747122" crossorigin="anonymous"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EN48D4XWNB"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());(function(){var u=false;try{if(/[?&]kaynak=uygulama/.test(location.search)||window.Capacitor)sessionStorage.setItem("kc-uyg","1");u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}gtag("config","G-EN48D4XWNB",{nereden:u?"uygulama":"web"})})();</script>
+<style>body{padding-top:max(env(safe-area-inset-top,0px),var(--safe-area-inset-top,0px))}.alt-menu,.yan{margin-bottom:max(env(safe-area-inset-bottom,0px),var(--safe-area-inset-bottom,0px))}</style>
+<script src="/tema.js?v=23"></script>
+<script src="/duyuru.js?v=5" defer></script>
+<script defer src="/ozelgun.js?v=13"></script>
+<script>if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("/sw.js",{scope:"/"}).catch(()=>{}));</script>
+<!-- /PWA -->
+</head>
+<body>
+<main>
+  <a href="/">‹ Ana sayfaya dön</a>
+  <div class="kart" style="margin-top:14px">
+    <h1>KampüsCepte – hesap ve veri silme</h1>
+    <p class="soluk">Geliştirici: Demirsoft Studio · Son güncelleme: 22 Kasım 2026</p>
+
+    <p>KampüsCepte'de hesap yalnızca <b>Yol arkadaşı</b> bölümünde ilan vermek veya bir ilana katılmak için, Google ile giriş yapınca oluşur. Bu hesabı ve ona bağlı bilgileri aşağıdaki iki yoldan biriyle sildirebilirsin.</p>
+
+    <h2>1. Uygulamanın veya sitenin içinden (hemen silinir)</h2>
+    <ol>
+      <li>KampüsCepte uygulamasını aç ya da <a href="/yol-arkadasi/">kampuscepte.com.tr/yol-arkadasi</a> adresine git.</li>
+      <li><b>Yol arkadaşı</b> bölümünde Google hesabınla giriş yap.</li>
+      <li>Sayfanın altındaki <b>“Hesabımı ve bilgilerimi sil”</b> bağlantısına dokun ve onayla.</li>
+    </ol>
+
+    <h2>2. E-postayla</h2>
+    <p>Uygulamaya giremiyorsan, Google hesabına bağlı e-posta adresinden <a href="mailto:iletisim@kampuscepte.com.tr?subject=Hesap%20silme%20talebi">iletisim@kampuscepte.com.tr</a> adresine “Hesap silme talebi” konulu bir e-posta gönder. Talebin en geç 30 gün içinde yerine getirilir ve sana bilgi verilir.</p>
+
+    <h2>Neler silinir?</h2>
+    <ul>
+      <li>Verdiğin tüm Yol arkadaşı ilanları</li>
+      <li>İlanlarda ve katıldığın yolculuklarda paylaştığın WhatsApp numaran</li>
+      <li>Adının ilk kısmı ve seçtiğin yurt (kullanıcı kaydın)</li>
+      <li>Google giriş bağlantın (Firebase hesabın)</li>
+    </ul>
+
+    <h2>Neler saklanabilir?</h2>
+    <ul>
+      <li>Sahte ilan nedeniyle verilmiş bir engel varsa, aynı kişinin yeniden sahte ilan vermesini önlemek için engel kaydı (hesap kimliği, engelin süresi ve tarihi) saklanabilir.</li>
+      <li>Yemek menülerine verdiğin oylar isimsizdir ve hesabına bağlı değildir; yalnızca toplam sayılarda yer alır. Yorumlar da hesaba bağlı değildir; kendi yorumlarını yazdığın cihazdan istediğin zaman silebilir ya da silinmesini e-postayla isteyebilirsin.</li>
+      <li>Google Analytics'in topladığı anonim kullanım istatistikleri adına, e-postana veya numarana bağlı değildir; Google'ın saklama kurallarına göre belirli bir süre sonra kendiliğinden silinir.</li>
+    </ul>
+
+    <p>Hesabını silmeden yalnızca bazı bilgilerini sildirmek istersen (ör. bir ilanı veya numaranı), ilanını Yol arkadaşı bölümünden kaldırabilir ya da yukarıdaki e-posta adresine yazabilirsin. Daha fazla bilgi için <a href="/gizlilik.html">Gizlilik ve çerezler</a> sayfasına bakabilirsin.</p>
+  </div>
+</main>
+<script defer src="/geri.js?v=2"></script>
+</body>
+</html>
