@@ -86,7 +86,9 @@ class Yazma(unittest.TestCase):
         h = h[:bas] + h[bas:].replace('<div class="fm-dish">', '<div class="x">', 2).replace("20 Kasım 2026", "23 Kasım 2026")
         r = calistir(self.veri, self.sayfa(h))
         self.assertEqual(r.returncode, 0, r.stderr)
-        self.assertNotIn("2026-11-23", u.menuleri_oku(open(self.veri, encoding="utf-8").read()))
+        # Eksik gün yazılmaz; veri.js'te o gün zaten varsa (ör. elle eklendiyse) olduğu gibi kalır.
+        # (Önceki hâli "2026-11-23 yok" diye bakıyordu; gerçek veri.js'e o gün eklenince yanlışlıkla bozuluyordu.)
+        self.assertEqual(open(self.veri, encoding="utf-8").read(), self.ilk)
 
     def test_haftasonu_tamsa_siteye_gitmez(self):
         r = calistir(self.veri, "/yok/boyle/dosya", ortam={"UNIEVI_MOD": "haftasonu"})
