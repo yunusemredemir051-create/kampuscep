@@ -272,3 +272,23 @@
     var st = document.createElement("style"); st.textContent = "html,body{touch-action:manipulation;-webkit-text-size-adjust:100%}"; document.head.appendChild(st);
   } catch (e) {}
 })();
+
+/* Site güncellenince (yeni service worker devreye girince) açık sayfa bir kez kendini yeniler; eski sürüm ekranda kalmaz.
+   Kullanıcı bir kutuya yazı yazıyorsa yenilemez, sayfa bir dahaki açılışta zaten güncel gelir. */
+(function () {
+  try {
+    if (!("serviceWorker" in navigator)) return;
+    var ilk = !navigator.serviceWorker.controller, yenilendi = false;
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (ilk) { ilk = false; return; }
+      if (yenilendi) return;
+      var a = document.activeElement;
+      if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return;
+      yenilendi = true; location.reload();
+    });
+    /* Sayfa arka plandan geri gelince yeni sürüm var mı diye bak */
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "visible") navigator.serviceWorker.getRegistration().then(function (r) { if (r) r.update(); }).catch(function () {});
+    });
+  } catch (e) {}
+})();

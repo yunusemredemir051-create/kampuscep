@@ -4,7 +4,7 @@
    - Sürüm numaralı (?v=) JS ve CSS: önbellekten anında, arkada yenisi iner. Dosyayı değiştirince ?v= numarasını artır.
    - Sürüm numarasız JS: önce internetten, olmazsa önbellekten.
    - Görseller, PDF'ler ve yazı tipleri: önce önbellekten. */
-const SURUM = "kc-v271";
+const SURUM = "kc-v272";
 const TEMEL = ["./", "index.html", "veri.js", "cerez.js", "tema.js", "favicon.svg", "manifest.webmanifest",
                "ikonlar/ikon-192.png", "ikonlar/ikon-512.png", "kc.css", "ana.css", "takvim-izgara.js", "masaustu.css", "uygulama.css", "yazitipi/nunito-latin.woff2", "yazitipi/nunito-latin-ext.woff2", "kodatolye.js", "vize.js", "dersler.html", "gizlilik.html", "hakkimizda.html", "404.html"];
 const SAYFA_BEKLE = 3000;
@@ -33,8 +33,9 @@ function sakla(r, y, eskileriSil) {
 }
 
 /* İnternetten çek; cevap gelince önbelleğe yazılması işçi kapanmadan tamamlansın diye hemen kayda alınır */
-function ag(e, r, eskileriSil) {
-  const p = fetch(r);
+function ag(e, r, eskileriSil, taze) {
+  /* taze: tarayıcının kendi HTTP önbelleğini atla (GitHub Pages sayfaları 10 dk saklatıyor; yeni sürüm hemen gelsin) */
+  const p = taze ? fetch(r.mode === "navigate" ? new Request(r.url, { cache: "no-cache", credentials: "same-origin", redirect: "follow" }) : new Request(r, { cache: "no-cache" })) : fetch(r);
   e.waitUntil(p.then(y => sakla(r, y, eskileriSil)).catch(() => {}));
   return p;
 }
@@ -49,7 +50,7 @@ self.addEventListener("fetch", e => {
 
   // Sayfalar: önce internet, 3 sn'de gelmezse önbellek (internet cevabı yine de önbelleğe yazılır)
   if (r.mode === "navigate") {
-    const p = ag(e, r);
+    const p = ag(e, r, false, true);
     e.respondWith(new Promise(coz => {
       let bitti = false;
       const bitir = y => { if (!bitti && y) { bitti = true; coz(y); } };
@@ -70,7 +71,7 @@ self.addEventListener("fetch", e => {
 
   // Menü verisi, JSON ve sürüm numarasız JS: her zaman önce internet, olmazsa önbellek
   if (veri || (kod && !u.searchParams.has("v"))) {
-    e.respondWith(ag(e, r).catch(() => yedek(r)));
+    e.respondWith(ag(e, r, false, true).catch(() => yedek(r)));
     return;
   }
 
