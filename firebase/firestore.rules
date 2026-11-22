@@ -1,13 +1,14 @@
 rules_version = '2';
-// KampüsCepte — Firestore güvenlik kuralları (v7 · 22 Kasım 2026: Yol Arkadaşı ilan kimliği ve güncelleme denetimi · v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
+// KampüsCepte — Firestore güvenlik kuralları (v8 · 22 Kasım 2026: Yol Arkadaşı kız/erkek kilidi ve katılma sınırı · v7 · 22 Kasım 2026: Yol Arkadaşı ilan kimliği ve güncelleme denetimi · v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
 service cloud.firestore {
   match /databases/{db}/documents {
 
     function girisli()  { return request.auth != null; }
     // Google hesabıyla giriş (anonim oturum yetmez)
     function googleli() { return request.auth != null && request.auth.token.firebase.sign_in_provider != 'anonymous'; }
+    // Yol Arkadaşı kız/erkek seçimi silinemeyen turKilidi kaydından okunur (Ek 6 / Y-1); profil belgesi yetki vermez
     function benimTurum() {
-      return get(/databases/$(db)/documents/kullanicilar/$(request.auth.uid)).data.tur;
+      return get(/databases/$(db)/documents/turKilidi/$(request.auth.uid)).data.tur;
     }
     function kizYurtlari()   { return ['fethi-sekin', 'harput', 'izzetpasa', 'sare-ana']; }
     function erkekYurtlari() { return ['ahmet-kabakli', 'firat', 'omer-bilginoglu']; }
@@ -43,8 +44,49 @@ service cloud.firestore {
       allow read:   if googleli() && request.auth.uid == uid;
       allow write:  if googleli() && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['yurt', 'tur'])
-        && yurtTuruUyar({ 'yurt': request.resource.data.yurt, 'yurtTur': request.resource.data.tur });
+        && yurtTuruUyar({ 'yurt': request.resource.data.yurt, 'yurtTur': request.resource.data.tur })
+        && request.resource.data.tur == getAfter(/databases/$(db)/documents/turKilidi/$(uid)).data.tur;
       allow delete: if googleli() && request.auth.uid == uid;
+    }
+
+    // Kız/erkek seçimi kilidi (Ek 6 / Y-1): ilk seçim serbest, sonra en fazla 30 günde bir değişir. Silinemez,
+    // böylece profil silinip yeniden açılarak kilit sıfırlanamaz.
+    match /turKilidi/{uid} {
+      allow read: if googleli() && request.auth.uid == uid;
+      allow create: if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['tur', 'zaman'])
+        && request.resource.data.tur in ['kiz', 'erkek']
+        && request.resource.data.zaman == request.time;
+      allow update: if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['tur', 'zaman'])
+        && request.resource.data.tur in ['kiz', 'erkek']
+        && request.resource.data.tur != resource.data.tur
+        && request.resource.data.zaman == request.time
+        && request.time > resource.data.zaman + duration.value(30, 'd');
+      allow delete: if false;
+    }
+
+    // Yol Arkadaşı katılma sınırı (Ek 6 / Y-1): kişi başı 10 saniyede 1, UTC gününe göre günde en çok 5 katılma.
+    // Her katılma bu kayıtla aynı anda yazılır ve kayıt katılınan ilanı (ilan) tutar: bir sınır yazımı tek katılma demektir.
+    // Silinemez (sıfırlanamaz).
+    match /katilimSinir/{uid} {
+      allow read: if googleli() && request.auth.uid == uid;
+      allow create: if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['son', 'adet', 'ilan'])
+        && request.resource.data.son == request.time
+        && request.resource.data.adet == 1
+        && request.resource.data.ilan is string;
+      allow update: if googleli() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['son', 'adet', 'ilan'])
+        && request.resource.data.son == request.time
+        && request.resource.data.ilan is string
+        && request.time > resource.data.son + duration.value(10, 's')
+        && ( (request.time.date() == resource.data.son.date()
+               && request.resource.data.adet == resource.data.adet + 1
+               && request.resource.data.adet <= 5)
+          || (request.time.date() != resource.data.son.date()
+               && request.resource.data.adet == 1) );
+      allow delete: if false;
     }
 
     match /yolculuklar/{id} {
@@ -86,6 +128,8 @@ service cloud.firestore {
           && request.auth.uid != resource.data.sahipUid
           && request.resource.data.katilanlar == resource.data.katilanlar.concat([request.auth.uid])
           && request.resource.data.katilanlar.size() <= resource.data.aranan
+          && getAfter(/databases/$(db)/documents/katilimSinir/$(request.auth.uid)).data.son == request.time
+          && getAfter(/databases/$(db)/documents/katilimSinir/$(request.auth.uid)).data.ilan == id
         || googleli()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
           && request.auth.uid in resource.data.katilanlar

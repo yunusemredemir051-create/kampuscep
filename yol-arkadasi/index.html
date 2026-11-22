@@ -280,7 +280,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithCredential, onAuthStateChanged, signOut, deleteUser
           } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, doc, getDoc, setDoc, addDoc, deleteDoc, updateDoc, collection, query, where, onSnapshot,
-         getDocs, Timestamp, serverTimestamp, arrayUnion } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+         getDocs, Timestamp, serverTimestamp, arrayUnion, writeBatch } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -312,6 +312,12 @@ auth.languageCode = "tr";
 const db = getFirestore(app);
 
 let ben = null, profil = null, ilanlar = [], filtre = "hepsi", dinleyici = null;
+
+/* Kız/erkek seçimi kilidi (Ek 6 / Y-1): turKilidi/{uid} = { tur, zaman }. İlk seçim serbest, sonra 30 günde bir değişir.
+   Yetki kararları (hangi ilanları görüp katılabileceğin) bu kayda göre verilir; kurallar da aynısını denetler. */
+let kilit = null;
+const KILIT_GUN = 30, GUNLUK_KATILMA = 5;
+const kilitAcilis = k => k && k.zaman ? new Date(k.zaman.toMillis() + KILIT_GUN * 864e5) : new Date(0);
 
 /* Veritabanından gelen ilanı sayfaya basmadan önce denetle (Ek 6 / K-1). Kurallar ilk sürümlerde güncellemede bazı
    alanları denetlemiyordu; biçimi bozuk bir ilan hem sayfaya kod sokabilir hem de listeyi herkes için kırabilirdi.
@@ -401,12 +407,23 @@ onAuthStateChanged(auth, async u => {
   if (sikayetDinle) { sikayetDinle(); sikayetDinle = null; sikayetler = {}; }
   banli = false; document.body.classList.remove("banli");
   if (typeof iletisimTemizle === "function") iletisimTemizle(null);
-  if (!u || u.isAnonymous) { ben = null; profil = null; $("sil-satir").classList.add("gizli"); misafirAc(); return; }
+  if (!u || u.isAnonymous) { ben = null; profil = null; kilit = null; $("sil-satir").classList.add("gizli"); misafirAc(); return; }
   goster("yukleniyor");
   try {
     const s = await getDoc(doc(db, "kullanicilar", u.uid));
     profil = s.exists() ? s.data() : null;
   } catch (e) { profil = null; }
+  try {
+    const k = await getDoc(doc(db, "turKilidi", u.uid));
+    kilit = k.exists() ? k.data() : null;
+    // Kilitten önce yurt seçmiş kullanıcı: mevcut seçimi kilide yazılır (bir kez)
+    if (!kilit && profil && (profil.tur === "kiz" || profil.tur === "erkek")) {
+      await setDoc(doc(db, "turKilidi", u.uid), { tur: profil.tur, zaman: serverTimestamp() });
+      kilit = (await getDoc(doc(db, "turKilidi", u.uid))).data();
+    }
+  } catch (e) { console.error(e); kilit = null; }
+  // Profil kilitle uyuşmuyorsa yurt yeniden seçilir
+  if (profil && kilit && profil.tur !== kilit.tur) profil = null;
   if (yeni) { try { banli = (await getDoc(doc(db, "engelliler", u.uid))).exists(); } catch (e) { banli = false; } }
   if (!profil) yurtSecimAc(); else uygulamaAc();
 });
@@ -424,13 +441,25 @@ function yurtSecimAc() {
 $("yurt-kaydet").onclick = async () => {
   const id = $("yurt-select").value;
   if (!id) { hataYaz("yurt-hata", "Lütfen yurdunu seç."); return; }
+  const tur = YURT[id].tur;
+  // Kız/erkek seçimi değişiyorsa 30 gün kuralı (sunucu da denetler)
+  if (kilit && kilit.tur !== tur && Date.now() < kilitAcilis(kilit).getTime()) {
+    const t = kilitAcilis(kilit).toLocaleDateString("tr-TR", { day: "numeric", month: "long" });
+    hataYaz("yurt-hata", `Kız/erkek yurdu seçimini ${KILIT_GUN} günde bir değiştirebilirsin. ${t} tarihinden sonra yeniden dene. Aynı türdeki başka bir yurdu şimdi seçebilirsin.`);
+    return;
+  }
   $("yurt-kaydet").disabled = true;
   try {
-    profil = { yurt: id, tur: YURT[id].tur };
-    await setDoc(doc(db, "kullanicilar", ben.uid), profil);
+    const yeniProfil = { yurt: id, tur };
+    const b = writeBatch(db);
+    if (!kilit || kilit.tur !== tur) b.set(doc(db, "turKilidi", ben.uid), { tur, zaman: serverTimestamp() });
+    b.set(doc(db, "kullanicilar", ben.uid), yeniProfil);
+    await b.commit();
+    if (!kilit || kilit.tur !== tur) kilit = (await getDoc(doc(db, "turKilidi", ben.uid))).data();
+    profil = yeniProfil;
     hafiza.yaz("secilenYurt", id);
     uygulamaAc();
-  } catch (e) { hataYaz("yurt-hata", "Kaydedilemedi, tekrar dene."); }
+  } catch (e) { console.error(e); hataYaz("yurt-hata", "Kaydedilemedi, tekrar dene."); }
   $("yurt-kaydet").disabled = false;
 };
 $("yurt-degistir").onclick = yurtSecimAc;
@@ -671,7 +700,16 @@ $("liste").addEventListener("click", async e => {
     const tel = telSor(); if (!tel) return;
     b.disabled = true;
     try {
-      await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: [...(i.katilanlar || []), ben.uid] });
+      // Katılma sınırı (Ek 6 / Y-1): katılma, sınır kaydıyla aynı anda yazılır; günü UTC'ye göre sayar (kurallar gibi)
+      const sinirRef = doc(db, "katilimSinir", ben.uid);
+      const s = await getDoc(sinirRef), onceki = s.exists() ? s.data() : null;
+      const ayniGun = onceki && onceki.son && onceki.son.toDate().toISOString().slice(0, 10) === new Date().toISOString().slice(0, 10);
+      if (onceki && onceki.son && Date.now() - onceki.son.toMillis() < 10e3) { b.disabled = false; toast("Biraz bekleyip tekrar dene."); return; }
+      if (ayniGun && onceki.adet >= GUNLUK_KATILMA) { b.disabled = false; toast(`Bugün en fazla ${GUNLUK_KATILMA} yolculuğa katılabilirsin. Yarın tekrar dene.`); return; }
+      const toplu = writeBatch(db);
+      toplu.update(doc(db, "yolculuklar", i.id), { katilanlar: [...(i.katilanlar || []), ben.uid] });
+      toplu.set(sinirRef, { son: serverTimestamp(), adet: ayniGun ? onceki.adet + 1 : 1, ilan: i.id });
+      await toplu.commit();
       try { await setDoc(doc(db, "yolculuklar", i.id, "iletisim", ben.uid), { ad: adim().slice(0, 40), tel }); }
       catch (e2) {
         await updateDoc(doc(db, "yolculuklar", i.id), { katilanlar: (i.katilanlar || []).filter(u => u !== ben.uid) }).catch(() => {});
