@@ -77,31 +77,50 @@ footer a { color: inherit; }
 <!-- PWA -->
 
 
-.kart-ust h2 small.saat{font-weight:700}
-.etiket.yesil{background:rgba(63,143,91,.14);color:#3f8f5b}
-.etiket.mor{background:rgba(155,93,229,.13);color:#8a4fd6}
-.ara-ek{color:var(--soluk);font-size:12.5px;font-weight:600;margin:6px 0 0}
-/* ara öğün ve kahvaltıda "Menüyle verilir" (ekmek/su) kutusu gösterilmez */
-.k-ara .yf-ek,.k-sabah .yf-ek{display:none!important}
-.ay-baslik{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin:26px 2px 12px}
-.ay-baslik h2{font-size:20px;letter-spacing:-.4px;margin:0}
-.ay-baslik span{color:var(--soluk);font-weight:600;font-size:13px}
-details.gun{margin-bottom:10px;padding:0;overflow:hidden}
-details.gun summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:14px 16px}
-details.gun summary::-webkit-details-marker{display:none}
-.gun-no{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex:none;background:color-mix(in srgb,var(--yazi) 6%,transparent);font-weight:800;font-size:18px;letter-spacing:-.4px;line-height:1}
-.gun-no small{display:block;font-size:9.5px;font-weight:700;letter-spacing:.3px;color:var(--soluk);text-transform:uppercase;margin-top:2px}
-.gun-ozet{flex:1;min-width:0}
-.gun-ozet b{display:block;font-size:15px}
-.gun-ozet span{display:block;color:var(--soluk);font-size:12.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-.gun-ok{flex:none;color:var(--soluk);transition:transform .2s}
-details[open] .gun-ok{transform:rotate(180deg)}
-details.gun.bu .gun-no{background:var(--mavi);color:#fff}
-details.gun.bu .gun-no small{color:rgba(255,255,255,.8)}
-details.gun.gecti summary{opacity:.62}
-.gun-ic{padding:0 16px 8px;border-top:1px solid var(--cizgi)}
-.gun-ic h3{font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--soluk);margin:16px 0 2px}
-.gun-ic .yemekler li{font-size:14.5px}
+.etiket.yesil{background:rgba(34,160,90,.13);color:#1f8a4c}
+.etiket.mor{background:rgba(139,92,246,.13);color:#7c4ddb}
+.ara-ek{color:var(--soluk);font-size:12.5px;font-weight:600;margin:8px 0 0}
+/* Yorumlar kapalı: yalnızca yıldız, beğeni ve bakan kişi sayısı */
+.degerlendir .dg-btn.yorum,.degerlendir .dg-panel{display:none!important}
+/* Gelecek günler düğmesi ve modal (ana sayfadakiyle aynı) */
+.aylik-btn{width:100%;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;border:1.5px solid var(--mavi);color:var(--mavi);border-radius:var(--r-hap);font:800 15px var(--font);padding:12px 16px;background:var(--kart);transition:background-color .15s,color .15s}
+.aylik-btn:hover{background:var(--mavi);color:var(--vurgu-yazi)}
+.modal-perde{position:fixed;inset:0;z-index:100;background:rgba(15,23,40,.5);display:none;align-items:center;justify-content:center;padding:16px;animation:modalAc .2s ease}
+.modal-perde.aktif{display:flex}
+@keyframes modalAc{from{opacity:0}to{opacity:1}}
+.modal-kutu{background:var(--kart);border:1px solid var(--cam-kenar);border-radius:var(--r-4);box-shadow:var(--golge-ust);width:100%;max-width:600px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;animation:modalYuksel .25s cubic-bezier(.16,1,.3,1)}
+@keyframes modalYuksel{from{opacity:0;transform:translateY(16px) scale(.97)}to{opacity:1;transform:none}}
+.modal-ust{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--cizgi);background:var(--kart);flex:none}
+.modal-ust h3{margin:0;font-size:19px;font-weight:700}
+.modal-ust p{margin:2px 0 0;font-size:12.5px;color:var(--soluk);font-weight:500}
+.modal-kapat{width:36px;height:36px;border-radius:var(--r-2);border:0;background:var(--kart-2);color:var(--yazi);font-size:20px;font-weight:500;cursor:pointer;display:grid;place-items:center}
+.modal-icerik{padding:12px 0 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden;flex:none;height:min(560px,calc(85vh - 92px))}
+.kb-sekme{display:flex;gap:4px;margin:0 20px;padding:3px;border-radius:var(--r-2);background:var(--kart-2)}
+.kb-sekme button{flex:1;border:0;border-radius:7px;padding:9px 4px;font:600 13px var(--font);background:transparent;color:var(--soluk);cursor:pointer;transition:all .2s}
+.kb-sekme button.aktif{background:var(--kart);color:var(--yazi);box-shadow:0 0 0 1px var(--cam-kenar)}
+.kb-ust{display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.kb-say{font-weight:700;font-size:13px;color:var(--soluk)}
+.kb-say b{color:var(--mavi);font-size:16px}
+.kb-ok{width:38px;height:38px;border-radius:var(--r-2);border:1px solid var(--cam-kenar);background:var(--kart);color:var(--yazi);font-size:24px;line-height:1;cursor:pointer}
+.kb-ok:disabled{opacity:.3;cursor:default}
+.kb-iz{display:flex;flex:1;min-height:0;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.kb-iz::-webkit-scrollbar{display:none}
+.kb-sayfa{flex:0 0 100%;min-width:0;scroll-snap-align:center;scroll-snap-stop:always;padding:4px 20px 6px;box-sizing:border-box;display:flex}
+.kb-kart{flex:1;min-width:0;overflow-y:auto;border-radius:var(--r-3);padding:18px 18px 20px;background:var(--kart);border:1px solid var(--cam-kenar)}
+.kb-baslik{display:flex;align-items:center;gap:14px;padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--cizgi)}
+.kb-no{font:700 44px/1 var(--font-b);color:var(--yazi);letter-spacing:-.04em;min-width:52px}
+.kb-tarih{display:flex;flex-direction:column;flex:1;min-width:0}
+.kb-tarih b{font-family:var(--font-b);font-size:17px;font-weight:700;text-transform:capitalize}
+.kb-tarih span{font-size:13px;font-weight:600;color:var(--soluk);text-transform:capitalize}
+.aylik-ogun-bloku{margin-top:16px}
+.aylik-ogun-bloku>b{color:var(--soluk);font-size:12.5px;font-weight:600;display:block;margin-bottom:6px}
+.aylik-yemek{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--cizgi);font-weight:600;font-size:14.5px;line-height:1.3}
+.aylik-yemek:first-of-type{border-top:0}
+.aylik-nokta{flex:none;width:8px;height:8px;margin:0 6px 0 2px;border-radius:2px;background:var(--renk,#f59e0b)}
+.aylik-not{color:var(--soluk);font-size:12.5px;font-weight:600;margin-top:8px}
+.kb-noktalar{display:flex;justify-content:center;gap:6px;flex-wrap:wrap;padding:0 20px;max-height:40px;overflow:hidden}
+.kb-noktalar i{width:6px;height:6px;border-radius:2px;background:var(--cizgi);cursor:pointer;transition:all .2s}
+.kb-noktalar i.aktif{width:18px;background:var(--mavi)}
 
 </style>
 <link rel="apple-touch-icon" href="/ikonlar/apple-touch-icon.png">
@@ -128,47 +147,58 @@ details.gun.gecti summary{opacity:.62}
     <button data-g="1">Yarın</button>
   </div>
 
-  <div id="bugun-kartlar">
-    <section class="kart cam k-sabah">
-      <div class="kart-ust"><h2>Kahvaltı</h2><span class="etiket turuncu">Sabah</span></div>
-      <ul class="yemekler" id="b-sabah"></ul>
-      <p class="ara-ek" id="b-sabah-ek"></p>
-      <div class="degerlendir" id="dg-b-sabah" data-menu=""></div>
-    </section>
-    <section class="kart cam k-ogle">
-      <div class="kart-ust"><h2>Öğle yemeği</h2><span class="etiket mavi">Öğle</span></div>
-      <ul class="yemekler" id="b-ogle"></ul>
-      <div class="degerlendir" id="dg-b-ogle" data-menu=""></div>
-    </section>
-    <section class="kart cam k-ara">
-      <div class="kart-ust"><h2>Ara öğün</h2><span class="etiket mor">Ara öğün</span></div>
-      <ul class="yemekler" id="b-ara"></ul>
-      <div class="degerlendir" id="dg-b-ara" data-menu=""></div>
-    </section>
-    <section class="kart cam k-aksam">
-      <div class="kart-ust"><h2>Akşam yemeği</h2><span class="etiket yesil">Akşam</span></div>
-      <ul class="yemekler" id="b-aksam"></ul>
-      <div class="degerlendir" id="dg-b-aksam" data-menu=""></div>
-    </section>
-  </div>
+  <section class="kart cam" style="--renk:#f59e0b">
+    <div class="kart-ust"><h2>Kahvaltı</h2><span class="etiket turuncu">Sabah</span></div>
+    <ul class="yemekler" id="sabah"></ul>
+    <p class="ara-ek" id="sabah-ek"></p>
+    <div class="degerlendir" id="dg-sabah" data-menu=""></div>
+    <button class="aylik-btn" type="button" data-ac="0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
+  </section>
 
-  <div class="ay-baslik"><h2>Kasım ayı listesi</h2><span>30 gün</span></div>
-  <div id="ay"></div>
+  <section class="kart cam">
+    <div class="kart-ust"><h2>Öğle yemeği</h2><span class="etiket mavi">Öğle</span></div>
+    <ul class="yemekler" id="ogle"></ul>
+    <div class="degerlendir" id="dg-ogle" data-menu=""></div>
+    <button class="aylik-btn" type="button" data-ac="1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
+  </section>
+
+  <section class="kart cam">
+    <div class="kart-ust"><h2>Ara öğün</h2><span class="etiket mor">Ara öğün</span></div>
+    <ul class="yemekler" id="ara"></ul>
+    <div class="degerlendir" id="dg-ara" data-menu=""></div>
+    <button class="aylik-btn" type="button" data-ac="2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
+  </section>
+
+  <section class="kart cam">
+    <div class="kart-ust"><h2>Akşam yemeği</h2><span class="etiket yesil">Akşam</span></div>
+    <ul class="yemekler" id="aksam"></ul>
+    <div class="degerlendir" id="dg-aksam" data-menu=""></div>
+    <button class="aylik-btn" type="button" data-ac="3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Gelecek günlerin menüsünü gör</button>
+  </section>
 
   <footer>Bu sayfa yalnızca bağlantıya sahip olanlara açıktır. Menüde değişiklik olabilir.</footer>
 </main>
 
+<div class="modal-perde" id="aylik-modal">
+  <div class="modal-kutu" role="dialog" aria-modal="true" aria-labelledby="aylik-baslik">
+    <div class="modal-ust">
+      <div><h3 id="aylik-baslik">Gelecek Günlerin Menüsü</h3><p>Sayfaları kaydırarak günleri gez</p></div>
+      <button class="modal-kapat" type="button" id="aylik-kapat" aria-label="Kapat">×</button>
+    </div>
+    <div class="modal-icerik" id="aylik-icerik"></div>
+  </div>
+</div>
+
 <script>
 const AY_VERI = [[["Çay","Kaşar peyniri","Sürülebilir taze peynir","Poşet fındık ezmesi","Mercimek çorbası","Haşlanmış yumurta"],["Şehriye çorbası","Pilavüstü et kavurma","Yoğurtlu karnabahar kızartma","Gazlı alkolsüz içecek","Mevsim salata"],["Gofret","Poşet süt"],["Erişteli yeşil mercimek çorbası","Hasanpaşa köfte","Salçalı spagetti","Poşet ayran"]],[["Çay","Beyaz peynir","Siyah zeytin","Poşet fındık ezmesi","Elma dilimli patates","Sahanda yumurta"],["Mercimek çorbası","Patates kızartmalı kadınbudu köfte","Peynirli erişte","Havuç tarator"],["Karışık çerez"],["Yüksük çorbası","Etli nohut","Şehriyeli pirinç pilavı","Kase yoğurt","Turşu hıyar"]],[["Çay","Kaşar peyniri","Kokteyl zeytin","Poşet reçel","Sosisli yumurta","Simit"],["Yayla çorbası","Püreli kebap","Bulgur pilavı","Kıvırcık salatası","Poşet ayran"],["Kruvasan","Limonata"],["Çerkez çorba","Piliç topkapı","Soslu kış kızartma","Poşet ayran","Tulumba tatlısı"]],[["Çay","Beyaz peynir","Poşet pastörize tereyağ","Poşet bal","Haşlanmış yumurta","Patatesli börek"],["Ezogelin çorbası","Pilavüstü et kavurma","Yoğurtlu karnabahar kızartma","Supangle"],["Hazır kek (meyve dolgulu)","Doğal maden suyu"],["Şehriye çorbası","Garnitürlü fırında tavuk","Salçalı spagetti","Pembe sultan","Mevsim meyvesi"]],[["Çay","Dil peyniri","Yeşil zeytin","Poşet reçel","Kalem böreği","Sahanda yumurta"],["Tarhana çorbası","Salçalı köfte","Peynirli makarna","Profiterol","Kıvırcık salatası"],["Tam buğday unlu bisküvi","Poşet meyve suyu"],["Erzincan çorba","Abant kavurma","Nohutlu pirinç pilavı","Poşet ayran"]],[["Çay","Beyaz peynir","Siyah zeytin","Poşet tahin pekmez karışımı","Salam kızartması","Patatesli yumurta"],["Mercimek çorbası","Tavuklu çökertme kebabı","Salçalı makarna","Havuç tarator"],["Kuru incir","Ceviz içi"],["Yoğurt çorbası","Terbiyeli köfte","Pirinç pilavı","Mevsim salata","Kazandibi"]],[["Çay","Kaşar peyniri","Kokteyl zeytin","Poşet reçel","Haşlanmış yumurta","Poğaça"],["Kremalı brokoli çorbası","Etsiz kuru fasulye","Bulgur pilavı","Kase yoğurt","Turşu hıyar"],["Hazır kek (çikolatalı)","Poşet süt"],["Ezogelin çorbası","Elbasan tava","Z.Y. barbunya pilaki","Şamsa tatlısı","Poşet ayran"]],[["Çay","Beyaz peynir","Kokteyl zeytin","Poşet pastörize tereyağ","Poşet bal","Salçalı sosis tava","Omlet"],["Mercimek çorbası","Çökertme kebabı","Şehriyeli pirinç pilavı","Mevsim salata","Aşure"],["Kakao kremalı dolgulu bisküvi","Limonata"],["Şehriye çorbası","Kıymalı karnabahar","Rulo börek","Ayva komposto"]],[["Çay","Poşet süt","Dil peyniri","Siyah zeytin","Poşet reçel","Sucuklu yumurta","Elma dilimli patates"],["Düğün çorbası","Patates kızartmalı kadınbudu köfte","Salçalı spagetti","Poşet ayran","Kıvırcık salatası"],["Kruvasan","Poşet meyve suyu"],["Harbiyeli çorbası","Fırında patates oturtma","Pirinç pilavı","Tulumba tatlısı"]],[["Çay","Beyaz peynir","Kokteyl zeytin","Poşet pastörize tereyağ","Poşet bal","Haşlanmış yumurta","Rulo pizza börek"],["Yayla çorbası","Etli nohut","Bulgur pilavı","Turşu hıyar","Profiterol"],["Hazır kek (meyve dolgulu)","Pekmez sucuğu"],["Yüksük çorbası","Püreli rosto","Z.Y. pırasa","Mevsim salata","Doğal maden suyu"]],[["Çay","Kaşar peyniri","Yeşil zeytin","Poşet fındık ezmesi","Salam jülyen","Omlet"],["Şehriye çorbası","Kaşarlı köfte","Peynirli erişte","Gazlı alkolsüz içecek","Mevsim salata"],["Sütlü kremalı yulaflı bisküvi","Poşet meyve suyu"],["Mercimek çorbası","Orman kebabı","Şehriyeli pirinç pilavı","Poşet ayran","Vezir parmağı"]],[["Çay","Beyaz peynir","Kokteyl zeytin","Poşet reçel","Haşlanmış yumurta","Simit"],["Ezogelin çorbası","Çökertme kebabı","Bulgur pilavı","Kıvırcık salatası","Poşet ayran"],["Hazır kek (meyve dolgulu)","Limonata"],["Tavuksuyu çorba","Tavuk külbastı","Salçalı makarna","Kase yoğurt","Mevsim meyvesi"]],[["Çay","Poşet süt","Dil peyniri","Poşet pastörize tereyağ","Poşet bal","Sucuklu yumurta","Elma dilimli patates"],["Mercimek çorbası","Mezgit fileto","Kuru fasulye piyazı","Revani"],["Karışık çerez"],["Şehriye çorbası","Tavuk pirzola (garnitürlü)","Nohutlu pirinç pilavı","Limonata"]],[["Çay","Beyaz peynir","Siyah zeytin","Poşet reçel","Patatesli börek","Haşlanmış yumurta"],["Erişteli yeşil mercimek çorbası","Salçalı köfte","Fırın makarna","Limonata","Mevsim salata"],["Çikolatalı kremalı sandviç bisküvi","Poşet meyve suyu"],["Köylü çorbası","Abant kavurma","Şehriyeli pirinç pilavı","Havuç tarator"]],[["Çay","Kaşar peyniri","Yeşil zeytin","Poşet fındık ezmesi","Omlet","Kalem böreği"],["Düğün çorbası","Etsiz kuru fasulye","Bulgur pilavı","Turşu karışık","Kase yoğurt"],["Kruvasan","Poşet süt"],["Yüksük çorbası","Hasanpaşa köfte","Salçalı spagetti","Poşet ayran","Tulumba tatlısı"]],[["Çay","Tulum peyniri","Kokteyl zeytin","Poşet tahin pekmez karışımı","Poğaça","Haşlanmış yumurta"],["Mercimek çorbası","Elbasan tava","Z.Y. barbunya pilaki","Şamsa tatlısı","Poşet ayran"],["Hazır kek","Doğal maden suyu"],["Yayla çorbası","Patates kızartmalı kadınbudu köfte","Salçalı makarna","Pembe sultan"]],[["Çay","Kaşar peyniri","Kokteyl zeytin","Sürülebilir taze peynir","Haşlanmış yumurta","Rulo pizza börek"],["Erzincan çorba","Kağıt kebabı","Pirinç pilavı","Haydari","Kıvırcık salatası"],["Tam buğday unlu bisküvi","Limonata"],["Ezogelin çorbası","Piliç topkapı","Soslu kış kızartma","Fırın sütlaç"]],[["Çay","Beyaz peynir","Siyah zeytin","Poşet fındık ezmesi","Elma dilimli patates","Haşlanmış yumurta"],["Tarhana çorbası","Püreli kebap","Yoğurtlu karnabahar kızartma","Profiterol","Doğal maden suyu"],["Karışık çerez"],["Mercimek çorbası","Tavuk kavurma","Peynirli erişte","Poşet ayran","Kıvırcık salatası"]],[["Çay","Dil peyniri","Yeşil zeytin","Poşet reçel","Hazır rulo börek","Patatesli yumurta"],["Şehriye çorbası","Patatesli fırın tavuk","Salçalı makarna","Mevsim salata"],["Kuru kayısı","Ceviz içi"],["Düğün çorbası","Etli nohut","Şehriyeli pirinç pilavı","Havuç tarator","Turşu karışık"]],[["Çay","Beyaz peynir","Poşet pastörize tereyağ","Poşet bal","Sucuklu yumurta","Milföy börek"],["Kremalı brokoli çorbası","Terbiyeli köfte","Pirinç pilavı","Kıvırcık salatası","Meyveli bar"],["Kakao kremalı dolgulu bisküvi","Doğal maden suyu"],["Yoğurt çorbası","Çoban kavurma","Nohutlu bulgur pilavı","Poşet ayran","Sütlü irmik tatlısı"]],[["Çay","Kaşar peyniri","Kokteyl zeytin","Poşet fındık ezmesi","Simit","Haşlanmış yumurta"],["Yüksük çorbası","Pilavüstü et kavurma","Brokoli ekşileme","Gazlı alkolsüz içecek"],["Kruvasan","Poşet meyve suyu"],["Mercimek çorbası","Mantı makarna","Soslu kış kızartma","Poşet ayran","Tulumba tatlısı"]],[["Çay","Beyaz peynir","Siyah zeytin","Poşet tahin pekmez karışımı","Sosis kızartma","Omlet"],["Yayla çorbası","Etli kuru fasulye","Bulgur pilavı","Turşu karışık","Kase yoğurt"],["Hazır kek (çikolatalı)","Poşet süt"],["Tarhana çorbası","Çökertme kebabı","Şehriyeli pirinç pilavı","Supangle","Kıvırcık salatası"]],[["Çay","Poşet süt","Dil peyniri","Poşet pastörize tereyağ","Poşet bal","Rulo pizza börek","Haşlanmış yumurta"],["Mercimek çorbası","Abant kavurma","Pirinç pilavı","Revani","Mevsim salata"],["Karışık çerez"],["Şehriye çorbası","Salçalı karnabahar","Patatesli börek","Vişne komposto","Makarna salatası"]],[["Çay","Beyaz peynir","Yeşil zeytin","Poşet reçel","Simit","Haşlanmış yumurta"],["Tavuksuyu çorba","Püreli dalyan köfte","Z.Y. barbunya pilaki","Şamsa tatlısı"],["Kakaolu ve muzlu kremalı bisküvi","Limonata"],["Köylü çorbası","Tavuk pirzola (garnitürlü)","Salçalı makarna","Mevsim salata","Poşet ayran"]],[["Çay","Kaşar peyniri","Kokteyl zeytin","Poşet fındık ezmesi","Omlet","Kalem böreği"],["Harbiyeli çorbası","Patates kızartmalı kadınbudu köfte","Fırın makarna","İncirli keşkül","Kıvırcık salatası"],["Cezerye","Doğal maden suyu"],["Erişteli yeşil mercimek çorbası","Kağıt kebabı","Nohutlu pirinç pilavı","Poşet ayran"]],[["Çay","Beyaz peynir","Siyah zeytin","Poşet pastörize tereyağ","Poşet bal","Patatesli yumurta"],["Mercimek çorbası","Etli kuru fasulye","İç pilav","Poşet ayran","Turşu karışık"],["Kruvasan","Poşet süt"],["Ezogelin çorbası","Tavuk külbastı","Salçalı spagetti","Havuç tarator"]],[["Çay","Dil peyniri","Poşet fındık ezmesi","Sürülebilir taze peynir","Poğaça","Haşlanmış yumurta"],["Yayla çorbası","Hasanpaşa köfte","Peynirli erişte","Mevsim salata"],["Çikolatalı kremalı sandviç bisküvi","Doğal maden suyu"],["Çerkez çorba","Abant kavurma","Şehriyeli pirinç pilavı","Supangle","Doğal maden suyu"]],[["Çay","Poşet süt","Beyaz peynir","Yeşil zeytin","Poşet reçel","Omlet","Rulo pizza börek"],["Tarhana çorbası","Pilavüstü et kavurma","Yoğurtlu karnabahar kızartma","Gazlı alkolsüz içecek"],["Hazır kek (meyve dolgulu)","Poşet meyve suyu"],["Düğün çorbası","Pilavüstü et kavurma","Z.Y. pırasa","Lokma tatlısı"]],[["Çay","Kaşar peyniri","Siyah zeytin","Poşet fındık ezmesi","Haşlanmış yumurta","Mercimek çorbası"],["Mercimek çorbası","Elbasan tava","Z.Y. barbunya pilaki","Poşet ayran","Şamsa tatlısı"],["Kruvasan","Poşet süt"],["Erzincan çorba","Kaşarlı köfte","Salçalı spagetti","Karnabahar salatası","Limonata"]],[["Çay","Beyaz peynir","Kokteyl zeytin","Poşet reçel","Sucuklu yumurta","Simit"],["Kremalı brokoli çorbası","Salçalı köfte","Peynirli erişte","Mevsim salata","Aşure"],["Karışık çerez"],["Ezogelin çorbası","Etli kuru fasulye","Nohutlu pirinç pilavı","Poşet ayran"]]];
 const YIL = 2026, AY = 10; /* Kasım */
-const GUNLER = ["Pazar","Pazartesi","Salı","Çarşamba","Perşembe","Cuma","Cumartesi"];
-const OGUNLER = [["sabah","Kahvaltı"],["ogle","Öğle yemeği"],["ara","Ara öğün"],["aksam","Akşam yemeği"]];
-const KIM = { sabah: "sabah", ogle: "ogle", ara: "araogun", aksam: "aksamyemegi" }; /* fotoğraf eşleştirmesi için öğün kimliği (KYK fiyatları gösterilmez) */
+const OGUN = [["sabah", "Kahvaltı"], ["ogle", "Öğle"], ["ara", "Ara öğün"], ["aksam", "Akşam"]];
+const OGUN_TAM = ["Kahvaltı", "Öğle yemeği", "Ara öğün", "Akşam yemeği"];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const bugun = new Date(); bugun.setHours(0, 0, 0, 0);
+const ekle = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x; };
 const anahtar = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
 const menu = d => (d.getFullYear() === YIL && d.getMonth() === AY) ? AY_VERI[d.getDate() - 1] || null : null;
-const lis = l => l.map(y => `<li>${esc(y)}</li>`).join("");
 
 (function () {
   let disaridan = true;
@@ -181,36 +211,78 @@ const lis = l => l.map(y => `<li>${esc(y)}</li>`).join("");
 })();
 
 function goster(ekGun) {
-  const d = new Date(bugun); d.setDate(d.getDate() + ekGun);
-  const m = menu(d), k = anahtar(d);
+  const d = ekle(bugun, ekGun), m = menu(d), k = anahtar(d);
   document.querySelectorAll(".gun-sec button").forEach(b => b.classList.toggle("aktif", +b.dataset.g === ekGun));
   document.getElementById("tarih").textContent = d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", weekday: "long" }) + " menüsü";
-  OGUNLER.forEach(([o], i) => {
-    const ul = document.getElementById("b-" + o);
-    ul.innerHTML = m ? lis(m[i]) : `<li class="bos">Bu günün menüsü henüz eklenmedi.</li>`;
-    document.getElementById("dg-b-" + o).dataset.menu = m ? `askeri_${k}_${KIM[o]}` : "";
+  OGUN.forEach(([o], i) => {
+    document.getElementById(o).innerHTML = m ? m[i].map(y => `<li>${esc(y)}</li>`).join("") : `<li class="bos">Bu günün menüsü henüz eklenmedi.</li>`;
+    /* Yıldız, beğeni ve bakan sayısı her öğün için ayrı tutulur: askeri-<öğün>_<tarih> */
+    document.getElementById("dg-" + o).dataset.menu = m ? `askeri-${o}_${k}` : "";
   });
-  document.getElementById("b-sabah-ek").textContent = m ? "Sabah ara öğünü: Mevsim meyvesi" : "";
+  document.getElementById("sabah-ek").textContent = m ? "Sabah ara öğünü: Mevsim meyvesi" : "";
 }
 
-/* Tüm ay: her gün açılır kart */
-(function () {
-  const ok = '<svg class="gun-ok" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
-  document.getElementById("ay").innerHTML = AY_VERI.map((g, i) => {
-    const d = new Date(YIL, AY, i + 1), k = anahtar(d);
-    const bu = +d === +bugun, gecti = d < bugun;
-    const ozet = [g[1][1], g[3][1]].filter(Boolean).join(" · ");
-    const ic = OGUNLER.map(([o, ad], j) => `<div class="k-${o}"><h3>${ad}</h3><ul class="yemekler">${lis(g[j])}</ul>${o === "sabah" ? '<p class="ara-ek">Sabah ara öğünü: Mevsim meyvesi</p>' : ""}<div class="degerlendir" data-menu="askeri_${k}_${KIM[o]}"></div></div>`).join("");
-    return `<details class="gun cam${bu ? " bu" : ""}${gecti ? " gecti" : ""}"${bu ? " open" : ""} id="g${i + 1}">
-      <summary><span class="gun-no">${i + 1}<small>${["Paz","Pzt","Sal","Çar","Per","Cum","Cmt"][d.getDay()]}</small></span><span class="gun-ozet"><b>${i + 1} Kasım ${GUNLER[d.getDay()]}${bu ? " · Bugün" : ""}</b><span>${esc(ozet)}</span></span>${ok}</summary>
-      <div class="gun-ic">${ic}</div></details>`;
-  }).join("");
-})();
+/* Gelecek günler: ana sayfadaki gibi kaydırmalı gün kartları, öğün sekmeli */
+function kitapKur(el, sayfalar, ilk, sekme) {
+  const n = sayfalar.length;
+  el.innerHTML = `<div class="kb-sekme">${OGUN.map(([o, ad], i) => `<button type="button" data-k="${i}" class="${i === sekme ? "aktif" : ""}">${ad}</button>`).join("")}</div>
+    <div class="kb-ust"><button type="button" class="kb-ok" data-y="-1" aria-label="Önceki gün">‹</button><div class="kb-say"><b class="kb-n">1</b> / ${n}</div><button type="button" class="kb-ok" data-y="1" aria-label="Sonraki gün">›</button></div>
+    <div class="kb-iz">${sayfalar.map((h, i) => `<section class="kb-sayfa"><div class="kb-kart">${h}</div></section>`).join("")}</div>
+    <div class="kb-noktalar">${sayfalar.map((_, i) => `<i data-i="${i}"></i>`).join("")}</div>`;
+  const iz = el.querySelector(".kb-iz"), sayac = el.querySelector(".kb-n");
+  const noktalar = [...el.querySelectorAll(".kb-noktalar i")], oklar = [...el.querySelectorAll(".kb-ok")];
+  let akt = -1;
+  const guncelle = () => {
+    const i = Math.max(0, Math.min(n - 1, Math.round(iz.scrollLeft / iz.clientWidth)));
+    if (i === akt) return; akt = i;
+    sayac.textContent = i + 1;
+    noktalar.forEach((x, j) => x.classList.toggle("aktif", j === i));
+    oklar[0].disabled = i === 0; oklar[1].disabled = i === n - 1;
+  };
+  const git = (i, yumusak) => iz.scrollTo({ left: Math.max(0, Math.min(n - 1, i)) * iz.clientWidth, behavior: yumusak ? "smooth" : "auto" });
+  el.querySelectorAll(".kb-sekme button").forEach(b => b.onclick = () => aylikAc(+b.dataset.k, akt));
+  oklar.forEach(b => b.onclick = () => git(akt + +b.dataset.y, true));
+  noktalar.forEach(x => x.onclick = () => git(+x.dataset.i, true));
+  iz.addEventListener("scroll", guncelle, { passive: true });
+  iz.tabIndex = 0;
+  iz.onkeydown = e => { if (e.key === "ArrowRight") git(akt + 1, true); if (e.key === "ArrowLeft") git(akt - 1, true); };
+  requestAnimationFrame(() => { git(ilk || 0, false); guncelle(); });
+}
+
+function aylikAc(ogun, ilk) {
+  const icerik = document.getElementById("aylik-icerik");
+  document.getElementById("aylik-baslik").textContent = "Gelecek Günlerin Menüsü";
+  const gunler = [];
+  for (let i = 1; i <= 31; i++) { const d = ekle(bugun, i); if (menu(d)) gunler.push(d); }
+  if (!gunler.length) {
+    icerik.innerHTML = '<p class="aylik-not" style="padding:0 20px">Bu ay için kalan başka menü bulunmuyor.</p>';
+  } else {
+    kitapKur(icerik, gunler.map(d => {
+      const yarin = +d === +ekle(bugun, 1);
+      const rozet = yarin ? '<span class="etiket yesil">Yarın</span>' : "";
+      const ay = d.toLocaleDateString("tr-TR", { month: "long" }), gn = d.toLocaleDateString("tr-TR", { weekday: "long" });
+      const liste = menu(d)[ogun];
+      return `<div class="kb-baslik"><div class="kb-no">${d.getDate()}</div><div class="kb-tarih"><b>${ay}</b><span>${gn}</span></div>${rozet}</div>
+        <div class="aylik-ogun-bloku"><b>${OGUN_TAM[ogun]}</b>${liste.map(y => `<div class="aylik-yemek"><span class="aylik-nokta"></span><span>${esc(y)}</span></div>`).join("")}</div>
+        ${ogun === 0 ? '<p class="aylik-not">Sabah ara öğünü: Mevsim meyvesi</p>' : ""}`;
+    }), ilk || 0, ogun);
+  }
+  document.getElementById("aylik-modal").classList.add("aktif");
+  document.body.style.overflow = "hidden";
+}
+function aylikKapat() { document.getElementById("aylik-modal").classList.remove("aktif"); document.body.style.overflow = ""; }
+document.querySelectorAll("[data-ac]").forEach(b => b.onclick = () => aylikAc(+b.dataset.ac, 0));
+document.getElementById("aylik-kapat").onclick = aylikKapat;
+document.getElementById("aylik-modal").onclick = e => { if (e.target.id === "aylik-modal") aylikKapat(); };
+addEventListener("keydown", e => { if (e.key === "Escape") aylikKapat(); });
 
 document.querySelectorAll(".gun-sec button").forEach(b => b.onclick = () => goster(+b.dataset.g));
 goster(0);
 </script>
-<script src="/yemekfoto.js?v=60"></script>
+<script src="/firebase-ayar.js?v=2"></script>
+<script>/* Yıldız, beğeni ve bakan sayısı (Firebase) sayfa açıldıktan sonra yüklenir */
+(function(){var y=false;function f(){if(y)return;y=true;var s=document.createElement("script");s.type="module";s.src="/yorum.js?v=30";document.body.appendChild(s)}
+if(document.readyState==="complete")f();else{addEventListener("load",f);addEventListener("DOMContentLoaded",function(){setTimeout(f,2000)})}})();</script>
 <script defer src="/geri.js?v=2"></script>
 </body>
 </html>
