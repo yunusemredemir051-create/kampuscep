@@ -9,7 +9,7 @@ Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı 
 - [x] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1), [PR #7](https://github.com/yunusemredemir051-create/kampuscep/pull/7)
 
 ## 2. Güvenlik ve kod temizliği (Ek 6)
-- [~] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok)
+- [~] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok) — [PR #8](https://github.com/yunusemredemir051-create/kampuscep/pull/8)
 - [ ] 3. Ek 6 / A-3: rapordaki açıkları önem sırasıyla kapat (her açık ya da açık grubu ayrı PR; hepsi bitince işaretle)
 - [ ] 4. Ek 6 / B: kod temizliği ve MIMARI.md
 
