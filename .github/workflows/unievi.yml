@@ -30,11 +30,23 @@ jobs:
         shell: powershell
     env:
       PYTHONUTF8: "1"
+      # Windows'ta PowerShell betikleri varsayılan olarak kapalı. Runner hizmeti bu yüzden setup-python'u ve
+      # kendi adımlarımızı çalıştıramıyordu (22 Kasım 2026). Bu değişken izni yalnızca bu işe verir;
+      # bilgisayarın genel güvenlik ayarı değişmez.
+      PSExecutionPolicyPreference: Bypass
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+      - name: Python'u hazırla (kurulumsuz; yönetici izni gerektirmez)
+        run: |
+          $v = "3.12.10"
+          $d = Join-Path $env:RUNNER_TOOL_CACHE "python-embed-$v"
+          if (-not (Test-Path "$d\python.exe")) {
+            $z = Join-Path $env:RUNNER_TEMP "python-embed.zip"
+            Invoke-WebRequest "https://www.python.org/ftp/python/$v/python-$v-embed-amd64.zip" -OutFile $z -UseBasicParsing
+            Expand-Archive $z $d -Force
+            Remove-Item "$d\python*._pth"
+          }
+          $d | Out-File -Append -Encoding ascii $env:GITHUB_PATH
       - name: Okuyucunun testleri
         run: python -m unittest discover -s .github/scripts/test
       - name: Menüyü oku ve veri.js'i güncelle
@@ -50,7 +62,7 @@ jobs:
           git config user.name "kampuscepte-bot"
           git config user.email "github-actions@users.noreply.github.com"
           git add veri.js
-          git commit -q -m "Üniversite Evi menüsü güncellendi (otomatik)"
+          git commit -q -F .github/scripts/unievi-commit-mesaji.txt   # Türkçe mesaj UTF-8 dosyadan (PowerShell 5.1 -m ile bozuyor)
           git pull -q --rebase
           git push -q
           if ($LASTEXITCODE -ne 0) { exit 1 }

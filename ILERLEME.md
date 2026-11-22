@@ -6,7 +6,7 @@ bu dosyaya göre yürür (kurallar: AGENTS.md 10. bölüm). Site sahibinin istek
 Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı (PR birleştirildi) · `[!]` karar bekliyor
 
 ## 1. Üniversite Evi menüsü (Ek 2)
-- [~] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1)
+- [~] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1), [PR #7](https://github.com/yunusemredemir051-create/kampuscep/pull/7)
 
 ## 2. Güvenlik ve kod temizliği (Ek 6)
 - [ ] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok)
@@ -84,3 +84,4 @@ Verilen kararlar buraya tarihiyle yazılır (örn. "2026-11-20 · Ek 2: Türkiye
 - 2026-11-17 · Ek 2: Neden kanıtlandı (yurt dışından zaman aşımı, Türkiye'den 2,8 sn'de açılıyor; ayrıca site tasarımı değiştiği için eski okuyucu bozuktu). Site sahibi önerilen sırayı seçti: önce ücretsiz Cloudflare Worker aracısı (A) denenecek, olmazsa küçük bir Türkiye VPS'i (B).
 - 2026-11-17 · Ek 2: (A) denendi, çalışmadı. Cloudflare Worker GitHub'dan çağrılınca 502, Türkiye'den çağrılınca bile istek Frankfurt'tan (FRA) çıktığı için 522 verdi. Worker artık kullanılmıyor (Cloudflare panelinde kc-unievi olarak duruyor, silinebilir). Karar bekliyor: (B) Türkiye VPS'i + self-hosted runner ya da (C) site sahibinin bilgisayarı.
 - 2026-11-17 · Ek 2: Site sahibi (C)'yi seçti: iş akışı site sahibinin Windows bilgisayarındaki self-hosted runner'da (etiket `turkiye`) çalışır. Bilgisayar kapalıysa iş sırada bekler. Depo herkese açık olduğu için dış katkıcıların PR iş akışları onaya bağlanır.
+- 2026-11-22 · Ek 2: 19 Kasım'dan beri işler sırada bekleyip 24 saat sonra iptal oluyordu, çünkü runner indirilmiş ama GitHub'a kaydedilmemişti. Runner `EMRE` adıyla, `turkiye` etiketiyle Windows hizmeti olarak kuruldu. İlk iş, Windows'un PowerShell betik engeline takıldı; iş akışına yalnızca bu iş için geçerli izin (`PSExecutionPolicyPreference: Bypass`) eklendi. `setup-python` yönetici izni istediği için kurulumsuz resmî zip Python'a geçildi; gerçek veriye bağlı bozuk bir test ve Türkçe commit mesajının bozulması düzeltildi. Dal üzerinde iş baştan sona başarılı çalıştı (siteden okudu, `veri.js`'i güncelledi).
