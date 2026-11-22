@@ -29,13 +29,14 @@ jobs:
       run:
         shell: powershell
     env:
-      PYTHONUTF8: "1"       # Windows'ta PowerShell betikleri varsayılan olarak kapalı. Runner hizmeti bu yüzden setup-python'u ve
+      PYTHONUTF8: "1"
+      # Windows'ta PowerShell betikleri varsayılan olarak kapalı. Runner hizmeti bu yüzden setup-python'u ve
       # kendi adımlarımızı çalıştıramıyordu (22 Kasım 2026). Bu değişken izni yalnızca bu işe verir;
       # bilgisayarın genel güvenlik ayarı değişmez.
       PSExecutionPolicyPreference: Bypass
     steps:
       - uses: actions/checkout@v5
-           - name: Python'u hazırla (kurulumsuz; yönetici izni gerektirmez)
+      - name: Python'u hazırla (kurulumsuz; yönetici izni gerektirmez)
         run: |
           $v = "3.12.10"
           $d = Join-Path $env:RUNNER_TOOL_CACHE "python-embed-$v"
