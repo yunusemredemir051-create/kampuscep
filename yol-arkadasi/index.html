@@ -313,6 +313,22 @@ const db = getFirestore(app);
 
 let ben = null, profil = null, ilanlar = [], filtre = "hepsi", dinleyici = null;
 
+/* Veritabanından gelen ilanı sayfaya basmadan önce denetle (Ek 6 / K-1). Kurallar ilk sürümlerde güncellemede bazı
+   alanları denetlemiyordu; biçimi bozuk bir ilan hem sayfaya kod sokabilir hem de listeyi herkes için kırabilirdi.
+   Biçimi bozuk ilan hiç gösterilmez. */
+const tamSayi = (x, en, cok) => Number.isInteger(x) && x >= en && x <= cok;
+function gecerliIlan(i) {
+  return /^[A-Za-z0-9]{10,40}$/.test(i.id)   // kimlik HTML'e (id, data-*) basılıyor: yalnızca otomatik kimlik biçimi
+    && i.zaman instanceof Timestamp
+    && tamSayi(i.aranan, 1, 3)
+    && (i.ucret == null || tamSayi(i.ucret, 0, 5000))
+    && (i.not == null || typeof i.not === "string")
+    && typeof i.yurt === "string" && typeof i.yer === "string" && typeof i.sahipUid === "string"
+    && (i.yon === "gidis" || i.yon === "donus")
+    && (i.katilanlar == null || (Array.isArray(i.katilanlar) && i.katilanlar.every(u => typeof u === "string")));
+}
+const ilanlariOku = s => s.docs.map(d => ({ id: d.id, ...d.data() })).filter(gecerliIlan);
+
 /* Sahte ilan önlemleri: önizleme bayrağı yukarıdaki küçük betikte (KC_YOL_YENI). */
 /* Sitede yönetici paneli yoktur; sahte ilan silme ve engelleme Firebase konsolundan yapılır. */
 const yeni = !!window.KC_YOL_YENI;
@@ -425,7 +441,7 @@ function misafirAc() {
   if (filtre === "benim") filtre = "hepsi";
   document.querySelectorAll("#filtre button").forEach(x => x.classList.toggle("aktif", x.dataset.f === filtre));
   goster("giris", "uygulama");
-  dinleyici = onSnapshot(collection(db, "yolculuklar"), s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
+  dinleyici = onSnapshot(collection(db, "yolculuklar"), s => { ilanlar = ilanlariOku(s); listeCiz(); },
     e => { $("liste").innerHTML = `<div class="kart cam bos"><b>İlanlar yüklenemedi</b>Sayfayı yenileyip tekrar dene.</div>`; console.error(e); });
 }
 function girisIste(mesaj) {
@@ -456,12 +472,12 @@ function uygulamaAc() {
       s.docs.forEach(d => { const x = d.data(); (sikayetler[x.ilan] = sikayetler[x.ilan] || []).push(x.neden); });
       listeCiz();
     }, e => console.error(e));
-    dinleyici = onSnapshot(collection(db, "yolculuklar"), s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
+    dinleyici = onSnapshot(collection(db, "yolculuklar"), s => { ilanlar = ilanlariOku(s); listeCiz(); },
       e => console.error(e));
     return;
   }
   const q = query(collection(db, "yolculuklar"), where("yurtTur", "==", profil.tur));
-  dinleyici = onSnapshot(q, s => { ilanlar = s.docs.map(d => ({ id: d.id, ...d.data() })); listeCiz(); },
+  dinleyici = onSnapshot(q, s => { ilanlar = ilanlariOku(s); listeCiz(); },
     e => { $("liste").innerHTML = `<div class="kart cam bos"><b>İlanlar yüklenemedi</b>Sayfayı yenileyip tekrar dene.</div>`; console.error(e); });
 }
 
@@ -511,7 +527,7 @@ function ilanHtml(i, d) {
   const kisiBasi = i.ucret ? Math.round(i.ucret / (katilan + 1)) : 0;
   let bilgi = `<span class="${kalan ? "yesil" : "dolu"}">${kalan ? kalan + " kişilik yer var" : "Dolu"}</span>`;
   if (katilan) bilgi += `<span>${katilan + 1} kişi gidiyor</span>`;
-  if (i.ucret) bilgi += `<span>Taksi ~${i.ucret} TL · kişi başı ~${kisiBasi} TL</span>`;
+  if (i.ucret) bilgi += `<span>Taksi ~${esc(i.ucret)} TL · kişi başı ~${esc(kisiBasi)} TL</span>`;
   let btn = "";
   if (benim) {
     btn = `<ul class="kisiler" id="k-${i.id}"><li style="border:0;color:var(--soluk);font-weight:600">${katilan ? "Katılanlar yükleniyor…" : "Henüz katılan yok. Biri katılınca numarası burada görünür."}</li></ul>

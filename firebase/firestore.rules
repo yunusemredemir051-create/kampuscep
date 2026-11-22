@@ -1,5 +1,5 @@
 rules_version = '2';
-// KampüsCepte — Firestore güvenlik kuralları (v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
+// KampüsCepte — Firestore güvenlik kuralları (v7 · 22 Kasım 2026: Yol Arkadaşı ilan kimliği ve güncelleme denetimi · v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
 service cloud.firestore {
   match /databases/{db}/documents {
 
@@ -51,7 +51,9 @@ service cloud.firestore {
       function sahip() { return googleli() && request.auth.uid == resource.data.sahipUid; }
       allow read: if true;
 
+      // Kimlik yalnızca addDoc'un ürettiği 20 karakterlik biçimde olabilir (kimlik sayfada HTML'e basılıyor; Ek 6 / K-1)
       allow create: if googleli() && !banli()
+        && id.matches('^[A-Za-z0-9]{20}$')
         && request.resource.data.sahipUid == request.auth.uid
         && request.resource.data.keys().hasOnly(['sahipUid','yurt','yurtTur','yon','yer','zaman','aranan','ucret','not','katilanlar','olusturma'])
         && yurtTuruUyar(request.resource.data)
@@ -66,10 +68,18 @@ service cloud.firestore {
         && metin(request.resource.data.not, 120)
         && request.resource.data.katilanlar == [];
 
-      allow update: if sahip()
+      // İlan sahibinin düzenlemesi: oluşturmadaki tür ve sınır denetimlerinin aynısı (Ek 6 / K-1).
+      // Zaman penceresi yalnızca zaman değiştiyse uygulanır (geçmiş ilanın notu düzeltilebilsin).
+      allow update: if sahip() && !banli()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['aranan','not','zaman','ucret'])
           && request.resource.data.aranan is int && request.resource.data.aranan >= 1 && request.resource.data.aranan <= 3
+          && request.resource.data.aranan >= resource.data.katilanlar.size()
           && metin(request.resource.data.not, 120)
+          && request.resource.data.ucret is int && request.resource.data.ucret >= 0 && request.resource.data.ucret <= 5000
+          && request.resource.data.zaman is timestamp
+          && (request.resource.data.zaman == resource.data.zaman
+              || (request.resource.data.zaman > request.time - duration.value(1, 'h')
+                  && request.resource.data.zaman < request.time + duration.value(31, 'd')))
         || googleli() && !banli() && resource.data.yurtTur == benimTurum()
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['katilanlar'])
           && !(request.auth.uid in resource.data.katilanlar)
