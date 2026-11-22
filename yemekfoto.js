@@ -761,7 +761,19 @@
       "domates-salatalık": "yurt-domates-salatalik",
       "domates salatalık": "yurt-domates-salatalik",
       "haşlanmış patates + domates-salatalık": ["yurt-haslanmis-patates", "yurt-domates-salatalik"],
-      "haşlanmış patates + domates salatalık": ["yurt-haslanmis-patates", "yurt-domates-salatalik"]
+      "haşlanmış patates + domates salatalık": ["yurt-haslanmis-patates", "yurt-domates-salatalik"],
+      "poşet pastörize tereyağ": "yurt-tereyagi",
+      "poşet bal": "yurt-bal",
+      "poşet ayran": "yurt-ayran",
+      "kase yoğurt": "yurt-yogurt",
+      "kokteyl zeytin": "yurt-zeytin",
+      "salçalı sosis tava": "yurt-sosis-kizartma",
+      "poşet meyve suyu": "yurt-algotur-meyve-suyu",
+      "sürülebilir taze peynir": "yurt-krem-peynir",
+      "salçalı spagetti": "yurt-soslu-makarna",
+      "salçalı makarna": "yurt-soslu-makarna",
+      "mevsim salata": "yurt-karisik-salata",
+      "tulumba tatlısı": "yurt-tulumba"
     }
   };
 
