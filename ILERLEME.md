@@ -9,8 +9,8 @@ Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı 
 - [x] 1. Ek 2: menünün neden çekilemediğini bu bilgisayardan ve GitHub Actions'tan test ederek kanıtla, çözüm seçeneklerini sun; seçilen çözümü uygula — karar gerekir — [PR #1](https://github.com/yunusemredemir051-create/kampuscep/pull/1), [PR #7](https://github.com/yunusemredemir051-create/kampuscep/pull/7)
 
 ## 2. Güvenlik ve kod temizliği (Ek 6)
-- [~] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok) — [PR #8](https://github.com/yunusemredemir051-create/kampuscep/pull/8)
-- [ ] 3. Ek 6 / A-3: rapordaki açıkları önem sırasıyla kapat (her açık ya da açık grubu ayrı PR; hepsi bitince işaretle)
+- [x] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok) — [PR #8](https://github.com/yunusemredemir051-create/kampuscep/pull/8)
+- [~] 3. Ek 6 / A-3: rapordaki açıkları önem sırasıyla kapat (her açık ya da açık grubu ayrı PR; hepsi bitince işaretle) — K-1 [PR #9](https://github.com/yunusemredemir051-create/kampuscep/pull/9)
 - [ ] 4. Ek 6 / B: kod temizliği ve MIMARI.md
 
 ## 3. Android altyapısı (Ek 7)
@@ -85,3 +85,5 @@ Verilen kararlar buraya tarihiyle yazılır (örn. "2026-11-20 · Ek 2: Türkiye
 - 2026-11-17 · Ek 2: (A) denendi, çalışmadı. Cloudflare Worker GitHub'dan çağrılınca 502, Türkiye'den çağrılınca bile istek Frankfurt'tan (FRA) çıktığı için 522 verdi. Worker artık kullanılmıyor (Cloudflare panelinde kc-unievi olarak duruyor, silinebilir). Karar bekliyor: (B) Türkiye VPS'i + self-hosted runner ya da (C) site sahibinin bilgisayarı.
 - 2026-11-17 · Ek 2: Site sahibi (C)'yi seçti: iş akışı site sahibinin Windows bilgisayarındaki self-hosted runner'da (etiket `turkiye`) çalışır. Bilgisayar kapalıysa iş sırada bekler. Depo herkese açık olduğu için dış katkıcıların PR iş akışları onaya bağlanır.
 - 2026-11-22 · Ek 2: 19 Kasım'dan beri işler sırada bekleyip 24 saat sonra iptal oluyordu, çünkü runner indirilmiş ama GitHub'a kaydedilmemişti. Runner `EMRE` adıyla, `turkiye` etiketiyle Windows hizmeti olarak kuruldu. İlk iş, Windows'un PowerShell betik engeline takıldı; iş akışına yalnızca bu iş için geçerli izin (`PSExecutionPolicyPreference: Bypass`) eklendi. `setup-python` yönetici izni istediği için kurulumsuz resmî zip Python'a geçildi; gerçek veriye bağlı bozuk bir test ve Türkçe commit mesajının bozulması düzeltildi. Dal üzerinde iş baştan sona başarılı çalıştı (siteden okudu, `veri.js`'i güncelledi).
+- 2026-11-22 · Ek 6: Güvenlik raporu (PR #8) birleştirildi. K-1 (Yol Arkadaşı ilan denetimi) PR #9 ile kapatıldı; kural v7 site sahibi tarafından Firebase konsolunda yayınlandı.
+- 2026-11-22 · Ek 6 / Y-1: Site sahibi (a) + (b)'yi seçti: kız/erkek seçimi ilk seçimden sonra 30 günde bir değişir (silinemeyen `turKilidi` kaydı), ilana katılma 10 sn'de 1 ve günde en çok 5. (c) numara için sahip onayı Adım 10'da değerlendirilecek.
