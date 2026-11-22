@@ -10,7 +10,7 @@ Durumlar: `[ ]` bekliyor · `[~]` devam ediyor (PR açık) · `[x]` tamamlandı 
 
 ## 2. Güvenlik ve kod temizliği (Ek 6)
 - [x] 2. Ek 6 / A-1: güvenlik raporu (kod değişikliği yok) — [PR #8](https://github.com/yunusemredemir051-create/kampuscep/pull/8)
-- [~] 3. Ek 6 / A-3: rapordaki açıkları önem sırasıyla kapat (her açık ya da açık grubu ayrı PR; hepsi bitince işaretle) — K-1 [PR #9](https://github.com/yunusemredemir051-create/kampuscep/pull/9)
+- [~] 3. Ek 6 / A-3: rapordaki açıkları önem sırasıyla kapat (her açık ya da açık grubu ayrı PR; hepsi bitince işaretle) — K-1 [PR #9](https://github.com/yunusemredemir051-create/kampuscep/pull/9), Y-1 [PR #10](https://github.com/yunusemredemir051-create/kampuscep/pull/10)
 - [ ] 4. Ek 6 / B: kod temizliği ve MIMARI.md
 
 ## 3. Android altyapısı (Ek 7)
