@@ -167,3 +167,21 @@ ins.adsbygoogle[data-ad-status="unfilled"] { display: none !important; }
 .ust:has(.ust-geri) .logo span { font-size: 19px; line-height: 1.15; gap: 1px; }
 .ust:has(.ust-geri) .logo small { font-size: 13px; }
 body .ust:has(.ust-geri) { gap: 14px; padding: 12px 0; margin-bottom: 28px; }
+
+/* ---------- Haberler bölümü belirteçleri (haber.css) ---------- */
+:root {
+  --hb-zemin: #ffffff; --hb-zemin-2: #f3f4f6;
+  --hb-metin: #15181e; --hb-metin-2: #3d434d; --hb-metin-3: #6b717c;
+  --hb-cizgi: #e3e5e9; --hb-cizgi-koyu: #c4c8cf;
+  --hb-lacivert: #0d1b36; --hb-lacivert-yazi: #12305f;
+  --hb-vurgu: #c8102e; --hb-baglanti: #12408f; --hb-yesil: #127a3e;
+  --hb-iskelet: rgba(255, 255, 255, .55);
+}
+html[data-tema="koyu"] {
+  --hb-zemin: #111317; --hb-zemin-2: #1b1e24;
+  --hb-metin: #eceef2; --hb-metin-2: #c2c7d0; --hb-metin-3: #8d939e;
+  --hb-cizgi: #2a2e36; --hb-cizgi-koyu: #3d424c;
+  --hb-lacivert: #0a1530; --hb-lacivert-yazi: #9db8ec;
+  --hb-vurgu: #ff4d5e; --hb-baglanti: #8fb3ff; --hb-yesil: #4ade80;
+  --hb-iskelet: rgba(255, 255, 255, .06);
+}

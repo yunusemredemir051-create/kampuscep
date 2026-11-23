@@ -973,7 +973,7 @@ button.sekme:active, .ayar-satir:active, .satir-kart:active, .btn:active, .pf-se
     padding: 0 6px max(6px, env(safe-area-inset-bottom, 0px), var(--safe-area-inset-bottom, 0px));
     background: var(--kart); border: 0; border-top: 1px solid var(--cam-kenar); border-radius: 0; box-shadow: none; }
   .yan .logo, .tema-sekme { display: none !important; }
-  html body .yan .sekme[data-sayfa="takvim"], html body .yan .sekme[data-sayfa="araclar"], html body .yan a.sekme[href^="yol"], html body .yan a.sekme[href^="magaza"] { display: none; }
+  html body .yan .sekme[data-sayfa="takvim"], html body .yan .sekme[data-sayfa="araclar"], html body .yan a.sekme[href^="yol"], html body .yan a.sekme[href^="magaza"], html body .yan a.sekme[href^="/haberler"] { display: none; }
   html body .yan .sekme, html body .yan .kc-orta { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
     width: auto; height: auto; margin: 0; padding: 9px 2px 5px; border: 0; border-radius: 0; background: none; box-shadow: none;
     color: var(--soluk); font: 600 11px/1.2 var(--font); text-align: center; cursor: pointer; }
