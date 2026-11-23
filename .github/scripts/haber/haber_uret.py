@@ -112,7 +112,7 @@ IKON={
 from urllib.parse import quote
 def paylas(url,baslik):
     u=quote(url,safe=''); t=quote(baslik,safe='')
-    return f'''<div class="paylas"><a href="https://wa.me/?text={t}%20{u}" target="_blank" rel="noopener" aria-label="WhatsApp'ta paylaş" title="WhatsApp'ta paylaş">{IKON["wa"]}</a><button type="button" data-paylas hidden aria-label="Paylaş" title="Paylaş">{IKON["pay"]}</button><button type="button" data-kopyala aria-label="Bağlantıyı kopyala" title="Bağlantıyı kopyala">{IKON["link"]}</button></div>'''
+    return f'''<div class="paylas"><button type="button" data-paylas hidden aria-label="Paylaş" title="Paylaş">{IKON["pay"]}</button><button type="button" data-kopyala aria-label="Bağlantıyı kopyala" title="Bağlantıyı kopyala">{IKON["link"]}</button></div>'''
 def okuma(n):
     w=len(re.sub(r'<[^>]+>',' ',' '.join(n['govde'])).split()); return max(1,round(w/200))
 H=json.load(open('.github/scripts/haber/haberler.json',encoding='utf-8'))
