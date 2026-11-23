@@ -30,7 +30,8 @@
   ],
   "gorsel_kaynak": "Finansal Veri Masası kullanım kılavuzu",
   "saat": "10.45",
-  "kaynak": "Doç. Dr. Yunus Emre Gür'ün öğrencilere duyurusu ve Finansal Veri Masası 1.0.1 kullanım kılavuzu"
+  "kaynak": "Doç. Dr. Yunus Emre Gür'ün öğrencilere duyurusu ve Finansal Veri Masası 1.0.1 kullanım kılavuzu",
+  "gizli": true
  },
  {
   "slug": "finrehber-ai-kastamonu-teknokent-odulu",
