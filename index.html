@@ -22,7 +22,7 @@
 
 
 <link rel="stylesheet" href="/kc.css?v=5">
-<link rel="stylesheet" href="/ana.css?v=11">
+<link rel="stylesheet" href="/ana.css?v=13">
 <link rel="stylesheet" href="/masaustu.css?v=3">
 <link rel="stylesheet" href="/uygulama.css?v=1">
 <!-- PWA -->
@@ -157,6 +157,29 @@
 
       <div class="vitrin" data-boyut="banner">Sponsorlu alan</div>
 
+      <section class="haber-bolum" aria-labelledby="haber-baslik">
+      <h2 class="haber-baslik" id="haber-baslik">Kampüsten haberler <a class="tumu" href="/haberler/">Tüm haberler</a></h2>
+      <div class="haber-liste">
+        <a class="haber-kart buyuk" href="/haberler/finrehber-ai-kastamonu-teknokent-odulu.html">
+          <img src="gorseller/haberler/finrehber.webp" alt="Kastamonu AR-GE ve İnovasyon Proje Pazarı Kastamonu Teknokent Ödülü afişi" width="794" height="397" loading="lazy">
+          <div><small>21 Ekim 2026 · Ödül</small><b>Yapay zekâ destekli finans platformu FinRehber AI'ya Kastamonu Teknokent Ödülü</b>
+          <p>Fırat Üniversitesi öğrencisi Ahmet Gün'ün projesi, Kastamonu AR-GE ve İnovasyon Proje Pazarı 2026'da ödül aldı.</p></div>
+        </a>
+        <a class="haber-kart" href="/haberler/mesut-togacar-akademik-basari-belgesi.html">
+          <img src="gorseller/haberler/mesut-togacar.webp" alt="Doç. Dr. Mesut Toğaçar" width="784" height="441" loading="lazy">
+          <div><small>24 Haziran 2026 · Akademi</small><b>Doç. Dr. Mesut Toğaçar'a akademik başarı belgesi</b></div>
+        </a>
+        <a class="haber-kart" href="/haberler/tubitak-2209a-14-proje.html">
+          <img src="gorseller/haberler/tubitak.webp" alt="TÜBİTAK 2209-A proje başarısı afişi" width="784" height="555" loading="lazy">
+          <div><small>20 Mayıs 2026 · Araştırma</small><b>Yönetim Bilişim Sistemleri'nden 14 projeye TÜBİTAK 2209-A desteği</b></div>
+        </a>
+        <a class="haber-kart" href="/haberler/tipta-yapay-zeka-kongre-sunumu.html">
+          <img src="gorseller/haberler/erhan-arpaci.webp" alt="Erhan Arpacı kongrede sunum yaparken" width="784" height="522" loading="lazy">
+          <div><small>20 Mayıs 2026 · Kongre</small><b>Tıp kongresinde yapay zekâyla vaka analizi sunumu</b></div>
+        </a>
+      </div>
+      </section>
+
       <div class="baslik">Hızlı erişim</div>
       <div class="kutular">
         <button class="kutu cam" data-git="yurtlar">
@@ -189,6 +212,22 @@
           <button data-tur="erkek">Erkek</button>
         </div>
         <div class="liste" id="yurt-liste"></div>
+        <section class="yurt-rehber">
+          <h2>Elazığ'daki KYK yurtları</h2>
+          <p>Elazığ'da Gençlik ve Spor Bakanlığı'na bağlı 4 kız ve 3 erkek olmak üzere 7 KYK yurdu bulunur; il müdürlüğünün açıkladığı toplam kapasite 9.770 öğrencidir. Yurt başvuruları her yıl e-Devlet üzerinden GSB yurt başvurusu ile yapılır. Aşağıda her yurdun adresini ve otogara uzaklığını bulabilirsin. Yukarıdaki listeden bir yurda dokununca bugünkü menüsünü ve iletişim bilgilerini görürsün.</p>
+          <dl>
+            <dt>Kız yurtları</dt>
+            <dd><b>Fethi Sekin Yurdu</b> Ataşehir Mah., Kibar Sk. No: 48 · otogara ~5,4 km</dd>
+            <dd><b>Harput Yurdu</b> Üniversite Mah., Zübeyde Hanım Cad. No: 131/1 · otogara ~6,3 km</dd>
+            <dd><b>İzzetpaşa Yurdu</b> Çaydaçıra Mah., Şahinkaya Küme Evleri No: 2/1 · otogara ~6,9 km</dd>
+            <dd><b>Sare Ana Yurdu</b> Üniversite Mah., Zübeyde Hanım Cad., Fırat Üniversitesi girişi No: 262/1 · otogara ~6,1 km</dd>
+            <dt>Erkek yurtları</dt>
+            <dd><b>Ahmet Kabaklı Yurdu</b> Çaydaçıra Mah., Anguzu Baba Sk. No: 50-50/1 · otogara ~8 km</dd>
+            <dd><b>Elazığ-Fırat Yurdu</b> Kültür Mah., Çavuldur Sk. No: 6 · otogara ~6 km</dd>
+            <dd><b>Ömer Bilginoğlu Yurdu</b> Ataşehir Mah., Mazı Sk. No: 4 · otogara ~5,9 km</dd>
+          </dl>
+          <p class="yurt-kaynak">Adresler Fırat Üniversitesi'nin kayıt duyurusundaki KYK yurt listesinden alınmıştır. Mesafeler karayoluyla yaklaşıktır.</p>
+        </section>
         <div class="vitrin" data-boyut="serit">Sponsorlu alan</div>
       </div>
 
@@ -210,6 +249,7 @@
             Gelecek günlerin menüsünü gör
           </button>
         </div>
+          <section class="menu-kart cam yurt-bilgi-kart" id="detay-bilgi" hidden></section>
           <div class="vitrin" data-boyut="mini">Sponsorlu alan</div>
       </div>
     </section>
@@ -569,7 +609,8 @@
 </div>
 
 <script src="veri.js?v=36"></script>
-<script src="/ana.js?v=4"></script>
+<script src="/yurtbilgi.js?v=1"></script>
+<script src="/ana.js?v=5"></script>
 <script src="/takvim-izgara.js?v=1"></script>
 <script src="cerez.js?v=2" defer></script>
 <script src="/yemekfoto.js?v=60"></script>
