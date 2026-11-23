@@ -10,11 +10,11 @@ R = ''
 TUM = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'))
 # "gizli": true olan haber hiçbir listede, aramada ve sitemap'te görünmez; sayfası yalnızca doğrudan linkle açılır (noindex)
 H = [n for n in TUM if not n.get('gizli')]
-CSS_V, JS_V, KC_V = '1', '1', '6'
-SIRA = ['Üniversite', 'Kampüs', 'Eğitim', 'Duyurular', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Teknoloji', 'Kariyer ve Gelecek', 'Psikoloji ve Kişisel Gelişim', 'Sağlıklı Yaşam', 'Türkiye', 'Dünya', 'Spor']
+CSS_V, JS_V, KC_V = '2', '1', '6'
+SIRA = ['Eğitim', 'Ders Çalışma Teknikleri', 'Sınavlara Hazırlık', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Türkiye\'den Eğitim Gündemi', 'Dünya\'dan Eğitim Gündemi', 'Burs ve Öğrenci Fırsatları', 'Teknoloji', 'Bilimsel Gelişmeler', 'Kariyer ve Gelecek', 'Psikoloji ve Kişisel Gelişim', 'Sağlıklı Yaşam', 'Dengeli Beslenme', 'Spor ve Fiziksel Aktivite', 'Kültür ve Sanat', 'Kitap ve Okuma Önerileri', 'Sosyal Yaşam ve Etkinlikler', 'Üniversite', 'Kampüs', 'Duyurular', 'Türkiye', 'Dünya', 'Spor']
 TR = str.maketrans('çğıöşüÇĞİÖŞÜ', 'cgiosuCGIOSU')
 def kod(k): return re.sub(r'[^a-z0-9]+', '-', k.translate(TR).lower()).strip('-')
-KATS = [k for k in SIRA if any(h['kategori'] == k for h in H)]
+KATS = [k for k in SIRA if any(h['kategori'] == k for h in H)] + sorted({h['kategori'] for h in H} - set(SIRA))
 e = html.escape
 
 src = open(R + 'hakkimizda.html', encoding='utf-8').read()
