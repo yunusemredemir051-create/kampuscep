@@ -1,13 +1,15 @@
 # Haberler bölümünü üretir: .github/scripts/haber/haberler.json -> haberler/*.html, haberler/index.html, haberler/veri.js
 # Yeni haber: haberler.json'un başına ekle (alanlar aşağıda), görseli gorseller/haberler/ içine koy,
 # depo kökünden çalıştır:  python3 .github/scripts/haber/haber_uret.py
-# Alanlar: slug, baslik, tarih ("23 Kasım 2026"), iso ("2026-11-23"), saat (isteğe bağlı, "10.45"), kategori,
+# Alanlar: gizli (isteğe bağlı, true = listelenmez), slug, baslik, tarih ("23 Kasım 2026"), iso ("2026-11-23"), saat (isteğe bağlı, "10.45"), kategori,
 #          gorsel, w, h, alt, gorsel_kaynak (isteğe bağlı), ozet, govde (HTML parçaları listesi), kaynak
 import json, html, re
 from urllib.parse import quote
 
 R = ''
-H = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'))
+TUM = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'))
+# "gizli": true olan haber hiçbir listede, aramada ve sitemap'te görünmez; sayfası yalnızca doğrudan linkle açılır (noindex)
+H = [n for n in TUM if not n.get('gizli')]
 CSS_V, JS_V, KC_V = '1', '1', '6'
 SIRA = ['Üniversite', 'Kampüs', 'Eğitim', 'Duyurular', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Teknoloji', 'Türkiye', 'Dünya', 'Spor']
 TR = str.maketrans('çğıöşüÇĞİÖŞÜ', 'cgiosuCGIOSU')
@@ -86,7 +88,7 @@ open(R + 'haberler/index.html', 'w', encoding='utf-8').write(sayfa('KampüsCepte
     '\n<meta property="og:type" content="website">\n<meta property="og:title" content="KampüsCepte Haberler">\n<meta property="og:url" content="https://kampuscepte.com.tr/haberler/">'))
 
 # ---------- Haber detay ----------
-for n in H:
+for n in TUM:
     url = f'https://kampuscepte.com.tr/haberler/{n["slug"]}.html'
     ilgili = [x for x in H if x is not n and x['kategori'] == n['kategori']] + [x for x in H if x is not n and x['kategori'] != n['kategori']]
     iso_dt = n['iso'] + (('T' + n['saat'].replace('.', ':') + ':00+03:00') if n.get('saat') else '')
@@ -96,7 +98,7 @@ for n in H:
         "author": {"@type": "Organization", "name": "KampüsCepte Haber Merkezi", "url": "https://kampuscepte.com.tr/hakkimizda.html"},
         "publisher": {"@type": "Organization", "name": "KampüsCepte", "logo": {"@type": "ImageObject", "url": "https://kampuscepte.com.tr/ikonlar/ikon-512.png"}},
         "mainEntityOfPage": url}, ensure_ascii=False)
-    og = (f'\n<meta property="og:type" content="article">\n<meta property="og:site_name" content="KampüsCepte Haberler">\n<meta property="og:title" content="{e(n["baslik"])}">'
+    og = ('\n<meta name="robots" content="noindex, nofollow">' if n.get('gizli') else '') + (f'\n<meta property="og:type" content="article">\n<meta property="og:site_name" content="KampüsCepte Haberler">\n<meta property="og:title" content="{e(n["baslik"])}">'
           f'\n<meta property="og:description" content="{e(n["ozet"])}">\n<meta property="og:image" content="https://kampuscepte.com.tr/gorseller/haberler/{n["gorsel"]}">'
           f'\n<meta property="og:url" content="{url}">\n<meta property="article:published_time" content="{iso_dt}">\n<meta property="article:section" content="{e(n["kategori"])}">'
           f'\n<meta name="twitter:card" content="summary_large_image">\n<script type="application/ld+json">{ld}</script>')
