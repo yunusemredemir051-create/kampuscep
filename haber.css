@@ -223,7 +223,8 @@ figcaption small { color: var(--hb-metin-3); }
   .hb-metin { font-size: 18.5px; line-height: 1.7; }
   .hb-metin h2 { font-size: 23px; }
   .hb-alinti p { font-size: 21px; }
-  .hb-rakam b { font-size: 36px; }
+  .hb-rakam b { font-size: 27px; white-space: nowrap; }
+  .hb-rakam div { padding-right: 10px; } .hb-rakam div + div { padding-left: 10px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .hb-gorsel::before { animation: none; display: none; }
