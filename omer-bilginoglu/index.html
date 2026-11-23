@@ -6,7 +6,7 @@
 <script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
 <meta name="theme-color" content="#f4f5f7">
 <title>Ömer Bilginoğlu Yurdu yemek menüsü – KampüsCepte</title>
-<meta name="description" content="Ömer Bilginoğlu Yurdu bugünün kahvaltı ve akşam yemeği menüsü, Fırat Üniversitesi Üniversite Evi öğle menüsü.">
+<meta name="description" content="Ömer Bilginoğlu Yurdu bugünün kahvaltı ve akşam yemeği menüsü, Fırat Üniversitesi Üniversite Evi öğle menüsü. Adres: Ataşehir Mahallesi, Mazı Sokak No: 4, Merkez / Elazığ.">
 <link rel="canonical" href="https://kampuscepte.com.tr/omer-bilginoglu/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KampüsCepte">
@@ -67,6 +67,10 @@ footer a { color: inherit; }
 .baslik-g img.yurt-b { width: 170px; animation: none; filter: drop-shadow(0 8px 14px rgba(40,60,140,.14)); }
 @media (max-width: 420px) { .baslik-g img.yurt-b { width: 140px; } }
 
+.yurt-hakkinda p { margin: 6px 0 10px; line-height: 1.6; font-size: 14.5px; }
+.yurt-hakkinda .yh-ad { color: var(--soluk); font-weight: 700; font-size: 13px; margin-top: 2px; }
+.yh-liste { margin: 0; } .yh-liste > div { display: grid; grid-template-columns: 96px 1fr; gap: 10px; padding: 9px 0; border-top: 1px solid var(--cizgi); font-size: 14px; }
+.yh-liste dt { color: var(--soluk); font-weight: 700; } .yh-liste dd { margin: 0; font-weight: 600; } .yh-liste a { color: var(--mavi); }
 /* ================= HAREKET ================= */
 @keyframes kc-yuz { 0%,100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-6px) rotate(-2deg); } }
 @keyframes kc-gir { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -134,6 +138,17 @@ footer a { color: inherit; }
   </section>
 
 
+  <section class="kart cam yurt-hakkinda">
+    <div class="kart-ust"><h2>Yurt hakkında</h2><span class="etiket mavi">KYK</span></div>
+    <p class="yh-ad">Ömer Bilginoğlu KYK Erkek Öğrenci Yurdu</p>
+    <p>Ataşehir Mahallesi'ndeki KYK erkek yurdu. Fethi Sekin Kız Yurdu ile aynı mahallededir.</p>
+    <dl class="yh-liste">
+      <div><dt>Adres</dt><dd>Ataşehir Mahallesi, Mazı Sokak No: 4, Merkez / Elazığ</dd></div>
+      <div><dt>Telefon</dt><dd><a href="tel:+904242476891">0424 247 68 91</a></dd></div>
+      <div><dt>Ulaşım</dt><dd>Otogara ~5,9 km · Elazığ Havalimanı'na ~17,1 km (karayoluyla, yaklaşık)</dd></div>
+    </dl>
+    <p class="kaynak"><a href="https://www.google.com/maps/search/?api=1&query=%C3%96mer%20Bilgino%C4%9Flu%20KYK%20Erkek%20%C3%96%C4%9Frenci%20Yurdu%2C%20Elaz%C4%B1%C4%9F" target="_blank" rel="noopener">Haritada aç</a> · Adres kaynağı: Fırat Üniversitesi kayıt duyurusu (KYK yurt listesi)</p>
+  </section>
   <section class="kart cam kesfet">
     <h2>KampüsCepte'de başka neler var?</h2>
     <div class="kisayol">

@@ -1351,3 +1351,53 @@ html.yurtsuz .kutular { grid-template-columns: repeat(3, 1fr) !important; }
   .mobil-ust .kc-geri-btn:not(.gizli) { width: 38px !important; height: 38px !important; }
   .mobil-ust .pd-mobil { width: 38px; height: 38px; }
 }
+
+/* ================= KAMPÜSTEN HABERLER (ana sayfa) ================= */
+.baslik .tumu { margin-left: auto; font: 700 14px var(--font); color: var(--mavi); text-decoration: none; }
+.haber-liste { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.haber-kart { display: flex; flex-direction: column; background: var(--kart); border: 1px solid var(--cizgi); border-radius: var(--r-2);
+  overflow: hidden; color: var(--yazi); text-decoration: none; transition: border-color .2s, transform .2s; }
+.haber-kart:hover { border-color: var(--mavi); }
+.haber-kart:active { transform: scale(.99); }
+.haber-kart:focus-visible { outline: 3px solid var(--mavi); outline-offset: 2px; }
+.haber-kart img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: var(--kart-2); }
+.haber-kart > div { padding: 12px 14px 14px; }
+.haber-kart small { display: block; color: var(--soluk); font-size: 12px; font-weight: 700; margin-bottom: 4px; }
+.haber-kart b { display: block; font-size: 15px; line-height: 1.35; }
+.haber-kart p { margin: 6px 0 0; color: var(--soluk); font-size: 14px; line-height: 1.5; }
+.haber-kart.buyuk { grid-column: 1 / -1; flex-direction: row; }
+.haber-kart.buyuk img { width: 48%; height: 100%; aspect-ratio: auto; }
+.haber-kart.buyuk > div { padding: 18px 20px; align-self: center; }
+.haber-kart.buyuk b { font-family: var(--font-b); font-size: 20px; letter-spacing: -.01em; }
+@media (max-width: 720px) {
+  .haber-liste { grid-template-columns: 1fr; gap: 0; background: var(--kart); border: 1px solid var(--cizgi); border-radius: var(--r-2); overflow: hidden; }
+  .haber-kart { flex-direction: row; align-items: center; gap: 12px; border: 0; border-radius: 0; border-top: 1px solid var(--cizgi); padding: 12px; }
+  .haber-kart:first-child { border-top: 0; }
+  .haber-kart img { width: 96px; flex: none; aspect-ratio: 4 / 3; border-radius: var(--r-1); }
+  .haber-kart > div { padding: 0; }
+  .haber-kart b { font-size: 14.5px; }
+  .haber-kart.buyuk { flex-direction: column; align-items: stretch; padding: 0; }
+  .haber-kart.buyuk img { width: 100%; height: auto; aspect-ratio: 2 / 1; border-radius: 0; }
+  .haber-kart.buyuk > div { padding: 14px; }
+  .haber-kart.buyuk b { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) { .haber-kart { transition: none; } }
+
+/* ================= YURT REHBERİ VE YURT HAKKINDA ================= */
+.yurt-rehber { margin-top: 22px; padding: 18px 20px; background: var(--kart); border: 1px solid var(--cizgi); border-radius: var(--r-2); }
+.yurt-rehber h2 { font-family: var(--font-b); font-size: 18px; margin: 0 0 8px; }
+.yurt-rehber p { margin: 0 0 12px; color: var(--soluk); font-size: 14px; line-height: 1.6; }
+.yurt-rehber dl { margin: 0; }
+.yurt-rehber dt { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; color: var(--soluk); margin: 14px 0 4px; }
+.yurt-rehber dd { margin: 0; padding: 9px 0; border-bottom: 1px solid var(--cizgi); font-size: 14px; line-height: 1.5; color: var(--soluk); }
+.yurt-rehber dd b { display: block; color: var(--yazi); font-size: 15px; }
+.yurt-rehber .yurt-kaynak { margin: 12px 0 0; font-size: 12px; }
+.yurt-bilgi-kart { margin-top: 14px; }
+.yurt-bilgi-kart .menu-ust p { margin: 2px 0 0; color: var(--soluk); font-size: 13px; }
+.yb-aciklama { margin: 12px 0; font-size: 14.5px; line-height: 1.6; }
+.yb-liste { margin: 0 0 14px; }
+.yb-liste > div { display: grid; grid-template-columns: 84px 1fr; gap: 10px; padding: 9px 0; border-top: 1px solid var(--cizgi); font-size: 14px; }
+.yb-liste dt { color: var(--soluk); font-weight: 700; }
+.yb-liste dd { margin: 0; font-weight: 600; }
+.yb-liste a { color: var(--mavi); }
+.yb-harita { display: inline-flex; min-height: 44px; align-items: center; text-decoration: none; }

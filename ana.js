@@ -384,8 +384,27 @@ function yurtAc(id) {
   document.getElementById("detay-ad").textContent = detayYurt.ad;
   document.getElementById("detay-gorsel").src = "gorseller/yurtlar/" + detayYurt.id + ".webp";
   document.getElementById("detay-tur").textContent = (detayYurt.tur === "kiz" ? "Kız" : "Erkek") + " yurdu · KYK";
+  yurtBilgiYaz(detayYurt.id);
   detayMenuGuncelle();
   window.scrollTo({ top: 0 });
+}
+/* Yurt hakkında: adres, telefon, ulaşım (yurtbilgi.js) */
+function yurtBilgiYaz(id) {
+  const kutu = document.getElementById("detay-bilgi");
+  const b = typeof yurtBilgi !== "undefined" ? yurtBilgi[id] : null;
+  if (!kutu) return;
+  if (!b) { kutu.hidden = true; return; }
+  const tel = b.tel ? `<div><dt>Telefon</dt><dd><a href="tel:+90${b.tel.replace(/\D/g, "").replace(/^0/, "")}">${b.tel}</a></dd></div>` : "";
+  kutu.innerHTML = `
+    <div class="menu-ust"><div><h2>Yurt hakkında</h2><p>${b.tamAd}</p></div></div>
+    <p class="yb-aciklama">${b.aciklama}</p>
+    <dl class="yb-liste">
+      <div><dt>Adres</dt><dd>${b.adres}</dd></div>
+      ${tel}
+      <div><dt>Ulaşım</dt><dd>Otogara ~${b.otogar} km · Havalimanına ~${b.havalimani} km</dd></div>
+    </dl>
+    <a class="btn yb-harita" href="${yurtHaritaLinki(id)}" target="_blank" rel="noopener">Haritada aç</a>`;
+  kutu.hidden = false;
 }
 function detayMenuGuncelle() {
   document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
