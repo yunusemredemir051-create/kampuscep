@@ -11,7 +11,7 @@ TUM = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'
 # "gizli": true olan haber hiçbir listede, aramada ve sitemap'te görünmez; sayfası yalnızca doğrudan linkle açılır (noindex)
 H = [n for n in TUM if not n.get('gizli')]
 CSS_V, JS_V, KC_V = '1', '1', '6'
-SIRA = ['Üniversite', 'Kampüs', 'Eğitim', 'Duyurular', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Teknoloji', 'Türkiye', 'Dünya', 'Spor']
+SIRA = ['Üniversite', 'Kampüs', 'Eğitim', 'Duyurular', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Teknoloji', 'Kariyer ve Gelecek', 'Psikoloji ve Kişisel Gelişim', 'Sağlıklı Yaşam', 'Türkiye', 'Dünya', 'Spor']
 TR = str.maketrans('çğıöşüÇĞİÖŞÜ', 'cgiosuCGIOSU')
 def kod(k): return re.sub(r'[^a-z0-9]+', '-', k.translate(TR).lower()).strip('-')
 KATS = [k for k in SIRA if any(h['kategori'] == k for h in H)]
@@ -66,6 +66,10 @@ def sayfa(title, desc, canon, body, extra=''):
     assert 'Hakkımızda' not in h
     return h + '<body>\n' + body + '\n' + ALT + '\n' + SON
 
+def kaynak_satiri(n):
+    if n['kaynak'] == 'KampüsCepte Haber Merkezi': return 'Bu içerik KampüsCepte Haber Merkezi tarafından hazırlanmıştır.'
+    return f'<b>Kaynak:</b> {n["kaynak"]}. Haber KampüsCepte Haber Merkezi tarafından hazırlanmıştır.'
+
 def okuma(n): return max(1, round(len(re.sub(r'<[^>]+>', ' ', ' '.join(n['govde'])).split()) / 200))
 
 # ---------- Ana sayfa ----------
@@ -117,16 +121,27 @@ for n in TUM:
     </div>
   </header>
   <figure class="hb-kapak"><div class="hb-gorsel"><img src="/gorseller/haberler/{n["gorsel"]}" alt="{e(n["alt"])}" width="{n["w"]}" height="{n["h"]}" fetchpriority="high"></div>
-    <figcaption>{e(n["alt"])}. <small>Görsel: {n.get("gorsel_kaynak", "Fırat Üniversitesi")}</small></figcaption></figure>
+    <figcaption>{e(n.get("aciklama", n["alt"] + "."))} <small>Görsel: {n.get("gorsel_kaynak", "Fırat Üniversitesi")}</small></figcaption></figure>
   <div class="hb-metin">
 {chr(10).join(n["govde"])}
   </div>
-  <p class="hb-kaynak"><b>Kaynak:</b> {n["kaynak"]}. Haber KampüsCepte Haber Merkezi tarafından hazırlanmıştır. Haber ihbarı ve düzeltme için <a href="/iletisim.html">bize yazın</a>.</p>
+  <p class="hb-kaynak">{kaynak_satiri(n)} Haber ihbarı ve düzeltme için <a href="/iletisim.html">bize yazın</a>.</p>
   <div class="hb-alt-paylas"><span class="hb-zaman">{n["kategori"]} · {n["tarih"]}</span>{pay}</div>
 </article>
 <section class="hb-ilgili" aria-labelledby="ilgili-b"><div class="hb-bolum-b"><h2 id="ilgili-b">İlgili haberler</h2></div><div class="hb-ikinci">{"".join(kart(x) for x in ilgili[:3])}</div></section>
 </div></main>'''
     open(R + f'haberler/{n["slug"]}.html', 'w', encoding='utf-8').write(sayfa(n["baslik"] + ' – KampüsCepte Haberler', n["ozet"], f'/haberler/{n["slug"]}.html', body, og))
+
+# ---------- Uygulama ana sayfasındaki haber kartları (index.html) ----------
+def ana_kart(n, buyuk=False):
+    p = f'\n          <p>{n["ozet"]}</p>' if buyuk else ''
+    return (f'        <a class="haber-kart{" buyuk" if buyuk else ""}" href="/haberler/{n["slug"]}.html">\n'
+            f'          <img src="gorseller/haberler/{n["gorsel"]}" alt="{e(n["alt"])}" width="{n["w"]}" height="{n["h"]}" loading="lazy">\n'
+            f'          <div><small>{n["tarih"]} · {n["kategori"]}</small><b>{n["baslik"]}</b>{p}</div>\n        </a>\n')
+ix = open(R + 'index.html', encoding='utf-8').read()
+a = ix.index('      <div class="haber-liste">'); b = ix.index('      </div>\n      </section>', a)
+ix = ix[:a] + '      <div class="haber-liste">\n' + ''.join(ana_kart(n, i == 0) for i, n in enumerate(H[:4])) + ix[b:]
+open(R + 'index.html', 'w', encoding='utf-8').write(ix)
 
 # ---------- Arama/filtre verisi ----------
 veri = [{k: n[k] for k in ('slug', 'baslik', 'ozet', 'kategori', 'tarih', 'iso', 'gorsel', 'w', 'h')} | {'saat': n.get('saat', ''), 'kod': kod(n['kategori']),
