@@ -9,9 +9,9 @@
   "gorsel": "yks-2027-takvim.webp",
   "w": 1600,
   "h": 900,
-  "alt": "İşaretli günleri olan bir takvim çizimi",
+  "alt": "Haziran ayında bir günü kırmızıyla işaretlenmiş masa takvimi, optik form ve deneme kitapçıkları",
   "aciklama": "2027 YKS'de adayları dört kritik tarih bekliyor: başvuru, geç başvuru, sınav ve sonuç günü.",
-  "gorsel_kaynak": "KampüsCepte çizim",
+  "gorsel_kaynak": "Temsilî görsel",
   "ozet": "ÖSYM'nin açıkladığı 2027 sınav takvimine göre Yükseköğretim Kurumları Sınavı 19-20 Haziran 2027'de yapılacak. Başvurular 4 Şubat'ta başlayıp 2 Mart'ta sona erecek, sonuçlar ise 21 Temmuz'da açıklanacak.",
   "govde": [
    "<p>Üniversiteye girmeye hazırlanan adayların en çok merak ettiği soru yanıt buldu. Ölçme, Seçme ve Yerleştirme Merkezi (ÖSYM), 28 Ekim 2026'da 2027 yılı sınav takvimini yayımladı. Takvime göre Yükseköğretim Kurumları Sınavı (YKS) haziran ayının üçüncü hafta sonunda, iki gün ve üç oturum hâlinde yapılacak.</p>",
@@ -244,8 +244,8 @@
   "gorsel": "erteleme-aliskanligi.webp",
   "w": 1600,
   "h": 900,
-  "alt": "Üst üste takvim sayfaları ve ileri ok çizimi",
-  "gorsel_kaynak": "KampüsCepte çizim",
+  "alt": "Gece lambası yanan bir çalışma masasında açık kitap, boş not kâğıdı ve bildirimleri görünen bir telefon",
+  "gorsel_kaynak": "Temsilî görsel",
   "ozet": "Yapılacak işler biriktikçe başlamak daha zor hâle gelebiliyor. Özellikle üniversite öğrencilerinin sık karşılaştığı erteleme davranışıyla baş etmek için küçük adımlar etkili olabilir.",
   "govde": [
    "<p>Bir ödevin son teslim tarihini bilmesine rağmen çalışmaya başlayamamak, sınava hazırlanmayı sürekli sonraya bırakmak veya yapılacak işleri son güne yetiştirmeye çalışmak... Erteleme davranışı, öğrencilik hayatının en yaygın zorluklarından biri olarak öne çıkıyor.</p>",
@@ -307,8 +307,8 @@
   "gorsel": "kariyer-yatirim.webp",
   "w": 1600,
   "h": 900,
-  "alt": "Yükselen basamaklar ve bayrak çizimi",
-  "gorsel_kaynak": "KampüsCepte çizim",
+  "alt": "Kampüs kafesinde dizüstü bilgisayarda özgeçmiş hazırlayan bir öğrencinin elleri",
+  "gorsel_kaynak": "Temsilî görsel",
   "ozet": "Mezuniyet sonrasını beklemeden kariyer planlamasına başlamak, öğrencilerin iş hayatına daha bilinçli hazırlanmasına yardımcı olabilir.",
   "govde": [
    "<p>Üniversite eğitimi, yalnızca akademik bilgi edinilen bir dönem değil, aynı zamanda mesleki geleceğin temellerinin atıldığı önemli bir süreç. Öğrencilerin eğitim hayatı boyunca edineceği deneyimler, mezuniyet sonrasında karşılarına çıkabilecek fırsatları değerlendirmelerine katkı sağlayabilir.</p>",
