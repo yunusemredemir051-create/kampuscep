@@ -126,10 +126,10 @@ for n in TUM:
 {chr(10).join(n["govde"])}
   </div>
   <p class="hb-kaynak">{kaynak_satiri(n)} Haber ihbarı ve düzeltme için <a href="/iletisim.html">bize yazın</a>.</p>
-  <div class="hb-alt-paylas"><span class="hb-zaman">{n["kategori"]} · {n["tarih"]}<span class="hb-okunma" id="hb-okunma" data-haber="{n["slug"]}" hidden> · <b></b> görüntülenme</span></span>{pay}</div>
+  <div class="hb-alt-paylas"><span class="hb-zaman">{n["kategori"]} · {n["tarih"]}<span class="hb-okunma" id="hb-okunma" data-haber="{n["slug"]}" data-onceki="{int(n.get("onceki_okunma", 0))}" hidden> · <b></b> görüntülenme</span></span>{pay}</div>
 </article>
 <script src="/firebase-ayar.js?v=2"></script>
-<script type="module" src="/haber-sayac.js?v=1"></script>
+<script type="module" src="/haber-sayac.js?v=2"></script>
 <section class="hb-ilgili" aria-labelledby="ilgili-b"><div class="hb-bolum-b"><h2 id="ilgili-b">İlgili haberler</h2></div><div class="hb-ikinci">{"".join(kart(x) for x in ilgili[:3])}</div></section>
 </div></main>'''
     open(R + f'haberler/{n["slug"]}.html', 'w', encoding='utf-8').write(sayfa(n["baslik"] + ' – KampüsCepte Haberler', n["ozet"], f'/haberler/{n["slug"]}.html', body, og))
