@@ -4,35 +4,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1, user-scalable=no">
 <script>(function(){var u=false;try{u=/[?&]kaynak=uygulama/.test(location.search)||!!window.Capacitor;if(u)sessionStorage.setItem("kc-uyg","1");else u=sessionStorage.getItem("kc-uyg")==="1"}catch(e){}document.documentElement.classList.add(u?"uyg":"web")})()</script>
-<title>Kampüsten haberler – KampüsCepte</title>
-<meta name="description" content="Elazığ&#x27;daki üniversite hayatından haberler: öğrenci ödülleri, akademik başarılar, TÜBİTAK projeleri ve etkinlikler.">
+<title>Haberler – KampüsCepte</title>
+<meta name="description" content="Elazığ&#x27;daki üniversite hayatından haberler: öğrenci ödülleri, akademik başarılar, TÜBİTAK projeleri, etkinlikler ve öğrencilere yönelik uygulamalar.">
 <link rel="canonical" href="https://kampuscepte.com.tr/haberler/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/kc.css?v=5">
 <style>
-  body { margin: 0; background: var(--zemin); color: var(--yazi); font-family: var(--font); line-height: 1.7; }
-  main { max-width: 720px; margin: 0 auto; padding: 32px 18px 60px; }
-  .kart { background: var(--kart); border-radius: var(--r-3); padding: 28px; box-shadow: var(--golge); }
-  a { color: var(--mavi); font-weight: 600; }
-  h1 { font-size: 28px; margin: 8px 0 4px; letter-spacing: -.5px; }
-  h2 { font-size: 18px; margin: 26px 0 6px; }
-  ul { padding-left: 22px; } li { margin-bottom: 6px; }
-  .alt-linkler { display:flex; flex-wrap:wrap; gap:8px 18px; justify-content:center; margin-top:28px; font-size:13px; }
-  .alt-linkler a { color: var(--soluk); }
-  .yol { font-size: 13px; color: var(--soluk); } .yol a { color: var(--soluk); font-weight: 600; }
-  .haber-ust small { display:block; color: var(--soluk); font-weight: 700; font-size: 13px; margin-top: 14px; }
-  .haber-ust h1 { font-family: var(--font-b); font-size: 30px; line-height: 1.2; margin: 6px 0 10px; }
-  .ozet { font-size: 18px; line-height: 1.6; color: var(--yazi); margin: 0 0 18px; }
-  figure { margin: 0 0 22px; } figure img { display:block; width:100%; height:auto; border-radius: var(--r-2); background: var(--kart-2); }
-  figcaption { font-size: 12px; color: var(--soluk); margin-top: 6px; }
-  article p { font-size: 16.5px; }
-  .kutu-bilgi { border-left: 4px solid var(--mavi); background: var(--mavi-acik); padding: 12px 16px; border-radius: var(--r-1); margin: 20px 0; }
-  .kutu-bilgi p { margin: 0; font-size: 15px; }
-  .diger { margin-top: 30px; border-top: 1px solid var(--cizgi); padding-top: 16px; }
-  .diger h2 { font-size: 16px; margin: 0 0 8px; } .diger ul { list-style: none; padding: 0; margin: 0; }
-  .diger li { padding: 8px 0; border-bottom: 1px solid var(--cizgi); } .diger li a { text-decoration: none; }
-  .diger small { display:block; color: var(--soluk); font-weight: 600; }
-  @media (max-width: 600px) { .kart { padding: 20px; } .haber-ust h1 { font-size: 24px; } .ozet { font-size: 16.5px; } }
+:root { --h-serif: Georgia, "Iowan Old Style", "Times New Roman", serif; --h-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+html, body { background: var(--kart) !important; }
+.ozel-arka { display: none !important; } /* haber sayfalarında okuma için sade zemin; özel gün şeridi yine görünür */
+body { margin: 0; background: var(--kart); color: var(--yazi); font-family: var(--h-sans); -webkit-font-smoothing: antialiased; }
+a { color: var(--mavi); }
+.mast { border-bottom: 1px solid var(--cizgi); background: var(--kart); position: sticky; top: 0; z-index: 5; }
+.mast-ic { max-width: 1080px; margin: 0 auto; padding: 0 18px; height: 56px; display: flex; align-items: center; gap: 12px; }
+.mast-logo { display: flex; align-items: center; gap: 8px; color: var(--yazi); text-decoration: none; font-weight: 800; font-size: 18px; letter-spacing: -.01em; }
+.mast-logo img { width: 28px; height: 28px; }
+.mast-logo span { font-weight: 600; color: var(--soluk); border-left: 1px solid var(--cizgi); padding-left: 8px; margin-left: 2px; font-size: 15px; }
+.mast nav { margin-left: auto; display: flex; gap: 18px; }
+.mast nav a { white-space: nowrap; color: var(--yazi); text-decoration: none; font-weight: 600; font-size: 14px; padding: 12px 0; }
+.mast nav a:hover { color: var(--mavi); }
+.sayfa-ic { max-width: 1080px; margin: 0 auto; padding: 24px 18px 56px; }
+.haber { max-width: 720px; margin: 0 auto; }
+.kat { display: inline-block; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--mavi); text-decoration: none; }
+.haber h1 { font-family: var(--h-sans); font-weight: 800; font-size: 38px; line-height: 1.15; letter-spacing: -.02em; margin: 10px 0 14px; }
+.spot { font-family: var(--h-sans); font-size: 20px; line-height: 1.5; font-weight: 500; color: var(--yazi); opacity: .86; margin: 0 0 18px; }
+.kunye { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; padding: 12px 0; border-top: 1px solid var(--cizgi); border-bottom: 1px solid var(--cizgi); font-size: 13.5px; color: var(--soluk); }
+.kunye b { color: var(--yazi); font-weight: 700; }
+.paylas { margin-left: auto; display: flex; gap: 6px; }
+.paylas a, .paylas button { width: 38px; height: 38px; display: grid; place-items: center; border: 1px solid var(--cizgi); border-radius: 50%; background: transparent; color: var(--yazi); cursor: pointer; text-decoration: none; transition: border-color .15s, color .15s; }
+.paylas a:hover, .paylas button:hover { border-color: var(--mavi); color: var(--mavi); }
+.paylas button.ok { color: var(--yesil); border-color: var(--yesil); }
+.paylas svg { width: 18px; height: 18px; }
+figure.kapak { margin: 22px 0 6px; }
+figure.kapak img { display: block; width: 100%; height: auto; background: var(--kart-2); }
+figure.kapak figcaption { font-size: 12.5px; color: var(--soluk); padding: 8px 0 0; border-bottom: 1px solid var(--cizgi); padding-bottom: 10px; }
+.metin { font-family: var(--h-serif); font-size: 19px; line-height: 1.75; margin-top: 22px; }
+.metin p { margin: 0 0 20px; }
+.metin h2 { font-family: var(--h-sans); font-size: 23px; font-weight: 800; letter-spacing: -.01em; line-height: 1.3; margin: 34px 0 12px; }
+.metin ul, .metin ol { padding-left: 24px; margin: 0 0 20px; } .metin li { margin-bottom: 10px; }
+.metin a { text-underline-offset: 3px; }
+.kutu-bilgi { font-family: var(--h-sans); border-top: 3px solid var(--yazi); background: var(--kart-2); padding: 16px 18px; margin: 28px 0; }
+.kutu-bilgi p { margin: 0; font-size: 16px; line-height: 1.65; }
+.kutu-bilgi b:first-child { display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.son-paylas { display: flex; align-items: center; gap: 12px; white-space: nowrap; border-top: 1px solid var(--cizgi); padding-top: 16px; margin-top: 30px; font-size: 14px; font-weight: 700; }
+.son-paylas .paylas { margin-left: 0; }
+.ilgili { max-width: 1080px; margin: 48px auto 0; border-top: 3px solid var(--yazi); padding-top: 14px; }
+.ilgili h2 { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 16px; }
+.ilgili-liste { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.ik { color: var(--yazi); text-decoration: none; display: block; }
+.ik img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; background: var(--kart-2); }
+.ik small { display: block; margin-top: 10px; font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--mavi); }
+.ik b { display: block; margin-top: 4px; font-size: 16px; line-height: 1.35; }
+.ik:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.alt { border-top: 1px solid var(--cizgi); margin-top: 48px; }
+.alt-ic { max-width: 1080px; margin: 0 auto; padding: 20px 18px 40px; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; }
+.alt-ic a { color: var(--soluk); text-decoration: none; } .alt-ic span { color: var(--soluk); margin-right: auto; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--mavi); outline-offset: 2px; }
+/* liste sayfası */
+.manset { display: grid; grid-template-columns: 1.5fr 1fr; gap: 28px; color: var(--yazi); text-decoration: none; border-bottom: 1px solid var(--cizgi); padding-bottom: 28px; }
+.manset img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.manset h2 { font-size: 32px; line-height: 1.18; font-weight: 800; letter-spacing: -.02em; margin: 8px 0 12px; }
+.manset p { font-family: var(--h-serif); font-size: 18px; line-height: 1.6; color: var(--soluk); margin: 0; }
+.manset:hover h2 { text-decoration: underline; text-underline-offset: 4px; }
+.sayfa-bas { display: flex; align-items: baseline; gap: 12px; border-bottom: 3px solid var(--yazi); padding-bottom: 10px; margin-bottom: 22px; }
+.sayfa-bas h1 { font-size: 28px; font-weight: 800; margin: 0; letter-spacing: -.02em; }
+.sayfa-bas p { margin: 0; color: var(--soluk); font-size: 14px; }
+.liste-h { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 26px; }
+.liste-h .ik p { font-family: var(--h-serif); color: var(--soluk); font-size: 15.5px; line-height: 1.55; margin: 6px 0 0; }
+@media (max-width: 860px) { .ilgili-liste { grid-template-columns: 1fr 1fr; } .manset { grid-template-columns: 1fr; gap: 14px; } .liste-h { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 600px) {
+  .mast nav a.gizle { display: none; }
+  .sayfa-ic { padding: 18px 16px 40px; }
+  .haber h1 { font-size: 28px; }
+  .spot { font-size: 17.5px; }
+  .metin { font-size: 18px; }
+  figure.kapak { margin-left: -16px; margin-right: -16px; }
+  figure.kapak figcaption { padding-left: 16px; padding-right: 16px; }
+  .paylas { margin-left: 0; width: 100%; }
+  .ilgili-liste { grid-template-columns: 1fr; gap: 0; }
+  .ilgili-liste .ik { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--cizgi); }
+  .ilgili-liste .ik small { margin-top: 0; }
+  .ilgili-liste .ik b { font-size: 15px; }
+  .manset h2 { font-size: 25px; }
+  .liste-h { grid-template-columns: 1fr; gap: 0; margin-top: 8px; }
+  .liste-h .ik { display: grid; grid-template-columns: 112px 1fr; gap: 12px; padding: 14px 0; border-bottom: 1px solid var(--cizgi); }
+  .liste-h .ik small { margin-top: 0; } .liste-h .ik b { font-size: 15.5px; } .liste-h .ik p { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 <!-- PWA -->
 <link rel="manifest" href="/manifest.webmanifest">
@@ -51,20 +110,23 @@
 <!-- /PWA -->
 </head>
 <body>
-<main>
-  <nav class="yol" aria-label="Konum"><a href="/">KampüsCepte</a> › Haberler</nav>
-  <div class="kart" style="margin-top:12px">
-    <h1>Kampüsten haberler</h1>
-    <p>Elazığ'daki üniversite hayatından öne çıkan gelişmeler: öğrenci ödülleri, akademik başarılar, projeler ve etkinlikler. Paylaşmak istediğin bir haber varsa <a href="/iletisim.html">bize yaz</a>.</p>
-    <style>.hk{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--cizgi);color:var(--yazi);text-decoration:none;font-weight:400}.hk img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r-1)}.hk small{display:block;color:var(--soluk);font-weight:700;font-size:12.5px}.hk b{display:block;font-size:17px;line-height:1.35;margin:3px 0}.hk p{margin:0;color:var(--soluk);font-size:14.5px;line-height:1.5}@media(max-width:600px){.hk{grid-template-columns:96px 1fr}.hk p{display:none}.hk b{font-size:15px}}</style>
-    <a class="hk" href="/haberler/finansal-veri-masasi-yunus-emre-gur.html"><img src="/gorseller/haberler/finansal-veri-masasi.webp" alt="" width="1100" height="615" loading="lazy"><div><small>23 Kasım 2026 · Teknoloji</small><b>Doç. Dr. Yunus Emre Gür'den öğrencilere kod yazmadan finansal veri indirme uygulaması</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğretim üyesi Doç. Dr. Yunus Emre Gür, Python kurmadan ve kod yazmadan finans ve makroekonomi verisi indirmeyi sağlayan masaüstü uygulaması Finansal Veri Masası'nı geliştirdi ve öğrencilerin kullanımına sundu.</p></div></a>
-    <a class="hk" href="/haberler/finrehber-ai-kastamonu-teknokent-odulu.html"><img src="/gorseller/haberler/finrehber.webp" alt="" width="794" height="397" loading="lazy"><div><small>21 Ekim 2026 · Ödül</small><b>Yapay zekâ destekli finans platformu FinRehber AI'ya Kastamonu Teknokent Ödülü</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri öğrencisi Ahmet Gün'ün geliştirdiği FinRehber AI, Kastamonu AR-GE ve İnovasyon Proje Pazarı 2026'da Kastamonu Teknokent Ödülü'nü kazandı.</p></div></a>
-    <a class="hk" href="/haberler/mesut-togacar-akademik-basari-belgesi.html"><img src="/gorseller/haberler/mesut-togacar.webp" alt="" width="784" height="441" loading="lazy"><div><small>24 Haziran 2026 · Akademi</small><b>Doç. Dr. Mesut Toğaçar'a akademik başarı belgesi</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğretim üyesi Doç. Dr. Mesut Toğaçar, 2025 yılındaki bilimsel çalışmaları nedeniyle akademik başarı belgesi aldı.</p></div></a>
-    <a class="hk" href="/haberler/tubitak-2209a-14-proje.html"><img src="/gorseller/haberler/tubitak.webp" alt="" width="784" height="555" loading="lazy"><div><small>20 Mayıs 2026 · Araştırma</small><b>Yönetim Bilişim Sistemleri'nden 14 projeye TÜBİTAK 2209-A desteği</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğrencilerinin hazırladığı 14 proje, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'ndan destek almaya hak kazandı.</p></div></a>
-    <a class="hk" href="/haberler/tipta-yapay-zeka-kongre-sunumu.html"><img src="/gorseller/haberler/erhan-arpaci.webp" alt="" width="784" height="522" loading="lazy"><div><small>20 Mayıs 2026 · Kongre</small><b>Tıp kongresinde yapay zekâyla vaka analizi sunumu</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri öğrencisi Erhan Arpacı, Malatya Turgut Özal Üniversitesi Tıp Kongresi'nde tıpta yapay zekânın kullanımını anlattı.</p></div></a>
-  </div>
-  <nav class="alt-linkler"><a href="/haberler/">Haberler</a><a href="/hakkimizda.html">Hakkımızda</a><a href="/iletisim.html">İletişim</a><a href="/gizlilik.html">Gizlilik ve çerezler</a><a href="/kullanim-kosullari.html">Kullanım koşulları</a></nav>
+<header class="mast"><div class="mast-ic">
+  <a class="mast-logo" href="/"><img src="/favicon.svg" alt="" width="28" height="28">KampüsCepte<span>Haber</span></a>
+  <nav><a class="gizle" href="/">Ana sayfa</a><a href="/haberler/">Haberler</a><a class="gizle" href="/#yurtlar">Yurtlar</a></nav>
+</div></header>
+<main class="sayfa-ic">
+<div class="sayfa-bas"><h1>Haberler</h1><p>Elazığ'da üniversite hayatından</p></div>
+<a class="manset" href="/haberler/finansal-veri-masasi-yunus-emre-gur.html"><img src="/gorseller/haberler/finansal-veri-masasi.webp" alt="Finansal Veri Masası 1.0.1 uygulamasının kullanım kılavuzu kapağı ve uygulama ekranı" width="1100" height="615"><div><span class="kat">Teknoloji</span><h2>Doç. Dr. Yunus Emre Gür'den öğrencilere kod yazmadan finansal veri indirme uygulaması</h2><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğretim üyesi Doç. Dr. Yunus Emre Gür, Python kurmadan ve kod yazmadan finans ve makroekonomi verisi indirmeyi sağlayan masaüstü uygulaması Finansal Veri Masası'nı geliştirdi ve öğrencilerin kullanımına sundu.</p><p style="margin-top:12px;font-family:var(--h-sans);font-size:13px">23 Kasım 2026</p></div></a>
+<div class="liste-h"><a class="ik" href="/haberler/finrehber-ai-kastamonu-teknokent-odulu.html"><img src="/gorseller/haberler/finrehber.webp" alt="" width="794" height="397" loading="lazy"><div><small>Ödül · 21 Ekim 2026</small><b>Yapay zekâ destekli finans platformu FinRehber AI'ya Kastamonu Teknokent Ödülü</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri öğrencisi Ahmet Gün'ün geliştirdiği FinRehber AI, Kastamonu AR-GE ve İnovasyon Proje Pazarı 2026'da Kastamonu Teknokent Ödülü'nü kazandı.</p></div></a><a class="ik" href="/haberler/mesut-togacar-akademik-basari-belgesi.html"><img src="/gorseller/haberler/mesut-togacar.webp" alt="" width="784" height="441" loading="lazy"><div><small>Akademi · 24 Haziran 2026</small><b>Doç. Dr. Mesut Toğaçar'a akademik başarı belgesi</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğretim üyesi Doç. Dr. Mesut Toğaçar, 2025 yılındaki bilimsel çalışmaları nedeniyle akademik başarı belgesi aldı.</p></div></a><a class="ik" href="/haberler/tubitak-2209a-14-proje.html"><img src="/gorseller/haberler/tubitak.webp" alt="" width="784" height="555" loading="lazy"><div><small>Araştırma · 20 Mayıs 2026</small><b>Yönetim Bilişim Sistemleri'nden 14 projeye TÜBİTAK 2209-A desteği</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğrencilerinin hazırladığı 14 proje, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'ndan destek almaya hak kazandı.</p></div></a><a class="ik" href="/haberler/tipta-yapay-zeka-kongre-sunumu.html"><img src="/gorseller/haberler/erhan-arpaci.webp" alt="" width="784" height="522" loading="lazy"><div><small>Kongre · 20 Mayıs 2026</small><b>Tıp kongresinde yapay zekâyla vaka analizi sunumu</b><p>Fırat Üniversitesi Yönetim Bilişim Sistemleri öğrencisi Erhan Arpacı, Malatya Turgut Özal Üniversitesi Tıp Kongresi'nde tıpta yapay zekânın kullanımını anlattı.</p></div></a></div>
 </main>
+<footer class="alt"><div class="alt-ic"><span>© 2026 KampüsCepte</span><a href="/hakkimizda.html">Hakkımızda</a><a href="/iletisim.html">İletişim</a><a href="/gizlilik.html">Gizlilik ve çerezler</a><a href="/kullanim-kosullari.html">Kullanım koşulları</a></div></footer>
+<script>
+document.querySelectorAll("[data-paylas]").forEach(function(b){if(!navigator.share)return;b.hidden=false;b.addEventListener("click",function(){navigator.share({title:document.title,url:location.href.split("#")[0]}).catch(function(){})})});
+document.querySelectorAll("[data-kopyala]").forEach(function(b){b.addEventListener("click",function(){
+  var u=location.href.split("#")[0];
+  (navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(function(){b.classList.add("ok");b.setAttribute("aria-label","Bağlantı kopyalandı");b.title="Bağlantı kopyalandı";setTimeout(function(){b.classList.remove("ok");b.title="Bağlantıyı kopyala"},1800)}).catch(function(){prompt("Bağlantıyı kopyala:",u)});
+});});
+</script>
 <script defer src="/geri.js?v=2"></script>
 </body>
 </html>
