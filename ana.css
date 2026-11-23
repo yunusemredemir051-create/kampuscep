@@ -1353,7 +1353,9 @@ html.yurtsuz .kutular { grid-template-columns: repeat(3, 1fr) !important; }
 }
 
 /* ================= KAMPÜSTEN HABERLER (ana sayfa) ================= */
-.baslik .tumu { margin-left: auto; font: 700 14px var(--font); color: var(--mavi); text-decoration: none; }
+#ana > .haber-bolum { order: 3; }
+.haber-baslik { display: flex; align-items: baseline; gap: 10px; font-family: var(--font-b); font-size: 20px; font-weight: 800; letter-spacing: -.01em; margin: 6px 0 12px; }
+.haber-baslik .tumu { margin-left: auto; font: 700 14px var(--font); color: var(--mavi); text-decoration: none; }
 .haber-liste { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .haber-kart { display: flex; flex-direction: column; background: var(--kart); border: 1px solid var(--cizgi); border-radius: var(--r-2);
   overflow: hidden; color: var(--yazi); text-decoration: none; transition: border-color .2s, transform .2s; }
