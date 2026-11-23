@@ -11,6 +11,28 @@
     t.textContent = d.toLocaleDateString("tr-TR", { day: "numeric", month: "long", year: "numeric" }) + ", " + d.toLocaleDateString("tr-TR", { weekday: "long" });
   }
 
+  /* "Bugün 18.45" / "Dün 12.30": tarih yazılarını okura göre göreli gösterir */
+  function goreli(kok) {
+    var bugun = new Date(); bugun.setHours(0, 0, 0, 0);
+    (kok || document).querySelectorAll("time.hb-zaman[datetime]").forEach(function (t) {
+      var p = t.getAttribute("datetime").split("-"); if (p.length < 3) return;
+      var g = new Date(+p[0], +p[1] - 1, +p[2]), fark = Math.round((bugun - g) / 864e5), s = t.getAttribute("data-saat");
+      if (fark === 0) t.textContent = "Bugün" + (s ? " " + s : "");
+      else if (fark === 1) t.textContent = "Dün" + (s ? " " + s : "");
+    });
+  }
+  goreli();
+
+  /* Okuma ilerleme çubuğu (haber detay) */
+  var cubuk = document.querySelector(".hb-ilerleme i"), makale = document.querySelector(".hb-makale");
+  if (cubuk && makale) {
+    var guncelle = function () {
+      var r = makale.getBoundingClientRect(), top = r.height - innerHeight;
+      cubuk.style.transform = "scaleX(" + (top > 0 ? Math.min(1, Math.max(0, -r.top / top)) : 1) + ")";
+    };
+    addEventListener("scroll", guncelle, { passive: true }); addEventListener("resize", guncelle); guncelle();
+  }
+
   /* Görseller: yüklenince iskelet kalkar, yüklenemezse sade yedek görünüm */
   function gorselHazirla(kok) {
     (kok || document).querySelectorAll(".hb-gorsel img").forEach(function (img) {
@@ -63,7 +85,7 @@
     icerik.innerHTML = h;
     var g = document.querySelector(".hb-gundem"); if (g) g.hidden = true;
     document.title = (ara ? "“" + ara + "” araması" : katAd) + " – KampüsCepte Haberler";
-    gorselHazirla(icerik);
+    gorselHazirla(icerik); goreli(icerik);
   }
 
   /* Paylaş ve bağlantıyı kopyala */

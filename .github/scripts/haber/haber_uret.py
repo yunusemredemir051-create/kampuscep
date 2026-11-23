@@ -10,7 +10,7 @@ R = ''
 TUM = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'))
 # "gizli": true olan haber hiçbir listede, aramada ve sitemap'te görünmez; sayfası yalnızca doğrudan linkle açılır (noindex)
 H = [n for n in TUM if not n.get('gizli')]
-CSS_V, JS_V, KC_V = '3', '1', '6'
+CSS_V, JS_V, KC_V = '4', '2', '6'
 SIRA = ['Eğitim', 'Ders Çalışma Teknikleri', 'Sınavlara Hazırlık', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Türkiye\'den Eğitim Gündemi', 'Dünya\'dan Eğitim Gündemi', 'Burs ve Öğrenci Fırsatları', 'Teknoloji', 'Bilimsel Gelişmeler', 'Kariyer ve Gelecek', 'Psikoloji ve Kişisel Gelişim', 'Sağlıklı Yaşam', 'Dengeli Beslenme', 'Spor ve Fiziksel Aktivite', 'Kültür ve Sanat', 'Kitap ve Okuma Önerileri', 'Sosyal Yaşam ve Etkinlikler', 'Üniversite', 'Kampüs', 'Duyurular', 'Türkiye', 'Dünya', 'Spor']
 TR = str.maketrans('çğıöşüÇĞİÖŞÜ', 'cgiosuCGIOSU')
 def kod(k): return re.sub(r'[^a-z0-9]+', '-', k.translate(TR).lower()).strip('-')
@@ -49,15 +49,17 @@ def mast(aktif=''):
 ALT = '''<footer class="hb-altbilgi"><div class="hb-ic"><b>KampüsCepte Haberler</b><a href="/">Uygulamaya dön</a><a href="/hakkimizda.html">Hakkımızda</a><a href="/iletisim.html">Haber ihbarı ve iletişim</a><a href="/gizlilik.html">Gizlilik</a><a href="/kullanim-kosullari.html">Kullanım koşulları</a></div></footer>'''
 SON = f'<script src="/haberler/veri.js?v={JS_V}"></script>\n<script src="/haber.js?v={JS_V}"></script>\n<script defer src="/geri.js?v=2"></script>\n</body>\n</html>\n'
 
-def zaman(n): return f'<time class="hb-zaman" datetime="{n["iso"]}">{n["tarih"]}{(", " + n["saat"]) if n.get("saat") else ""}</time>'
+def okuma(n): return max(1, round(len(re.sub(r'<[^>]+>', ' ', ' '.join(n['govde'])).split()) / 200))
+def zaman(n): return f'<time class="hb-zaman" datetime="{n["iso"]}"{(' data-saat="' + n["saat"] + '"') if n.get("saat") else ""}>{n["tarih"]}{(", " + n["saat"]) if n.get("saat") else ""}</time>'
+def meta(n): return f'<p class="hb-meta">{zaman(n)}<span>{okuma(n)} dk okuma</span></p>'
 def gorsel(n, ilk=False):
     lz = '' if ilk else ' loading="lazy"'
     fp = ' fetchpriority="high"' if ilk else ''
     return f'<a class="hb-gorsel" href="/haberler/{n["slug"]}.html" tabindex="-1" aria-hidden="true"><img src="/gorseller/haberler/{n["gorsel"]}" alt="" width="{n["w"]}" height="{n["h"]}"{lz}{fp}></a>'
 def etiket(n): return f'<a class="hb-etiket" href="/haberler/?kategori={kod(n["kategori"])}">{n["kategori"]}</a>'
 def bag(n): return f'<a href="/haberler/{n["slug"]}.html">{n["baslik"]}</a>'
-def kart(n): return f'<article class="hb-kart">{gorsel(n)}<div>{etiket(n)}<h3 class="hb-baslik">{bag(n)}</h3><p class="hb-spot">{n["ozet"]}</p>{zaman(n)}</div></article>'
-def satir(n): return f'<article class="hb-satir">{gorsel(n)}<div>{etiket(n)}<h3 class="hb-baslik">{bag(n)}</h3><p class="hb-spot">{n["ozet"]}</p>{zaman(n)}</div></article>'
+def kart(n): return f'<article class="hb-kart">{gorsel(n)}<div>{etiket(n)}<h3 class="hb-baslik">{bag(n)}</h3><p class="hb-spot">{n["ozet"]}</p>{meta(n)}</div></article>'
+def satir(n): return f'<article class="hb-satir">{gorsel(n)}<div>{etiket(n)}<h3 class="hb-baslik">{bag(n)}</h3><p class="hb-spot">{n["ozet"]}</p>{meta(n)}</div></article>'
 
 def sayfa(title, desc, canon, body, extra=''):
     h = head.replace('<title>Hakkımızda – KampüsCepte</title>', f'<title>{e(title)}</title>')
@@ -70,22 +72,21 @@ def kaynak_satiri(n):
     if n['kaynak'] == 'KampüsCepte Haber Merkezi': return 'Bu içerik KampüsCepte Haber Merkezi tarafından hazırlanmıştır.'
     return f'<b>Kaynak:</b> {n["kaynak"]}. Haber KampüsCepte Haber Merkezi tarafından hazırlanmıştır.'
 
-def okuma(n): return max(1, round(len(re.sub(r'<[^>]+>', ' ', ' '.join(n['govde'])).split()) / 200))
 
 # ---------- Ana sayfa ----------
 m, ikinci, akis = H[0], H[1:4], H[4:]
 gundem = ''.join(bag(n) for n in H[:4])
 son = ''.join(f'<li><div><h3 class="hb-baslik">{bag(n)}</h3>{zaman(n)}</div></li>' for n in H[:5])
 body = f'''{mast("Tümü")}
-<div class="hb-gundem" aria-label="Gündem"><div class="hb-ic"><strong>Gündem</strong>{gundem}</div></div>
+<div class="hb-gundem" aria-label="Gündem"><div class="hb-ic"><strong><i aria-hidden="true"></i>Gündem</strong><div class="hb-gundem-liste">{gundem}</div></div></div>
 <main class="hb-sayfa"><div class="hb-ic" id="hb-icerik">
   <h1 class="hb-gizli">KampüsCepte Haberler</h1>
   <div class="hb-ust">
-    <article class="hb-manset">{gorsel(m, True)}<div>{etiket(m)}<h2 class="hb-baslik">{bag(m)}</h2><p class="hb-spot">{m["ozet"]}</p>{zaman(m)}</div></article>
+    <article class="hb-manset"><a class="hb-manset-kapak" href="/haberler/{m["slug"]}.html"><span class="hb-gorsel"><img src="/gorseller/haberler/{m["gorsel"]}" alt="" width="{m["w"]}" height="{m["h"]}" fetchpriority="high"></span><span class="hb-manset-yazi"><span class="hb-hap">{m["kategori"]}</span><h2 class="hb-baslik">{m["baslik"]}</h2></span></a><div class="hb-manset-alt"><p class="hb-spot">{m["ozet"]}</p>{meta(m)}</div></article>
     <aside class="hb-son"><div class="hb-bolum-b"><h2>Son haberler</h2></div><ol>{son}</ol></aside>
   </div>
   {'<div class="hb-ikinci">' + ''.join(kart(n) for n in ikinci) + '</div>' if ikinci else ''}
-  {'<section class="hb-akis"><div class="hb-bolum-b"><h2>Diğer haberler</h2></div>' + ''.join(satir(n) for n in akis) + '</section>' if akis else ''}
+  {'<section class="hb-akis"><div class="hb-bolum-b"><h2>Diğer haberler</h2><span>Tüm kategorilerden</span></div>' + ''.join(satir(n) for n in akis) + '</section>' if akis else ''}
 </div></main>'''
 open(R + 'haberler/index.html', 'w', encoding='utf-8').write(sayfa('KampüsCepte Haberler – Elazığ\'da üniversite ve kampüs haberleri',
     "Elazığ'daki üniversite hayatından haberler: akademik gelişmeler, öğrenci başarıları, etkinlikler, teknoloji ve kampüs gündemi.", '/haberler/', body,
@@ -109,6 +110,7 @@ for n in TUM:
     pay = f'<div class="hb-paylas"><button type="button" data-paylas>{IK["pay"]}Paylaş</button><button type="button" data-kopyala aria-label="Bağlantıyı kopyala">{IK["link"]}<span>Kopyala</span></button></div>'
     body = f'''{mast(n["kategori"])}
 <main class="hb-detay"><div class="hb-ic">
+<div class="hb-ilerleme" aria-hidden="true"><i></i></div>
 <nav class="hb-yol" aria-label="Konum"><a href="/haberler/">Haberler</a> › <a href="/haberler/?kategori={kod(n["kategori"])}">{n["kategori"]}</a></nav>
 <article class="hb-makale">
   <header>
