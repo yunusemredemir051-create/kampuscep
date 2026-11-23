@@ -12,10 +12,12 @@
   "ozet": "Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğretim üyesi Doç. Dr. Yunus Emre Gür, Python kurmadan ve kod yazmadan finans ve makroekonomi verisi indirmeyi sağlayan masaüstü uygulaması Finansal Veri Masası'nı geliştirdi ve öğrencilerin kullanımına sundu.",
   "govde": [
    "<p>Finansal veriyle çalışan her öğrencinin bildiği bir gerçek var: Asıl analize geçmeden önce saatler, veriyi toplamaya, düzenlemeye ve tarihleri birbirine uydurmaya gider. Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğretim üyesi Doç. Dr. Yunus Emre Gür, bu yükü öğrencilerin omzundan alacak bir çözüm geliştirdi. Hocanın hazırladığı <b>Finansal Veri Masası</b> adlı Windows uygulaması, Python kurmadan ve tek satır kod yazmadan finans ve makroekonomi verisini bilgisayara indirmeyi mümkün kılıyor.</p>",
-   "<p>Uygulama, ayrıntılı ve görselli bir Türkçe kullanım kılavuzuyla birlikte ücretsiz olarak öğrencilerin kullanımına sunuldu. Doç. Dr. Gür, paylaşımında uygulamayı öğrencilerin veri çekme ve analiz süreçlerini kolaylaştırmak amacıyla geliştirdiğini belirtti.</p>",
+   "<p>Uygulama, ayrıntılı ve görselli bir Türkçe kullanım kılavuzuyla birlikte ücretsiz olarak öğrencilerin kullanımına sunuldu.</p>",
+   "<blockquote class=\"hb-alinti\"><p>“Veri çekme ve analiz süreçlerinizi kolaylaştırmak amacıyla geliştirdiğim masaüstü uygulamasını sizlerle paylaşıyorum. Artık bilgisayarınızda Python kurulu olmasına veya kod yazmanıza gerek kalmadan verilerinizi doğrudan indirebilirsiniz.”</p><cite>Doç. Dr. Yunus Emre Gür, öğrencilere duyurusundan</cite></blockquote>",
    "<h2>Dört adımda veri seti: Seç, hizala, incele, kaydet</h2>",
    "<p>Finansal Veri Masası, Yahoo Finance'teki fiyat serilerini ve ABD Merkez Bankası St. Louis şubesinin FRED / ALFRED makroekonomik verilerini tek bir çalışma alanında topluyor. Kullanıcı önce hedef sembolü, tarih aralığını ve indirilecek alanları seçiyor; ardından serileri işlem takvimlerine göre hizalıyor, eksiklik ve yayın raporlarını inceliyor ve sonucu CSV, Parquet ya da ZIP olarak kaydediyor.</p>",
    "<ul><li><b>Geniş hazır katalog:</b> BIST 100 (XU100.IS) ve S&amp;P 500 gibi borsa endeksleri, altın, petrol ve tarım emtiaları, EUR/TRY ve USD/TRY dahil döviz pariteleri, Bitcoin ve Ethereum gibi kripto paralar, sektör ETF'leri ve büyük teknoloji hisseleri tek listede.</li><li><b>Doğrudan arama:</b> Katalogda olmayan bir şirket adıyla aranabiliyor ya da sembolü yazılarak eklenebiliyor.</li><li><b>Günlük, haftalık, aylık örnekleme</b> ve hazır tarih aralıkları.</li><li><b>Açık tema, koyu tema ve yüksek kontrast</b> görünüm seçenekleri.</li><li><b>Önbellek ve kaldığı yerden devam:</b> Uzun indirmeler yarıda kalırsa tamamlanan parçalar korunuyor, aynı klasörden devam ediliyor.</li></ul>",
+   "<figure><img src=\"/gorseller/haberler/finansal-veri-masasi-ekran.webp\" alt=\"Finansal Veri Masası uygulamasında seri ekleme, arama ve indirilecek seri listesi ekranı\" width=\"1177\" height=\"550\" loading=\"lazy\"><figcaption>Uygulamada katalogdan seçim, Yahoo araması ve doğrudan sembol girişi aynı listeyi besliyor. <small>Görsel: Finansal Veri Masası kullanım kılavuzu</small></figcaption></figure>",
    "<h2>Eksik gözlem derdine akıllı çözüm</h2>",
    "<p>Uygulamanın asıl farkı, akademik çalışmalarda en sık yapılan hatalardan birine karşı önlem alması. Bitcoin haftanın yedi günü işlem görürken New York Borsası hafta sonu kapalıdır; makroekonomik veriler ise ilgili dönemden haftalar sonra açıklanır. Bu serileri yan yana koymak, ya boş hücrelere ya da o tarihte henüz bilinmeyen bir bilginin kullanılmasına yol açar. Finansal Veri Masası'nın “Takvim ve Hizala” bölümü, her seri için hangi takvimin ve hangi hizalama seçeneğinin uygun olduğunu kullanıcıya doğrudan gösteriyor. Uygulama, kaynaktaki tarih ile bilginin gerçekten kullanılabilir olduğu anı birbirinden ayırarak eksik gözlem sorununu baştan çözüyor.</p>",
    "<div class=\"kutu-bilgi\"><p><b>Neden önemli?</b> Bir modeli geçmiş veriyle sınarken o gün henüz açıklanmamış bir enflasyon rakamını kullanmak, sonuçları olduğundan iyi gösterir. Bu hataya “ileriye bakma yanlılığı” (look-ahead bias) denir. Verinin yayın tarihini hesaba katan bir araç, tez ve makale çalışmalarında sonuçların güvenilirliğini doğrudan artırır.</p></div>",
@@ -26,14 +28,16 @@
    "<p>Doç. Dr. Yunus Emre Gür'ün bu çalışması, bir öğretim üyesinin derslikte anlattıklarını öğrencilerin gerçekten kullanabileceği bir araca dönüştürmesinin güzel bir örneği. Finans, ekonometri ve veri analitiği derslerinde, bitirme projelerinde ve TÜBİTAK 2209-A gibi araştırma projelerinde çalışan öğrenciler artık kodla uğraşmadan güvenilir veri setlerine birkaç tıklamayla ulaşabilecek. Öğrencilerin hayatını kolaylaştırmak için kendi zamanından vererek böyle bir uygulama geliştirip ücretsiz paylaşması, hocanın öğrencilerine verdiği değerin de açık bir göstergesi.</p>",
    "<p>KampüsCepte olarak Doç. Dr. Yunus Emre Gür'e bu değerli çalışması için teşekkür ediyor, emeğini tebrik ediyoruz.</p>"
   ],
-  "gorsel_kaynak": "Finansal Veri Masası kullanım kılavuzu"
+  "gorsel_kaynak": "Finansal Veri Masası kullanım kılavuzu",
+  "saat": "10.45",
+  "kaynak": "Doç. Dr. Yunus Emre Gür'ün öğrencilere duyurusu ve Finansal Veri Masası 1.0.1 kullanım kılavuzu"
  },
  {
   "slug": "finrehber-ai-kastamonu-teknokent-odulu",
   "baslik": "Yapay zekâ destekli finans platformu FinRehber AI'ya Kastamonu Teknokent Ödülü",
   "tarih": "21 Ekim 2026",
   "iso": "2026-10-21",
-  "kategori": "Ödül",
+  "kategori": "Teknoloji",
   "gorsel": "finrehber.webp",
   "w": 794,
   "h": 397,
@@ -51,14 +55,15 @@
    "<h2>Disiplinler arası bir başarı</h2>",
    "<p>Finans, yapay zekâ ve veri analitiğini bir araya getiren proje, yönetim bilişim sistemleri alanının disiplinler arası yapısını iyi yansıtan bir örnek olarak öne çıktı. Teknokent ödülü, öğrenci projelerinin laboratuvar ortamından çıkıp ticarileşme yolunda değerlendirilebileceğini gösteren önemli bir işaret olarak görülüyor.</p>",
    "<p>KampüsCepte olarak Ahmet Gün'ü ve danışmanı Prof. Dr. Bilal Solak'ı tebrik ediyoruz.</p>"
-  ]
+  ],
+  "kaynak": "Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü duyurusu"
  },
  {
   "slug": "mesut-togacar-akademik-basari-belgesi",
   "baslik": "Doç. Dr. Mesut Toğaçar'a akademik başarı belgesi",
   "tarih": "24 Haziran 2026",
   "iso": "2026-06-24",
-  "kategori": "Akademi",
+  "kategori": "Akademik Gelişmeler",
   "gorsel": "mesut-togacar.webp",
   "w": 784,
   "h": 441,
@@ -71,14 +76,15 @@
    "<p>Toğaçar'ın 2025'teki tek başarısı bu değil. Stanford Üniversitesi tarafından hazırlanan “Dünyanın En Etkili Bilim İnsanları 2025” listesinde de yer aldı. Bu liste, bilim insanlarının yayınlarının aldığı atıflara dayalı göstergelerle hazırlanıyor ve her yıl dünya genelinde akademik etkinin ölçüsü olarak takip ediliyor.</p>",
    "<div class=\"kutu-bilgi\"><p><b>Öğrenciler için not:</b> Akademik başarı listeleri yalnızca hocaların değil, bölümlerin de görünürlüğünü artırır. Lisansüstü eğitim, proje ve araştırma fırsatları ararken bölümündeki hocaların çalışma alanlarına göz atmak iyi bir başlangıç noktasıdır.</p></div>",
    "<p>KampüsCepte olarak Doç. Dr. Mesut Toğaçar'ı tebrik ediyoruz.</p>"
-  ]
+  ],
+  "kaynak": "Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü duyurusu"
  },
  {
   "slug": "tubitak-2209a-14-proje",
   "baslik": "Yönetim Bilişim Sistemleri'nden 14 projeye TÜBİTAK 2209-A desteği",
   "tarih": "20 Mayıs 2026",
   "iso": "2026-05-20",
-  "kategori": "Araştırma",
+  "kategori": "Akademik Gelişmeler",
   "gorsel": "tubitak.webp",
   "w": 784,
   "h": 555,
@@ -86,6 +92,7 @@
   "ozet": "Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü öğrencilerinin hazırladığı 14 proje, TÜBİTAK 2209-A Üniversite Öğrencileri Araştırma Projeleri Destekleme Programı'ndan destek almaya hak kazandı.",
   "govde": [
    "<p>TÜBİTAK'ın lisans öğrencilerine yönelik araştırma destek programı 2209-A'da Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü dikkat çeken bir sonuç aldı. Bölüm öğretim elemanlarının danışmanlığında hazırlanan başvurulardan toplam 14 proje desteklenmeye hak kazandı.</p>",
+   "<div class=\"hb-rakam\"><div><b>14</b><span>desteklenen proje</span></div><div><b>5</b><span>danışman öğretim elemanı</span></div></div>",
    "<h2>Danışmanlara göre proje dağılımı</h2>",
    "<ul><li>Dr. Arş. Gör. Abdullah Şener: 4 proje</li><li>Dr. Öğr. Üyesi Yeşim Ülgen Sönmez: 3 proje</li><li>Dr. Öğr. Üyesi Yunus Emre Gür: 3 proje</li><li>Prof. Dr. Bilal Solak: 2 proje</li><li>Arş. Gör. Ethem Sefa Küçükyılmaz: 2 proje</li></ul>",
    "<p>Kabul edilen projeler, yönetim bilişim sistemlerinin disiplinler arası yapısına uygun olarak işletme, bilişim ve veri analitiğini bir arada kullanan konulardan oluşuyor. Bu süreç öğrencilere araştırma yapma, veri analiz etme, problem çözme ve yeni fikir geliştirme becerilerini lisans yıllarında kazanma fırsatı veriyor.</p>",
@@ -93,14 +100,15 @@
    "<h2>Başvurmak isteyen öğrenciler ne yapmalı?</h2>",
    "<p>2209-A'ya başvurmayı düşünüyorsan ilk adım, ilgi alanına yakın çalışan bir öğretim elemanıyla konuşmak. Ardından çözmek istediğin problemi net bir şekilde tanımlamak, benzer çalışmaları taramak ve uygulanabilir bir yöntem ile iş-zaman planı hazırlamak gerekiyor. Program takvimi ve güncel başvuru koşulları için TÜBİTAK'ın resmî duyurularını takip etmek en doğrusu.</p>",
    "<p>KampüsCepte olarak projeleri kabul edilen öğrencileri ve danışmanlarını tebrik ediyoruz.</p>"
-  ]
+  ],
+  "kaynak": "Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü duyurusu"
  },
  {
   "slug": "tipta-yapay-zeka-kongre-sunumu",
   "baslik": "Tıp kongresinde yapay zekâyla vaka analizi sunumu",
   "tarih": "20 Mayıs 2026",
   "iso": "2026-05-20",
-  "kategori": "Kongre",
+  "kategori": "Etkinlikler",
   "gorsel": "erhan-arpaci.webp",
   "w": 784,
   "h": 522,
@@ -114,6 +122,7 @@
    "<h2>Bilişim ile tıbbın kesiştiği yer</h2>",
    "<p>Sağlık verisinin hızla büyüdüğü bugünlerde veri analitiği ve yapay zekâ bilgisi olan bilişim öğrencileri, tıp dünyasında giderek daha fazla yer buluyor. Arpacı'nın sunumu, yönetim bilişim sistemleri öğrencilerinin kendi alanları dışındaki akademik etkinliklerde de söz sahibi olabileceğini gösteren güzel bir örnek oldu.</p>",
    "<p>KampüsCepte olarak Erhan Arpacı'yı tebrik ediyoruz.</p>"
-  ]
+  ],
+  "kaynak": "Fırat Üniversitesi Yönetim Bilişim Sistemleri Bölümü duyurusu"
  }
 ]
