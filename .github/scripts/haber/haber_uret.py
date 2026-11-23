@@ -10,7 +10,7 @@ R = ''
 TUM = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'))
 # "gizli": true olan haber hiçbir listede, aramada ve sitemap'te görünmez; sayfası yalnızca doğrudan linkle açılır (noindex)
 H = [n for n in TUM if not n.get('gizli')]
-CSS_V, JS_V, KC_V = '2', '1', '6'
+CSS_V, JS_V, KC_V = '3', '1', '6'
 SIRA = ['Eğitim', 'Ders Çalışma Teknikleri', 'Sınavlara Hazırlık', 'Öğrenci Yaşamı', 'Akademik Gelişmeler', 'Etkinlikler', 'Türkiye\'den Eğitim Gündemi', 'Dünya\'dan Eğitim Gündemi', 'Burs ve Öğrenci Fırsatları', 'Teknoloji', 'Bilimsel Gelişmeler', 'Kariyer ve Gelecek', 'Psikoloji ve Kişisel Gelişim', 'Sağlıklı Yaşam', 'Dengeli Beslenme', 'Spor ve Fiziksel Aktivite', 'Kültür ve Sanat', 'Kitap ve Okuma Önerileri', 'Sosyal Yaşam ve Etkinlikler', 'Üniversite', 'Kampüs', 'Duyurular', 'Türkiye', 'Dünya', 'Spor']
 TR = str.maketrans('çğıöşüÇĞİÖŞÜ', 'cgiosuCGIOSU')
 def kod(k): return re.sub(r'[^a-z0-9]+', '-', k.translate(TR).lower()).strip('-')
@@ -126,8 +126,10 @@ for n in TUM:
 {chr(10).join(n["govde"])}
   </div>
   <p class="hb-kaynak">{kaynak_satiri(n)} Haber ihbarı ve düzeltme için <a href="/iletisim.html">bize yazın</a>.</p>
-  <div class="hb-alt-paylas"><span class="hb-zaman">{n["kategori"]} · {n["tarih"]}</span>{pay}</div>
+  <div class="hb-alt-paylas"><span class="hb-zaman">{n["kategori"]} · {n["tarih"]}<span class="hb-okunma" id="hb-okunma" data-haber="{n["slug"]}" hidden> · <b></b> görüntülenme</span></span>{pay}</div>
 </article>
+<script src="/firebase-ayar.js?v=2"></script>
+<script type="module" src="/haber-sayac.js?v=1"></script>
 <section class="hb-ilgili" aria-labelledby="ilgili-b"><div class="hb-bolum-b"><h2 id="ilgili-b">İlgili haberler</h2></div><div class="hb-ikinci">{"".join(kart(x) for x in ilgili[:3])}</div></section>
 </div></main>'''
     open(R + f'haberler/{n["slug"]}.html', 'w', encoding='utf-8').write(sayfa(n["baslik"] + ' – KampüsCepte Haberler', n["ozet"], f'/haberler/{n["slug"]}.html', body, og))

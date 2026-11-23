@@ -1,5 +1,5 @@
 rules_version = '2';
-// KampüsCepte — Firestore güvenlik kuralları (v8 · 22 Kasım 2026: Yol Arkadaşı kız/erkek kilidi ve katılma sınırı · v7 · 22 Kasım 2026: Yol Arkadaşı ilan kimliği ve güncelleme denetimi · v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
+// KampüsCepte — Firestore güvenlik kuralları (v9 · 23 Kasım 2026: haber tıklanma sayacı · v8 · 22 Kasım 2026: Yol Arkadaşı kız/erkek kilidi ve katılma sınırı · v7 · 22 Kasım 2026: Yol Arkadaşı ilan kimliği ve güncelleme denetimi · v6 · 3 Kasım 2026: menü tarih penceresi, oy hız sınırı, tekil şikayet, indirme hız sınırı · Google girişli yorum + hız sınırı + küfür filtresi + hesap başına sabit, benzersiz takma ad)
 service cloud.firestore {
   match /databases/{db}/documents {
 
@@ -283,6 +283,29 @@ service cloud.firestore {
         && metin(request.resource.data.neden, 300) && enAz(request.resource.data.neden, 2)
         && sikayetHedefVar(request.resource.data.ilan)
         && id == request.auth.uid + '_' + request.resource.data.ilan.replace('[:/]', '_');
+    }
+
+    // Haber tıklanma sayacı (v9 · 23 Kasım 2026): sayfa her açıldığında +1; kişi başı 10 saniyede en fazla 1 sayım.
+    // Her sayım, okuyanın kendi kaydıyla (okuyanlar/{uid}) birlikte yazılır.
+    match /haberOkunma/{id} {
+      allow read: if true;
+      function okumaKaydi() { return getAfter(/databases/$(db)/documents/haberOkunma/$(id)/okuyanlar/$(request.auth.uid)).data.son == request.time; }
+      allow create: if girisli() && id.matches('^[a-z0-9-]{3,90}$')
+        && request.resource.data.keys().hasOnly(['okunma']) && request.resource.data.okunma == 1
+        && okumaKaydi();
+      allow update: if girisli()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['okunma'])
+        && request.resource.data.okunma == resource.data.okunma + 1
+        && okumaKaydi();
+      allow delete: if false;
+      match /okuyanlar/{uid} {
+        allow read: if false;
+        allow create, update: if girisli() && request.auth.uid == uid
+          && request.resource.data.keys().hasOnly(['son'])
+          && request.resource.data.son == request.time
+          && (resource == null || request.time > resource.data.son + duration.value(10, 's'));
+        allow delete: if false;
+      }
     }
 
     // Çıkmış sorular ve ders notları: indirme sayacı (+1) ve 1–5 yıldız puan (kişi başı tek oy)

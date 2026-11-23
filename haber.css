@@ -230,3 +230,4 @@ figcaption small { color: var(--hb-metin-3); }
   .hb-gorsel::before { animation: none; display: none; }
   .hb-gorsel img, .hb-paylas button { transition: none; }
 }
+.hb-okunma b { color: var(--hb-metin); font-weight: 700; }
