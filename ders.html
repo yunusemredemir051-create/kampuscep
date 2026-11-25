@@ -366,7 +366,8 @@ body { overflow-x: hidden; }
 .tu-geri { margin-top: 14px; padding: 12px 14px; border-radius: var(--r-2); font-size: 14.5px; line-height: 1.5; }
 .tu-geri.iyi { background: var(--yesil-acik); color: #0c6e4b; } .tu-geri.kotu { background: var(--pembe-acik); color: #a3264a; }
 .tu-aciklama { margin-top: 8px; padding: 12px 14px; border-radius: var(--r-2); background: color-mix(in srgb,var(--yazi) 4%,transparent); font-size: 14px; line-height: 1.6; font-weight: 500; }
-.tu-aciklama b { display: block; font-size: 12px; color: var(--soluk); margin-bottom: 2px; }
+.tu-aciklama .tu-etiket { display: block; font-size: 12px; font-weight: 700; color: var(--soluk); margin-bottom: 2px; }
+.tu-aciklama b { font-weight: 800; }
 .tu-link { border: 0; background: none; color: var(--mavi); font: 700 13.5px var(--font); padding: 10px 0 0; cursor: pointer; }
 .tu-alt { position: sticky; bottom: 0; z-index: 5; display: grid; grid-template-columns: auto 1fr; gap: 10px; margin: 12px -16px 0; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
   background: color-mix(in srgb, var(--zemin) 94%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-top: 1px solid var(--cizgi); }
@@ -933,7 +934,7 @@ function aciklamaHtml(iyi, dogruMetin, a, gosterildi) {
 /* Açıklama kutusu: yalnızca veride olan doğru cevap ve açıklama gösterilir */
 function aciklamaKutu(x, q, d) {
   if (!q.a) return "";
-  return `<div class="tu-aciklama"><b>Açıklama</b>${html(q.a)}</div>`;
+  return `<div class="tu-aciklama"><span class="tu-etiket">Açıklama</span>${html(q.a)}</div>`;
 }
 
 /* Boşluk doldurma kelime havuzu */
@@ -957,7 +958,7 @@ function kelimeKoy(c) {
 function geriBildirim(iyi, dogruMetin, q, gosterildi) {
   const bas = gosterildi ? `<b>Cevap gösterildi.</b> Doğru cevap: <b>${dogruMetin}</b>`
     : iyi ? `<b>Harika! Doğru cevap verdin.</b>` : `<b>Bu cevap doğru değil.</b> Doğru ${dogruMetin.length <= 2 ? "seçenek" : "cevap"}: <b>${dogruMetin}</b>`;
-  return `<div class="tu-geri ${iyi ? "iyi" : "kotu"}" role="status">${bas}</div>${q.a ? `<div class="tu-aciklama"><b>Açıklama</b>${html(q.a)}</div>` : ""}`;
+  return `<div class="tu-geri ${iyi ? "iyi" : "kotu"}" role="status">${bas}</div>${q.a ? `<div class="tu-aciklama"><span class="tu-etiket">Açıklama</span>${html(q.a)}</div>` : ""}`;
 }
 
 /* Alttaki ana düğmenin durumu: Boş bırak → Kontrol et → Sonraki soru / Testi bitir */
