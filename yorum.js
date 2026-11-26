@@ -306,6 +306,8 @@ html[data-tema="koyu"] .dg-ipucu.uyari{color:#fb7185}html[data-tema="koyu"] .dg-
 .dg-sil-btn:hover{background:#dc2626;color:#fff}
 .dg-ban-btn{border:0;background:rgba(124,58,237,.08);color:#7c3aed;border-radius:var(--r-hap);padding:3px 8px;font:700 11px var(--font);cursor:pointer;transition:background .15s}
 .dg-ban-btn:hover{background:#7c3aed;color:#fff}
+.dg-y.dg-gizli{opacity:.72;border-style:dashed}
+.dg-gizli-etiket{font-size:10.5px;font-weight:800;color:#b91c1c;background:#fee2e2;border-radius:var(--r-hap);padding:2px 7px;margin:0 auto 0 8px}
 .dg-cezali-kutu{background:#fee2e2;border:1px solid #fecaca;border-radius:var(--r-2);padding:12px;color:#991b1b;font-size:13px;font-weight:700;text-align:center;margin-top:8px}
 
 #dg-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);opacity:0;pointer-events:none;
@@ -695,8 +697,10 @@ function panelAc(el, ac) {
   // Yorumlar kapalıyken saldırı öncesi yorumlar okunur; spam belgeleri hiç indirilmez (okuma kotası korunur)
   const yKol = collection(db, "menuler", d.yorumId, "yorumlar");
   d.dinle = onSnapshot(YORUM_KAPALI ? query(yKol, where("zaman", "<", new Date(SPAM_BAS))) : yKol, s => {
-    d.yorumlar = s.docs.map(x => ({ id: x.id, ...x.data() })).filter(y => !spamMi(y));
-    d.sayi.yorum = d.yorumlar.length; barCiz(el);
+    /* Uygunsuz yorumlar herkesten gizlenir; yönetici ise onları soluk ve "gizlendi" etiketiyle görür (silip banlayabilsin diye) */
+    const yon = yoneticiMi();
+    d.yorumlar = s.docs.map(x => ({ id: x.id, ...x.data() })).map(y => (spamMi(y) ? { ...y, _gizli: true } : y)).filter(y => yon || !y._gizli);
+    d.sayi.yorum = d.yorumlar.filter(y => !y._gizli).length; barCiz(el);
     listeCiz(el);
   }, e => { console.error(e); p.querySelector(".dg-liste").innerHTML = '<li class="dg-bos">Yorumlar yüklenemedi.</li>'; });
 }
@@ -893,10 +897,10 @@ function listeCiz(el) {
     const yon = yoneticiMi();
     const silBtn = (benim || yon) ? `<button class="dg-sil-btn" data-sil="${esc(y.id)}">🗑️ Sil</button>` : "";
     const banBtn = (yon && !benim && y.uid) ? `<button class="dg-ban-btn" data-banla="${esc(y.id)}">🚫 Banla</button>` : "";
-    return `<li class="dg-y" data-id="${esc(y.id)}">
+    return `<li class="dg-y${y._gizli ? " dg-gizli" : ""}" data-id="${esc(y.id)}">
       ${avatar(y.ad, benim ? benimAvatar() : "")}
       <div class="dg-y-govde">
-      <div class="dg-y-ust"><b>${esc(y.ad)}</b><time>${zamanFarki(y.zaman)}</time></div>
+      <div class="dg-y-ust"><b>${esc(y.ad)}</b>${y._gizli ? '<span class="dg-gizli-etiket">Herkesten gizlendi</span>' : ""}<time>${zamanFarki(y.zaman)}</time></div>
       <p>${esc(y.metin)}</p>
       <div class="eylem">
         <button class="dg-y-begen${benBegendim ? " secili" : ""}" data-yorum-begen="${esc(y.id)}" aria-label="Yorumu beğen">❤️ <span>${begeniSayi}</span></button>
