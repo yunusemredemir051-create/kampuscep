@@ -966,7 +966,7 @@ function listeCiz(el) {
   ul.querySelectorAll("[data-banla]").forEach(b => b.onclick = async () => {
     const hedef = d.yorumlar.find(x => x.id === b.dataset.banla);
     if (!hedef || !hedef.uid || !yoneticiMi()) return;
-    if (!confirm(`"${hedef.ad}" kalıcı olarak banlansın mı? Yorum yazamaz, oy veremez ve bu menüdeki tüm yorumları silinir.`)) return;
+    if (!confirm(`"${hedef.ad}" kalıcı olarak banlansın mı? Siteyi ve uygulamayı artık kullanamaz, bu menüdeki tüm yorumları silinir.`)) return;
     try {
       await setDoc(doc(db, "engelliler", hedef.uid), { ad: hedef.ad || "", neden: "Uygunsuz yorum", menu: d.yorumId, zaman: serverTimestamp() });
       const bitis = Date.now() + 3650 * 86400000;
@@ -1013,12 +1013,20 @@ new MutationObserver(ml => {
   }
 }).observe(document.body, { subtree: true, childList: true, attributes: true, attributeFilter: ["data-menu"] });
 
+/* Banlı Google hesabı: site ve uygulama bu cihazda tamamen kapanır (tema.js · kcEngel). Yönetici hiçbir zaman engellenmez. */
+async function engelDenetle(u) {
+  if (!u || u.isAnonymous || !window.kcEngel) return;
+  if (yoneticiMi()) { window.kcEngel(false); return; }
+  try { const s = await getDoc(doc(db, "engelliler", u.uid)); window.kcEngel(s.exists()); } catch (e) {}
+}
+
 let ilkAuth = true;
 onAuthStateChanged(auth, async u => {
   const ilk = ilkAuth; ilkAuth = false;
   ben = u;
   await takmaAdYukle();
   try { if (u && u.email) localStorage.setItem("kc-eposta", u.email); } catch (e) {}
+  engelDenetle(u);
   window.dispatchEvent(new CustomEvent("kc-auth-degisti", { detail: { user: u, admin: false } }));
   kutular.forEach((d, el) => {
     if (ilk && !d.oyHata && d.isleSon) d.isleSon();

@@ -292,3 +292,32 @@
     });
   } catch (e) {}
 })();
+
+/* Banlanan hesap: bu cihazda site/uygulama tamamen kapanır.
+   Ban, Google hesabı Firestore'daki engelliler listesinde görülünce (yorum.js / yol-arkadasi) "kc-engel" olarak bu cihaza yazılır.
+   Yönetici banı kaldırırsa, kişi giriş yaptığında kayıt kendiliğinden silinir. */
+(function () {
+  function goster() {
+    if (document.getElementById("kc-engel")) return;
+    var d = document.createElement("div");
+    d.id = "kc-engel";
+    d.setAttribute("role", "alertdialog");
+    d.innerHTML = '<div style="max-width:360px;text-align:center">' +
+      '<div style="width:64px;height:64px;margin:0 auto 18px;border-radius:20px;display:grid;place-items:center;background:rgba(220,38,38,.12);color:#dc2626">' +
+      '<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>' +
+      '<h2 style="margin:0 0 8px;font-size:22px;letter-spacing:-.4px">Hesabın engellendi</h2>' +
+      '<p style="margin:0 0 18px;line-height:1.6;opacity:.75;font-weight:600;font-size:14.5px">Topluluk kurallarına aykırı paylaşımların nedeniyle KampüsCepte\'yi bu cihazda artık kullanamazsın.</p>' +
+      '<p style="margin:0;font-size:13px;opacity:.6;font-weight:600">Bir hata olduğunu düşünüyorsan:<br><a href="mailto:iletisim@kampuscepte.com.tr?subject=Engel%20itiraz%C4%B1" style="color:inherit">iletisim@kampuscepte.com.tr</a></p></div>';
+    d.style.cssText = "position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:28px;" +
+      "background:var(--zemin,#f4f5f7);color:var(--yazi,#111);font-family:var(--font,system-ui,sans-serif)";
+    (document.body || document.documentElement).appendChild(d);
+    try { document.documentElement.style.overflow = "hidden"; } catch (e) {}
+  }
+  window.kcEngel = function (var_) {
+    try { if (var_) localStorage.setItem("kc-engel", "1"); else localStorage.removeItem("kc-engel"); } catch (e) {}
+    if (var_) goster(); else { var x = document.getElementById("kc-engel"); if (x) { x.remove(); document.documentElement.style.overflow = ""; } }
+  };
+  var var_ = false; try { var_ = localStorage.getItem("kc-engel") === "1"; } catch (e) {}
+  if (!var_) return;
+  if (document.body) goster(); else document.addEventListener("DOMContentLoaded", goster);
+})();
