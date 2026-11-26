@@ -26,14 +26,22 @@ Sitede zaten kullanılan kategori adını tercih et (yukarıdaki parantezler); y
 `<h2>` ara başlık · `<ul>/<ol>` liste · `<div class="hb-rakam"><div><b>14</b><span>açıklama</span></div>…</div>` rakam kutusu ·
 `<div class="kutu-bilgi"><p><b>Başlık</b> metin</p></div>` bilgi kutusu · `<blockquote class="hb-alinti"><p>…</p><cite>Kişi</cite></blockquote>` (yalnızca gerçek alıntıysa cite).
 
-## Görsel
-Telifli fotoğraf indirilmez. Her habere KampüsCepte'nin kendi çizgi illüstrasyonu yapılır: 1600×900 webp, lacivert (#0d1b36) zemin,
-ince ızgara, beyaz çizgiler, sarı (#f2b23e) / kırmızı (#c8102e) / mavi (#81a2ff) / yeşil (#4ade80) vurgu, **görselin üzerinde yazı yok**.
-Örnek çizim kodu: `.github/scripts/haber/kapak_ornek.py`. Dosya: `gorseller/haberler/<ad>.webp`; `gorsel_kaynak`: "KampüsCepte çizim"; `aciklama`: kapak altyazısı.
+## Görsel (site sahibi, 26 Kasım 2026)
+Site sahibinin kararı: **vektörel/çizgi illüstrasyon kapak kullanılmaz.** Kapaklar gerçek fotoğraf gibi duran, editoryal tarzda
+temsilî görsellerdir. Telifli fotoğraf indirilmez.
+- Üretim: site sahibinin bağlı Figma hesabındaki "KampüsCepte Haber Kapakları" dosyasında `generate_image` (Figma AI kredisi harcar;
+  haber başına 1 görsel, beğenilmezse en fazla 1 yeniden deneme). Tam boy dosya `get_screenshot` (`enableBase64Response: true`,
+  `maxDimension: 1600`) ile alınır, 1600×900 webp'ye çevrilir. Figma'ya erişilemezse haber yayımlanmaz, site sahibine bildirilir.
+- Prompt: gerçekçi editoryal haber fotoğrafı, yatay 16:9; haberin konusuna doğrudan bağlı, Türkiye'deki öğrenci hayatından bir sahne
+  (yurt odası, kampüs, kütüphane, ince belli bardakta çay vb.); doğal ışık, sığ alan derinliği, soluk doğal renkler, lacivert ve sıcak
+  sarı küçük vurgular; solda başlık için sakin alan. **Okunabilir yazı/rakam, logo, marka, kurum amblemi, tanınabilir yüz yok.**
+- Üretilen görsel açılıp kontrol edilir: yazı, bozuk el/yüz, yanlış nesne varsa kullanılmaz.
+- Dosya: `gorseller/haberler/<ad>-foto.webp`; `gorsel_kaynak`: "Temsilî görsel"; `alt`: görselde ne olduğunu anlatan cümle; `aciklama`: kapak altyazısı.
+- Kullanılan prompt PR açıklamasına ve site sahibine giden bildirime yazılır.
 
 ## Yayın akışı
 1. `haberler.json` başına yeni haberleri ekle (alanlar `haber_uret.py` başında yazılı; `tarih` "23 Kasım 2026", `iso`, `saat`).
-2. Kapakları üret, `python3 .github/scripts/haber/haber_uret.py` çalıştır (haberler/, haberler/veri.js ve ana sayfa kartları güncellenir).
+2. Kapakları üret (yukarıdaki Görsel bölümü), `python3 .github/scripts/haber/haber_uret.py` çalıştır (haberler/, haberler/veri.js ve ana sayfa kartları güncellenir).
 3. `sitemap.xml`'e yeni haber adreslerini ekle, `sw.js` içindeki `SURUM`'u bir artır.
 4. Ayrı dalda commit, PR (sonunda "Sade anlatım"), PR'ı birleştir (site sahibi doğrudan yayını onayladı).
 
