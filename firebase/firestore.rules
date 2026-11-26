@@ -24,7 +24,8 @@ service cloud.firestore {
     }
     // Küfür / spam kalıpları (yorum metni ve adında)
     function kufurlu(s) {
-      return s.lower().matches('(?s).*(bubiryorum|amc[ıi]k|orospu|porno|yarrak|siktir|sikik|sikiş|piç|götveren).*');
+      return s.lower().matches('(?s).*(bubiryorum|amc[ıi]k|orospu|porno|yarrak|siktir|sikik|sikiş|piç|götveren).*')
+        || s.lower().matches('(?s)(.*[^\\p{L}])?(s+i+k+|y+a+r+a*k+[\\p{L}]*|a+m+c+[ıi]+k+[\\p{L}]*)([^\\p{L}].*)?');
     }
     // Takma ad: 2-24 karakter, harf/rakam/boşluk/._- ; küfür ve ayrılmış adlar yasak
     function adGecerli(a) {

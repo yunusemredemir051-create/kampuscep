@@ -75,7 +75,7 @@
     { id: "30-agustos", ad: "30 Ağustos Zafer Bayramı", tur: "milli", gunler: ["08-30"], once: 1, oncelik: 5,
       onceBaslik: "Yarın 30 Ağustos!", baslik: "Zafer Bayramımız kutlu olsun!", alt: y => `Büyük Zafer'in ${y - 1922}. yıl dönümü kutlu olsun.` },
     /* sınav haftaları (en düşük öncelik) */
-    ...[["Vize haftası", tipMi() ? "2026-11-16" : "2026-11-09", "2026-11-29"], ["Final haftası", "2027-01-04", "2027-01-17"], ["Bütünleme haftası", "2027-01-25", "2027-01-31"],
+    ...[["Vize haftası", tipMi() ? "2026-11-16" : "2026-11-09", "2026-11-25"], ["Final haftası", "2027-01-04", "2027-01-17"], ["Bütünleme haftası", "2027-01-25", "2027-01-31"],
         ["Vize haftası", "2027-03-29", "2027-04-11"], ["Final haftası", "2027-05-31", "2027-06-13"], ["Bütünleme haftası", "2027-06-21", "2027-06-27"]]
       .map(([ad, b, s]) => ({ id: "sinav", ad, tur: "okul", gunler: [[b, s]], oncelik: 1, etiket: n => `${ad} · ${n}. gün`,
         baslik: "Sınavlarında başarılar!", alt: "Notlar ve testler KampüsCepte'de seni bekliyor. Kolay gelsin!" }))

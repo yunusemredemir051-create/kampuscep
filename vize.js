@@ -13,7 +13,7 @@
 (function () {
   var YIL = 2026;
   var SALON = "Çevre Derslik 3 / Sosyal Hizmetler Amfi 2";
-  var BITIS = "2026-11-30";                    /* bu tarihten sonra kart gizlenir */
+  var BITIS = "2026-11-26";                    /* bu tarihten sonra kart gizlenir */
   var VIZE = {
    ybs: {
     1: [

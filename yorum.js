@@ -16,7 +16,9 @@ const auth = getAuth(app); auth.languageCode = "tr";
 const db = getFirestore(app);
 let ben = null;
 
-/* Sitede yönetici paneli yoktur. Yorum silme ve ceza işlemleri yalnızca Firebase konsolundan yapılır. */
+/* Yönetici (site sahibinin Google hesabı) yorumların altında "Sil" ve "Banla" düğmelerini görür; yetkiyi Firestore kuralları (yonetici()) denetler. */
+const YONETICI_EPOSTA = "yunusemredemir051@gmail.com";
+const yoneticiMi = () => { const u = auth.currentUser; return !!(u && u.email === YONETICI_EPOSTA && u.emailVerified); };
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const MENU_RE = /^[a-z0-9-]+_\d{4}-\d{2}-\d{2}(_(kahvalti|aksam))?$/;
@@ -28,7 +30,7 @@ const YORUM_ARA_SN = 30, YORUM_GUNLUK = 20;
 const SPAM_BAS = Date.UTC(2026, 10, 2, 16, 0), SPAM_BIT = Date.UTC(2026, 10, 2, 18, 0);
 /* Küfür/spam süzgeci. Kelime sınırları Türkçe harflere göre: "götür", "kapiçi" gibi masum kelimeler takılmaz.
    Kökü belirsiz olanlar (göt, piç) yalnızca tam kelime ya da belirli eklerle; diğerleri kelime başında yakalanır. */
-const SPAM_RE = /(?:^|[^a-zçğıöşüâîû0-9])(?:(?:bubiryorum|amc[ıi]k|orospu|porno|yarrak|sik(?:ik|iş|tir))[a-zçğıöşüâîû]*|ohhh|piç(?:ler|in|i|lik)?|göt(?:ü|ün|veren|lek)?)(?![a-zçğıöşüâîû0-9])/i;
+const SPAM_RE = /(?:^|[^a-zçğıöşüâîû0-9])(?:(?:bubiryorum|amc[ıi]k|orospu|porno|yarrak|sik(?:ik|iş|tir))[a-zçğıöşüâîû]*|s+i+k+(?:(?:i+k|i+ş|t+i+r|e+r|i+m)[a-zçğıöşüâîû]*)?|y+a+r+a*k+[a-zçğıöşüâîû]*|a+m+c+[ıi]+k+[a-zçğıöşüâîû]*|ohhh|piç(?:ler|in|i|lik)?|göt(?:ü|ün|veren|lek)?)(?![a-zçğıöşüâîû0-9])/i;
 function spamMi(y) {
   const ms = y && y.zaman && y.zaman.toMillis ? y.zaman.toMillis() : 0;
   if (ms >= SPAM_BAS && ms <= SPAM_BIT) return true;
@@ -888,7 +890,9 @@ function listeCiz(el) {
     const benBegendim = benUid && begeniListesi.includes(benUid);
     const begeniSayi = begeniListesi.length;
 
-    const silBtn = benim ? `<button class="dg-sil-btn" data-sil="${esc(y.id)}">🗑️ Sil</button>` : "";
+    const yon = yoneticiMi();
+    const silBtn = (benim || yon) ? `<button class="dg-sil-btn" data-sil="${esc(y.id)}">🗑️ Sil</button>` : "";
+    const banBtn = (yon && !benim && y.uid) ? `<button class="dg-ban-btn" data-banla="${esc(y.id)}">🚫 Banla</button>` : "";
     return `<li class="dg-y" data-id="${esc(y.id)}">
       ${avatar(y.ad, benim ? benimAvatar() : "")}
       <div class="dg-y-govde">
@@ -897,7 +901,7 @@ function listeCiz(el) {
       <div class="eylem">
         <button class="dg-y-begen${benBegendim ? " secili" : ""}" data-yorum-begen="${esc(y.id)}" aria-label="Yorumu beğen">❤️ <span>${begeniSayi}</span></button>
         ${YORUM_KAPALI ? "" : `<button class="yanitla" data-yanit="${esc(y.id)}">Yanıtla</button>`}
-        ${silBtn}
+        ${silBtn}${banBtn}
         <button data-bildir="${esc(y.id)}">Bildir</button>
       </div>
       </div>
@@ -951,6 +955,23 @@ function listeCiz(el) {
       toast("Yorum silindi.");
     } catch (e) {
       console.error(e); toast("Yorum silinemedi, tekrar dener misin?");
+    }
+  });
+
+  // Banla (yalnızca yönetici): kişiyi engelliler listesine ekler ve bu menüdeki tüm yorumlarını siler
+  ul.querySelectorAll("[data-banla]").forEach(b => b.onclick = async () => {
+    const hedef = d.yorumlar.find(x => x.id === b.dataset.banla);
+    if (!hedef || !hedef.uid || !yoneticiMi()) return;
+    if (!confirm(`"${hedef.ad}" kalıcı olarak banlansın mı? Yorum yazamaz, oy veremez ve bu menüdeki tüm yorumları silinir.`)) return;
+    try {
+      await setDoc(doc(db, "engelliler", hedef.uid), { ad: hedef.ad || "", neden: "Uygunsuz yorum", menu: d.yorumId, zaman: serverTimestamp() });
+      const bitis = Date.now() + 3650 * 86400000;
+      await setDoc(doc(db, "yorumCezalari", hedef.uid), { bitisMs: bitis, neden: "Uygunsuz yorum", zaman: serverTimestamp() }).catch(() => {});
+      const onun = d.yorumlar.filter(x => x.uid === hedef.uid);
+      for (const y of onun) { try { await deleteDoc(doc(db, "menuler", d.yorumId, "yorumlar", y.id)); } catch (e) {} }
+      toast(`${hedef.ad} banlandı, ${onun.length} yorumu silindi.`);
+    } catch (e) {
+      console.error(e); toast("Banlanamadı. Yönetici hesabıyla (Google) giriş yaptığından emin ol.");
     }
   });
 
