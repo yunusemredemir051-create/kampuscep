@@ -14,7 +14,7 @@ R = ''
 TUM = json.load(open(R + '.github/scripts/haber/haberler.json', encoding='utf-8'))
 # "gizli": true olan haber hiçbir listede, aramada ve sitemap'te görünmez; sayfası yalnızca doğrudan linkle açılır (noindex)
 H = [n for n in TUM if not n.get('gizli')]
-CSS_V, JS_V, KC_V = '5', '3', '6'
+CSS_V, JS_V, KC_V = '6', '4', '6'
 # Haber platformu kategorileri (site sahibi, 27 Kasım 2026). Yalnızca bunlar kullanılır.
 SIRA = ['Türkiye Gündemi', 'Memur ve Kamu', 'Eğitim', 'Ekonomi', 'Teknoloji', 'Sağlık', 'Dünya', 'Spor', 'Yaşam', 'Üniversite ve Kampüs']
 # Eski kategori adresleri (?kategori=...) paylaşılmış olabilir; haber.js bunları yeni kategoriye yönlendirir
@@ -93,20 +93,41 @@ def kaynak_satiri(n):
 
 
 # ---------- Ana sayfa ----------
-# Düzen: son dakika/gündem şeridi · öne çıkanlar (manşet + günün haberleri) · 3 öne çıkan kart · kategori blokları + en çok okunanlar
-oc = [n for n in H if n.get('one_cikan')]
-m = (oc or H)[0]
-ikinci = ([n for n in oc if n is not m] + [n for n in H if n is not m and not n.get('one_cikan')])[:3]
+# Düzen: son dakika şeridi (yalnızca taze son dakika varsa) · gündem kaydırıcısı (görselli manşetler) + günün haberleri
+#        · 3 öne çıkan kart · kategori blokları + en çok okunanlar
+# Gündem kaydırıcısı: son dakika → öne çıkan → en yeniler; en fazla 8 haber
+KAY_SAYI = 8
+gundem_l = []
+for n in [x for x in H[:30] if x.get('son_dakika')] + [x for x in H[:30] if x.get('one_cikan')] + H:
+    if all(n is not g for g in gundem_l): gundem_l.append(n)
+    if len(gundem_l) == KAY_SAYI: break
+m = gundem_l[0]
+ikinci = [n for n in H if all(n is not g for g in gundem_l)][:3]
 gun = H[0]['iso']
 gunun = [n for n in H if n['iso'] == gun][:8]
 gunun_b = 'Günün haberleri'
 if len(gunun) < 5: gunun, gunun_b = H[:6], 'Son haberler'
-seritte = [n for n in H if n.get('son_dakika')][:6] or H[:4]
-def serit_bag(n): return f'<a href="/haberler/{n["slug"]}.html"' + (f' data-sd="{iso_dt(n)}"' if n.get('son_dakika') else '') + f'>{n["baslik"]}</a>'
-gundem = ''.join(serit_bag(n) for n in seritte)
+seritte = [n for n in H[:30] if n.get('son_dakika')][:6]
+gundem = ''.join(f'<a href="/haberler/{n["slug"]}.html" data-sd="{iso_dt(n)}">{n["baslik"]}</a>' for n in seritte)
+serit = (f'<div class="hb-gundem sd" aria-label="Son dakika" hidden><div class="hb-ic"><strong><i aria-hidden="true"></i><span>Son dakika</span></strong>'
+         f'<div class="hb-gundem-liste">{gundem}</div></div></div>') if seritte else ''
+def slayt(n, i):
+    yk = ' fetchpriority="high"' if i == 0 else ' loading="lazy"'
+    return (f'<article class="hb-kay-slayt" aria-roledescription="slayt" aria-label="{i + 1} / {len(gundem_l)}">'
+            f'<a class="hb-manset-kapak" href="/haberler/{n["slug"]}.html"><span class="hb-gorsel"><img src="/gorseller/haberler/{n["gorsel"]}" alt="" width="{n["w"]}" height="{n["h"]}"{yk}></span>'
+            f'<span class="hb-manset-yazi">{sd(n)}<span class="hb-hap">{n["kategori"]}</span>{"<h2" if i == 0 else "<h3"} class="hb-baslik">{n["baslik"]}{"</h2>" if i == 0 else "</h3>"}</span></a>'
+            f'<div class="hb-manset-alt"><p class="hb-spot">{n["ozet"]}</p>{meta(n)}</div></article>')
+OK_SOL = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>'
+OK_SAG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>'
+noktalar = ''.join(f'<button type="button" data-git="{i}" aria-label="{i + 1}. haber: {e(n["baslik"])}"{" aria-current=\"true\"" if i == 0 else ""}><i></i></button>' for i, n in enumerate(gundem_l))
+kaydirici = (f'<section class="hb-manset hb-kay" id="hb-kay" aria-roledescription="kaydırıcı" aria-label="Gündem">'
+             f'<div class="hb-kay-iz">{"".join(slayt(n, i) for i, n in enumerate(gundem_l))}</div>'
+             f'<div class="hb-kay-alt"><button type="button" class="hb-kay-ok" data-yon="-1" aria-label="Önceki haber">{OK_SOL}</button>'
+             f'<div class="hb-kay-nokta">{noktalar}</div>'
+             f'<button type="button" class="hb-kay-ok" data-yon="1" aria-label="Sonraki haber">{OK_SAG}</button></div></section>')
 son = ''.join(f'<li><div>{sd(n)}<h3 class="hb-baslik">{bag(n)}</h3>{zaman(n)}</div></li>' for n in gunun)
 def blok(k):
-    ust_ids = {id(m)} | {id(n) for n in ikinci}  # üstte gösterilenler blokta en sona düşer
+    ust_ids = {id(n) for n in gundem_l} | {id(n) for n in ikinci}  # üstte gösterilenler blokta en sona düşer
     l = sorted([n for n in H if n['kategori'] == k], key=lambda n: id(n) in ust_ids)[:4]
     if not l: return ''
     ust = f'<article class="hb-blok-ust">{gorsel(l[0])}<div>{sd(l[0])}<h3 class="hb-baslik">{bag(l[0])}</h3><p class="hb-spot">{l[0]["ozet"]}</p>{zaman(l[0])}</div></article>'
@@ -118,11 +139,11 @@ bloklar = ''.join(blok(k) for k in KATS)
 populer = ('<aside class="hb-populer" id="hb-populer" hidden aria-labelledby="populer-b"><div class="hb-bolum-b"><h2 id="populer-b">En çok okunanlar</h2>'
            '<span>Son 30 gün</span></div><ol></ol></aside>')
 body = f'''{mast("Tümü")}
-<div class="hb-gundem" aria-label="Gündem"><div class="hb-ic"><strong><i aria-hidden="true"></i><span>Gündem</span></strong><div class="hb-gundem-liste">{gundem}</div></div></div>
+{serit}
 <main class="hb-sayfa"><div class="hb-ic" id="hb-icerik">
   <h1 class="hb-gizli">KampüsCepte Haberler</h1>
   <div class="hb-ust">
-    <article class="hb-manset"><a class="hb-manset-kapak" href="/haberler/{m["slug"]}.html"><span class="hb-gorsel"><img src="/gorseller/haberler/{m["gorsel"]}" alt="" width="{m["w"]}" height="{m["h"]}" fetchpriority="high"></span><span class="hb-manset-yazi">{sd(m)}<span class="hb-hap">{m["kategori"]}</span><h2 class="hb-baslik">{m["baslik"]}</h2></span></a><div class="hb-manset-alt"><p class="hb-spot">{m["ozet"]}</p>{meta(m)}</div></article>
+    {kaydirici}
     <aside class="hb-son"><div class="hb-bolum-b"><h2>{gunun_b}</h2></div><ol>{son}</ol></aside>
   </div>
   {'<section class="hb-ikinci" aria-label="Öne çıkan haberler">' + ''.join(kart(n) for n in ikinci) + '</section>' if ikinci else ''}

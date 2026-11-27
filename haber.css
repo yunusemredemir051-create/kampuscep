@@ -427,3 +427,32 @@ figcaption { border-bottom: 0; padding: 10px 2px 0; }
 @media (max-width: 640px) { .hb-ust + .hb-ikinci { display: none; } }
 .hb-populer .hb-bolum-b h2 { font-size: 19px; }
 .hb-populer .hb-bolum-b span { white-space: nowrap; }
+
+/* =====================================================================
+   Gündem kaydırıcısı (v6 · 27 Kasım 2026): görselli manşetler, parmakla kaydırma, noktalar.
+   ===================================================================== */
+.hb-gundem[hidden], .hb-gundem a[hidden] { display: none !important; }
+.hb-kay { min-width: 0; }
+.hb-kay-iz { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; border-radius: var(--hb-r); }
+.hb-kay-iz::-webkit-scrollbar { display: none; }
+.hb-kay-slayt { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.hb-kay .hb-manset-kapak { box-shadow: none; }
+.hb-kay h3.hb-baslik { color: #fff; font-size: 38px; line-height: 1.12; margin: 12px 0 0; text-wrap: balance; text-shadow: 0 1px 12px rgba(0,0,0,.25); }
+.hb-kay .hb-manset-alt .hb-spot { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hb-kay-alt { display: flex; align-items: center; justify-content: center; gap: 4px; margin-top: 6px; }
+.hb-kay-nokta { display: flex; flex-wrap: wrap; justify-content: center; }
+.hb-kay-nokta button { width: 26px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; background: none; cursor: pointer; border-radius: 6px; }
+.hb-kay-nokta i { width: 9px; height: 9px; border-radius: 50%; background: var(--hb-cizgi-koyu); transition: background .2s, transform .2s; }
+.hb-kay-nokta button:hover i { background: var(--hb-metin-3); }
+.hb-kay-nokta button[aria-current] i, .hb-kay-nokta button[aria-current]:hover i { background: var(--hb-vurgu); transform: scale(1.25); }
+.hb-kay-ok { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--hb-cizgi); border-radius: 50%; background: var(--hb-zemin); color: var(--hb-metin); cursor: pointer; }
+.hb-kay-ok:hover { border-color: var(--hb-cizgi-koyu); }
+.hb-kay-ok svg { width: 20px; height: 20px; }
+.hb-kay button:focus-visible { outline: 2px solid var(--hb-baglanti); outline-offset: 2px; }
+@media (max-width: 640px) {
+  .hb-kay h3.hb-baslik { font-size: 27px; }
+  .hb-kay-ok { display: none; }
+  .hb-kay-nokta button { width: 22px; }
+  .hb-kay-nokta i { width: 8px; height: 8px; }
+}
+@media (prefers-reduced-motion: reduce) { .hb-kay-nokta i { transition: none; } }
