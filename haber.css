@@ -352,3 +352,78 @@ figcaption { border-bottom: 0; padding: 10px 2px 0; }
   .hb-gorsel img, .hb-kat a { transition: none; }
   a.hb-gorsel:hover img, .hb-manset-kapak:hover img { transform: none; }
 }
+
+/* =====================================================================
+   Haber platformu (v5 · 27 Kasım 2026): son dakika etiketi ve şeridi, kategori blokları,
+   en çok okunanlar, kaynak bağlantıları, kesinleşmemiş bilgi kutusu.
+   ===================================================================== */
+/* Son dakika: yalnızca yayından sonraki 24 saat (haber.js) */
+.hb-sd { display: inline-flex; align-items: center; margin: 0 8px 0 0; padding: 3px 7px; font: 800 10.5px/1.2 var(--hb-sans); letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--hb-vurgu); border-radius: 4px; vertical-align: middle; }
+.hb-sd[hidden] { display: none; }
+.hb-manset-yazi .hb-sd { margin-bottom: 0; }
+.hb-gundem.sd { background: color-mix(in srgb, var(--hb-vurgu) 7%, var(--hb-zemin)); border-bottom-color: color-mix(in srgb, var(--hb-vurgu) 30%, var(--hb-cizgi)); }
+.hb-gundem.sd .hb-gundem-liste a:not([data-sd]) { display: none; }
+.hb-gundem.sd .hb-gundem-liste a { font-weight: 700; }
+
+/* Kategori blokları (sol) + en çok okunanlar (sağ) */
+.hb-govde { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 40px; align-items: start; padding-top: 16px; }
+.hb-bloklar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 32px; }
+.hb-blok { min-width: 0; }
+.hb-blok .hb-bolum-b { margin-bottom: 16px; }
+.hb-tumu { margin-left: auto; font: 700 13px var(--hb-sans); color: var(--hb-baglanti); text-decoration: none; padding: 12px 0; }
+.hb-tumu:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hb-blok-ust .hb-gorsel { margin-bottom: 12px; }
+.hb-blok-ust .hb-baslik { display: inline; font-size: 21px; text-wrap: balance; }
+.hb-blok-ust .hb-spot { font-size: 15.5px; margin-top: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.hb-blok-ust .hb-zaman { display: block; margin-top: 8px; }
+.hb-blok-liste { list-style: none; margin: 14px 0 0; padding: 0; }
+.hb-blok-liste li { padding: 12px 0; border-top: 1px solid var(--hb-cizgi); }
+.hb-blok-liste .hb-baslik { font-size: 16.5px; line-height: 1.3; }
+.hb-blok-liste .hb-zaman { display: block; margin-top: 4px; font-size: 12.5px; }
+.hb-blok .hb-baslik a { text-decoration: none; }
+.hb-blok .hb-baslik a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+.hb-populer { position: sticky; top: 76px; padding: 22px; background: var(--hb-zemin-2); border-radius: var(--hb-r); }
+.hb-populer[hidden] { display: none; }
+.hb-populer .hb-bolum-b { margin-bottom: 8px; }
+.hb-populer ol { list-style: none; margin: 0; padding: 0; counter-reset: p; }
+.hb-populer li { counter-increment: p; display: grid; grid-template-columns: 36px 1fr; padding: 14px 0; border-top: 1px solid var(--hb-cizgi-koyu); }
+.hb-populer li:first-child { border-top: 0; }
+.hb-populer li::before { content: counter(p); font: 700 28px/1 var(--hb-serif); color: var(--hb-vurgu); }
+.hb-populer .hb-baslik { font-size: 17px; line-height: 1.3; margin-top: 4px; }
+.hb-populer .hb-baslik a { text-decoration: none; }
+.hb-populer .hb-baslik a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hb-populer .hb-etiket { font-size: 10.5px; }
+
+/* Kaynak bağlantıları ve kesinleşmemiş bilgi */
+.hb-kaynaklar { margin: 6px 0 10px; padding-left: 18px; }
+.hb-kaynaklar li { margin: 4px 0; }
+.hb-kaynaklar a { color: var(--hb-baglanti); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.hb-kesin { border-left-color: var(--hb-vurgu) !important; }
+
+@media (max-width: 960px) {
+  .hb-govde { grid-template-columns: 1fr; gap: 32px; }
+  .hb-populer { position: static; order: -1; }
+}
+@media (max-width: 640px) {
+  .hb-son { display: block; padding: 16px; margin-top: 4px; }
+  .hb-son .hb-bolum-b { margin-top: 0; }
+  .hb-son .hb-baslik { font-size: 16.5px; }
+  .hb-son li { padding: 11px 0; grid-template-columns: 28px 1fr; }
+  .hb-son li::before { font-size: 20px; }
+  .hb-bloklar { grid-template-columns: 1fr; gap: 28px; }
+  .hb-blok-ust { display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: 14px; }
+  .hb-blok-ust .hb-gorsel { grid-column: 2; grid-row: 1; aspect-ratio: 1 / 1; margin: 0; border-radius: var(--hb-r-k); }
+  .hb-blok-ust > div { grid-column: 1; grid-row: 1; }
+  .hb-blok-ust .hb-baslik { font-size: 18px; line-height: 1.25; }
+  .hb-blok-ust .hb-spot { display: none; }
+  .hb-populer { padding: 16px; }
+  .hb-tumu { min-height: 44px; display: inline-flex; align-items: center; }
+}
+/* En çok okunanlar verisi yoksa (sayaç okunamadı) bloklar tüm genişliği kullanır */
+.hb-govde:has(> .hb-populer[hidden]) { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 961px) { .hb-govde:has(> .hb-populer[hidden]) .hb-bloklar { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+/* Telefonda "Son haberler" listesi öne çıkan kartları zaten kapsıyor; tekrar olmasın */
+@media (max-width: 640px) { .hb-ust + .hb-ikinci { display: none; } }
+.hb-populer .hb-bolum-b h2 { font-size: 19px; }
+.hb-populer .hb-bolum-b span { white-space: nowrap; }

@@ -23,6 +23,19 @@
   }
   goreli();
 
+  /* Son dakika: haberde son_dakika işaretliyse yayından sonraki 24 saat boyunca etiket görünür,
+     gündem şeridi "Son dakika" olur. Süre geçince etiket kendiliğinden kalkar. */
+  function sonDakika(kok) {
+    var simdi = Date.now(), taze = function (el) { var z = Date.parse(el.getAttribute("data-sd")); return z && simdi - z < 864e5 && simdi - z > -36e5; };
+    (kok || document).querySelectorAll(".hb-sd[data-sd]").forEach(function (el) { el.hidden = !taze(el); });
+    var serit = document.querySelector(".hb-gundem");
+    if (serit && !kok) {
+      var sd = [].filter.call(serit.querySelectorAll("a[data-sd]"), taze);
+      if (sd.length) { serit.classList.add("sd"); var y = serit.querySelector("strong span"); if (y) y.textContent = "Son dakika"; }
+    }
+  }
+  sonDakika();
+
   /* Okuma ilerleme çubuğu (haber detay) */
   var cubuk = document.querySelector(".hb-ilerleme i"), makale = document.querySelector(".hb-makale");
   if (cubuk && makale) {
@@ -56,6 +69,9 @@
   var icerik = document.getElementById("hb-icerik");
   var q = new URLSearchParams(location.search);
   var kat = q.get("kategori") || "", ara = (q.get("ara") || "").trim();
+  /* Eski kategori adresleri (ör. ?kategori=sinavlara-hazirlik) yeni kategoriye yönlenir */
+  var eski = window.HABER_ESKI_KOD || {};
+  if (kat && eski[kat]) { kat = eski[kat]; q.set("kategori", kat); try { history.replaceState(null, "", "?" + q.toString()); } catch (e) {} }
   if (icerik && (kat || ara)) {
     function kucuk(s) { return (s || "").toLocaleLowerCase("tr-TR"); }
     function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -64,7 +80,8 @@
       if (ara) { var a = kucuk(ara); return kucuk(n.baslik + " " + n.ozet + " " + n.kategori + " " + n.metin).indexOf(a) !== -1; }
       return true;
     });
-    var katAd = kat ? ((H.find(function (n) { return n.kod === kat; }) || {}).kategori || "") : "";
+    var katLink = document.querySelector('.hb-kat a[href$="kategori=' + kat + '"]');
+    var katAd = kat ? ((H.find(function (n) { return n.kod === kat; }) || {}).kategori || (katLink ? katLink.textContent : "")) : "";
     document.querySelectorAll(".hb-kat a").forEach(function (a) {
       var k = new URL(a.href).searchParams.get("kategori") || "";
       a.classList.toggle("aktif", !ara && k === kat);
@@ -85,7 +102,7 @@
     icerik.innerHTML = h;
     var g = document.querySelector(".hb-gundem"); if (g) g.hidden = true;
     document.title = (ara ? "“" + ara + "” araması" : katAd) + " – KampüsCepte Haberler";
-    gorselHazirla(icerik); goreli(icerik);
+    gorselHazirla(icerik); goreli(icerik); sonDakika(icerik);
   }
 
   /* Paylaş ve bağlantıyı kopyala */
