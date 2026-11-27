@@ -1,5 +1,348 @@
 [
  {
+  "slug": "meb-15-bin-ogretmen-kontenjan-dagilimi",
+  "baslik": "MEB 15 bin öğretmen kontenjan dağılımı: Başvurular 9-15 Aralık'ta",
+  "tarih": "27 Kasım 2026",
+  "iso": "2026-11-27",
+  "saat": "22.39",
+  "kategori": "Eğitim",
+  "gorsel": "meb-15-bin-ogretmen-kontenjan-dagilimi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Kış sabahı boş bir ilkokul sınıfı: sıra sıra küçük ahşap sıralar, temiz bir yazı tahtası, öğretmen masasında dosya yığını ve sandalyeye bırakılmış lacivert bir hırka",
+  "aciklama": "MEB, Millî Eğitim Akademisi'ne alınacak 15 bin öğretmen adayının alan dağılımını açıkladı; başvurular 9-15 Aralık'ta alınacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Millî Eğitim Akademisi'ne alınacak 15 bin öğretmen adayı için başvurular 9-15 Aralık'ta. En büyük kontenjan 3.976 ile sınıf öğretmenliğinde, 50 puan şartı var.",
+  "kaynak": "Millî Eğitim Bakanlığı, \"Hazırlık eğitimine alınacak 15 bin öğretmen adayı için alan bazında kontenjan dağılımı belli oldu\" (27 Kasım 2026); MEB Personel Genel Müdürlüğü, Millî Eğitim Akademisi Öğretmenlik Mesleğine Hazırlık Eğitimi Başvuru ve Kayıt Duyurusu (Kasım 2026); Anadolu Ajansı (27 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "MEB: 15 bin öğretmen adayı için alan bazında kontenjan dağılımı",
+    "url": "https://www.meb.gov.tr/hazirlik-egitimine-alinacak-15-bin-ogretmen-adayi-icin-alan-bazinda-kontenjan-dagilimi-belli-oldu/haber/42684/tr"
+   },
+   {
+    "ad": "MEB Personel GM: Hazırlık eğitimi başvuru ve kayıt duyurusu (Kasım 2026)",
+    "url": "https://personel.meb.gov.tr/www/milli-egitim-akademisi-ogretmenlik-meslegine-hazirlik-egitimi-basvuru-ve-kayit-duyurusu-kasim-2026/icerik/1785/tr"
+   },
+   {
+    "ad": "Anadolu Ajansı: 15 bin öğretmen adayı için kontenjan dağılımı belli oldu",
+    "url": "https://www.aa.com.tr/tr/gundem/15-bin-ogretmen-adayi-icin-alan-bazinda-kontenjan-dagilimi-belli-oldu/4139973"
+   }
+  ],
+  "govde": [
+   "<p>Millî Eğitim Bakanlığı (MEB), Millî Eğitim Akademisi'nde öğretmenlik mesleğine hazırlık eğitimine alınacak <b>15 bin öğretmen adayının alan bazında kontenjan dağılımını</b> bugün, <b>27 Kasım 2026</b>'da açıkladı. Bakanlığın duyurusuna göre başvurular 2026 MEB-AGS sonuçlarına göre <b>9-15 Aralık 2026</b> tarihleri arasında elektronik ortamda alınacak. En büyük kontenjan <b>3 bin 976</b> ile sınıf öğretmenliğine ayrıldı; başvuru yapabilmek için ilgili alanda MEB-AGS'den <b>en az 50 puan</b> almış olmak gerekiyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>15 bin</b><span>hazırlık eğitimine alınacak aday</span></div><div><b>9-15 Aralık</b><span>başvuru dönemi</span></div><div><b>50 puan</b><span>alan için en düşük MEB-AGS puanı</span></div><div><b>22 Şubat</b><span>hazırlık eğitiminin başlangıcı</span></div></div>",
+   "<h2>Hangi branşa kaç kontenjan ayrıldı?</h2>",
+   "<p>MEB'in açıkladığı listede en çok aday alınacak ilk beş alan şöyle sıralanıyor:</p>",
+   "<ol><li><b>Sınıf öğretmenliği:</b> 3 bin 976</li><li><b>Özel eğitim:</b> 2 bin 842</li><li><b>İngilizce:</b> 1.101</li><li><b>Rehberlik:</b> 1.059</li><li><b>Din kültürü ve ahlak bilgisi:</b> 1.051</li></ol>",
+   "<p>Bu beş alan tek başına yaklaşık 10 bin kişilik bir kontenjana karşılık geliyor; yani toplam kontenjanın üçte ikisi bu branşlarda toplanıyor. Diğer alanların kontenjanları, MEB Personel Genel Müdürlüğü'nün (personel.meb.gov.tr) yayımladığı \"Millî Eğitim Akademisi Öğretmenlik Mesleğine Hazırlık Eğitimi Başvuru ve Kayıt Duyurusu\" ekindeki listede yer alıyor. Başvurular yalnızca bu listede adı geçen alanlar için yapılabiliyor; listede bulunmayan bir branş için başvuru alınmıyor.</p>",
+   "<h2>Başvuru nasıl ve nereden yapılacak?</h2>",
+   "<p>Adaylar başvurularını <b>akademibasvuru.meb.gov.tr</b> adresinden, e-Devlet şifresiyle giriş yaparak yapacak. Başvuru ekranı 9 Aralık'ta açılacak ve <b>15 Aralık 2026 Salı günü saat 16.00</b>'da kapanacak. Bakanlık, süresi içinde tamamlanmayan başvuruların dikkate alınmayacağını vurguluyor. Başvurular, adayın seçtiği il ya da ilçe millî eğitim müdürlüğü tarafından incelenecek: uygun bulunan başvurular onaylanacak, eksik ya da hatalı olanlar gerekçesiyle adaya geri gönderilecek. Başvurunun onaylanıp onaylanmadığını takip etmek adayın kendi sorumluluğunda.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Unutmayın</b> Başvuruyu son güne bırakmamak, ret gerekçesiyle geri dönen bir başvuruyu düzeltecek zamanı da bırakır. 15 Aralık saat 16.00'dan sonra sistem kapanıyor.</p></div>",
+   "<h2>Asıl ve yedek adaylar nasıl belirlenecek?</h2>",
+   "<p>Her alanda adaylar MEB-AGS puanına göre sıralanacak ve kontenjan kadar aday asıl aday olacak. Her alan için asıl aday sayısının <b>yüzde 10'u kadar yedek aday</b> da belirlenecek. Puanların eşit olması hâlinde sıralama bilgisayar ortamında yapılacak kurayla belirlenecek. Bakanlık, yedek listeye girmenin müktesep hak, yani kazanılmış hak oluşturmayacağını özellikle belirtiyor. Bir alanın birden fazla eğitim merkezinde verilmesi durumunda yerleştirme puan ve tercih sırasına göre yapılacak; tercihine yerleşemeyen ya da tercih yapmayan adaylar bakanlık tarafından bir merkeze yerleştirilecek.</p>",
+   "<h2>Sonuçlar ve kayıt ne zaman?</h2>",
+   "<ul><li><b>17 Aralık 2026:</b> Hazırlık eğitimine alınacak asıl ve yedek adaylar ilan edilecek.</li><li><b>4 Şubat 2027:</b> Güvenlik soruşturması ve arşiv araştırmasının ardından kayıt hakkı kazanan asıl adaylar açıklanacak.</li><li><b>5-11 Şubat 2027:</b> Asıl adayların kayıt başvuruları (11 Şubat Perşembe saat 16.00'ya kadar).</li><li><b>15 Şubat 2027:</b> Yedek adaylardan kayıt hakkı kazananlar ilan edilecek.</li><li><b>16-19 Şubat 2027:</b> Yedek adayların kayıt başvuruları (19 Şubat Cuma saat 16.00'ya kadar).</li><li><b>22 Şubat 2027:</b> Hazırlık eğitimi başlayacak.</li></ul>",
+   "<p>Süresi içinde kayıt yaptırmayan asıl adayların yerine yedek adaylar çağrılacak. Kayıtla ilgili duyurular akademi.meb.gov.tr, başvuru ve yerleştirmeyle ilgili duyurular ise personel.meb.gov.tr üzerinden yapılacak. Bu yıl MEB-AGS'ye girmeyen ya da 50 puan barajını geçemeyen adaylar için sıradaki fırsat 2027 sınavı olacak; tarihleri <a href=\"/haberler/2027-ags-sinav-tarihi.html\">2027 AGS sınav takvimi haberimizde</a> bulabilirsiniz.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>15 bin öğretmen başvurusu ne zaman?</b> Başvurular 9 Aralık 2026'da başlayıp 15 Aralık 2026 Salı saat 16.00'da bitecek.</p>",
+   "<p><b>Başvuru için kaç puan gerekiyor?</b> Başvurulan alanda 2026 MEB-AGS'den en az 50 puan almış olmak gerekiyor.</p>",
+   "<p><b>Sınıf öğretmenliği kontenjanı kaç?</b> Sınıf öğretmenliğine 3 bin 976 kişilik kontenjan ayrıldı; bu, alanlar arasındaki en yüksek sayı.</p>",
+   "<p><b>Hazırlık eğitimi ne zaman başlıyor?</b> Kayıtlar tamamlandıktan sonra 22 Şubat 2027'de başlayacak.</p>"
+  ],
+  "son_dakika": true,
+  "one_cikan": true
+ },
+ {
+  "slug": "bina-yangin-yonetmeligi-2026",
+  "baslik": "Bina Yangın Yönetmeliği 2026: Yeni kurallar 1 Ocak 2028'de başlıyor",
+  "tarih": "27 Kasım 2026",
+  "iso": "2026-11-27",
+  "saat": "22.37",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "bina-yangin-yonetmeligi-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Modern bir apartmanın merdiven sahanlığında duvara asılı kırmızı yangın söndürücü, kapalı yangın kapısı, tavanda duman dedektörü ve yanan sarı acil durum lambası",
+  "aciklama": "Yeni Bina Yangın Yönetmeliği 1 Ocak 2028'de yürürlüğe girecek; 30,50 metreyi aşan mevcut konutlara otomatik yangın algılama sistemi şartı geliyor.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Yeni Bina Yangın Yönetmeliği 27 Kasım'da Resmî Gazete'de yayımlandı, 1 Ocak 2028'de yürürlüğe girecek. 30,50 metreyi aşan konutlara algılama şartı geliyor.",
+  "kaynak": "Resmî Gazete, 27 Kasım 2026, sayı 33443 (Bina Yangın Yönetmeliği, karar sayısı 12041); Anadolu Ajansı; Memurlar.net; Yeni Şafak",
+  "kaynaklar": [
+   {
+    "ad": "Anadolu Ajansı: Bina Yangın Yönetmeliği Resmi Gazete'de yayımlandı",
+    "url": "https://www.aa.com.tr/tr/gundem/bina-yangin-yonetmeligi-resmi-gazetede-yayimlandi/4140511"
+   },
+   {
+    "ad": "Memurlar.net: Bina Yangın Yönetmeliği değişti, işte yeni şartlar",
+    "url": "https://www.memurlar.net/haber/1185414/bina-yangin-yonetmeligi-degisti-iste-yeni-sartlar.html"
+   },
+   {
+    "ad": "Yeni Şafak: Ev sahibi ve kiracılara yeni zorunluluklar",
+    "url": "https://www.yenisafak.com/ekonomi/resmi-gazetede-yayimlandi-ev-sahibi-ve-kiracilara-yeni-zorunluluklar-geliyor-4877175"
+   },
+   {
+    "ad": "Bloomberg HT: Resmî Gazete'de bugün (27.11.2026)",
+    "url": "https://www.bloomberght.com/resmi-gazete-de-bugun-27112026-3795863"
+   }
+  ],
+  "govde": [
+   "<p>Çevre, Şehircilik ve İklim Değişikliği Bakanlığının hazırladığı <b>Bina Yangın Yönetmeliği</b>, <b>27 Kasım 2026</b> tarihli ve 33443 sayılı Resmî Gazete'de yayımlandı. 148 maddelik düzenleme <b>1 Ocak 2028</b>'de uygulanmaya başlayacak ve 2007'den bu yana yürürlükte olan Binaların Yangından Korunması Hakkında Yönetmelik'in yerini alacak. Yeni kurallar; kapalı otoparklardaki elektrikli araç şarj noktalarından çatıdaki güneş panellerine, yüksek apartmanlardaki yangın algılama sistemlerinden engelli bireylerin tahliyesine kadar geniş bir alanı kapsıyor. Ek önlem gereken mevcut binalara ise işi tamamlamaları için 1 Ocak 2029'a kadar süre tanındı.</p>",
+   "<div class=\"hb-rakam\"><div><b>148</b><span>maddelik yeni yönetmelik</span></div><div><b>1 Ocak 2028</b><span>yürürlük tarihi</span></div><div><b>1 Ocak 2029</b><span>mevcut binalar için son tarih</span></div><div><b>30,50 m</b><span>algılama sistemi şartı için yükseklik</span></div></div>",
+   "<h2>Mevcut apartmanlarda ne değişecek?</h2>",
+   "<p>Yayımlanan bilgilere göre eski yönetmeliğe uygun önlemleri almış binalardan, yönetmelikte sayılan özel durumlar dışında ek masraf ya da tadilat istenmeyecek; tescilli tarihi yapılarda da mevcut önlemler yeterli sayılacak. Asıl yükümlülük yüksek konutlara geliyor: <b>yapı yüksekliği 30,50 metreyi aşan mevcut konutlarda</b> otomatik yangın algılama ve uyarı sistemi kurulması ve standartlara uygun taşınabilir yangın söndürme cihazı bulundurulması zorunlu olacak. Bu ve benzeri ek tedbirlerin, yürürlük tarihinden itibaren bir yıl içinde, yani <b>1 Ocak 2029'a kadar</b> tamamlanması gerekiyor.</p>",
+   "<p>Yönetmelik bina sahiplerine, yöneticilere ve işletmecilere de açık bir görev veriyor: yangın güvenlik sistemlerini çalışır durumda tutmak, düzenli kontrol yaptırmak ve gerekli önlemleri almak. Ayrıca 200'den fazla kişinin yaşadığı siteler, 30,50 metreden yüksek konutlar ve 50'den fazla kişinin bulunduğu konut dışı yapılar için yangına karşı ekip kurma zorunluluğu getiriliyor.</p>",
+   "<h2>Elektrikli araç şarj noktaları için hangi kurallar var?</h2>",
+   "<p>Elektrikli araçların yaygınlaşmasıyla gündeme gelen kapalı otopark riski için ayrı bir bölüm yazıldı. Buna göre kapalı otoparklarda şarj sistemi sayısı şöyle sınırlanıyor:</p>",
+   "<ul><li>Doğrudan dış ortama açılan otopark katlarında araç kapasitesinin <b>yüzde 20'sine</b> kadar şarj sistemi kurulabilecek.</li><li>Diğer kapalı otopark katlarında bu sınır <b>yüzde 10</b> olacak.</li><li>Fiziki koşullar yetersizse ya da daha fazla şarj noktası gerekiyorsa, yerel itfaiyenin uygun görüşüyle ilave sistem kurulabilecek.</li><li>Şarj sistemlerinin elektriğini anında kesen bir <b>acil durum butonu</b> zorunlu olacak; şarj alanlarında yangının yayılmasını önleyici tedbirler alınacak.</li></ul>",
+   "<h2>Güneş panelli binalarda neye dikkat edilecek?</h2>",
+   "<p>Çatı, cephe ve açık otopark üstüne kurulan güneş enerjisi sistemleri için de yangın güvenliği şartları belirlendi. Panel yerleşiminde kaçış güvenliğini bozmayacak uygun mesafeler bırakılacak, acil durumlar için devre kesici ve sistem parçalarında uyarı levhaları bulunacak, bina içindeki ekipman için uygun yangın algılama ve erken uyarı sistemi kurulacak.</p>",
+   "<h2>Engelli bireylerin tahliyesi nasıl sağlanacak?</h2>",
+   "<p>Hareket kısıtlılığı olan kişiler için yangın güvenlik holü, kaçış merdiveni ve korunumlu koridor gibi alanlarda özel <b>tahliye bekleme noktaları</b> oluşturulacak. Görme engelliler için Braille yazılı yönlendirme işaretleri, yardım çağırmak için de acil durum butonu ya da sesli iletişim cihazı bulunacak.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Ruhsat sürecinde itfaiye görüşü</b> Yeni yapılarda yangın algılama, söndürme ve tahliye projeleri önce yerel itfaiye tarafından değerlendirilecek; itfaiye gerekli görürse yangın güvenlik uzmanlarının görüşünü alacak. Yangın güvenliği şartlarını karşılamayan yapılara inşaat ruhsatı, yapı kullanma izin belgesi ve iş yeri açma ruhsatı verilmeyecek.</p></div>",
+   "<p>Yönetmelik, proje hazırlayan mimar ve mühendislerden müteahhit ve şantiye şeflerine, bakım ve muayene yapanlardan itfaiyeye kadar herkesin sorumluluk sınırını ayrı ayrı tanımlıyor. Kurallarının uygulanamadığı özel nitelikli yapılarda uluslararası standartların kullanılmasına da izin veriliyor.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Yeni yönetmelik ne zaman yürürlüğe girecek?</b> 1 Ocak 2028'de. O tarihe kadar 2007 tarihli yönetmelik uygulanmaya devam edecek.</p>",
+   "<p><b>Oturduğum apartman için masraf çıkacak mı?</b> Eski yönetmeliğe uygun önlemleri almış binalardan genel olarak ek tedbir istenmiyor. Yüksekliği 30,50 metreyi aşan konutlarda ise otomatik yangın algılama sistemi ve taşınabilir söndürme cihazı şartı var.</p>",
+   "<p><b>Mevcut binalara ne kadar süre verildi?</b> Ek tedbir yükümlülüğü olan binaların bu işleri 1 Ocak 2029'a kadar tamamlaması gerekiyor.</p>",
+   "<p><b>Kapalı otoparka istediğim kadar şarj istasyonu kurulabilir mi?</b> Hayır. Dışarıya açılan katlarda kapasitenin yüzde 20'si, diğer katlarda yüzde 10'u esas; fazlası için itfaiyenin uygun görüşü gerekiyor.</p>"
+  ],
+  "one_cikan": true
+ },
+ {
+  "slug": "icisleri-bakanligi-1170-sozlesmeli-personel-alimi",
+  "baslik": "İçişleri Bakanlığı 1170 sözleşmeli personel alımı: Son başvuru 11 Aralık",
+  "tarih": "27 Kasım 2026",
+  "iso": "2026-11-27",
+  "saat": "22.35",
+  "kategori": "Memur ve Kamu",
+  "gorsel": "icisleri-bakanligi-1170-sozlesmeli-personel-alimi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Kış sabahı bir ilçe kamu binasında düzenli hizmet bankosu, boş sandalye, masada lacivert dosya, sarı kalem ve arkadan görünen dizüstü bilgisayar",
+  "aciklama": "İçişleri Bakanlığı'nın 1.170 sözleşmeli personel alımı için başvurular 7-11 Aralık'ta e-Devlet üzerinden yapılacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "İçişleri Bakanlığı 1.170 sözleşmeli personel alımında son başvuru 11 Aralık. Başvurular e-Devlet'ten, 2026 KPSS'den en az 60 puan gerekiyor.",
+  "kaynak": "İçişleri Bakanlığı sözleşmeli personel sözlü sınav ilanı (Resmî Gazete ilan bölümü, 23 Kasım 2026), Memurlar.net (23 Kasım 2026), Habertürk (26 Kasım 2026) ve Takvim (23 Kasım 2026) aracılığıyla",
+  "kaynaklar": [
+   {
+    "ad": "Memurlar.net: İçişleri Bakanlığı 1.170 sözleşmeli personel alacak",
+    "url": "https://www.memurlar.net/haber/1184931/icisleri-bakanligi-1-170-sozlesmeli-personel-alacak.html"
+   },
+   {
+    "ad": "Habertürk: İçişleri Bakanlığı 1170 personel alımı başvuru tarihleri",
+    "url": "https://www.haberturk.com/bilgi/foto/icisleri-bakanligi-1170-personel-alimi-basvuru-tarihleri-2026-icisleri-bakanligi-personel-alimi-basvurulari-ne-zaman-sartlari-neler-ve-kadro-dagilimi-nasil-3930361"
+   },
+   {
+    "ad": "Takvim: İçişleri Bakanlığından 1170 personel alımı",
+    "url": "https://www.takvim.com.tr/guncel/2026/11/22/icisleri-bakanligindan-1170-personel-alimi"
+   }
+  ],
+  "govde": [
+   "<p>İçişleri Bakanlığı, 657 sayılı Devlet Memurları Kanunu'nun 4/B maddesi kapsamında <b>1.170 sözleşmeli personel</b> alacak. Bakanlığın 23 Kasım 2026 tarihli Resmî Gazete'nin ilan bölümünde yayımlanan sözlü sınav ilanına göre başvurular <b>11 Aralık 2026 saat 16.00</b>'da sona erecek. Başvuruların başlangıç günü haber kaynaklarında farklı verildiği için (1 Aralık ve 7 Aralık) resmî ilandaki tarihi kontrol etmenizi öneririz. Başvurular yalnızca <b>e-Devlet</b> üzerinden alınacak; elden ya da posta yoluyla yapılan başvurular kabul edilmeyecek. Adayların, öğrenim düzeylerine uygun 2026 KPSS puan türünden <b>en az 60 puan</b> almış olması gerekiyor. Kadroların 119'u merkez teşkilatında, 1.051'i valilik ve ilçe birimlerinde.</p>",
+   "<div class=\"hb-rakam\"><div><b>1.170</b><span>toplam sözleşmeli kadro</span></div><div><b>11 Aralık</b><span>son başvuru günü, saat 16.00</span></div><div><b>60</b><span>en düşük KPSS puanı</span></div><div><b>70</b><span>sözlü sınavda geçme notu</span></div></div>",
+   "<h2>Hangi kadrolara kaç kişi alınacak?</h2>",
+   "<p>İlandaki dağılıma göre alımın yarısından fazlası büro personeli kadrosunda. En kalabalık unvanlar şöyle:</p>",
+   "<ul><li><b>Büro personeli:</b> 621</li><li><b>Çağrı karşılama personeli:</b> 280 (büyük bölümü il 112 Acil Çağrı Merkezlerinde)</li><li><b>Destek personeli:</b> 138</li><li><b>Mühendis:</b> 61</li><li><b>Teknisyen:</b> 17</li><li><b>Programcı:</b> 10</li></ul>",
+   "<p>Kalan 43 kadro arşiv uzmanı, mimar, avukat, koruma ve güvenlik görevlisi, tekniker, diğer teknik hizmet personeli ve psikolog unvanlarına dağıtıldı. Kadroların il ve birim bazındaki dağılımı ilanın ekindeki tablolarda yer alıyor; başvurmadan önce hangi ilde hangi unvan için yer açıldığına mutlaka bakmak gerekiyor.</p>",
+   "<h2>Hangi KPSS puanıyla başvurulur?</h2>",
+   "<p>Alımda <b>2026 KPSS (B) grubu</b> puanları esas alınıyor. Öğrenim düzeyine göre kullanılacak puan türleri şöyle:</p>",
+   "<ul><li><b>Lisans mezunları:</b> KPSSP3</li><li><b>Ön lisans mezunları:</b> KPSSP93</li><li><b>Ortaöğretim (lise) mezunları:</b> KPSSP94</li></ul>",
+   "<p>Her kadro için ayrıca belirli bölüm ya da programlardan mezun olma şartı aranıyor. Örneğin avukat kadrosunda avukatlık ruhsatı, programcı kadrosunda yabancı dil belgesi, koruma ve güvenlik görevlisi kadrosunda geçerli özel güvenlik kimlik kartı isteniyor. Ayrıntılı mezuniyet şartları ilanın ekinde unvan unvan sıralanıyor.</p>",
+   "<h2>Başvuru şartları neler?</h2>",
+   "<p>Adayların Devlet Memurları Kanunu'nun 48. maddesindeki genel şartları (Türk vatandaşı olmak, kamu haklarından mahrum bulunmamak, ilgili suçlardan hükümlü olmamak gibi) taşıması ve son başvuru günü olan <b>11 Aralık 2026 itibarıyla 18 yaşını doldurmuş</b> olması gerekiyor. Erkek adaylarda askerlikle ilişiğin bulunmaması aranıyor. Kamuda hâlihazırda 4/B sözleşmeli olarak çalışanlara ilişkin bazı unvanlarda başvuru kısıtı bulunduğu için bu durumdaki adayların ilandaki ilgili maddeyi okuması önemli.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Başvuruyu tamamlamayı unutmayın</b> e-Devlet'teki başvuru ekranında bilgiler girildikten sonra başvurunun onaylanarak tamamlanması gerekiyor; tamamlanmayan başvurular kaydedilmiyor. Son güne bırakılan başvurularda sistem yoğunluğu yaşanabildiği için işlemi 11 Aralık'tan önce bitirmek en güvenli yol.</p></div>",
+   "<h2>Sözlü sınav nasıl yapılacak?</h2>",
+   "<p>Alım tek aşamalı <b>sözlü sınavla</b> yapılacak. Adaylar KPSS puanlarına ve tercihlerine göre sıralanacak; her kadro için ilan edilen sayının <b>dört katına kadar</b> aday sözlü sınava çağrılacak. Sınav 100 tam puan üzerinden değerlendirilecek ve başarılı sayılmak için <b>en az 70 puan</b> almak gerekecek. Sınav tarihleri daha sonra Bakanlığın internet sitesinden duyurulacak; adaylara ayrıca yazılı bildirim yapılmayacak.</p>",
+   "<p>KPSS ile yapılan diğer yerleştirmeleri takip edenler, ÖSYM'nin merkezi tercih takvimini de <a href=\"/haberler/kpss-2026-2-tercih-tarihleri.html\">KPSS-2026/2 tercih tarihleri haberimizde</a> bulabilir.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>İçişleri Bakanlığı personel alımı başvurusu ne zaman?</b> Son başvuru günü 11 Aralık 2026, saat 16.00. Başlangıç tarihi kaynaklarda farklı verildiği için resmî ilandan kontrol edilmeli.</p>",
+   "<p><b>Başvuru nereden yapılır?</b> Yalnızca e-Devlet üzerinden; posta ya da elden başvuru kabul edilmiyor.</p>",
+   "<p><b>Kaç KPSS puanı gerekiyor?</b> Öğrenim düzeyine uygun 2026 KPSS puan türünden (P3, P93 ya da P94) en az 60.</p>",
+   "<p><b>Mülakat var mı?</b> Evet. Kadro sayısının dört katına kadar aday sözlü sınava çağrılacak; geçme notu 70.</p>"
+  ]
+ },
+ {
+  "slug": "ocak-2027-memur-zammi",
+  "baslik": "Ocak 2027 memur zammı ne kadar? Ekim verisiyle tahmini yüzde 6,3",
+  "tarih": "27 Kasım 2026",
+  "iso": "2026-11-27",
+  "saat": "22.33",
+  "kategori": "Memur ve Kamu",
+  "gorsel": "ocak-2027-memur-zammi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Bir kamu binası koridorunda pencere kenarındaki masada lacivert dosya, ters çevrilmiş hesap makinesi, sarı kupa ve boş evrak yığını",
+  "aciklama": "Ocak 2027 memur zammı, ekime kadarki enflasyonla şimdilik yaklaşık yüzde 6,3; kesin oran aralık enflasyonuyla belli olacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Ocak 2027 memur zammı, Ekim'e kadarki enflasyonla şimdilik yaklaşık yüzde 6,3. Oran, yüzde 5'lik toplu sözleşme zammına kasım ve aralık verisiyle eklenecek.",
+  "kaynak": "TCMB, Tüketici Fiyatları istatistik tablosu (TÜİK TÜFE aylık ve yıllık değişim oranları, Aralık 2025-Ekim 2026); Kamu Görevlileri Hakem Kurulu 8. Dönem Toplu Sözleşme kararı (Resmî Gazete, 27 Ağustos 2025), Diken ve Türkiye Orman-Sen 8. Dönem Toplu Sözleşme kazanımları belgesi aracılığıyla; Uzmanpara (Milliyet), 5 ve 19 Kasım 2026 tarihli haberler",
+  "kaynaklar": [
+   {
+    "ad": "TCMB: Tüketici fiyatları (TÜİK TÜFE değişim oranları)",
+    "url": "https://www.tcmb.gov.tr/wps/wcm/connect/tr/tcmb+tr/main+menu/istatistikler/enflasyon+verileri/tuketici+fiyatlari"
+   },
+   {
+    "ad": "Diken: Memurlar için Hakem Kurulu kararı Resmî Gazete'de",
+    "url": "https://www.diken.com.tr/memurlar-icin-cikan-hakem-kurulu-karari-resmi-gazetede-yayinlandi/"
+   },
+   {
+    "ad": "Türkiye Orman-Sen: 8. Dönem 2026/2027 Toplu Sözleşme kazanımları (PDF)",
+    "url": "https://www.tocbirsen.org.tr/files/2026/03/13/6d5e103eee530b2d9aa98938ce283b72.pdf"
+   },
+   {
+    "ad": "Uzmanpara: Ocak 2027 memur zammı hesaplaması",
+    "url": "https://uzmanpara.milliyet.com.tr/uzmanpara/memur-zammi-ocak-2027-hesaplamasi-enflasyon-farkina-gore-memur-ve-memur-emeklisi-maasi-ne-kadar-olacak-zam-orani-yuzde-kac-olur-7694962"
+   },
+   {
+    "ad": "Uzmanpara: Kasım enflasyonu ne zaman açıklanacak?",
+    "url": "https://uzmanpara.milliyet.com.tr/uzmanpara/kasim-ayi-tefe-tufe-2026-enflasyon-beklentisi-kasim-enflasyonu-ne-zaman-aciklanacak-beklenti-yuzde-kac-7703569"
+   }
+  ],
+  "govde": [
+   "<p>Memurların ve memur emeklilerinin <b>Ocak 2027</b>'de alacağı maaş artışı, TÜİK'in temmuz-ekim 2026 enflasyon verilerine göre şimdilik <b>yaklaşık yüzde 6,3</b> düzeyinde. Bu oran, 8. Dönem Toplu Sözleşme'ye ilişkin Kamu Görevlileri Hakem Kurulu kararıyla 2027'nin ilk yarısı için belirlenen <b>yüzde 5</b>'lik artışa, 2026'nın ikinci yarısı için oluşan <b>yaklaşık yüzde 1,2</b>'lik enflasyon farkı eklenerek bulunuyor. Kesin oran, TÜİK'in kasım ve aralık enflasyonunu açıklamasıyla, yani <b>Ocak 2027'nin ilk günlerinde</b> belli olacak. Son resmî veri olan ekim enflasyonu 3 Kasım'da açıklanmıştı.</p>",
+   "<div class=\"hb-rakam\"><div><b>%5</b><span>2027 ilk yarı toplu sözleşme zammı</span></div><div><b>%7</b><span>2026 ikinci yarı toplu sözleşme zammı</span></div><div><b>%8,28</b><span>temmuz-ekim 2026 enflasyonu</span></div><div><b>%6,3</b><span>şimdilik oluşan ocak zammı</span></div></div>",
+   "<h2>Toplu sözleşmede hangi oranlar var?</h2>",
+   "<p>Kamu Görevlileri Hakem Kurulu'nun kararı 27 Ağustos 2025'te Resmî Gazete'de yayımlanarak yürürlüğe girdi. Karara göre memur maaş artışları şöyle:</p>",
+   "<ul><li><b>2026 ocak-haziran:</b> yüzde 11 ve taban aylığa 1.000 lira</li><li><b>2026 temmuz-aralık:</b> yüzde 7</li><li><b>2027 ocak-haziran:</b> yüzde 5</li><li><b>2027 temmuz-aralık:</b> yüzde 4</li></ul>",
+   "<p>Her altı aylık dönemde enflasyon, toplu sözleşmedeki artış oranını aşarsa aradaki fark bir sonraki dönemin başında maaşlara ayrıca ekleniyor. Ocak 2027 zammında da 2026'nın ikinci yarısındaki enflasyonun yüzde 7'yi aşan kısmı, yüzde 5'lik artışın üzerine konacak.</p>",
+   "<h2>Enflasyon farkı nasıl hesaplanıyor?</h2>",
+   "<p>TÜİK verilerine göre tüketici fiyatları temmuzda yüzde 1,78, ağustosta yüzde 1,84, eylülde yüzde 1,84 ve ekimde yüzde 2,58 arttı. Bu dört ayın birikimli enflasyonu yaklaşık <b>yüzde 8,28</b>. Enflasyon farkı basit bir çıkarma işlemiyle değil, oranlanarak bulunuyor: 1,0828 sayısı 1,07'ye bölündüğünde yaklaşık 1,012 çıkıyor; yani şimdilik oluşan fark <b>yaklaşık yüzde 1,2</b>. Bu fark yüzde 5'lik artışla birleştirildiğinde (1,05 × 1,012) ocak zammı <b>yaklaşık yüzde 6,3</b> ediyor.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Bu oran kesin değil</b> Yüzde 6,3, yalnızca ekime kadar açıklanmış resmî verilerle yapılan bir hesap. Kasım ve aralıkta enflasyon pozitif geldikçe fark büyüyecek ve ocak zammı bu oranın üzerine çıkacak. Fiyatlar bu iki ayda düşmediği sürece zam, bugünkü hesabın altına inmiyor.</p></div>",
+   "<h2>Kasım enflasyonu ne zaman açıklanacak?</h2>",
+   "<p>TÜİK'in kasım ayı tüketici fiyat endeksini <b>3 Aralık 2026 Perşembe</b> günü saat 10.00'da açıklaması bekleniyor. Bu veriyle birlikte beş aylık enflasyon farkı netleşecek. Altı aylık farkı tamamlayacak aralık verisi ise ocak ayının başında yayımlanacak ve memurlar yeni maaşı ocak ayında, artışla birlikte alacak. Ekim ayında yıllık enflasyon yüzde 29,77 olmuştu.</p>",
+   "<h2>Memur emeklileri de aynı oranı mı alacak?</h2>",
+   "<p>Evet. Toplu sözleşme oranları ve enflasyon farkı, emekli olmuş memurların aylıklarına da aynı oranda yansıyor. SSK ve Bağ-Kur emeklilerinin artışı ise toplu sözleşmeye değil, doğrudan altı aylık enflasyona göre belirleniyor; bu yüzden iki grubun ocak artışı farklı oluyor.</p>",
+   "<h2>Bir önceki dönemde ne olmuştu?</h2>",
+   "<p>2026'nın ilk yarısında TÜİK'in açıkladığı aylık enflasyon oranları birikimli olarak yaklaşık yüzde 17,75'e ulaşmış ve toplu sözleşmedeki yüzde 11'i aşmıştı. Bu nedenle Temmuz 2026'da memur maaşlarına yüzde 7'lik artışın yanında yaklaşık yüzde 6,1'lik enflasyon farkı da eklenmişti. Ocak 2027 hesabında da aynı yöntem uygulanacak.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Ocak 2027 memur zammı kesinleşti mi?</b> Hayır. Toplu sözleşmedeki yüzde 5 kesin; enflasyon farkı ise kasım ve aralık verisi açıklanınca netleşecek.</p>",
+   "<p><b>Şu anki hesapla zam ne kadar?</b> Ekime kadarki verilerle yaklaşık yüzde 6,3.</p>",
+   "<p><b>Temmuz 2027'de memurlar ne kadar zam alacak?</b> Toplu sözleşmeye göre yüzde 4 ve 2027'nin ilk yarısında oluşacak enflasyon farkı.</p>",
+   "<p><b>Kesin oran ne zaman belli olacak?</b> TÜİK'in aralık enflasyonunu açıklamasıyla, Ocak 2027'nin ilk günlerinde.</p>"
+  ],
+  "kesinlesmemis": true
+ },
+ {
+  "slug": "2027-butcesi-plan-butce-komisyonu",
+  "baslik": "2027 bütçesi Plan ve Bütçe Komisyonu'ndan geçti: Sıra Genel Kurul'da",
+  "tarih": "27 Kasım 2026",
+  "iso": "2026-11-27",
+  "saat": "22.31",
+  "kategori": "Ekonomi",
+  "gorsel": "2027-butcesi-plan-butce-komisyonu-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Akşam saatlerinde boş bir meclis komisyon salonu; uzun ahşap masada lacivert kapaklı kalın bütçe kitapları, su bardakları ve sarı ışıklı masa lambaları",
+  "aciklama": "2027 bütçe teklifi Plan ve Bütçe Komisyonu'nda kabul edildi; Genel Kurul görüşmeleri 7 Aralık'ta başlayacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "2027 bütçesi 27 Kasım'da TBMM Plan ve Bütçe Komisyonu'nda kabul edildi. 27,3 trilyon liralık bütçe 7-20 Aralık'ta Genel Kurul'da görüşülecek.",
+  "kaynak": "TBMM, \"2027 yılı bütçesi TBMM Plan ve Bütçe Komisyonunda\" (21 Ekim 2026); Anadolu Ajansı, \"TBMM Genel Kurulunda bütçe takvimine ilişkin Danışma Kurulu önerisi kabul edildi\" (17 Kasım 2026, Foreks aracılığıyla); DHA, \"2027 bütçesi TBMM Plan ve Bütçe Komisyonu'nda kabul edildi\" (27 Kasım 2026, Memurlar.net ve Yeni Asır aracılığıyla); İstiklal (27 Kasım 2026); Dünya Gazetesi",
+  "kaynaklar": [
+   {
+    "ad": "TBMM: 2027 yılı bütçesi Plan ve Bütçe Komisyonunda",
+    "url": "https://tbmm.gov.tr/Haber/Detay?Id=22205743-ea62-4dae-8586-01a15ed7c20c"
+   },
+   {
+    "ad": "AA (Foreks): Bütçe takvimine ilişkin Danışma Kurulu önerisi kabul edildi",
+    "url": "https://www.foreks.com/haber/detay/6afc6abe95131d72027deddb/AA/tr/tbmm-genel-kurulunda-butce-takvimine-iliskin-danisma-kurulu-onerisi-kabul-edildi-17-11-26/"
+   },
+   {
+    "ad": "Memurlar.net (DHA): 2027 bütçesi Plan ve Bütçe Komisyonu'nda kabul edildi",
+    "url": "https://www.memurlar.net/haber/1185434/2027-butcesi-tbmm-plan-ve-butce-komisyonu-nda-kabul-edildi.html"
+   },
+   {
+    "ad": "Yeni Asır (DHA): 2027 bütçesi komisyondan geçti",
+    "url": "https://www.yeniasir.com.tr/ekonomi/2026/11/27/son-dakika-2027-butcesi-tbmmde-komisyondan-gecti"
+   },
+   {
+    "ad": "İstiklal: 2027 bütçesi Plan ve Bütçe Komisyonunda kabul edildi",
+    "url": "https://www.istiklal.com.tr/gundem/2027-butcesi-tbmm-plan-ve-butce-komisyonunda-kabul-edildi-1111842h"
+   },
+   {
+    "ad": "Dünya: 2027 bütçesi açıklandı",
+    "url": "https://www.dunya.com/ekonomi/2027-butcesi-aciklandi-273-trilyon-liralik-harcama-39-trilyon-liralik-acik-haberi-844112"
+   }
+  ],
+  "govde": [
+   "<p><b>2027 Yılı Merkezi Yönetim Bütçe Kanunu Teklifi</b>, <b>27 Kasım 2026 Cuma</b> akşamı TBMM Plan ve Bütçe Komisyonu'nda yapılan oylamayla kabul edildi. Komisyon aşamasını tamamlayan teklif şimdi TBMM Genel Kurulu'na gidiyor. Meclis'in daha önce kabul ettiği takvime göre Genel Kurul'daki bütçe görüşmeleri <b>7 Aralık Pazartesi</b> saat 11.00'de başlayacak ve <b>20 Aralık Pazar</b> günü sona erecek. Teklif, <b>27 trilyon 276 milyar liralık</b> gider ve <b>23 trilyon 408 milyar liralık</b> gelir öngörüyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>27,28 trilyon TL</b><span>2027 bütçe gideri</span></div><div><b>23,41 trilyon TL</b><span>2027 bütçe geliri</span></div><div><b>3,87 trilyon TL</b><span>öngörülen bütçe açığı</span></div><div><b>7-20 Aralık</b><span>Genel Kurul görüşmeleri</span></div></div>",
+   "<h2>Bütçe teklifi Meclis'e ne zaman gelmişti?</h2>",
+   "<p>Teklif, 21 Ekim 2026'da Cumhurbaşkanı Yardımcısı Cevdet Yılmaz'ın sunuşuyla Plan ve Bütçe Komisyonu'nda görüşülmeye başlanmıştı. Komisyonda 2027 bütçesiyle birlikte 2025 Yılı Merkezi Yönetim Kesin Hesap Kanunu Teklifi ve Sayıştay raporları da ele alındı. Yaklaşık beş hafta süren görüşmelerde bakanlıkların ve kamu kurumlarının bütçeleri tek tek incelendi; komisyon aşaması 27 Kasım akşamı tamamlandı.</p>",
+   "<h2>2027 bütçesinin ana rakamları neler?</h2>",
+   "<p>TBMM'nin 21 Ekim'deki sunuşa ilişkin haberine göre teklifteki temel büyüklükler şöyle:</p>",
+   "<ul><li><b>Gider:</b> 27 trilyon 276 milyar lira</li><li><b>Gelir:</b> 23 trilyon 408 milyar lira; 2026 yıl sonu tahminine göre yüzde 37,5 artış</li><li><b>Vergi geliri:</b> 19 trilyon 906 milyar lira; yüzde 36,5 artış</li><li><b>Bütçe açığı:</b> 3 trilyon 868 milyar lira; millî gelirin yaklaşık yüzde 3,5'i</li><li><b>Faiz gideri:</b> 3 trilyon 975 milyar lira; millî gelirin yaklaşık yüzde 3,6'sı</li></ul>",
+   "<p>Vergi gelirleri içinde en büyük kalemler katma değer vergisi (KDV) ile gelir vergisi. Teklife göre 2027'de KDV'den yaklaşık 5 trilyon 681 milyar, gelir vergisinden 5 trilyon 533 milyar, özel tüketim vergisinden (ÖTV) ise 3 trilyon 284 milyar lira tahsil edilmesi hedefleniyor.</p>",
+   "<h2>Eğitime ve sağlığa ne kadar pay ayrıldı?</h2>",
+   "<p>Bütçede eğitim için toplam <b>3 trilyon 747 milyar lira</b> ayrıldı. Bunun 2 trilyon 459 milyar lirası Millî Eğitim Bakanlığına, 872 milyar lirası yükseköğretim kurumlarına gidiyor. Merkezi yönetim bütçesi, SGK ve üniversitelerin sağlık harcamaları birlikte hesaplandığında sağlık alanına ayrılan kaynak 4 trilyon 532 milyar lira. Savunma ve iç güvenlik için toplam 3 trilyon 454 milyar, sosyal yardımlar için 1 trilyon 341 milyar lira öngörülüyor.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Bütçe vatandaşı nasıl etkiler?</b> Bütçe kanunu, devletin bir yıl boyunca ne kadar harcayacağını ve bu harcamayı hangi gelirlerle karşılayacağını belirleyen yetki belgesidir. Memur maaşları, üniversitelerin ödenekleri, burs ve sosyal yardımlar gibi kalemlerin kaynağı bu kanunla ayrılıyor. Rakamlar teklif aşamasındaki rakamlardır; Genel Kurul görüşmelerinde değişiklik yapılabilir.</p></div>",
+   "<h2>Genel Kurul görüşmeleri nasıl yapılacak?</h2>",
+   "<p>TBMM Genel Kurulu'nun 17 Kasım'da kabul ettiği Danışma Kurulu önerisine göre Genel Kurul, 7-20 Aralık arasında resmî tatiller dahil her gün saat 11.00'de toplanacak ve günün programı bitene kadar çalışacak. Kamu idarelerinin bütçeleri ve kesin hesapları dokuz turda görüşülecek, ardından teklifin maddeleri oylanacak. Genel Kurul'da kabul edilen bütçe kanunu Resmî Gazete'de yayımlanarak 1 Ocak 2027'de yürürlüğe girecek.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>2027 bütçesi ne kadar?</b> Teklifte giderler 27 trilyon 276 milyar, gelirler 23 trilyon 408 milyar lira.</p>",
+   "<p><b>Bütçe Meclis'te ne zaman görüşülecek?</b> Genel Kurul görüşmeleri 7 Aralık'ta başlayıp 20 Aralık'ta tamamlanacak.</p>",
+   "<p><b>2027 bütçe açığı ne kadar?</b> 3 trilyon 868 milyar lira; millî gelirin yaklaşık yüzde 3,5'i.</p>",
+   "<p><b>Bütçe ne zaman yürürlüğe girecek?</b> Genel Kurul'da kabul edilip Resmî Gazete'de yayımlanmasının ardından 1 Ocak 2027'de.</p>"
+  ]
+ },
+ {
+  "slug": "kredi-karti-faiz-oranlari-aralik-2026",
+  "baslik": "Kredi kartı faiz oranları Aralık 2026: Azami faiz 1 Aralık'ta düşüyor",
+  "tarih": "27 Kasım 2026",
+  "iso": "2026-11-27",
+  "saat": "22.29",
+  "kategori": "Ekonomi",
+  "gorsel": "kredi-karti-faiz-oranlari-aralik-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "İkindi ışığında bir kafe masasında markasız lacivert bir banka kartı, ters çevrilmiş fiş, ince belli çay bardağı ve ters duran telefon",
+  "aciklama": "TCMB'nin yeni tablosuna göre kredi kartı ve KMH'de azami faiz oranları 1 Aralık 2026'dan itibaren düşüyor.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Kredi kartında azami akdi faiz 1 Aralık 2026'dan itibaren yüzde 3,25'ten 3,08'e iniyor. TCMB, KMH ve nakit avans tavanını da yüzde 4,08'e çekti.",
+  "kaynak": "TCMB, \"Kredi Kartı İşlemlerinde Uygulanacak Azami Faiz Oranları\" tablosu (1 Aralık 2026 geçerlilik); Cumhuriyet (24 Kasım 2026); Takvim (24 Kasım 2026); CNN Türk ve Forbes Türkiye, TCMB Finansal İstikrar Raporu haberleri (27 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "TCMB: Kredi kartı işlemlerinde uygulanacak azami faiz oranları",
+    "url": "https://www.tcmb.gov.tr/wps/wcm/connect/TR/TCMB+TR/Main+Menu/Istatistikler/Bankacilik+Verileri/Kredi_Karti_Islemlerinde_Uygulanacak_Azami_Faiz_Oranlari"
+   },
+   {
+    "ad": "Cumhuriyet: TCMB'den kredi kartı faizlerine indirim",
+    "url": "https://www.cumhuriyet.com.tr/ekonomi/tcmb-den-kredi-karti-faizlerine-indirim-yeni-oranlar-belli-oldu-2558900"
+   },
+   {
+    "ad": "Takvim: Kredi kartı borcu olanlara faiz indirimi",
+    "url": "https://www.takvim.com.tr/ekonomi/2026/11/24/merkez-bankasindan-kredi-kartina-faiz-indirimi"
+   },
+   {
+    "ad": "CNN Türk: TCMB Finansal İstikrar Raporu yayımlandı",
+    "url": "https://www.cnnturk.com/ekonomi/tcmb-finansal-istikrar-raporu-yayimlandi-3498914"
+   },
+   {
+    "ad": "Forbes Türkiye: TCMB Finansal İstikrar Raporu (Kasım 2026)",
+    "url": "https://www.forbes.com.tr/para-yatirim/tcmb-finansal-istikrar-raporu-yayimlandi-kredi-buyumesi-yavasladi-fon-cikislari-tl-mevduata-yoneldi"
+   }
+  ],
+  "govde": [
+   "<p>Türkiye Cumhuriyet Merkez Bankası (TCMB), kredi kartı işlemlerinde uygulanacak azami faiz oranlarını <b>1 Aralık 2026</b>'dan geçerli olmak üzere düşürdü. TCMB'nin yayımladığı tabloya göre aylık <b>referans oran yüzde 3,11'den yüzde 2,94'e</b> indi. Buna bağlı olarak dönem borcu 30 bin liranın altındaki kartlarda azami aylık akdi faiz <b>yüzde 3,25'ten yüzde 3,08'e</b>, kredili mevduat hesabı (KMH) ve nakit avansta <b>yüzde 4,25'ten yüzde 4,08'e</b> geriliyor. Değişiklik 24 Kasım'da duyuruldu; yeni tavanlar salı gününden itibaren uygulanacak.</p>",
+   "<div class=\"hb-rakam\"><div><b>%2,94</b><span>yeni aylık referans oran</span></div><div><b>%3,08</b><span>30 bin TL altı dönem borcunda azami akdi faiz</span></div><div><b>%4,08</b><span>KMH ve nakit avansta azami akdi faiz</span></div><div><b>1 Aralık</b><span>yürürlük tarihi</span></div></div>",
+   "<h2>Yeni azami faiz oranları ne kadar?</h2>",
+   "<p>TCMB'nin \"Kredi Kartı İşlemlerinde Uygulanacak Azami Faiz Oranları\" tablosundaki 1 Aralık 2026 oranları (aylık, akdi / gecikme) şöyle:</p>",
+   "<ul><li><b>Dönem borcu 30.000 TL'nin altında:</b> yüzde 3,08 / yüzde 3,38 (önceki: 3,25 / 3,55)</li><li><b>Dönem borcu 30.000-180.000 TL:</b> yüzde 3,58 / yüzde 3,88 (önceki: 3,75 / 4,05)</li><li><b>Dönem borcu 180.000 TL'nin üzerinde:</b> yüzde 4,08 / yüzde 4,38 (önceki: 4,25 / 4,55)</li><li><b>Nakit çekim ve KMH:</b> yüzde 4,08 / yüzde 4,38 (önceki: 4,25 / 4,55)</li><li><b>Yabancı para işlemler:</b> yüzde 2,86 / yüzde 3,16 (önceki: 2,98 / 3,28)</li></ul>",
+   "<p>TCMB'nin açıklamasına göre kurumsal kartlarda borç tutarından bağımsız olarak en üst kademenin oranları uygulanıyor. Kredi kartı borcu yapılandırmalarında ise aylık akdi faiz, referans oranı (yeni dönemde yüzde 2,94) aşamıyor.</p>",
+   "<h2>Bu oranlar en son ne zaman değişmişti?</h2>",
+   "<p>Referans oran Kasım 2023'ten bu yana yüzde 3,11 seviyesinde sabit kalıyordu. TCMB'nin 2026 tablosunda ocaktan kasıma kadar bütün aylarda aynı oranlar yer alıyor; aralıktaki indirim, yaklaşık üç yılın ilk düşüşü oldu. Tablodaki oranların birer <b>tavan</b> olduğunu hatırlatmak gerekiyor: bankalar bu sınırın altında kalmak şartıyla kendi faiz oranlarını belirleyebiliyor.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>İndirim kimi etkiliyor?</b> Kredi kartı faizi, ekstre borcunun tamamı son ödeme tarihine kadar ödenmediğinde kalan tutara işliyor. Borcunu her ay tam ödeyen kart sahibi zaten faiz ödemiyor. Asgari tutarı ya da daha azını ödeyenler, ek hesabını (KMH) kullananlar ve nakit avans çekenler ise aralıktan itibaren daha düşük tavanla karşılaşacak. Faiz tutarına ayrıca vergiler ekleniyor; kendi kartınızdaki oranı bankanızın ekstresinden kontrol edin.</p></div>",
+   "<h2>Örnekle fark ne kadar?</h2>",
+   "<p>Dönem borcu 30 bin liranın altında olan ve ekstreden 10 bin lirayı bir sonraki aya devreden bir kart sahibi için azami akdi faiz, vergiler hariç aylık 325 liradan 308 liraya iniyor; fark aylık 17 lira. Rakam küçük görünse de borcu aylarca devreden ve üst kademelerde yer alan kullanıcılar için birikimli etki büyüyor.</p>",
+   "<h2>Merkez Bankası bireysel borçlar hakkında ne diyor?</h2>",
+   "<p>TCMB'nin 27 Kasım'da yayımladığı Finansal İstikrar Raporu'nda bireysel kredilerdeki gecikme oranının uzun dönem ortalamasını aştığına dikkat çekildi. Raporda kredi kartı limitlerinin gelirle uyumlu hâle getirilmesine yönelik düzenlemelerin ardından limit ve bakiye büyümesinin yavaşladığı belirtildi. Kart borcunu ödemekte zorlananlar için yapılandırma seçeneği bulunuyor; koşulları bankadan öğrenmek gerekiyor. Bu haber yatırım ya da borçlanma tavsiyesi değildir.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Kredi kartı faizi Aralık 2026'da kaç oldu?</b> Dönem borcu 30 bin liranın altındaki kartlarda azami aylık akdi faiz yüzde 3,08.</p>",
+   "<p><b>KMH faizi ne kadar oldu?</b> 1 Aralık'tan itibaren azami aylık akdi faiz yüzde 4,08, gecikme faizi yüzde 4,38.</p>",
+   "<p><b>Bankam hemen indirim yapmak zorunda mı?</b> Oranlar tavandır; bankanın uyguladığı faiz 1 Aralık'tan itibaren bu tavanı aşamaz.</p>",
+   "<p><b>Borcumu tam ödüyorsam etkilenir miyim?</b> Hayır. Ekstre borcunu son ödeme tarihinde tamamen ödeyenlere faiz işlemiyor.</p>"
+  ]
+ },
+ {
   "slug": "2026-ales-3-sinavi",
   "baslik": "2026 ALES/3 ne zaman, saat kaçta? Sınav 29 Kasım Pazar 10.15'te",
   "tarih": "27 Kasım 2026",
