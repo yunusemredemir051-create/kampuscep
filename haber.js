@@ -30,11 +30,45 @@
     (kok || document).querySelectorAll(".hb-sd[data-sd]").forEach(function (el) { el.hidden = !taze(el); });
     var serit = document.querySelector(".hb-gundem");
     if (serit && !kok) {
-      var sd = [].filter.call(serit.querySelectorAll("a[data-sd]"), taze);
-      if (sd.length) { serit.classList.add("sd"); var y = serit.querySelector("strong span"); if (y) y.textContent = "Son dakika"; }
+      var tazeSayi = 0;
+      serit.querySelectorAll("a[data-sd]").forEach(function (a) { var t = taze(a); a.hidden = !t; if (t) tazeSayi++; });
+      serit.hidden = !tazeSayi;
     }
   }
   sonDakika();
+
+  /* Gündem kaydırıcısı: parmakla kaydırma (scroll-snap), noktalar, oklar, 6 sn'de bir kendiliğinden geçiş.
+     Dokunulduğunda, fare üstündeyken, odak içindeyken ve sekme gizliyken durur; "hareketi azalt" açıksa hiç kendiliğinden geçmez. */
+  var kay = document.getElementById("hb-kay");
+  if (kay) {
+    var iz = kay.querySelector(".hb-kay-iz"), slaytlar = kay.querySelectorAll(".hb-kay-slayt"), noktalar = kay.querySelectorAll("[data-git]");
+    var aktif = 0, sayi = slaytlar.length, zamanlayici = null, durdu = false;
+    var azHareket = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var git = function (i) {
+      aktif = (i + sayi) % sayi;
+      iz.scrollTo({ left: slaytlar[aktif].offsetLeft - iz.offsetLeft, behavior: azHareket ? "auto" : "smooth" });
+    };
+    var isaretle = function () {
+      var i = Math.round(iz.scrollLeft / Math.max(1, iz.clientWidth));
+      if (i < 0 || i >= sayi) return;
+      aktif = i;
+      noktalar.forEach(function (b, j) { if (j === i) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
+    };
+    var sayac;
+    iz.addEventListener("scroll", function () { clearTimeout(sayac); sayac = setTimeout(isaretle, 60); }, { passive: true });
+    noktalar.forEach(function (b) { b.addEventListener("click", function () { durdu = true; git(+b.getAttribute("data-git")); }); });
+    kay.querySelectorAll("[data-yon]").forEach(function (b) { b.addEventListener("click", function () { durdu = true; git(aktif + +b.getAttribute("data-yon")); }); });
+    var baslat = function () {
+      clearInterval(zamanlayici);
+      if (azHareket || durdu || sayi < 2) return;
+      zamanlayici = setInterval(function () { if (!document.hidden) git(aktif + 1); }, 6000);
+    };
+    var dur = function () { clearInterval(zamanlayici); };
+    kay.addEventListener("pointerenter", dur); kay.addEventListener("pointerleave", baslat);
+    kay.addEventListener("focusin", dur); kay.addEventListener("focusout", baslat);
+    iz.addEventListener("touchstart", function () { durdu = true; dur(); }, { passive: true });
+    baslat();
+  }
 
   /* Okuma ilerleme çubuğu (haber detay) */
   var cubuk = document.querySelector(".hb-ilerleme i"), makale = document.querySelector(".hb-makale");
