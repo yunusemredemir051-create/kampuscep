@@ -10,9 +10,11 @@ name: Üniversite Evi menüsü
 on:
   workflow_dispatch:
   schedule:
-    # Menü cumartesi, pazar ya da pazartesi açıklanıyor: bu günlerde 08:23–22:23 (TR) arası 2 saatte bir.
+    # Menü cumartesi, pazar ya da pazartesi açıklanıyor: cumartesi 00:03'ten (TR) pazartesi gece yarısına kadar
+    # gece gündüz 2 saatte bir (00:03, 02:03, 04:03 … 22:03 TR). Saatler UTC'dir (TR = UTC+3).
     # O haftanın menüsü tamamlanınca betik siteye hiç gitmeden çıkar.
-    - cron: "23 5-19/2 * * 6,0,1"
+    - cron: "3 21,23 * * 5,6,0"     # cuma/cumartesi/pazar 21:03 ve 23:03 UTC → ertesi gün 00:03 ve 02:03 TR
+    - cron: "3 1-19/2 * * 6,0,1"    # cumartesi/pazar/pazartesi 04:03–22:03 TR
     # Salı–cuma günde bir kez (07:17 TR): sitede sonradan yapılan düzeltmeleri yakalar.
     - cron: "17 4 * * 2-5"
 
