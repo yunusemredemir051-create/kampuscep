@@ -1395,11 +1395,62 @@ html.yurtsuz .kutular { grid-template-columns: repeat(3, 1fr) !important; }
 .yurt-rehber dd b { display: block; color: var(--yazi); font-size: 15px; }
 .yurt-rehber .yurt-kaynak { margin: 12px 0 0; font-size: 12px; }
 .yurt-bilgi-kart { margin-top: 14px; }
-.yurt-bilgi-kart .menu-ust p { margin: 2px 0 0; color: var(--soluk); font-size: 13px; }
-.yb-aciklama { margin: 12px 0; font-size: 14.5px; line-height: 1.6; }
-.yb-liste { margin: 0 0 14px; }
-.yb-liste > div { display: grid; grid-template-columns: 84px 1fr; gap: 10px; padding: 9px 0; border-top: 1px solid var(--cizgi); font-size: 14px; }
-.yb-liste dt { color: var(--soluk); font-weight: 700; }
-.yb-liste dd { margin: 0; font-weight: 600; }
-.yb-liste a { color: var(--mavi); }
-.yb-harita { display: inline-flex; min-height: 44px; align-items: center; text-decoration: none; }
+/* Yurt hakkında (yeni) */
+.yb-ust { display: flex; align-items: center; gap: 12px; }
+.yb-ust h2 { margin: 0; font-size: 18px; letter-spacing: -.3px; }
+.yb-ust p { margin: 2px 0 0; color: var(--soluk); font-size: 13px; font-weight: 600; }
+.yb-rozet { flex: none; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; color: var(--mavi); background: color-mix(in srgb, var(--mavi) 12%, transparent); }
+.yb-rozet svg { width: 22px; height: 22px; }
+.yb-rozet.cm { color: #0891b2; background: color-mix(in srgb, #0891b2 13%, transparent); }
+.yb-aciklama { margin: 14px 0 12px; font-size: 14.5px; line-height: 1.65; color: var(--yazi); }
+.yb-satir { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: var(--r-3); background: var(--kart-2); margin-bottom: 8px; color: var(--yazi); text-decoration: none; }
+.yb-satir > div { flex: 1; min-width: 0; }
+.yb-satir small, .yb-mesafe small { display: block; font-size: 11.5px; font-weight: 700; color: var(--soluk); text-transform: uppercase; letter-spacing: .4px; }
+.yb-satir b { display: block; font-size: 14px; font-weight: 700; line-height: 1.45; margin-top: 1px; }
+.yb-tik { transition: transform .15s; }
+.yb-tik:active { transform: scale(.98); }
+.yb-git { flex: none; color: var(--mavi); font-weight: 800; font-size: 13.5px; }
+.yb-ik { flex: none; width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: var(--kart); color: var(--mavi); box-shadow: 0 0 0 1px var(--cam-kenar); }
+.yb-ik svg { width: 17px; height: 17px; }
+.yb-mesafe { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.yb-mesafe > div { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: var(--r-3); background: var(--kart-2); }
+.yb-mesafe b { display: block; font-size: 16px; font-weight: 800; letter-spacing: -.3px; margin-top: 1px; }
+.yb-eylem { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.yb-btn { flex: 1; min-width: 140px; min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: var(--r-hap); font: 800 14.5px var(--font); text-decoration: none; color: var(--mavi); border: 1.5px solid var(--mavi); background: var(--kart); transition: background-color .15s, color .15s; }
+.yb-btn svg { width: 17px; height: 17px; }
+.yb-btn.birincil { background: var(--mavi); color: var(--vurgu-yazi); border-color: var(--mavi); }
+.yb-btn:hover { background: var(--mavi); color: var(--vurgu-yazi); }
+@media (max-width: 380px) { .yb-mesafe { grid-template-columns: 1fr; } }
+
+/* Çamaşırhane */
+.cm-saatler { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.cm-saatler > div { padding: 12px 10px; border-radius: var(--r-3); background: var(--kart-2); text-align: center; }
+.cm-saatler small { display: block; white-space: nowrap; font-size: 11.5px; font-weight: 700; color: var(--soluk); }
+.cm-saatler b { display: block; font-size: 15.5px; font-weight: 800; letter-spacing: -.3px; margin-top: 3px; white-space: nowrap; }
+.cm-saatler .vurgu { background: color-mix(in srgb, #0891b2 12%, transparent); }
+.cm-saatler .vurgu b { color: #0891b2; }
+.cm-not { display: flex; gap: 8px; align-items: flex-start; margin: 10px 2px 0; font-size: 13px; font-weight: 600; color: var(--soluk); line-height: 1.5; }
+.cm-not svg { flex: none; width: 16px; height: 16px; margin-top: 2px; }
+.cm-limit { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+.cm-limit > div { display: flex; flex-direction: column; gap: 4px; padding: 14px 12px; border-radius: var(--r-3); border: 1px solid var(--cam-kenar); background: var(--kart); }
+.cm-limit b { font-size: 28px; line-height: 1; font-weight: 800; letter-spacing: -1px; color: var(--mavi); }
+.cm-limit span { font-size: 13px; font-weight: 700; line-height: 1.3; }
+.cm-limit small { font-size: 11.5px; font-weight: 600; color: var(--soluk); }
+.cm-baslik { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; font-size: 14.5px; }
+.cm-baslik svg { width: 18px; height: 18px; }
+.cm-baslik.kirmizi { color: #dc2626; }
+.cm-yasaklar { display: flex; flex-wrap: wrap; gap: 6px; }
+.cm-yasaklar span { font-size: 12.5px; font-weight: 700; padding: 7px 11px; border-radius: var(--r-hap); color: #b91c1c; background: color-mix(in srgb, #dc2626 10%, transparent); }
+.cm-detay { margin-top: 16px; border-radius: var(--r-3); background: var(--kart-2); }
+.cm-detay summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; font-weight: 800; font-size: 14.5px; }
+.cm-detay summary::-webkit-details-marker { display: none; }
+.cm-detay summary span { display: flex; align-items: center; gap: 8px; }
+.cm-detay summary span svg { width: 18px; height: 18px; color: var(--yesil); }
+.cm-detay summary i { display: grid; color: var(--soluk); transition: transform .2s; }
+.cm-detay summary i svg { width: 18px; height: 18px; }
+.cm-detay[open] summary i { transform: rotate(180deg); }
+.cm-kurallar { margin: 0; padding: 0 16px 14px 36px; display: grid; gap: 10px; font-size: 14px; line-height: 1.55; }
+.cm-kurallar li::marker { color: var(--mavi); font-weight: 800; }
+.cm-alt { margin: 14px 2px 2px; font-size: 12px; color: var(--soluk); font-weight: 600; line-height: 1.5; }
+html.koyu .cm-yasaklar span, [data-tema="koyu"] .cm-yasaklar span { color: #fca5a5; }
+@media (max-width: 380px) { .cm-saatler b { font-size: 14px; } .cm-limit b { font-size: 24px; } }

@@ -389,22 +389,98 @@ function yurtAc(id) {
   window.scrollTo({ top: 0 });
 }
 /* Yurt hakkında: adres, telefon, ulaşım (yurtbilgi.js) */
+const YB_IK = {
+  konum: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  tel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>',
+  otobus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 18v2M16 18v2"/><circle cx="8" cy="14.5" r=".8" fill="currentColor"/><circle cx="16" cy="14.5" r=".8" fill="currentColor"/></svg>',
+  ucak: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
+  bina: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M15 9h.01M9 13h.01M15 13h.01M10 21v-4h4v4"/></svg>',
+  harita: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg>'
+};
 function yurtBilgiYaz(id) {
   const kutu = document.getElementById("detay-bilgi");
   const b = typeof yurtBilgi !== "undefined" ? yurtBilgi[id] : null;
   if (!kutu) return;
+  camasirhaneYaz(!!(b || (detayYurt && detayYurt.id)));
   if (!b) { kutu.hidden = true; return; }
-  const tel = b.tel ? `<div><dt>Telefon</dt><dd><a href="tel:+90${b.tel.replace(/\D/g, "").replace(/^0/, "")}">${b.tel}</a></dd></div>` : "";
+  const telNo = b.tel ? "+90" + b.tel.replace(/\D/g, "").replace(/^0/, "") : "";
   kutu.innerHTML = `
-    <div class="menu-ust"><div><h2>Yurt hakkında</h2><p>${b.tamAd}</p></div></div>
+    <div class="yb-ust">
+      <span class="yb-rozet">${YB_IK.bina}</span>
+      <div><h2>Yurt hakkında</h2><p>${b.tamAd}</p></div>
+    </div>
     <p class="yb-aciklama">${b.aciklama}</p>
-    <dl class="yb-liste">
-      <div><dt>Adres</dt><dd>${b.adres}</dd></div>
-      ${tel}
-      <div><dt>Ulaşım</dt><dd>Otogara ~${b.otogar} km · Havalimanına ~${b.havalimani} km</dd></div>
-    </dl>
-    <a class="btn yb-harita" href="${yurtHaritaLinki(id)}" target="_blank" rel="noopener">Haritada aç</a>`;
+    <div class="yb-satir">
+      <span class="yb-ik">${YB_IK.konum}</span>
+      <div><small>Adres</small><b>${b.adres}</b></div>
+    </div>
+    ${b.tel ? `<a class="yb-satir yb-tik" href="tel:${telNo}"><span class="yb-ik">${YB_IK.tel}</span><div><small>Telefon</small><b>${b.tel}</b></div><span class="yb-git">Ara ›</span></a>` : ""}
+    <div class="yb-mesafe">
+      <div><span class="yb-ik">${YB_IK.otobus}</span><div><small>Otogara</small><b>~${b.otogar} km</b></div></div>
+      <div><span class="yb-ik">${YB_IK.ucak}</span><div><small>Havalimanına</small><b>~${b.havalimani} km</b></div></div>
+    </div>
+    <div class="yb-eylem">
+      <a class="yb-btn birincil" href="${yurtHaritaLinki(id)}" target="_blank" rel="noopener">${YB_IK.harita}Haritada aç</a>
+      ${b.tel ? `<a class="yb-btn" href="tel:${telNo}">${YB_IK.tel}Yurdu ara</a>` : ""}
+    </div>`;
   kutu.hidden = false;
+}
+
+/* Çamaşırhane bilgilendirmesi: Elazığ KYK yurtlarında aynı kurallar (yurt idaresi duyurularından derlendi) */
+function camasirhaneYaz(goster) {
+  const k = document.getElementById("detay-camasir");
+  if (!k) return;
+  if (!goster) { k.hidden = true; return; }
+  if (k.dataset.hazir) { k.hidden = false; return; }
+  const ik = {
+    makine: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2.5" width="16" height="19" rx="3"/><circle cx="12" cy="13.5" r="4.5"/><path d="M8 6h.01M11 6h.01"/></svg>',
+    saat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    yasak: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>',
+    tik: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg>',
+    ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'
+  };
+  const yasaklar = ["Kilit programı", "1 sa 25 dk'yı aşan programlar", "Ayakkabı ve kemer", "Yastık, yorgan, nevresim", "File ile yıkama", "Elbise boyası", "Makine üstüne/içine deterjan kutusu", "Poşet, çanta, deterjan bırakmak"];
+  const kurallar = [
+    "Çamaşırın türüne uygun programı seç; israfı önlemek için makineyi ideal düzeyde doldur.",
+    "Yeterli deterjan koy ve makinenin kapağının tam kapandığından emin ol.",
+    "Program bitmeden makinenin başında ol; başkalarının da sıra beklediğini unutma. <b>Zamanında boşaltılmayan makineler görevlilerce boşaltılır.</b>",
+    "Yıkanan çamaşırları kurutma makinesinde kurut; odada dağınık şekilde bırakma.",
+    "Program bitince kapak bir süre kilitli kalır. Uyarı ışığı yanmadan kapağı zorlama; açılmazsa görevliden yardım iste.",
+    "İşin bitince makinenin elektriğini kapat.",
+    "Arıza olursa hemen görevliye bildir.",
+    "Temizlik sırasında yerler kuruyana kadar çamaşırhaneye girme. Görevli sandalyelerine oturma.",
+    "Çamaşırhane sorumlusu yokken yurt time çalışanları sorumludur. Çamaşırhanede ve yangın merdiveninde sigara içilmez."
+  ];
+  k.innerHTML = `
+    <div class="yb-ust">
+      <span class="yb-rozet cm">${ik.makine}</span>
+      <div><h2>Çamaşırhane</h2><p>Tüm KYK yurtlarında geçerli kurallar</p></div>
+    </div>
+
+    <div class="cm-saatler">
+      <div><small>Hafta içi</small><b>08:00 – 22:30</b></div>
+      <div><small>Hafta sonu</small><b>09:00 – 22:30</b></div>
+      <div class="vurgu"><small>Son yıkama</small><b>22:00</b></div>
+    </div>
+    <p class="cm-not">${ik.saat}22:00'den sonra makineler yıkama için kullanılmaz. Yurt time çalışanının olmadığı günlerde çamaşırhane 21:00'de kapanır.</p>
+
+    <div class="cm-limit">
+      <div><b>2</b><span>çamaşır makinesi<br><small>biri renkli, biri beyaz</small></span></div>
+      <div><b>1</b><span>kurutma makinesi<br><small>aynı anda en fazla</small></span></div>
+      <div><b>85</b><span>dakika<br><small>en uzun program</small></span></div>
+    </div>
+
+    <h3 class="cm-baslik kirmizi">${ik.yasak}Yasak olanlar</h3>
+    <div class="cm-yasaklar">${yasaklar.map(y => `<span>${y}</span>`).join("")}</div>
+
+    <details class="cm-detay">
+      <summary><span>${ik.tik}Kullanım kuralları</span><i>${ik.ok}</i></summary>
+      <ol class="cm-kurallar">${kurallar.map(x => `<li>${x}</li>`).join("")}</ol>
+    </details>
+
+    <p class="cm-alt">Kurallara uymayan öğrenciler hakkında Yurt İdare ve İşletme Yönetmeliği'ne göre disiplin işlemi başlatılır. · Yurt İdaresi</p>`;
+  k.dataset.hazir = "1";
+  k.hidden = false;
 }
 function detayMenuGuncelle() {
   document.querySelectorAll("#detay-secici button").forEach(b => b.classList.toggle("aktif", b.dataset.ogun === detayOgun));
