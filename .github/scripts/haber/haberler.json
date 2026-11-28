@@ -1,5 +1,1179 @@
 [
  {
+  "slug": "bolu-yedigoller-kaybolan-cocuklar-bulundu",
+  "baslik": "Bolu Yedigöller'de kaybolan çocuklar bulundu: 13 kişinin durumu iyi",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.52",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "bolu-yedigoller-kaybolan-cocuklar-bulundu-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Şafak vakti sisli bir çam ormanında çamurlu orman yolu, uzakta farları yanan bir arazi aracı, kayanın üzerinde katlanmış lacivert bir battaniye ve sarı bir el feneri ışığı",
+  "aciklama": "Yedigöller'e geziye gidip orman yolunda mahsur kalan 10 çocuk ve 3 görevliye gece ulaşıldı; bakanlık herkesin sağlık durumunun iyi olduğunu açıkladı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Bolu Yedigöller'e geziye giden 10 kız çocuğu ve 3 görevliye 28 Kasım gecesi ulaşıldı. Bakan Göktaş, araçtaki herkesin sağlık durumunun iyi olduğunu açıkladı.",
+  "kaynak": "Anadolu Ajansı (27-28 Kasım 2026, Bakan Göktaş ve Bakan Çiftçi açıklamaları); Hürriyet canlı yayın akışı (27-28 Kasım 2026); Akşam (28 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Anadolu Ajansı: Bakan Göktaş, araçtaki çocuklara ve personele ulaşıldığını açıkladı",
+    "url": "https://www.aa.com.tr/tr/gundem/bakan-goktas-yedigollere-gezi-amaciyla-giden-aractaki-cocuklara-ve-personele-ulasildigini-acikladi/4140967"
+   },
+   {
+    "ad": "Hürriyet: Bolu Yedigöller olayı gelişmeler",
+    "url": "https://hurriyet.com.tr/gundem/live-boluda-10-kiz-cocugu-ile-3-personel-kayip-bakan-goktastan-aciklama-geldi-43393761"
+   },
+   {
+    "ad": "Akşam: Kaybolan 10 çocuk ve 3 görevliye ulaşıldı",
+    "url": "https://www.aksam.com.tr/guncel/boludan-sevindiren-geldi-bakan-goktas-kaybolan-10-cocuk-ve-3-gorevliye-ulasildi/haber-1718001"
+   }
+  ],
+  "govde": [
+   "<p>Kocaeli'den Bolu'daki <b>Yedigöller ve Gölcük Tabiat Parkı</b>'na günübirlik geziye giden ve 27 Kasım akşamı kendilerinden haber alınamayan <b>10 kız çocuğu ile 3 görevliye</b> gece saatlerinde ulaşıldı. Aile ve Sosyal Hizmetler Bakanı Mahinur Özdemir Göktaş, 28 Kasım'ın ilk saatlerinde yaptığı açıklamada araçtaki 13 kişinin de sağ olduğunu ve sağlık durumlarının iyi olduğunu duyurdu. Çocuklar, Kocaeli Aile ve Sosyal Hizmetler İl Müdürlüğüne bağlı bir çocuk evleri sitesinde kalan 14-17 yaş arası gençler. Arama, jandarma ve AFAD başta olmak üzere çok sayıda kurumun katıldığı, insansız hava araçlarıyla desteklenen bir operasyonla yürütüldü.</p>",
+   "<div class=\"hb-rakam\"><div><b>13</b><span>kişiye ulaşıldı</span></div><div><b>14-17</b><span>çocukların yaş aralığı</span></div><div><b>11</b><span>bölgeye gönderilen mobil baz istasyonu</span></div></div>",
+   "<h2>Ne oldu, araçla bağlantı nasıl kesildi?</h2>",
+   "<p>Anadolu Ajansı'nın aktardığına göre grup, dönüş yolunda orman yolunda yönünü kaybetti; araç çamura saplandı ve bölgede telefon sinyali yoktu. Çocukların yanında telefon bulunmuyordu; telefonlar refakatçilerde ve şoförde olsa da çekmiyordu. Bakan Göktaş, grubun saat 18.00 sularında kaybolduğunu söyledi. İçişleri Bakanı Mustafa Çiftçi ise aracın GPS bağlantısının 19.00 civarında kesildiğini, durumun önce Kocaeli 112'ye, ardından çocukların dönmediğinin Kocaeli İl Müdürlüğü tarafından bildirildiğini anlattı. Göktaş'ın açıklamasına göre araç, Yığılca'da bataklık bir alana saplanmıştı.</p>",
+   "<p>Görevli sayısına ilişkin açıklamalar arasında küçük bir fark var: Bakan Göktaş araçta <b>3 personel</b> bulunduğunu söylerken, Bakan Çiftçi bu üç kişiyi <b>2 personel ve 1 şoför</b> olarak tarif etti.</p>",
+   "<h2>Aramaya hangi ekipler katıldı?</h2>",
+   "<p>Arama çalışmalarına jandarma, AFAD, UMKE, Jandarma Arama Kurtarma (JAK), Polis Arama Kurtarma (PAK), Polis Özel Harekât, 112 Acil Sağlık, itfaiye, Orman Bölge Müdürlüğü ve Aile ve Sosyal Hizmetler İl Müdürlüğü ekipleri katıldı; sivil toplum kuruluşları da destek verdi. Sahadaki güç için iki bakanın verdiği rakamlar farklı: Göktaş <b>178 personel ve 48 araç</b>, Çiftçi ise <b>55 ekip ve 204 personel</b> görev yaptığını söyledi.</p>",
+   "<ul><li><b>Havadan arama:</b> AFAD'a ve Deniz Kuvvetleri'ne ait İHA'ların yanı sıra Bayraktar insansız hava araçları kullanıldı.</li><li><b>Haberleşme:</b> Ulaştırma ve Altyapı Bakanlığı, 8'i Türk Telekom'a, 3'ü Turkcell'e ait 11 mobil baz istasyonunu bölgeye gönderdi. Çiftçi, sinyalin güçlenmesiyle görevlilere telefonla ulaşılabildiğini belirtti.</li><li><b>Yol:</b> Karayolları Genel Müdürlüğü 2 çift bıçaklı kamyon, 2 arazi aracı ve 8 personel yönlendirdi.</li><li><b>Koordinasyon:</b> Bolu'da bir kriz masası kuruldu; bakanlar Bolu Valisi Abdulaziz Aydın'dan bilgi aldı.</li></ul>",
+   "<blockquote class=\"hb-alinti\"><p>Çok şükür müjdeli haberi aldık. Çocuklarımız ve bütün ekip sağ, durumları gayet iyi.</p><cite>Mahinur Özdemir Göktaş, Aile ve Sosyal Hizmetler Bakanı</cite></blockquote>",
+   "<h2>Bundan sonra ne olacak?</h2>",
+   "<p>Bakan Göktaş, çocukların sağlık kontrolünden geçirileceğini ve gerekli tedbirlerin alınacağını söyledi. Arama sürerken İletişim Başkanı Burhanettin Duran ve RTÜK Başkanı Mehmet Daniş, kamuoyunu doğrulanmamış bilgilere itibar etmemeye ve resmî açıklamaları takip etmeye çağırdı. Olayda can kaybı ya da yaralanma bildirilmedi. Aracın neden orman yoluna saptığına ilişkin ayrıntılı bir resmî açıklama henüz yapılmadı.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Kışın doğa gezisine çıkacaklara not</b> Yedigöller gibi yüksek ve ormanlık bölgelerde akşam saatlerinde sıcaklık hızla düşüyor, yollarda buzlanma görülebiliyor ve birçok noktada telefon çekmiyor. Gezi öncesinde güzergâhı ve dönüş saatini bir yakınınızla paylaşmak, hava tahminine bakmak işe yarar. Hafta sonu için tahmin: <a href=\"/haberler/hafta-sonu-hava-durumu-28-29-kasim.html\">Hafta sonu hava durumu</a>.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Kaybolan çocuklar bulundu mu?</b> Evet. Bakan Göktaş, 10 çocuğa ve 3 görevliye ulaşıldığını, hepsinin sağlık durumunun iyi olduğunu açıkladı.</p>",
+   "<p><b>Çocuklar nereden geziye gitmişti?</b> Kocaeli Aile ve Sosyal Hizmetler İl Müdürlüğüne bağlı bir çocuk evleri sitesinden, Bolu'daki Yedigöller ve Gölcük Tabiat Parkı'na günübirlik geziye gitmişlerdi.</p>",
+   "<p><b>Araç nerede bulundu?</b> Bakan Göktaş'ın açıklamasına göre araç Yığılca'da bataklık bir alana saplanmıştı.</p>",
+   "<p><b>Olayda yaralanan var mı?</b> Resmî açıklamalarda can kaybı ya da yaralanma bildirilmedi; çocuklar sağlık kontrolünden geçirilecek.</p>"
+  ],
+  "one_cikan": true
+ },
+ {
+  "slug": "konaklama-vergisi-2027-yuzde-1",
+  "baslik": "Konaklama vergisi 2027: Yüzde 1 oranı bir yıl daha uzatıldı",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.51",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "konaklama-vergisi-2027-yuzde-1-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Sabah ışığında küçük bir Ege otelinin ahşap resepsiyon tezgâhı: tezgâhta pirinç oda anahtarı ve katlanmış bir fatura, arkada lacivert koltuk ve sarı abajur",
+  "aciklama": "Konaklama vergisindeki yüzde 1'lik indirimli oran, 28 Kasım'da yayımlanan Cumhurbaşkanı Kararı'yla 31 Aralık 2027'ye kadar uzatıldı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Konaklama vergisi 2027 sonuna kadar yüzde 1 olarak uygulanacak. 12059 sayılı Cumhurbaşkanı Kararı 28 Kasım'da Resmî Gazete'de yayımlandı, 1 Ocak'ta başlıyor.",
+  "kaynak": "28 Kasım 2026 tarihli ve 33444 sayılı Resmî Gazete, 12059 sayılı Cumhurbaşkanı Kararı (Alomaliye mevzuat metni üzerinden); 11263 sayılı Cumhurbaşkanı Kararı (1 Mayıs 2026, 33240 sayılı Resmî Gazete); CNBC-e (28 Kasım 2026); KPMG Vergi bülteni; Milliyet",
+  "kaynaklar": [
+   {
+    "ad": "Alomaliye: 12059 sayılı Cumhurbaşkanı Kararı metni",
+    "url": "https://www.alomaliye.com/2026/11/28/gider-vergileri-kanunu-madde-34-5-kapsaminda-vergi-orani-degisikligi/"
+   },
+   {
+    "ad": "CNBC-e: Konaklama vergisinde yüzde 1'lik uygulama 2027 sonuna kadar uzatıldı",
+    "url": "https://www.cnbce.com/gayrimenkul/resmi-gazetede-yayimlandi-konaklama-vergisinde-yuzde-1lik-uygulama-2027-sonuna-kadar-uzatildi-h42822"
+   },
+   {
+    "ad": "KPMG Vergi: 11263 sayılı Cumhurbaşkanı Kararı",
+    "url": "https://kpmgvergi.com/yayinlar/mali-bultenler/vergi/konaklama-vergisi-orani-11263-sayili-cumhurbaskani-karari-ile-yeniden-belirlendi/4483"
+   },
+   {
+    "ad": "Milliyet: Vergi indirimi geldi, tatil ucuzlar mı?",
+    "url": "https://www.milliyet.com.tr/ekonomi/vergi-indirimi-geldi-tatil-ucuzlar-mi-7580829"
+   }
+  ],
+  "govde": [
+   "<p>Otel, motel, pansiyon ve tatil köylerinde geceleme bedeli üzerinden alınan <b>konaklama vergisi</b>, <b>2027 yılının sonuna kadar yüzde 1</b> olarak uygulanmaya devam edecek. Cumhurbaşkanı Recep Tayyip Erdoğan'ın imzasını taşıyan <b>12059 sayılı Cumhurbaşkanı Kararı</b>, bugün (28 Kasım 2026) <b>33444 sayılı Resmî Gazete</b>'de yayımlandı. Karar, indirimli oranın bitiş tarihini <b>31 Aralık 2026</b>'dan <b>31 Aralık 2027</b>'ye taşıyor ve <b>1 Ocak 2027</b>'de yürürlüğe giriyor. Böylece yeni yılda tatil ya da iş için otelde kalanların faturasında konaklama vergisi kalemi, bu yıl mayıstan bu yana olduğu gibi yüzde 1'lik oranla yer alacak.</p>",
+   "<div class=\"hb-rakam\"><div><b>%1</b><span>2027 boyunca geçerli oran</span></div><div><b>%2</b><span>Mayıs 2026 öncesi oran</span></div><div><b>31 Aralık 2027</b><span>indirimin yeni bitiş tarihi</span></div><div><b>12059</b><span>Cumhurbaşkanı Kararı sayısı</span></div></div>",
+   "<h2>Resmî Gazete'deki karar neyi değiştirdi?</h2>",
+   "<p>Karar kısa ve tek bir değişiklik içeriyor. 6802 sayılı Gider Vergileri Kanunu'nun 34'üncü maddesinin beşinci fıkrasındaki konaklama vergisi oranı, 30 Nisan 2026 tarihli ve <b>11263 sayılı Cumhurbaşkanı Kararı</b> ile geçici olarak yüzde 1'e indirilmişti. O karar 1 Mayıs 2026'da Resmî Gazete'de yayımlanmış ve indirimli oranın 31 Aralık 2026'ya kadar uygulanacağını öngörmüştü. Yeni karar, eski kararın ekindeki bu tarihi bir yıl ileri alıyor. Kararın yürütülmesinden Hazine ve Maliye Bakanı sorumlu.</p>",
+   "<p>Uzatma yapılmasaydı indirimli oranın süresi bu yılın son günü dolacaktı. Yeni kararla birlikte konaklama tesisleri ve misafirler için 2027'de oran değişmeyecek.</p>",
+   "<h2>Konaklama vergisi nedir, kimden alınır?</h2>",
+   "<p>Konaklama vergisi; otel, motel, tatil köyü, pansiyon, apart otel, misafirhane, kamping ile dağ ve yayla evleri gibi tesislerde verilen geceleme hizmetinden alınıyor. Konaklamayla birlikte tesiste sunulan diğer hizmetler de verginin kapsamına giriyor. Vergi <b>KDV hariç</b> konaklama bedeli üzerinden hesaplanıyor. Vergiyi beyan edip ödemekle tesis işletmesi yükümlü olsa da tutar faturada ayrı satır olarak gösteriliyor ve fiilen misafirin ödediği bedele ekleniyor.</p>",
+   "<p>Vergi 2023'ten itibaren yüzde 2 oranıyla uygulanıyordu. Mayıs 2026'daki karar bu oranı yarıya indirmişti; bugünkü karar ise indirimin 2027'yi de kapsamasını sağladı.</p>",
+   "<h2>Bir gecelik konaklamada ne kadar fark ediyor?</h2>",
+   "<p>Hesap basit: KDV hariç konaklama bedelinin yüzde 1'i vergi olarak ekleniyor. Örneğin KDV hariç gecelik ücreti <b>4.000 TL</b> olan bir odada konaklama vergisi yüzde 2'lik oranda 80 TL tutarken yüzde 1'lik oranda <b>40 TL</b> oluyor. Üç gecelik bir tatilde fark 120 TL'ye çıkıyor. Bu tutar oda fiyatının küçük bir bölümü; dolayısıyla indirimin otel fiyatlarına ne ölçüde yansıyacağı, tesislerin genel fiyat politikasına bağlı.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Faturanızı kontrol edin</b> Konaklama vergisi faturada KDV'den ayrı bir kalem olarak yer alıyor. 1 Ocak 2027'den sonraki geceler için de bu kalemin yüzde 1 oranıyla hesaplanmış olması gerekiyor.</p></div>",
+   "<h2>Turizm sektörü ne istiyor?</h2>",
+   "<p>Mayıs ayındaki indirimin ardından otelciler kararı maliyet yükünü hafiflettiği gerekçesiyle olumlu karşılamış, bazı sektör temsilcileri ise bölgeye, sezona ve tesis türüne göre farklılaşan oranlar ya da tesis sınıfına göre sabit tutarlı bir vergi modeli önermişti. Bugünkü karar oranı aynı seviyede tutmakla yetiniyor; vergi sisteminde yapısal bir değişiklik içermiyor.</p>",
+   "<p>2027'de uzun hafta sonu ya da bayram tatili planlayanlar, resmî tatil takvimine <a href=\"/haberler/2027-resmi-tatiller.html\">2027 resmî tatiller</a> haberimizden bakabilir.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Konaklama vergisi 2027'de kaç oldu?</b> 1 Ocak-31 Aralık 2027 arasında yüzde 1 olarak uygulanacak.</p>",
+   "<p><b>Karar ne zaman yürürlüğe giriyor?</b> 28 Kasım 2026'da yayımlanan karar 1 Ocak 2027'de yürürlüğe giriyor. 2026'nın kalan günlerinde de oran zaten yüzde 1.</p>",
+   "<p><b>Vergi neyin üzerinden hesaplanıyor?</b> KDV hariç konaklama bedeli ve konaklamayla birlikte verilen diğer hizmetler üzerinden.</p>",
+   "<p><b>Vergiyi kim ödüyor?</b> Beyan ve ödeme yükümlüsü tesis işletmesi; tutar faturada ayrıca gösterilip misafirin ödediği bedele ekleniyor.</p>"
+  ],
+  "son_dakika": true
+ },
+ {
+  "slug": "akaryakit-otv-zammi-1-aralik-2026",
+  "baslik": "Akaryakıt ÖTV zammı 1 Aralık 2026: Benzinde 3,47, motorinde 3 TL artış",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.50",
+  "kategori": "Ekonomi",
+  "gorsel": "akaryakit-otv-zammi-1-aralik-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Sabah saatlerinde sakin bir akaryakıt istasyonu: ön planda pompadaki tabanca, ıslak asfaltta yansıyan ışık, arka planda bulanık bir otomobil",
+  "aciklama": "Benzin ve motorinde ÖTV 1 Aralık'ta artıyor; motorinde son basamak 1 Ocak 2027'de.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "1 Aralık'ta benzinin litre ÖTV'si 11,36 TL'den 14,8277 TL'ye, motorinin 9 TL'den 12 TL'ye çıkıyor. KDV ile pompaya etkisi benzinde 4,16, motorinde 3,60 TL.",
+  "kaynak": "11822 sayılı Cumhurbaşkanı Kararı, Resmî Gazete 1 Ekim 2026, sayı 33387 (karar metni: AB Global ve Vergi Günlüğü yayınları); 11606 sayılı Cumhurbaşkanı Kararı, Resmî Gazete 13 Ağustos 2026 (Yeni Şafak, Enerji Günlüğü); Haberler.com (24 Kasım 2026); Kamuajans (26 Kasım 2026); BirGün (27 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "11822 sayılı Cumhurbaşkanı Kararı metni (AB Global)",
+    "url": "https://abglobal.tr/bazi-mallara-uygulanan-ozel-tuketim-vergisi-tutarlarinin-yeniden-belirlenmesi-hakkinda-karar-karar-sayisi-11822"
+   },
+   {
+    "ad": "Vergi Günlüğü: Benzinde ÖTV kademeli olarak artırıldı",
+    "url": "https://vergigunlugu.com/vergi-gunlugu/benzinde-otv-kademeli-olarak-artirildi/"
+   },
+   {
+    "ad": "Yeni Şafak: Motorinde ÖTV ağustos sonuna kadar sıfırlandı",
+    "url": "https://www.yenisafak.com/ekonomi/motorinde-otv-agustos-sonuna-kadar-sifirlandi-4847643"
+   },
+   {
+    "ad": "Enerji Günlüğü: Motorinde ÖTV kademeleri",
+    "url": "https://www.enerjigunlugu.net/motorine-otv-muafiyeti-eylulde-sona-eriyor-69368h.htm"
+   },
+   {
+    "ad": "Haberler.com: 1 Aralık'ta benzin ve motorine ÖTV zammı",
+    "url": "https://www.haberler.com/haber/akaryakita-zam-ne-zaman-gelecek-1-aralikta-benzin-20459148-haberi/"
+   },
+   {
+    "ad": "Kamuajans: Motorine 4,32 TL indirim",
+    "url": "https://www.kamuajans.com/ekonomi/motorine-432-tl-indirim-geldi-benzine-de-indirim-bekleniyor-612626"
+   },
+   {
+    "ad": "BirGün: 27 Kasım 2026 akaryakıt fiyatları",
+    "url": "https://www.birgun.net/haber/27-kasim-2026-benzin-motorin-lpg-fiyatlari-indirim-veya-zam-var-mi-guncel-akaryakit-fiyatlari-748749"
+   }
+  ],
+  "govde": [
+   "<p>Benzin ve motorinde litre başına alınan özel tüketim vergisi (ÖTV), Cumhurbaşkanı kararlarıyla önceden belirlenen takvime göre <b>1 Aralık 2026 Salı</b> günü yeniden artıyor. 95 oktan kurşunsuz benzinin ÖTV'si <b>11,36 TL'den 14,8277 TL'ye</b>, motorinin ÖTV'si ise <b>9 TL'den 12 TL'ye</b> çıkacak. Artış, yüzde 20 KDV ile birlikte hesaplandığında benzinin litre fiyatına yaklaşık <b>4,16 TL</b>, motorinin litre fiyatına yaklaşık <b>3,60 TL</b> ek yük getiriyor. Motorinde bir basamak daha var: 1 Ocak 2027'de vergi son kez yükselecek.</p>",
+   "<div class=\"hb-rakam\"><div><b>14,8277 TL</b><span>1 Aralık'tan itibaren 95 oktan benzinin litre ÖTV'si</span></div><div><b>12 TL</b><span>Aralık ayında motorinin litre ÖTV'si</span></div><div><b>13,9006 TL</b><span>1 Ocak 2027'den itibaren motorinin litre ÖTV'si</span></div><div><b>%20</b><span>ÖTV'nin üzerine eklenen KDV</span></div></div>",
+   "<h2>Benzinde ÖTV neden ve ne kadar artıyor?</h2>",
+   "<p>Benzindeki artış, 1 Ekim 2026 tarihli ve 33387 sayılı Resmî Gazete'de yayımlanan <b>11822 sayılı Cumhurbaşkanı Kararı</b>na dayanıyor. Karar, 4760 sayılı Özel Tüketim Vergisi Kanunu'nun 12. maddesine göre alındı ve benzindeki litre başına ÖTV'yi üç basamakta yükseltti. Kararın yayımından önce 95 oktan benzinde litre ÖTV'si 4,4378 TL idi. Takvim şöyle:</p>",
+   "<ul><li><b>1-31 Ekim 2026:</b> 95 oktan 7,90 TL, 98 oktan 8,90 TL</li><li><b>1-30 Kasım 2026:</b> 95 oktan 11,36 TL, 98 oktan 12,36 TL</li><li><b>1 Aralık 2026 ve sonrası:</b> 95 oktan 14,8277 TL, 98 oktan 15,5437 TL</li></ul>",
+   "<p>Kararda 1 Aralık'tan sonrası için benzinde yeni bir basamak yer almıyor. 98 oktan benzinde aralık artışı litre başına 3,1837 TL; KDV ile pompaya etkisi yaklaşık 3,82 TL.</p>",
+   "<h2>Motorinde ÖTV takvimi nasıl işliyor?</h2>",
+   "<p>Motorindeki kademeli artış ise 13 Ağustos 2026'da Resmî Gazete'de yayımlanan <b>11606 sayılı Cumhurbaşkanı Kararı</b>yla başladı. Bu kararla motorinin ÖTV'si 13-31 Ağustos arasında sıfırlandı, ardından her ay 3 TL artırılması öngörüldü: eylülde 3 TL, ekimde 6 TL, kasımda 9 TL. Aralıkta vergi <b>12 TL</b> olacak; <b>1 Ocak 2027</b>'den itibaren ise <b>13,9006 TL</b>'ye çıkarak kademeli dönem sona erecek. Ocak basamağı, KDV ile birlikte motorinin litre fiyatına yaklaşık 2,28 TL daha ekleyecek.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Pompa fiyatı yalnızca vergiye bağlı değil</b> ÖTV artışı pompa fiyatının tek belirleyicisi değil. Uluslararası ürün fiyatları ve dolar kuru da fiyatı her gün etkiliyor. 1 Aralık'ta aynı anda bir indirim ya da zam gelirse istasyondaki değişim yukarıdaki tutarlardan farklı olabilir. Fiyatlar ayrıca il, ilçe ve dağıtım şirketine göre değişiyor.</p></div>",
+   "<h2>Son günlerde akaryakıt fiyatları nasıl değişti?</h2>",
+   "<p>Kasımın son haftasında motorinde arka arkaya iki indirim pompaya yansıdı. 20 Kasım'daki indirimin ardından 26 Kasım'da motorinin litre fiyatı yaklaşık 4,3 TL daha düştü. Sektör kaynaklarına dayanan haberlere göre indirimler, uluslararası piyasadaki ürün fiyatlarının gerilemesinden kaynaklandı. Bu düşüşlerin bir bölümü, 1 Aralık'taki vergi artışıyla geri alınmış olacak.</p>",
+   "<h2>Sürücüler ve işletmeler için ne anlama geliyor?</h2>",
+   "<p>Vergi artışı yasal olarak 1 Aralık'ta başladığı için, aracına yakıt alacak olanlar için 30 Kasım Pazartesi akşamına kadar geçerli olan fiyatlar ile 1 Aralık sabahından itibaren uygulanacak fiyatlar arasında fark oluşacak. Motorin kullanan ticari araç sahipleri ve nakliyeciler için ocak ayındaki son basamak da maliyet hesabında dikkate alınması gereken bir tarih. Bu haber bilgilendirme amaçlıdır; harcama ve yatırım kararları için kendi durumunuzu değerlendirmeniz gerekir.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Akaryakıt ÖTV zammı ne zaman geliyor?</b> Benzinde ve motorinde yeni ÖTV tutarları 1 Aralık 2026 Salı günü başlıyor. Motorinde son artış 1 Ocak 2027'de.</p>",
+   "<p><b>Benzine kaç TL zam gelecek?</b> 95 oktan benzinde ÖTV litre başına 3,4677 TL artıyor; KDV ile pompaya etkisi yaklaşık 4,16 TL. Gerçek pompa fiyatı aynı gün başka bir fiyat değişikliği olursa farklı olabilir.</p>",
+   "<p><b>Motorine kaç TL zam gelecek?</b> Motorinde ÖTV 3 TL artıyor; KDV ile yaklaşık 3,60 TL. Ocakta ÖTV 1,9006 TL daha artacak, bu da KDV ile yaklaşık 2,28 TL ediyor.</p>",
+   "<p><b>Benzinde ocakta yeni bir artış var mı?</b> 11822 sayılı kararda benzin için 1 Aralık 2026'dan sonra yeni bir basamak bulunmuyor.</p>"
+  ],
+  "one_cikan": true
+ },
+ {
+  "slug": "elazig-sivrice-deprem-28-kasim-2026",
+  "baslik": "Elazığ deprem: Sivrice'de gece 3,0 ve 3,4 büyüklüğünde iki sarsıntı",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.49",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "elazig-sivrice-deprem-28-kasim-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Şafaktan önce mavi saatte Hazar Gölü, durgun su, uzakta alçak tepeler ve kıyı boyunca seyrek köy ışıkları",
+  "aciklama": "Elazığ'ın Sivrice ilçesinde 28 Kasım gecesi 3,0 ve 3,4 büyüklüğünde iki deprem kaydedildi; ilk bilgilerde hasar bildirimi yok.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "AFAD verilerine göre Elazığ Sivrice'de 28 Kasım gecesi 00.43'te 3,0, 03.30'da 3,4 büyüklüğünde iki deprem oldu. İlk bilgilerde hasar bildirilmedi.",
+  "kaynak": "AFAD Deprem Dairesi Başkanlığı verileri (Gazete Kocaeli Kent ve gzt.com aracılığıyla, 28 Kasım 2026); TGRT Haber (28 Kasım 2026); 2020 depremi için Milliyet'te yer alan Fırat Üniversitesi raporu ve NTV",
+  "kaynaklar": [
+   {
+    "ad": "Kocaeli Kent Gazetesi: Elazığ'da 3,4 büyüklüğünde deprem (AFAD verisi)",
+    "url": "https://kocaelikentgazetesi.com/elazigda-3-4-buyuklugunde-deprem-2/"
+   },
+   {
+    "ad": "GZT: Elazığ Sivrice'de deprem",
+    "url": "https://www.gzt.com/gundem/elazigda-deprem-mi-oldu-son-dakika-sivrice-az-once-deprem-mi-oldu-en-son-deprem-ne-zaman-saat-kacta-ve-nerede-oldu-4283785"
+   },
+   {
+    "ad": "TGRT Haber: Elazığ'da deprem oldu, AFAD'dan açıklama",
+    "url": "https://www.tgrthaber.com/gundem/elazigda-deprem-oldu-afaddan-aciklama-3373944"
+   },
+   {
+    "ad": "Milliyet: Elazığ depreminin raporu yayımlandı",
+    "url": "https://www.milliyet.com.tr/gundem/elazigda-41-kisinin-yasamini-yitirdigi-depreminin-raporu-yayimlandi-6273918"
+   }
+  ],
+  "govde": [
+   "<p>Elazığ'ın <b>Sivrice</b> ilçesinde 28 Kasım Cumartesi gecesi iki küçük deprem kaydedildi. Afet ve Acil Durum Yönetimi Başkanlığı (AFAD) verilerine göre ilk sarsıntı, ilk belirlemelere göre saat <b>00.43</b>'te <b>3,0</b> büyüklüğünde, ikincisi ise saat <b>03.30</b>'da <b>3,4</b> büyüklüğünde oldu. Her iki depremin derinliği yaklaşık 14 kilometre olarak ölçüldü. Yayımlanan ilk bilgilerde hasar ya da yaralanma bildirimi yer almıyor. Gecenin sessizliğinde şehir merkezinde de hissedilebilecek bu büyüklükteki sarsıntılar, 2020 depremini yaşamış Elazığlılar için her seferinde tedirginlik yaratıyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>3,0</b><span>00.43'teki deprem</span></div><div><b>3,4</b><span>03.30'daki deprem</span></div><div><b>~14 km</b><span>derinlik</span></div></div>",
+   "<h2>Depremler nerede ve kaç kilometre derinlikte oldu?</h2>",
+   "<ul><li><b>Birinci deprem:</b> Saat 00.43, büyüklük 3,0, derinlik yaklaşık 14,67 km, merkez üssü Sivrice.</li><li><b>İkinci deprem:</b> Saat 03.30, büyüklük 3,4 (ML), derinlik 14,4 km, merkez üssü Sivrice. AFAD kayıtlarında koordinatlar 38,48 kuzey, 39,29 doğu olarak yer alıyor.</li></ul>",
+   "<p>AFAD, otomatik olarak yayımlanan ilk verilerin sonradan güncellenebileceğini belirtiyor; büyüklük ve derinlik değerleri kesin analizle küçük farklılıklar gösterebilir.</p>",
+   "<h2>Sivrice neden sık sallanıyor?</h2>",
+   "<p>Sivrice ve Hazar Gölü çevresi, Doğu Anadolu Fay Zonu üzerinde yer alıyor ve bölgede küçük büyüklükte depremler sık görülüyor. Kentin hafızasında en derin iz <b>24 Ocak 2020</b>'deki depremden kaldı: Merkez üssü yine Sivrice olan <b>6,8</b> büyüklüğündeki depremde <b>41 kişi</b> hayatını kaybetti; bunların 37'si Elazığ'da, 4'ü Malatya'da yaşamını yitirdi. Fırat Üniversitesi araştırmacılarının hazırladığı rapora göre o depremde yaklaşık 15 bin bina ağır ya da orta hasar gördü.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Küçük depremler büyük depremin habercisi mi?</b> 3 büyüklüğündeki depremler bölgede olağan kabul ediliyor ve tek başına büyük bir depremin habercisi sayılmıyor. Deprem tahmini yapılamıyor; bu nedenle önerilen şey panik değil, hazırlık: evde sabitlenmemiş dolapları duvara sabitlemek, deprem çantasını hazır tutmak ve en yakın acil toplanma alanını öğrenmek. Toplanma alanınızı e-Devlet üzerinden AFAD'ın sorgulama hizmetiyle öğrenebilirsiniz.</p></div>",
+   "<h2>Depremi hissettiyseniz ne yapmalısınız?</h2>",
+   "<p>Bu büyüklükteki sarsıntılar genellikle hasara yol açmıyor. Yine de binanızda yeni bir çatlak, sıva dökülmesi ya da gaz kokusu fark ederseniz 112 Acil Çağrı Merkezi'ni arayabilirsiniz. Resmî bilgiler için AFAD'ın ve Elazığ Valiliği'nin açıklamalarını takip etmek, sosyal medyada dolaşan doğrulanmamış \"büyük deprem geliyor\" iddialarına itibar etmemek gerekiyor.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Elazığ'da bugün deprem mi oldu?</b> Evet. AFAD'a göre 28 Kasım gecesi Sivrice'de 00.43'te 3,0 ve 03.30'da 3,4 büyüklüğünde iki deprem oldu.</p>",
+   "<p><b>Hasar var mı?</b> Yayımlanan ilk bilgilerde hasar ya da yaralanma bildirimi yer almıyor.</p>",
+   "<p><b>Depremin derinliği ne kadar?</b> Her iki deprem de yaklaşık 14 kilometre derinlikte oldu.</p>"
+  ]
+ },
+ {
+  "slug": "boyabat-cevre-yolu-turkeli-sehir-gecisi",
+  "baslik": "Boyabat Çevre Yolu 28 Kasım'da açılıyor: Yol 20 dakikadan 5'e iniyor",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.48",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "boyabat-cevre-yolu-turkeli-sehir-gecisi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Sonbaharda yeşil tepeler arasında bir ilçenin çevresinden kıvrılarak geçen, yeni asfaltlanmış bölünmüş yol ve yol kenarında sarı bir trafik konisi",
+  "aciklama": "Sinop'ta Boyabat Çevre Yolu ve Türkeli Şehir Geçişi 28 Kasım'da açılıyor; Boyabat geçişi 20 dakikadan 5 dakikaya inecek.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Sinop'ta 8,7 km'lik Boyabat Çevre Yolu ve 2,1 km'lik Türkeli Şehir Geçişi 28 Kasım'da açılıyor. Bakanlığa göre yıllık tasarruf 434 milyon lira olacak.",
+  "kaynak": "Ulaştırma ve Altyapı Bakanı Abdulkadir Uraloğlu'nun 27 Kasım 2026 açıklaması (Anadolu Ajansı aracılığıyla Canlı Gaste; CNBC-e); AA 28 Kasım 2026 gündem özeti (Canlı Gaste); İçişleri Bakanlığı Kış Mevsimi Trafik Tedbirleri genelgesi (Başkent Gazete, 13 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Canlı Gaste (AA): Boyabat Çevre Yolu açılıyor",
+    "url": "https://www.canligaste.com/boyabat-cevre-yolu-aciliyor-20-dakikalik-yol-5-dakikaya-inecek/958340/"
+   },
+   {
+    "ad": "CNBC-e: Bakan Uraloğlu duyurdu, 20 dakikalık yol 5 dakikaya inecek",
+    "url": "https://www.cnbce.com/haberler/bakan-uraloglu-duyurdu-20-dakikalik-yol-5-dakikaya-inecek-h42768"
+   },
+   {
+    "ad": "Canlı Gaste (AA): Gündem özeti 28 Kasım 2026",
+    "url": "https://www.canligaste.com/gundem-ozeti-28-kasim-2026/958976/"
+   },
+   {
+    "ad": "Başkent Gazete: Kara yollarında kış mevsimi trafik tedbirleri",
+    "url": "https://www.baskentgazete.com.tr/kara-yollarinda-kis-mevsimine-iliskin-trafik-tedbirleri-belirlendi"
+   }
+  ],
+  "govde": [
+   "<p>Sinop'ta yapımı tamamlanan <b>Boyabat Çevre Yolu</b> ile <b>Türkeli Şehir Geçişi</b> bugün, <b>28 Kasım 2026 Cumartesi</b> günü düzenlenecek törenlerle trafiğe açılıyor. Ulaştırma ve Altyapı Bakanı Abdulkadir Uraloğlu'nun 27 Kasım'da yaptığı açıklamaya göre 8,7 kilometrelik çevre yolu, Boyabat'ta 20 dakika süren geçişi 5 dakikaya indirecek. Türkeli'deki 2,1 kilometrelik şehir geçişiyle de 10 dakikalık yol 1,5 dakikaya düşecek. Anadolu Ajansı'nın gün programına göre Uraloğlu saat 10.15'te Sinop Valiliği'ni ziyaret edecek, ardından 12.00 ve 15.00'te iki açılış törenine katılacak.</p>",
+   "<div class=\"hb-rakam\"><div><b>8,7 km</b><span>Boyabat Çevre Yolu</span></div><div><b>20 → 5 dk</b><span>Boyabat geçiş süresi</span></div><div><b>2,1 km</b><span>Türkeli Şehir Geçişi</span></div><div><b>434 milyon TL</b><span>yıllık tasarruf (Bakanlık hesabı)</span></div></div>",
+   "<h2>Boyabat Çevre Yolu neden önemli?</h2>",
+   "<p>Boyabat, Sinop'u Samsun, Kastamonu ve Çorum'a bağlayan güzergâhın üzerinde yer alıyor. Bugüne kadar bu yönler arasında giden şehirlerarası transit trafik, ilçe merkezinin içinden geçmek zorundaydı. Yeni çevre yolu bu trafiği şehir merkezinin dışına alacak; böylece hem yolcular zaman kazanacak hem de ilçe içindeki ağır taşıt yükü azalacak.</p>",
+   "<ul><li><b>Uzunluk:</b> 8,7 km, bölünmüş yol standardında, bitümlü sıcak karışım asfalt kaplama</li><li><b>Bağlantılar:</b> 4,2 km bağlantı kolu ve 2 adet farklı seviyeli kavşak</li><li><b>Süre:</b> 20 dakikadan 5 dakikaya</li><li><b>Tasarruf:</b> Yılda yaklaşık 381 milyon TL zaman, 53 milyon TL akaryakıt olmak üzere toplam 434 milyon TL</li><li><b>Emisyon:</b> Yıllık karbon salımında 2 bin 650 tonluk azalma</li></ul>",
+   "<blockquote class=\"hb-alinti\"><p>8,7 kilometrelik çevre yolumuzla yıllık 434 milyon lira tasarruf sağlayacağız.</p><cite>Abdulkadir Uraloğlu, Ulaştırma ve Altyapı Bakanı</cite></blockquote>",
+   "<h2>Türkeli Şehir Geçişi neyi değiştirecek?</h2>",
+   "<p>Türkeli, Kastamonu ile Sinop arasındaki sahil yolunun üzerinde bulunan bir ilçe. Özellikle yaz aylarında tatil trafiğiyle ilçe içinde uzun kuyruklar oluşuyordu. Yeni geçiş, gidiş ve geliş yönünde ikişer şeritten toplam <b>dört şeritli bölünmüş yol</b> olarak yapıldı. Bakanlığın verdiği bilgiye göre ilçeden geçiş süresi 10 dakikadan 1,5 dakikaya inecek.</p>",
+   "<p>Tasarruf ve emisyon rakamları Bakanlığın kendi hesaplamalarına dayanıyor. Projelerin toplam maliyetine ilişkin bir rakam açıklamada yer almadı.</p>",
+   "<h2>Sürücüler için ne değişecek?</h2>",
+   "<p>Samsun ya da Çorum yönünden gelip Sinop veya Kastamonu tarafına geçen sürücüler, yeni yol açıldıktan sonra Boyabat merkezine girmeden çevre yolunu kullanabilecek. Farklı seviyeli kavşaklar sayesinde ana yoldaki trafik ışıklı ya da hemzemin kavşaklarda beklemeden akacak. İlçe sakinleri açısından ise ağır taşıtların şehir içinden çekilmesi, hem gürültüyü hem de kaza riskini azaltacak. Türkeli'de de sahil yolunu kullanan yaz tatilcileri ve yük taşıyan araçlar ilçe içindeki dar geçişten kurtulacak.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Kışın Karadeniz yollarına çıkacaklar için</b> İçişleri Bakanlığının kış tedbirleri genelgesine göre şehirlerarası yolcu ve yük taşıyan ticari araçlarda kış lastiği zorunluluğu 15 Kasım'da başladı ve 15 Nisan'a kadar sürüyor. Valilikler bu süreyi il koşullarına göre bir ay öne alabiliyor ya da uzatabiliyor. Yoğun kar ve tipi olan günlerde tır ve çekicilerin yola çıkışı kısıtlanabiliyor.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Boyabat Çevre Yolu ne zaman açılıyor?</b> 28 Kasım 2026 Cumartesi günü Bakan Uraloğlu'nun katılacağı törenle açılması planlanıyor.</p>",
+   "<p><b>Çevre yolu ne kadar zaman kazandıracak?</b> Bakanlığa göre Boyabat geçişi 20 dakikadan 5 dakikaya inecek.</p>",
+   "<p><b>Türkeli Şehir Geçişi kaç kilometre?</b> 2,1 kilometre uzunluğunda, dört şeritli bölünmüş yol olarak yapıldı.</p>",
+   "<p><b>Yollar hangi illeri bağlıyor?</b> Boyabat Çevre Yolu Sinop-Samsun-Kastamonu-Çorum güzergâhında; Türkeli Şehir Geçişi ise Kastamonu-Sinop sahil yolunda.</p>"
+  ]
+ },
+ {
+  "slug": "elazig-yeni-valisi-mustafa-eldivan",
+  "baslik": "Elazığ'ın yeni valisi Mustafa Eldivan oldu: 41 ilde vali değişti",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.47",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "elazig-yeni-valisi-mustafa-eldivan-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Soğuk bir sonbahar sabahında doğuda bir şehirde taş cepheli bir kamu binası, geniş merdivenler, yapraksız ağaçlar ve birkaç pencereden sızan sarı ışık",
+  "aciklama": "25 Kasım'da yayımlanan valiler kararnamesiyle Bayburt Valisi Mustafa Eldivan Elazığ'a atandı; Numan Hatipoğlu merkeze alındı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "25 Kasım 2026 Resmî Gazete'deki kararla Bayburt Valisi Mustafa Eldivan Elazığ Valiliğine atandı. Numan Hatipoğlu ise İçişleri Bakanlığı merkezine alındı.",
+  "kaynak": "Resmî Gazete, 25 Kasım 2026, 2026/398 sayılı atama kararı (Memurlar.net ve Medya Ankara aracılığıyla); Mustafa Eldivan özgeçmişi (Özgün Kocaeli); İçişleri Bakanlığı kış tedbirleri genelgesi (Başkent Gazete, 13 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Memurlar.net: Valiler kararnamesi yayımlandı, 41 ilin valisi değişti",
+    "url": "https://www.memurlar.net/haber/1185138/valiler-kararnamesi-yayimlandi-41-ilin-valisi-degisti.html"
+   },
+   {
+    "ad": "Medya Ankara: Valiler kararnamesi Resmî Gazete'de",
+    "url": "https://medyaankara.com/valiler-kararnamesi-resmi-gazetede-yayimlandi-41-ilin-valisi-degisti"
+   },
+   {
+    "ad": "Özgün Kocaeli: Mustafa Eldivan kimdir?",
+    "url": "https://www.ozgunkocaeli.com.tr/mustafa-eldivan-kimdir"
+   },
+   {
+    "ad": "Başkent Gazete: Kara yollarında kış mevsimi trafik tedbirleri",
+    "url": "https://www.baskentgazete.com.tr/kara-yollarinda-kis-mevsimine-iliskin-trafik-tedbirleri-belirlendi"
+   }
+  ],
+  "govde": [
+   "<p>Elazığ'ın yeni valisi <b>Mustafa Eldivan</b> oldu. Cumhurbaşkanı Recep Tayyip Erdoğan'ın imzasıyla 24 Kasım'da kararlaştırılan ve <b>25 Kasım 2026</b> tarihli Resmî Gazete'de yayımlanan <b>2026/398 sayılı</b> atama kararıyla, Ağustos 2023'ten bu yana Bayburt Valisi olarak görev yapan Eldivan Elazığ'a atandı. Elazığ Valisi <b>Numan Hatipoğlu</b> ise merkeze alınan 14 validen biri olarak İçişleri Bakanlığı emrine verildi. Aynı kararnameyle toplam <b>41 ilin valisi</b> değişti. Karar üç gün önce yayımlandı; yeni valinin Elazığ'da göreve başlama tarihine ilişkin resmî bir duyuru bu haberin hazırlandığı saatte bulunmuyordu.</p>",
+   "<div class=\"hb-rakam\"><div><b>41</b><span>valisi değişen il</span></div><div><b>14</b><span>merkeze alınan vali</span></div><div><b>2026/398</b><span>atama kararının sayısı</span></div></div>",
+   "<h2>Mustafa Eldivan kimdir?</h2>",
+   "<p>Eldivan 1972'de Kayseri'de doğdu, ilk ve ortaöğrenimini Kayseri'nin İncesu ilçesinde tamamladı. Ankara Üniversitesi Siyasal Bilgiler Fakültesi Kamu Yönetimi Bölümü'nden 1995'te mezun oldu. 1999'da kaymakam adayı olarak göreve başlayan Eldivan; Giresun Yağlıdere, Erzincan Kemaliye, Malatya Doğanşehir, Nevşehir Hacıbektaş, Balıkesir Havran ve Nevşehir Avanos'ta kaymakamlık yaptı.</p>",
+   "<ul><li><b>2016:</b> İçişleri Bakanlığında daire başkanı</li><li><b>2017:</b> İstanbul Bağcılar Kaymakamı</li><li><b>2022:</b> Tekirdağ Çorlu Kaymakamı</li><li><b>Ağustos 2023:</b> Bayburt Valisi</li><li><b>Kasım 2026:</b> Elazığ Valisi</li></ul>",
+   "<p>Bayburt Valiliğine ise Mülkiye Başmüfettişi Yusuf Güni atandı. Elazığ, Fırat Üniversitesi ile birlikte on binlerce üniversite öğrencisine ev sahipliği yapıyor; kar tatili, yurtlar ve şehir içi ulaşımla ilgili il kararları öğrencileri de doğrudan ilgilendiriyor. Bu nedenle yeni valinin ilk açıklamaları ve kış dönemine ilişkin kararları öğrenciler tarafından da yakından izleniyor.</p>",
+   "<h2>Doğu ve Güneydoğu'da hangi illerin valisi değişti?</h2>",
+   "<p>Kararname bölgedeki birçok ili kapsıyor. Elazığ'ın komşusu Malatya'nın valisi de değişti; Bingöl, Tunceli ve Diyarbakır ise listede yer almıyor. Bölgedeki başlıca değişiklikler şöyle:</p>",
+   "<ul><li><b>Malatya:</b> Isparta Valisi Abdullah Erin (Malatya Valisi Seddar Yavuz Muğla'ya atandı)</li><li><b>Bayburt:</b> Mülkiye Başmüfettişi Yusuf Güni</li><li><b>Ağrı:</b> Kilis Valisi Ömer Kalaylı</li><li><b>Kars:</b> Tokat Valisi Abdullah Köklü</li><li><b>Iğdır:</b> İsmail Özkan</li><li><b>Muş:</b> Kastamonu Valisi Meftun Dallı</li><li><b>Bitlis:</b> Ahmet Dilsiz</li><li><b>Batman:</b> Edirne Valisi Yunus Sezer</li><li><b>Mardin:</b> İzmir Valisi Süleyman Elban</li><li><b>Şırnak:</b> Kırşehir Valisi Murat Sefa Demiryürek</li></ul>",
+   "<p>Kararnameyle dikkat çeken bir başka atama da Hatay'da yapıldı: Afet ve Acil Durum Yönetimi Başkanı Ali Hamza Pehlivan Hatay Valiliğine getirildi.</p>",
+   "<h2>Vali bir ilde neye karar verir?</h2>",
+   "<p>Vali, 5442 sayılı İl İdaresi Kanunu'na göre ilde devletin ve Cumhurbaşkanının temsilcisi; kamu kurumlarının il teşkilatları arasında koordinasyonu sağlıyor ve il güvenliğinden sorumlu. Öğrencilerin ve vatandaşların günlük hayatına doğrudan dokunan pek çok karar da valilikten çıkıyor: kar ya da afet nedeniyle okulların tatil edilmesi, il afet koordinasyonu ve il genelindeki kış tedbirleri bunların başında geliyor.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Kış tedbirlerinde valinin rolü</b> İçişleri Bakanlığının bu yılki kış tedbirleri genelgesine göre şehirlerarası ticari araçlarda kış lastiği zorunluluğu 15 Kasım-15 Nisan arasında uygulanıyor; valilikler bu süreyi il koşullarına göre bir ay öne çekebiliyor ya da uzatabiliyor.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Elazığ'ın yeni valisi kim?</b> Bayburt Valisi Mustafa Eldivan, 25 Kasım 2026 tarihli Resmî Gazete'de yayımlanan kararla Elazığ Valiliğine atandı.</p>",
+   "<p><b>Eski Elazığ Valisi Numan Hatipoğlu nereye atandı?</b> Hatipoğlu, merkeze alınan 14 vali arasında yer aldı ve İçişleri Bakanlığı emrine verildi.</p>",
+   "<p><b>Kaç ilin valisi değişti?</b> 2026/398 sayılı kararla 41 ilin valisi değişti.</p>"
+  ]
+ },
+ {
+  "slug": "turk-kizilay-kanunu-resmi-gazete",
+  "baslik": "Türk Kızılay Kanunu Resmî Gazete'de: Amblem koruması ve yeni yetkiler",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.46",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "turk-kizilay-kanunu-resmi-gazete-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Bir insani yardım deposunda paletler üzerinde düzenli dizilmiş karton koliler, katlanmış battaniyeler ve çadırlar; arkada sırtı dönük, lacivert yelekli bir gönüllü koli taşıyor",
+  "aciklama": "Kızılay'ın statüsünü, amblem korumasını ve afetlerdeki yetkilerini düzenleyen 7598 sayılı Türk Kızılay Kanunu 28 Kasım'da Resmî Gazete'de yayımlandı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Türk Kızılay Kanunu 7598 sayıyla 28 Kasım'da Resmî Gazete'de yayımlandı. Kızılay adı ve amblemi koruma altına alındı, afetlerde ihale istisnası getirildi.",
+  "kaynak": "28 Kasım 2026 tarihli Resmî Gazete, 7598 sayılı Türk Kızılay Kanunu (Bloomberg HT ve haberler.com Resmî Gazete içerik listeleri); DHA (19 Kasım 2026, iki haber); Memurlar.net / DHA (18 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Memurlar.net: Türk Kızılay Kanunu yasalaştı",
+    "url": "https://www.memurlar.net/haber/1184547/turk-kizilay-kanunu-yasalasti.html"
+   },
+   {
+    "ad": "DHA: Türk Kızılay Kanunu TBMM Genel Kurulunda kabul edildi",
+    "url": "https://www.dha.com.tr/gundem/turk-kizilay-kanunu-tbmm-genel-kurulunda-kabul-edildi-2984656"
+   },
+   {
+    "ad": "DHA: Türk Kızılay Kanunu kabul edildi (Kızılay açıklaması)",
+    "url": "https://www.dha.com.tr/gundem/turk-kizilay-kanunu-tbmm-genel-kurulunda-kabul-edildi-2984664"
+   },
+   {
+    "ad": "Bloomberg HT: Resmi Gazete'de bugün (28.11.2026)",
+    "url": "https://www.bloomberght.com/resmi-gazete-de-bugun-28112026-3795990"
+   }
+  ],
+  "govde": [
+   "<p>TBMM Genel Kurulu'nda 18 Kasım'da kabul edilen <b>Türk Kızılay Kanunu</b>, <b>7598 sayıyla</b> bugün (28 Kasım 2026) Resmî Gazete'nin yasama bölümünde yayımlandı. 1868'den bu yana faaliyet gösteren Kızılay'ın, Cenevre Sözleşmeleri kapsamındaki <b>ulusal dernek</b> statüsü ile görev ve yetkileri ilk kez ayrı bir kanunla düzenlendi. Kanun; Kızılay adının, bayrağının ve ambleminin izinsiz kullanılmasını yasaklıyor, afet ve acil durumlarda bazı alımlara <b>Kamu İhale Kanunu istisnası</b> getiriyor, kamu kurumlarıyla veri paylaşımı ve kan hizmetlerinin ödeme düzeni için yeni kurallar koyuyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>7598</b><span>kanun numarası</span></div><div><b>1868</b><span>Kızılay'ın kuruluş yılı</span></div><div><b>3 milyon</b><span>yıllık yaklaşık kan bağışı (ünite)</span></div><div><b>5 yıl</b><span>gümrük muafiyetli cihazlarda devir yasağı</span></div></div>",
+   "<h2>Kanun Kızılay'a hangi statüyü veriyor?</h2>",
+   "<p>Kanuna göre Türk Kızılay, Uluslararası Kızılhaç ve Kızılay Hareketi'nin temel ilkeleri doğrultusunda yurt içinde ve yurt dışında hiçbir ayrım gözetmeden çalışan uluslararası bir insani yardım kuruluşu. Cenevre Sözleşmeleri'ndeki ulusal dernek görevini de Kızılay üstleniyor. Uluslararası anlaşmalardan doğan bu münhasır hak ve görevleri taşımak üzere başka bir tüzel kişilik kurulamayacak. Kızılay; Türkiye Kızılay Derneği, Türkiye Kızılay Cemiyeti, Kızılay Derneği, Kızılay Cemiyeti ve Kızılay adlarını da kullanabilecek.</p>",
+   "<h2>Kızılay adı ve amblemi kimler kullanabilecek?</h2>",
+   "<p>Kızılay'ın adı, bayrağı ve amblemi, tarafsızlık ve koruma işareti olarak koruma altına alındı. Kızılay'ın kurduğu kuruluşlar dışında hiç kimse bu işaretleri izinsiz kullanamayacak. Düzenleme, özellikle savaş ve kriz bölgelerinde insani yardım işaretinin güvenilirliğini korumayı amaçlıyor.</p>",
+   "<h2>Afet ve acil durumlarda neler değişiyor?</h2>",
+   "<ul><li><b>İhale istisnası:</b> Afet ve acil durumlarda ilk yardım ürünleri, afet lojistiği ve geçici barınma ürünlerine ilişkin bazı stratejik alımlar Kamu İhale Kanunu'na tabi olmadan, doğrudan Kızılay'dan ya da sermayesinin yarısından fazlasına sahip olduğu şirketlerden yapılabilecek. Bu alımlarda saydamlık, rekabet ve eşit muamele ilkelerine uyulacak.</li><li><b>Afetzede merkezleri:</b> Kızılay, kamu kurumlarıyla koordinasyon içinde afet ve insani kriz mağdurlarının barındığı merkezlere girip gözlem ve raporlama yapabilecek.</li><li><b>Uluslararası yardım:</b> Uluslararası Kızılhaç ve Kızılay Dernekleri Federasyonu, Uluslararası Kızılhaç Komitesi ve yabancı ulusal derneklerin Türkiye'ye gönderdiği ayni ve nakdi yardımları kabul edip kullanmaya yalnızca Kızılay yetkili olacak.</li><li><b>Personele tazminat:</b> Acil durum, afet, savaş ve çatışma bölgelerinde fiilen görev yapan Kızılay personeli, nakdi tazminat mevzuatı kapsamında toptan tazminat hakkından yararlanacak.</li></ul>",
+   "<h2>Kişisel veriler ve sosyal yardım bilgileri paylaşılacak mı?</h2>",
+   "<p>Kızılay, kamu kurumlarının elindeki kişisel verilere Kişisel Verilerin Korunması Kanunu'na göre yapılacak protokollerle erişebilecek; erişim görevle sınırlı tutulacak ve yalnızca yetkili personel tarafından yapılabilecek. Mükerrer yardımı önlemek için Aile ve Sosyal Hizmetler Bakanlığı'ndaki sosyal yardım verileri de protokolle Kızılay'la paylaşılabilecek. Kızılay il merkez ve ilçe şube başkanları, Sosyal Yardımlaşma ve Dayanışma Vakıflarının mütevelli heyetlerine üye olacak.</p>",
+   "<h2>Kan hizmetleri ve muafiyetler nasıl düzenlendi?</h2>",
+   "<p>Kızılay yılda yaklaşık 3 milyon ünite kan topluyor. Kanunla kamu sağlık hizmet sunucularına ve kamu üniversite hastanelerine verilen kan bileşenlerinin bedeli, teslimden sonra sözleşmedeki ödeme gününde SGK tarafından doğrudan Kızılay'a aktarılacak; SGK bu tutarı ilgili hastanenin alacağından mahsup edecek. Kızılay'ın amaçları için ithal ettiği bilimsel ve tıbbi cihazlar, teşhis ve tedavi cihazları, kan gruplama testleri ve bazı kalite kontrol malzemeleri gümrük vergisinden muaf olacak. Bu ürünler serbest dolaşıma girdikten sonra <b>5 yıl</b> boyunca gümrük idaresinin izni olmadan satılamayacak, kiralanamayacak ya da devredilemeyecek. Kızılay ayrıca cezaevi yapı harcından muaf tutuldu.</p>",
+   "<blockquote class=\"hb-alinti\"><p>Kızılay'ın gücü milletimizin gücüdür.</p><cite>Türk Kızılay Genel Başkanı Prof. Dr. Fatma Meriç Yılmaz</cite></blockquote>",
+   "<div class=\"kutu-bilgi\"><p><b>Sırada tüzük var</b> Kızılay'ın ilkeleri, teşkilat yapısı, üyelik şartları, organlarının görevleri ve bütçe usulleri Cumhurbaşkanınca onaylanacak bir tüzükle belirlenecek. Kanunda hüküm bulunmayan konularda Türk Medeni Kanunu ve Dernekler Kanunu uygulanacak.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Türk Kızılay Kanunu ne zaman yayımlandı?</b> 28 Kasım 2026 tarihli Resmî Gazete'de, 7598 sayıyla yayımlandı. Meclis'te 18 Kasım'da kabul edilmişti.</p>",
+   "<p><b>Kızılay ambleminin izinsiz kullanımı yasak mı?</b> Evet. Kızılay ve kurduğu kuruluşlar dışında ad, bayrak ve amblem izinsiz kullanılamaz.</p>",
+   "<p><b>Kızılay ihale yapmadan alım yapabilir mi?</b> Kanun, afet ve acil durumlarda bazı stratejik ürünlerin Kızılay'dan ya da çoğunluk hissesine sahip olduğu şirketlerden ihalesiz alınabilmesine imkân veriyor.</p>"
+  ]
+ },
+ {
+  "slug": "karadag-vize-muafiyeti-askiya-alindi",
+  "baslik": "Karadağ vize muafiyeti askıya alındı: Türkiye kararı Resmî Gazete'de",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.45",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "karadag-vize-muafiyeti-askiya-alindi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Sabah ışığında bir havalimanı dış hatlar salonu: tezgâhta kapalı bordo pasaport ve ters çevrilmiş biniş kartı, arkada sırtı dönük bir yolcu valizini çekiyor",
+  "aciklama": "Türkiye, Karadağ'ın Türk vatandaşlarına vize uygulamaya başlamasının ardından bordo pasaportlu Karadağ vatandaşlarına vize muafiyetini askıya aldı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Türkiye, Karadağ'ın umuma mahsus pasaport sahiplerine vize muafiyetini askıya aldı. 12026 sayılı karar 27 Kasım'da Resmî Gazete'de yayımlandı.",
+  "kaynak": "27 Kasım 2026 tarihli ve 33443 sayılı Resmî Gazete, 12026 sayılı Cumhurbaşkanı Kararı (Genç Gazete ve CNBC-e üzerinden); CNBC-e (27 Kasım 2026); BirGün (27 Kasım 2026); Milli Gazete; Euronews Türkçe (26 Eylül 2026); NTV (28 Temmuz 2026)",
+  "kaynaklar": [
+   {
+    "ad": "CNBC-e: Türkiye ile Karadağ arasındaki vize muafiyeti anlaşması askıya alındı",
+    "url": "https://www.cnbce.com/haberler/resmi-gazetede-duyuruldu-turkiye-ile-karadag-arasindaki-vize-muafiyeti-anlasmasi-askiya-alindi-h42735"
+   },
+   {
+    "ad": "BirGün: Karar Resmi Gazete'de",
+    "url": "https://www.birgun.net/haber/karar-resmi-gazete-de-turkiye-ile-karadag-arasindaki-vize-muafiyeti-anlasmasi-askiya-alindi-748715"
+   },
+   {
+    "ad": "Milli Gazete: 12026 sayılı karar nedir?",
+    "url": "https://www.milligazete.com.tr/karadag-vize-istiyor-mu-turk-vatandaslarina-vize-var-mi-yesil-pasaport-gecerli-mi-12026-sayili-karar-nedir"
+   },
+   {
+    "ad": "Euronews Türkçe: Karadağ, Türk vatandaşlarına 1 Kasım'dan itibaren vize uygulayacak",
+    "url": "https://tr.euronews.com/2026/09/26/karadag-ab-uyelik-sureci-kapsaminda-turk-vatandaslarina-1-kasimdan-itibaren-vize-uygulayac"
+   },
+   {
+    "ad": "NTV: Karadağ Türk vatandaşlarına 1 Kasım'dan itibaren vize uygulayacak",
+    "url": "https://www.ntv.com.tr/dunya/karadag-turk-vatandaslarina-1-kasimdan-itibaren-vize-uygulayacak-1734840"
+   }
+  ],
+  "govde": [
+   "<p>Türkiye, Karadağ vatandaşlarından <b>umuma mahsus (bordo) pasaport</b> taşıyanlara uyguladığı vize muafiyetini askıya aldı. Cumhurbaşkanı Recep Tayyip Erdoğan'ın imzasıyla çıkan <b>26 Kasım 2026 tarihli ve 12026 sayılı Cumhurbaşkanı Kararı</b>, <b>27 Kasım 2026</b> tarihli ve <b>33443 sayılı Resmî Gazete</b>'de yayımlandı. Karar, iki ülke arasında 2008'de imzalanan vize muafiyeti anlaşmasını tamamen sona erdirmiyor; anlaşmanın bordo pasaportlu Karadağ vatandaşlarına uygulanmasını durduruyor. Adım, Karadağ'ın 1 Kasım 2026'dan itibaren bordo pasaportlu Türk vatandaşlarına vize uygulamaya başlamasının ardından geldi.</p>",
+   "<div class=\"hb-rakam\"><div><b>12026</b><span>Cumhurbaşkanı Kararı sayısı</span></div><div><b>27 Kasım</b><span>Resmî Gazete'de yayım</span></div><div><b>18 Ocak 2008</b><span>vize muafiyeti anlaşmasının imza tarihi</span></div><div><b>1 Kasım 2026</b><span>Karadağ'ın Türklere vize başlangıcı</span></div></div>",
+   "<h2>Resmî Gazete'deki karar ne diyor?</h2>",
+   "<p>Karar, 9 numaralı Cumhurbaşkanlığı Kararnamesi'nin 3'üncü maddesine dayanılarak alındı. Askıya alınan metin, Türkiye ile Karadağ arasında <b>18 Ocak 2008</b>'de imzalanan ve Bakanlar Kurulu'nca <b>3 Mart 2008</b>'de onaylanan karşılıklı vize muafiyeti anlaşması. Karara göre anlaşmanın, Karadağ'ın umuma mahsus pasaport hamili vatandaşlarına uygulanması durduruldu. Kararda gerekçeye ya da muafiyetin yeniden başlayacağı bir tarihe yer verilmedi.</p>",
+   "<h2>Karadağ Türk vatandaşlarına neden vize uyguluyor?</h2>",
+   "<p>Karadağ hükümeti, vize politikasını Avrupa Birliği'nin vize politikasıyla tam uyumlu hâle getirme kararını 23 Temmuz 2026'da aldı; Karadağ Dışişleri Bakanlığı da düzenlemeyi 27 Temmuz'da duyurdu. Bu adım, ülkenin AB üyelik müzakerelerinde 24. faslın kapatılması için gereken son ölçütlerden biri olarak gösteriliyor. Aynı kararla <b>Türkiye, Çin, Rusya, Suudi Arabistan ve Belarus</b> vatandaşlarına da 1 Kasım 2026'dan itibaren vize şartı getirildi. Bordo pasaportlu Türk vatandaşları 31 Ekim'e kadar 30 güne kadar vizesiz kalabiliyordu.</p>",
+   "<h2>Bordo pasaportla Karadağ'a vizesiz girilebilir mi?</h2>",
+   "<p>Karadağ'ın açıkladığı kurala göre genel kural vize, ancak bazı istisnalar var. Geçerli bir <b>Schengen, ABD, Birleşik Krallık ya da İrlanda vizesi</b> veya bu ülkelerden alınmış geçerli bir <b>oturma izni</b> olan Türk vatandaşları Karadağ'a vizesiz girip <b>30 güne kadar</b> kalabiliyor. Bu durumda kalış süresi, girişte kullanılan vize ya da oturma izninin geçerlilik süresini aşamıyor.</p>",
+   "<ul><li><b>Başvuru yeri:</b> Karadağ Dışişleri Bakanlığı'na göre Türkiye'deki adaylar yalnızca büyükelçilik ve konsolosluklara değil, VFS Global başvuru merkezlerine de başvurabiliyor.</li><li><b>Elektronik vize:</b> Bakanlık, ileride çevrim içi başvuru için elektronik vize sistemi üzerinde çalıştığını açıkladı; sistem henüz devrede değil.</li><li><b>Dikkat:</b> Resmî olmayan \"e-vize\" sitelerine ödeme yapmadan önce başvuru kanalının Karadağ makamlarınca duyurulan kanal olduğundan emin olun.</li></ul>",
+   "<div class=\"kutu-bilgi\"><p><b>Türkiye'nin kararı kimi etkiliyor?</b> 12026 sayılı karar Türk vatandaşlarının Karadağ'a girişini değiştirmiyor; Türkiye'ye gelecek bordo pasaportlu Karadağ vatandaşlarını ilgilendiriyor. Türk vatandaşları için geçerli kurallar Karadağ'ın 1 Kasım'da başlattığı uygulamadır.</p></div>",
+   "<h2>Seyahat planı olanlar ne yapmalı?</h2>",
+   "<p>Kış tatilinde ya da 2027'nin ilk aylarında Balkan turu planlayanların, bilet almadan önce pasaport türlerine göre güncel kuralları Karadağ'ın resmî kanallarından ve havayolu şirketlerinin duyurularından kontrol etmesi gerekiyor. Uzun hafta sonlarını hesaplamak isteyenler <a href=\"/haberler/2027-resmi-tatiller.html\">2027 resmî tatiller</a> takvimimize göz atabilir.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Türkiye Karadağ'a vize muafiyetini kaldırdı mı?</b> Anlaşma feshedilmedi; bordo pasaportlu Karadağ vatandaşları için uygulaması askıya alındı. Karar 27 Kasım 2026'da Resmî Gazete'de yayımlandı.</p>",
+   "<p><b>Karadağ Türklerden vize istiyor mu?</b> Evet, 1 Kasım 2026'dan bu yana bordo pasaportlu Türk vatandaşlarından vize isteniyor.</p>",
+   "<p><b>Schengen vizesiyle Karadağ'a girilebilir mi?</b> Geçerli Schengen, ABD, Birleşik Krallık ya da İrlanda vizesi veya oturma izni olanlar 30 güne kadar vizesiz kalabiliyor.</p>"
+  ]
+ },
+ {
+  "slug": "gss-prim-borcu-affi-meclis-genel-kurul",
+  "baslik": "GSS prim borcu affı Meclis'ten geçti mi? Teklif Genel Kurul'da",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.44",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "gss-prim-borcu-affi-meclis-genel-kurul-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "İkindi ışığında bir mutfak masası: ters çevrilmiş zarflar ve belgeler, ince belli bardakta çay, kapalı gözlük kılıfı, lacivert dosya ve sarı kalem",
+  "aciklama": "2017 öncesi GSS prim borçlarını silecek teklif komisyondan geçti, Genel Kurul'da ise maddelerin görüşmesine henüz başlanamadı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "2017 öncesi GSS prim borçlarını silecek teklif henüz yasalaşmadı. Maddelerin görüşmesine bu hafta geçilemedi; Genel Kurul 1 Aralık'ta toplanacak.",
+  "kaynak": "TBMM teklif sayfası (esas no 2/4042, son durum: gündemde); Anadolu Ajansı (19 Kasım 2026, komisyon kabulü); ANKA (26 ve 27 Kasım 2026); Memurlar.net (26 Kasım 2026); Gazete Zaman / gzt.com (19 Kasım 2026); Milli Gazete (19 Kasım 2026); 12punto (26 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "TBMM: Kanun teklifi 2/4042",
+    "url": "https://tbmm.gov.tr/Yasama/KanunTeklifi/62226f6f-73a1-4417-a12d-01a1cfbc4123"
+   },
+   {
+    "ad": "Anadolu Ajansı: Enerjiye ve sosyal güvenliğe ilişkin teklif komisyonda kabul edildi",
+    "url": "https://www.aa.com.tr/tr/gundem/enerjiye-ve-sosyal-guvenlige-iliskin-duzenlemeleri-de-iceren-kanun-teklifi-komisyonda-kabul-edildi/4129887"
+   },
+   {
+    "ad": "ANKA: Genel Kurul'un yoklamayla kapanmasına tepki",
+    "url": "https://ankahaber.net/haber/tbmm-genel-kurulu-nun-yoklamayla-kapanmasina-ak-parti-grup-baskani-guler-den-tepki-muhalefet-calismak-istemiyor-a62983fc"
+   },
+   {
+    "ad": "ANKA: Yenilenebilir enerji teklifinin görüşmeleri başladı",
+    "url": "https://ankahaber.net/haber/tbmm-genel-kurulu-yenilenebilir-enerji-basligiyla-10-ayri-kanunda-degisiklik-ongoren-kanun-teklifinin-gorusmeleri-basladi-efa6e9d1"
+   },
+   {
+    "ad": "Memurlar.net: Genel Kurul toplantı yeter sayısı bulunamayınca kapandı",
+    "url": "https://www.memurlar.net/haber/1185324/genel-kurul-toplanti-yeter-sayisi-bulunamayinca-kapandi.html"
+   },
+   {
+    "ad": "gzt.com: 2017 öncesi GSS prim borçları silinecek mi?",
+    "url": "https://www.gzt.com/ekonomi/2017-oncesi-gss-prim-borclari-silinecek-mi-kimler-kapsamda-4280500"
+   },
+   {
+    "ad": "Milli Gazete: GSS prim borçları ne zaman silinecek?",
+    "url": "https://www.milligazete.com.tr/gss-prim-borclari-2026-2017-oncesi-borclar-ne-zaman-silinecek-kac-kisi-yararlanacak-toplam-ne-kadar-borc-iptal-edilec"
+   }
+  ],
+  "govde": [
+   "<p>Yaklaşık <b>2,2 milyon kişinin</b> 1 Ocak 2017 öncesine ait ödenmemiş <b>genel sağlık sigortası (GSS) prim borçlarını</b> silmeyi öngören kanun teklifi, Meclis'ten henüz geçmedi. Düzenlemeyi içeren 15 maddelik torba teklifin TBMM Genel Kurulu'ndaki görüşmeleri bu hafta başladı; ancak 24 ve 26 Kasım'daki birleşimler toplantı yeter sayısı bulunamadığı için kapandı ve maddelerin görüşülmesine geçilemedi. Genel Kurul, <b>1 Aralık 2026 Salı</b> günü saat <b>15.00</b>'te yeniden toplanacak. Teklif yasalaşıp Resmî Gazete'de yayımlanmadan hiçbir borç silinmiş sayılmıyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>2.199.869</b><span>kapsamdaki kişi sayısı</span></div><div><b>5,63 milyar TL</b><span>silinecek toplam prim borcu</span></div><div><b>1 Ocak 2017</b><span>bu tarihten önceki borçlar kapsamda</span></div><div><b>1 Aralık</b><span>Genel Kurul'un bir sonraki toplantısı</span></div></div>",
+   "<h2>Teklif hangi aşamada?</h2>",
+   "<p>TBMM kayıtlarına göre teklif <b>2/4042 esas numarasıyla</b> 12 Kasım 2026'da Meclis Başkanlığı'na sunuldu ve 19 Kasım'da TBMM Sanayi, Ticaret, Enerji, Tabii Kaynaklar, Bilgi ve Teknoloji Komisyonu'nda kabul edildi. Teklifin resmî adı \"Yenilenebilir Enerji Kaynaklarının Elektrik Enerjisi Üretimi Amaçlı Kullanımına İlişkin Kanun ile Bazı Kanunlarda Değişiklik Yapılmasına Dair Kanun Teklifi\". Genel Kurul'da teklifin tümü üzerindeki görüşmeler 25 Kasım'da yapıldı. TBMM'nin teklif sayfasında son durum hâlâ <b>\"gündemde\"</b> olarak görünüyor.</p>",
+   "<h2>Genel Kurul'da bu hafta ne oldu?</h2>",
+   "<p>24 Kasım'daki birleşim iki yoklamanın ardından 21.50'de, 26 Kasım'daki birleşim ise grup önerilerinin oylanması sırasında yapılan yoklamada yeter sayı bulunamayınca kapandı. Bu nedenle teklifin maddelerine geçilemedi ve görüşmeler gelecek haftaya kaldı. Taraflar durumu farklı değerlendirdi:</p>",
+   "<blockquote class=\"hb-alinti\"><p>Muhalefet çalışmak istemiyor hiçbir zaman.</p><cite>AK Parti Grup Başkanı Abdullah Güler</cite></blockquote>",
+   "<blockquote class=\"hb-alinti\"><p>Yine bir iktidar klasiği yaşandı.</p><cite>Yeni Yol Grubu milletvekili Sema Silkin Ün</cite></blockquote>",
+   "<p>Muhalefet partilerinin sözcüleri, 25 Kasım'daki görüşmede birbirinden farklı konuların tek teklifte toplanmasını ve teklifin komisyonlarda yeterince görüşülememesini eleştirmişti.</p>",
+   "<h2>Hangi GSS borçları silinecek?</h2>",
+   "<p>Teklifin komisyondan geçen metnine göre:</p>",
+   "<ul><li><b>1 Ocak 2017'den önceki</b> dönemlere ait tahsil edilmemiş GSS primlerinin tamamı, bunlara bağlı gecikme cezası ve gecikme zammıyla birlikte silinecek.</li><li><b>2017 ve sonrasına</b> ait prim borçları kapsam dışında; bu borçlar ödenmeye devam edecek.</li><li>Kanun yayımlanmadan önce bu dönemler için <b>ödenmiş primler iade edilmeyecek</b> ve başka borçlara mahsup edilmeyecek.</li></ul>",
+   "<p>AK Parti Grup Başkanı Abdullah Güler'in açıkladığı rakamlara göre düzenlemeden <b>2 milyon 199 bin 869 kişi</b> yararlanacak ve toplam <b>5 milyar 627 milyon 666 bin lira</b> prim borcu silinecek. Kamu alacaklarındaki güncel gecikme zammı oranı için <a href=\"/haberler/gecikme-zammi-yuzde-3-2.html\">gecikme zammı haberimize</a> bakabilirsiniz.</p>",
+   "<h2>Teklifte başka neler var?</h2>",
+   "<ul><li><b>İstihdam teşviki:</b> İlave istihdam ile işsiz kadın, genç ve mesleki eğitim belgesi olanların istihdamına yönelik teşvik <b>31 Aralık 2028</b>'e kadar uzatılıyor; Cumhurbaşkanı bu süreyi 31 Aralık 2029'a kadar uzatabilecek.</li><li><b>Mesleki eğitim desteği:</b> Çırak, stajyer ve işletmede mesleki eğitim gören öğrencilere ödenen ücretlere devlet katkısını uzatma yetkisi, toplamda <b>15 eğitim-öğretim yılına</b> kadar genişletiliyor.</li><li><b>Polis ve jandarma okulları:</b> Anayasa Mahkemesi'nin iptal kararları sonrasında öğrenci alım şartlarının temel çerçevesi kanunla düzenleniyor.</li><li><b>Kurumlar vergisi:</b> Kıymetli maden ve petrol rafinerileri ile tütün ve alkol üreticileri, 2027 kazançlarından itibaren indirimli orandan çıkarılıyor.</li></ul>",
+   "<div class=\"kutu-bilgi\"><p><b>Şimdilik bir şey yapmanız gerekmiyor</b> Teklif henüz kanunlaşmadığı için şu an yapılacak bir işlem yok. Kanunlaşırsa uygulamanın ayrıntılarını SGK duyuracak. Borcunuzun hangi dönemlere ait olduğunu e-Devlet'teki SGK hizmetlerinden görebilirsiniz.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>GSS prim borcu affı Meclis'ten geçti mi?</b> Hayır. Teklif komisyondan geçti; Genel Kurul'da maddelerin görüşmesine henüz başlanmadı.</p>",
+   "<p><b>Hangi yılların borcu silinecek?</b> 1 Ocak 2017'den önceki, yani 2016 Aralık ve öncesine ait GSS primleri.</p>",
+   "<p><b>Ödediğim eski borç geri verilecek mi?</b> Hayır. Teklife göre daha önce ödenen primler iade ya da mahsup edilmeyecek.</p>",
+   "<p><b>Genel Kurul ne zaman toplanacak?</b> 1 Aralık 2026 Salı saat 15.00'te. Teklifin hangi gün oylanacağı henüz kesin değil.</p>"
+  ]
+ },
+ {
+  "slug": "ekonomik-guven-endeksi-kasim-2026",
+  "baslik": "Ekonomik güven endeksi Kasım 2026: TÜİK'e göre 98,4'e yükseldi",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.43",
+  "kategori": "Ekonomi",
+  "gorsel": "ekonomik-guven-endeksi-kasim-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "İkindi saatlerinde bir kapalı çarşı sokağı: kumaş ve ev eşyası satan dükkânlar, arkadan ve bulanık görünen alışveriş yapanlar, uzakta çatıların üzerinde bir inşaat vinci",
+  "aciklama": "Ekonomik güven kasımda 98,4'e çıktı; tüketici güveni arttı, inşaatta güven geriledi.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "TÜİK'in ekonomik güven endeksi kasımda yüzde 1,1 artışla 98,4 oldu ama 100 eşiğinin altında kaldı. Tüketici güveni arttı, inşaatta güven yüzde 3,8 geriledi.",
+  "kaynak": "TÜİK Ekonomik Güven Endeksi, Kasım 2026 bülteni (27 Kasım 2026; Endeks24, Diken ve Politikam haberleri üzerinden); TÜİK Ekonomik Güven Endeksi Ekim 2026 ve Tüketici Güven Endeksi Ekim 2026 (Alomaliye); TÜİK Kasım 2025 verisi (Alomaliye); CNN Türk (26 Şubat 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Endeks24: Ekonomik güven kasımda 98,4'e yükseldi",
+    "url": "https://www.endeks24.com/ekonomik-guven-kasimda-98-4-e-yukseldi-endeks-yine-100-un-altinda"
+   },
+   {
+    "ad": "Diken: TÜİK'e göre ekonomiye güven arttı",
+    "url": "https://www.diken.com.tr/tuike-gore-ekonomiye-guven-artti-2/"
+   },
+   {
+    "ad": "Politikam: Kasım 2026 ekonomik güven endeksi",
+    "url": "https://www.politikam.com/tuik-kasim-2026-ekonomik-guven-endeksi-yukseldi-insaat-sektoru-dusus"
+   },
+   {
+    "ad": "Alomaliye: Ekonomik güven 100'ün altına geriledi (Ekim 2026)",
+    "url": "https://www.alomaliye.com/2026/10/30/ekonomik-guven-100un-altina-geriledi/"
+   },
+   {
+    "ad": "Alomaliye: Tüketici Güven Endeksi, Ekim 2026",
+    "url": "https://www.alomaliye.com/2026/10/22/tuketici-guven-endeksi-84-8-oldu/"
+   },
+   {
+    "ad": "Alomaliye: Ekonomik Güven Endeksi, Kasım 2025",
+    "url": "https://www.alomaliye.com/2025/11/27/ekonomik-guven-endeksi-kasimda-99-5e-yukseldi/"
+   },
+   {
+    "ad": "CNN Türk: Ekonomik güven endeksi şubatta 100'ün üzerine çıktı",
+    "url": "https://www.cnnturk.com/ekonomi/ekonomik-guven-endeksi-subatta-100un-uzerine-cikti-iyimser-bolgeye-donus-2400418"
+   }
+  ],
+  "govde": [
+   "<p>Türkiye İstatistik Kurumu (TÜİK), <b>27 Kasım 2026 Cuma</b> günü yayımladığı bültende ekonomik güven endeksinin kasımda bir önceki aya göre <b>yüzde 1,1 artarak 98,4</b>'e yükseldiğini açıkladı. Ekimde 97,3 olan endeks böylece toparlansa da <b>100 eşiğinin altında</b> kalmaya devam etti. Endeksi oluşturan beş alt göstergeden dördü yükselirken inşaat sektöründe güven belirgin şekilde geriledi.</p>",
+   "<div class=\"hb-rakam\"><div><b>98,4</b><span>Kasım 2026 ekonomik güven endeksi</span></div><div><b>%1,1</b><span>ekime göre artış</span></div><div><b>86,8</b><span>tüketici güven endeksi</span></div><div><b>80,2</b><span>inşaat sektörü güven endeksi</span></div></div>",
+   "<h2>Ekonomik güven endeksi ne anlatıyor?</h2>",
+   "<p>Ekonomik güven endeksi; tüketicilerin, sanayicilerin, hizmet ve perakende işletmelerinin ve inşaat firmalarının ekonomiye bakışını tek bir rakamda topluyor. Endeksin <b>100'ün üzerinde</b> olması genel ekonomik duruma ilişkin iyimserliği, <b>100'ün altında</b> olması ise kötümserliği gösteriyor. Tüketici güveni dışındaki alt endeksler mevsim etkilerinden arındırılmış olarak açıklanıyor. Tüketici güven endeksi, TÜİK ile Türkiye Cumhuriyet Merkez Bankası'nın birlikte yürüttüğü tüketici eğilim anketinden hesaplanıyor.</p>",
+   "<h2>Hangi sektörde güven arttı, hangisinde azaldı?</h2>",
+   "<p>Kasım verisinde alt endekslerin ekim ayına göre değişimi şöyle:</p>",
+   "<ul><li><b>Tüketici güveni:</b> 84,8'den 86,8'e (yüzde 2,4 artış)</li><li><b>Reel kesim (imalat sanayi) güveni:</b> 101,1'den 101,3'e (yüzde 0,2 artış)</li><li><b>Hizmet sektörü güveni:</b> 109,2'den 109,9'a (yüzde 0,6 artış)</li><li><b>Perakende ticaret güveni:</b> 112,5'ten 113,6'ya (yüzde 0,9 artış)</li><li><b>İnşaat sektörü güveni:</b> 83,3'ten 80,2'ye (yüzde 3,8 düşüş)</li></ul>",
+   "<p>En güçlü artış tüketici tarafında görüldü. Buna karşın tüketici güveni hâlâ alt endeksler içinde en düşük seviyelerden birinde. Perakende, hizmet ve reel kesim endeksleri 100'ün üzerinde kalırken inşaat sektörü endeksi 80 seviyesine kadar geriledi.</p>",
+   "<h2>Endeks son aylarda nasıl bir seyir izledi?</h2>",
+   "<p>Ekonomik güven endeksi bu yıl dalgalı bir görünüm çizdi. Şubat 2026'da 100,7 ile 100 eşiğinin üzerine çıkan endeks, eylülde 101,3 seviyesindeydi. Ekimde ise yüzde 3,9 düşüşle 97,3'e geriledi; bu düşüşte en büyük pay, aynı ay yüzde 7,7 azalan tüketici güvenine aitti. Kasımdaki artış, ekim kaybının yalnızca bir bölümünü telafi etti. Geçen yılın aynı ayında, yani Kasım 2025'te endeks 99,5 olarak açıklanmıştı; bu yılki değer bunun 1,1 puan altında.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Güven endeksi neden önemli?</b> Güven endeksleri, harcama ve yatırım kararlarının yönü hakkında erken fikir veren anket temelli göstergelerdir. Büyüme veya enflasyon gibi kesin sonuç bildirmezler; ekonomi yönetimi, şirketler ve analistler bu verileri diğer istatistiklerle birlikte değerlendirir.</p></div>",
+   "<h2>Sırada hangi veriler var?</h2>",
+   "<p>Kasım ayının resmî enflasyon rakamları aralık ayının ilk günlerinde TÜİK tarafından açıklanacak. Enflasyon verisi, memur ve emekli maaş artışlarının hesabında kullanıldığı için milyonlarca kişiyi doğrudan ilgilendiriyor. Bu konudaki ayrıntılar için <a href=\"/haberler/ocak-2027-memur-zammi.html\">Ocak 2027 memur zammı haberimize</a> göz atabilirsiniz. Bu haber bilgilendirme amaçlıdır, yatırım tavsiyesi içermez.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Kasım 2026 ekonomik güven endeksi kaç oldu?</b> TÜİK'e göre 98,4. Ekimde 97,3'tü; aylık artış yüzde 1,1.</p>",
+   "<p><b>Endeksin 100'ün altında olması ne demek?</b> 100'ün altı, genel ekonomik duruma ilişkin kötümserliğin iyimserlikten ağır bastığını gösteriyor.</p>",
+   "<p><b>Hangi sektörde güven düştü?</b> Kasımda yalnızca inşaat sektörü güven endeksi geriledi: 83,3'ten 80,2'ye, yüzde 3,8 düşüş.</p>",
+   "<p><b>Veriyi kim açıklıyor?</b> Türkiye İstatistik Kurumu (TÜİK), her ayın son haftasında açıklıyor.</p>"
+  ]
+ },
+ {
+  "slug": "jandarma-9-bin-uzman-erbas-alimi-2027",
+  "baslik": "Jandarma 9 bin uzman erbaş alımı 2027: Başvuru 7 Aralık'ta bitiyor",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.42",
+  "kategori": "Memur ve Kamu",
+  "gorsel": "jandarma-9-bin-uzman-erbas-alimi-2027-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Evde ahşap bir masada arkadan görünen genç bir erkek dizüstü bilgisayarda çevrim içi başvuru formu dolduruyor; yanında belge dosyası ve ince belli bardakta çay",
+  "aciklama": "Jandarma'nın 2027 uzman erbaş alımında başvurular 7 Aralık'ta kapanıyor.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Jandarma'nın 9 bin uzman erbaş alımı için başvurular 7 Aralık 2026 saat 23.59'da kapanıyor. 1999-2007 doğumlu erkekler e-Devlet ile başvurabiliyor.",
+  "kaynak": "Jandarma Genel Komutanlığı 2027 Yılı Uzman Erbaş Temini duyurusu (Memurlar.net ilan sayfası, 23 Kasım 2026); Sabah (24 Kasım 2026); Ankara Masası (23 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Memurlar.net: Jandarma 9 bin uzman erbaş alacak",
+    "url": "https://ilan.memurlar.net/ilan/87055/jandarma-9-bin-uzman-erbas-alacak-basvurular-7-aralik-ta-bitiyor.html"
+   },
+   {
+    "ad": "Sabah: Jandarma Genel Komutanlığı 9 bin uzman erbaş alacak",
+    "url": "https://www.sabah.com.tr/memurlar/guncel-memur-haberleri/2026/11/24/jandarma-genel-komutanligi-9-bin-uzman-erbas-alacak-basvurular-basladi-iste-basvuru-sartlari"
+   },
+   {
+    "ad": "Ankara Masası: 2027 jandarma personel alımı branş dağılımı",
+    "url": "https://www.ankaramasasi.com.tr/haber/2230652/2027-jandarma-personel-alimi-hangi-bransa-kac-kisi-alinacak"
+   }
+  ],
+  "govde": [
+   "<p>Jandarma Genel Komutanlığı'nın 2027 yılı için açtığı <b>9 bin uzman erbaş</b> alımında başvuru süresi daralıyor. 23 Kasım 2026'da başlayan başvurular <b>7 Aralık 2026 Pazartesi saat 23.59</b>'da sona erecek. Alım yalnızca erkek adaylara açık; başvurular e-Devlet şifresiyle <b>personeltemin.jandarma.gov.tr</b> adresinden çevrim içi yapılıyor. Kontenjanın büyük bölümü, 8 bin 174 kişi, jandarma branşına ayrıldı.</p>",
+   "<div class=\"hb-rakam\"><div><b>9.000</b><span>toplam uzman erbaş kontenjanı</span></div><div><b>7 Aralık</b><span>son başvuru günü, saat 23.59</span></div><div><b>60 puan</b><span>jandarma branşı için en düşük KPSS</span></div><div><b>167-210 cm</b><span>boy aralığı</span></div></div>",
+   "<h2>Hangi branşa kaç uzman erbaş alınacak?</h2>",
+   "<ul><li><b>Jandarma:</b> 8.174</li><li><b>Lojistik:</b> 500</li><li><b>Sıhhiyeci:</b> 200</li><li><b>Muhabere:</b> 100</li><li><b>Havacılık:</b> 10</li><li><b>Bando:</b> 5</li><li><b>Kurbağa adam:</b> 5</li><li><b>At bakıcısı:</b> 3</li><li><b>Bot serdümeni:</b> 3</li></ul>",
+   "<h2>Başvuru şartları neler?</h2>",
+   "<p>Duyuruya göre adayların Türk vatandaşı erkek olması ve <b>1 Ocak 1999 ile 1 Ocak 2007</b> tarihleri arasında (bu tarihler dâhil) doğmuş olması gerekiyor. Puan şartı branşa göre değişiyor:</p>",
+   "<ul><li><b>Jandarma, muhabere, havacılık ve bando:</b> 2025 veya 2026 KPSS'den P3, P93 ya da P94 puan türlerinden en az 60 puan</li><li><b>Lojistik:</b> ilgili lisans, ön lisans ya da meslek lisesi mezunları için en az 50 puan; bazı lojistik kontenjanlarında KPSS yerine kılavuzda sayılan mesleki belgeler kabul ediliyor</li><li>Adayın iki yıla ait puanı varsa yüksek olanı dikkate alınıyor</li></ul>",
+   "<p>Boyun çıplak ayakla <b>167-210 cm</b> arasında olması, kilonun kılavuzdaki boy-kilo tablosuna uyması gerekiyor. Askerliğini yapmamış adaylar da başvurabiliyor; askerliğini yapmakta olanlardan ise birliğinden en az 80 puanlık değerlendirme belgesi isteniyor. Adayların ayrıca uzman erbaş olabileceğini gösteren sağlık kurulu raporu alması, güvenlik soruşturması ve arşiv araştırmasının olumlu sonuçlanması gerekiyor. Kısa kollu tişört ve şortla görünen bölgelerde dövme bulunması da başvuruya engel.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Kılavuzu mutlaka okuyun</b> Seçme sınavlarının aşamaları, boy-kilo tablosu, KPSS'siz başvuruda kabul edilen belgeler ve eğitim koşulları \"2027 Yılı Jandarma Genel Komutanlığı Uzman Erbaş Temini\" kılavuzunda yer alıyor. Kılavuz jandarma.gov.tr, jsga.edu.tr ve kamuilan.sbb.gov.tr adreslerinde yayımlandı. Sorular için JSGA Personel Temin Merkez Komutanlığı'na (0312) 603 13 13 numarasından hafta içi mesai saatlerinde ulaşılabiliyor.</p></div>",
+   "<h2>Başvuru nasıl yapılır?</h2>",
+   "<ol><li>e-Devlet şifrenizle personeltemin.jandarma.gov.tr adresine girin.</li><li>Branş tercihinizi ve KPSS bilgilerinizi kontrol ederek formu doldurun.</li><li>İstenen belgeleri yükleyip başvurunuzu tamamlayın ve onay ekranını kaydedin.</li></ol>",
+   "<p>Başvurudan önce KPSS sonuç belgenizdeki puan türünü ve sınav yılını, nüfus kaydınızdaki doğum tarihini ve askerlik durumunuzu kontrol etmeniz, yanlış bilgiyle yapılan başvuruların sonraki aşamalarda geçersiz sayılabileceğini akılda tutmanız önemli. Sağlık kurulu raporu ve boy-kilo uygunluğu gibi şartlar seçme sürecinde ayrıca denetlendiği için kılavuzdaki tabloları başvurudan önce okumak zaman kaybını önler.</p>",
+   "<p>Son günlerde sistem yoğunluğu yaşanabileceği için başvuruyu 7 Aralık'ı beklemeden tamamlamak daha güvenli. İçişleri Bakanlığı'nın sürmekte olan diğer alımı için <a href=\"/haberler/icisleri-bakanligi-1170-sozlesmeli-personel-alimi.html\">1170 sözleşmeli personel haberimize</a> bakabilirsiniz.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Jandarma uzman erbaş başvurusu ne zaman bitiyor?</b> 7 Aralık 2026 Pazartesi saat 23.59'da.</p>",
+   "<p><b>Kadınlar başvurabilir mi?</b> Hayır. Bu alım yalnızca erkek adaylara açık.</p>",
+   "<p><b>KPSS şartı var mı?</b> Jandarma, muhabere, havacılık ve bandoda en az 60, lojistikte en az 50 puan gerekiyor; bazı lojistik kontenjanlarında mesleki belge KPSS yerine geçiyor.</p>",
+   "<p><b>Askerliğimi yapmadım, başvurabilir miyim?</b> Evet. Askerlik yapmış olma şartı aranmıyor.</p>"
+  ]
+ },
+ {
+  "slug": "adli-tip-kurumu-181-sozlesmeli-personel-alimi",
+  "baslik": "Adli Tıp Kurumu 181 personel alımı: Başvurular 30 Kasım'da başlıyor",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.41",
+  "kategori": "Memur ve Kamu",
+  "gorsel": "adli-tip-kurumu-181-sozlesmeli-personel-alimi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Bir kamu binasının sakin ve temiz koridoru: kapalı ofis kapıları, bir bank, yan masada üst üste dosyalar, uzun pencerelerden cilalı zemine düşen gün ışığı",
+  "aciklama": "Adli Tıp Kurumu'nun 181 sözleşmeli personel alımına başvurular 30 Kasım'da açılıyor.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Adli Tıp Kurumu'nun 181 sözleşmeli personel alımına başvurular 30 Kasım 09.00'da açılıyor, 6 Aralık 23.59'da kapanıyor. 2026 KPSS'den en az 70 puan gerekiyor.",
+  "kaynak": "Adli Tıp Kurumu Başkanlığı sözleşmeli personel alım ilanı, Resmî Gazete 20 Kasım 2026, sayı 33436 (ilan metni Memurlar.net üzerinden); Memurlar.net (20 Kasım 2026); Sabah (21 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Adli Tıp Kurumu ilan metni (PDF, Memurlar.net)",
+    "url": "https://www.memurlar.net/common/news/documents/1184658/adlitip-180.pdf"
+   },
+   {
+    "ad": "Memurlar.net: Adli Tıp Kurumu 181 sözleşmeli personel alacak",
+    "url": "https://www.memurlar.net/haber/1184658/adli-tip-kurumu-181-sozlesmeli-personel-alacak-iste-sartlar.html"
+   },
+   {
+    "ad": "Memurlar.net ilan: Adli Tıp Kurumu Başkanlığı 181 sözleşmeli personel",
+    "url": "https://ilan.memurlar.net/ilan/87034/adli-tip-kurumu-baskanligi-181-sozlesmeli-personel-alacak.html"
+   },
+   {
+    "ad": "Sabah: Adli Tıp Kurumu 181 sözleşmeli personel alacak",
+    "url": "https://www.sabah.com.tr/memurlar/guncel-memur-haberleri/2026/11/21/adli-tip-kurumu-181-sozlesmeli-personel-alacak"
+   }
+  ],
+  "govde": [
+   "<p>Adalet Bakanlığına bağlı <b>Adli Tıp Kurumu Başkanlığı</b>, 657 sayılı Devlet Memurları Kanunu'nun 4/B maddesine göre <b>181 sözleşmeli personel</b> alacak. 20 Kasım 2026 tarihli ve 33436 sayılı Resmî Gazete'de yayımlanan ilana göre başvurular <b>30 Kasım 2026 Pazartesi saat 09.00</b>'da başlayıp <b>6 Aralık 2026 Pazar saat 23.59</b>'da sona erecek. Başvurular yalnızca e-Devlet üzerinden Kariyer Kapısı'ndan alınacak; adayların <b>2026 KPSS</b>'den ilgili puan türünde en az <b>70 puan</b> almış olması gerekiyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>181</b><span>sözleşmeli personel kadrosu</span></div><div><b>30 Kasım</b><span>başvuruların açılışı, saat 09.00</span></div><div><b>6 Aralık</b><span>son başvuru, saat 23.59</span></div><div><b>70 puan</b><span>2026 KPSS'de en düşük puan</span></div></div>",
+   "<h2>Hangi kadrolara alım yapılacak?</h2>",
+   "<p>İlanda ortaöğretim, ön lisans ve lisans mezunlarına yönelik farklı unvanlar bulunuyor:</p>",
+   "<ul><li>Mühendis (makine, kimya, bilgisayar/bilişim)</li><li>Diğer teknik hizmet personeli (kimyager)</li><li>Biyolog ve hemşire</li><li>Laborant ve sağlık teknikeri (otopsi)</li><li>Tekniker (elektrik, tesisat, silah muayene, bilgisayar)</li><li>Büro personeli</li><li>İnfaz ve koruma memuru (erkek)</li><li>Destek personeli (hizmetli, şoför, aşçı)</li></ul>",
+   "<p>Kadrolar İstanbul'daki merkez teşkilatın yanı sıra Adana, Ankara, Antalya, Bursa, Denizli, Diyarbakır, Erzurum, Gaziantep, Hatay, İzmir, Kayseri, Konya, Malatya, Samsun, Şanlıurfa, Trabzon ve Van adli tıp grup başkanlıklarına, Ağrı, Artvin, Aydın ve Muğla adli tıp şube müdürlüklerine dağıtıldı. Unvan ve il bazında kişi sayıları ilanın ekindeki tabloda yer alıyor.</p>",
+   "<h2>KPSS puanı ve sıralama nasıl yapılacak?</h2>",
+   "<p>Lisans mezunları için <b>KPSS P3</b>, ön lisans mezunları için <b>KPSS P93</b>, ortaöğretim mezunları için <b>KPSS P94</b> puanı esas alınacak. Adaylar puanlarına göre yüksekten düşüğe sıralanacak ve her pozisyon için ilan edilen sayının <b>3 katı</b> aday sözlü sınava çağrılacak. Sözlü sınav, kurumun İstanbul Bahçelievler'deki merkez binasında yapılacak; tarihleri daha sonra duyurulacak. Başvuru ve sınav sonuçları kurumun internet sitesinde ilan edilecek, adaylara ayrıca tebligat yapılmayacak.</p>",
+   "<h2>İnfaz ve koruma memuru için ek şartlar neler?</h2>",
+   "<ul><li>Erkek ve en az lise ya da dengi okul mezunu olmak</li><li>1 Ocak 1996 ve sonrasında doğmuş olmak (30 yaşını doldurmamış olmak)</li><li>Boyu 170 cm'den kısa olmamak ve ilandaki boy-kilo ölçüsüne uymak</li></ul>",
+   "<p>Boy ve kilo ölçümü sözlü sınav günü yapılacak; ölçüleri tutmayan aday sınava alınmayacak. Şoför kadrosu için ise ilanda belirtilen sınıflardan sürücü belgesi isteniyor.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Tek pozisyona başvuru</b> Her aday yalnızca bir pozisyon için başvuru yapabiliyor. Şahsen ya da posta yoluyla yapılan başvurular kabul edilmeyecek; başvuru ekranı yalnızca 30 Kasım-6 Aralık arasında açık olacak.</p></div>",
+   "<p>2026 KPSS puanıyla yapılan diğer tercih dönemini takip etmek için <a href=\"/haberler/kpss-2026-2-tercih-tarihleri.html\">KPSS-2026/2 tercih tarihleri haberimize</a> de göz atabilirsiniz.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Adli Tıp Kurumu başvuruları ne zaman?</b> 30 Kasım 2026 saat 09.00 ile 6 Aralık 2026 saat 23.59 arasında.</p>",
+   "<p><b>Başvuru nereden yapılıyor?</b> e-Devlet üzerinden Kariyer Kapısı Kamu İşe Alım ekranından (kariyerkapisi.gov.tr/isealim).</p>",
+   "<p><b>Hangi KPSS puanı geçerli?</b> 2026 KPSS; pozisyona göre P3, P93 veya P94 puan türünde en az 70 puan.</p>",
+   "<p><b>Sözlü sınav nerede yapılacak?</b> İstanbul Bahçelievler'deki Adli Tıp Kurumu merkez binasında. Tarih henüz açıklanmadı.</p>"
+  ]
+ },
+ {
+  "slug": "mgk-bildirisi-26-kasim-2026",
+  "baslik": "MGK bildirisi 26 Kasım 2026: Yılın son toplantısında 9 madde öne çıktı",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.40",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "mgk-bildirisi-26-kasim-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Akşam ışığında boş bir toplantı salonu: koyu ahşap uzun masa, deri koltuklar, masada kapalı dosyalar ve su bardakları, tül perdeli yüksek pencereler",
+  "aciklama": "MGK, 26 Kasım'daki yılın son toplantısının ardından iç güvenlik ve bölge politikasını kapsayan 9 maddelik bildiri yayımladı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "MGK, 26 Kasım'da Cumhurbaşkanı Erdoğan başkanlığında 2 saat 20 dakika toplandı; 9 maddelik bildiride Terörsüz Türkiye, Doğu Akdeniz ve bölge savaşları yer aldı.",
+  "kaynak": "TRT Haber (26 Kasım 2026, MGK bildirisinin metni); NTV (26 Kasım 2026, toplantı süresi ve bildiri ifadeleri); Habertürk (26 Kasım 2026); Yeni Birlik (26 Kasım 2026, toplantı yeri ve süresi)",
+  "kaynaklar": [
+   {
+    "ad": "TRT Haber: MGK'dan Terörsüz Türkiye mesajı",
+    "url": "https://www.trthaber.com/haber/gundem/mgkdan-terorsuz-turkiye-mesaji-964566.html"
+   },
+   {
+    "ad": "NTV: MGK'dan Terörsüz Türkiye ve bölgesel güvenlik mesajı",
+    "url": "https://www.ntv.com.tr/turkiye/mgkdan-terorsuz-turkiye-ve-bolgesel-guvenlik-mesaji-1752732"
+   },
+   {
+    "ad": "Habertürk: MGK bildirisi",
+    "url": "https://www.haberturk.com/gundem/son-dakika-mgk-toplantisi-basladi-3930336"
+   },
+   {
+    "ad": "Yeni Birlik: MGK 9 maddelik bildiri",
+    "url": "https://www.gazetebirlik.com/gundem/milli-guvenlik-kurulu-26-kasim-2026-toplantisi-sonrasi-9-maddelik-bildiri-yayimladi/1124909"
+   }
+  ],
+  "govde": [
+   "<p>Milli Güvenlik Kurulu (MGK), <b>26 Kasım 2026 Perşembe</b> günü Cumhurbaşkanı Recep Tayyip Erdoğan başkanlığında Cumhurbaşkanlığı Külliyesi'nde toplandı. Yılın son MGK toplantısı yaklaşık <b>2 saat 20 dakika</b> sürdü. Toplantının ardından yayımlanan <b>9 maddelik</b> bildiride Terörsüz Türkiye süreci, organize suçla mücadele, Suriye ve Irak ile iş birliği, Doğu Akdeniz ve Ege, Türk Devletleri Teşkilatı dönem başkanlığı, İsrail'in bölge politikaları, Rusya-Ukrayna Savaşı ve Libya başlıkları yer aldı.</p>",
+   "<div class=\"hb-rakam\"><div><b>26 Kasım</b><span>toplantı tarihi</span></div><div><b>2 saat 20 dk</b><span>toplantı süresi</span></div><div><b>9 madde</b><span>yayımlanan bildiri</span></div></div>",
+   "<h2>MGK neden ve ne sıklıkla toplanıyor?</h2>",
+   "<p>Milli Güvenlik Kurulu, Anayasa'nın 118. maddesine göre kurulan ve iki ayda bir toplanan bir danışma organı. Kurulun bildirileri, devletin güvenlik ve dış politika önceliklerine ilişkin resmî bir çerçeve sunuyor. Kasım toplantısı, takvime göre 2026'nın son MGK toplantısı oldu.</p>",
+   "<h2>Bildiride iç güvenlik için ne söylendi?</h2>",
+   "<p>Bildirinin ilk bölümünde, başta PKK/KCK-PYD/YPG, FETÖ ve DEAŞ olmak üzere ülkenin birliğini ve varlığını hedef alan tehditlere karşı yurt içinde ve dışında yürütülen çalışmalar hakkında bilgi verildiği belirtildi. Kurul, Terörsüz Türkiye süreci ve Terörsüz Bölge hedefine ilişkin çalışmalarda <b>somut ilerlemeler</b> kaydedildiğini değerlendirdi. Bildiride, milli dayanışma kanunu çerçevesinde çok boyutlu faaliyetlerin kararlılıkla sürdürüleceği ifade edildi.</p>",
+   "<p>Organize suç örgütleriyle mücadele de bildiride ayrı bir madde olarak yer aldı. Kamu düzenini, vatandaşların can ve mal güvenliğini tehdit eden yapılara <b>hiçbir surette müsaade edilmeyeceği</b> vurgulandı.</p>",
+   "<h2>Dış politikada hangi başlıklar ele alındı?</h2>",
+   "<ul><li><b>Suriye ve Irak:</b> İki komşu ülkeyle çok boyutlu iş birliğinin her alanda ilerletilmesinin önemine dikkat çekildi; hedef olarak güvenli, istikrarlı, kapsayıcı ve müreffeh bir gelecek gösterildi.</li><li><b>Doğu Akdeniz ve Ege:</b> Türkiye'nin diyalog ve diplomasiyi esas alan, yapıcı ve çözüm odaklı yaklaşımını koruyacağı; uluslararası hukuk ve antlaşmalardan doğan haklarını ise kararlılıkla savunacağı belirtildi.</li><li><b>Türk dünyası:</b> Türk Devletleri Teşkilatı'nın dönem başkanlığını Azerbaycan'dan devralan Türkiye'nin, Türk devletleri arasındaki dayanışmayı güçlendirmek için çalışacağı kaydedildi.</li><li><b>İsrail:</b> İsrail yönetiminin Filistin, Lübnan ve Suriye'yi hedef alan işgal ve ilhak politikalarının bölgesel istikrarsızlığı artırdığı değerlendirildi; barış süreçlerinde inisiyatif alan aktörler daha kararlı bir tutuma davet edildi.</li><li><b>Libya:</b> Libya'nın birlik ve bütünlüğünün sağlanmasına yönelik çalışmalar ele alındı.</li></ul>",
+   "<h2>Rusya-Ukrayna Savaşı için hangi uyarı yapıldı?</h2>",
+   "<p>Bildiride Rusya-Ukrayna Savaşı ile ABD/İsrail-İran çatışmalarındaki son gelişmelerin de görüşüldüğü belirtildi. Kurul, savaşın Karadeniz'den sonra Akdeniz'e yayılma ihtimaline ilişkin endişesini açıkça kayda geçirdi:</p>",
+   "<blockquote class=\"hb-alinti\"><p>Rusya-Ukrayna Savaşı'nın Karadeniz'in ardından Akdeniz'e de sirayet etmesinden duyulan endişe dile getirilmiş...</p><cite>MGK bildirisi, 26 Kasım 2026</cite></blockquote>",
+   "<p>Bildiriye göre Türkiye, kalıcı barışın tesisi için ilgili bütün taraflarla temaslarını sürdürecek.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>MGK bildirisi bağlayıcı mı?</b> MGK, Anayasa'ya göre bir danışma kuruludur. Bildiride yer alan değerlendirmeler, hükümetin ve ilgili kurumların güvenlik ve dış politika alanındaki yaklaşımını yansıtır; doğrudan kanun ya da yönetmelik hükmü taşımaz.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>MGK toplantısı ne zaman yapıldı?</b> 26 Kasım 2026 Perşembe günü, Cumhurbaşkanlığı Külliyesi'nde yapıldı ve yaklaşık 2 saat 20 dakika sürdü.</p>",
+   "<p><b>Bildiri kaç maddeden oluşuyor?</b> Toplantının ardından 9 maddelik bir bildiri yayımlandı.</p>",
+   "<p><b>Bir sonraki MGK toplantısı ne zaman?</b> Kurul iki ayda bir toplanıyor. Bir sonraki toplantının tarihi Cumhurbaşkanlığı tarafından ayrıca duyurulacak.</p>",
+   "<p><b>Türk Devletleri Teşkilatı başkanlığı neden bildiride yer aldı?</b> Türkiye, teşkilatın dönem başkanlığını Azerbaycan'dan devraldı; bildiride bu görev süresince Türk devletleri arasındaki iş birliğini güçlendirme hedefi vurgulandı.</p>"
+  ]
+ },
+ {
+  "slug": "ozgur-ozel-4-aralik-aciklamasi",
+  "baslik": "Özgür Özel 4 Aralık'ta ne açıklayacak? Aday sorusuna Ankara'da yanıt",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.39",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "ozgur-ozel-4-aralik-aciklamasi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Etkinlik öncesi boş bir basın toplantısı salonu: sade bir kürsü üzerinde mikrofonlar, boş sandalye sıraları ve arkada kamera tripodları",
+  "aciklama": "Yeni Parti Genel Başkanı Özgür Özel, cumhurbaşkanı adayı sorusunu 4 Aralık'ta Ankara'da yapacağı basın toplantısında yanıtlayacağını söyledi.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Yeni Parti Genel Başkanı Özgür Özel, cumhurbaşkanı adayı sorusunu 4 Aralık Cuma öğle saatlerinde Ankara'daki basın toplantısında yanıtlayacağını söyledi.",
+  "kaynak": "Anka Haber Ajansı (haberler.com, 27 Kasım 2026); Evrensel (27 Kasım 2026); Sabah (27 Kasım 2026); Euronews Türkçe (27 Kasım 2026; 24 Temmuz 2026; 14 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Haberler.com (ANKA): Özel adaya dair açıklamayı haftaya cuma yapacak",
+    "url": "https://www.haberler.com/guncel/ozgur-ozel-cumhurbaskani-adayina-dair-aciklamayi-20469945-haberi/"
+   },
+   {
+    "ad": "Evrensel: Özel'den gündemi meşgul edecek açıklama mesajı",
+    "url": "https://evrensel.net/haber/6011530/ozel-den-gundemi-mesgul-edecek-aciklama-mesaji-yeni-partinin-cumhurbaskani-adayi-degisecek-mi"
+   },
+   {
+    "ad": "Sabah: Özel'den adaylık açıklaması",
+    "url": "https://www.sabah.com.tr/gundem/2026/11/27/ozgur-ozelden-cumhurbaskanligi-adayligi-cikisi-cok-onemli-bir-aciklama-yapacagim"
+   },
+   {
+    "ad": "Euronews Türkçe: Özel Koza TV röportajı",
+    "url": "https://tr.euronews.com/2026/11/27/ozgur-ozel-turkiye-haftaya-bugun-baska-bir-sey-konusuyor-olacak"
+   },
+   {
+    "ad": "Euronews Türkçe: Özel ve 91 milletvekili CHP'den istifa etti",
+    "url": "https://tr.euronews.com/2026/07/24/ozgur-ozel-ve-91-milletvekili-chpden-istifa-etti-yeni-parti-kuruluyor"
+   },
+   {
+    "ad": "Euronews Türkçe: Yeni Parti kurultayı",
+    "url": "https://tr.euronews.com/2026/11/14/ozgur-ozel-yeni-parti-kurultayinda-1154-oyla-yeniden-genel-baskan-secildi"
+   }
+  ],
+  "govde": [
+   "<p>Yeni Parti Genel Başkanı <b>Özgür Özel</b>, partisinin cumhurbaşkanı adayının değişip değişmeyeceği sorusunu <b>gelecek hafta cuma</b>, yani <b>4 Aralık 2026</b> günü öğle saatlerinde Ankara'da yapacağı basın toplantısında yanıtlayacağını açıkladı. Özel, bu açıklamayı 27 Kasım Cuma akşamı katıldığı Koza TV canlı yayınında, gazeteciler Seda Selek, Remziye Demirkol ve İnan Demirel'in sorularını yanıtlarken yaptı. Toplantının içeriğine dair ayrıntı vermedi.</p>",
+   "<div class=\"hb-rakam\"><div><b>4 Aralık</b><span>Ankara'daki basın toplantısı</span></div><div><b>Öğle saatleri</b><span>açıklanan zaman dilimi</span></div><div><b>27 Kasım</b><span>Koza TV yayını</span></div></div>",
+   "<h2>Özel canlı yayında ne dedi?</h2>",
+   "<p>Programda adaylık sorusu üzerine Özel, açıklamanın zamanını ve yerini kendisi duyurdu. Anka Haber Ajansı'nın aktardığına göre Özel şu ifadeyi kullandı:</p>",
+   "<blockquote class=\"hb-alinti\"><p>Haftaya cuma günü Ankara'da öğle saatlerinde bu konuda çok önemli bir açıklama yapacağım.</p><cite>Özgür Özel, Koza TV, 27 Kasım 2026</cite></blockquote>",
+   "<p>Özel, toplantının <b>“ülke gündemini uzun süre meşgul edecek”</b> nitelikte olacağını söyledi; içeriğe dair soruları ise <b>“Toplantının sürpriz etkisini şu an tüketmeyeceğim”</b> diyerek yanıtsız bıraktı. Özel ayrıca <b>“O toplantıyı herkes beklesin. Sorunun tam cevabı orada”</b> dedi.</p>",
+   "<h2>Ekrem İmamoğlu'nun adaylığı hakkında ne söyledi?</h2>",
+   "<p>Özel, tutuklu bulunan İstanbul Büyükşehir Belediye Başkanı Ekrem İmamoğlu'nun adaylığına ilişkin sorularda, İmamoğlu'nun bir partinin değil “milletin adayı” olduğunu savundu. Evrensel'in aktardığına göre Özel, adaylık konusunda kararın partiye değil seçmene ait olduğunu şu sözlerle ifade etti: <b>“Özgür Özel aday değiştiremez, parti aday değiştiremez, millet aday değiştirebilir.”</b> Özel, aynı programda <b>“Bu partide Ekrem İmamoğlu'na en yakın isim benim”</b> sözlerini de kullandı.</p>",
+   "<p>İmamoğlu'nun diplomasının iptaline ilişkin süreç, adaylık tartışmasının arka planında yer alıyor. Evrensel'in haberine göre İmamoğlu da diploma iptalini onaylayan Danıştay kararına ilişkin yaptığı açıklamada, adaylığı engellense bile halkın iktidarı değiştirme iradesinin durdurulamayacağını öne sürdü.</p>",
+   "<h2>Erken seçim konusunda ne dedi?</h2>",
+   "<p>Özel, programda seçim takvimine ilişkin görüşlerini de paylaştı. Anka'nın aktardığına göre <b>“2028'de yapılacak herhangi bir seçimi erken seçim kabul etmeyiz”</b> dedi. Euronews'ün haberine göre Özel, Yeni Parti'nin 15 Mayıs'tan önce yapılacak bir seçime kendi adıyla giremeyeceğini, ancak başka bir parti aracılığıyla seçime katılabileceğini söyledi; 2027'de yapılacak bir seçimin ise konuşulabileceğini belirtti. Bu değerlendirmeler Özel'in kendi görüşleri olarak aktarılmıştır.</p>",
+   "<h2>Açıklamadan önce neler biliniyor?</h2>",
+   "<p>Özel, programda toplantının yalnızca tarihini ve konusunu paylaştı. Toplantının saati, yeri ve formatı, kimlerin katılacağı ya da bir aday ismi açıklanıp açıklanmayacağı konusunda bilgi vermedi. Bu nedenle 4 Aralık'ta neyin duyurulacağına dair yorumlar şimdilik tahmin niteliğinde. Yeni Parti kuruluşunda 91 milletvekiliyle Meclis'in ikinci büyük grubu olmuştu; partinin adaylık konusundaki tutumu bu nedenle muhalefet cephesindeki seçim hesaplarını da doğrudan ilgilendiriyor.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Yeni Parti nedir?</b> Özgür Özel ve 91 milletvekili, CHP kurultaylarına ilişkin “mutlak butlan” kararının ardından 24 Temmuz 2026'da CHP'den istifa ederek Yeni Parti'nin kurucuları arasında yer aldı. Özel, 14 Kasım'daki 1. Olağan Kurultay'da tek aday olarak genel başkanlığa yeniden seçildi.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Özgür Özel'in basın toplantısı ne zaman?</b> Özel'in “haftaya cuma” ifadesine göre 4 Aralık 2026 Cuma günü, öğle saatlerinde Ankara'da yapılacak. Kesin saat ve yer henüz duyurulmadı.</p>",
+   "<p><b>Toplantıda ne açıklanacak?</b> Özel yalnızca cumhurbaşkanı adayına ilişkin soruyu orada yanıtlayacağını söyledi; içerik hakkında bilgi vermedi.</p>",
+   "<p><b>Özel bu açıklamayı nerede yaptı?</b> 27 Kasım Cuma akşamı Koza TV'deki canlı yayında.</p>",
+   "<p><b>Yeni Parti'nin genel başkanı kim?</b> Özgür Özel. 14 Kasım'daki kurultayda kullanılan 1.154 geçerli oyun tamamını alarak yeniden seçildi.</p>"
+  ]
+ },
+ {
+  "slug": "mekke-anlasmasi-islamabad-komite-toplantisi",
+  "baslik": "Mekke Anlaşması komitesi İslamabad'da: Sıradaki toplantı Türkiye'de",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.38",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "mekke-anlasmasi-islamabad-komite-toplantisi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Çok taraflı bir toplantı için hazırlanmış boş bir diplomatik salon: yuvarlak dizilmiş masalar, boş isimlikler, kapalı deri dosyalar, tercüme kulaklıkları ve su sürahileri",
+  "aciklama": "Mekke Ortak Savunma Anlaşması komitesi İslamabad'da ittifakın kurumsal yapısını görüştü; bir sonraki toplantı Türkiye'de yapılacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Mekke Ortak Savunma Anlaşması komitesi 27 Kasım'da İslamabad'da toplandı. Fidan, bir sonraki toplantıya Türkiye'nin ev sahipliği yapacağını açıkladı.",
+  "kaynak": "Evrensel (ANKA, 27 Kasım 2026); Habererk (27 Kasım 2026); Anka Haber Ajansı (27 Kasım 2026); NTV (anlaşma hükümleri); Euronews Türkçe (14 Kasım 2026, imza ve TBMM oylaması); Habertürk (27 Kasım 2026, Gürcistan Büyükelçisi'nin çağrılması ve Fidan'ın sözleri); TGRT Haber (27 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Evrensel: Bir sonraki komite toplantısı Türkiye'de yapılacak",
+    "url": "https://evrensel.net/haber/6011528/hakan-fidan-mekke-anlasmasi-kapsaminda-bir-sonraki-komite-toplantisi-turkiye-de-yapilacak"
+   },
+   {
+    "ad": "Habererk: Mekke Anlaşması komite toplantısı Türkiye'de yapılacak",
+    "url": "https://www.habererk.com/haber/mekke-anlasmasi-komite-toplantisi-turkiye-de-yapilacak_363722/"
+   },
+   {
+    "ad": "Anka Haber: Fidan, Güler ve Bayraktaroğlu Pakistan'da",
+    "url": "https://ankahaber.net/haber/fidan-guler-ve-bayraktaroglu-mekke-savunma-ittifaki-nin-ikinci-olagan-toplantisi-icin-pakistan-da-eddfb233"
+   },
+   {
+    "ad": "NTV: Mekke Savunma Anlaşması yürürlüğe girdi",
+    "url": "https://www.ntv.com.tr/turkiye/mekke-savunma-anlasmasi-yururluge-girdi-1750772"
+   },
+   {
+    "ad": "Euronews Türkçe: Mekke Anlaşması yürürlükte",
+    "url": "https://tr.euronews.com/2026/11/14/mekke-anlasmasi-yururlukte-turkiye-suudi-arabistan-ve-pakistan-arasinda-askeri-is-birligi-"
+   },
+   {
+    "ad": "Habertürk: Gürcistan Büyükelçisi Dışişleri'ne çağrıldı",
+    "url": "https://www.haberturk.com/dunya/gurcistan-buyukelcisi-disisleri-bakanligi-na-cagrildi-3930670"
+   },
+   {
+    "ad": "Habertürk: Bakan Fidan'dan Batum tepkisi",
+    "url": "https://www.haberturk.com/dunya/bakan-fidan-dan-batum-da-besiktas-taraftarlarina-yonelik-polis-siddetine-tepki-3930716"
+   },
+   {
+    "ad": "TGRT Haber: Fidan'dan Gürcistan'a tepki",
+    "url": "https://tgrthaber.com/gundem/bakan-fidandan-besiktas-macinda-yasanan-olaylar-nedeniyle-gurcistana-tepki-boyle-bir-3373928"
+   }
+  ],
+  "govde": [
+   "<p>Türkiye, Suudi Arabistan ve Pakistan arasındaki <b>Mekke Ortak Savunma Anlaşması</b> kapsamında kurulan Stratejik Siyasi ve Savunma Komitesi, <b>27 Kasım 2026</b>'da Pakistan'ın başkenti <b>İslamabad</b>'da ikinci olağan toplantısını yaptı. Toplantıya Türkiye'den Dışişleri Bakanı Hakan Fidan, Milli Savunma Bakanı Yaşar Güler ve Genelkurmay Başkanı Orgeneral Selçuk Bayraktaroğlu katıldı. Fidan, toplantının ardından yaptığı açıklamada komitenin bir sonraki toplantısına <b>Türkiye'nin ev sahipliği yapacağını</b> duyurdu.</p>",
+   "<div class=\"hb-rakam\"><div><b>3 ülke</b><span>Türkiye, Suudi Arabistan, Pakistan</span></div><div><b>16 madde</b><span>anlaşmanın uzunluğu</span></div><div><b>10 yıl</b><span>çekilme yapılamayan süre</span></div><div><b>14 Kasım</b><span>Resmî Gazete'de yayım</span></div></div>",
+   "<h2>İslamabad toplantısında hangi kararlar alındı?</h2>",
+   "<p>Fidan'ın açıklamasına göre toplantının ana gündemi ittifakın kurumsal yapısıydı. Komite; sivil bir karargâh olarak genel sekreterlik ve ortak askerî komuta yapısı konusunda prensip kararları aldı. Fidan, bu kararların büyük kısmının onaylandığını, bazı konuların ise bir sonraki toplantıya bırakıldığını söyledi. Çalışma alanları arasında sekretarya yapısı, ortak operasyonlar, kuvvet tahsisi, eğitim, planlama ve uluslararası ilişkiler sayıldı.</p>",
+   "<blockquote class=\"hb-alinti\"><p>Biz bu anlaşmayı imzaladığımız andan itibaren en önemli hedefimiz bu ittifakın kurumsallaşması ve hayata geçmesi.</p><cite>Hakan Fidan, Dışişleri Bakanı</cite></blockquote>",
+   "<p>Fidan, ittifaka katılmak isteyen ülkelerin başvurularının nasıl değerlendirileceğine dair de prensip kararları alındığını belirtti. Yeni üye olarak herhangi bir ülkenin adı açıklanmadı.</p>",
+   "<h2>Toplantıda hangi bölgesel konular konuşuldu?</h2>",
+   "<p>Fidan'ın aktardığına göre heyetler Körfez'deki durumu, Husilerin Suudi Arabistan'a yönelik tehdidini, ABD-İran müzakerelerini ve Ukrayna'daki savaşı ele aldı. Anka Haber Ajansı'nın toplantı öncesinde Dışişleri kaynaklarına dayandırdığı habere göre Türkiye'nin, Husi saldırıları karşısında Suudi Arabistan'la dayanışma mesajı vermesi ve Bab'ül Mendep Boğazı'nda deniz güvenliği konusunu gündeme getirmesi bekleniyordu.</p>",
+   "<h2>Mekke Ortak Savunma Anlaşması ne öngörüyor?</h2>",
+   "<p>Anlaşma <b>7 Ağustos 2026</b>'da Mekke'de Cumhurbaşkanı Recep Tayyip Erdoğan, Suudi Arabistan Veliaht Prensi Muhammed bin Selman ve Pakistan Başbakanı Şahbaz Şerif tarafından imzalandı. TBMM Genel Kurulu anlaşmayı 5 Kasım'da 279 kabul, 119 ret oyuyla onayladı; metin 14 Kasım'da Resmî Gazete'de yayımlandı. Başlıca hükümler şöyle:</p>",
+   "<ul><li><b>Ortak savunma (Madde 2):</b> Taraflardan birine dışarıdan yapılan silahlı saldırı, tüm taraflara yapılmış sayılır.</li><li><b>Savunma sanayii ve güvenlik iş birliği (Madde 3)</b> ile terörle mücadelede ortak çaba (Madde 5).</li><li><b>İstihbarat paylaşımı (Madde 9)</b> ve barışta ve savaşta lojistik destek (Madde 10).</li><li><b>Komite (Madde 8):</b> Dışişleri ve savunma bakanları ile genelkurmay başkanlarından oluşur, yılda iki kez toplanır.</li><li><b>Süre:</b> İlk 10 yıl çekilme yapılamaz; sonrasında en az 3 ay önceden yazılı bildirimle çekilmek mümkündür.</li></ul>",
+   "<p>Komitenin ilk olağan toplantısı 31 Ağustos 2026'da İstanbul'da, olağanüstü toplantısı ise Husi saldırılarının ardından 5 Ekim 2026'da Riyad'da yapılmıştı.</p>",
+   "<h2>Fidan Gürcistan'daki olaylar için ne dedi?</h2>",
+   "<p>Fidan İslamabad'daki açıklamasında, 26 Kasım'da Batum'da oynanan Beşiktaş-Hapoel Beer Sheva maçında Gürcistan polisinin Türk taraftarlara müdahalesine de değindi. Gürcistan Dışişleri Bakanı'nı aradığını anlatan Fidan, <b>“Seyircilerimizin böyle muamele görmesini biz kabul edemeyiz”</b> dedi. Dışişleri Bakanlığı, 27 Kasım'da Gürcistan'ın Ankara Büyükelçisi Arçil Kalandia'yı bakanlığa çağırarak olayların her yönüyle soruşturulmasını ve orantısız güç kullananlar hakkında hukuki işlem yapılmasını talep etti. Gürcistan hükümetinden kamuoyuna yansıyan bir yanıt bu haber hazırlanırken kaynaklarda yer almıyordu.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Mekke Anlaşması'nın üyeleri hangi ülkeler?</b> Türkiye, Suudi Arabistan ve Pakistan.</p>",
+   "<p><b>Komitenin bir sonraki toplantısı nerede?</b> Fidan'ın açıklamasına göre Türkiye'de. Tarih henüz açıklanmadı.</p>",
+   "<p><b>Anlaşma ne zaman yürürlüğe girdi?</b> TBMM onayının ardından 14 Kasım 2026'da Resmî Gazete'de yayımlandı.</p>",
+   "<p><b>Yeni üye alınacak mı?</b> Komite, katılım taleplerinin nasıl değerlendirileceğine dair prensip kararları aldı; yeni üye adı açıklanmadı.</p>"
+  ]
+ },
+ {
+  "slug": "turkiye-rusya-kek-protokolu-2026",
+  "baslik": "Türkiye-Rusya KEK protokolü imzalandı: Hedef 100 milyar dolar",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.37",
+  "kategori": "Türkiye Gündemi",
+  "gorsel": "turkiye-rusya-kek-protokolu-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Sabah saatlerinde Marmara kıyısında bir konteyner limanı: üst üste dizilmiş konteynerler, büyük bir liman vinci, rıhtımda yük gemisi ve durgun deniz",
+  "aciklama": "Türkiye ile Rusya, İstanbul'daki 20. Dönem KEK toplantısının ardından ticarette 100 milyar dolar hedefini içeren protokolü imzaladı.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Türkiye ile Rusya, 27 Kasım'da İstanbul'da 20. Dönem KEK Protokolü'nü imzaladı. Yıllık 50 milyar dolar civarındaki ticarette hedef 100 milyar dolar.",
+  "kaynak": "Anadolu Ajansı (haberler.com, 27 Kasım 2026); Anka Haber Ajansı (Habererk, 27 Kasım 2026); Bloomberg HT (27 Kasım 2026); Avrupa Gazete (27 Kasım 2026, Bolat'ın paylaşımı)",
+  "kaynaklar": [
+   {
+    "ad": "Haberler.com (AA): Türk-Rus 20. Dönem KEK Protokolü imzalandı",
+    "url": "https://www.haberler.com/ekonomi/turk-rus-20-donem-kek-protokolu-imzalandi-20468118-haberi/"
+   },
+   {
+    "ad": "Habererk (ANKA): Türkiye, Rusya'nın dış ticaretinde ikinci sırada",
+    "url": "https://www.habererk.com/haber/turkiye-rusya-nin-dis-ticaretinde-ikinci-sirada_363702/"
+   },
+   {
+    "ad": "Bloomberg HT: 100 milyar dolarlık ticaret hedefinde mutabakat",
+    "url": "https://bloomberght.com/turkiye-ile-rusya-arasinda-100-milyar-dolarlik-ticaret-hedefinde-mutabakat-3795944"
+   },
+   {
+    "ad": "Avrupa Gazete: Bolat KEK protokolünü değerlendirdi",
+    "url": "https://www.avrupagazete.co.uk/ticaret-bakani-omer-bolat-turkiye-rusya-ticari-ve-ekonomik-iliskilerinde-bir-yol-haritasi-olacak-kek-protokolunu-imzaladik"
+   }
+  ],
+  "govde": [
+   "<p>Türkiye ile Rusya, iki ülke arasındaki ekonomik ilişkilerin önümüzdeki dönemine yön verecek <b>20. Dönem Karma Ekonomik Komisyon (KEK) Protokolü</b>'nü <b>27 Kasım 2026</b>'da İstanbul'da imzaladı. Protokol, Türk-Rus Ticari ve Ekonomik İşbirliğine Dair Hükümetlerarası Karma Komisyonu'nun toplantısının ardından komisyonun eş başkanları <b>Ticaret Bakanı Ömer Bolat</b> ile <b>Rusya Başbakan Yardımcısı Aleksandr Novak</b> tarafından imzalandı. Bolat, iki ülke liderlerinin belirlediği <b>100 milyar dolarlık</b> ticaret hacmi hedefine dengeli biçimde ulaşmak için atılacak adımlarda mutabık kalındığını açıkladı.</p>",
+   "<div class=\"hb-rakam\"><div><b>20.</b><span>dönem KEK toplantısı</span></div><div><b>~50 milyar $</b><span>yıllık ikili ticaret</span></div><div><b>100 milyar $</b><span>ortak ticaret hedefi</span></div></div>",
+   "<h2>KEK protokolü neyi kapsıyor?</h2>",
+   "<p>Bolat'ın açıklamalarına göre komisyon toplantısında küresel ekonomi, ikili ticaret ve ekonomik ilişkiler ile <b>enerji, tarım, müteahhitlik, çevre, eğitim ve ulaştırma</b> alanlarındaki iş birliği ele alındı. Bolat, sosyal medya hesabından yaptığı paylaşımda protokolün “Türkiye-Rusya ticari ve ekonomik ilişkilerinde bir yol haritası olacak” bir belge olduğunu belirtti. Çalışma gruplarında karşılıklı yatırımlar için uygun koşulların oluşturulması, sanayi, sağlık ve ilaç, dijital teknolojiler, lojistik ve e-ticaret de görüşüldü. Protokolün madde madde içeriği kamuoyuyla paylaşılmadı.</p>",
+   "<blockquote class=\"hb-alinti\"><p>2027 yılında az sonra imzalayacağımız protokolün de uygulanmasını birlikte takip edeceğiz.</p><cite>Ömer Bolat, Ticaret Bakanı</cite></blockquote>",
+   "<h2>Türkiye ile Rusya arasındaki ticaret ne kadar?</h2>",
+   "<p>Bolat, iki ülke arasında yıllık yaklaşık <b>50 milyar dolarlık</b> bir ticaret hacmi bulunduğunu, Cumhurbaşkanı Recep Tayyip Erdoğan ile Rusya Devlet Başkanı Vladimir Putin'in bu rakamı 100 milyar dolara çıkarma hedefine bağlı olduklarını söyledi. Novak ise <b>“Son yıllarda 50 milyar doları ikili ticaret hacminde istikrarlı bir şekilde aşmış durumdayız”</b> dedi. Anka'nın aktardığına göre Novak, Türkiye'nin Rusya'nın dış ticaretinde ikinci, ihracatında üçüncü, ithalatında beşinci sırada yer aldığını belirtti.</p>",
+   "<h2>Enerji ve Akkuyu'da son durum ne?</h2>",
+   "<p>Novak, enerji alanındaki iş birliğine dair <b>“Rusya, Türkiye için önemli, istikrarlı ve güvenli bir doğal gaz tedarikçisi”</b> değerlendirmesinde bulundu ve Mavi Akım ile TürkAkım boru hatlarının etkin şekilde çalıştığını söyledi. Novak'ın aktardığına göre Akkuyu Nükleer Güç Santrali'nin dört ünitesinde de çalışmalar sürüyor; öncelik ilk ünitenin devreye alınması. İki taraf, santralin bir an önce tamamlanmasının önemini vurguladı; tamamlanma tarihi açıklanmadı.</p>",
+   "<ul><li><b>Tahıl:</b> Novak'a göre Türkiye, Rus tahılının en büyük alıcısı.</li><li><b>Gübre:</b> Rusya'dan Türkiye'ye gübre sevkiyatının yaklaşık iki katına çıktığı belirtildi.</li><li><b>Ekonomik forum:</b> Novak, Türkiye'nin 16-19 Haziran 2027'de düzenlenecek 30. St. Petersburg Uluslararası Ekonomi Forumu'na konuk ülke olarak katılma kararı için teşekkür etti.</li></ul>",
+   "<div class=\"kutu-bilgi\"><p><b>KEK nedir?</b> Karma Ekonomik Komisyon, iki ülkenin bakan düzeyinde eş başkanlığında toplanan ve ticaret, yatırım, enerji, ulaştırma gibi alanlardaki iş birliğini belirleyen hükümetlerarası bir mekanizmadır. Toplantı sonunda imzalanan protokol, bir sonraki döneme kadar yapılacak çalışmaların çerçevesini çizer.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>KEK protokolünü kim imzaladı?</b> Türkiye adına Ticaret Bakanı Ömer Bolat, Rusya adına Başbakan Yardımcısı Aleksandr Novak.</p>",
+   "<p><b>Toplantı nerede yapıldı?</b> 27 Kasım 2026'da İstanbul'da.</p>",
+   "<p><b>100 milyar dolar hedefi için tarih verildi mi?</b> Açıklamalarda hedefe ulaşmak için belirli bir yıl verilmedi.</p>",
+   "<p><b>Protokolün uygulanması ne zaman takip edilecek?</b> Bolat'a göre iki taraf protokolün uygulanmasını 2027 yılında birlikte izleyecek.</p>"
+  ]
+ },
+ {
+  "slug": "ispanya-secimi-29-kasim-2026",
+  "baslik": "İspanya seçimi 2026: 38,6 milyon seçmen 29 Kasım'da sandık başında",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.36",
+  "kategori": "Dünya",
+  "gorsel": "ispanya-secimi-29-kasim-2026-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Akşam saatinde İstanbul'da bir kahvehanede ahşap masa üzerinde katlanmış gazete ve ince belli bardakta çay; arka duvardaki televizyonda bulanık bir seçim salonu görüntüsü",
+  "aciklama": "İspanya'da 29 Kasım'daki erken genel seçimde 38,6 milyon seçmen 350 milletvekilini belirleyecek.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "İspanya 29 Kasım Pazar günü erken genel seçime gidiyor. 38,6 milyon seçmen 350 milletvekilini belirleyecek; anketler PP'yi önde, Sanchez'i geride gösterdi.",
+  "kaynak": "Anadolu Ajansı (27 Kasım 2026, seçmen sayısı, sandık saatleri, anket verileri, Senato); AFP / Gulf News (27-28 Kasım 2026, liderler, erken seçim nedeni, kapanış mitingleri); Al Jazeera, AFP-Anadolu-Reuters derlemesi (27 Kasım 2026, anket yasağı, düşünme günü); Reuters dünya haberleri özeti / Devdiscourse (27 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "Anadolu Ajansı: Sanchez'in siyasi geleceği genel seçimlerde belli olacak",
+    "url": "https://www.aa.com.tr/tr/dunya/avrupa-solunun-one-cikan-lideri-sanchezin-siyasi-gelecegi-genel-secimlerde-belli-olacak/4140390"
+   },
+   {
+    "ad": "Gulf News (AFP): Sanchez makes last bid to beat the right",
+    "url": "https://gulfnews.com/world/europe/sanchez-makes-last-bid-to-beat-the-right-ahead-of-spanish-vote-2-1.500763777"
+   },
+   {
+    "ad": "Al Jazeera: Sanchez bets on left-wing voting surge",
+    "url": "https://www.aljazeera.com/news/2026/11/27/spains-pedro-sanchez-bets-on-left-wing-voting-surge-to-defy-election-polls"
+   },
+   {
+    "ad": "Reuters World News Summary (Devdiscourse, 27 Kasım 2026)",
+    "url": "https://www.devdiscourse.com/article/international/4013219-reuters-world-news-summary"
+   }
+  ],
+  "govde": [
+   "<p>İspanya'da <b>29 Kasım 2026 Pazar</b> günü erken genel seçim yapılacak. Anadolu Ajansı'nın aktardığı resmî verilere göre <b>38.616.949</b> seçmen, Temsilciler Meclisi'nin (Congreso) <b>350</b> sandalyesini ve Senato'nun 209 üyesini belirlemek için oy kullanacak. Sandıklar yerel saatle 09.00'da açılıp 20.00'de kapanacak; bu, Türkiye saatiyle 11.00-22.00 arasına denk geliyor. Seçim, Başbakan Pedro Sanchez'in sekiz yıllık iktidarının sürüp sürmeyeceğini belirleyecek. Cumartesi günü kampanya yasağının uygulandığı \"düşünme günü\" olarak geçiyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>38,6 milyon</b><span>kayıtlı seçmen</span></div><div><b>350</b><span>milletvekili sandalyesi</span></div><div><b>176</b><span>tek başına çoğunluk için gereken sandalye</span></div><div><b>1,6 milyon</b><span>ilk kez oy kullanacak seçmen</span></div></div>",
+   "<h2>İspanya neden erken seçime gidiyor?</h2>",
+   "<p>Normalde 2027'de yapılması gereken seçim, ülkenin en önemli gündem maddelerinden biri hâline gelen konut krizi nedeniyle öne çekildi. AFP'nin haberine göre sağ muhalefetin hükümetin hazırladığı acil konut kararnamelerini Meclis'te reddetmesi üzerine Sanchez sandık kararı aldı. AA'ya göre bu yıl seçmenin önündeki iki ana başlık konut ve göç; 2023 seçimlerinde ise ekonomik kriz ve işsizlik öne çıkıyordu.</p>",
+   "<h2>Hangi partiler yarışıyor?</h2>",
+   "<ul><li><b>İspanyol Sosyalist İşçi Partisi (PSOE):</b> Başbakan Pedro Sanchez liderliğinde, \"ilerici çoğunluk\" hedefiyle yarışıyor.</li><li><b>Halk Partisi (PP):</b> Merkez sağdaki ana muhalefet partisi, Alberto Nunez Feijoo liderliğinde. 2023'te en çok sandalyeyi kazanmış ama hükümet kuramamıştı.</li><li><b>Vox:</b> Santiago Abascal'ın liderliğindeki aşırı sağ parti, kampanyasını \"ulusal öncelik\" söylemine dayandırdı.</li><li><b>Geniş Cephe (Frente Amplio):</b> Eski Barselona Belediye Başkanı Ada Colau'nun başbakan adayı olduğu sol ittifak.</li><li><b>Podemos:</b> Solun diğer partilerinden biri olarak ayrı yarışıyor.</li></ul>",
+   "<h2>Anketler ne gösteriyor?</h2>",
+   "<p>İspanya'da seçimden önceki beş gün içinde kamuoyu yoklaması yayımlamak yasak. AA'nın yasak öncesi anketlerden aktardığı verilere göre PP'nin oy oranı yüzde 31-32, PSOE'nin yüzde 28-29, Vox'un yüzde 17-19 aralığında görünüyordu. Aynı anketlerde PP ile Vox'un birlikte 190'ın üzerinde sandalyeye ulaşabileceği öngörülüyordu. AFP de anketlerin büyük bölümünün olası bir PP-Vox ortaklığını önde gösterdiğini, ancak son anketlerde farkın daraldığına işaret eden sonuçlar bulunduğunu yazdı. Anketler kesin sonuç değildir; sandalye dağılımı illere göre işleyen seçim sistemi nedeniyle oy oranından farklı çıkabilir.</p>",
+   "<h2>Liderler kampanyayı nasıl kapattı?</h2>",
+   "<p>Liderler cuma akşamı son mitinglerini farklı şehirlerde yaptı. AFP'ye göre Sanchez Madrid'de seçmenlere sandığa gitme çağrısı yaparken Feijoo Sevilla'daki mitinginde Sanchez'in kampanyasını \"korku\" kampanyası olarak nitelendirdi. Abascal ise Valensiya'da taraftarlarına korkuyla değil cesaretle oy vermeleri çağrısında bulundu. Reuters'ın aktardığına göre Sanchez, yayımlanamayan anketlere rağmen sol bir çoğunluk kazanacağını savunuyor.</p>",
+   "<blockquote class=\"hb-alinti\"><p>Bu seçimler İspanya'yı geriye değil, ileriye taşımakla ilgili.</p><cite>Pedro Sanchez, Madrid mitingi (AFP)</cite></blockquote>",
+   "<h2>Seçim sonrasında neler olabilir?</h2>",
+   "<p>Tek başına hükümet kurmak için 176 sandalye gerekiyor ve hiçbir partinin bu sayıya tek başına ulaşması beklenmiyor. Bu nedenle sonuç büyük ölçüde blokların toplamına bağlı. AA'ya göre Sanchez, katılım yüzde 75 ve üzerine çıkarsa ilerici blokun 176 sandalyeye ulaşabileceğini söyledi; 2023'te katılım yüzde 66 olmuştu. Sağ blokun çoğunluğu alması hâlinde PP'nin Vox'la nasıl bir işbirliği kuracağı tartışılacak. Senato'nun da yenilenmesi önemli: Senato, Anayasa Mahkemesi'nin 12 üyesinden 4'ünü beşte üç çoğunlukla seçiyor. Seçim haftasında Avrupa'nın gündeminde AB'nin uzun dönemli bütçesi de vardı; bu konudaki gelişmeleri <a href=\"/haberler/ab-butce-zirvesi-2028-2034-anlasma-yok.html\">AB bütçe zirvesi haberimizde</a> okuyabilirsiniz.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Sonuçlar ne zaman belli olur?</b> Sandıklar Türkiye saatiyle 22.00'de kapanacak. İspanya'da sayım hızlı ilerlediği için ilk resmî sonuçların aynı gece açıklanması bekleniyor.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>İspanya seçimi hangi gün?</b> 29 Kasım 2026 Pazar günü.</p>",
+   "<p><b>Sandıklar saat kaçta kapanıyor?</b> Yerel saatle 20.00'de, Türkiye saatiyle 22.00'de.</p>",
+   "<p><b>Hükümet kurmak için kaç sandalye gerekiyor?</b> 350 sandalyeli Meclis'te salt çoğunluk 176.</p>",
+   "<p><b>Anketlerde kim önde?</b> Yasak öncesi anketlerin çoğunda PP birinci, PSOE ikinci, Vox üçüncü sırada görünüyordu.</p>"
+  ]
+ },
+ {
+  "slug": "duterte-ucm-davasi-30-kasim",
+  "baslik": "Duterte davası 30 Kasım'da başlıyor: UCM'de üç insanlığa karşı suç",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.35",
+  "kategori": "Dünya",
+  "gorsel": "duterte-ucm-davasi-30-kasim-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Sabah saatinde boş, ahşap kaplı bir mahkeme salonu; avukat masasında kapalı deri dosya ve gözlük, yüksek pencerelerden giren gün ışığı",
+  "aciklama": "Eski Filipinler Devlet Başkanı Duterte, 30 Kasım'da UCM'de üç insanlığa karşı suç maddesiyle yargılanmaya başlayacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Eski Filipinler Devlet Başkanı Duterte'nin UCM'deki davası 30 Kasım Pazartesi Lahey'de başlıyor. Duterte, üç insanlığa karşı suç maddesiyle yargılanacak.",
+  "kaynak": "Uluslararası Ceza Mahkemesi basın açıklaması, 27 Mayıs 2026 (GlobalSecurity arşivi: dava tarihi, heyet, suçlamaların onayı, tutuklama tarihleri); Diplomat Magazine (30 Ekim 2026, UCM duyurusu: saat, suçlama maddeleri, oturum düzeni, canlı yayın); Al Jazeera, AFP-AP-Reuters (8 Ekim 2026: yargılanmaya ehillik kararı, can kaybı tahminleri); OneNews Filipinler (28 Kasım 2026: ilk gün işleyişi); Euronews Türkçe (27 Mayıs 2026: Filipinler'in UCM'den çekilmesi); Reuters dünya haberleri özeti / Devdiscourse (27 Kasım 2026)",
+  "kaynaklar": [
+   {
+    "ad": "UCM basın açıklaması: Duterte case, trial to open on 30 November 2026 (GlobalSecurity arşivi)",
+    "url": "https://www.globalsecurity.org/military/library/news/2026/05/mil-260527-icc01.htm"
+   },
+   {
+    "ad": "Diplomat Magazine: ICC Trial of Rodrigo Duterte to Open on 30 November 2026",
+    "url": "https://diplomatmagazine.eu/2026/10/30/icc-trial-of-rodrigo-duterte-to-open-on-30-november-2026/"
+   },
+   {
+    "ad": "Al Jazeera: Duterte fit to stand trial, ICC rules",
+    "url": "https://www.aljazeera.com/news/2026/10/8/philippines-ex-president-duterte-fit-to-stand-trial-icc-rules"
+   },
+   {
+    "ad": "OneNews: Duterte to enter plea on first day of ICC trial",
+    "url": "https://www.onenews.ph/articles/duterte-to-enter-plea-on-first-day-of-icc-trial"
+   },
+   {
+    "ad": "Euronews Türkçe: Duterte'nin UCM davası 30 Kasım'da başlayacak",
+    "url": "https://tr.euronews.com/2026/05/27/yargic-acikladi-dutertenin-ucm-davasi-30-kasimda-baslayacak"
+   },
+   {
+    "ad": "Reuters World News Summary (Devdiscourse, 27 Kasım 2026)",
+    "url": "https://www.devdiscourse.com/article/international/4013219-reuters-world-news-summary"
+   }
+  ],
+  "govde": [
+   "<p>Eski Filipinler Devlet Başkanı <b>Rodrigo Duterte</b>'nin Uluslararası Ceza Mahkemesi'ndeki (UCM) davası <b>30 Kasım 2026 Pazartesi</b> günü Hollanda'nın Lahey kentinde başlıyor. Duruşma yerel saatle <b>10.00'da</b> (Türkiye saatiyle 12.00) açılacak. 81 yaşındaki Duterte, \"uyuşturucuyla savaş\" adı verilen kampanya sırasında yaşanan öldürmeler nedeniyle insanlığa karşı suç kapsamında cinayet ve cinayete teşebbüs suçlamalarıyla yargılanacak. Duterte suçlamaları reddediyor. UCM, mahkûmiyet kararı çıkması hâlinde en ağır ceza olarak ömür boyu hapis verebiliyor.</p>",
+   "<div class=\"hb-rakam\"><div><b>30 Kasım</b><span>davanın açılış günü</span></div><div><b>3</b><span>insanlığa karşı suç maddesi</span></div><div><b>2011-2019</b><span>suçlamaların kapsadığı dönem</span></div><div><b>30 dakika</b><span>canlı yayın gecikmesi</span></div></div>",
+   "<h2>Duterte hangi suçlamalarla yargılanıyor?</h2>",
+   "<p>UCM'nin açıklamalarına göre Ön Yargılama Dairesi I, 23 Nisan 2026'da üç suçlama maddesinin tamamını oy birliğiyle onaylayarak Duterte'yi yargılanmak üzere Yargılama Dairesi'ne gönderdi. Suçlamalar Roma Statüsü'nün 7. maddesi kapsamında 1 Kasım 2011 ile 16 Mart 2019 arasındaki dönemi kapsıyor:</p>",
+   "<ul><li><b>Birinci madde:</b> Duterte'nin Davao Belediye Başkanı olduğu dönemde, yaklaşık 2013-2016 yıllarında Davao'da işlendiği iddia edilen öldürmeler.</li><li><b>İkinci madde:</b> Devlet başkanlığı döneminde, yaklaşık Temmuz 2016-Temmuz 2017 arasında \"yüksek değerli hedef\" olarak tanımlanan kişilerin öldürüldüğü iddiası.</li><li><b>Üçüncü madde:</b> Yaklaşık Temmuz 2016-Eylül 2018 arasında mahalle (barangay) düzeyindeki operasyonlarda işlendiği iddia edilen cinayet ve cinayete teşebbüsler.</li></ul>",
+   "<p>Kampanyadaki toplam can kaybı konusunda rakamlar birbirinden çok farklı. AFP, AP ve Reuters'ın derlemesine göre Filipin polisi 6 binden fazla ölüm bildirirken insan hakları kuruluşları bu sayının 30 bine kadar çıktığını öne sürüyor. Davadaki suçlamalar ise bu sayının tamamını değil, savcılığın belirli olaylarla sınırladığı öldürmeleri kapsıyor.</p>",
+   "<h2>Duruşmanın ilk günü nasıl işleyecek?</h2>",
+   "<p>Mahkemenin duyurduğu düzene göre davaya Yargılama Dairesi III bakacak; heyete Hâkim Joanna Korner başkanlık ediyor, Hâkim Keebong Paek ve Hâkim Nicolas Guillou heyette yer alıyor. İlk gün suçlama maddeleri okunacak, hâkimler Duterte'nin suçlamaları anlayıp anlamadığını kontrol edecek ve ona suçu kabul edip etmediğini soracak. Ardından sırasıyla savcılık, mağdurların ortak hukuki temsilcileri ve isterse savunma açılış konuşmalarını yapacak. Açılış konuşmalarının ardından savcılığın ilk tanığının dinlenmesi bekleniyor.</p>",
+   "<p>Duruşmalar her gün dört oturum hâlinde, 10.00-16.00 arasında yapılacak. Açık oturumlar UCM'nin internet sitesinden ve resmî sosyal medya hesaplarından <b>30 dakika gecikmeli</b> olarak yayımlanacak. Filipin basınına göre oturum düzeni Duterte'nin yaşı ve sağlık durumu dikkate alınarak belirlendi.</p>",
+   "<h2>Dava bu noktaya nasıl geldi?</h2>",
+   "<ol><li><b>7 Mart 2025:</b> UCM, Duterte hakkında gizli tutuklama kararı çıkardı; karar 11 Mart'ta kamuoyuna açıklandı.</li><li><b>12 Mart 2025:</b> Duterte Filipinler'de tutuklanarak UCM'ye teslim edildi; 14 Mart'ta ilk kez hâkim karşısına çıktı.</li><li><b>23-27 Şubat 2026:</b> Suçlamaların onaylanması duruşmaları yapıldı.</li><li><b>23 Nisan 2026:</b> Üç suçlama maddesi onaylandı.</li><li><b>27 Mayıs 2026:</b> Yargılama Dairesi davanın 30 Kasım'da başlayacağını açıkladı.</li><li><b>Ekim 2026:</b> Bağımsız sağlık uzmanlarının değerlendirmesinin ardından hâkimler Duterte'nin yargılanmaya ehil olduğuna karar verdi.</li></ol>",
+   "<div class=\"kutu-bilgi\"><p><b>Filipinler UCM'den çekilmişti</b> Filipinler, Duterte döneminde 2019'da UCM'den çekildi. Mahkeme ise ülkenin üye olduğu dönemde, 2011-2019 arasında işlendiği iddia edilen suçlar üzerinde yetkisinin sürdüğüne karar verdi.</p></div>",
+   "<p>Duterte'nin savunma ekibi daha önce suçlamaların siyasi amaçlı olduğunu ve delillerin yetersiz kaldığını savundu. Masumiyet karinesi gereği Duterte, mahkeme aksine karar verene kadar suçsuz kabul ediliyor.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Duterte davası ne zaman başlıyor?</b> 30 Kasım 2026 Pazartesi, Lahey saatiyle 10.00'da (Türkiye saatiyle 12.00).</p>",
+   "<p><b>Duruşma canlı izlenebilecek mi?</b> Evet, açık oturumlar UCM'nin internet sitesinden 30 dakika gecikmeyle yayımlanacak.</p>",
+   "<p><b>Duterte'ye hangi ceza verilebilir?</b> UCM'de mahkûmiyet hâlinde verilebilecek en ağır ceza ömür boyu hapis.</p>"
+  ]
+ },
+ {
+  "slug": "super-lig-13-hafta-programi-derbi",
+  "baslik": "Süper Lig 13. hafta programı: Beşiktaş-Galatasaray derbisi 30 Kasım'da",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.34",
+  "kategori": "Spor",
+  "gorsel": "super-lig-13-hafta-programi-derbi-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Akşamüstü boş bir futbol stadyumu; gri tribün koltukları, yeni biçilmiş çimde kenar çizgisine yakın duran beyaz bir top ve yanmaya başlayan projektörler",
+  "aciklama": "Süper Lig'in 13. haftası 30 Kasım'daki Beşiktaş-Galatasaray derbisiyle tamamlanacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Süper Lig'de 13. hafta Beşiktaş-Galatasaray derbisiyle 30 Kasım Pazartesi 21.00'de tamamlanacak. Cuma günü Konyaspor ve Rizespor son dakikalarda kazandı.",
+  "kaynak": "TFF programı, Anadolu Ajansı üzerinden (Haberler.com, 27 Kasım 2026: 13. hafta maç programı); CNN Türk (26 Kasım 2026: MHK hakem atamaları); Anadolu Ajansı (27 Kasım 2026: Rizespor-Kasımpaşa 3-2); A Spor (27 Kasım 2026: Rizespor-Kasımpaşa); Hürriyet (27 Kasım 2026: Alanyaspor-Konyaspor 1-2); Sözcü (27 Kasım 2026: Alanyaspor-Konyaspor); NTV Spor (23 Kasım 2026: 12. hafta sonuçları ve puan durumu)",
+  "kaynaklar": [
+   {
+    "ad": "Haberler.com (AA, TFF verisi): Futbolda haftanın programı",
+    "url": "https://www.haberler.com/spor/futbol-haftanin-programi-20467119-haberi/"
+   },
+   {
+    "ad": "CNN Türk: Beşiktaş-Galatasaray derbisinin hakemi belli oldu",
+    "url": "https://www.cnnturk.com/spor/futbol/son-dakika-besiktas-galatasaray-derbisinin-hakemi-belli-oldu-3498513"
+   },
+   {
+    "ad": "Anadolu Ajansı: Çaykur Rizespor, sahasında Kasımpaşa'yı 3-2 yendi",
+    "url": "https://www.aa.com.tr/tr/spor/caykur-rizespor-sahasinda-kasimpasayi-3-2-yendi/4140901"
+   },
+   {
+    "ad": "A Spor: Rizespor Kasımpaşa'yı 3-2 mağlup etti",
+    "url": "https://www.aspor.com.tr/spor-toto-super-lig/2026/11/27/caykur-rizespordan-son-dakika-zaferi-kasimpasayi-3-2-maglup-etti"
+   },
+   {
+    "ad": "Hürriyet: Alanyaspor 1-2 Konyaspor maç özeti",
+    "url": "https://www.hurriyet.com.tr/sporarena/alanyaspor-1-2-konyaspor-super-lig-maci-ozeti-43392768"
+   },
+   {
+    "ad": "Sözcü: Konyaspor 90+7'de kazandı",
+    "url": "https://www.sozcu.com.tr/konyaspor-907de-kazandi-uc-maclik-seri-bitti-p384987"
+   },
+   {
+    "ad": "NTV Spor: Süper Lig'de 12. hafta sona erdi",
+    "url": "https://www.ntvspor.net/futbol/galeri-super-ligde-12-hafta-sona-erdi-galatasaray-liderligini-surdurdu-433513"
+   }
+  ],
+  "govde": [
+   "<p>Trendyol Süper Lig'de 13. hafta <b>27 Kasım Cuma</b> günü oynanan iki maçla başladı ve <b>30 Kasım Pazartesi</b> günü saat <b>21.00</b>'de Tüpraş Stadyumu'nda oynanacak <b>Beşiktaş-Galatasaray</b> derbisiyle sona erecek. Cuma akşamı TÜMOSAN Konyaspor deplasmanda Corendon Alanyaspor'u 90+7'de bulduğu golle 2-1 yendi; Çaykur Rizespor da sahasında Kasımpaşa'yı uzatmada gelen golle 3-2 mağlup etti. Haftanın kalan yedi maçı cumartesi, pazar ve pazartesi günlerine yayılıyor. Derbinin hakemi Merkez Hakem Kurulu'nun açıkladığı listeye göre Oğuzhan Çakır.</p>",
+   "<div class=\"hb-rakam\"><div><b>31</b><span>lider Galatasaray'ın puanı</span></div><div><b>25</b><span>üçüncü sıradaki Beşiktaş'ın puanı</span></div><div><b>7</b><span>haftada kalan maç</span></div><div><b>21.00</b><span>derbinin başlama saati</span></div></div>",
+   "<h2>Cuma maçlarında hangi sonuçlar çıktı?</h2>",
+   "<ul><li><b>Corendon Alanyaspor 1-2 TÜMOSAN Konyaspor:</b> Ev sahibi 15. dakikada Ianis Hagi'nin serbest vuruş golüyle öne geçti. Konyaspor 23. dakikada Muleka'nın kafa golüyle eşitliği yakaladı, 90+7'de Mostafa Mohamed penaltıdan galibiyet golünü attı.</li><li><b>Çaykur Rizespor 3-2 Kasımpaşa:</b> Rizespor 22. dakikada Laçi ile öne geçti. Kasımpaşa 32. dakikada Winck, 47. dakikada Mendes'in golleriyle skoru 2-1'e getirdi. Rizespor 81. dakikada Emrecan Bulut ile eşitledi, 90+1'de Borrelli'nin golüyle maçı kazandı.</li></ul>",
+   "<p>Bu sonuçlarla Konyaspor puanını 11'e çıkardı ve 12 puandaki Alanyaspor'la arasındaki farkı bire indirdi. Konyaspor geçen hafta sahasında Beşiktaş'a 4-2 yenilmişti; bu galibiyet alt sıralardaki yarışta takıma nefes aldırdı. Rizespor puanını 20'ye yükseltirken Kasımpaşa 23 puanda kaldı. İki maçta da galibiyet golünün normal süre bittikten sonra gelmesi, cuma akşamını haftanın en çekişmeli bölümlerinden biri yaptı.</p>",
+   "<h2>Süper Lig 13. haftada hangi maçlar var?</h2>",
+   "<p>Türkiye Futbol Federasyonu'nun açıkladığı programa göre haftanın kalan maçları şöyle:</p>",
+   "<ul><li><b>28 Kasım Cumartesi 16.00:</b> Samsunspor - Gençlerbirliği</li><li><b>28 Kasım Cumartesi 19.00:</b> Gaziantep FK - Amed Sportif Faaliyetler</li><li><b>29 Kasım Pazar 13.30:</b> Arca Çorum FK - Kocaelispor</li><li><b>29 Kasım Pazar 16.00:</b> Eyüpspor - İstanbul Başakşehir</li><li><b>29 Kasım Pazar 19.00:</b> Fenerbahçe - Erzurumspor FK</li><li><b>30 Kasım Pazartesi 19.00:</b> Göztepe - Trabzonspor</li><li><b>30 Kasım Pazartesi 21.00:</b> Beşiktaş - Galatasaray</li></ul>",
+   "<h2>Derbi öncesi puan durumu nasıl?</h2>",
+   "<p>12. haftanın sonunda Galatasaray 31 puanla lider, Trabzonspor 28 puanla ikinci, Beşiktaş 25 puanla üçüncü sırada bulunuyordu. Amed Sportif Faaliyetler ve Kasımpaşa 23'er puanla onları izliyor. Fenerbahçe, İstanbul Başakşehir ve Kocaelispor 20'şer puana sahip. Galatasaray geçen hafta Samsunspor'u 2-1 yenerken Beşiktaş deplasmanda Konyaspor'u 4-2 mağlup etti; Trabzonspor ise Eyüpspor'u 1-0 geçti.</p>",
+   "<p>Alt sıralarda da hafta önemli. 12. hafta sonunda Samsunspor 7, Eyüpspor 3 puanla son iki sıradaydı; Gaziantep FK ise 8 puanda bulunuyordu. Bu üç takımın cumartesi ve pazar günkü maçları, ligde kalma mücadelesinin seyrini doğrudan etkileyecek.</p>",
+   "<p>Bu tabloda derbi, zirve yarışı açısından haftanın en kritik maçı. Galatasaray kazanırsa Beşiktaş'la arasındaki farkı 9 puana çıkaracak; Beşiktaş kazanırsa fark 3 puana inecek. Aynı gün oynanacak Göztepe-Trabzonspor maçı da ikinci sıradaki Trabzonspor'un lidere yaklaşıp yaklaşamayacağını belirleyecek.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Hakemler belli oldu</b> MHK'nin listesine göre Fenerbahçe-Erzurumspor FK maçını Batuhan Kolak, Göztepe-Trabzonspor maçını Cihan Aydın, Beşiktaş-Galatasaray derbisini Oğuzhan Çakır yönetecek.</p></div>",
+   "<p>Türk takımları bu hafta Avrupa kupalarında da sahadaydı; sonuçları <a href=\"/haberler/avrupa-kupalari-turk-takimlari-4te-4.html\">Avrupa kupaları haberimizde</a> bulabilirsiniz.</p>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Beşiktaş-Galatasaray derbisi ne zaman?</b> 30 Kasım 2026 Pazartesi, saat 21.00'de.</p>",
+   "<p><b>Derbinin hakemi kim?</b> Oğuzhan Çakır.</p>",
+   "<p><b>Fenerbahçe bu hafta kiminle oynuyor?</b> 29 Kasım Pazar 19.00'da Erzurumspor FK'yı konuk ediyor.</p>",
+   "<p><b>Süper Lig'de lider kim?</b> 12. hafta sonunda 31 puanla Galatasaray lider.</p>"
+  ]
+ },
+ {
+  "slug": "formula-1-katar-gp-2026-saat-kacta",
+  "baslik": "Formula 1 Katar GP 2026 saat kaçta? Yarış 29 Kasım Pazar 19.00'da",
+  "tarih": "28 Kasım 2026",
+  "iso": "2026-11-28",
+  "saat": "05.33",
+  "kategori": "Spor",
+  "gorsel": "formula-1-katar-gp-2026-saat-kacta-foto.webp",
+  "w": 1600,
+  "h": 900,
+  "alt": "Gün batımında boş bir yarış pisti; koyu asfalt düzlük, kırmızı-beyaz bordürler, uzakta boş tribün ve markasız pit duvarı",
+  "aciklama": "Formula 1 Katar Grand Prix'si 29 Kasım Pazar günü Türkiye saatiyle 19.00'da Lusail'de koşulacak.",
+  "gorsel_kaynak": "Temsilî görsel",
+  "ozet": "Formula 1 Katar Grand Prix'si 29 Kasım Pazar günü TSİ 19.00'da başlayacak; sıralama turları 28 Kasım'da 21.00'de. Sezonun sondan bir önceki yarışı.",
+  "kaynak": "Formula 1 resmî sitesi (Katar GP 2026 programı, pist verileri, 1. antrenman sonuçları; Las Vegas GP yarış raporu); NTV Spor (27 Kasım 2026: TSİ saatler, puan durumu, şampiyonluklar); Sporx (27 Kasım 2026: TSİ saatler, puan durumu); Ajansspor (27 Kasım 2026: 1. antrenman); Hürriyet (22 Kasım 2026: Las Vegas GP ve puan durumu); Motorsport.com Türkiye (2 Kasım 2026: Antonelli'nin şampiyonluğu); Gulf News (13 Kasım 2026: Abu Dabi GP tarihi)",
+  "kaynaklar": [
+   {
+    "ad": "Formula 1: Qatar Grand Prix 2026",
+    "url": "https://www.formula1.com/en/racing/2026/qatar"
+   },
+   {
+    "ad": "Formula 1: Las Vegas Grand Prix 2026 yarış raporu",
+    "url": "https://www.formula1.com/en/latest/article/verstappen-wins-exhilarating-las-vegas-grand-prix-from-norris-and-piastri.2eeBWqekZdir9mdDVK9YVX"
+   },
+   {
+    "ad": "NTV Spor: Formula 1'de sezon Katar Grand Prix'siyle devam edecek",
+    "url": "https://www.ntvspor.net/formula-1/formula-1de-sezon-katar-grand-prixsiyle-devam-edecek-433739"
+   },
+   {
+    "ad": "Sporx: Formula 1'de sıradaki durak Katar",
+    "url": "https://www.sporx.com/motorsporlari/f1/formula-1-de-siradaki-durak-katar-SXHBQ1184305SXQ"
+   },
+   {
+    "ad": "Ajansspor: Katar GP'de ilk perdenin galibi belli oldu",
+    "url": "https://ajansspor.com/haber/katar-gpde-ilk-perdenin-galibi-belli-oldu-739545"
+   },
+   {
+    "ad": "Hürriyet: Las Vegas Grand Prix'sini Max Verstappen kazandı",
+    "url": "https://www.hurriyet.com.tr/sporarena/formula-1-las-vegas-grand-prixsini-max-verstappen-kazandi-43386781"
+   },
+   {
+    "ad": "Motorsport.com Türkiye: 2026 Meksika GP, Antonelli şampiyon oldu",
+    "url": "https://tr.motorsport.com/f1/news/2026-meksika-gp-verstappen-kazandi-antonelli-sampiyon-oldu/10870716/"
+   },
+   {
+    "ad": "Gulf News: Abu Dhabi to host 2026 F1 season finale",
+    "url": "https://gulfnews.com/sport/abu-dhabi-to-host-2026-f1-season-finale-at-yas-marina-circuit-1.500746214"
+   }
+  ],
+  "govde": [
+   "<p>Formula 1'de 2026 sezonunun sondan bir önceki yarışı olan <b>Katar Grand Prix'si</b>, <b>29 Kasım Pazar</b> günü Türkiye saatiyle <b>19.00</b>'da Lusail Uluslararası Pisti'nde başlayacak. Yarış öncesindeki sıralama turları <b>28 Kasım Cumartesi</b> günü Türkiye saatiyle <b>21.00</b>'de yapılacak. Pilotlar ve takımlar şampiyonluğu çoktan belirlenmiş bir sezonda yarışıyor: Kimi Antonelli pilotlar, Mercedes ise takımlar şampiyonluğunu önceki yarışlarda garantiledi. Cuma günkü ilk antrenmanda en hızlı tur Antonelli'den geldi.</p>",
+   "<div class=\"hb-rakam\"><div><b>57</b><span>tur</span></div><div><b>5,419 km</b><span>pist uzunluğu</span></div><div><b>308,6 km</b><span>yarış mesafesi</span></div><div><b>19.00</b><span>yarışın başlama saati (TSİ)</span></div></div>",
+   "<h2>Katar GP hafta sonu programı nasıl?</h2>",
+   "<p>Formula 1'in resmî sitesindeki programa göre Katar hafta sonu sprint yarışı olmadan, klasik üç antrenman, sıralama ve yarış biçiminde düzenleniyor. Türkiye saatiyle program şöyle:</p>",
+   "<ul><li><b>1. antrenman:</b> 27 Kasım Cuma 16.30-17.30 (tamamlandı)</li><li><b>2. antrenman:</b> 27 Kasım Cuma 20.00-21.00 (tamamlandı)</li><li><b>3. antrenman:</b> 28 Kasım Cumartesi 17.30-18.30</li><li><b>Sıralama turları:</b> 28 Kasım Cumartesi 21.00-22.00</li><li><b>Yarış:</b> 29 Kasım Pazar 19.00</li></ul>",
+   "<h2>Lusail pistinin özellikleri neler?</h2>",
+   "<p>Doha'nın kuzeyindeki Lusail Uluslararası Pisti, Formula 1 takvimine ilk kez 2021'de girdi. Resmî verilere göre pist 5,419 kilometre uzunluğunda ve yarış 57 turda, toplam 308,611 kilometrede tamamlanıyor. Pist ağırlıklı olarak motosiklet yarışları için tasarlandı; birinci virajdan önce bir kilometreyi aşan uzun bir ana düzlüğe sahip. Pistin yarış turu rekoru 1:22.384 ile 2024'te Lando Norris'e ait.</p>",
+   "<h2>İlk antrenmanda kim en hızlıydı?</h2>",
+   "<p>Cuma günkü ilk antrenmanda Mercedes'ten Kimi Antonelli 1:23.217'lik turla zirvede yer aldı. Takım arkadaşı George Russell 0,507 saniye geride ikinci, Racing Bulls'tan Isack Hadjar 0,661 saniye geride üçüncü oldu. McLaren pilotları Lando Norris ve Oscar Piastri ilk beşi tamamladı. Antrenman sıralamaları yarışın sonucunu belirlemez; takımlar bu seanslarda farklı yakıt yükü ve lastiklerle deneme yaptığı için asıl tablo cumartesi akşamki sıralama turlarında ortaya çıkacak.</p>",
+   "<h2>Şampiyonluk belli olduysa Katar'da ne için yarışılıyor?</h2>",
+   "<p>Pilotlar ve takımlar şampiyonlukları kesinleşmiş olsa da sıralamanın geri kalanı hâlâ açık. Hamilton, Russell ve Norris arasındaki 3 puanlık fark, pilotlar klasmanındaki üçüncülük yarışını son iki yarışa taşıyor. Takımlarda ise ikinci sıradaki Ferrari ile Red Bull arasında 77, Red Bull ile McLaren arasında 9 puan var; Red Bull ile McLaren'in üçüncülük mücadelesi Abu Dabi'ye kadar sürebilir.</p>",
+   "<h2>Şampiyonada puan durumu nasıl?</h2>",
+   "<p>Katar öncesinde pilotlar klasmanında Kimi Antonelli <b>402</b> puanla zirvede. Onu 304 puanla Max Verstappen, 267 puanla Lewis Hamilton izliyor; George Russell ve Lando Norris 264'er puana sahip. Antonelli şampiyonluğunu 1 Kasım'daki Meksika Grand Prix'sinde üçüncü olarak ilan etti ve Formula 1 tarihinin en genç şampiyonu oldu. Takımlarda ise Mercedes 666 puanla lider; Ferrari 517, Red Bull 440, McLaren 431 puanla izliyor. Mercedes takımlar şampiyonluğunu Brezilya Grand Prix'sinde garantiledi.</p>",
+   "<p>Bir önceki yarış olan Las Vegas Grand Prix'sini Max Verstappen kazanmış, McLaren pilotları Norris ve Piastri podyumu tamamlamıştı; Antonelli bu yarışı dördüncü bitirdi.</p>",
+   "<div class=\"kutu-bilgi\"><p><b>Sezonun son yarışı Abu Dabi'de</b> 2026 sezonu, 3-6 Aralık tarihlerinde Yas Marina Pisti'nde yapılacak Abu Dabi Grand Prix'siyle sona erecek.</p></div>",
+   "<h2>Sık sorulan sorular</h2>",
+   "<p><b>Katar GP saat kaçta başlıyor?</b> 29 Kasım Pazar, Türkiye saatiyle 19.00'da.</p>",
+   "<p><b>Sıralama turları ne zaman?</b> 28 Kasım Cumartesi, Türkiye saatiyle 21.00'de.</p>",
+   "<p><b>Katar'da sprint yarışı var mı?</b> Hayır, resmî programda sprint oturumu bulunmuyor.</p>",
+   "<p><b>2026 Formula 1 şampiyonu kim?</b> Pilotlarda Kimi Antonelli, takımlarda Mercedes.</p>"
+  ]
+ },
+ {
   "slug": "yds-2-sonuclari-ne-zaman-2026",
   "baslik": "2026 YDS/2 sonuçları ne zaman? Sonuçlar 10 Aralık'ta açıklanacak",
   "tarih": "28 Kasım 2026",
