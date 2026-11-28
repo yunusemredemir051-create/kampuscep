@@ -1,0 +1,209 @@
+Not: UNIEVI_VEKIL_URL tanımlı değil, yalnızca doğrudan bağlantı denenecek.
+Sayfa doğrudan yoldan indirildi (148429 bayt).
+Okunan günler: {
+ "2026-11-30": {
+  "yemekler": [
+   "Etli bezelye",
+   "Bulgur pilavı",
+   "Toyga çorbası",
+   "İrmik tatlısı"
+  ],
+  "y": [
+   [
+    298,
+    18.3,
+    29.2,
+    12
+   ],
+   [
+    291,
+    6.5,
+    37.2,
+    12.9
+   ],
+   [
+    115,
+    3.3,
+    12.4,
+    5.8
+   ],
+   [
+    528,
+    6.7,
+    76,
+    21.9
+   ]
+  ],
+  "t": [
+   1232,
+   34.8,
+   154.8,
+   52.6
+  ]
+ },
+ "2026-12-01": {
+  "yemekler": [
+   "Tavuk haşlama",
+   "Pirinç pilavı",
+   "Mevsim salata",
+   "Meyve"
+  ],
+  "y": [
+   [
+    259,
+    26.2,
+    14.9,
+    10.5
+   ],
+   [
+    326,
+    4.1,
+    49.1,
+    12.6
+   ],
+   [
+    123,
+    1.3,
+    6.3,
+    10.3
+   ],
+   [
+    60,
+    null,
+    15,
+    null
+   ]
+  ],
+  "t": [
+   768,
+   31.6,
+   85.3,
+   33.4
+  ]
+ },
+ "2026-12-02": {
+  "yemekler": [
+   "Kıymalı karnabahar",
+   "Bulgur pilavı",
+   "Domates çorbası",
+   "Yoğurt"
+  ],
+  "y": [
+   [
+    187,
+    11.3,
+    9.1,
+    11.7
+   ],
+   [
+    291,
+    6.5,
+    37.2,
+    12.9
+   ],
+   [
+    20,
+    15,
+    5,
+    4.9
+   ],
+   [
+    64,
+    3,
+    4.5,
+    3.8
+   ]
+  ],
+  "t": [
+   562,
+   35.8,
+   55.8,
+   33.3
+  ]
+ },
+ "2026-12-03": {
+  "yemekler": [
+   "Somon kızartma",
+   "Fasulye pilaki",
+   "Mercimek çorbası",
+   "Kadayıf"
+  ],
+  "y": [
+   [
+    460,
+    48,
+    null,
+    30
+   ],
+   [
+    275,
+    11.5,
+    36,
+    12.5
+   ],
+   [
+    183,
+    7.9,
+    22.8,
+    6.7
+   ],
+   [
+    246,
+    3,
+    27,
+    14
+   ]
+  ],
+  "t": [
+   1164,
+   70.4,
+   85.8,
+   63.2
+  ]
+ },
+ "2026-12-04": {
+  "yemekler": [
+   "Zeytinyağlı barbunya",
+   "Pirinç pilavı",
+   "Mevsim salata",
+   "Meyve"
+  ],
+  "y": [
+   [
+    267,
+    7.8,
+    25.2,
+    15
+   ],
+   [
+    326,
+    4.1,
+    49.1,
+    12.6
+   ],
+   [
+    123,
+    1.3,
+    6.3,
+    10.3
+   ],
+   [
+    60,
+    null,
+    15,
+    null
+   ]
+  ],
+  "t": [
+   776,
+   13.2,
+   95.6,
+   37.9
+  ]
+ }
+}
+## Üniversite Evi menüsü
+- Okunan gün: 5 (2026-11-30, 2026-12-01, 2026-12-02, 2026-12-03, 2026-12-04)
+- Yeni eklenen: yok
+- Fotoğrafı olmayan yemekler (sitede çizim görünür, fotoğraf sonra eklenebilir): Etli bezelye, Fasulye pilaki, Kıymalı karnabahar, Mevsim salata, Meyve, Somon kızartma, Tavuk haşlama, Toyga çorbası, Zeytinyağlı barbunya, İrmik tatlısı
+veri.js zaten güncel, değişiklik yok.

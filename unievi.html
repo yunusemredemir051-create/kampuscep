@@ -1,0 +1,3002 @@
+    <!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+            <meta name="google-site-verification" content="jO1a7X5d7kxniLk9qXmMTsaoIAji6qOr9yZadu5KsOY"/>
+    
+    
+            <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-91EDRDEZMW"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'G-91EDRDEZMW');
+        </script>
+        <link rel="icon" href="https://unievi.firat.edu.tr/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/assets/front/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/assets/front/css/responsive.css">
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/CDN/fontawesome/all.min.css"/>
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/CDN/bootstrap/dist.min.css">
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/CDN/datatable/datatable.min.css"/>
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/assets/front/css/style.css">
+    <script src="https://unievi.firat.edu.tr/designV2/CDN/jquery/ajax.min.js"></script>
+    <script src="https://unievi.firat.edu.tr/designV2/CDN/fontawesome/1ab97ad3d2.js"></script>
+    <script src="https://unievi.firat.edu.tr/designV2/CDN/popper/popper.min.js"></script>
+    <script src="https://unievi.firat.edu.tr/designV2/CDN/bootstrap/npmBundle.min.js"></script>
+    <script src="https://unievi.firat.edu.tr/designV2/CDN/jquery/jquery-3-5-1.js"></script>
+    <script src="https://unievi.firat.edu.tr/designV2/CDN/jquery/ajax.min.js"></script>
+    <link rel="stylesheet" href="https://unievi.firat.edu.tr/designV2/assets/front/js/swiper/swiper-bundle.min.css">
+    <script src="https://unievi.firat.edu.tr/designV2/assets/front/js/swiper/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+    <!-- Setup Ajax -->
+    <script>
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+            });
+        });
+
+    </script>
+
+    <title>    Ana Sayfa | Fırat Üniversitesi</title>
+        <style>
+        p {
+            margin: 0 !important;
+        }
+
+
+        /*----- Main Rules -----*/
+        @import  url("https://font.googleapis.com/css?family=Poppins:300,600,700,800,900");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /*----- Reset some items -----*/
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /*----- | Box Section | -----*/
+        .wrapper {
+            flex-direction: column;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 70px;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            width: 1170px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .container2 {
+            width: 1170px;
+            display: grid;
+            gap: 30px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        @media  only screen and (max-width: 640px) {
+            .container {
+                width: 100% !important;
+            }
+
+            .box {
+                height: 110px !important;
+            }
+        }
+
+        .box {
+            padding: 1rem;
+            background: var(--backColor);
+            width: 100%;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .box2::before {
+            content: "";
+            position: absolute;
+            width: 390px !important;
+            height: 600% !important;
+            background: linear-gradient(#79113E, #79113E);
+            animation: rotate 4s linear infinite;
+            -webkit-animation: rotate 6s linear infinite;
+        }
+
+        .box::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 200%;
+            background: linear-gradient(#79113E, #79113E);
+            animation: rotate 4s linear infinite;
+            -webkit-animation: rotate 10s linear infinite;
+        }
+
+        .box::after {
+            content: "";
+            background-color: #ffffff;
+            position: absolute;
+            inset: 4px;
+            border-radius: 16px;
+            -webkit-border-radius: 16px;
+            -moz-border-radius: 16px;
+            -ms-border-radius: 16px;
+            -o-border-radius: 16px;
+        }
+
+        @keyframes  rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .box__head,
+        .box__content,
+        .box__social {
+            z-index: 1;
+        }
+
+        .box__head {
+            width: 130px;
+            max-width: 100%;
+        }
+
+
+        .box__content {
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+        }
+
+        .box__content > h2 {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .box__content > p {
+            color: var(--text-color);
+            line-height: 1.5;
+            font-weight: 300;
+            font-size: 20px;
+        }
+
+        .box__social {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 12px;
+        }
+
+        .wrapper .container2 h3 span {
+            font-size: 15px;
+            color: #b9b9b9;
+        }
+
+        .wrapper .container2 h3 {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .university-food-cards .wrapper h3 {
+            width: 100%;
+            text-align: start;
+            display: flex;
+        }
+
+        .index-content {
+            position: relative;
+        }
+
+        .index-content-right-shape {
+            top: -1rem;
+        }
+
+        .mySwiper {
+            max-height: 500px;
+        }
+
+        .announcement-cards {
+            max-height: 480px;
+        }
+
+        .announcement-cards-flex {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .announcement-card:hover {
+            border: 1px solid var(--red-color);
+        }
+
+        .home-sdg-strip{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-items: center;
+        }
+        .home-sdg-strip .sdg-img{
+            display: inline-flex;
+            cursor: pointer;
+            position: relative;
+        }
+        .home-sdg-strip .sdg-img img{
+            height: 26px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+        .home-sdg-strip .sdg-img[data-tooltip]:hover::after{
+            content: attr(data-tooltip);
+            position: absolute;
+            left: 0;
+            top: calc(100% + 6px);
+            z-index: 50;
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            font-size: 12px;
+            line-height: 1.2;
+            padding: 6px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+            max-width: 320px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            pointer-events: none;
+        }
+        .announcement-card-sdg-row{
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .announcement-card-sdg-meta{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .announcement-card-sdg-meta .home-sdg-strip{
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        .announcement-card-sdg-meta .announcement-date{
+            flex: 0 0 auto;
+            margin: 0;
+        }
+        @media  only screen and (max-width: 639px){
+            .home-sdg-strip .sdg-img img{
+                height: 22px;
+            }
+        }
+
+        .home-sdg-strip--plain .sdg-img img{
+            border-radius: 0 !important;
+        }
+
+        /* ── Haftalık yemek menüsü: gün sekmeleri + yemek kartları (sitenin renk değişkenleriyle) ── */
+        .fm {
+            --fm-primary: var(--red-color, #8c0841);
+            --fm-tint: rgba(140, 8, 65, .06);
+            --fm-tint-strong: rgba(140, 8, 65, .12);
+            --fm-border: rgba(140, 8, 65, .14);
+            --fm-text: var(--text-color, #494949);
+            --fm-muted: #8b7f84;
+            --fm-surface: #fff;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px;
+            border-radius: 18px;
+            background: var(--backColor, #f7f7f7);
+            box-shadow: 0 12px 40px rgba(73, 73, 73, .08);
+            color: var(--fm-text);
+            font-family: var(--font-family, 'Source Sans Pro', sans-serif);
+        }
+        .fm svg {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+        .fm-days {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .fm-day {
+            position: relative;
+            border: 0;
+            border-radius: 12px;
+            background: var(--fm-tint);
+            color: var(--fm-text);
+            padding: 14px 6px;
+            line-height: 1.15;
+            font: inherit;
+            cursor: pointer;
+            transition: background .15s ease, color .15s ease, box-shadow .15s ease;
+        }
+        .fm-day:hover { background: var(--fm-tint-strong); }
+        .fm-day:focus-visible { outline: 3px solid rgba(140, 8, 65, .35); outline-offset: 2px; }
+        .fm-day strong { display: block; font-size: 24px; font-weight: 700; }
+        .fm-day small { display: block; margin-top: 4px; font-size: 13px; }
+        .fm-day .fm-day-short { display: none; }
+        .fm-day.is-past:not(.is-active) { opacity: .55; }
+        .fm-day.is-closed:not(.is-active) small { text-decoration: line-through; text-decoration-color: rgba(140, 8, 65, .5); }
+        .fm-day.is-today::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--fm-primary);
+        }
+        .fm-day.is-active {
+            background: var(--fm-primary);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(140, 8, 65, .25);
+        }
+        .fm-day.is-active.is-today::after { background: #fff; }
+        .fm-panel[hidden] { display: none !important; }
+        .fm-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin: 24px 2px 14px;
+        }
+        .fm-heading small {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--fm-muted);
+            font-size: 13px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+        .fm-heading h3 { margin: 4px 0 0; font-size: 26px; font-weight: 700; color: var(--fm-text); }
+        .fm-heading > svg { width: 34px; height: 34px; color: var(--fm-primary); opacity: .45; }
+        .fm-today-pill {
+            background: var(--fm-primary);
+            color: #fff;
+            border-radius: 20px;
+            padding: 1px 9px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .04em;
+        }
+        .fm-dish {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            background: var(--fm-surface);
+            border: 1px solid var(--fm-border);
+            border-radius: 14px;
+            padding: 14px 16px;
+            margin-bottom: 10px;
+        }
+        .fm-symbol {
+            flex: 0 0 auto;
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--fm-tint);
+            color: var(--fm-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .fm-symbol svg { width: 24px; height: 24px; }
+        .fm-details { flex: 1; min-width: 0; }
+        .fm-details small {
+            color: var(--fm-muted);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .fm-details strong {
+            display: block;
+            margin-top: 3px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--fm-text);
+            overflow-wrap: anywhere;
+        }
+        .fm-energy {
+            text-align: right;
+            white-space: nowrap;
+            color: var(--fm-primary);
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .fm-energy small { font-size: 13px; font-weight: 400; color: var(--fm-muted); }
+        .fm-nut {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px 14px;
+            margin-top: 4px;
+            font-size: 13px;
+            color: var(--fm-muted);
+        }
+        .fm-nut b { color: var(--fm-text); font-weight: 600; }
+        .fm-allergen-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 6px;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: var(--fm-primary);
+            font: inherit;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            cursor: pointer;
+        }
+        .fm-allergen-btn svg { width: 14px; height: 14px; }
+        .fm-allergen {
+            flex-basis: 100%;
+            padding: 10px 12px;
+            border-radius: 10px;
+            background: var(--fm-tint);
+            font-size: 13px;
+            color: var(--fm-text);
+        }
+        .fm-allergen[hidden] { display: none; }
+        .fm-allergen b { color: var(--fm-primary); }
+        .fm-total {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 4px 12px;
+            margin-top: 14px;
+            padding: 18px 22px;
+            border-radius: 14px;
+            background: var(--fm-primary);
+            color: #fff;
+        }
+        .fm-total > span:first-child { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
+        .fm-total > span:first-child svg { width: 22px; height: 22px; }
+        .fm-total small { font-weight: 400; opacity: .8; }
+        .fm-total-right b { font-size: 26px; }
+        .fm-total-macros { display: flex; flex-wrap: wrap; gap: 2px 14px; margin-top: 4px; font-size: 13px; opacity: .9; }
+        .fm-total .fm-total-macros b { font-size: inherit; font-weight: 700; }
+        .fm-total-right { text-align: right; white-space: nowrap; }
+        /* Menü bölümünün üst/alt boşlukları (genel .wrapper 70/80px) */
+        .university-food-cards .wrapper { padding-top: 40px; padding-bottom: 48px; }
+        .fm-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 12px;
+            padding: 12px 14px;
+            border: 1px solid var(--fm-border);
+            border-left: 4px solid var(--fm-primary);
+            border-radius: 12px;
+            background: var(--fm-surface);
+            font-size: 14px;
+        }
+        .fm-note svg { width: 18px; height: 18px; margin-top: 1px; color: var(--fm-primary); }
+        .fm-closed, .fm-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            padding: 36px 20px;
+            border: 1px dashed var(--fm-border);
+            border-radius: 14px;
+            background: var(--fm-surface);
+            text-align: center;
+        }
+        .fm-closed svg, .fm-empty svg { width: 40px; height: 40px; color: var(--fm-primary); opacity: .8; }
+        .fm-closed strong { font-size: 18px; color: var(--fm-text); }
+        .fm-closed p, .fm-empty p { margin: 0; color: var(--fm-muted); }
+
+        /* ── Tatil haftası kartı (conic-gradient border animasyonu) ── */
+        .food-week-holiday-wrap {
+            display: flex;
+            justify-content: center;
+            padding: 1.5rem 0 2rem;
+            width: 100%;
+        }
+        .food-week-holiday-card {
+            position: relative;
+            width: 95%;
+            max-width: 960px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 28px rgba(121,17,62,.1);
+        }
+        /* Dönen conic-gradient katmanı — her boyuttaki kart için çalışır */
+        .food-week-holiday-card::before {
+            content: "";
+            position: absolute;
+            inset: -100%;
+            background: conic-gradient(
+                from 0deg,
+                transparent        0deg,
+                rgba(121,17,62,.2) 25deg,
+                #79113E           55deg,
+                rgba(121,17,62,.2) 85deg,
+                transparent       110deg,
+                transparent       180deg,
+                rgba(121,17,62,.2) 205deg,
+                #79113E           235deg,
+                rgba(121,17,62,.2) 265deg,
+                transparent       290deg,
+                transparent       360deg
+            );
+            animation: rotate 8s linear infinite;
+        }
+        /* Beyaz iç zemin — 4px çerçeve boşluğu bırakır */
+        .food-week-holiday-card::after {
+            content: "";
+            position: absolute;
+            inset: 4px;
+            background: #fff;
+            border-radius: 16px;
+        }
+        /* İçerik her iki katmanın üzerinde */
+        .food-week-holiday-content {
+            position: relative;
+            z-index: 1;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .85rem;
+        }
+        .food-week-holiday-dates {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: #bbb;
+        }
+        .food-week-holiday-icon-wrap {
+            width: 60px;
+            height: 60px;
+            background: rgba(121,17,62,.07);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #79113E;
+            font-size: 1.55rem;
+            margin: .2rem 0;
+        }
+        .food-week-holiday-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1.45;
+            max-width: 420px;
+        }
+        .food-week-holiday-reason {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: rgba(121,17,62,.07);
+            color: #79113E;
+            font-size: 12px;
+            font-weight: 600;
+            padding: .35rem 1rem;
+            border-radius: 20px;
+            margin-top: .2rem;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .food-week-holiday-card::before { animation: none !important; }
+        }
+        @media  only screen and (max-width: 767.98px) {
+            .fm { padding: 16px; border-radius: 14px; }
+            .fm-days { gap: 6px; }
+            .fm-day { padding: 10px 2px; }
+            .fm-day strong { font-size: 20px; }
+            .fm-day .fm-day-long { display: none; }
+            .fm-day .fm-day-short { display: block; }
+            .fm-day.is-today::after { top: 6px; right: 6px; width: 6px; height: 6px; }
+            .fm-heading { margin: 18px 2px 12px; }
+            .fm-heading h3 { font-size: 22px; }
+            .fm-heading > svg { width: 28px; height: 28px; }
+            .fm-dish { gap: 10px; padding: 12px; }
+            .fm-symbol { width: 40px; height: 40px; border-radius: 10px; }
+            .fm-symbol svg { width: 20px; height: 20px; }
+            .fm-details strong { font-size: 16px; }
+            .fm-energy { font-size: 16px; }
+            .fm-total { padding: 14px 16px; }
+            .fm-total-right b { font-size: 22px; }
+            .fm-nut { font-size: 12px; gap: 0 10px; }
+            .university-food-cards .wrapper { padding-top: 16px; padding-bottom: 20px; }
+            .university-food .news-entrance-title { padding-left: 16px; }
+        }
+        @media  only screen and (max-width: 360px) {
+            .fm { padding: 12px; }
+            .fm-days { gap: 4px; }
+            .fm-day strong { font-size: 18px; }
+            .fm-day small { font-size: 11px; }
+            .fm-symbol { width: 34px; height: 34px; }
+            .fm-details strong { font-size: 15px; }
+        }
+        @media  only screen and (max-width: 340px) {
+            .fm-total { flex-direction: column; align-items: flex-start; gap: 4px; }
+        }
+        @media  only screen and (max-width: 640px) {
+            .food-week-holiday-card { width: 100%; max-width: 100%; border-radius: 16px; }
+            .food-week-holiday-content { padding: 2rem 1.25rem; gap: .7rem; }
+            .food-week-holiday-title { font-size: 16px; max-width: 100%; }
+        }
+
+    </style>
+    <style>
+
+        /* Please ❤ this if you like it! */
+
+
+        @import  url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+
+        body{
+            -webkit-overflow-x:hidden !important;
+        }
+
+        .sec-center {
+            position: relative;
+            max-width: 100%;
+            text-align: center;
+            z-index: 200;
+        }
+
+        .dropdown:checked,
+        .dropdown:not(:checked) {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .dropdown-sub:checked,
+        .dropdown-sub:not(:checked) {
+            position: absolute;
+            left: -9999px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .dark-light:checked + label {
+            transform: rotate(360deg);
+        }
+
+        .dark-light:checked + label:after {
+            opacity: 1;
+        }
+
+        .dark-light:checked + label:before {
+            background-color: #000;
+        }
+
+        .dark-light:checked ~ .light-back {
+            opacity: 1;
+        }
+
+        .dropdown:checked + label,
+        .dropdown:not(:checked) + label {
+            margin: 0;
+            position: relative;
+            padding: 0 10px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 2;
+            height: 38px;
+            transition: all 200ms linear;
+            border-radius: 8px;
+            letter-spacing: 1px;
+            display: -webkit-inline-flex;
+            display: -ms-inline-flexbox;
+            display: inline-flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            -moz-justify-content: center;
+            -ms-justify-content: center;
+            -ms-flex-pack: center;
+            text-align: center;
+            background-color: white;
+            cursor: pointer;
+            color: var(--text-color);
+            border: 1px solid #e1e1e1;
+            justify-content: center;
+        }
+
+        .dark-light:checked ~ .sec-center .for-dropdown {
+            background-color: var(--red-color);
+            color: var(--text-color);
+            box-shadow: 0 12px 35px 0 rgba(16, 39, 112, .25);
+        }
+
+        .dropdown:checked + label:before,
+        .dropdown:not(:checked) + label:before {
+            position: fixed;
+            top: 0;
+            left: 0;
+            content: '';
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            cursor: auto;
+            pointer-events: none;
+        }
+
+        .dropdown:checked + label:before {
+            pointer-events: auto;
+        }
+
+        .dropdown:not(:checked) + label .uil {
+            font-size: 14px;
+            margin-left: 10px;
+            transition: transform 200ms linear;
+        }
+
+        .dropdown:checked + label .uil {
+            transform: rotate(180deg);
+            font-size: 14px;
+            margin-left: 10px;
+            transition: transform 200ms linear;
+        }
+
+        .section-dropdown {
+            position: absolute;
+            padding: 5px;
+            border: 1px solid #e1e1e1;
+            background-color: #ffffff;
+            top: 45px;
+            right: 0;
+            min-width: 400px;
+            width: max-content;
+            border-radius: 10px;
+            display: block;
+            box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 200ms linear;
+        }
+
+        .dark-light:checked ~ .sec-center .section-dropdown {
+            background-color: #fff;
+            box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.15);
+        }
+
+        .dropdown:checked ~ .section-dropdown {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .section-dropdown:before {
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            content: '';
+            display: block;
+            z-index: 1;
+        }
+
+        .dark-light:checked ~ .sec-center .section-dropdown:after {
+            border-bottom: 8px solid #fff;
+        }
+
+        .section-dropdown a {
+            position: relative;
+            color: var(--text-color);
+            transition: all 200ms linear;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            font-size: 15px;
+            border-radius: 2px;
+            padding: 5px 0;
+            padding-left: 20px;
+            padding-right: 15px;
+            margin: 2px 0;
+            text-align: left;
+            text-decoration: none;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            justify-content: space-between;
+            -ms-flex-pack: distribute;
+        }
+
+        .dark-light:checked ~ .sec-center .section-dropdown a {
+            color: var(--red-color);
+        }
+
+        .section-dropdown a:hover {
+            color: var(--red-color);
+            background-color: var(--backColor);
+            text-decoration: none;
+        }
+
+        .dark-light:checked ~ .sec-center .section-dropdown a:hover {
+            color: var(--red-color);
+            background-color: var(--red-color);
+        }
+
+        .section-dropdown a .uil {
+            font-size: 14px;
+        }
+
+        .dropdown-sub:checked + label,
+        .dropdown-sub:not(:checked) + label {
+            position: relative;
+            color: var(--text-color);
+            transition: all 200ms linear;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            gap: 1.5rem;
+            font-size: 15px;
+            border-radius: 2px;
+            padding: 5px 0;
+            padding-left: 20px;
+            padding-right: 15px;
+            text-align: left;
+            text-decoration: none;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            -ms-align-items: center;
+            align-items: center;
+            justify-content: space-between;
+            -ms-flex-pack: distribute;
+            cursor: pointer;
+        }
+
+        .dropdown-sub:checked + label .uil,
+        .dropdown-sub:not(:checked) + label .uil {
+            font-size: 14px;
+        }
+
+        .dropdown-sub:not(:checked) + label .uil {
+            transition: transform 200ms linear;
+        }
+
+        .dropdown-sub:checked + label .uil {
+            transform: rotate(135deg);
+            transition: transform 200ms linear;
+        }
+
+        .dropdown-sub:checked + label:hover,
+        .dropdown-sub:not(:checked) + label:hover {
+            color: var(--red-color);
+            background-color: var(--backColor);
+        }
+
+        .dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub {
+            color: var(--red-color);
+        }
+
+        .dark-light:checked ~ .sec-center .section-dropdown .for-dropdown-sub:hover {
+            color: var(--red-color);
+            background-color: var(--red-color);
+        }
+
+        .section-dropdown-sub {
+            position: relative;
+            display: block;
+            width: 100%;
+            pointer-events: none;
+            opacity: 0;
+            max-height: 0;
+            padding-left: 10px;
+            padding-right: 3px;
+            overflow: hidden;
+            transition: all 200ms linear;
+        }
+
+        .dropdown-sub:checked ~ .section-dropdown-sub {
+            pointer-events: auto;
+            opacity: 1;
+            max-height: 999px;
+        }
+
+        .section-dropdown-sub a {
+            font-size: 14px;
+        }
+
+        .section-dropdown-sub a .uil {
+            font-size: 14px;
+        }
+
+        .dark-light:checked ~ .logo img {
+            filter: brightness(10%);
+        }
+
+        @media  screen and(min-width: 1024px){
+            .header__language{
+                text-align: justify;
+            }
+        }
+
+        @media  screen and (max-width: 991px) {
+            .dark-light:checked + label,
+            .dark-light:not(:checked) + label {
+                top: 20px;
+                right: 20px;
+            }
+        }
+
+        .dropdown:checked + .for-dropdown {
+            background-color: var(--backColor);
+        }
+
+        .dropdown-sub:checked + .for-dropdown-sub {
+            background-color: var(--backColor);
+        }
+
+        .section-dropdown-sub.active {
+            display: block;
+        }
+
+        .section-dropdown-sub a.active {
+            background-color: var(--backColor);
+        }
+
+        .for-dropdown-sub.active {
+            background-color: var(--backColor);
+        }
+
+        .section-dropdown-sub {
+            display: none;
+        }
+
+        .close {
+            position: absolute;
+            left: 2rem;
+            background: transparent;
+            border: 0;
+            font-size: 1rem;
+            font-weight: 700;
+            display: block;
+            cursor: pointer;
+            color: black;
+            border-radius: 50%;
+            outline: none;
+        }
+
+        .search-box.search-elem {
+            margin: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999999;
+            background: rgb(0 0 0 / 90%);
+            transition: all 0.3s ease-in-out;
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            transform: scale(0);
+        }
+
+        .search-box.search-elem .inner {
+            width: 70%;
+            margin: 0 auto;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .search-box.search-elem label {
+            color: white;
+            font-weight: 300;
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+        }
+
+        .search-box.search-elem button.submit {
+            outline: none;
+            border-radius: 0 20px 20px 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 72px;
+            padding: 10px 2rem;
+            background: var(--red-color);
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 1rem;
+            color: white;
+            border: none;
+        }
+
+        .search-box.search-elem button {
+            background: var(--red-color);
+            color: #ffffff;
+            padding: 20px 25px;
+        }
+
+        .search-box.search-elem input[type="text"] {
+            padding: 20px 110px 20px 20px;
+            height: 72px;
+            font-size: 32px;
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            font-weight: 300;
+            border: none;
+            width: 100%;
+            border-radius: 20px;
+            transition: border 0.3s;
+        }
+
+        .search-box.search-elem input[type="text"]:focus {
+            border-bottom: solid 2px #00a896;
+            box-shadow: none;
+        }
+
+        .search-box.search-elem label.placeholder {
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 72px;
+            line-height: 72px;
+            margin: 0;
+            pointer-events: none;
+            font-size: 32px;
+            font-weight: 300;
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            color: #999;
+            transition: all 0.3s;
+        }
+
+        .search-box.search-elem label.placeholder.move-up {
+            top: -34px;
+            left: 4px;
+            height: auto;
+            line-height: 1.4;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .search-box.search-elem .small-12 {
+            position: relative;
+            float: none;
+            width: 100%;
+            padding: 0;
+        }
+
+        .search-box.search-elem .close {
+            top: 1.5rem;
+            left: 1.5rem;
+        }
+
+
+        .search-box.search-elem.search-open {
+            -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+
+        .search-btn {
+            text-transform: uppercase;
+            font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+            font-size: 0.875rem;
+            padding: 0.75rem;
+            display: inline-block;
+            background: white;
+        }
+
+        .search-btn:hover {
+            text-decoration: none;
+        }
+
+        .small-12 button {
+            background: var(--red-color);
+
+        }
+
+        .scroll-disabled {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .img-full-screen,
+        .img-placeholder {
+            cursor: pointer;
+        }
+
+        .img-placeholder {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: none;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: #fff;
+            z-index: 999;
+        }
+
+        .footer-images {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .footer-images img {
+            width: calc(100% / 7);
+            height: 200px;
+        }
+
+        .footer-slogan {
+            margin: 10px;
+            padding: 10px;
+            border-bottom: 0.3px solid white;
+            border-right: 0.3px solid white;
+            color: white;
+        "
+        }
+
+        .footer-sloganb h4 {
+            font-weight: 200;
+            font-size: 20px;
+        }
+
+        @media  screen and (max-width: 1024px) {
+            #language {
+                width: 200px;
+                height: 200px;
+                border-radius: 30%;
+                background-color: white;
+                text-align: center;
+                line-height: 300px;
+                color: inherit !important;
+                padding: 8px;
+            }
+        }
+        @media  only screen and(max-width: 360px){
+            .small-menu__list > li > a{
+                padding: 0.1rem 0.1rem;
+                letter-spacing: 1px;
+                color: #494949;
+                font-size: 12px!important;
+            }
+        }
+        #menuToggle {
+            position: absolute;
+            left: 1rem;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 0 11px #0000004f;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #menuToggle label {
+            display: flex;
+            flex-direction: column;
+            width: 25px;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        #menuToggle label span {
+            background: #343a40;
+            border-radius: 10px;
+            height: 3px;
+            margin: 2px 0;
+            transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+        }
+
+
+        #menuToggle span:nth-of-type(1) {
+            width: 50%;
+
+        }
+
+        #menuToggle span:nth-of-type(2) {
+            width: 100%;
+        }
+
+
+        #menuToggle span:nth-of-type(3) {
+            width: 75%;
+
+        }
+
+
+        #menuToggle.active span:nth-of-type(1) {
+            transform-origin: bottom;
+            transform: rotatez(45deg) translate(14px, 2px);
+        }
+
+
+        #menuToggle.active span:nth-of-type(2) {
+            transform-origin: top;
+            transform: translate(7px, 9px) rotatez(-45deg);
+        }
+
+
+        #menuToggle.active span:nth-of-type(3) {
+            transform-origin: bottom;
+            width: 50%;
+            transform: translate(17px, 5px) rotatez(45deg);
+        }
+
+        #mobil-menu {
+            position: absolute;
+            width: 100vw;
+            left: -100vw;
+            min-height: calc(100vh - 4.5rem);
+            height: max-content;
+            top: 4.5rem;
+            z-index: 999999999999999;
+            padding: 30px;
+            background: white;
+            list-style-type: none;
+            -webkit-font-smoothing: antialiased;
+            transform-origin: 0% 0%;
+            transform: translate(-100%, 0);
+            transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+        }
+        #mobil-menu li a{
+            color: var(--text-color);
+        }
+
+        #mobil-menu.active {
+            transform: none;
+            left: 0;
+        }
+
+        #mobil-menu li {
+            padding: 10px 0;
+            font-size: 22px;
+        }
+
+        #mobil-menu li {
+            border-bottom: 1px solid #e6e6e6;
+            list-style: none;
+        }
+
+        #mobil-menu li ul {
+            display: none;
+        }
+
+        #mobil-menu li.active > ul {
+            display: block;
+        }
+
+        #mobil-menu .mobil-menu-list-head {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-content: center;
+        }
+        .stop-scrolling {
+            height: 100%;
+            overflow: hidden;
+        }
+
+
+    </style>
+</head>
+<body>
+<header class="header-fixed">
+    <div class="header-top firat-container ">
+        <a href="https://www.firat.edu.tr/">
+            <div class="logo">
+                <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/firat-logo-yeni.png" alt="">
+            </div>
+        </a>
+        <div class="header-title">
+            <h3>                     <div class="title">
+                        <h5>Üniversite Evi</h5>
+                    </div>
+                </h3>
+        </div>
+        <div class="header-right">
+            <a href="#" class="search-btn search"><i class="fa fa-search" aria-hidden="true"></i></a>
+            <div class="search-box search-elem">
+                <button class="close">x</button>
+                <div class="inner">
+                    <form action="https://unievi.firat.edu.tr/search">
+                        <div class="small-12 columns">
+                            <label class="placeholder" for="search-field">Arama Yap...</label>
+                            <input type="text" name="search" id="search-field">
+                            <button class="submit" type="submit">Ara</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="language">
+                <div class="js">
+                    <div class="language-picker js-language-picker" data-trigger-class="btn btn--subtle">
+                        <form action="" class="language-picker__form">
+                            <label for="language-picker-select">Select your language</label>
+                            <select name="language-picker-select" id="language-picker-select">
+                                <option lang="tr" value="tr"  selected >TR</option>
+                                <option lang="en" value="en" >EN</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="fast-access">
+                <div class="sec-center">
+                    <input class="dropdown" type="checkbox" id="dropdown" name="dropdown"/>
+                    <label class="for-dropdown" for="dropdown">Hızlı Erişim                        <i class="fa fa-arrow-down" aria-hidden="true"></i></label>
+                    <div class="section-dropdown">
+                                                    <li>
+                                                                    <a class="sub-border   ">e-Hizmetler</a>
+                                                                                                    <style>
+    .fast-access-submenu li{
+        position: relative;
+    }
+    .ikon{
+        margin-left: 15rem !important;
+    }
+</style>
+<button style="padding: 7px 30px;    position: absolute;
+width: 100%;
+right: 0;
+    top: 0rem;
+    border: 0;
+    background: transparent;" class="open-menu-button first-open-button open-first sub-border"><i
+            class="ul-open-icon fas fa-plus ikon"></i></button>
+<ul class="fast-access-submenu" style="display: none">
+
+    
+                            <li><a class="sub-border " href=" https://posta.firat.edu.tr/">Fırat e-Posta</a>
+                                
+                </li>
+            
+                            <li><a class="sub-border " href=" https://obs.firat.edu.tr/">Öğrenci İşleri Otomasyonu</a>
+                                
+                </li>
+            
+                            <li><a class="sub-border " href=" https://obs.firat.edu.tr/">Transkript Belgesi</a>
+                                
+                </li>
+            </ul>                                                            </li>
+                                                    <li>
+                                                                    <a target="_blank" class="sub-border "
+                                       href="http://www.firat.edu.tr">Fırat Üniversitesi</a>
+                                                                                            </li>
+                                                    <li>
+                                                                    <a target="_blank" class="sub-border "
+                                       href="http://www.firat.edu.tr/documents/1607005914.pdf">Akademik Takvim</a>
+                                                                                            </li>
+                                                    <li>
+                                                                    <a target="_blank" class="sub-border "
+                                       href="http://www.firat.edu.tr/tr/page/event">Etkinlikler</a>
+                                                                                            </li>
+                                                    <li>
+                                                                    <a target="_blank" class="sub-border "
+                                       href="https://unievi.firat.edu.tr/">Üniversite Evi</a>
+                                                                                            </li>
+                                            </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    
+    
+    
+    
+
+    <div class="header__language">
+                <span class="language__tr"><a hreflang="tr" style="color:white"
+                                              href="https://unievi.firat.edu.tr/tr"
+                                               id="language" >TR</a></span>
+        <span class="language__en"><a hreflang="en" style="color:white"
+                                      href="https://unievi.firat.edu.tr/en"
+                                      >EN</a></span>
+    </div>
+    <div id="menuToggle">
+        <label for="check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+    </div>
+    <nav role="navigation">
+        <ul id="mobil-menu">
+                            <li >
+                                            <a target="_blank"
+                           href="https://unievi.firat.edu.tr/tr">
+                                Ana Sayfa
+                            </a>
+                                                        </li>
+                            <li >
+                                            <a href="https://unievi.firat.edu.tr/page/35865">Aylık Yemek Menüsü</a>
+                                                        </li>
+                            <li >
+                                            <a href="https://unievi.firat.edu.tr/page/35866">Yemekhane Hizmetleri Değerlendirme Anketi</a>
+                                                        </li>
+            
+                                
+
+                                                </ul>
+    </nav>
+    <div class="mobil-circle" onclick="qwert()">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    </div>
+    <div class="small-menu circle-menu">
+        <div  class="small-menu__header">Hızlı Erişim</div>
+        <ul class="small-menu__list">
+                            <li style="display: flex;" class="small-menu__item">
+                                            <a class="small-menu__link">e-Hizmetler</a>
+                                                                <style>
+    .sub-border{
+        color: var(--text-color);
+        font-size: 18px;
+        font-weight: 200;
+    }
+    .fast-access-submenu li{
+        position: relative;
+    }
+    .open-menu-button .ul-open-icon{
+        font-size: 12px;
+        margin-left: 6rem;
+    }
+</style>
+
+<div class="inner-list-head">
+    <i class="fa fa-solid fa-plus menu-plus" onclick=hizlierisim(this)></i>
+    <i class="fa fa-solid fa-minus menu-minus"></i>
+</div>
+<ul class="inner-list alk " style="margin-top: 3.5rem; margin-left: -8rem">
+
+            <li style="width: 110%" class="inner-list__item d-flex">
+                            <a class="inner-list__link " href=" https://posta.firat.edu.tr/">Fırat e-Posta</a>
+                        
+        </li>
+            <li style="width: 110%" class="inner-list__item d-flex">
+                            <a class="inner-list__link " href=" https://obs.firat.edu.tr/">Öğrenci İşleri Otomasyonu</a>
+                        
+        </li>
+            <li style="width: 110%" class="inner-list__item d-flex">
+                            <a class="inner-list__link " href=" https://obs.firat.edu.tr/">Transkript Belgesi</a>
+                        
+        </li>
+    </ul>                                    </li>
+                            <li style="display: flex;" class="small-menu__item">
+                                            <a target="_blank"
+                           href="http://www.firat.edu.tr">Fırat Üniversitesi</a>
+                                                        </li>
+                            <li style="display: flex;" class="small-menu__item">
+                                            <a target="_blank"
+                           href="http://www.firat.edu.tr/documents/1607005914.pdf">Akademik Takvim</a>
+                                                        </li>
+                            <li style="display: flex;" class="small-menu__item">
+                                            <a target="_blank"
+                           href="http://www.firat.edu.tr/tr/page/event">Etkinlikler</a>
+                                                        </li>
+                            <li style="display: flex;" class="small-menu__item">
+                                            <a target="_blank"
+                           href="https://unievi.firat.edu.tr/">Üniversite Evi</a>
+                                                        </li>
+                    </ul>
+    </div>
+    <div class="header-sub">
+        <nav class="menu firat-container">
+                            <ol>
+                                            <li class="menu-item">
+                                                            <a style="line-height: 25px;"
+                                   href="https://unievi.firat.edu.tr/tr">Ana Sayfa</a>
+                                                                                </li>
+                                    </ol>
+                            <ol>
+                                            <li class="menu-item">
+                                                            <a style="line-height: 25px;"
+                                   href="https://unievi.firat.edu.tr/page/35865">Aylık Yemek Menüsü</a>
+                                                                                </li>
+                                    </ol>
+                            <ol>
+                                            <li class="menu-item">
+                                                            <a style="line-height: 25px;"
+                                   href="https://unievi.firat.edu.tr/page/35866">Yemekhane Hizmetleri Değerlendirme Anketi</a>
+                                                                                </li>
+                                    </ol>
+                        <ol>
+                                                                
+                                                                    
+            </ol>
+            <span class="bar"></span>
+        </nav>
+
+    </div>
+</header>
+<header class="header-responsive">
+    <div class="header-title-responsive">
+        <h3>                 <div class="title">
+                    <h5>Üniversite Evi</h5>
+                </div>
+            </h3>
+    </div>
+</header>
+
+
+            <!--Üniversite Yemekhanesi Başlangıç-->
+        <div class="university-food" lang="tr">
+            <div class="news-entrance ">
+                <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/university-food.jpg" alt="">
+                <div class="news-entrance-info firat-container">
+                    <div style="top: 60%" class="news-entrance-title firat-container">
+                        <p>Haftalık Menü</p>
+                    </div>
+                </div>
+            </div>
+            <div class="university-food-cards firat-container">
+                <div class="wrapper">
+                    
+                                                            <div class="fm" id="fm">
+                        <div class="fm-days" role="tablist" aria-label="Haftanın günleri">
+                                                                                            <button type="button" role="tab" class="fm-day is-active"
+                                        id="fm-tab-0" aria-controls="fm-panel-0"
+                                        aria-selected="true" tabindex="0">
+                                    <strong>30</strong>
+                                    <small class="fm-day-long">Pazartesi</small>
+                                    <small class="fm-day-short">Pzt</small>
+                                </button>
+                                                                                            <button type="button" role="tab" class="fm-day "
+                                        id="fm-tab-1" aria-controls="fm-panel-1"
+                                        aria-selected="false" tabindex="-1">
+                                    <strong>01</strong>
+                                    <small class="fm-day-long">Salı</small>
+                                    <small class="fm-day-short">Sal</small>
+                                </button>
+                                                                                            <button type="button" role="tab" class="fm-day "
+                                        id="fm-tab-2" aria-controls="fm-panel-2"
+                                        aria-selected="false" tabindex="-1">
+                                    <strong>02</strong>
+                                    <small class="fm-day-long">Çarşamba</small>
+                                    <small class="fm-day-short">Çar</small>
+                                </button>
+                                                                                            <button type="button" role="tab" class="fm-day "
+                                        id="fm-tab-3" aria-controls="fm-panel-3"
+                                        aria-selected="false" tabindex="-1">
+                                    <strong>03</strong>
+                                    <small class="fm-day-long">Perşembe</small>
+                                    <small class="fm-day-short">Per</small>
+                                </button>
+                                                                                            <button type="button" role="tab" class="fm-day "
+                                        id="fm-tab-4" aria-controls="fm-panel-4"
+                                        aria-selected="false" tabindex="-1">
+                                    <strong>04</strong>
+                                    <small class="fm-day-long">Cuma</small>
+                                    <small class="fm-day-short">Cum</small>
+                                </button>
+                                                    </div>
+
+                                                                                <section class="fm-panel" id="fm-panel-0" role="tabpanel"
+                                     aria-labelledby="fm-tab-0" >
+                                <div class="fm-heading">
+                                    <div>
+                                        <small>
+                                            30 Kasım 2026
+                                                                                    </small>
+                                        <h3>Pazartesi Menüsü</h3>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                </div>
+
+                                                                                                                                                                                        <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v7a2 2 0 0 0 4 0V3M5 12v9M19 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Ana Yemek</small>
+                                                <strong>Etli Bezelye</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>18.3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>29.2 g</b></span>
+                                                                                                                    <span>Yağ <b>12 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    298 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Yardımcı Yemek</small>
+                                                <strong>Bulgur Pilavı</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>6.5 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>37.2 g</b></span>
+                                                                                                                    <span>Yağ <b>12.9 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    291 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Eşlikçi</small>
+                                                <strong>Toyga Çorba</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>3.3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>12.4 g</b></span>
+                                                                                                                    <span>Yağ <b>5.8 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    115 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Tamamlayıcı</small>
+                                                <strong>İrmik Tatlısı</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>6.7 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>76 g</b></span>
+                                                                                                                    <span>Yağ <b>21.9 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    528 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                    
+                                                                            <div class="fm-total">
+                                            <span>
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                                                <span>Toplam Enerji <small>(bir öğün)</small></span>
+                                            </span>
+                                            <span class="fm-total-right"><b>1232</b> kcal</span>
+                                                                                            <div class="fm-total-macros" style="flex-basis: 100%">
+                                                                                                                                                                        <span>Protein <b>34.8 g</b></span>
+                                                                                                                                                                                                                                <span>Karbonhidrat <b>154.8 g</b></span>
+                                                                                                                                                                                                                                <span>Yağ <b>52.6 g</b></span>
+                                                                                                                                                            </div>
+                                                                                    </div>
+                                    
+                                                                            <div class="fm-note">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                            <span>Yemekler doğrudan veya bulaşı olarak gluten vb. alerjenler ile şeker içerebilir.</span>
+                                        </div>
+                                                                                                </section>
+                                                                                <section class="fm-panel" id="fm-panel-1" role="tabpanel"
+                                     aria-labelledby="fm-tab-1"  hidden >
+                                <div class="fm-heading">
+                                    <div>
+                                        <small>
+                                            01 Aralık 2026
+                                                                                    </small>
+                                        <h3>Salı Menüsü</h3>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                </div>
+
+                                                                                                                                                                                        <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v7a2 2 0 0 0 4 0V3M5 12v9M19 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Ana Yemek</small>
+                                                <strong>Tavuk Haşlama</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>26.2 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>14.9 g</b></span>
+                                                                                                                    <span>Yağ <b>10.5 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    259 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Yardımcı Yemek</small>
+                                                <strong>Pirinç Pilavı</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>4.1 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>49.1 g</b></span>
+                                                                                                                    <span>Yağ <b>12.6 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    326 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Eşlikçi</small>
+                                                <strong>Mevsim Salata</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>1.3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>6.3 g</b></span>
+                                                                                                                    <span>Yağ <b>10.3 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    123 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Tamamlayıcı</small>
+                                                <strong>Meyve</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Karbonhidrat <b>15 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    60 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                    
+                                                                            <div class="fm-total">
+                                            <span>
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                                                <span>Toplam Enerji <small>(bir öğün)</small></span>
+                                            </span>
+                                            <span class="fm-total-right"><b>768</b> kcal</span>
+                                                                                            <div class="fm-total-macros" style="flex-basis: 100%">
+                                                                                                                                                                        <span>Protein <b>31.6 g</b></span>
+                                                                                                                                                                                                                                <span>Karbonhidrat <b>85.3 g</b></span>
+                                                                                                                                                                                                                                <span>Yağ <b>33.4 g</b></span>
+                                                                                                                                                            </div>
+                                                                                    </div>
+                                    
+                                                                            <div class="fm-note">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                            <span>Yemekler doğrudan veya bulaşı olarak gluten vb. alerjenler ile şeker içerebilir.</span>
+                                        </div>
+                                                                                                </section>
+                                                                                <section class="fm-panel" id="fm-panel-2" role="tabpanel"
+                                     aria-labelledby="fm-tab-2"  hidden >
+                                <div class="fm-heading">
+                                    <div>
+                                        <small>
+                                            02 Aralık 2026
+                                                                                    </small>
+                                        <h3>Çarşamba Menüsü</h3>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                </div>
+
+                                                                                                                                                                                        <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v7a2 2 0 0 0 4 0V3M5 12v9M19 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Ana Yemek</small>
+                                                <strong>Kıymalı Karnabahar</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>11.3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>9.1 g</b></span>
+                                                                                                                    <span>Yağ <b>11.7 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    187 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Yardımcı Yemek</small>
+                                                <strong>Bulgur Pilavı</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>6.5 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>37.2 g</b></span>
+                                                                                                                    <span>Yağ <b>12.9 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    291 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Eşlikçi</small>
+                                                <strong>Domates Çorba</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>15 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>5 g</b></span>
+                                                                                                                    <span>Yağ <b>4.9 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    20 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Tamamlayıcı</small>
+                                                <strong>Yoğurt</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>4.5 g</b></span>
+                                                                                                                    <span>Yağ <b>3.8 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    64 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                    
+                                                                            <div class="fm-total">
+                                            <span>
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                                                <span>Toplam Enerji <small>(bir öğün)</small></span>
+                                            </span>
+                                            <span class="fm-total-right"><b>562</b> kcal</span>
+                                                                                            <div class="fm-total-macros" style="flex-basis: 100%">
+                                                                                                                                                                        <span>Protein <b>35.8 g</b></span>
+                                                                                                                                                                                                                                <span>Karbonhidrat <b>55.8 g</b></span>
+                                                                                                                                                                                                                                <span>Yağ <b>33.3 g</b></span>
+                                                                                                                                                            </div>
+                                                                                    </div>
+                                    
+                                                                            <div class="fm-note">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                            <span>Yemekler doğrudan veya bulaşı olarak gluten vb. alerjenler ile şeker içerebilir.</span>
+                                        </div>
+                                                                                                </section>
+                                                                                <section class="fm-panel" id="fm-panel-3" role="tabpanel"
+                                     aria-labelledby="fm-tab-3"  hidden >
+                                <div class="fm-heading">
+                                    <div>
+                                        <small>
+                                            03 Aralık 2026
+                                                                                    </small>
+                                        <h3>Perşembe Menüsü</h3>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                </div>
+
+                                                                                                                                                                                        <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v7a2 2 0 0 0 4 0V3M5 12v9M19 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Ana Yemek</small>
+                                                <strong>Somon Kızartma</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>48 g</b></span>
+                                                                                                                    <span>Yağ <b>30 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    460 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Yardımcı Yemek</small>
+                                                <strong>Fasulye Pilaki</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>11.5 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>36 g</b></span>
+                                                                                                                    <span>Yağ <b>12.5 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    275 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Eşlikçi</small>
+                                                <strong>Mercimek Çorba</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>7.9 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>22.8 g</b></span>
+                                                                                                                    <span>Yağ <b>6.7 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    183 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Tamamlayıcı</small>
+                                                <strong>Kadayıf</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>27 g</b></span>
+                                                                                                                    <span>Yağ <b>14 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    246 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                    
+                                                                            <div class="fm-total">
+                                            <span>
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                                                <span>Toplam Enerji <small>(bir öğün)</small></span>
+                                            </span>
+                                            <span class="fm-total-right"><b>1164</b> kcal</span>
+                                                                                            <div class="fm-total-macros" style="flex-basis: 100%">
+                                                                                                                                                                        <span>Protein <b>70.4 g</b></span>
+                                                                                                                                                                                                                                <span>Karbonhidrat <b>85.8 g</b></span>
+                                                                                                                                                                                                                                <span>Yağ <b>63.2 g</b></span>
+                                                                                                                                                            </div>
+                                                                                    </div>
+                                    
+                                                                            <div class="fm-note">
+                                            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                                            <span>Yemekler doğrudan veya bulaşı olarak gluten vb. alerjenler ile şeker içerebilir.</span>
+                                        </div>
+                                                                                                </section>
+                                                                                <section class="fm-panel" id="fm-panel-4" role="tabpanel"
+                                     aria-labelledby="fm-tab-4"  hidden >
+                                <div class="fm-heading">
+                                    <div>
+                                        <small>
+                                            04 Aralık 2026
+                                                                                    </small>
+                                        <h3>Cuma Menüsü</h3>
+                                    </div>
+                                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                </div>
+
+                                                                                                                                                                                        <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v7a2 2 0 0 0 4 0V3M5 12v9M19 15V3a4 4 0 0 0-4 4v6a2 2 0 0 0 2 2h2zm0 0v6"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Ana Yemek</small>
+                                                <strong>Zeytinyağlı Barbunya</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>7.8 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>25.2 g</b></span>
+                                                                                                                    <span>Yağ <b>15 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    267 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10Z"/><path d="M2 21c0-3 1.9-5.4 5.1-6 2.4-.5 4.9-2 5.9-3"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Yardımcı Yemek</small>
+                                                <strong>Pirinç Pilavı</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>4.1 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>49.1 g</b></span>
+                                                                                                                    <span>Yağ <b>12.6 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    326 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18a9 9 0 0 1-18 0z"/><path d="M8 3c0 1.3-1 2-1 3.5M12 3c0 1.3-1 2-1 3.5M16 3c0 1.3-1 2-1 3.5"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Eşlikçi</small>
+                                                <strong>Mevsim Salata</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Protein <b>1.3 g</b></span>
+                                                                                                                    <span>Karbonhidrat <b>6.3 g</b></span>
+                                                                                                                    <span>Yağ <b>10.3 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    123 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                    <div class="fm-dish">
+                                            <div class="fm-symbol">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2M10 2v2M14 2v2"/></svg>
+                                            </div>
+                                            <div class="fm-details">
+                                                <small>Tamamlayıcı</small>
+                                                <strong>Meyve</strong>
+                                                                                                    <div class="fm-nut">
+                                                                                                                    <span>Karbonhidrat <b>15 g</b></span>
+                                                                                                            </div>
+                                                                                            </div>
+                                                                                            <div class="fm-energy">
+                                                    60 <small>kcal</small>                                                                                                    </div>
+                                                                                                                                </div>
+                                    
+                                                                            <div class="fm-total">
+                                            <span>
+                                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4.1 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                                                <span>Toplam Enerji <small>(bir öğün)</small></span>
+                                            </span>
+                                            <span class="fm-total-right"><b>776</b> kcal</span>
+                                                                                            <div class="fm-total-macros" style="flex-basis: 100%">
+                                                                                                                                                                        <span>Protein <b>13.2 g</b></span>
+                                                                                                                                                                                                                                <span>Karbonhidrat <b>95.6 g</b></span>
+                                                                                                                                                                                                                                <span>Yağ <b>37.9 g</b></span>
+                                                                                                                                                            </div>
+                                                                                    </div>
+                                    
+                                                                                                </section>
+                                            </div>
+                     
+                </div>
+            </div>
+        </div>
+        <!--Üniversite Yemekhanesi Son-->
+    
+    <div class="home-shape5">
+        <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/home-shape2.svg" alt="">
+    </div>
+    <!--Ana sayfa başlangıç-->
+                                        <div class="home-shape6">
+            <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/home-shape2.svg" alt="">
+        </div>
+        <!--Ana sayfa son-->
+
+        <!--Kütüphane Iframe başlangıç-->
+                <!--Kütüphane Iframe son-->
+
+        <!---Metric başlangıç-->
+                <!---Metric son-->
+
+
+        <!----İçerik Başlangıç------>
+                <!-----İçerik Son------>
+
+
+        <!---Birimden haberler başlangıç---->
+                <!---Birimden haberler son---->
+
+
+
+
+        <!---Dokümanlar Başlangıç--->
+        <div class="documents mt-5 mb-5">
+            <div class="document-cards firat-container">
+                <div class="home-shape3">
+                    <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/home-shape2.svg" alt="">
+                </div>
+                                    <div class="document-card">
+                        <div class="document-card-top">
+                            <a href="https://ebys.firat.edu.tr" target="_blank">
+                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="document-card-sub">
+                            <p>EBYS</p>
+                        </div>
+                    </div>
+                    <div class="document-card">
+                        <div class="document-card-top">
+                            <a href="https://abs.firat.edu.tr" target="_blank">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="document-card-sub">
+                            <p>ABS</p>
+                        </div>
+                    </div>
+                                <div class="document-card">
+                    <div class="document-card-top">
+                        <a href="https://www.firat.edu.tr/tr/document?file_category_id=66&menu_id=406" target="_blank">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="document-card-sub">
+                        <p>Takvim</p>
+                    </div>
+                </div>
+                <div class="document-card">
+                    <div class="document-card-top">
+                        <a href="https://obs.firat.edu.tr/" target="_blank">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="document-card-sub">
+                        <p>OBS</p>
+                    </div>
+                </div>
+                <div class="document-card">
+                    <div class="document-card-top">
+                        <a href="https://debsis.firat.edu.tr/" target="_blank">
+                            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="document-card-sub">
+                        <p>Uzaktan Eğitim</p>
+                    </div>
+                </div>
+                <div class="document-card">
+                    <div class="document-card-top">
+                        <a href="http://mail.firat.edu.tr/" target="_blank">
+                            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="document-card-sub">
+                        <p>E-posta</p>
+                    </div>
+                </div>
+                <div class="home-shape4">
+                    <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/home-shape2.svg" alt="">
+                </div>
+            </div>
+        </div>
+        <!---Dokümanlar Son--->
+
+        <!--Üniversiteden Haberler Başlangıç-->
+        <div class="department-news firat-container mb-5">
+            <div class="department-news-title mb-3">
+                <p>Üniversiteden Haberler</p>
+            </div>
+            <div class="department-news-cards mb-3">
+                                    <a href="https://www.firat.edu.tr/tr/page/news/universitemiz-rektoru-prof-dr-fahrettin-goktasin-10-kasim-ataturku-anma-mesaji-7661" class="department-news-card" target="_blank">
+                        <div class=" ">
+                            <img src="https://www.firat.edu.tr//images/news/1794235299.jpg" alt="">
+                            <div class="department-news-card-text">
+                                <div class="department-news-card-title">
+                                    <p>
+                                                                                         Üniversitemiz Rektörü Prof. Dr. Fahrettin ...
+                                                                            </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                                    <a href="https://www.firat.edu.tr/tr/page/news/universitemiz-cop31de-iklim-cozumlerini-tanitacak-7668" class="department-news-card" target="_blank">
+                        <div class=" ">
+                            <img src="https://www.firat.edu.tr//images/news/1794577008.jpg" alt="">
+                            <div class="department-news-card-text">
+                                <div class="department-news-card-title">
+                                    <p>
+                                                                                         Üniversitemiz  COP31’de İklim Çözümlerini ...
+                                                                            </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                                    <a href="https://www.firat.edu.tr/tr/page/news/universitemizde-2-bin-708-ogrenci-icin-iskur-genclik-programi-kurasi-cekildi-7657" class="department-news-card" target="_blank">
+                        <div class=" ">
+                            <img src="https://www.firat.edu.tr//images/news/1793967917.jpg" alt="">
+                            <div class="department-news-card-text">
+                                <div class="department-news-card-title">
+                                    <p>
+                                                                                         Üniversitemizde 2 Bin 708 Öğrenci İçin ...
+                                                                            </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                                    <a href="https://www.firat.edu.tr/tr/page/news/universitemizde-turkiye-yuzyilinda-genclerin-rolu-ve-dijital-tuzaklar-konulu-konferans-duzenlend-7649" class="department-news-card" target="_blank">
+                        <div class=" ">
+                            <img src="https://www.firat.edu.tr//images/news/1793710589.jpg" alt="">
+                            <div class="department-news-card-text">
+                                <div class="department-news-card-title">
+                                    <p>
+                                                                                         Üniversitemizde  “Türkiye Yüzyılında ...
+                                                                            </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                                    <a href="https://www.firat.edu.tr/tr/page/news/universitemiz-11-kasim-milli-agaclandirma-gununde-gelecege-nefes-oldu-7664" class="department-news-card" target="_blank">
+                        <div class=" ">
+                            <img src="https://www.firat.edu.tr//images/news/1794403699.jpg" alt="">
+                            <div class="department-news-card-text">
+                                <div class="department-news-card-title">
+                                    <p>
+                                                                                         Üniversitemiz, 11 Kasım Milli Ağaçlandırma ...
+                                                                            </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                            </div>
+            <div class="show-all-button-announcement">
+                <a href="https://www.firat.edu.tr/tr/page/news">
+                    Tümünü Göster<i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+        <!--Üniversiteden Haberler son-->
+
+    <footer>
+    <div class="map">
+        <div class="map-inner">
+                            <iframe id="location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12458.72548765454!2d39.18789473380924!3d38.67919017367631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4076c0445ee15ce7%3A0xd1dfbd49e81567d6!2sF%C4%B1rat%20%C3%9Cniversitesi%20%C3%9Cniversite%20Evi!5e0!3m2!1str!2str!4v1649242283014!5m2!1str!2str" width="100%" height="300" style="border:0;"
+                        allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+    </div>
+    <div class="footer-top ">
+        <div class="firat-container">
+            <div>
+                <div class="footer-top-icon ">
+                    <div>
+                        <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                    </div>
+                    <p>                             @firat.edu.tr
+                        </p>
+                </div>
+                <div class="footer-top-icon">
+                    <div>
+                        <i class="fa fa-phone" aria-hidden="true"></i>
+                    </div>
+                    <p>90 (424) 237 00 00</p>
+                </div>
+            </div>
+            <div class="number-visitors">
+                <p>Ziyaretçi Sayısı: <span> 2453548</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-sub" style="background-image: url("https://unievi.firat.edu.tr/assets/front/img/announcement-img.jpg")">
+    <div class="firat-container" style="gap: 1rem">
+        <div class="firat-logo">
+            <img src="https://unievi.firat.edu.tr/designV2/assets/front/img/firat-logo-yeni.png" alt="">
+        </div>
+                    <div>
+                <div class="web-administrators">
+                    <div class="title">
+                        <p>Web Sitesi Sorumluları</p>
+                    </div>
+                    <div class="administrators">
+                                                                                                                                                        <p> HALİL ERDOĞAN --
+                                        <span>     herdogan@firat.edu.tr </span></p>
+                                                                                                                                                                                                                    <p> FERİDUN ZAFER ZORLU --
+                                        <span>     fzorlu@firat.edu.tr </span></p>
+                                                                                                                                                                                                                    <p> ARİFE KÜBRA KOŞ --
+                                        <span>     akerdogan@firat.edu.tr </span></p>
+                                                                                    
+                    </div>
+
+                </div>
+
+            </div>
+                <div class="footer-adreses">
+            <div class="address">
+                <p>Fırat Üniversitesi</p>
+                <p>23119 Merkez/Elazığ</p>
+            </div>
+        </div>
+    </div>
+    <div class="cizgi">
+        <div class="line firat-container"></div>
+    </div>
+
+    <div class="copyright firat-container">
+        <center style="font-size: 10px; color: white; margin-top: 5px">
+            © 2023 <a style="color: white" href="http://ddyo.firat.edu.tr/">Fırat Üniversitesi Dijital Dönüşüm ve Yazılım Ofisi</a>
+        </center>
+        <div class="footer-social-icon">
+                                                
+        </div>
+        <center style="font-size: 10px; color: white; margin-top: 5px">
+            <a style="color: white" target="_blank" href="https://acikriza.firat.edu.tr:444/portal/?pref=A49843B3-1ED5-4414-9D3B-B4DD38DE50A3&dept=1">KVKK</a>
+        </center>
+    </div>
+    </div>
+</footer>
+<style>
+    thead, tbody, tfoot, tr, td, th {
+        border-width: initial; /* Varsayılan border genişliğini kullan */
+    }
+</style>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 3000, // 3 saniyede bir kaydır
+                disableOnInteraction: false // Kullanıcı etkileşime girerse otomatik dönmeyi durdurmaması için
+            },
+        });
+    </script>
+
+            <script>
+            // Haftalık menü: gün sekmeleri (ok tuşlarıyla da gezilebilir)
+            (function () {
+                var root = document.getElementById('fm');
+                if (!root) return;
+                var tabs = Array.prototype.slice.call(root.querySelectorAll('.fm-day'));
+
+                function select(index, focus) {
+                    tabs.forEach(function (tab, i) {
+                        var on = i === index;
+                        tab.classList.toggle('is-active', on);
+                        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+                        tab.tabIndex = on ? 0 : -1;
+                        document.getElementById(tab.getAttribute('aria-controls')).hidden = !on;
+                    });
+                    if (focus) tabs[index].focus();
+                }
+
+                tabs.forEach(function (tab, i) {
+                    tab.addEventListener('click', function () { select(i); });
+                    tab.addEventListener('keydown', function (e) {
+                        var n = tabs.length, to = null;
+                        if (e.key === 'ArrowRight') to = (i + 1) % n;
+                        if (e.key === 'ArrowLeft') to = (i - 1 + n) % n;
+                        if (e.key === 'Home') to = 0;
+                        if (e.key === 'End') to = n - 1;
+                        if (to !== null) { e.preventDefault(); select(to, true); }
+                    });
+                });
+
+                root.addEventListener('click', function (e) {
+                    var btn = e.target.closest('.fm-allergen-btn');
+                    if (!btn) return;
+                    var open = btn.getAttribute('aria-expanded') !== 'true';
+                    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
+                });
+
+                // Mobilde sayfa açılınca menüyü (sekmeler en üstte olacak şekilde) ekrana getir;
+                // kullanıcı dokunduysa, kaydırdıysa ya da #bağlantıyla geldiyse dokunma
+                if (!window.matchMedia('(max-width: 768px)').matches || window.location.hash || window.pageYOffset > 80) return;
+                var userScrolled = false;
+                ['touchstart', 'wheel', 'keydown', 'mousedown'].forEach(function (name) {
+                    window.addEventListener(name, function () { userScrolled = true; }, {passive: true, once: true});
+                });
+                function align(behavior) {
+                    if (userScrolled) return;
+                    var top = root.getBoundingClientRect().top + window.pageYOffset - 8;
+                    window.scrollTo({top: Math.max(0, top), behavior: behavior});
+                }
+                setTimeout(function () { align('smooth'); }, 250);
+                window.addEventListener('load', function () { setTimeout(function () { align('auto'); }, 300); });
+            })();
+        </script>
+    
+<script>
+    // HTML elementlerini seçin
+    var menuToggle = document.getElementById("menu-toggle");
+    var mobileMenu = document.getElementById("mobile-menu");
+
+    // Menü durumu için bir değişken tanımlayın
+    var isMenuOpen = false;
+
+    // Menüyü açma/kapatma işlevini tanımlayın
+    function toggleMenu() {
+        if (isMenuOpen) {
+            // Menüyü ve alt menüleri gizle
+            mobileMenu.style.display = "none";
+            // Alt menüleri de kapat
+            var subMenus = document.querySelectorAll("#mobil-menu li ul");
+            subMenus.forEach(function(subMenu) {
+                subMenu.classList.remove("active");
+                // Alt menü simgelerini 'fa-angle-right' olarak değiştir
+                subMenu.previousElementSibling.querySelector("i").classList.remove("fa-angle-down");
+                subMenu.previousElementSibling.querySelector("i").classList.add("fa-angle-right");
+            });
+            isMenuOpen = false;
+        } else {
+            // Menüyü göster
+            mobileMenu.style.display = "block";
+            isMenuOpen = true;
+        }
+    }
+
+    // Menüyü açma/kapatma işlevini tetiklemek için düğmeye tıklama olayını dinleyin
+    menuToggle?.addEventListener("click", toggleMenu);
+</script>
+
+<script>
+    $("#menuToggle").click(function () {
+        $("#menuToggle").toggleClass("active")
+        $("#mobil-menu").toggleClass("active")
+    })
+
+    $(".mobil-menu-list-head").click(function (event) {
+        // Alt menüyü aç/kapat
+        $(event.currentTarget).next("ul").toggleClass("active");
+
+        // İlgili simgeyi değiştir
+        var icon = $(event.currentTarget).find("i");
+        if ($(event.currentTarget).next("ul").hasClass("active")) {
+            icon.removeClass("fa-angle-right").addClass("fa-angle-down");
+        } else {
+            icon.removeClass("fa-angle-down").addClass("fa-angle-right");
+        }
+    })
+
+
+
+</script>
+
+
+
+<style>
+    .ikon2 {
+        margin-left: -50px;
+    }
+
+    .altikon {
+        margin-left: -19rem !important;
+    }
+</style>
+<script>
+
+
+
+    function hizlierisim(sub) {
+        var ulElement = sub.parentElement.nextElementSibling;
+
+
+        // açılan menünün kspnması için
+        if (ulElement.classList.contains("active")) {
+            ulElement.classList.remove("active");
+            ulElement.classList.add("inner-list");
+
+        } else { // açılması için
+            ulElement.classList.remove("inner-list");
+            ulElement.classList.add("active");
+
+            ulElement.querySelectorAll(".menu-plus").forEach(function(element) {
+                element.classList.add("ikon2");
+            });
+
+            let i = 1;
+            ulElement.querySelectorAll(".alk").forEach(function(element) {
+                element.classList.add("altikon");
+            });
+
+
+
+        }
+    }
+
+
+
+    $('.open-menu-button').click(function () {
+        console.log(5)
+
+
+        if ($(this).next(".fast-access-submenu").css('display') == 'none') {
+
+            $(".ul-open-icon").each(function () {
+                $(this).removeClass("fa-minus").addClass("fa-plus");
+            });
+            $(this).children().first().removeClass("fa-plus").addClass("fa-minus");
+            $(this).parents().each(function () {
+                if ($(this).hasClass("fast-access-submenu")) {
+                    $(this).slideDown(300);
+                }
+                if ($(this).children().eq(1).children().first().hasClass("ul-open-icon")) {
+                    $(this).children().eq(1).children().first().removeClass("fa-plus").addClass("fa-minus");
+                }
+            });
+            $(this).next(".fast-access-submenu").slideDown(300);
+        } else {
+            $(this).next(".fast-access-submenu").slideUp(300);
+            $(this).children().first().removeClass("fa-minus").addClass("fa-plus");
+            $(this).parents().each(function () {
+                if ($(this).hasClass("fa-minus")) {
+                    $(this).removeClass("fa-minus").addClass("fa-plus");
+                }
+
+            });
+
+        }
+    });
+</script>
+<script>
+    // Makes the clicked image full screen (uses a <div> with a background image)
+    $('.img-full-screen').click(function () {
+
+        // Prevents scrolling
+        $('body').addClass('scroll-disabled');
+
+        // Optional: Enables pinch and zoom
+        $('meta[name=viewport]').attr('content', 'width = device-width, initial-scale = 1.00, minimum-scale = 1.00, maximum-scale = 2.00, user-scalable=yes');
+
+        // Get image path source
+        var imagePath = $(this).attr('src');
+
+        // Set image path source
+        $('.img-placeholder').attr('style', 'background-image: url(' + imagePath + ')');
+
+        // Show image
+        $('.img-placeholder').fadeIn();
+
+    });
+
+    $('.img-placeholder').click(function () {
+
+        // Enables scrolling again
+        $('body').removeClass('scroll-disabled');
+
+        // Optional: Disables pinch and zoom
+        $('meta[name=viewport]').attr('content', 'width = device-width, initial-scale = 1.00, minimum-scale = 1.00, maximum-scale = 1.00');
+
+        // Hide image
+        $('.img-placeholder').fadeOut();
+    });
+</script>
+<script>
+    (function ($) {
+        var $searchEl = $('.search-elem');
+        var $placeHolder = $searchEl.find('.placeholder');
+        var $sField = $('#search-field');
+        var $submit = $searchEl.find('.submit');
+        var placeholderText = $.trim($placeHolder.text());
+        var searchingText = "Aran\u0131yor...";
+
+        function syncState() {
+            var hasText = $.trim($sField.val()) !== '';
+            $placeHolder.toggleClass('move-up', hasText).text(hasText ? searchingText : placeholderText);
+            $submit.prop('disabled', !hasText);
+        }
+
+        function openSearch() {
+            $searchEl.addClass('search-open');
+            $sField.focus();
+        }
+
+        function closeSearch() {
+            $searchEl.removeClass('search-open');
+            $sField.val('');
+            syncState();
+        }
+
+        $sField.on('input', syncState);
+        $('.search-btn').on('click', function (e) {
+            e.preventDefault();
+            openSearch();
+        });
+        $searchEl.find('.close').on('click', closeSearch);
+        $(document).on('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeSearch();
+            }
+        });
+        syncState();
+    }(jQuery));
+</script>
+<script>
+    function Util() {
+    };
+    Util.hasClass = function (el, className) {
+        if (el.classList) return el.classList.contains(className);
+        else return !!el.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
+    };
+    Util.addClass = function (el, className) {
+        var classList = className.split(' ');
+        if (el.classList) el.classList.add(classList[0]);
+        else if (!Util.hasClass(el, classList[0])) el.className += " " + classList[0];
+        if (classList.length > 1) Util.addClass(el, classList.slice(1).join(' '));
+    };
+    Util.removeClass = function (el, className) {
+        var classList = className.split(' ');
+        if (el.classList) el.classList.remove(classList[0]);
+        else if (Util.hasClass(el, classList[0])) {
+            var reg = new RegExp('(\\s|^)' + classList[0] + '(\\s|$)');
+            el.className = el.className.replace(reg, ' ');
+        }
+        if (classList.length > 1) Util.removeClass(el, classList.slice(1).join(' '));
+    };
+    Util.toggleClass = function (el, className, bool) {
+        if (bool) Util.addClass(el, className);
+        else Util.removeClass(el, className);
+    };
+    Util.setAttributes = function (el, attrs) {
+        for (var key in attrs) {
+            el.setAttribute(key, attrs[key]);
+        }
+    };
+    Util.getChildrenByClassName = function (el, className) {
+        var children = el.children,
+            childrenByClass = [];
+        for (var i = 0; i < el.children.length; i++) {
+            if (Util.hasClass(el.children[i], className)) childrenByClass.push(el.children[i]);
+        }
+        return childrenByClass;
+    };
+    Util.is = function (elem, selector) {
+        if (selector.nodeType) {
+            return elem === selector;
+        }
+        var qa = (typeof (selector) === 'string' ? document.querySelectorAll(selector) : selector),
+            length = qa.length,
+            returnArr = [];
+        while (length--) {
+            if (qa[length] === elem) {
+                return true;
+            }
+        }
+        return false;
+    };
+    Util.setHeight = function (start, to, element, duration, cb) {
+        var change = to - start,
+            currentTime = null;
+        var animateHeight = function (timestamp) {
+            if (!currentTime) currentTime = timestamp;
+            var progress = timestamp - currentTime;
+            var val = parseInt((progress / duration) * change + start);
+            element.style.height = val + "px";
+            if (progress < duration) {
+                window.requestAnimationFrame(animateHeight);
+            } else {
+                cb();
+            }
+        };
+        element.style.height = start + "px";
+        window.requestAnimationFrame(animateHeight);
+    };
+    Util.scrollTo = function (final, duration, cb) {
+        var start = window.scrollY || document.documentElement.scrollTop,
+            currentTime = null;
+        var animateScroll = function (timestamp) {
+            if (!currentTime) currentTime = timestamp;
+            var progress = timestamp - currentTime;
+            if (progress > duration) progress = duration;
+            var val = Math.easeInOutQuad(progress, start, final - start, duration);
+            window.scrollTo(0, val);
+            if (progress < duration) {
+                window.requestAnimationFrame(animateScroll);
+            } else {
+                cb && cb();
+            }
+        };
+        window.requestAnimationFrame(animateScroll);
+    };
+    Util.moveFocus = function (element) {
+        if (!element) element = document.getElementsByTagName("body")[0];
+        element.focus();
+        if (document.activeElement !== element) {
+            element.setAttribute('tabindex', '-1');
+            element.focus();
+        }
+    };
+    Util.getIndexInArray = function (array, el) {
+        return Array.prototype.indexOf.call(array, el);
+    };
+    Util.cssSupports = function (property, value) {
+        if ('CSS' in window) {
+            return CSS.supports(property, value);
+        } else {
+            var jsProperty = property.replace(/-([a-z])/g, function (g) {
+                return g[1].toUpperCase();
+            });
+            return jsProperty in document.body.style;
+        }
+    };
+    Util.extend = function () {
+        var extended = {};
+        var deep = false;
+        var i = 0;
+        var length = arguments.length;
+        if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
+            deep = arguments[0];
+            i++;
+        }
+        var merge = function (obj) {
+            for (var prop in obj) {
+                if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+                    if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+                        extended[prop] = extend(true, extended[prop], obj[prop]);
+                    } else {
+                        extended[prop] = obj[prop];
+                    }
+                }
+            }
+        };
+        for (; i < length; i++) {
+            var obj = arguments[i];
+            merge(obj);
+        }
+        return extended;
+    };
+    if (!Element.prototype.matches) {
+        Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+    }
+
+    function changeLanguage(event) {
+        console.log(event)
+        if (event.target.innerText === "TR") {
+            window.location.href = "https://unievi.firat.edu.tr/tr";
+        }
+        if (event.target.innerText === "EN") {
+            window.location.href = "https://unievi.firat.edu.tr/en";
+        }
+    }
+
+    if (!Element.prototype.closest) {
+        Element.prototype.closest = function (s) {
+            var el = this;
+            if (!document.documentElement.contains(el)) return null;
+            do {
+                if (el.matches(s)) return el;
+                el = el.parentElement || el.parentNode;
+            } while (el !== null && el.nodeType === 1);
+            return null;
+        };
+    }
+    if (typeof window.CustomEvent !== "function") {
+        function CustomEvent(event, params) {
+            params = params || {
+                bubbles: false,
+                cancelable: false,
+                detail: undefined
+            };
+            var evt = document.createEvent('CustomEvent');
+            evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+            return evt;
+        }
+
+        CustomEvent.prototype = window.Event.prototype;
+        window.CustomEvent = CustomEvent;
+    }
+    Math.easeInOutQuad = function (t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+    };
+    /**/
+    (function () {
+        var LanguagePicker = function (element) {
+            this.element = element;
+            this.select = this.element.getElementsByTagName('select')[0];
+            this.options = this.select.getElementsByTagName('option');
+            this.selectedOption = getSelectedOptionText(this);
+            this.pickerId = this.select.getAttribute('id');
+            this.trigger = false;
+            this.dropdown = false;
+            this.firstLanguage = false;
+            // dropdown arrow inside the button element
+            this.svgPath = '<svg viewBox="0 0 16 16"><polygon points="3,5 8,11 13,5 "></polygon></svg>';
+            initLanguagePicker(this);
+            initLanguagePickerEvents(this);
+        };
+
+        function initLanguagePicker(picker) {
+            // create the HTML for the custom dropdown element
+            picker.element.insertAdjacentHTML('beforeend', initButtonPicker(picker) + initListPicker(picker));
+
+            // save picker elements
+            picker.dropdown = picker.element.getElementsByClassName('language-picker__dropdown')[0];
+            picker.firstLanguage = picker.dropdown.getElementsByClassName('language-picker__item')[0];
+            picker.trigger = picker.element.getElementsByClassName('language-picker__button')[0];
+        };
+
+        function initLanguagePickerEvents(picker) {
+// make sure to add the icon class to the arrow dropdown inside the button element
+            Util.addClass(picker.trigger.getElementsByTagName('svg')[0], 'icon');
+            // language selection in dropdown
+            // ⚠️ Important: you need to modify this function in production
+            initLanguageSelection(picker);
+
+            // click events
+            picker.trigger.addEventListener('click', function () {
+                toggleLanguagePicker(picker, false);
+            });
+        };
+
+        function toggleLanguagePicker(picker, bool) {
+            var ariaExpanded;
+            if (bool) {
+                ariaExpanded = bool;
+            } else {
+                ariaExpanded = picker.trigger.getAttribute('aria-expanded') == 'true' ? 'false' : 'true';
+            }
+            picker.trigger.setAttribute('aria-expanded', ariaExpanded);
+            if (ariaExpanded == 'true') {
+                picker.firstLanguage.focus(); // fallback if transition is not supported
+                picker.dropdown.addEventListener('transitionend', function cb() {
+                    picker.firstLanguage.focus();
+                    picker.dropdown.removeEventListener('transitionend', cb);
+                });
+            }
+        };
+        let oldLang = ""
+
+        function checkLanguagePickerClick(picker, target) { // if user clicks outside the language picker -> close it
+            if (!picker.element.contains(target)) toggleLanguagePicker(picker, 'false');
+        };
+
+        function moveFocusToPickerTrigger(picker) {
+            if (picker.trigger.getAttribute('aria-expanded') == 'false') return;
+            if (document.activeElement.closest('.language-picker__dropdown') == picker.dropdown) picker.trigger.focus();
+        };
+
+        function initButtonPicker(picker) { // create the button element -> picker trigger
+            // check if we need to add custom classes to the button trigger
+            var customClasses = picker.element.getAttribute('data-trigger-class') ? ' ' + picker.element.getAttribute('data-trigger-class') : '';
+
+            var button = '<button class="language-picker__button' + customClasses + '" aria-label="' + picker.select.value + ' ' + picker.element.getElementsByTagName('label')[0].innerText + '" aria-expanded="false" aria-contols="' + picker.pickerId + '-dropdown">';
+            button = button + '<span aria-hidden="true" class="language-picker__label language-picker__flag language-picker__flag--' + picker.select.value + '"><em>' + picker.selectedOption + '</em>';
+            button = button + picker.svgPath + '</span>';
+            return button + '</button>';
+        };
+
+        function initListPicker(picker) { // create language picker dropdown
+            var list = '<div class="language-picker__dropdown" aria-describedby="' + picker.pickerId + '-description" id="' + picker.pickerId + '-dropdown">';
+            list = list + '<p class="sr-only" id="' + picker.pickerId + '-description">' + picker.element.getElementsByTagName('label')[0].innerText + '</p>';
+            list = list + '<ul class="language-picker__list" role="listbox">';
+            for (var i = 0; i < picker.options.length; i++) {
+                var selected = picker.options[i].hasAttribute('selected') ? ' aria-selected="true"' : '',
+                    language = picker.options[i].getAttribute('lang');
+                let li = '<li><a lang="' + language + '" data-value="' + picker.options[i].value + '" onclick="changeLanguage(event)" class="language-picker__item language-picker__flag language-picker__flag--' + picker.options[i].value + '"><span>' + picker.options[i].text + '</span></a></li>'
+                list = list + li;
+            }
+            return list;
+        };
+
+        function getSelectedOptionText(picker) { // used to initialize the label of the picker trigger button
+            var label = '';
+            if ('selectedIndex' in picker.select) {
+                label = picker.options[picker.select.selectedIndex].text;
+            } else {
+                label = picker.select.querySelector('option[selected]').text;
+            }
+            return label;
+        };
+
+        function getLanguageUrl(option) {
+            // ⚠️ Important: You should replace this return value with the real link to your website in the selected language
+            // option.value gives you the value of the language that you can use to create your real url (e.g, 'english' or 'italiano')
+            return '#';
+        };
+
+        function initLanguageSelection(picker) {
+            picker.element.getElementsByClassName('language-picker__list')[0].addEventListener('click', function (event) {
+                var language = event.target.closest('.language-picker__item');
+                if (!language) return;
+
+                if (language.hasAttribute('aria-selected') && language.getAttribute('aria-selected') == 'true') {
+                    // selecting the same language
+                    event.preventDefault();
+                    picker.trigger.setAttribute('aria-expanded', 'false'); // hide dropdown
+                } else {
+                    // ⚠️ Important: this 'else' code needs to be removed in production.
+                    // The user has to be redirected to the new url -> nothing to do here
+                    event.preventDefault();
+                    picker.element.getElementsByClassName('language-picker__list')[0].querySelector('[aria-selected="true"]').removeAttribute('aria-selected');
+                    language.setAttribute('aria-selected', 'true');
+                    picker.trigger.getElementsByClassName('language-picker__label')[0].setAttribute('class', 'language-picker__label language-picker__flag language-picker__flag--' + language.getAttribute('data-value'));
+                    picker.trigger.getElementsByClassName('language-picker__label')[0].getElementsByTagName('em')[0].innerText = language.innerText;
+                    picker.trigger.setAttribute('aria-expanded', 'false');
+                }
+            });
+        };
+
+        //initialize the LanguagePicker objects
+        var languagePicker = document.getElementsByClassName('js-language-picker');
+        if (languagePicker.length > 0) {
+            var pickerArray = [];
+            for (var i = 0; i < languagePicker.length; i++) {
+                (function (i) {
+                    pickerArray.push(new LanguagePicker(languagePicker[i]));
+                })(i);
+            }
+
+            // listen for key events
+            window.addEventListener('keyup', function (event) {
+                if (event.keyCode && event.keyCode == 27 || event.key && event.key.toLowerCase() == 'escape') {
+                    // close language picker on 'Esc'
+                    pickerArray.forEach(function (element) {
+                        moveFocusToPickerTrigger(element); // if focus is within dropdown, move it to dropdown trigger
+                        toggleLanguagePicker(element, 'false'); // close dropdown
+                    });
+                }
+            });
+            // close language picker when clicking outside it
+            window.addEventListener('click', function (event) {
+                pickerArray.forEach(function (element) {
+                    checkLanguagePickerClick(element, event.target);
+                });
+            });
+        }
+    }());
+
+    document.body.style.overflowX = "hidden";
+</script>
+<script src="https://unievi.firat.edu.tr/designV2/assets/front/js/responsive.js"></script>
+</body>
+</html>
